@@ -18,13 +18,14 @@ namespace AutomaticBonusProgression
 
     // TODO: Need to handle features that muck w/ enhancement bonuses e.g. AddWeaponEnhancementBonusToStat
     // - GameHelper.GetArmorEnhancementBonus / ItemEnhancementBonus
-    // - ContextAction*EnchantPool
-    // - BlueprintItemArmor.IsMagic
-    // - AddWeaponEnhancementbonusToStat
-    // - IncreaseWeaponEnhancementBonusOnTargetFocus
-    // - WeaponConditionalEnhancementBonus
-    // - WeaponEnhancementBonus
-    // - ArmorEnhancementBonus
+    // - BlueprintItemArmor.IsMagic For this to work I need to not remove ArmorEnhancementBonus / WeaponEnhancementBonus
+
+    // TODO: Amulet of Fists use UnarmedEnhancementX which uses EquipmentWeaponTypeEnhancement. Because of what this is
+    // used for I shouldn't patch--instead I should replace the UnarmedEnhancement1 buffs w/ new components.
+    // TODO: Similarly, WeaponEnhancementBonus should not be done via patch but by updating EnhancementX
+    // TODO: Update PerfectStormFeature to support new logic
+    // TODO: Similarly, ArmorEnhancementBonus should not be done via patch but by updating ArmorEnhancementBonusX and
+    // ShieldEnhancementBonusX
 
     private static bool IsReplacedByABP(StatType stat, ModifierDescriptor descriptor)
     {
@@ -55,6 +56,7 @@ namespace AutomaticBonusProgression
       return unit.IsInCompanionRoster() || (unit.Master is not null && unit.Master.IsInCompanionRoster());
     }
 
+    // Ring of Deflection, Headbands / Belts
     [HarmonyPatch(typeof(AddStatBonusEquipment))]
     static class AddStatBonusEquipment_Patch
     {
@@ -77,7 +79,37 @@ namespace AutomaticBonusProgression
           }
         } catch (Exception e)
         {
-          Logger.LogException("BonusPatches.OnTurnOn", e);
+          Logger.LogException("AddStatBonusEquipment_Patch.OnTurnOn", e);
+        }
+        return true;
+      }
+    }
+
+    // Cloak of Resistance
+    [HarmonyPatch(typeof(AllSavesBonusEquipment))]
+    static class AllSavesBonusEquipment_Patch
+    {
+      [HarmonyPatch(nameof(AllSavesBonusEquipment.OnTurnOn)), HarmonyPrefix]
+      static bool OnTurnOn(AllSavesBonusEquipment __instance)
+      {
+        try
+        {
+          if (!IsReplacedByABP(StatType.SaveFortitude, __instance.Descriptor))
+          {
+            Logger.Verbose(() => $"All Saves - {__instance.Descriptor} is not affected by ABP");
+            return true;
+          }
+
+          var unit = __instance.Owner.Wielder.Unit;
+          if (IsAffectedByABP(unit))
+          {
+            Logger.Verbose(() => $"Skipping All Saves - {__instance.Descriptor} for {unit.CharacterName}");
+            return false;
+          }
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("AllSavesBonusEquipment_Patch.OnTurnOn", e);
         }
         return true;
       }
