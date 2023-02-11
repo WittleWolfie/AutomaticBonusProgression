@@ -1,6 +1,6 @@
 using AutomaticBonusProgression.Feats;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Root;
-using BlueprintCore.Utils;
 using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using System;
@@ -11,7 +11,7 @@ namespace AutomaticBonusProgression
   public static class Main
   {
     public static bool Enabled;
-    private static readonly LogWrapper Logger = LogWrapper.Get("AutomaticBonusProgression");
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Main));
 
     public static bool Load(UnityModManager.ModEntry modEntry)
     {
@@ -20,11 +20,11 @@ namespace AutomaticBonusProgression
         modEntry.OnToggle = OnToggle;
         var harmony = new Harmony(modEntry.Info.Id);
         harmony.PatchAll();
-        Logger.Info("Finished patching.");
+        Logger.Log("Finished patching.");
       }
       catch (Exception e)
       {
-        Logger.Error("Failed to patch", e);
+        Logger.LogException("Failed to patch", e);
       }
       return true;
     }
@@ -48,18 +48,18 @@ namespace AutomaticBonusProgression
         {
           if (Initialized)
           {
-            Logger.Info("Already configured blueprints.");
+            Logger.Warning("Already configured blueprints.");
             return;
           }
           Initialized = true;
 
-          Logger.Info("Configuring blueprints.");
+          Logger.Log("Configuring blueprints.");
 
           MyFeat.Configure();
         }
         catch (Exception e)
         {
-          Logger.Error("Failed to configure blueprints.", e);
+          Logger.LogException("Failed to configure blueprints.", e);
         }
       }
     }
@@ -76,7 +76,7 @@ namespace AutomaticBonusProgression
         {
           if (Initialized)
           {
-            Logger.Info("Already configured delayed blueprints.");
+            Logger.Warning("Already configured delayed blueprints.");
             return;
           }
           Initialized = true;
@@ -85,7 +85,7 @@ namespace AutomaticBonusProgression
         }
         catch (Exception e)
         {
-          Logger.Error("Failed to configure delayed blueprints.", e);
+          Logger.LogException("Failed to configure delayed blueprints.", e);
         }
       }
     }
