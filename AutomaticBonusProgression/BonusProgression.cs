@@ -77,7 +77,7 @@ namespace AutomaticBonusProgression
             tempBonus = bonus.EnhancementValue;
         }
 
-        var attunement = Owner.GetFact(ArmorAttunement);
+        var attunement = armor.Wielder.GetFact(ArmorAttunement);
         return Math.Max(tempBonus, attunement is null ? 0 : attunement.GetRank());
       }
     }
