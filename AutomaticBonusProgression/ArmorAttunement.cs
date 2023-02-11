@@ -19,7 +19,7 @@ namespace AutomaticBonusProgression
 
     internal static BlueprintFeatureSelection Configure()
     {
-      Logger.Log("Configuring armor attunement");
+      Logger.Log("Configuring armor selection");
 
       return FeatureSelectionConfigurator.New(ArmorSelection, Guids.ArmorSelection)
         .SetIsClassFeature()
