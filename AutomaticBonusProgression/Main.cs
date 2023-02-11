@@ -54,8 +54,6 @@ namespace AutomaticBonusProgression
           Initialized = true;
 
           Logger.Log("Configuring blueprints.");
-
-          MyFeat.Configure();
         }
         catch (Exception e)
         {
