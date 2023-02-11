@@ -1,0 +1,11 @@
+{
+  "Id": "AutomaticBonusProgression",
+  "DisplayName": "AutomaticBonusProgression",
+  "Author": "WittleWolfie",
+  "Version": "0.1",
+  "ManagerVersion": "0.21.3",
+  "Requirements": [],
+  "AssemblyName": "AutomaticBonusProgression.dll",
+  "EntryMethod": "AutomaticBonusProgression.Main.Load"
+}
+
