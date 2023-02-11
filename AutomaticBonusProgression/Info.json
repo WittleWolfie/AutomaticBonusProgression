@@ -6,6 +6,7 @@
   "ManagerVersion": "0.21.3",
   "Requirements": [],
   "AssemblyName": "AutomaticBonusProgression.dll",
-  "EntryMethod": "AutomaticBonusProgression.Main.Load"
+  "EntryMethod": "AutomaticBonusProgression.Main.Load",
+  "LoadAfter": ["MewsiferConsole"] 
 }
 
