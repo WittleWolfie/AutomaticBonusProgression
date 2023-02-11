@@ -52,6 +52,8 @@ namespace AutomaticBonusProgression
           }
           Initialized = true;
 
+          Enchantments.Configure();
+
           BonusProgression.Configure();
         }
         catch (Exception e)
