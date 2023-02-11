@@ -23,10 +23,20 @@ namespace AutomaticBonusProgression
     {
       Logger.Log("Configuring bonus progression");
 
-      ProgressionConfigurator.For(ProgressionRefs.BasicFeatsProgression)
-        .AddToLevelEntries(level: 1, ConfigureEnhancementCalculator())
-        .AddToLevelEntries(level: 2, ArmorAttunement.Configure())
-        .AddToLevelEntries(level: 3, ArmorAttunement.Configure())
+      // TODO: Grant to existing characters!
+
+      var armorSelection = ArmorAttunement.Configure();
+      var basicFeats = ProgressionConfigurator.For(ProgressionRefs.BasicFeatsProgression)
+        .ModifyLevelEntries(
+          levelEntry =>
+          {
+            // There's a special case for BasicFeatProgression where they don't actually grab all level entries for
+            // level 1, just the first.
+            if (levelEntry.Level == 1)
+              levelEntry.Features.Add(ConfigureEnhancementCalculator());
+          })
+        .AddToLevelEntries(level: 2, armorSelection)
+        .AddToLevelEntries(level: 3, armorSelection)
         .Configure();
     }
 
@@ -63,7 +73,7 @@ namespace AutomaticBonusProgression
             continue; // Skip these which represent the basic enchantments replaced by the mod
 
           var bonus = enchantment.GetComponent<ArmorEnhancementBonus>();
-          if (bonus.EnhancementValue > tempBonus)
+          if (bonus is not null && bonus.EnhancementValue > tempBonus)
             tempBonus = bonus.EnhancementValue;
         }
 
