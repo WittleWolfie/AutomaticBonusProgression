@@ -141,10 +141,7 @@
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
     <Copy SourceFiles="@(Strings)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
     <Copy SourceFiles="@(Assets)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
-    <ZipDirectory
-      SourceDirectory="$(OutputPath)\$(AssemblyName)"
-      DestinationFile="$(OutputPath)\$(AssemblyName).zip"
-      Overwrite="true"/>
+    <ZipDirectory SourceDirectory="$(OutputPath)\$(AssemblyName)" DestinationFile="$(OutputPath)\$(AssemblyName).zip" Overwrite="true" />
   </Target>
 
 </Project>
