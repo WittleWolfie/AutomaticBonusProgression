@@ -9,7 +9,7 @@ namespace AutomaticBonusProgression.Util
     private const string BaseChannel = "ABP";
 
     private static readonly Dictionary<string, Logger> Loggers = new();
-    private static bool VerboseLogging = false;
+    private static bool VerboseLogging = true; // TODO: Set to false
 
     internal static Logger GetLogger(string channel)
     {
