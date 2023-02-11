@@ -1,4 +1,3 @@
-using AutomaticBonusProgression.Feats;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Root;
 using HarmonyLib;
