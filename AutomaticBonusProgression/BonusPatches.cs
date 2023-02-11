@@ -103,7 +103,7 @@ namespace AutomaticBonusProgression
         }
       }
 
-      [HarmonyPatch(nameof(GameHelper.GetItemEnhancementBonus)), HarmonyPrefix]
+      [HarmonyPatch(nameof(GameHelper.GetItemEnhancementBonus), typeof(ItemEntity)), HarmonyPrefix]
       static bool GetItemEnhancementBonus(ItemEntity item, ref int __result)
       {
         try
