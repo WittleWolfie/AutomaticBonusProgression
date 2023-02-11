@@ -1,11 +1,14 @@
 ﻿using AutomaticBonusProgression.Util;
+using BlueprintCore.Utils;
 using HarmonyLib;
+using Kingmaker.Blueprints.Classes;
+using Kingmaker.Designers;
 using Kingmaker.Designers.Mechanics.EquipmentEnchants;
-using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.Enums;
+using Kingmaker.Items;
 using Kingmaker.UnitLogic;
 using System;
+using static AutomaticBonusProgression.BonusProgression;
 
 namespace AutomaticBonusProgression
 {
@@ -27,35 +30,6 @@ namespace AutomaticBonusProgression
     // TODO: Similarly, ArmorEnhancementBonus should not be done via patch but by updating ArmorEnhancementBonusX and
     // ShieldEnhancementBonusX
 
-    private static bool IsReplacedByABP(StatType stat, ModifierDescriptor descriptor)
-    {
-      switch (stat)
-      {
-        case StatType.AC:
-          return descriptor == ModifierDescriptor.ArmorEnhancement
-            || descriptor == ModifierDescriptor.NaturalArmorEnhancement
-            || descriptor == ModifierDescriptor.ShieldEnhancement
-            || descriptor == ModifierDescriptor.Deflection;
-        case StatType.Charisma:
-        case StatType.Constitution:
-        case StatType.Dexterity:
-        case StatType.Intelligence:
-        case StatType.Strength:
-        case StatType.Wisdom:
-          return descriptor == ModifierDescriptor.Enhancement;
-        case StatType.SaveFortitude:
-        case StatType.SaveReflex:
-        case StatType.SaveWill:
-          return descriptor == ModifierDescriptor.Resistance;
-      }
-      return false;
-    }
-
-    private static bool IsAffectedByABP(UnitEntityData unit)
-    {
-      return unit.IsInCompanionRoster() || (unit.Master is not null && unit.Master.IsInCompanionRoster());
-    }
-
     // Ring of Deflection, Headbands / Belts
     [HarmonyPatch(typeof(AddStatBonusEquipment))]
     static class AddStatBonusEquipment_Patch
@@ -65,14 +39,14 @@ namespace AutomaticBonusProgression
       {
         try
         {
-          if (!IsReplacedByABP(__instance.Stat, __instance.Descriptor))
+          if (!Common.IsReplacedByABP(__instance.Stat, __instance.Descriptor))
           {
             Logger.Verbose(() => $"{__instance.Stat} - {__instance.Descriptor} is not affected by ABP");
             return true;
           }
 
           var unit = __instance.Owner.Wielder.Unit;
-          if (IsAffectedByABP(unit))
+          if (Common.IsAffectedByABP(unit))
           {
             Logger.Verbose(() => $"Skipping {__instance.Stat} - {__instance.Descriptor} for {unit.CharacterName}");
             return false;
@@ -94,14 +68,14 @@ namespace AutomaticBonusProgression
       {
         try
         {
-          if (!IsReplacedByABP(StatType.SaveFortitude, __instance.Descriptor))
+          if (!Common.IsReplacedByABP(StatType.SaveFortitude, __instance.Descriptor))
           {
             Logger.Verbose(() => $"All Saves - {__instance.Descriptor} is not affected by ABP");
             return true;
           }
 
           var unit = __instance.Owner.Wielder.Unit;
-          if (IsAffectedByABP(unit))
+          if (Common.IsAffectedByABP(unit))
           {
             Logger.Verbose(() => $"Skipping All Saves - {__instance.Descriptor} for {unit.CharacterName}");
             return false;
@@ -110,6 +84,52 @@ namespace AutomaticBonusProgression
         catch (Exception e)
         {
           Logger.LogException("AllSavesBonusEquipment_Patch.OnTurnOn", e);
+        }
+        return true;
+      }
+    }
+
+    // Armor / Shield / Weapon
+    [HarmonyPatch(typeof(GameHelper))]
+    static class GameHelper_Patch
+    {
+      private static BlueprintFeature _calculator;
+      private static BlueprintFeature Calculator
+      {
+        get
+        {
+          _calculator ??= BlueprintTool.Get<BlueprintFeature>(Guids.EnhancementCalculator);
+          return _calculator;
+        }
+      }
+
+      [HarmonyPatch(nameof(GameHelper.GetItemEnhancementBonus)), HarmonyPrefix]
+      static bool GetItemEnhancementBonus(ItemEntity item, ref int __result)
+      {
+        try
+        {
+          var wielder = item.Wielder?.Unit;
+          if (wielder is null)
+            return true;
+
+          if (!Common.IsAffectedByABP(wielder))
+            return true;
+
+          var calculator = wielder.GetFact(Calculator)?.GetComponent<EnhancementBonusCalculator>();
+          if (calculator is null)
+          {
+            Logger.Warning($"{wielder.CharacterName} does not have an enhancement bonus calculator!");
+            return true;
+          }
+
+          if (item is ItemEntityArmor armor)
+          {
+            __result = calculator.GetEnhancementBonus(armor);
+            return false;
+          }
+        } catch (Exception e)
+        {
+          Logger.LogException("GameHelper_Patch.GetItemEnhancementBonus", e);
         }
         return true;
       }

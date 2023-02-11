@@ -52,7 +52,7 @@ namespace AutomaticBonusProgression
           }
           Initialized = true;
 
-          Logger.Log("Configuring blueprints.");
+          BonusProgression.Configure();
         }
         catch (Exception e)
         {

@@ -1,14 +1,31 @@
 [
   {
-    "Key": "MyFeat.Name",
-    // Don't process this since it is just a name. Without this it might create strange artifacts by trying to create
-    // links to encycolpedia pages.
+    "Key": "ArmorAttunement.Name",
     "ProcessTemplates": false,
-    "enGB": "My Feat"
+    "enGB": "Armor Attunement"
+  },
+  {
+    "Key": "ArmorAttunement.Description",
+    "enGB": "Each time you select this, your enhancement bonus to AC increases by +1."
   },
 
   {
-    "Key": "MyFeat.Description",
-    "enGB": "This is my feat, not your feat."
+    "Key": "ArmorSelection.Name",
+    "ProcessTemplates": false,
+    "enGB": "Armor Attunement"
+  },
+  {
+    "Key": "ArmorSelection.Description",
+    "enGB": "Increase your enhancement bonus to AC or enhancement bonus to shield AC."
+  },
+
+  {
+    "Key": "ShieldAttunement.Name",
+    "ProcessTemplates": false,
+    "enGB": "Shield Attunement"
+  },
+  {
+    "Key": "ShieldAttunement.Description",
+    "enGB": "Each time you select this, your enhancement bonus to shield AC increases by +1."
   }
 ]
