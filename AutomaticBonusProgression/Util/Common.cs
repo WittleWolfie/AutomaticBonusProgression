@@ -1,4 +1,6 @@
-﻿using Kingmaker.EntitySystem.Entities;
+﻿using BlueprintCore.Utils;
+using Kingmaker.Blueprints.Classes;
+using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic;
@@ -10,6 +12,25 @@ namespace AutomaticBonusProgression.Util
   /// </summary>
   internal static class Common
   {
+    private static BlueprintFeature _armorAttunement;
+    internal static BlueprintFeature ArmorAttunement
+    {
+      get
+      {
+        _armorAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.ArmorAttunement);
+        return _armorAttunement;
+      }
+    }
+    private static BlueprintFeature _shieldAttunement;
+    internal static BlueprintFeature ShieldAttunement
+    {
+      get
+      {
+        _shieldAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.ShieldAttunement);
+        return _shieldAttunement;
+      }
+    }
+
     internal static bool IsReplacedByABP(StatType stat, ModifierDescriptor descriptor)
     {
       switch (stat)

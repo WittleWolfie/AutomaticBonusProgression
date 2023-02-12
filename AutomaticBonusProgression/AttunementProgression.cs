@@ -2,7 +2,6 @@
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
-using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.JsonSystem;
@@ -56,31 +55,12 @@ namespace AutomaticBonusProgression
     [TypeId("55b09ee7-cb57-4a50-847d-85c32dea4b29")]
     internal class EnhancementBonusCalculator : UnitFactComponentDelegate
     {
-      private static BlueprintFeature _armorAttunement;
-      private static BlueprintFeature ArmorAttunement
-      {
-        get
-        {
-          _armorAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.ArmorAttunement);
-          return _armorAttunement;
-        }
-      }
-      private static BlueprintFeature _shieldAttunement;
-      private static BlueprintFeature ShieldAttunement
-      {
-        get
-        {
-          _shieldAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.ShieldAttunement);
-          return _shieldAttunement;
-        }
-      }
-
       internal int GetEnhancementBonus(ItemEntityShield shield)
       {
         var tempBonus = GetTempArmorBonus(shield);
         var attunement = GetShieldAttunement(shield.Wielder);
 
-        Logger.Verbose(() => $"Shield Armor Enhancement bonus: {attunement} + {tempBonus}");
+        Logger.Verbose(() => $"Shield Enhancement bonus: {attunement} + {tempBonus}");
         return attunement + tempBonus;
       }
 
@@ -111,7 +91,7 @@ namespace AutomaticBonusProgression
 
       private int GetShieldAttunement(UnitDescriptor unit)
       {
-        var attunement = unit.GetFact(ShieldAttunement);
+        var attunement = unit.GetFact(Common.ShieldAttunement);
         if (attunement is null)
           return 0;
 
@@ -120,7 +100,7 @@ namespace AutomaticBonusProgression
 
       private int GetArmorAttunement(UnitDescriptor unit)
       {
-        var attunement = unit.GetFact(ArmorAttunement);
+        var attunement = unit.GetFact(Common.ArmorAttunement);
         if (attunement is null)
           return 0;
 
@@ -128,7 +108,7 @@ namespace AutomaticBonusProgression
         if (unit.Body.SecondaryHand.MaybeShield is null)
           return rank;
 
-        return Math.Min(1, rank - 1); // If you have a shield the armor bonus is 1 lower (min 1)
+        return Math.Max(1, rank - 1); // If you have a shield the armor bonus is 1 lower (min 1)
       }
 
       internal int GetEnhancementBonus(ItemEntityWeapon weapon)
@@ -144,7 +124,7 @@ namespace AutomaticBonusProgression
             tempBonus += bonus.EnhancementBonus;
         }
 
-        var attunement = weapon.Wielder.GetFact(ArmorAttunement);
+        var attunement = weapon.Wielder.GetFact(Common.ArmorAttunement);
         var finalBonus = tempBonus + (attunement is null ? 0 : attunement.GetRank());
         Logger.Verbose(() => $"Weapon Enhancement bonus: {finalBonus - tempBonus} + {tempBonus}");
         return finalBonus;

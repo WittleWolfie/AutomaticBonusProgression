@@ -1,8 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
-using BlueprintCore.Utils;
 using HarmonyLib;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Progression.ChupaChupses;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Progression.Feats;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Progression.Main;
@@ -15,16 +13,6 @@ namespace AutomaticBonusProgression
   internal class UIPatches
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UIPatches));
-
-    private static BlueprintFeature _armorAttunement;
-    private static BlueprintFeature ArmorAttunement
-    {
-      get
-      {
-        _armorAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.ArmorAttunement);
-        return _armorAttunement;
-      }
-    }
 
     [HarmonyPatch(typeof(FeatProgressionVM))]
     static class FeatProgressionVM_Patch
@@ -65,7 +53,9 @@ namespace AutomaticBonusProgression
 
       private static bool IsABPFeature(BlueprintFeatureBase feature)
       {
-        if (feature == ArmorAttunement)
+        if (feature == Common.ArmorAttunement)
+          return true;
+        if (feature == Common.ShieldAttunement)
           return true;
         return false;
       }
