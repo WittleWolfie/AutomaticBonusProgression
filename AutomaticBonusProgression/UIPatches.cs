@@ -16,12 +16,12 @@ namespace AutomaticBonusProgression
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UIPatches));
 
-    private static BlueprintFeatureSelection _armorAttunement;
-    private static BlueprintFeatureSelection ArmorAttunement
+    private static BlueprintFeature _armorAttunement;
+    private static BlueprintFeature ArmorAttunement
     {
       get
       {
-        _armorAttunement ??= BlueprintTool.Get<BlueprintFeatureSelection>(Guids.ArmorAttunement);
+        _armorAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.ArmorAttunement);
         return _armorAttunement;
       }
     }
