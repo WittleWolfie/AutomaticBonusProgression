@@ -21,7 +21,7 @@ namespace AutomaticBonusProgression
     {
       get
       {
-        _armorAttunement ??= BlueprintTool.Get<BlueprintFeatureSelection>(Guids.ArmorSelection);
+        _armorAttunement ??= BlueprintTool.Get<BlueprintFeatureSelection>(Guids.ArmorAttunement);
         return _armorAttunement;
       }
     }
@@ -60,19 +60,6 @@ namespace AutomaticBonusProgression
         catch (Exception e)
         {
           Logger.LogException("FeatProgressionVM_Patch.BuildFeats", e);
-        }
-      }
-
-      [HarmonyPatch(nameof(FeatProgressionVM.ShouldBeDisplayed)), HarmonyPostfix]
-      static void ShouldBeDisplayed(BlueprintFeatureBase feature, ref bool __result)
-      {
-        try
-        {
-          __result = __result && !IsABPFeature(feature);
-        }
-        catch (Exception e)
-        {
-          Logger.LogException("FeatProgressionVM_Patch.ShouldBeDisplayed", e);
         }
       }
 
