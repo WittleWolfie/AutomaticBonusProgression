@@ -24,19 +24,15 @@ namespace AutomaticBonusProgression
       Logger.Log("Configuring bonus progression");
 
       // TODO: Grant to existing characters!
+      // TODO: Also make sure to grant to recruited homies
+
+      var basicFeats = ProgressionRefs.BasicFeatsProgression.Reference.Get();
 
       var armorSelection = ArmorAttunement.Configure();
-      var basicFeats = ProgressionConfigurator.For(ProgressionRefs.BasicFeatsProgression)
-        .ModifyLevelEntries(
-          levelEntry =>
-          {
-            // There's a special case for BasicFeatProgression where they don't actually grab all level entries for
-            // level 1, just the first.
-            if (levelEntry.Level == 1)
-              levelEntry.Features.Add(ConfigureEnhancementCalculator());
-          })
-        .AddToLevelEntries(level: 2, armorSelection)
-        .AddToLevelEntries(level: 3, armorSelection)
+      var basic = ProgressionConfigurator.For(basicFeats)
+        .AddToLevelEntry(level: 1, ConfigureEnhancementCalculator())
+        .AddToLevelEntry(level: 2, armorSelection)
+        .AddToLevelEntry(level: 3, armorSelection)
         .Configure();
     }
 
