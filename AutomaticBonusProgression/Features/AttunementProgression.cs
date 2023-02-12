@@ -64,7 +64,7 @@ namespace AutomaticBonusProgression.Features
         var tempBonus = GetTempArmorBonus(shield);
         var attunement = GetShieldAttunement(shield.Wielder);
 
-        Logger.Verbose(() => $"Shield Enhancement bonus: {attunement} + {tempBonus}");
+        Logger.Verbose(() => $"Shield Enhancement bonus for {shield}: {attunement} + {tempBonus}");
         return attunement + tempBonus;
       }
 
@@ -76,7 +76,7 @@ namespace AutomaticBonusProgression.Features
         var tempBonus = GetTempArmorBonus(armor);
         var attunement = GetArmorAttunement(armor.Wielder);
 
-        Logger.Verbose(() => $"Armor Enhancement bonus: {attunement} + {tempBonus}");
+        Logger.Verbose(() => $"Armor Enhancement bonus for {armor}: {attunement} + {tempBonus}");
         return attunement + tempBonus;
       }
 
@@ -133,10 +133,35 @@ namespace AutomaticBonusProgression.Features
             tempBonus += bonus.EnhancementBonus;
         }
 
-        var attunement = weapon.Wielder.GetFact(Common.ArmorAttunement);
-        var finalBonus = tempBonus + (attunement is null ? 0 : attunement.GetRank());
-        Logger.Verbose(() => $"Weapon Enhancement bonus: {finalBonus - tempBonus} + {tempBonus}");
-        return finalBonus;
+        var wielder = weapon.Wielder;
+        var attunement =
+          wielder.Body.PrimaryHand.MaybeWeapon == weapon
+            ? GetWeaponAttunement(wielder)
+            : GetOffHandAttunement(wielder);
+
+        Logger.Verbose(() => $"Weapon Enhancement bonus for {weapon}: {attunement} + {tempBonus}");
+        return attunement + tempBonus;
+      }
+
+      private int GetWeaponAttunement(UnitDescriptor unit)
+      {
+        var attunement = unit.GetFact(Common.WeaponAttunement);
+        if (attunement is null)
+          return 0;
+
+        var rank = attunement.GetRank();
+        if (unit.Body.SecondaryHand.MaybeWeapon is null)
+          return rank;
+
+        return Math.Max(1, rank - 1); // If you have an off-hand weapon the armor bonus is 1 lower (min 1)
+      }
+
+      private int GetOffHandAttunement(UnitDescriptor unit)
+      {
+        var attunement = unit.GetFact(Common.OffHandAttunement);
+        if (attunement is not null)
+          return attunement.GetRank();
+        return 0;
       }
     }
   }

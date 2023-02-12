@@ -26,9 +26,7 @@ namespace AutomaticBonusProgression.Patches
     // TODO: Amulet of Fists use UnarmedEnhancementX which uses EquipmentWeaponTypeEnhancement. Because of what this is
     // used for I shouldn't patch--instead I should replace the UnarmedEnhancement1 buffs w/ new components.
     // TODO: Similarly, WeaponEnhancementBonus should not be done via patch but by updating EnhancementX
-    // TODO: Update PerfectStormFeature to support new logic
-    // TODO: Similarly, ArmorEnhancementBonus should not be done via patch but by updating ArmorEnhancementBonusX and
-    // ShieldEnhancementBonusX
+
 
     // Ring of Deflection, Headbands / Belts
     [HarmonyPatch(typeof(AddStatBonusEquipment))]
