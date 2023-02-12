@@ -25,6 +25,7 @@ namespace AutomaticBonusProgression.Patches
         {
           List<ProgressionVM.FeatureEntry> features = new();
           List<FeatureProgressionChupaChupsVM> armor = new();
+          List<FeatureProgressionChupaChupsVM> shield = new();
           foreach (var level in __instance.BlueprintProgression.LevelEntries)
           {
             foreach (var feature in level.Features)
@@ -41,11 +42,14 @@ namespace AutomaticBonusProgression.Patches
                 };
               features.Add(featureEntry);
 
-
-              armor.Add(__instance.GetChupaChups(featureEntry));
+              if (feature == Common.ArmorAttunement)
+                armor.Add(__instance.GetChupaChups(featureEntry));
+              else if (feature == Common.ShieldAttunement)
+                shield.Add(__instance.GetChupaChups(featureEntry));
             }
           }
           __instance.MainChupaChupsLines.Add(armor);
+          __instance.MainChupaChupsLines.Add(shield);
         }
         catch (Exception e)
         {
