@@ -7,7 +7,10 @@ using Kingmaker.Designers.Mechanics.EquipmentEnchants;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Parts;
 using System;
+using System.Collections.Generic;
 using static AutomaticBonusProgression.BonusProgression;
 
 namespace AutomaticBonusProgression
@@ -21,7 +24,6 @@ namespace AutomaticBonusProgression
 
     // TODO: Need to handle features that muck w/ enhancement bonuses e.g. AddWeaponEnhancementBonusToStat
     // - GameHelper.GetArmorEnhancementBonus / ItemEnhancementBonus
-    // - BlueprintItemArmor.IsMagic For this to work I need to not remove ArmorEnhancementBonus / WeaponEnhancementBonus
 
     // TODO: Amulet of Fists use UnarmedEnhancementX which uses EquipmentWeaponTypeEnhancement. Because of what this is
     // used for I shouldn't patch--instead I should replace the UnarmedEnhancement1 buffs w/ new components.
@@ -134,6 +136,107 @@ namespace AutomaticBonusProgression
         {
           Logger.LogException("GameHelper_Patch.GetItemEnhancementBonus", e);
         }
+      }
+    }
+
+    [HarmonyPatch(typeof(ContextActionArmorEnchantPool))]
+    static class ContextActionArmorEnchantPool_Patch
+    {
+      [HarmonyPatch(nameof(ContextActionArmorEnchantPool.RunAction)), HarmonyTranspiler]
+      static IEnumerable<CodeInstruction> RunAction(IEnumerable<CodeInstruction> instructions)
+      {
+        try
+        {
+          // Current:
+          //   ldc.i4.0
+          //   stloc.3
+          // New:
+          //   ldloc.2
+          //   call      GameHelper.GetItemEnhancementBonus(ItemEntity)
+          //   stloc.3
+          // Delete:
+          //   ldloc.2
+          //   callvirt  getEnchantments()
+          //   call      Any()
+          //   brfalse.s IL_00D2
+          //   ... (until IL_00D2)
+          var code = new List<CodeInstruction>(instructions);
+
+          // Search backwards for this.DurationValue which is just after the deleted section
+          var index = code.Count - 1;
+          var deleteEnd = 0;
+          var durationValue =
+            AccessTools.Field(typeof(ContextActionArmorEnchantPool), nameof(ContextActionArmorEnchantPool.DurationValue));
+          for (; index >= 0; index--)
+          {
+            if (code[index].LoadsField(durationValue))
+            {
+              deleteEnd = index - 1; // Need to keep the ldarg call just before this step
+              break;
+            }
+          }
+
+          // Search backwards to find where the armor is stored
+          CodeInstruction loadArmor = null;
+          var getEnchantments = AccessTools.PropertyGetter(typeof(ItemEntity), nameof(ItemEntity.Enchantments));
+          for (; index >= 0; index--)
+          {
+            if (code[index].Calls(getEnchantments))
+            {
+              // Instruction just before must load the armor
+              loadArmor = code[index - 1].Clone();
+              break;
+            }
+          }
+
+          // Search backwards for GetGroupSize() which is called just before the deleted section
+          var deleteStart = 0;
+          var getGroupSize =
+            AccessTools.Method(typeof(UnitPartActivatableAbility), nameof(UnitPartActivatableAbility.GetGroupSize));
+          for (; index >= 0; index--)
+          {
+            if (code[index].Calls(getGroupSize))
+            {
+              deleteStart = index + 2; // Need to keep the stloc called just after this
+              break;
+            }
+          }
+
+          // search backwards for load 0 which is where the enhancement bonus is first set
+          var loadEnhancementBonus = 0;
+          for (; index >= 0; index--)
+          {
+            if (code[index].LoadsConstant())
+            {
+              loadArmor.MoveLabelsFrom(code[index]);
+              loadEnhancementBonus = index;
+              break;
+            }
+          }
+
+          // First do the delete (work backwards so the indices are stable)
+          code.RemoveRange(deleteStart, deleteEnd - deleteStart);
+
+          // Now add thew new load calculation
+          var newCalculation =
+            new List<CodeInstruction>()
+            {
+              loadArmor,
+              CodeInstruction.Call(
+                typeof(GameHelper),
+                nameof(GameHelper.GetItemEnhancementBonus),
+                parameters: new[] { typeof(ItemEntity) })
+            };
+          code.InsertRange(loadEnhancementBonus + 1, newCalculation);
+
+          // Finally delete the load 0
+          code.RemoveAt(loadEnhancementBonus);
+          return code;
+        } catch (Exception e)
+        {
+          Logger.LogException("ContextActionArmorEnchantPool_Patch.RunAction", e);
+        }
+        return instructions;
       }
     }
   }
