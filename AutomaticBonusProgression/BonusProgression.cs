@@ -74,7 +74,9 @@ namespace AutomaticBonusProgression
         }
 
         var attunement = armor.Wielder.GetFact(ArmorAttunement);
-        return Math.Max(tempBonus, attunement is null ? 0 : attunement.GetRank());
+        var finalBonus = tempBonus + (attunement is null ? 0 : attunement.GetRank());
+        Logger.Verbose(() => $"Enhancement bonus: {tempBonus} + {finalBonus - tempBonus}");
+        return finalBonus;
       }
     }
   }
