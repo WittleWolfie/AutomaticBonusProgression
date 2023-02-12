@@ -9,7 +9,7 @@ using System;
 
 namespace AutomaticBonusProgression.Features
 {
-    internal class Enchantments
+  internal class Enchantments
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Enchantments));
 

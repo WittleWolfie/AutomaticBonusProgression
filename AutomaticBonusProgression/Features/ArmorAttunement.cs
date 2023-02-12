@@ -1,8 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums;
 using Kingmaker.Items;
@@ -13,7 +11,7 @@ using System;
 
 namespace AutomaticBonusProgression.Features
 {
-    internal class ArmorAttunement
+  internal class ArmorAttunement
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ArmorAttunement));
 

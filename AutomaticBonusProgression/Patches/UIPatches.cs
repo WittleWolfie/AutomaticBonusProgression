@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace AutomaticBonusProgression.Patches
 {
-    internal class UIPatches
+  internal class UIPatches
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UIPatches));
 

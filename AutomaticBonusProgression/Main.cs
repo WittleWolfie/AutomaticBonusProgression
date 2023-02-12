@@ -8,7 +8,7 @@ using UnityModManagerNet;
 
 namespace AutomaticBonusProgression
 {
-    public static class Main
+  public static class Main
   {
     public static bool Enabled;
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Main));

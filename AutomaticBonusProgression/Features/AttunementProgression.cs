@@ -13,7 +13,7 @@ using System;
 
 namespace AutomaticBonusProgression.Features
 {
-    internal class AttunementProgression
+  internal class AttunementProgression
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AttunementProgression));
 

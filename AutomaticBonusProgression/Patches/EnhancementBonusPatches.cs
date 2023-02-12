@@ -12,14 +12,14 @@ using Kingmaker.UnitLogic.Parts;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using static AutomaticBonusProgression.AttunementProgression;
+using static AutomaticBonusProgression.Features.AttunementProgression;
 
 namespace AutomaticBonusProgression.Patches
 {
-    /// <summary>
-    /// Collection of patches removing enhancement bonuses from items.
-    /// </summary>
-    internal class EnhancementBonusPatches
+  /// <summary>
+  /// Collection of patches removing enhancement bonuses from items.
+  /// </summary>
+  internal class EnhancementBonusPatches
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementBonusPatches));
 
