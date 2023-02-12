@@ -4,6 +4,8 @@ using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Enums;
+using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
 using System;
 
@@ -11,7 +13,7 @@ namespace AutomaticBonusProgression
 {
   internal class ArmorAttunement
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ArmorAttunement));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AutomaticBonusProgression.ArmorAttunement));
 
     private const string ArmorSelection = "ArmorSelection";
     private const string ArmorSelectionDisplayName = "ArmorSelection.Name";
@@ -44,7 +46,7 @@ namespace AutomaticBonusProgression
         .SetDescription(ArmorDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddComponent<RecalculateArmor>()
+        .AddComponent<ArmorAttunement>()
         .Configure();
     }
 
@@ -58,16 +60,17 @@ namespace AutomaticBonusProgression
     }
 
     [TypeId("4c92c283-1d5c-43af-9277-f69332f419ae")]
-    private class RecalculateArmor : UnitFactComponentDelegate
+    private class ArmorAttunementComponent : UnitFactComponentDelegate, IUnitActiveEquipmentSetHandler
     {
       public override void OnTurnOn()
       {
         try
         {
           Owner.Body.Armor.MaybeArmor?.RecalculateStats();
+          UpdateUnarmoredBonus();
         } catch (Exception e)
         {
-          Logger.LogException("RecalculateArmor.OnTurnOn", e);
+          Logger.LogException("ArmorAttunementComponent.OnTurnOn", e);
         }
       }
 
@@ -76,11 +79,36 @@ namespace AutomaticBonusProgression
         try
         {
           Owner.Body.Armor.MaybeArmor?.RecalculateStats();
+          Owner.Stats.AC.RemoveModifiersFrom(Runtime);
         }
         catch (Exception e)
         {
-          Logger.LogException("RecalculateArmor.OnTurnOff", e);
+          Logger.LogException("ArmorAttunementComponent.OnTurnOff", e);
         }
+      }
+
+      public void HandleUnitChangeActiveEquipmentSet(UnitDescriptor unit)
+      {
+        try
+        {
+          UpdateUnarmoredBonus();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("ArmorAttunementComponent.HandleUnitChangeActiveEquipmentSet", e);
+        }
+      }
+
+      private void UpdateUnarmoredBonus()
+      {
+        if (Owner.Body.SecondaryHand.HasShield || Owner.Body.Armor.HasArmor)
+        {
+          Owner.Stats.AC.RemoveModifiersFrom(Runtime);
+          return;
+        }
+
+        Logger.Verbose(() => $"Granting {Owner} attunement while unarmored.");
+        Owner.Stats.AC.AddModifier(Fact.GetRank(), source: Runtime, desc: ModifierDescriptor.ArmorEnhancement);
       }
     }
   }
