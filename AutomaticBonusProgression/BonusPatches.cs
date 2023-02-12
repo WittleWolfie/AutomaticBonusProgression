@@ -103,35 +103,37 @@ namespace AutomaticBonusProgression
         }
       }
 
-      [HarmonyPatch(nameof(GameHelper.GetItemEnhancementBonus), typeof(ItemEntity)), HarmonyPrefix]
-      static bool GetItemEnhancementBonus(ItemEntity item, ref int __result)
+      // Overwrite TTT's logic or else it just ignores our patch
+      [HarmonyAfter("TabletopTweaks-Base")]
+      [HarmonyPatch(nameof(GameHelper.GetItemEnhancementBonus), typeof(ItemEntity)), HarmonyPostfix]
+      static void GetItemEnhancementBonus(ItemEntity item, ref int __result)
       {
         try
         {
           var wielder = item.Wielder?.Unit;
           if (wielder is null)
-            return true;
+            return;
 
           if (!Common.IsAffectedByABP(wielder))
-            return true;
+            return;
 
           var calculator = wielder.GetFact(Calculator)?.GetComponent<EnhancementBonusCalculator>();
           if (calculator is null)
           {
             Logger.Warning($"{wielder.CharacterName} does not have an enhancement bonus calculator!");
-            return true;
+            return;
           }
 
           if (item is ItemEntityArmor armor)
           {
             __result = calculator.GetEnhancementBonus(armor);
-            return false;
+            return;
           }
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
           Logger.LogException("GameHelper_Patch.GetItemEnhancementBonus", e);
         }
-        return true;
       }
     }
   }
