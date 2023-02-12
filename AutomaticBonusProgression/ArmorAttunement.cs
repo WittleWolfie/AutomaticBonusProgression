@@ -15,24 +15,7 @@ namespace AutomaticBonusProgression
 {
   internal class ArmorAttunement
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AutomaticBonusProgression.ArmorAttunement));
-
-    private const string ArmorSelection = "ArmorSelection";
-    private const string ArmorSelectionDisplayName = "ArmorSelection.Name";
-    private const string ArmorSelectionDescription = "ArmorSelection.Description";
-
-    internal static BlueprintFeatureSelection Configure()
-    {
-      Logger.Log("Configuring armor selection");
-
-      return FeatureSelectionConfigurator.New(ArmorSelection, Guids.ArmorSelection)
-        .SetIsClassFeature()
-        .SetDisplayName(ArmorSelectionDisplayName)
-        .SetDescription(ArmorSelectionDescription)
-        //.SetIcon()
-        .SetAllFeatures(ConfigureArmor())
-        .Configure();
-    }
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ArmorAttunement));
 
     private const string ArmorName = "ArmorAttunement";
     private const string ArmorDisplayName = "ArmorAttunement.Name";
@@ -56,9 +39,48 @@ namespace AutomaticBonusProgression
     private const string ShieldDisplayName = "ShieldAttunement.Name";
     private const string ShieldDescription = "ShieldAttunement.Description";
 
-    internal static void ConfigureShield()
+    internal static BlueprintFeature ConfigureShield()
     {
       Logger.Log($"Configuring Shield Attunement");
+
+      return FeatureConfigurator.New(ShieldName, Guids.ShieldAttunement)
+        .SetIsClassFeature()
+        .SetDisplayName(ShieldDisplayName)
+        .SetDescription(ShieldDescription)
+        //.SetIcon()
+        .SetRanks(4)
+        .AddComponent<RecalculateArmorStats>()
+        .Configure();
+    }
+
+    [TypeId("10638b67-0028-4ef8-86f4-0c3354926a79")]
+    internal class RecalculateArmorStats : UnitFactComponentDelegate
+    {
+      private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(RecalculateArmorStats));
+
+      public override void OnTurnOn()
+      {
+        try
+        {
+          Owner.Body.Armor.MaybeArmor?.RecalculateStats();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("RecalculateArmorStats.OnTurnOn", e);
+        }
+      }
+
+      public override void OnTurnOff()
+      {
+        try
+        {
+          Owner.Body.Armor.MaybeArmor?.RecalculateStats();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("RecalculateArmorStats.OnTurnOff", e);
+        }
+      }
     }
 
     [TypeId("4c92c283-1d5c-43af-9277-f69332f419ae")]
@@ -69,7 +91,6 @@ namespace AutomaticBonusProgression
       {
         try
         {
-          Owner.Body.Armor.MaybeArmor?.RecalculateStats();
           UpdateUnarmoredBonus();
         } catch (Exception e)
         {
@@ -81,7 +102,6 @@ namespace AutomaticBonusProgression
       {
         try
         {
-          Owner.Body.Armor.MaybeArmor?.RecalculateStats();
           Owner.Stats.AC.RemoveModifiersFrom(Runtime);
         }
         catch (Exception e)
@@ -122,6 +142,9 @@ namespace AutomaticBonusProgression
 
       private void UpdateUnarmoredBonus()
       {
+        if (!Common.IsAffectedByABP(Owner))
+          return;
+
         if (Owner.Body.SecondaryHand.HasShield || Owner.Body.Armor.HasArmor)
         {
           Logger.Verbose(() => $"Removing {Owner} unarmored bonus");

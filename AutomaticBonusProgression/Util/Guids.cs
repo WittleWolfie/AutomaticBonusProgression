@@ -16,10 +16,12 @@ namespace AutomaticBonusProgression.Util
     // Feature used to calculate armor / weapon / shield enhancement bonuses
     internal const string EnhancementCalculator = "945f05cf-ffb5-489d-b4d8-2687d1f1b835";
 
-    internal const string ArmorSelection = "ae78a80c-f6ba-4c42-962f-2b0ac908d25a";
     internal const string ArmorAttunement = "24af67c6-bc58-4dba-a9bf-d7d00925e7c7";
     internal const string ShieldAttunement = "58b87d99-125c-4300-9c87-ba0d90168ca2";
     internal const string LegendaryArmorAttunement = "8b361c98-2aa0-4109-9a11-33a9fc997793";
-    internal const string LegendaryShieldAttunement = "5022aa7f-3e42-4540-a8b9-5fac720793e9";
+
+    internal const string PrimaryWeaponAttunement = "137eeed7-8487-411c-b861-15ded694bd08";
+    internal const string SecondaryWeaponAttunement = "84fedf0f-50fa-4b26-8e61-5c2e280bfc8e";
+    internal const string LegendaryWeaponAttunement = "066c8db2-569e-47bd-a912-c13407efc0a4";
   }
 }
