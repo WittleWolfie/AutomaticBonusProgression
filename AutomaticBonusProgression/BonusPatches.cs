@@ -11,6 +11,7 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Parts;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using static AutomaticBonusProgression.BonusProgression;
 
 namespace AutomaticBonusProgression
@@ -139,6 +140,95 @@ namespace AutomaticBonusProgression
       }
     }
 
+    private static IEnumerable<CodeInstruction> GetEnchantRunAction(
+      IEnumerable<CodeInstruction> instructions,
+      FieldInfo durationValue)
+    {
+      // Current:
+      //   ldc.i4.0
+      //   stloc.3
+      // New:
+      //   ldloc.2
+      //   call      GameHelper.GetItemEnhancementBonus(ItemEntity)
+      //   stloc.3
+      // Delete:
+      //   ldloc.2
+      //   callvirt  getEnchantments()
+      //   call      Any()
+      //   brfalse.s IL_00D2
+      //   ... (until IL_00D2)
+      var code = new List<CodeInstruction>(instructions);
+
+      // Search backwards for this.DurationValue which is just after the deleted section
+      var index = code.Count - 1;
+      var deleteEnd = 0;
+      for (; index >= 0; index--)
+      {
+        if (code[index].LoadsField(durationValue))
+        {
+          deleteEnd = index - 1; // Need to keep the ldarg call just before this step
+          break;
+        }
+      }
+
+      // Search backwards to find where the armor is stored
+      CodeInstruction loadArmor = null;
+      var getEnchantments = AccessTools.PropertyGetter(typeof(ItemEntity), nameof(ItemEntity.Enchantments));
+      for (; index >= 0; index--)
+      {
+        if (code[index].Calls(getEnchantments))
+        {
+          // Instruction just before must load the armor
+          loadArmor = code[index - 1].Clone();
+          break;
+        }
+      }
+
+      // Search backwards for GetGroupSize() which is called just before the deleted section
+      var deleteStart = 0;
+      var getGroupSize =
+        AccessTools.Method(typeof(UnitPartActivatableAbility), nameof(UnitPartActivatableAbility.GetGroupSize));
+      for (; index >= 0; index--)
+      {
+        if (code[index].Calls(getGroupSize))
+        {
+          deleteStart = index + 2; // Need to keep the stloc called just after this
+          break;
+        }
+      }
+
+      // search backwards for load 0 which is where the enhancement bonus is first set
+      var loadEnhancementBonus = 0;
+      for (; index >= 0; index--)
+      {
+        if (code[index].LoadsConstant())
+        {
+          loadArmor.MoveLabelsFrom(code[index]);
+          loadEnhancementBonus = index;
+          break;
+        }
+      }
+
+      // First do the delete (work backwards so the indices are stable)
+      code.RemoveRange(deleteStart, deleteEnd - deleteStart);
+
+      // Now add thew new load calculation
+      var newCalculation =
+        new List<CodeInstruction>()
+        {
+              loadArmor,
+              CodeInstruction.Call(
+                typeof(GameHelper),
+                nameof(GameHelper.GetItemEnhancementBonus),
+                parameters: new[] { typeof(ItemEntity) })
+        };
+      code.InsertRange(loadEnhancementBonus + 1, newCalculation);
+
+      // Finally delete the load 0
+      code.RemoveAt(loadEnhancementBonus);
+      return code;
+    }
+
     [HarmonyPatch(typeof(ContextActionArmorEnchantPool))]
     static class ContextActionArmorEnchantPool_Patch
     {
@@ -147,92 +237,32 @@ namespace AutomaticBonusProgression
       {
         try
         {
-          // Current:
-          //   ldc.i4.0
-          //   stloc.3
-          // New:
-          //   ldloc.2
-          //   call      GameHelper.GetItemEnhancementBonus(ItemEntity)
-          //   stloc.3
-          // Delete:
-          //   ldloc.2
-          //   callvirt  getEnchantments()
-          //   call      Any()
-          //   brfalse.s IL_00D2
-          //   ... (until IL_00D2)
-          var code = new List<CodeInstruction>(instructions);
-
-          // Search backwards for this.DurationValue which is just after the deleted section
-          var index = code.Count - 1;
-          var deleteEnd = 0;
           var durationValue =
-            AccessTools.Field(typeof(ContextActionArmorEnchantPool), nameof(ContextActionArmorEnchantPool.DurationValue));
-          for (; index >= 0; index--)
-          {
-            if (code[index].LoadsField(durationValue))
-            {
-              deleteEnd = index - 1; // Need to keep the ldarg call just before this step
-              break;
-            }
-          }
-
-          // Search backwards to find where the armor is stored
-          CodeInstruction loadArmor = null;
-          var getEnchantments = AccessTools.PropertyGetter(typeof(ItemEntity), nameof(ItemEntity.Enchantments));
-          for (; index >= 0; index--)
-          {
-            if (code[index].Calls(getEnchantments))
-            {
-              // Instruction just before must load the armor
-              loadArmor = code[index - 1].Clone();
-              break;
-            }
-          }
-
-          // Search backwards for GetGroupSize() which is called just before the deleted section
-          var deleteStart = 0;
-          var getGroupSize =
-            AccessTools.Method(typeof(UnitPartActivatableAbility), nameof(UnitPartActivatableAbility.GetGroupSize));
-          for (; index >= 0; index--)
-          {
-            if (code[index].Calls(getGroupSize))
-            {
-              deleteStart = index + 2; // Need to keep the stloc called just after this
-              break;
-            }
-          }
-
-          // search backwards for load 0 which is where the enhancement bonus is first set
-          var loadEnhancementBonus = 0;
-          for (; index >= 0; index--)
-          {
-            if (code[index].LoadsConstant())
-            {
-              loadArmor.MoveLabelsFrom(code[index]);
-              loadEnhancementBonus = index;
-              break;
-            }
-          }
-
-          // First do the delete (work backwards so the indices are stable)
-          code.RemoveRange(deleteStart, deleteEnd - deleteStart);
-
-          // Now add thew new load calculation
-          var newCalculation =
-            new List<CodeInstruction>()
-            {
-              loadArmor,
-              CodeInstruction.Call(
-                typeof(GameHelper),
-                nameof(GameHelper.GetItemEnhancementBonus),
-                parameters: new[] { typeof(ItemEntity) })
-            };
-          code.InsertRange(loadEnhancementBonus + 1, newCalculation);
-
-          // Finally delete the load 0
-          code.RemoveAt(loadEnhancementBonus);
-          return code;
+            AccessTools.Field(
+              typeof(ContextActionArmorEnchantPool), nameof(ContextActionArmorEnchantPool.DurationValue));
+          return GetEnchantRunAction(instructions, durationValue);
         } catch (Exception e)
+        {
+          Logger.LogException("ContextActionArmorEnchantPool_Patch.RunAction", e);
+        }
+        return instructions;
+      }
+    }
+
+    [HarmonyPatch(typeof(ContextActionShieldArmorEnchantPool))]
+    static class ContextActionShieldArmorEnchantPool_Patch
+    {
+      [HarmonyPatch(nameof(ContextActionShieldArmorEnchantPool.RunAction)), HarmonyTranspiler]
+      static IEnumerable<CodeInstruction> RunAction(IEnumerable<CodeInstruction> instructions)
+      {
+        try
+        {
+          var durationValue =
+            AccessTools.Field(
+              typeof(ContextActionShieldArmorEnchantPool), nameof(ContextActionShieldArmorEnchantPool.DurationValue));
+          return GetEnchantRunAction(instructions, durationValue);
+        }
+        catch (Exception e)
         {
           Logger.LogException("ContextActionArmorEnchantPool_Patch.RunAction", e);
         }
