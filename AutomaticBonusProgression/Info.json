@@ -7,6 +7,6 @@
   "Requirements": [],
   "AssemblyName": "AutomaticBonusProgression.dll",
   "EntryMethod": "AutomaticBonusProgression.Main.Load",
-  "LoadAfter": ["MewsiferConsole"] 
+  "LoadAfter": ["MewsiferConsole.Mod"] 
 }
 
