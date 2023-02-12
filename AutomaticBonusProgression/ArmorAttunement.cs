@@ -44,6 +44,7 @@ namespace AutomaticBonusProgression
         .SetDescription(ArmorDescription)
         //.SetIcon()
         .SetRanks(5)
+        .AddComponent<RecalculateArmor>()
         .Configure();
     }
 
