@@ -92,10 +92,12 @@ namespace AutomaticBonusProgression
       private int GetShieldAttunement(UnitDescriptor unit)
       {
         var attunement = unit.GetFact(Common.ShieldAttunement);
-        if (attunement is null)
-          return 0;
+        if (attunement is not null)
+          return attunement.GetRank();
 
-        return attunement.GetRank();
+        if (unit.Body.Armor.MaybeArmor is null)
+          return GetArmorAttunement(unit);
+        return 0;
       }
 
       private int GetArmorAttunement(UnitDescriptor unit)
