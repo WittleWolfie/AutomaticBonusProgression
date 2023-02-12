@@ -40,7 +40,7 @@ namespace AutomaticBonusProgression
 
       return FeatureConfigurator.New(ArmorName, Guids.ArmorAttunement)
         .SetIsClassFeature()
-        .SetDisplayName(ArmorName)
+        .SetDisplayName(ArmorDisplayName)
         .SetDescription(ArmorDescription)
         //.SetIcon()
         .SetRanks(5)
