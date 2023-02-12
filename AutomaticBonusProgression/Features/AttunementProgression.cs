@@ -30,14 +30,18 @@ namespace AutomaticBonusProgression.Features
 
       var armorAttunement = ArmorAttunement.ConfigureArmor();
       var shieldAttunement = ArmorAttunement.ConfigureShield();
+
+      var weaponAttunement = WeaponAttunement.ConfigureWeapon();
+      var offHandAttunement = WeaponAttunement.ConfigureOffHand();
+
       ProgressionConfigurator.For(basicFeats)
         .AddToLevelEntry(level: 1, ConfigureEnhancementCalculator())
-        .AddToLevelEntry(level: 4, armorAttunement)
-        .AddToLevelEntry(level: 8, shieldAttunement)
-        .AddToLevelEntry(level: 9, armorAttunement)
-        .AddToLevelEntry(level: 14, armorAttunement, shieldAttunement)
-        .AddToLevelEntry(level: 15, armorAttunement, shieldAttunement)
-        .AddToLevelEntry(level: 17, armorAttunement, shieldAttunement)
+        .AddToLevelEntry(level: 4, armorAttunement, weaponAttunement)
+        .AddToLevelEntry(level: 8, shieldAttunement, offHandAttunement)
+        .AddToLevelEntry(level: 9, armorAttunement, weaponAttunement)
+        .AddToLevelEntry(level: 14, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement)
+        .AddToLevelEntry(level: 15, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement)
+        .AddToLevelEntry(level: 17, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement)
         .Configure();
     }
 
