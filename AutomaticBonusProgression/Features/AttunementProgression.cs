@@ -64,7 +64,7 @@ namespace AutomaticBonusProgression.Features
         var tempBonus = GetTempArmorBonus(shield);
         var attunement = GetShieldAttunement(shield.Wielder);
 
-        Logger.Verbose(() => $"Shield Enhancement bonus for {shield}: {attunement} + {tempBonus}");
+        Logger.Verbose(() => $"Shield Enhancement bonus for {shield.Name}: {attunement} + {tempBonus}");
         return attunement + tempBonus;
       }
 
@@ -76,7 +76,7 @@ namespace AutomaticBonusProgression.Features
         var tempBonus = GetTempArmorBonus(armor);
         var attunement = GetArmorAttunement(armor.Wielder);
 
-        Logger.Verbose(() => $"Armor Enhancement bonus for {armor}: {attunement} + {tempBonus}");
+        Logger.Verbose(() => $"Armor Enhancement bonus for {armor.Name}: {attunement} + {tempBonus}");
         return attunement + tempBonus;
       }
 
@@ -139,7 +139,7 @@ namespace AutomaticBonusProgression.Features
             ? GetWeaponAttunement(wielder)
             : GetOffHandAttunement(wielder);
 
-        Logger.Verbose(() => $"Weapon Enhancement bonus for {weapon}: {attunement} + {tempBonus}");
+        Logger.Verbose(() => $"Weapon Enhancement bonus for {weapon.Name}: {attunement} + {tempBonus}");
         return attunement + tempBonus;
       }
 
