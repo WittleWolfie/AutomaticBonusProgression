@@ -94,6 +94,9 @@ namespace AutomaticBonusProgression
       {
         try
         {
+          if (unit != Owner)
+            return;
+
           UpdateUnarmoredBonus();
         }
         catch (Exception e)
@@ -106,6 +109,9 @@ namespace AutomaticBonusProgression
       {
         try
         {
+          if (slot.Owner != Owner)
+            return;
+
           UpdateUnarmoredBonus();
         }
         catch (Exception e)
