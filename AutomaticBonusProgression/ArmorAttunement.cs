@@ -5,6 +5,8 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums;
+using Kingmaker.Items;
+using Kingmaker.Items.Slots;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
 using System;
@@ -60,7 +62,8 @@ namespace AutomaticBonusProgression
     }
 
     [TypeId("4c92c283-1d5c-43af-9277-f69332f419ae")]
-    private class ArmorAttunementComponent : UnitFactComponentDelegate, IUnitActiveEquipmentSetHandler
+    private class ArmorAttunementComponent :
+      UnitFactComponentDelegate, IUnitActiveEquipmentSetHandler, IUnitEquipmentHandler
     {
       public override void OnTurnOn()
       {
@@ -99,10 +102,23 @@ namespace AutomaticBonusProgression
         }
       }
 
+      public void HandleEquipmentSlotUpdated(ItemSlot slot, ItemEntity previousItem)
+      {
+        try
+        {
+          UpdateUnarmoredBonus();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("ArmorAttunementComponent.HandleUnitChangeActiveEquipmentSet", e);
+        }
+      }
+
       private void UpdateUnarmoredBonus()
       {
         if (Owner.Body.SecondaryHand.HasShield || Owner.Body.Armor.HasArmor)
         {
+          Logger.Verbose(() => $"Removing {Owner} unarmored bonus");
           Owner.Stats.AC.RemoveModifiersFrom(Runtime);
           return;
         }
