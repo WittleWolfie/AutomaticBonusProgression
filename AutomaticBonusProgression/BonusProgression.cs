@@ -25,7 +25,6 @@ namespace AutomaticBonusProgression
 
       // TODO: Grant to existing characters!
       // TODO: Also make sure to grant to recruited homies
-      // TODO: UIGruops don't work cause they have FeatProgressionVM AND THEY ARE SPECIAL FUCK THOSE GUYS
 
       var basicFeats = ProgressionRefs.BasicFeatsProgression.Reference.Get();
 
