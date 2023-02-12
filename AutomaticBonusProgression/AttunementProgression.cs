@@ -66,6 +66,9 @@ namespace AutomaticBonusProgression
 
       internal int GetEnhancementBonus(ItemEntityArmor armor)
       {
+        if (armor.Shield is not null)
+          return GetEnhancementBonus(armor.Shield);
+
         var tempBonus = GetTempArmorBonus(armor);
         var attunement = GetArmorAttunement(armor.Wielder);
 
