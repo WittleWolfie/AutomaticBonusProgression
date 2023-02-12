@@ -11,54 +11,56 @@ using System.Linq;
 namespace AutomaticBonusProgression.Patches
 {
   internal class UIPatches
+  {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UIPatches));
+
+    [HarmonyPatch(typeof(FeatProgressionVM))]
+    static class FeatProgressionVM_Patch
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UIPatches));
-
-        [HarmonyPatch(typeof(FeatProgressionVM))]
-        static class FeatProgressionVM_Patch
+      [HarmonyAfter("RespecModBarley")]
+      [HarmonyPatch(nameof(FeatProgressionVM.BuildFeats)), HarmonyPostfix]
+      static void BuildFeats(FeatProgressionVM __instance)
+      {
+        try
         {
-            [HarmonyAfter("RespecModBarley")]
-            [HarmonyPatch(nameof(FeatProgressionVM.BuildFeats)), HarmonyPostfix]
-            static void BuildFeats(FeatProgressionVM __instance)
+          List<ProgressionVM.FeatureEntry> features = new();
+          List<FeatureProgressionChupaChupsVM> armor = new();
+          foreach (var level in __instance.BlueprintProgression.LevelEntries)
+          {
+            foreach (var feature in level.Features)
             {
-                try
-                {
-                    List<ProgressionVM.FeatureEntry> features = new();
-                    List<FeatureProgressionChupaChupsVM> line = new();
-                    foreach (var level in __instance.BlueprintProgression.LevelEntries)
-                    {
-                        foreach (var feature in level.Features)
-                        {
-                            if (!IsABPFeature(feature))
-                                continue;
+              if (!IsABPFeature(feature))
+                continue;
 
-                            ProgressionVM.FeatureEntry featureEntry =
-                              new()
-                              {
-                                  Feature = feature,
-                                  Level = level.Level,
-                                  Index = features.Count(f => f.Feature == feature && f.Level == level.Level)
-                              };
-                            features.Add(featureEntry);
-                            line.Add(__instance.GetChupaChups(featureEntry));
-                        }
-                    }
-                    __instance.MainChupaChupsLines.Add(line);
-                }
-                catch (Exception e)
+              ProgressionVM.FeatureEntry featureEntry =
+                new()
                 {
-                    Logger.LogException("FeatProgressionVM_Patch.BuildFeats", e);
-                }
-            }
+                  Feature = feature,
+                  Level = level.Level,
+                  Index = features.Count(f => f.Feature == feature && f.Level == level.Level)
+                };
+              features.Add(featureEntry);
 
-            private static bool IsABPFeature(BlueprintFeatureBase feature)
-            {
-                if (feature == Common.ArmorAttunement)
-                    return true;
-                if (feature == Common.ShieldAttunement)
-                    return true;
-                return false;
+
+              armor.Add(__instance.GetChupaChups(featureEntry));
             }
+          }
+          __instance.MainChupaChupsLines.Add(armor);
         }
+        catch (Exception e)
+        {
+          Logger.LogException("FeatProgressionVM_Patch.BuildFeats", e);
+        }
+      }
+
+      private static bool IsABPFeature(BlueprintFeatureBase feature)
+      {
+        if (feature == Common.ArmorAttunement)
+          return true;
+        if (feature == Common.ShieldAttunement)
+          return true;
+        return false;
+      }
     }
+  }
 }
