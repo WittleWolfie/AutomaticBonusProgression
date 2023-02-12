@@ -54,7 +54,7 @@ namespace AutomaticBonusProgression
 
           Enchantments.Configure();
 
-          BonusProgression.Configure();
+          AttunementProgression.Configure();
         }
         catch (Exception e)
         {
