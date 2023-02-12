@@ -12,19 +12,16 @@ using Kingmaker.UnitLogic.Parts;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using static AutomaticBonusProgression.BonusProgression;
+using static AutomaticBonusProgression.AttunementProgression;
 
 namespace AutomaticBonusProgression
 {
   /// <summary>
   /// Collection of patches removing enhancement bonuses from items.
   /// </summary>
-  internal class BonusPatches
+  internal class EnhancementBonusPatches
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(BonusPatches));
-
-    // TODO: Need to handle features that muck w/ enhancement bonuses e.g. AddWeaponEnhancementBonusToStat
-    // - GameHelper.GetArmorEnhancementBonus / ItemEnhancementBonus
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementBonusPatches));
 
     // TODO: Amulet of Fists use UnarmedEnhancementX which uses EquipmentWeaponTypeEnhancement. Because of what this is
     // used for I shouldn't patch--instead I should replace the UnarmedEnhancement1 buffs w/ new components.
@@ -130,6 +127,18 @@ namespace AutomaticBonusProgression
           if (item is ItemEntityArmor armor)
           {
             __result = calculator.GetEnhancementBonus(armor);
+            return;
+          }
+
+          if (item is ItemEntityWeapon weapon)
+          {
+            __result = calculator.GetEnhancementBonus(weapon);
+            return;
+          }
+
+          if (item is ItemEntityShield shield)
+          {
+            __result = calculator.GetEnhancementBonus(shield);
             return;
           }
         }
