@@ -6,7 +6,7 @@
   },
   {
     "Key": "ArmorAttunement.Description",
-    "enGB": "Increases your enhancement bonus to AC by 1. While wielding a shield your enhancement bonus to AC is reduced by 1."
+    "enGB": "Increases your enhancement bonus to AC by 1. While wielding a shield your enhancement bonus to AC is reduced by 1.\nAt 9th level the bonus increases to +2.\nAt 14th level the bonus increases to +3.\nAt 15th level the bonus increases to +4.\nAt 17th level the bonus increases to +5."
   },
 
   {
@@ -16,6 +16,26 @@
   },
   {
     "Key": "ShieldAttunement.Description",
-    "enGB": "Increases your enhancement bonus to shield AC by 1."
+    "enGB": "Increases your enhancement bonus to shield AC by 1.\nAt 14th level the bonus increases to +2.\nAt 15th level the bonus increases to +3."
+  },
+
+  {
+    "Key": "WeaponAttunement.Name",
+    "ProcessTemplates": false,
+    "enGB": "Weapon Attunement"
+  },
+  {
+    "Key": "WeaponAttunement.Description",
+    "enGB": "Increases your main hand weapon's enhancement bonus by 1. While wielding a weapon in your off-hand the bonus is reduced by 1.\nAt 9th level the bonus increases to +2.\nAt 14th level the bonus increases to +3.\nAt 15th level the bonus increases to +4.\nAt 17th level the bonus increases to +5."
+  },
+
+  {
+    "Key": "OffHandAttunement.Name",
+    "ProcessTemplates": false,
+    "enGB": "Weapon Attunement (Off-Hand)"
+  },
+  {
+    "Key": "OffHandAttunement.Description",
+    "enGB": "Increases your off hand weapon's enhancement bonus by 1.\nAt 14th level the bonus increases to +2.\nAt 15th level the bonus increases to +3."
   }
 ]
