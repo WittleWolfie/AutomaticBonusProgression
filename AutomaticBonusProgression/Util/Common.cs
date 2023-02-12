@@ -31,6 +31,25 @@ namespace AutomaticBonusProgression.Util
       }
     }
 
+    private static BlueprintFeature _weaponAttunement;
+    internal static BlueprintFeature WeaponAttunement
+    {
+      get
+      {
+        _weaponAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.WeaponAttunement);
+        return _weaponAttunement;
+      }
+    }
+    private static BlueprintFeature _offHandAttunement;
+    internal static BlueprintFeature OffHandAttunement
+    {
+      get
+      {
+        _offHandAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.OffHandAttunement);
+        return _offHandAttunement;
+      }
+    }
+
     internal static bool IsReplacedByABP(StatType stat, ModifierDescriptor descriptor)
     {
       switch (stat)
