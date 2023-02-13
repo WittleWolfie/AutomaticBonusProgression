@@ -23,5 +23,7 @@ namespace AutomaticBonusProgression.Util
     internal const string WeaponAttunement = "137eeed7-8487-411c-b861-15ded694bd08";
     internal const string OffHandAttunement = "84fedf0f-50fa-4b26-8e61-5c2e280bfc8e";
     internal const string LegendaryWeaponAttunement = "066c8db2-569e-47bd-a912-c13407efc0a4";
+
+    internal const string Deflection = "b9af42db-c718-42c5-89e1-5376619e2460";
   }
 }
