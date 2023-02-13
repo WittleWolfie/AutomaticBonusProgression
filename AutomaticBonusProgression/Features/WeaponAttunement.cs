@@ -1,6 +1,15 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Designers;
+using Kingmaker.Enums;
+using Kingmaker.Items;
+using Kingmaker.PubSubSystem;
+using Kingmaker.RuleSystem.Rules;
+using Kingmaker.RuleSystem.Rules.Damage;
+using Kingmaker.UnitLogic;
+using System;
 
 namespace AutomaticBonusProgression.Features
 {
@@ -22,6 +31,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(WeaponDescription)
         //.SetIcon()
         .SetRanks(5)
+        .AddComponent<NaturalEnhancementBonus>()
         .Configure();
     }
 
@@ -40,6 +50,76 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .SetRanks(4)
         .Configure();
+    }
+
+    [TypeId("4af2e953-6831-4bae-92a6-28621272f010")]
+    private class NaturalEnhancementBonus
+      : UnitFactComponentDelegate,
+      IInitiatorRulebookHandler<RuleCalculateWeaponStats>,
+      IInitiatorRulebookHandler<RuleCalculateDamage>,
+      IInitiatorRulebookHandler<RuleCalculateAttackBonusWithoutTarget>
+    {
+      public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
+      {
+        try
+        {
+          if (!CheckWeapon(evt.Weapon))
+            return;
+
+          var bonus = GameHelper.GetItemEnhancementBonus(evt.Weapon);
+          evt.Enhancement += bonus;
+          evt.EnhancementTotal += bonus;
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("NaturalEnhancementBonus.OnEventAboutToTrigger(RuleCalculateAttackBonusWithoutTarget)", e);
+        }
+      }
+
+      public void OnEventAboutToTrigger(RuleCalculateDamage evt)
+      {
+        try
+        {
+          if (!CheckWeapon(evt.DamageBundle.Weapon))
+            return;
+
+          var damage = evt.DamageBundle.WeaponDamage as PhysicalDamage;
+          if (damage == null)
+            return;
+
+          var bonus = GameHelper.GetItemEnhancementBonus(evt.DamageBundle.Weapon);
+          damage.Enchantment += bonus;
+          damage.EnchantmentTotal += bonus;
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("NaturalEnhancementBonus.OnEventAboutToTrigger(RuleCalculateDamage)", e);
+        }
+      }
+
+      public void OnEventAboutToTrigger(RuleCalculateAttackBonusWithoutTarget evt)
+      {
+        try
+        {
+          if (!CheckWeapon(evt.Weapon))
+            return;
+
+          evt.AddModifier(GameHelper.GetItemEnhancementBonus(evt.Weapon), Fact, ModifierDescriptor.Enhancement);
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("NaturalEnhancementBonus.OnEventAboutToTrigger(RuleCalculateAttackBonusWithoutTarget)", e);
+        }
+      }
+
+      private bool CheckWeapon(ItemEntityWeapon weapon)
+      {
+        return weapon is not null && (weapon.Blueprint.IsNatural || weapon.Blueprint.IsUnarmed);
+      }
+
+      public void OnEventDidTrigger(RuleCalculateWeaponStats evt) { }
+      public void OnEventDidTrigger(RuleCalculateDamage evt) { }
+      public void OnEventDidTrigger(RuleCalculateAttackBonusWithoutTarget evt) { }
     }
   }
 }

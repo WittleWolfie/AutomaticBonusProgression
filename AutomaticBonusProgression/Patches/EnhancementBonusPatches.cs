@@ -207,6 +207,35 @@ namespace AutomaticBonusProgression.Patches
       }
     }
 
+    // Unarmed / Natural Strikes
+    [HarmonyPatch(typeof(EquipmentWeaponTypeEnhancement))]
+    static class EquipmentWeaponTypeEnhancement_Patch
+    {
+      [HarmonyPatch(nameof(EquipmentWeaponTypeEnhancement.CheckWeapon)), HarmonyPostfix]
+      static void CheckWeapon(EquipmentWeaponTypeEnhancement __instance, ref bool __result)
+      {
+        try
+        {
+          if (!__instance.AllNaturalAndUnarmed || !__result)
+            return;
+
+          var wielder = __instance.Owner.Wielder?.Unit;
+          if (wielder is null)
+            return;
+
+          if (!Common.IsAffectedByABP(__instance.Owner.Wielder))
+            return;
+
+          Logger.Verbose(() => $"Suppressing natural enhancement bonus on {wielder.CharacterName}");
+          __result = false;
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("WeaponEnhancementBonus_Patch.CalculateBonus", e);
+        }
+      }
+    }
+
     private static IEnumerable<CodeInstruction> GetEnchantRunAction(
       IEnumerable<CodeInstruction> instructions,
       FieldInfo durationValue)
