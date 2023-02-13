@@ -23,6 +23,7 @@ namespace AutomaticBonusProgression.Patches
       {
         try
         {
+          // TODO: I was wrong, I should have each on their own row or the behavior gets weird.
           List<ProgressionVM.FeatureEntry> features = new();
           List<FeatureProgressionChupaChupsVM> armor = new();
           List<FeatureProgressionChupaChupsVM> weapon = new();
@@ -44,7 +45,7 @@ namespace AutomaticBonusProgression.Patches
 
               if (feature == Common.ArmorAttunement || feature == Common.ShieldAttunement)
                 armor.Add(__instance.GetChupaChups(featureEntry));
-              if (feature == Common.WeaponAttunement)
+              if (feature == Common.WeaponAttunement || feature == Common.OffHandAttunement)
                 weapon.Add(__instance.GetChupaChups(featureEntry));
             }
           }
