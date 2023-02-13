@@ -66,6 +66,8 @@ namespace AutomaticBonusProgression.Patches
           return true;
         if (feature == Common.WeaponAttunement)
           return true;
+        if (feature == Common.OffHandAttunement)
+          return true;
         return false;
       }
     }
