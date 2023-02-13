@@ -24,11 +24,6 @@ namespace AutomaticBonusProgression.Patches
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementBonusPatches));
 
-    // TODO: Amulet of Fists use UnarmedEnhancementX which uses EquipmentWeaponTypeEnhancement. Because of what this is
-    // used for I shouldn't patch--instead I should replace the UnarmedEnhancement1 buffs w/ new components.
-    // TODO: Similarly, WeaponEnhancementBonus should not be done via patch but by updating EnhancementX
-
-
     // Ring of Deflection, Headbands / Belts
     [HarmonyPatch(typeof(AddStatBonusEquipment))]
     static class AddStatBonusEquipment_Patch
