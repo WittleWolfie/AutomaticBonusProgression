@@ -2,11 +2,13 @@
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.Items;
 using Kingmaker.Items.Slots;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
+using Newtonsoft.Json;
 using System;
 
 namespace AutomaticBonusProgression.Features
@@ -82,8 +84,10 @@ namespace AutomaticBonusProgression.Features
     }
 
     [TypeId("4c92c283-1d5c-43af-9277-f69332f419ae")]
-    private class ArmorAttunementComponent :
-        UnitFactComponentDelegate, IUnitActiveEquipmentSetHandler, IUnitEquipmentHandler
+    private class ArmorAttunementComponent
+      : UnitFactComponentDelegate<ArmorAttunementComponent.ComponentData>,
+      IUnitActiveEquipmentSetHandler,
+      IUnitEquipmentHandler
     {
       public override void OnTurnOn()
       {
@@ -101,7 +105,7 @@ namespace AutomaticBonusProgression.Features
       {
         try
         {
-          Owner.Stats.AC.RemoveModifiersFrom(Runtime);
+          RemoveBonus();
         }
         catch (Exception e)
         {
@@ -146,13 +150,32 @@ namespace AutomaticBonusProgression.Features
 
         if (Owner.Body.SecondaryHand.HasShield || Owner.Body.Armor.HasArmor)
         {
-          Logger.Verbose(() => $"Removing {Owner} unarmored bonus");
-          Owner.Stats.AC.RemoveModifiersFrom(Runtime);
+          RemoveBonus();
           return;
         }
 
+        if (Data.AppliedModifier is not null)
+          return;
+
         Logger.Verbose(() => $"Granting {Owner} attunement while unarmored.");
-        Owner.Stats.AC.AddModifier(Fact.GetRank(), source: Runtime, desc: ModifierDescriptor.ArmorEnhancement);
+        Data.AppliedModifier =
+          Owner.Stats.AC.AddModifier(Fact.GetRank(), source: Runtime, desc: ModifierDescriptor.ArmorEnhancement);
+      }
+
+      private void RemoveBonus()
+      {
+        if (Data.AppliedModifier is null)
+          return;
+
+        Logger.Verbose(() => $"Removing {Owner} unarmored bonus");
+        Owner.Stats.AC.RemoveModifier(Data.AppliedModifier);
+        Data.AppliedModifier = null;
+      }
+
+      public class ComponentData
+      {
+        [JsonProperty]
+        public ModifiableValue.Modifier AppliedModifier;
       }
     }
   }
