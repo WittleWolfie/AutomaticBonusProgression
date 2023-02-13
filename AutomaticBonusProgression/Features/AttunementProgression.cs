@@ -135,7 +135,7 @@ namespace AutomaticBonusProgression.Features
 
         var wielder = weapon.Wielder;
         var attunement =
-          wielder.Body.PrimaryHand.MaybeWeapon == weapon
+          IsPrimaryWeapon(weapon)
             ? GetWeaponAttunement(wielder)
             : GetOffHandAttunement(wielder);
 
@@ -143,8 +143,28 @@ namespace AutomaticBonusProgression.Features
         return attunement + tempBonus;
       }
 
-      // TODO: Unarmed Strike support (treat as primary weapon)
-      // TODO: Natural Attack support (Use off-hand progression?)
+      private bool IsPrimaryWeapon(ItemEntityWeapon weapon)
+      {
+        if (weapon.Blueprint.AlwaysPrimary || weapon.Blueprint.IsUnarmed)
+          return true;
+
+        if (weapon.ForceSecondary)
+          return false;
+
+        if (!weapon.Blueprint.IsNatural)
+          return weapon.Wielder.Body.PrimaryHand.Weapon == weapon;
+
+        var wielder = weapon.Wielder;
+        if (weapon == wielder.Body.PrimaryHand.MaybeWeapon)
+          return true;
+
+        if (weapon == wielder.Body.SecondaryHand.MaybeWeapon)
+          return true;
+
+        // Natural weapons are secondary when they are not the primary or secondary hand
+        return false;
+      }
+
       private int GetWeaponAttunement(UnitDescriptor unit)
       {
         var attunement = unit.GetFact(Common.WeaponAttunement);
