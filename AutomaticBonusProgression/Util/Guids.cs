@@ -25,5 +25,6 @@ namespace AutomaticBonusProgression.Util
     internal const string LegendaryWeaponAttunement = "066c8db2-569e-47bd-a912-c13407efc0a4";
 
     internal const string Deflection = "b9af42db-c718-42c5-89e1-5376619e2460";
+    internal const string Toughening = "0de33c56-4913-4b69-b1d0-619cd663beff";
   }
 }

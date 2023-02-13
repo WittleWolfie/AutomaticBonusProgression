@@ -37,5 +37,25 @@
   {
     "Key": "OffHandAttunement.Description",
     "enGB": "Increases your off hand weapon's enhancement bonus by 1."
+  },
+
+  {
+    "Key": "Deflection.Name",
+    "ProcessTemplates": false,
+    "enGB": "Deflection"
+  },
+  {
+    "Key": "Deflection.Description",
+    "enGB": "Increases your deflection bonus to AC by 1."
+  },
+
+  {
+    "Key": "Toughening.Name",
+    "ProcessTemplates": false,
+    "enGB": "Toughening"
+  },
+  {
+    "Key": "Toughening.Description",
+    "enGB": "Increases your enhancement bonus to natural armor by 1."
   }
 ]

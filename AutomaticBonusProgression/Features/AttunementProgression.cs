@@ -31,23 +31,26 @@ namespace AutomaticBonusProgression.Features
 
       var armorAttunement = ArmorAttunement.ConfigureArmor();
       var shieldAttunement = ArmorAttunement.ConfigureShield();
-      var deflection = Deflection.Configure();
 
       var weaponAttunement = WeaponAttunement.ConfigureWeapon();
       var offHandAttunement = WeaponAttunement.ConfigureOffHand();
+
+      var deflection = Deflection.Configure();
+      var toughening = Toughening.Configure();
 
       ProgressionConfigurator.For(basicFeats)
         .AddToLevelEntry(level: 1, ConfigureEnhancementCalculator())
         .AddToLevelEntry(level: 4, armorAttunement, weaponAttunement)
         .AddToLevelEntry(level: 5, deflection)
-        .AddToLevelEntry(level: 8, shieldAttunement, offHandAttunement)
+        .AddToLevelEntry(level: 8, shieldAttunement, offHandAttunement, toughening)
         .AddToLevelEntry(level: 9, armorAttunement, weaponAttunement)
         .AddToLevelEntry(level: 10, deflection)
+        .AddToLevelEntry(level: 13, toughening)
         .AddToLevelEntry(level: 14, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement)
         .AddToLevelEntry(level: 15, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement)
-        .AddToLevelEntry(level: 16, deflection)
-        .AddToLevelEntry(level: 17, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement, deflection)
-        .AddToLevelEntry(level: 18, deflection)
+        .AddToLevelEntry(level: 16, deflection, toughening)
+        .AddToLevelEntry(level: 17, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement, deflection, toughening)
+        .AddToLevelEntry(level: 18, deflection, toughening)
         .Configure();
     }
 
