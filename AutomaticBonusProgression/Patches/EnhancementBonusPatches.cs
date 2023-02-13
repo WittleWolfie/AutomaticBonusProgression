@@ -105,8 +105,6 @@ namespace AutomaticBonusProgression.Patches
 
       private static void GetItemEnhancementBonusInternal(ItemEntity item, ref int bonus)
       {
-        Logger.Verbose(() => $"Checking {item.Blueprint.name} for {item.Wielder?.CharacterName}");
-
         var wielder = item.Wielder?.Unit;
         if (wielder is null)
           return;
