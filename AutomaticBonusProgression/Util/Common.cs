@@ -55,7 +55,8 @@ namespace AutomaticBonusProgression.Util
       switch (stat)
       {
         case StatType.AC:
-          return descriptor == ModifierDescriptor.ArmorEnhancement
+          return descriptor == ModifierDescriptor.Armor
+            || descriptor == ModifierDescriptor.ArmorEnhancement
             || descriptor == ModifierDescriptor.NaturalArmorEnhancement
             || descriptor == ModifierDescriptor.ShieldEnhancement
             || descriptor == ModifierDescriptor.Deflection;
