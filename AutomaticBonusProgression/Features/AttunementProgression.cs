@@ -145,7 +145,6 @@ namespace AutomaticBonusProgression.Features
 
       // TODO: Unarmed Strike support (treat as primary weapon)
       // TODO: Natural Attack support (Use off-hand progression?)
-      // TODO: Gnome Hook Hammer still doesn't work :(
       private int GetWeaponAttunement(UnitDescriptor unit)
       {
         var attunement = unit.GetFact(Common.WeaponAttunement);
@@ -156,7 +155,8 @@ namespace AutomaticBonusProgression.Features
         var offHandWeapon = unit.Body.SecondaryHand.MaybeWeapon;
         if (offHandWeapon is null
             || offHandWeapon.Blueprint.IsNatural
-            || offHandWeapon.Blueprint.IsUnarmed)
+            || offHandWeapon.Blueprint.IsUnarmed
+            || offHandWeapon.IsSecondPartOfDoubleWeapon)
           return rank;
 
         return Math.Max(1, rank - 1); // If you have an off-hand weapon the armor bonus is 1 lower (min 1)
