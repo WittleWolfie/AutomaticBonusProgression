@@ -103,6 +103,43 @@ namespace AutomaticBonusProgression.Patches
         }
       }
 
+      private static void GetItemEnhancementBonusInternal(ItemEntity item, ref int bonus)
+      {
+        Logger.Verbose(() => $"Checking {item.Blueprint.name} for {item.Wielder?.CharacterName}");
+
+        var wielder = item.Wielder?.Unit;
+        if (wielder is null)
+          return;
+
+        if (!Common.IsAffectedByABP(wielder))
+          return;
+
+        var calculator = wielder.GetFact(Calculator)?.GetComponent<EnhancementBonusCalculator>();
+        if (calculator is null)
+        {
+          Logger.Warning($"{wielder.CharacterName} does not have an enhancement bonus calculator!");
+          return;
+        }
+
+        if (item is ItemEntityArmor armor)
+        {
+          bonus = calculator.GetEnhancementBonus(armor);
+          return;
+        }
+
+        if (item is ItemEntityWeapon weapon)
+        {
+          bonus = calculator.GetEnhancementBonus(weapon);
+          return;
+        }
+
+        if (item is ItemEntityShield shield)
+        {
+          bonus = calculator.GetEnhancementBonus(shield);
+          return;
+        }
+      }
+
       // Overwrite TTT's logic or else it just ignores our patch
       [HarmonyAfter("TabletopTweaks-Base")]
       [HarmonyPatch(nameof(GameHelper.GetItemEnhancementBonus), typeof(ItemEntity)), HarmonyPostfix]
@@ -110,41 +147,39 @@ namespace AutomaticBonusProgression.Patches
       {
         try
         {
-          var wielder = item.Wielder?.Unit;
-          if (wielder is null)
-            return;
-
-          if (!Common.IsAffectedByABP(wielder))
-            return;
-
-          var calculator = wielder.GetFact(Calculator)?.GetComponent<EnhancementBonusCalculator>();
-          if (calculator is null)
-        {
-            Logger.Warning($"{wielder.CharacterName} does not have an enhancement bonus calculator!");
-            return;
-          }
-
-          if (item is ItemEntityArmor armor)
-        {
-            __result = calculator.GetEnhancementBonus(armor);
-            return;
-          }
-
-          if (item is ItemEntityWeapon weapon)
-        {
-            __result = calculator.GetEnhancementBonus(weapon);
-            return;
-          }
-
-          if (item is ItemEntityShield shield)
-        {
-            __result = calculator.GetEnhancementBonus(shield);
-            return;
-          }
+          GetItemEnhancementBonusInternal(item, ref __result);
         }
         catch (Exception e)
         {
           Logger.LogException("GameHelper_Patch.GetItemEnhancementBonus", e);
+        }
+      }
+
+      [HarmonyAfter("TabletopTweaks-Base")]
+      [HarmonyPatch(nameof(GameHelper.GetItemEnhancementBonus), typeof(ItemEntityWeapon)), HarmonyPostfix]
+      static void GetItemEnhancementBonus(ItemEntityWeapon weapon, ref int __result)
+      {
+        try
+        {
+          GetItemEnhancementBonusInternal(weapon, ref __result);
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("GameHelper_Patch.GetItemEnhancementBonusWeapon", e);
+        }
+      }
+
+      [HarmonyAfter("TabletopTweaks-Base")]
+      [HarmonyPatch(nameof(GameHelper.GetWeaponEnhancementBonus)), HarmonyPostfix]
+      static void GetWeaponEnhancementBonus(ItemEntityWeapon weapon, ref int __result)
+      {
+        try
+        {
+          GetItemEnhancementBonusInternal(weapon, ref __result);
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("GameHelper_Patch.GetWeaponEnhancementBonus", e);
         }
       }
     }
@@ -158,6 +193,10 @@ namespace AutomaticBonusProgression.Patches
       {
         try
         {
+          var wielder = __instance.Owner.Wielder?.Unit;
+          if (wielder is null)
+            return;
+
           if (!Common.IsAffectedByABP(__instance.Owner.Wielder))
             return;
 
