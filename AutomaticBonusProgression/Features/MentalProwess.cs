@@ -45,7 +45,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(IntPrimaryDisplayName)
         .SetDescription(IntPrimaryDescription)
         //.SetIcon()
-        .SetLevelEntry(level: 4, Guids.IntBonus)
+        .SetLevelEntry(level: 6, Guids.IntBonus)
         .SetLevelEntry(level: 11, Guids.IntBonus)
         .Configure();
     }
@@ -61,7 +61,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(WisPrimaryDisplayName)
         .SetDescription(WisPrimaryDescription)
         //.SetIcon()
-        .SetLevelEntry(level: 4, Guids.WisBonus)
+        .SetLevelEntry(level: 6, Guids.WisBonus)
         .SetLevelEntry(level: 11, Guids.WisBonus)
         .Configure();
     }
@@ -77,7 +77,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(ChaPrimaryDisplayName)
         .SetDescription(ChaPrimaryDescription)
         //.SetIcon()
-        .SetLevelEntry(level: 4, Guids.ChaBonus)
+        .SetLevelEntry(level: 6, Guids.ChaBonus)
         .SetLevelEntry(level: 11, Guids.ChaBonus)
         .Configure();
     }
