@@ -12,6 +12,9 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryGiftsDisplayName = "LegendaryGifts.Name";
     private const string LegendaryGiftsDescription = "LegendaryGifts.Description";
 
+    // TODO: What about a delay gift to cover the case where they don't want to spend their gift on inherent bonuses?
+    // This could be important for mythic <-> character level mismatches
+
     internal static BlueprintFeature Configure()
     {
       Logger.Log("Configuring Legendary Gifts");
