@@ -57,5 +57,124 @@
   {
     "Key": "Toughening.Description",
     "enGB": "Increases your enhancement bonus to natural armor by 1."
+  },
+
+  {
+    "Key": "Resistance.Name",
+    "ProcessTemplates": false,
+    "enGB": "Resistance"
+  },
+  {
+    "Key": "Resistance.Description",
+    "enGB": "Increases your resistance bonus on saving throws by 1."
+  },
+
+  {
+    "Key": "MentalProwess.Primary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mental Prowess (Primary)"
+  },
+  {
+    "Key": "MentalProwess.Primary.Description",
+    "enGB": "Select Intelligence, Wisdom, or Charisma. You receive a +2 enhancement bonus to the selected stat. At level 11 the bonus increases to +4."
+  },
+  {
+    "Key": "MentalProwess.Secondary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mental Prowess (Secondary)"
+  },
+  {
+    "Key": "MentalProwess.Secondary.Description",
+    "enGB": "Select Intelligence, Wisdom, or Charisma. You must choose a different attribute than you chose for Mental Prowess (Primary). You receive a +2 enhancement bonus to the selected stat."
+  },
+  {
+    "Key": "MentalProwess.Tertiary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mental Prowess (Tertiary)"
+  },
+  {
+    "Key": "MentalProwess.Tertiary.Description",
+    "enGB": "You receive a +2 enhancement bonus to the attribute you did not choose for Mental Prowess (Primary) or Mental Prowess (Secondary)."
+  },
+  {
+    "Key": "MentalProwess.Any.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mental Prowess (Any)"
+  },
+  {
+    "Key": "MentalProwess.Any.Description",
+    "enGB": "Select a mental attribute you already have an enhancement bonus in and increase it by 2."
+  },
+
+  {
+    "Key": "MentalProwess.Int.Primary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Supreme Intellect"
+  },
+  {
+    "Key": "MentalProwess.Int.Primary.Description",
+    "enGB": "You receive a +2 enhancement bonus to Intelligence. At level 11 the bonus increases to +4."
+  },
+  {
+    "Key": "MentalProwess.Int.Secondary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Advanced Intellect"
+  },
+  {
+    "Key": "MentalProwess.Int.Bonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Enhanced Intellect"
+  },
+  {
+    "Key": "MentalProwess.Int.Bonus.Description",
+    "enGB": "You receive a +2 enhancement bonus to Intelligence."
+  },
+
+  {
+    "Key": "MentalProwess.Wis.Primary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Transcendant Wisdom"
+  },
+  {
+    "Key": "MentalProwess.Wis.Primary.Description",
+    "enGB": "You receive a +2 enhancement bonus to Wisdom. At level 11 the bonus increases to +4."
+  },
+  {
+    "Key": "MentalProwess.Wis.Secondary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Sage Wisdom"
+  },
+  {
+    "Key": "MentalProwess.Wis.Bonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Enhanced Wisdom"
+  },
+  {
+    "Key": "MentalProwess.Wis.Bonus.Description",
+    "enGB": "You receive a +2 enhancement bonus to Wisdom."
+  },
+
+  {
+    "Key": "MentalProwess.Cha.Primary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Irresistable Charm"
+  },
+  {
+    "Key": "MentalProwess.Cha.Primary.Description",
+    "enGB": "You receive a +2 enhancement bonus to Charisma. At level 11 the bonus increases to +4."
+  },
+  {
+    "Key": "MentalProwess.Cha.Secondary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Impressive Charisma"
+  },
+  {
+    "Key": "MentalProwess.Cha.Bonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Enhanced Charisma"
+  },
+  {
+    "Key": "MentalProwess.Cha.Bonus.Description",
+    "enGB": "You receive a +2 enhancement bonus to Charisma."
   }
 ]
