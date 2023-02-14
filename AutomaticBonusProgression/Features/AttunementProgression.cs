@@ -2,6 +2,7 @@
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.JsonSystem;
@@ -82,8 +83,21 @@ namespace AutomaticBonusProgression.Features
     [TypeId("55b09ee7-cb57-4a50-847d-85c32dea4b29")]
     internal class EnhancementBonusCalculator : UnitFactComponentDelegate
     {
+      private static BlueprintFeature _legendaryShieldmaster;
+      private static BlueprintFeature LegendaryShieldmaster
+      {
+        get
+        {
+          _legendaryShieldmaster ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryShieldmaster);
+          return _legendaryShieldmaster;
+        }
+      }
+
       internal int GetEnhancementBonus(ItemEntityShield shield)
       {
+        if (shield.Wielder.HasFact(LegendaryShieldmaster))
+          return 5;
+
         var tempBonus = GetTempArmorBonus(shield);
         var attunement = GetShieldAttunement(shield.Wielder);
 
@@ -121,6 +135,9 @@ namespace AutomaticBonusProgression.Features
 
       private int GetShieldAttunement(UnitDescriptor unit)
       {
+        if (unit.HasFact(LegendaryShieldmaster))
+          return 5;
+
         var attunement = unit.GetFact(Common.ShieldAttunement);
         if (attunement is not null)
           return attunement.GetRank();
@@ -132,6 +149,9 @@ namespace AutomaticBonusProgression.Features
 
       private int GetArmorAttunement(UnitDescriptor unit)
       {
+        if (unit.HasFact(LegendaryShieldmaster))
+          return 5;
+
         var attunement = unit.GetFact(Common.ArmorAttunement);
         if (attunement is null)
           return 0;

@@ -69,6 +69,16 @@
     "enGB": "Increases your resistance bonus on saving throws by 1."
   },
 
+  {
+    "Key": "LegendaryShieldmaster.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Shieldmaster"
+  },
+  {
+    "Key": "LegendaryShieldmaster.Description",
+    "enGB": "Gain a +5 enhancement bonus from armor attunement for both your armor and your shield."
+  },
+
   // Start Legendary Ability
   {
     "Key": "LegendaryAbility.Name",

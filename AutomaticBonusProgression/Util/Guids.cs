@@ -30,6 +30,8 @@
     internal const string LegendaryWisdom = "e2411919-40ff-4acf-bb75-0f5a27ad6c88";
     internal const string LegendaryCharisma = "95483f02-93c5-4301-99e5-38e8ea2ca3bb";
 
+    internal const string LegendaryShieldmaster = "baef229b-a7fa-4618-88ed-23f9e6875d18";
+
     #region Mental Prowess
     internal const string IntPlus2 = "ea260889-0874-45aa-9e79-4351dfc626e8";
     internal const string IntPlus4 = "2319a7bb-7c7b-4f50-8693-4124a7bc50cb";
