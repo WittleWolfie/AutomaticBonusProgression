@@ -69,6 +69,78 @@
     "enGB": "Increases your resistance bonus on saving throws by 1."
   },
 
+  // Start Legendary Ability
+  {
+    "Key": "LegendaryAbility.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Ability"
+  },
+  {
+    "Key": "LegendaryAbility.Description",
+    "enGB": "Gain a +1 inherent bonus to any ability score. You can select this up to 5 times for each ability score."
+  },
+
+  {
+    "Key": "LegendaryAbility.Strength.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Strength"
+  },
+  {
+    "Key": "LegendaryAbility.Strength.Description",
+    "enGB": "Gain a +1 inherent bonus to strength. This stacks up to a +5 bonus."
+  },
+
+  {
+    "Key": "LegendaryAbility.Dexterity.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Dexterity"
+  },
+  {
+    "Key": "LegendaryAbility.Dexterity.Description",
+    "enGB": "Gain a +1 inherent bonus to dexterity. This stacks up to a +5 bonus."
+  },
+
+  {
+    "Key": "LegendaryAbility.Constitution.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Constitution"
+  },
+  {
+    "Key": "LegendaryAbility.Constitution.Description",
+    "enGB": "Gain a +1 inherent bonus to constitution. This stacks up to a +5 bonus."
+  },
+
+  {
+    "Key": "LegendaryAbility.Intelligence.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Intelligence"
+  },
+  {
+    "Key": "LegendaryAbility.Intelligence.Description",
+    "enGB": "Gain a +1 inherent bonus to Intelligence. This stacks up to a +5 bonus."
+  },
+
+  {
+    "Key": "LegendaryAbility.Wisdom.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Wisdom"
+  },
+  {
+    "Key": "LegendaryAbility.Wisdom.Description",
+    "enGB": "Gain a +1 inherent bonus to Wisdom. This stacks up to a +5 bonus."
+  },
+
+  {
+    "Key": "LegendaryAbility.Charisma.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Charisma"
+  },
+  {
+    "Key": "LegendaryAbility.Charisma.Description",
+    "enGB": "Gain a +1 inherent bonus to Charisma. This stacks up to a +5 bonus."
+  },
+  // End Legendary Ability
+
   // Start Mental Prowess
   {
     "Key": "MentalProwess.Primary.Name",
@@ -81,15 +153,15 @@
   },
   {
     "Key": "MentalProwess.Secondary.Description",
-    "enGB": "Select Intelligence, Wisdom, or Charisma. You cannot choose an attribute you have already selected. You receive a +2 enhancement bonus to the selected stat."
+    "enGB": "Select Intelligence, Wisdom, or Charisma. You cannot choose an ability score you have already selected. You receive a +2 enhancement bonus to the selected stat."
   },
   {
     "Key": "MentalProwess.Tertiary.Description",
-    "enGB": "You receive a +2 enhancement bonus to the mental attribute you have not selected."
+    "enGB": "You receive a +2 enhancement bonus to the mental ability score you have not selected."
   },
   {
     "Key": "MentalProwess.Any.Description",
-    "enGB": "Select a mental attribute you already have an enhancement bonus in and increase it by 2."
+    "enGB": "Select a mental ability score you already have an enhancement bonus in and increase it by 2."
   },
 
   {
@@ -201,15 +273,15 @@
   },
   {
     "Key": "PhysicalProwess.Secondary.Description",
-    "enGB": "Select Strength, Dexterity, or Constitution. You cannot choose an attribute you have already selected. You receive a +2 enhancement bonus to the selected stat."
+    "enGB": "Select Strength, Dexterity, or Constitution. You cannot choose an ability score you have already selected. You receive a +2 enhancement bonus to the selected stat."
   },
   {
     "Key": "PhysicalProwess.Tertiary.Description",
-    "enGB": "You receive a +2 enhancement bonus to the physical attribute you have not selected."
+    "enGB": "You receive a +2 enhancement bonus to the physical ability score you have not selected."
   },
   {
     "Key": "PhysicalProwess.Any.Description",
-    "enGB": "Select a physical attribute you already have an enhancement bonus in and increase it by 2."
+    "enGB": "Select a physical ability score you already have an enhancement bonus in and increase it by 2."
   },
 
   {

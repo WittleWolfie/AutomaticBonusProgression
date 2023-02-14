@@ -22,6 +22,14 @@
     internal const string Toughening = "0de33c56-4913-4b69-b1d0-619cd663beff";
     internal const string Resistance = "a5011356-2852-40ee-9841-d8bbf58d6336";
 
+    internal const string LegendaryAbility = "0e44687f-ba76-4a2b-9ebd-1fee30ca06db";
+    internal const string LegendaryStrength = "b8c3a13e-ba3e-47a5-a1fa-f2016d0fb682";
+    internal const string LegendaryDexterity = "64cd8ffd-134a-4e63-8e7e-1a6ba328a6b0";
+    internal const string LegendaryConstitution = "a8aab8e0-e601-4b71-82db-ecd5dfdb5953";
+    internal const string LegendaryIntelligence = "49fc30e1-bd73-413d-948c-c47493d310db";
+    internal const string LegendaryWisdom = "e2411919-40ff-4acf-bb75-0f5a27ad6c88";
+    internal const string LegendaryCharisma = "95483f02-93c5-4301-99e5-38e8ea2ca3bb";
+
     #region Mental Prowess
     internal const string IntPlus2 = "ea260889-0874-45aa-9e79-4351dfc626e8";
     internal const string IntPlus4 = "2319a7bb-7c7b-4f50-8693-4124a7bc50cb";
