@@ -1,0 +1,79 @@
+﻿using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using Kingmaker.Blueprints.Classes;
+
+namespace AutomaticBonusProgression.Features
+{
+  internal class LegendaryArmor
+  {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryArmor));
+
+
+    // Armor In Game
+    // - ArcaneArmorBalanced
+    // - Fortification
+    // - Shadow
+    // - Spell Resistance
+    // - Invulnerability
+    // - Energy Resistance
+    //
+    // Maybe Add
+    // - Bolstering
+    // - Champion
+    // - Dastard
+    // - Deathless
+    // - Defiant
+    // - Expeditious
+    // - Creeping
+    // - Rallying?
+    // - Brawling
+    // - Putrid?
+    // - Ghost
+    // - Martyring
+    // - Righteous
+    // - Unbound?
+    // - Unrighteous?
+    // - Vigilant?
+    // - Determination
+    // - Etherealness
+    // (Shield)
+    // - Bashing
+    // - Blinding
+    // - Wyrmsbreath
+    // - Reflecting
+
+    private const string LegendaryArmorName = "LegendaryArmor";
+    private const string LegendaryArmorDisplayName = "LegendaryArmor.Name";
+    private const string LegendaryArmorDescription = "LegendaryArmor.Description";
+
+    internal static BlueprintFeature ConfigureArmor()
+    {
+      Logger.Log("Configuring Legendary Armor");
+
+      return FeatureSelectionConfigurator.New(LegendaryArmorName, Guids.LegendaryArmor)
+        .SetIsClassFeature()
+        .SetDisplayName(LegendaryArmorDisplayName)
+        .SetDescription(LegendaryArmorDescription)
+        .SetRanks(5) // TODO: Does this actually restrict it?
+        //.SetIcon()
+        .Configure();
+    }
+
+    private const string LegendaryShieldName = "LegendaryShield";
+    private const string LegendaryShieldDisplayName = "LegendaryShield.Name";
+    private const string LegendaryShieldDescription = "LegendaryShield.Description";
+
+    internal static BlueprintFeature ConfigureShield()
+    {
+      Logger.Log("Configuring Legendary Shield");
+
+      return FeatureSelectionConfigurator.New(LegendaryShieldName, Guids.LegendaryShield)
+        .SetIsClassFeature()
+        .SetDisplayName(LegendaryShieldDisplayName)
+        .SetDescription(LegendaryShieldDescription)
+        .SetRanks(5)
+        //.SetIcon()
+        .Configure();
+    }
+  }
+}

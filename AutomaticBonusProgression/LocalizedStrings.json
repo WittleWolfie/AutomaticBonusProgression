@@ -109,6 +109,28 @@
     "enGB": "Gain a +5 enhancement bonus for all weapons while dual wielding or using secondary natural attacks."
   },
 
+  // Start Legendary Armor
+  {
+    "Key": "LegendaryArmor.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Armor"
+  },
+  {
+    "Key": "LegendaryArmor.Description",
+    "enGB": "Select a special ability you can apply to your armor. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (17) has an enhancement cost of +4. You cannot apply Spell Resistance (17) to armor with Shadow, which has an enhancement of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor."
+  },
+
+  {
+    "Key": "LegendaryShield.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Shield"
+  },
+  {
+    "Key": "LegendaryShield.Description",
+    "enGB": "Select a special ability you can apply to your shield. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (17) has an enhancement cost of +4. To acquire Spell Resistance (17) you must select it as a Legendary Gift 4 times. You cannot apply Spell Resistance (17) to a shield with Rallying, which has an enhancement cost of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor."
+  },
+  // End Legendary Armor
+
   // Start Legendary Ability
   {
     "Key": "LegendaryAbility.Name",
