@@ -50,11 +50,14 @@ namespace AutomaticBonusProgression.Features
       var physicalProwessTertiary = PhysicalProwess.ConfigureTertiary();
       var physicalProwessAny = PhysicalProwess.ConfigureAny();
 
+      // Here for testing only, eventually should be mythic (though maybe level 19/20?
+      var legendaryGifts = LegendaryGifts.Configure();
+
       ProgressionConfigurator.For(basicFeats)
         .AddToLevelEntry(level: 1, ConfigureEnhancementCalculator())
         .AddToLevelEntry(level: 3, resistance)
         .AddToLevelEntry(level: 4, armorAttunement, weaponAttunement)
-        .AddToLevelEntry(level: 5, deflection)
+        .AddToLevelEntry(level: 5, deflection, legendaryGifts)
         .AddToLevelEntry(level: 6, mentalProwessPrimary)
         .AddToLevelEntry(level: 7, physicalProwessPrimary)
         .AddToLevelEntry(level: 8, shieldAttunement, offHandAttunement, toughening, resistance)
