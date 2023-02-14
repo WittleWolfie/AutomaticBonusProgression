@@ -95,7 +95,6 @@ namespace AutomaticBonusProgression.Features
     #endregion
 
     private const string SecondaryName = "MentalProwess.Secondary";
-    private const string SecondaryDisplayName = "MentalProwess.Secondary.Name";
     private const string SecondaryDescription = "MentalProwess.Secondary.Description";
 
     internal static BlueprintFeature ConfigureSecondary()
@@ -104,7 +103,7 @@ namespace AutomaticBonusProgression.Features
 
       return FeatureSelectionConfigurator.New(SecondaryName, Guids.MentalProwessSecondarySelection)
         .SetIsClassFeature()
-        .SetDisplayName(SecondaryDisplayName)
+        .SetDisplayName(PrimaryDisplayName)
         .SetDescription(SecondaryDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
@@ -157,7 +156,6 @@ namespace AutomaticBonusProgression.Features
     #endregion
 
     private const string TertiaryName = "MentalProwess.Tertiary";
-    private const string TertiaryDisplayName = "MentalProwess.Tertiary.Name";
     private const string TertiaryDescription = "MentalProwess.Tertiary.Description";
 
     internal static BlueprintFeature ConfigureTertiary()
@@ -166,7 +164,7 @@ namespace AutomaticBonusProgression.Features
 
       return FeatureSelectionConfigurator.New(TertiaryName, Guids.MentalProwessTertiarySelection)
         .SetIsClassFeature()
-        .SetDisplayName(TertiaryDisplayName)
+        .SetDisplayName(PrimaryDisplayName)
         .SetDescription(TertiaryDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
@@ -222,7 +220,6 @@ namespace AutomaticBonusProgression.Features
     #endregion
 
     private const string AnyName = "MentalProwess.Any";
-    private const string AnyDisplayName = "MentalProwess.Any.Name";
     private const string AnyDescription = "MentalProwess.Any.Description";
 
     internal static BlueprintFeature ConfigureAny()
@@ -231,7 +228,7 @@ namespace AutomaticBonusProgression.Features
 
       return FeatureSelectionConfigurator.New(AnyName, Guids.MentalProwessAnySelection)
         .SetIsClassFeature()
-        .SetDisplayName(AnyDisplayName)
+        .SetDisplayName(PrimaryDisplayName)
         .SetDescription(AnyDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()

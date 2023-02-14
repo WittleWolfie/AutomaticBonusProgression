@@ -72,34 +72,19 @@
   {
     "Key": "MentalProwess.Primary.Name",
     "ProcessTemplates": false,
-    "enGB": "Mental Prowess (Primary)"
+    "enGB": "Mental Prowess"
   },
   {
     "Key": "MentalProwess.Primary.Description",
     "enGB": "Select Intelligence, Wisdom, or Charisma. You receive a +2 enhancement bonus to the selected stat. At level 11 the bonus increases to +4."
   },
   {
-    "Key": "MentalProwess.Secondary.Name",
-    "ProcessTemplates": false,
-    "enGB": "Mental Prowess (Secondary)"
-  },
-  {
     "Key": "MentalProwess.Secondary.Description",
-    "enGB": "Select Intelligence, Wisdom, or Charisma. You must choose a different attribute than you chose for Mental Prowess (Primary). You receive a +2 enhancement bonus to the selected stat."
-  },
-  {
-    "Key": "MentalProwess.Tertiary.Name",
-    "ProcessTemplates": false,
-    "enGB": "Mental Prowess (Tertiary)"
+    "enGB": "Select Intelligence, Wisdom, or Charisma. You cannot choose an attribute you have already selected. You receive a +2 enhancement bonus to the selected stat."
   },
   {
     "Key": "MentalProwess.Tertiary.Description",
-    "enGB": "You receive a +2 enhancement bonus to the attribute you did not choose for Mental Prowess (Primary) or Mental Prowess (Secondary)."
-  },
-  {
-    "Key": "MentalProwess.Any.Name",
-    "ProcessTemplates": false,
-    "enGB": "Mental Prowess (Any)"
+    "enGB": "You receive a +2 enhancement bonus to the mental attribute you have not selected."
   },
   {
     "Key": "MentalProwess.Any.Description",
