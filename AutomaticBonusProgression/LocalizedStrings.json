@@ -80,6 +80,16 @@
   },
 
   {
+    "Key": "LegendaryProwess.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Prowess"
+  },
+  {
+    "Key": "LegendaryProwess.Description",
+    "enGB": "Increase your enhancement bonuses to any ability score by 2 (max 6)."
+  },
+
+  {
     "Key": "LegendaryShieldmaster.Name",
     "ProcessTemplates": false,
     "enGB": "Legendary Shieldmaster"
