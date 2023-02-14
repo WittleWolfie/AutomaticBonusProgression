@@ -107,74 +107,98 @@
   },
 
   {
-    "Key": "MentalProwess.Int.Primary.Name",
+    "Key": "MentalProwess.Int.Plus6.Name",
     "ProcessTemplates": false,
     "enGB": "Supreme Intellect"
+  },
+  {
+    "Key": "MentalProwess.Int.Plus6.Description",
+    "enGB": "You receive a +6 enhancement bonus to Intelligence."
+  },
+  {
+    "Key": "MentalProwess.Int.Plus4.Name",
+    "ProcessTemplates": false,
+    "enGB": "Advanced Intellect"
+  },
+  {
+    "Key": "MentalProwess.Int.Plus4.Description",
+    "enGB": "You receive a +4 enhancement bonus to Intelligence."
+  },
+  {
+    "Key": "MentalProwess.Int.Plus2.Name",
+    "ProcessTemplates": false,
+    "enGB": "Enhanced Intellect"
+  },
+  {
+    "Key": "MentalProwess.Int.Plus2.Description",
+    "enGB": "You receive a +2 enhancement bonus to Intelligence."
   },
   {
     "Key": "MentalProwess.Int.Primary.Description",
     "enGB": "You receive a +2 enhancement bonus to Intelligence. At level 11 the bonus increases to +4."
   },
-  {
-    "Key": "MentalProwess.Int.Secondary.Name",
-    "ProcessTemplates": false,
-    "enGB": "Advanced Intellect"
-  },
-  {
-    "Key": "MentalProwess.Int.Bonus.Name",
-    "ProcessTemplates": false,
-    "enGB": "Enhanced Intellect"
-  },
-  {
-    "Key": "MentalProwess.Int.Bonus.Description",
-    "enGB": "You receive a +2 enhancement bonus to Intelligence."
-  },
 
   {
-    "Key": "MentalProwess.Wis.Primary.Name",
+    "Key": "MentalProwess.Wis.Plus6.Name",
     "ProcessTemplates": false,
     "enGB": "Transcendant Wisdom"
+  },
+  {
+    "Key": "MentalProwess.Wis.Plus6.Description",
+    "enGB": "You receive a +6 enhancement bonus to Wisdom."
+  },
+  {
+    "Key": "MentalProwess.Wis.Plus4.Name",
+    "ProcessTemplates": false,
+    "enGB": "Sage Wisdom"
+  },
+  {
+    "Key": "MentalProwess.Wis.Plus4.Description",
+    "enGB": "You receive a +4 enhancement bonus to Wisdom."
+  },
+  {
+    "Key": "MentalProwess.Wis.Plus2.Name",
+    "ProcessTemplates": false,
+    "enGB": "Enhanced Wisdom"
+  },
+  {
+    "Key": "MentalProwess.Wis.Plus2.Description",
+    "enGB": "You receive a +2 enhancement bonus to Wisdom."
   },
   {
     "Key": "MentalProwess.Wis.Primary.Description",
     "enGB": "You receive a +2 enhancement bonus to Wisdom. At level 11 the bonus increases to +4."
   },
-  {
-    "Key": "MentalProwess.Wis.Secondary.Name",
-    "ProcessTemplates": false,
-    "enGB": "Sage Wisdom"
-  },
-  {
-    "Key": "MentalProwess.Wis.Bonus.Name",
-    "ProcessTemplates": false,
-    "enGB": "Enhanced Wisdom"
-  },
-  {
-    "Key": "MentalProwess.Wis.Bonus.Description",
-    "enGB": "You receive a +2 enhancement bonus to Wisdom."
-  },
 
   {
-    "Key": "MentalProwess.Cha.Primary.Name",
+    "Key": "MentalProwess.Cha.Plus6.Name",
     "ProcessTemplates": false,
     "enGB": "Irresistable Charm"
   },
   {
-    "Key": "MentalProwess.Cha.Primary.Description",
-    "enGB": "You receive a +2 enhancement bonus to Charisma. At level 11 the bonus increases to +4."
+    "Key": "MentalProwess.Cha.Plus6.Description",
+    "enGB": "You receive a +6 enhancement bonus to Charisma."
   },
   {
-    "Key": "MentalProwess.Cha.Secondary.Name",
+    "Key": "MentalProwess.Cha.Plus4.Name",
     "ProcessTemplates": false,
     "enGB": "Impressive Charisma"
   },
   {
-    "Key": "MentalProwess.Cha.Bonus.Name",
+    "Key": "MentalProwess.Cha.Plus4.Description",
+    "enGB": "You receive a +4 enhancement bonus to Charisma."
+  },
+  {
+    "Key": "MentalProwess.Cha.Plus2.Name",
     "ProcessTemplates": false,
     "enGB": "Enhanced Charisma"
   },
   {
-    "Key": "MentalProwess.Cha.Bonus.Description",
+    "Key": "MentalProwess.Cha.Plus2.Description",
     "enGB": "You receive a +2 enhancement bonus to Charisma."
+  },
+  {
+    "Key": "MentalProwess.Cha.Primary.Description",
+    "enGB": "You receive a +2 enhancement bonus to Charisma. At level 11 the bonus increases to +4."
   }
 ]
