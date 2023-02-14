@@ -24,7 +24,10 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryGiftsDisplayName)
         .SetDescription(LegendaryGiftsDescription)
         //.SetIcon()
-        .AddToAllFeatures(LegendaryAbility.Configure(), LegendaryShieldmaster.Configure())
+        .AddToAllFeatures(
+          LegendaryAbility.Configure(),
+          LegendaryShieldmaster.Configure(),
+          LegendaryTwinWeapons.Configure())
         .Configure();
     }
   }

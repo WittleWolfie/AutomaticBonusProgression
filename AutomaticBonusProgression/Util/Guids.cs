@@ -98,6 +98,7 @@
     internal const string LegendaryCharisma = "95483f02-93c5-4301-99e5-38e8ea2ca3bb";
 
     internal const string LegendaryShieldmaster = "baef229b-a7fa-4618-88ed-23f9e6875d18";
+    internal const string LegendaryTwinWeapons = "d910642b-7719-4607-b6e0-0d614f1a30e0";
     #endregion
   }
 }

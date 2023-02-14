@@ -89,6 +89,16 @@
     "enGB": "Gain a +5 enhancement bonus from armor attunement for both your armor and your shield."
   },
 
+  {
+    "Key": "LegendaryTwinWeapons.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary TwinWeapons"
+  },
+  {
+    "Key": "LegendaryTwinWeapons.Description",
+    "enGB": "Gain a +5 enhancement bonus for all weapons while dual wielding or using secondary natural attacks."
+  },
+
   // Start Legendary Ability
   {
     "Key": "LegendaryAbility.Name",
