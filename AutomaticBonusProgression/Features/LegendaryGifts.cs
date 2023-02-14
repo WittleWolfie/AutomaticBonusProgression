@@ -14,6 +14,12 @@ namespace AutomaticBonusProgression.Features
 
     // TODO: What about a delay gift to cover the case where they don't want to spend their gift on inherent bonuses?
     // This could be important for mythic <-> character level mismatches
+    // I am skeptical ^. On counting there are only like 6 that are level gated to 17, 1 to 11, 1 to 12, 1 to 15 or so
+    // etc.
+    // What I should do for Legendary Body / Mind:
+    // - you can upgrade your Primary or Secondary from 4 > 6
+    // - you can upgrade your tertiary from 2 > 4 or 4 > 6 <-- Actually this causes a problem. Would need to prevent
+    // this.
 
     internal static BlueprintFeature Configure()
     {
