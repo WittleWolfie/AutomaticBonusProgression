@@ -69,6 +69,7 @@
     "enGB": "Increases your resistance bonus on saving throws by 1."
   },
 
+  // Start Mental Prowess
   {
     "Key": "MentalProwess.Primary.Name",
     "ProcessTemplates": false,
@@ -126,7 +127,7 @@
   {
     "Key": "MentalProwess.Wis.Plus6.Name",
     "ProcessTemplates": false,
-    "enGB": "Transcendant Wisdom"
+    "enGB": "Transcendent Wisdom"
   },
   {
     "Key": "MentalProwess.Wis.Plus6.Description",
@@ -158,7 +159,7 @@
   {
     "Key": "MentalProwess.Cha.Plus6.Name",
     "ProcessTemplates": false,
-    "enGB": "Irresistable Charm"
+    "enGB": "Irresistible Charm"
   },
   {
     "Key": "MentalProwess.Cha.Plus6.Description",
@@ -185,5 +186,126 @@
   {
     "Key": "MentalProwess.Cha.Primary.Description",
     "enGB": "You receive a +2 enhancement bonus to Charisma. At level 11 the bonus increases to +4."
+  },
+  // End Mental Prowess
+
+  // Start Physical Prowess
+  {
+    "Key": "PhysicalProwess.Primary.Name",
+    "ProcessTemplates": false,
+    "enGB": "Physical Prowess"
+  },
+  {
+    "Key": "PhysicalProwess.Primary.Description",
+    "enGB": "Select Strength, Dexterity, or Constitution. You receive a +2 enhancement bonus to the selected stat. At level 12 the bonus increases to +4."
+  },
+  {
+    "Key": "PhysicalProwess.Secondary.Description",
+    "enGB": "Select Strength, Dexterity, or Constitution. You cannot choose an attribute you have already selected. You receive a +2 enhancement bonus to the selected stat."
+  },
+  {
+    "Key": "PhysicalProwess.Tertiary.Description",
+    "enGB": "You receive a +2 enhancement bonus to the physical attribute you have not selected."
+  },
+  {
+    "Key": "PhysicalProwess.Any.Description",
+    "enGB": "Select a physical attribute you already have an enhancement bonus in and increase it by 2."
+  },
+
+  {
+    "Key": "PhysicalProwess.Str.Plus6.Name",
+    "ProcessTemplates": false,
+    "enGB": "Godlike Strength"
+  },
+  {
+    "Key": "PhysicalProwess.Str.Plus6.Description",
+    "enGB": "You receive a +6 enhancement bonus to Strength."
+  },
+  {
+    "Key": "PhysicalProwess.Str.Plus4.Name",
+    "ProcessTemplates": false,
+    "enGB": "Incredible Strength"
+  },
+  {
+    "Key": "PhysicalProwess.Str.Plus4.Description",
+    "enGB": "You receive a +4 enhancement bonus to Strength."
+  },
+  {
+    "Key": "PhysicalProwess.Str.Plus2.Name",
+    "ProcessTemplates": false,
+    "enGB": "Enhanced Strength"
+  },
+  {
+    "Key": "PhysicalProwess.Str.Plus2.Description",
+    "enGB": "You receive a +2 enhancement bonus to Strength."
+  },
+  {
+    "Key": "PhysicalProwess.Str.Primary.Description",
+    "enGB": "You receive a +2 enhancement bonus to Strength. At level 12 the bonus increases to +4."
+  },
+
+  {
+    "Key": "PhysicalProwess.Dex.Plus6.Name",
+    "ProcessTemplates": false,
+    "enGB": "Masterful Dexterity"
+  },
+  {
+    "Key": "PhysicalProwess.Dex.Plus6.Description",
+    "enGB": "You receive a +6 enhancement bonus to Dexterity."
+  },
+  {
+    "Key": "PhysicalProwess.Dex.Plus4.Name",
+    "ProcessTemplates": false,
+    "enGB": "Skillful Dexterity"
+  },
+  {
+    "Key": "PhysicalProwess.Dex.Plus4.Description",
+    "enGB": "You receive a +4 enhancement bonus to Dexterity."
+  },
+  {
+    "Key": "PhysicalProwess.Dex.Plus2.Name",
+    "ProcessTemplates": false,
+    "enGB": "Enhanced Dexterity"
+  },
+  {
+    "Key": "PhysicalProwess.Dex.Plus2.Description",
+    "enGB": "You receive a +2 enhancement bonus to Dexterity."
+  },
+  {
+    "Key": "PhysicalProwess.Dex.Primary.Description",
+    "enGB": "You receive a +2 enhancement bonus to Dexterity. At level 12 the bonus increases to +4."
+  },
+
+  {
+    "Key": "PhysicalProwess.Con.Plus6.Name",
+    "ProcessTemplates": false,
+    "enGB": "Unwavering Constitution"
+  },
+  {
+    "Key": "PhysicalProwess.Con.Plus6.Description",
+    "enGB": "You receive a +6 enhancement bonus to Constitution."
+  },
+  {
+    "Key": "PhysicalProwess.Con.Plus4.Name",
+    "ProcessTemplates": false,
+    "enGB": "Sturdy Constitution"
+  },
+  {
+    "Key": "PhysicalProwess.Con.Plus4.Description",
+    "enGB": "You receive a +4 enhancement bonus to Constitution."
+  },
+  {
+    "Key": "PhysicalProwess.Con.Plus2.Name",
+    "ProcessTemplates": false,
+    "enGB": "Enhanced Constitution"
+  },
+  {
+    "Key": "PhysicalProwess.Con.Plus2.Description",
+    "enGB": "You receive a +2 enhancement bonus to Constitution."
+  },
+  {
+    "Key": "PhysicalProwess.Con.Primary.Description",
+    "enGB": "You receive a +2 enhancement bonus to Constitution. At level 12 the bonus increases to +4."
   }
+  // End Physical Prowess
 ]

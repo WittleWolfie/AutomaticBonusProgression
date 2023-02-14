@@ -52,5 +52,36 @@
 
     internal const string MentalProwessAnySelection = "9ba9c639-1a58-4006-bce2-093291a453fa";
     #endregion
+
+    #region Physical Prowess
+    internal const string StrPlus2 = "7d2b1e99-808c-455f-977a-547eca0bbfc3";
+    internal const string StrPlus4 = "af64e128-c1e4-4d85-a454-450e3dfb31ee";
+    internal const string StrPlus6 = "cb9fdd25-2abe-46cf-86ed-b79dbcd1dd6b";
+
+    internal const string DexPlus2 = "f400157d-d8a8-4b2a-9daa-5866a5f61dfd";
+    internal const string DexPlus4 = "f066810c-e6e1-4b4e-89f1-4e316e6e7db3";
+    internal const string DexPlus6 = "c8b46c21-24d5-436b-b883-20c4f7bcbcdd";
+
+    internal const string ConPlus2 = "2ca04f63-07ef-4ed5-9796-3ad1e4b04b55";
+    internal const string ConPlus4 = "6b171aae-37a7-444e-834e-070cec520fd3";
+    internal const string ConPlus6 = "5bfbeec0-f39b-46bb-accf-afc278e19b5d";
+
+    internal const string PhysicalProwessPrimarySelection = "25c94c69-c2e1-4ccc-a3e5-0fe6c9f1bb05";
+    internal const string StrPrimaryProgression = "503f80de-37f9-4f69-a51f-ac268de02867";
+    internal const string DexPrimaryProgression = "6554309c-139d-4995-825d-ddcee606e45e";
+    internal const string ConPrimaryProgression = "db7ab3fe-b416-46ee-8307-fd57aa790c99";
+
+    internal const string PhysicalProwessSecondarySelection = "7ace0142-8de7-405e-b448-d611fc9021df";
+    internal const string StrSecondaryProgression = "2dd700c1-b662-4e17-8810-6d70404e4eab";
+    internal const string DexSecondaryProgression = "6778522c-fa43-4826-bc56-97d513956930";
+    internal const string ConSecondaryProgression = "df44c4ef-02da-4313-9513-615bdc3fd5e9";
+
+    internal const string PhysicalProwessTertiarySelection = "a8e85712-6d34-422f-ad15-3a00bb297255";
+    internal const string StrTertiaryProgression = "a872b564-74aa-48ee-9cf0-887d0089db57";
+    internal const string DexTertiaryProgression = "53057a69-f6f4-4c54-b2d5-353a2e6e62be";
+    internal const string ConTertiaryProgression = "a318821f-5d07-4d8c-b1c3-8210cb267848";
+
+    internal const string PhysicalProwessAnySelection = "da988f82-a5d3-47e3-a134-e0abc8976a50";
+    #endregion
   }
 }
