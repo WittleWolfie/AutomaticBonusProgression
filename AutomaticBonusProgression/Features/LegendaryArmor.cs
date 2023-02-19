@@ -1,10 +1,6 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Enchantments;
+﻿using AutomaticBonusProgression.Enchantments;
 using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
-using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 
 namespace AutomaticBonusProgression.Features
@@ -65,7 +61,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
         //.SetIcon()
-        .AddToAllFeatures(ConfigureBalancedArmor(), ShadowArmor.Configure())
+        .AddToAllFeatures(BalancedArmor.Configure(), ShadowArmor.Configure())
         .Configure();
     }
 
@@ -82,31 +78,6 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryShieldDisplayName)
         .SetDescription(LegendaryShieldDescription)
         //.SetIcon()
-        .Configure();
-    }
-
-    private const string BalancedArmorName = "LegendaryArmor.Balanced";
-    private const string BalancedArmorAbilityName = "LegendaryArmor.Balanced.Ability";
-    private static BlueprintFeature ConfigureBalancedArmor()
-    {
-      Logger.Log("Configuring Balanced Legendary Armor");
-
-      var balancedEnchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
-      var ability = ActivatableAbilityConfigurator.New(BalancedArmorAbilityName, Guids.BalancedArmorAbility)
-        .SetDisplayName(balancedEnchant.m_EnchantName)
-        .SetDescription(balancedEnchant.m_Description)
-        //.SetIcon()
-        .SetBuff(BalancedArmor.Configure())
-        // .AddActivatableAbilityVariants()
-        .AddComponent(new EnhancementEquivalenceRestriction(EnhancementType.Armor, 1))
-        .Configure();
-
-      return FeatureConfigurator.New(BalancedArmorName, Guids.BalancedArmor)
-        .SetIsClassFeature()
-        .SetDisplayName(balancedEnchant.m_EnchantName)
-        .SetDescription(balancedEnchant.m_Description)
-        //.SetIcon()
-        .AddFacts(new() { ability })
         .Configure();
     }
   }
