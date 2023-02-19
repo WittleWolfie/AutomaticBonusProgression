@@ -1,3 +1,4 @@
+using AutomaticBonusProgression.Enchantments;
 using AutomaticBonusProgression.Features;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Root;
@@ -53,7 +54,7 @@ namespace AutomaticBonusProgression
           }
           Initialized = true;
 
-          Enchantments.Configure();
+          EnhancementEquivalence.Configure();
 
           AttunementProgression.Configure();
         }
