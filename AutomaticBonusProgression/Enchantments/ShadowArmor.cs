@@ -114,7 +114,7 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon()
         .SetRanks(2) // Require shadow Armor + 2 more to get this. Basically turns this into a chain of things.
         .AddRecommendationHasFeature(Guids.ShadowArmor)
-        .AddPrerequisiteFeature(Guids.ShadowArmor)
+        .AddComponent(new PrerequisiteHasFeatureRanks(Guids.ShadowArmor, 2))
         .AddComponent(new AddFactsOnRank(rank: ImprovedEnhancement, ability))
         .Configure();
     }
@@ -158,7 +158,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(GreaterDescription)
         //.SetIcon()
         .AddRecommendationHasFeature(Guids.ImprovedShadowArmor)
-        .AddPrerequisiteFeature(Guids.ImprovedShadowArmor)
+        .AddComponent(new PrerequisiteHasFeatureRanks(Guids.ImprovedShadowArmor, 2))
         .AddComponent(new AddFactsOnRank(rank: GreaterEnhancement, ability))
         .Configure();
     }
