@@ -19,7 +19,7 @@ namespace AutomaticBonusProgression.Features
     //    - These are used by LegendaryX abilities to apply the enchantment so it doesn't need to apply to items
 
     // Armor In Game
-    // - ArcaneArmorBalanced
+    // - ArcaneArmorBalanced [DONE]
     // - Fortification
     // - Shadow
     // - Spell Resistance
@@ -86,17 +86,13 @@ namespace AutomaticBonusProgression.Features
 
     private const string BalancedArmorName = "LegendaryArmor.Balanced";
     private const string BalancedArmorAbilityName = "LegendaryArmor.Balanced.Ability";
-    private const string BalancedArmorBuffName = "LegendaryArmor.Balanced.Buff";
-    private const string BalancedArmorDisplayName = "LegendaryArmor.Balanced.Name";
-
     private static BlueprintFeature ConfigureBalancedArmor()
     {
       Logger.Log("Configuring Balanced Legendary Armor");
 
       var balancedEnchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
-
       var ability = ActivatableAbilityConfigurator.New(BalancedArmorAbilityName, Guids.BalancedArmorAbility)
-        .SetDisplayName(BalancedArmorDisplayName)
+        .SetDisplayName(balancedEnchant.m_EnchantName)
         .SetDescription(balancedEnchant.m_Description)
         //.SetIcon()
         .SetBuff(BalancedArmor.Configure())
@@ -106,7 +102,7 @@ namespace AutomaticBonusProgression.Features
 
       return FeatureConfigurator.New(BalancedArmorName, Guids.BalancedArmor)
         .SetIsClassFeature()
-        .SetDisplayName(BalancedArmorDisplayName)
+        .SetDisplayName(balancedEnchant.m_EnchantName)
         .SetDescription(balancedEnchant.m_Description)
         //.SetIcon()
         .AddFacts(new() { ability } )
