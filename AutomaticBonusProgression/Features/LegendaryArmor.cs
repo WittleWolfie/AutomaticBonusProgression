@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Enchantments;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
@@ -64,7 +65,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
         //.SetIcon()
-        .AddToAllFeatures(ConfigureBalancedArmor())
+        .AddToAllFeatures(ConfigureBalancedArmor(), ShadowArmor.Configure())
         .Configure();
     }
 
@@ -96,7 +97,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(balancedEnchant.m_Description)
         //.SetIcon()
         .SetBuff(BalancedArmor.Configure())
-       // .AddActivatableAbilityVariants()
+        // .AddActivatableAbilityVariants()
         .AddComponent(new EnhancementEquivalenceRestriction(EnhancementType.Armor, 1))
         .Configure();
 
@@ -105,7 +106,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(balancedEnchant.m_EnchantName)
         .SetDescription(balancedEnchant.m_Description)
         //.SetIcon()
-        .AddFacts(new() { ability } )
+        .AddFacts(new() { ability })
         .Configure();
     }
   }

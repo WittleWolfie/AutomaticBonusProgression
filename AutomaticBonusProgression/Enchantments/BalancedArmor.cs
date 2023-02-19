@@ -7,7 +7,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 
-namespace AutomaticBonusProgression.Features
+namespace AutomaticBonusProgression.Enchantments
 {
   internal class BalancedArmor
   {
