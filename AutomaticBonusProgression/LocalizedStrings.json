@@ -147,6 +147,22 @@
   },
 
   {
+    "Key": "LegendaryArmor.Fortification.Light.Name",
+    "ProcessTemplates": false,
+    "enGB": "Light Fortification (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Fortification.Moderate.Name",
+    "ProcessTemplates": false,
+    "enGB": "Moderate Fortification (+3)"
+  },
+  {
+    "Key": "LegendaryArmor.Fortification.Heavy.Name",
+    "ProcessTemplates": false,
+    "enGB": "Heavy Fortification (+5)"
+  },
+
+  {
     "Key": "LegendaryShield.Name",
     "ProcessTemplates": false,
     "enGB": "Legendary Shield"
