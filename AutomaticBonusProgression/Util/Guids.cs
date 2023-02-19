@@ -110,11 +110,13 @@
 
     internal const string BalancedArmor = "395f73da-d5a6-440c-a018-e9c0b83a92b6";
     internal const string BalancedArmorAbility = "fe735c67-37a2-412e-88cb-032ef9feacb8";
+    internal const string BalancedArmorShieldAbility = "5c9c6b73-3ec8-4662-8ab8-865adae4e253";
     internal const string BalancedArmorBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
 
     internal const string ShadowArmor = "86580aff-6433-4b70-823a-8d4d8d904f46";
     internal const string ShadowArmorAbility = "f0096427-0ec6-4e72-b21b-e5251d39bed6";
     internal const string ShadowArmorBuff = "1cb18f84-4ae0-4990-930f-f47f42ff549d";
+
     internal const string GreaterShadowArmor = "090411ba-8a36-4077-a558-b8d3e497f09f";
     internal const string GreaterShadowArmorAbility = "1af9720f-872a-4780-86ef-32c7a49e8e10";
     internal const string GreaterShadowArmorBuff = "3b48de35-4127-474e-a3bb-020329815de4";
