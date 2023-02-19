@@ -12,6 +12,7 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryShieldmasterDisplayName = "LegendaryShieldmaster.Name";
     private const string LegendaryShieldmasterDescription = "LegendaryShieldmaster.Description";
 
+    // TODO What if instead this just treated the shield case as having just one so you could get at any level? Same for Twin Weapons.
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Legendary Shieldmaster");
