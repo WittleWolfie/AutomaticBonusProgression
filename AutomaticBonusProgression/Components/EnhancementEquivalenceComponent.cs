@@ -1,4 +1,7 @@
 ﻿using AutomaticBonusProgression.Util;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Facts;
+using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem;
@@ -27,6 +30,11 @@ namespace AutomaticBonusProgression.Components
     void OnChanged(EnhancementType type, Buff buff);
   }
 
+  /// <summary>
+  /// Tracks the equivalent enhancement bonus of a fact.
+  /// </summary>
+  [AllowedOn(typeof(BlueprintUnitFact))]
+  [AllowedOn(typeof(BlueprintItemEnchantment))]
   [TypeId("4c9f19e3-0b2c-45b6-87c4-d22140b55f64")]
   internal class EnhancementEquivalenceComponent : EntityFactComponentDelegate, IEnhancementEquivalence
   {
