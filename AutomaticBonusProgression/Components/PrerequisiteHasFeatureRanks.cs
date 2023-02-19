@@ -30,7 +30,7 @@ namespace AutomaticBonusProgression.Components
 
     public override string GetUITextInternal(UnitDescriptor unit)
     {
-      return $"{base.GetUITextInternal(unit)} ({Ranks})";
+      return $"{base.GetUITextInternal(unit)} [{Ranks}]";
     }
   }
 }
