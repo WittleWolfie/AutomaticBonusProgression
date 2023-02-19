@@ -52,9 +52,8 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDeactivateImmediately()
         .SetActivationType(AbilityActivationType.Immediately)
         .SetActivateWithUnitCommand(CommandType.Free)
-        .SetGroup(ExpandedActivatableAbilityGroup.LegendaryArmor)
-        .SetHiddenInUI()
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, Enhancement))
+        .SetHiddenInUI()
         .Configure();
 
       return FeatureConfigurator.New(ShadowArmorName, Guids.ShadowArmor)
@@ -102,7 +101,6 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDeactivateImmediately()
         .SetActivationType(AbilityActivationType.Immediately)
         .SetActivateWithUnitCommand(CommandType.Free)
-        .SetGroup(ExpandedActivatableAbilityGroup.LegendaryArmor)
         .SetHiddenInUI()
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, ImprovedEnhancement))
         .Configure();
@@ -147,7 +145,6 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDeactivateImmediately()
         .SetActivationType(AbilityActivationType.Immediately)
         .SetActivateWithUnitCommand(CommandType.Free)
-        .SetGroup(ExpandedActivatableAbilityGroup.LegendaryArmor)
         .SetHiddenInUI()
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, GreaterEnhancement))
         .Configure();

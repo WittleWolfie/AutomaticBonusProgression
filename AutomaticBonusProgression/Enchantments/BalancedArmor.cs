@@ -49,7 +49,6 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDeactivateImmediately()
         .SetActivationType(AbilityActivationType.Immediately)
         .SetActivateWithUnitCommand(CommandType.Free)
-        .SetGroup(ExpandedActivatableAbilityGroup.LegendaryArmor)
         .SetHiddenInUI()
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, Enhancement))
         .Configure();
