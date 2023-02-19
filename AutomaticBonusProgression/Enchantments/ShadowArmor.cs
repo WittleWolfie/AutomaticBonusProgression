@@ -18,6 +18,8 @@ namespace AutomaticBonusProgression.Enchantments
     private const string BuffName = "LegendaryArmor.Shadow.Buff";
     private const string AbilityName = "LegendaryArmor.Shadow.Ability";
 
+    private const string DisplayName = "LegendaryArmor.Shadow.Name";
+
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Shadow Armor");
@@ -28,7 +30,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
       var buff = BuffConfigurator.New(BuffName, Guids.ShadowArmorBuff)
-        .SetDisplayName(enchant.m_EnchantName)
+        .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .AddComponent(shadowFeature.GetComponent<AddStatBonus>())
@@ -36,17 +38,16 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
 
       var ability = ActivatableAbilityConfigurator.New(AbilityName, Guids.ShadowArmorAbility)
-        .SetDisplayName(enchant.m_EnchantName)
+        .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .SetBuff(buff)
         // .AddActivatableAbilityVariants()
-        .AddComponent(new EnhancementEquivalenceRestriction(EnhancementType.Armor, 5))
         .Configure();
 
       return FeatureConfigurator.New(ShadowArmorName, Guids.ShadowArmor)
         .SetIsClassFeature()
-        .SetDisplayName(enchant.m_EnchantName)
+        .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .AddFacts(new() { ability })

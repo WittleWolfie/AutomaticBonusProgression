@@ -18,6 +18,8 @@ namespace AutomaticBonusProgression.Enchantments
     private const string BuffName = "LegendaryArmor.Balanced.Buff";
     private const string AbilityName = "LegendaryArmor.Balanced.Ability";
 
+    private const string DisplayName = "LegendaryArmor.Balanced.Name";
+
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Balanced Armor");
@@ -28,7 +30,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
       var buff = BuffConfigurator.New(BuffName, Guids.BalancedArmorBuff)
-        .SetDisplayName(enchant.m_EnchantName)
+        .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .AddComponent(balancedFeature.GetComponent<CMDBonusAgainstManeuvers>())
@@ -36,17 +38,16 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
 
       var ability = ActivatableAbilityConfigurator.New(AbilityName, Guids.BalancedArmorAbility)
-        .SetDisplayName(enchant.m_EnchantName)
+        .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .SetBuff(buff)
         // .AddActivatableAbilityVariants()
-        .AddComponent(new EnhancementEquivalenceRestriction(EnhancementType.Armor, 1))
         .Configure();
 
       return FeatureConfigurator.New(BalancedArmorName, Guids.BalancedArmor)
         .SetIsClassFeature()
-        .SetDisplayName(enchant.m_EnchantName)
+        .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .AddFacts(new() { ability })

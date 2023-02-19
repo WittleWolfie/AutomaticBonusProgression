@@ -121,6 +121,17 @@
   },
 
   {
+    "Key": "LegendaryArmor.Balanced.Name",
+    "ProcessTemplates": false,
+    "enGB": "Balanced Armor (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Shadow.Name",
+    "ProcessTemplates": false,
+    "enGB": "Shadow Armor (+2)"
+  },
+
+  {
     "Key": "LegendaryShield.Name",
     "ProcessTemplates": false,
     "enGB": "Legendary Shield"
