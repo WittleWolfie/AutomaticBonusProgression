@@ -88,6 +88,7 @@ namespace AutomaticBonusProgression.Features
         .AddToAllFeatures(
           BalancedArmor.Configure(),
           ShadowArmor.Configure(),
+          ShadowArmor.ConfigureImproved(),
           ShadowArmor.ConfigureGreater())
         .Configure();
     }
