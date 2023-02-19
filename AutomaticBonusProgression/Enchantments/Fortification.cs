@@ -8,6 +8,7 @@ using Kingmaker.UnitLogic.FactLogic;
 namespace AutomaticBonusProgression.Enchantments
 {
   // TODO: Functional testing to make sure these enchants I made _work_, especially w/ refactor
+  // TODO: Support on shields
   internal class Fortification
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Fortification));

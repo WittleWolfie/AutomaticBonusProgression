@@ -21,7 +21,7 @@ namespace AutomaticBonusProgression.Features
     // Armor In Game
     // - ArcaneArmorBalanced [DONE]
     // - Shadow [DONE]
-    // - Fortification
+    // - Fortification [DONE]
     // - Spell Resistance
     // - Invulnerability
     // - Energy Resistance
@@ -75,7 +75,10 @@ namespace AutomaticBonusProgression.Features
               Guids.BalancedArmorAbility,
               Guids.ShadowArmorAbility,
               Guids.ImprovedShadowArmorAbility,
-              Guids.GreaterShadowArmorAbility
+              Guids.GreaterShadowArmorAbility,
+              Guids.FortificationAbility,
+              Guids.ImprovedFortificationAbility,
+              Guids.GreaterFortificationAbility,
             })
         .AddActivationDisable()
         .Configure();
@@ -90,7 +93,10 @@ namespace AutomaticBonusProgression.Features
           BalancedArmor.Configure(),
           ShadowArmor.Configure(),
           ShadowArmor.ConfigureImproved(),
-          ShadowArmor.ConfigureGreater())
+          ShadowArmor.ConfigureGreater(),
+          Fortification.Configure(),
+          Fortification.ConfigureImproved(),
+          Fortification.ConfigureGreater())
         .Configure();
     }
 
