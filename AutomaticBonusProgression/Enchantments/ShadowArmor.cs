@@ -52,6 +52,8 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
+        .SetRanks(Enhancement)
+        .AddRecommendationHasFeature(Guids.ShadowArmor)
         .AddComponent(new AddFactsOnRank(rank: Enhancement, ability))
         .Configure();
     }
@@ -95,6 +97,8 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(GreaterDisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
+        .SetRanks(GreaterEnhancement)
+        .AddRecommendationHasFeature(Guids.GreaterShadowArmor)
         .AddComponent(new AddFactsOnRank(rank: GreaterEnhancement, ability))
         .Configure();
     }
