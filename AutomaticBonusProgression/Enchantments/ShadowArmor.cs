@@ -20,7 +20,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string AbilityName = "LegendaryArmor.Shadow.Ability";
 
     private const string DisplayName = "LegendaryArmor.Shadow.Name";
-    private const int Enhancement = 2;
+    private const int Enhancement = 5;
 
     internal static BlueprintFeature Configure()
     {
@@ -49,6 +49,7 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon()
         .SetBuff(buff)
         // .AddActivatableAbilityVariants()
+        .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, Enhancement))
         .Configure();
 
       return FeatureConfigurator.New(ShadowArmorName, Guids.ShadowArmor)
@@ -94,6 +95,7 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon()
         .SetBuff(buff)
         // .AddActivatableAbilityVariants()
+        .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, GreaterEnhancement))
         .Configure();
 
       return FeatureConfigurator.New(GreaterShadowArmorName, Guids.GreaterShadowArmor)

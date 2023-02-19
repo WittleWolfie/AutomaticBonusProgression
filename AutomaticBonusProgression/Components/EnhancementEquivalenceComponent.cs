@@ -49,7 +49,7 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        owner.Ensure<EnhancementEquivalence>().AddEnchantment(this);
+        owner.Ensure<EnhancementEquivalence>().AddEnchantment(Type, Enhancement);
       }
       catch (Exception e)
       {
@@ -68,7 +68,7 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        owner.Get<EnhancementEquivalence>()?.RemoveEnchantment(this);
+        owner.Get<EnhancementEquivalence>()?.RemoveEnchantment(Type, Enhancement);
       }
       catch (Exception e)
       {

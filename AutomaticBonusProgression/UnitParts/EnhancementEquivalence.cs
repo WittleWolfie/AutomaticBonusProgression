@@ -1,11 +1,7 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
 using Kingmaker.UnitLogic;
-using Kingmaker.UnitLogic.ActivatableAbilities;
-using Kingmaker.UnitLogic.Buffs;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 
 namespace AutomaticBonusProgression.UnitParts
 {
@@ -14,62 +10,56 @@ namespace AutomaticBonusProgression.UnitParts
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalence));
 
     [JsonProperty]
-    private List<Buff> ArmorEnchantments = new();
-
-    [JsonProperty]
     private int ArmorEnhancement = 0;
 
-    internal void AddEnchantment(EnhancementEquivalenceComponent component)
+    internal void AddEnchantment(EnhancementType type, int enhancement)
     {
-      switch (component.Type)
+      switch (type)
       {
         case EnhancementType.Armor:
-          Add(ref ArmorEnhancement, ArmorEnchantments, component.Enhancement, component.Fact as Buff);
-          break;
-        case EnhancementType.Shield:
-          break;
-        case EnhancementType.MainHand:
-          break;
-        case EnhancementType.OffHand:
-          break;
-        default:
-          break;
+          ArmorEnhancement += enhancement;
+          return;
       }
     }
 
-    private void Add(ref int enhancement, List<Buff> enchantments, int toAdd, Buff buff)
+    internal void RemoveEnchantment(EnhancementType type, int enhancement)
     {
-      enhancement += toAdd;
-
-      if (buff is not null)
-        enchantments.Add(buff);
-
-      if (enhancement > 5)
+      switch (type)
       {
-        Logger.Verbose(() => $"Current enhancement bonus too high, removing enchantments");
-        int reduction = enhancement - 5;
-        List<Buff> toRemove = new();
-        foreach (var enchant in enchantments)
-        {
-          toRemove.Add(enchant);
-          reduction -= enchant.GetComponent<EnhancementEquivalenceComponent>().Enhancement;
-          if (reduction <= 0)
-            break;
-        }
-
-        foreach (var enchant in toRemove)
-          ActivatableAbility.GetBuffOwningAbility(Owner, enchant)?.TurnOffImmediately();
+        case EnhancementType.Armor:
+          ArmorEnhancement -= enhancement;
+          return;
       }
     }
 
-    internal void RemoveEnchantment(EnhancementEquivalenceComponent component)
+    /// <summary>
+    /// Whether a new enchantment can be activated.
+    /// </summary>
+    internal bool CanAdd(EnhancementType type, int enhancement)
     {
-      if (component.Type == EnhancementType.Armor)
+      return type switch
       {
-        ArmorEnhancement -= component.Enhancement;
-        if (component.Fact is Buff buff)
-          ArmorEnchantments.Remove(buff);
-      }
+        EnhancementType.Armor => ArmorEnhancement + enhancement <= 5,
+        EnhancementType.Shield => throw new System.NotImplementedException(),
+        EnhancementType.MainHand => throw new System.NotImplementedException(),
+        EnhancementType.OffHand => throw new System.NotImplementedException(),
+        _ => throw new System.NotImplementedException(),
+      };
+    }
+
+    /// <summary>
+    /// Whether or not an enchantment can remain active after it has been activated.
+    /// </summary>
+    internal bool CanKeep(EnhancementType type)
+    {
+      return type switch
+      {
+        EnhancementType.Armor => ArmorEnhancement <= 5,
+        EnhancementType.Shield => throw new System.NotImplementedException(),
+        EnhancementType.MainHand => throw new System.NotImplementedException(),
+        EnhancementType.OffHand => throw new System.NotImplementedException(),
+        _ => throw new System.NotImplementedException(),
+      };
     }
   }
 }

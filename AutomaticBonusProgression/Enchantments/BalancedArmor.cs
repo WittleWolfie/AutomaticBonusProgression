@@ -44,6 +44,7 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon()
         .SetBuff(buff)
         // .AddActivatableAbilityVariants()
+        .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, Enhancement))
         .Configure();
 
       return FeatureConfigurator.New(BalancedArmorName, Guids.BalancedArmor)
