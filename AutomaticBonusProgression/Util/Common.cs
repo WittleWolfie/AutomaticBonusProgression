@@ -32,16 +32,6 @@ namespace AutomaticBonusProgression.Util
       }
     }
 
-    private static BlueprintBuff _armorEquivalence;
-    internal static BlueprintBuff ArmorEquivalence
-    {
-      get
-      {
-        _armorEquivalence ??= BlueprintTool.Get<BlueprintBuff>(Guids.ArmorEnhancementEquivalence);
-        return _armorEquivalence;
-      }
-    }
-
     private static BlueprintFeature _weaponAttunement;
     internal static BlueprintFeature WeaponAttunement
     {
