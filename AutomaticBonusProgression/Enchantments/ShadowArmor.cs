@@ -59,5 +59,50 @@ namespace AutomaticBonusProgression.Enchantments
         .AddFacts(new() { ability })
         .Configure();
     }
+
+    private const string GreaterShadowArmorName = "LegendaryArmor.Shadow.Greater";
+    private const string GreaterBuffName = "LegendaryArmor.Shadow.Greater.Buff";
+    private const string GreaterAbilityName = "LegendaryArmor.Shadow.Greater.Ability";
+
+    private const string GreaterDisplayName = "LegendaryArmor.Shadow.Name";
+    private const int GreaterEnhancement = 5;
+
+    internal static BlueprintFeature ConfigureGreater()
+    {
+      Logger.Log($"Configuring Shadow Armor (Greater)");
+
+      var equivalence = new EnhancementEquivalenceComponent(EnhancementType.Armor, GreaterEnhancement);
+      var shadowFeature = FeatureConfigurator.For(FeatureRefs.ArcaneArmorShadowGreaterFeature)
+        .AddComponent(equivalence)
+        .Configure();
+      ArmorEnchantmentConfigurator.For(ArmorEnchantmentRefs.GreaterShadow)
+        .AddComponent(equivalence)
+        .Configure();
+
+      var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
+      var buff = BuffConfigurator.New(GreaterBuffName, Guids.GreaterShadowArmorBuff)
+        .SetDisplayName(GreaterDisplayName)
+        .SetDescription(enchant.m_Description)
+        //.SetIcon()
+        .AddComponent(shadowFeature.GetComponent<AddStatBonus>())
+        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, GreaterEnhancement))
+        .Configure();
+
+      var ability = ActivatableAbilityConfigurator.New(GreaterAbilityName, Guids.GreaterShadowArmorAbility)
+        .SetDisplayName(GreaterDisplayName)
+        .SetDescription(enchant.m_Description)
+        //.SetIcon()
+        .SetBuff(buff)
+        // .AddActivatableAbilityVariants()
+        .Configure();
+
+      return FeatureConfigurator.New(GreaterShadowArmorName, Guids.GreaterShadowArmor)
+        .SetIsClassFeature()
+        .SetDisplayName(DisplayName)
+        .SetDescription(enchant.m_Description)
+        //.SetIcon()
+        .AddFacts(new() { ability })
+        .Configure();
+    }
   }
 }

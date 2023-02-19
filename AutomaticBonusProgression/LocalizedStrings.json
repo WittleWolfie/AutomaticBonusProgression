@@ -130,6 +130,11 @@
     "ProcessTemplates": false,
     "enGB": "Shadow Armor (+2)"
   },
+  {
+    "Key": "LegendaryArmor.Shadow.Greater.Name",
+    "ProcessTemplates": false,
+    "enGB": "Greater Shadow Armor (+5)"
+  },
 
   {
     "Key": "LegendaryShield.Name",

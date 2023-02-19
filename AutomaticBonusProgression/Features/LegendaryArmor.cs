@@ -61,7 +61,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
         //.SetIcon()
-        .AddToAllFeatures(BalancedArmor.Configure(), ShadowArmor.Configure())
+        .AddToAllFeatures(BalancedArmor.Configure(), ShadowArmor.Configure(), ShadowArmor.ConfigureGreater())
         .Configure();
     }
 
