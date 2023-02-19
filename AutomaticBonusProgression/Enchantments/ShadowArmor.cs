@@ -20,7 +20,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string AbilityName = "LegendaryArmor.Shadow.Ability";
 
     private const string DisplayName = "LegendaryArmor.Shadow.Name";
-    private const int Enhancement = 5;
+    private const int Enhancement = 2;
 
     internal static BlueprintFeature Configure()
     {
