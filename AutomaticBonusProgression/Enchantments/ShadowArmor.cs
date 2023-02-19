@@ -57,7 +57,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
-        .AddFacts(new() { ability })
+        .AddComponent(new AddFactsOnRank(rank: Enhancement, ability))
         .Configure();
     }
 
@@ -103,7 +103,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
-        .AddFacts(new() { ability })
+        .AddComponent(new AddFactsOnRank(rank: GreaterEnhancement, ability))
         .Configure();
     }
   }

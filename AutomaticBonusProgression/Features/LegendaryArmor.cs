@@ -18,7 +18,7 @@ namespace AutomaticBonusProgression.Features
     // Armor In Game
     // - ArcaneArmorBalanced [DONE]
     // - Fortification
-    // - Shadow
+    // - Shadow [DONE]
     // - Spell Resistance
     // - Invulnerability
     // - Energy Resistance
