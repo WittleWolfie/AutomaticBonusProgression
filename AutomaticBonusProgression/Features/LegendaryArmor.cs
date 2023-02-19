@@ -19,9 +19,9 @@ namespace AutomaticBonusProgression.Features
     //    - These are used by LegendaryX abilities to apply the enchantment so it doesn't need to apply to items
 
     // Armor In Game
-    // - ArcaneArmorBalanced [DONE]
-    // - Shadow [DONE]
-    // - Fortification [DONE]
+    // - ArcaneArmorBalanced [DONE] [Untested]
+    // - Shadow [DONE] [Untested]
+    // - Fortification [DONE] [Untested]
     // - Spell Resistance
     // - Invulnerability
     // - Energy Resistance
