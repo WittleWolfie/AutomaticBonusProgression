@@ -100,7 +100,7 @@ namespace AutomaticBonusProgression.Enchantments
       string featureName,
       string featureGuid,
       string prerequisiteFeature = "",
-      int prerequisiteCost = 0,
+      int prerequisiteCost = 1,
       params BlueprintComponent[] buffComponents)
     {
       var buffConfigurator = BuffConfigurator.New(buffName, buffGuid)
