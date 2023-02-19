@@ -144,7 +144,7 @@ namespace AutomaticBonusProgression.Components
         if (type != Type)
           return;
 
-        if (buff.GetRank() > 5)
+        if (buff.GetRank() >= 5)
         {
           if (Fact is not Buff enchantment)
           {
