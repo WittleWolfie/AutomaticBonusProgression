@@ -125,15 +125,25 @@
     "ProcessTemplates": false,
     "enGB": "Balanced Armor (+1)"
   },
+
   {
     "Key": "LegendaryArmor.Shadow.Name",
     "ProcessTemplates": false,
     "enGB": "Shadow Armor (+2)"
   },
   {
+    "Key": "LegendaryArmor.Shadow.Improved.Name",
+    "ProcessTemplates": false,
+    "enGB": "Improved Shadow Armor (+4)"
+  },
+  {
     "Key": "LegendaryArmor.Shadow.Greater.Name",
     "ProcessTemplates": false,
     "enGB": "Greater Shadow Armor (+5)"
+  },
+  {
+    "Key": "LegendaryArmor.Shadow.Greater.Description",
+    "enGB": "This armor grants its wearer a +15 competence bonus to Stealth skill checks."
   },
 
   {

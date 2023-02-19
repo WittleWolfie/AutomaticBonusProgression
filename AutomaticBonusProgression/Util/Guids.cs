@@ -116,6 +116,10 @@
     internal const string ShadowArmorAbility = "f0096427-0ec6-4e72-b21b-e5251d39bed6";
     internal const string ShadowArmorBuff = "1cb18f84-4ae0-4990-930f-f47f42ff549d";
 
+    internal const string ImprovedShadowArmor = "c06851ca-0d5e-45ae-a18d-de485622e4f1";
+    internal const string ImprovedShadowArmorAbility = "28e986dc-049d-461a-a170-3b267df847ba";
+    internal const string ImprovedShadowArmorBuff = "8026ac99-35ce-43c2-8e0b-f076530882f8";
+
     internal const string GreaterShadowArmor = "090411ba-8a36-4077-a558-b8d3e497f09f";
     internal const string GreaterShadowArmorAbility = "1af9720f-872a-4780-86ef-32c7a49e8e10";
     internal const string GreaterShadowArmorBuff = "3b48de35-4127-474e-a3bb-020329815de4";
