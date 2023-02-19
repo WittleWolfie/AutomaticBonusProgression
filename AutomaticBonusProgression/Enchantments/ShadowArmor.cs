@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -24,8 +25,12 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Shadow Armor");
 
+      var equivalence = new EnhancementEquivalenceComponent(EnhancementType.Armor, 5); // TODO: This should be 2 after testing
       var shadowFeature = FeatureConfigurator.For(FeatureRefs.ArcaneArmorShadowFeature)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, 5)) // TODO: This should be 2 after testing
+        .AddComponent(equivalence) 
+        .Configure();
+      ArmorEnchantmentConfigurator.For(ArmorEnchantmentRefs.ShadowArmor)
+        .AddComponent(equivalence)
         .Configure();
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
