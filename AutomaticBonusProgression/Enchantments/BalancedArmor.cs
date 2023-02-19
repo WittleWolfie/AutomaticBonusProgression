@@ -25,9 +25,9 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Balanced Armor");
 
-      var balancedFeature = FeatureConfigurator.For(FeatureRefs.ArcaneArmorBalancedFeature)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, Enhancement))
-        .Configure();
+      var balancedFeature =
+        Common.AddEnhancementEquivalence(
+          ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant, EnhancementType.Armor, Enhancement);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
       var buff = BuffConfigurator.New(BuffName, Guids.BalancedArmorBuff)

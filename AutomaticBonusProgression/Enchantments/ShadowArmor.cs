@@ -1,6 +1,5 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -26,13 +25,9 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Shadow Armor");
 
-      var equivalence = new EnhancementEquivalenceComponent(EnhancementType.Armor, Enhancement); 
-      var shadowFeature = FeatureConfigurator.For(FeatureRefs.ArcaneArmorShadowFeature)
-        .AddComponent(equivalence) 
-        .Configure();
-      ArmorEnchantmentConfigurator.For(ArmorEnchantmentRefs.ShadowArmor)
-        .AddComponent(equivalence)
-        .Configure();
+      var shadowFeature =
+        Common.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowFeature, EnhancementType.Armor, Enhancement);
+      Common.AddEnhancementEquivalence(ArmorEnchantmentRefs.ShadowArmor, EnhancementType.Armor, Enhancement);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
       var buff = BuffConfigurator.New(BuffName, Guids.ShadowArmorBuff)
@@ -72,13 +67,10 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Shadow Armor (Greater)");
 
-      var equivalence = new EnhancementEquivalenceComponent(EnhancementType.Armor, GreaterEnhancement);
-      var shadowFeature = FeatureConfigurator.For(FeatureRefs.ArcaneArmorShadowGreaterFeature)
-        .AddComponent(equivalence)
-        .Configure();
-      ArmorEnchantmentConfigurator.For(ArmorEnchantmentRefs.GreaterShadow)
-        .AddComponent(equivalence)
-        .Configure();
+      var shadowFeature =
+        Common.AddEnhancementEquivalence(
+          FeatureRefs.ArcaneArmorShadowGreaterFeature, EnhancementType.Armor, GreaterEnhancement);
+      Common.AddEnhancementEquivalence(ArmorEnchantmentRefs.GreaterShadow, EnhancementType.Armor, GreaterEnhancement);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
       var buff = BuffConfigurator.New(GreaterBuffName, Guids.GreaterShadowArmorBuff)
