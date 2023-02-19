@@ -104,7 +104,9 @@
 
     #region Legendary Armor
     internal const string LegendaryArmor = "171db362-874c-468a-8626-b3e2c9deb1d4";
+    internal const string LegendaryArmorAbility = "b1c038e4-f34f-443b-b080-23d44cfba390";
     internal const string LegendaryShield = "8db1c050-f274-4c51-a0b1-55f396b1501b";
+    internal const string LegendaryShieldAbility = "39db45ad-8f6f-4317-a0e6-6ae78e426d8e";
 
     internal const string BalancedArmor = "395f73da-d5a6-440c-a018-e9c0b83a92b6";
     internal const string BalancedArmorAbility = "fe735c67-37a2-412e-88cb-032ef9feacb8";

@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Patches;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
@@ -6,7 +7,9 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.FactLogic;
+using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -26,8 +29,9 @@ namespace AutomaticBonusProgression.Enchantments
       Logger.Log($"Configuring Shadow Armor");
 
       var shadowFeature =
-        Common.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowFeature, EnhancementType.Armor, Enhancement);
-      Common.AddEnhancementEquivalence(ArmorEnchantmentRefs.ShadowArmor, EnhancementType.Armor, Enhancement);
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.ArcaneArmorShadowFeature, EnhancementType.Armor, Enhancement);
+      EnchantmentTool.AddEnhancementEquivalence(ArmorEnchantmentRefs.ShadowArmor, EnhancementType.Armor, Enhancement);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
       var buff = BuffConfigurator.New(BuffName, Guids.ShadowArmorBuff)
@@ -43,7 +47,11 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .SetBuff(buff)
-        // .AddActivatableAbilityVariants()
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .SetGroup(ExpandedActivatableAbilityGroup.LegendaryArmor)
+        .SetHiddenInUI()
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, Enhancement))
         .Configure();
 
@@ -70,9 +78,10 @@ namespace AutomaticBonusProgression.Enchantments
       Logger.Log($"Configuring Shadow Armor (Greater)");
 
       var shadowFeature =
-        Common.AddEnhancementEquivalence(
+        EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.ArcaneArmorShadowGreaterFeature, EnhancementType.Armor, GreaterEnhancement);
-      Common.AddEnhancementEquivalence(ArmorEnchantmentRefs.GreaterShadow, EnhancementType.Armor, GreaterEnhancement);
+      EnchantmentTool.AddEnhancementEquivalence(
+        ArmorEnchantmentRefs.GreaterShadow, EnhancementType.Armor, GreaterEnhancement);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowGreaterEnchant.Reference.Get();
       var buff = BuffConfigurator.New(GreaterBuffName, Guids.GreaterShadowArmorBuff)
@@ -88,7 +97,11 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .SetBuff(buff)
-        // .AddActivatableAbilityVariants()
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .SetGroup(ExpandedActivatableAbilityGroup.LegendaryArmor)
+        .SetHiddenInUI()
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, GreaterEnhancement))
         .Configure();
 

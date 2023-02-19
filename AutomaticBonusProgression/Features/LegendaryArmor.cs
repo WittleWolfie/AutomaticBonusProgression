@@ -1,7 +1,10 @@
 ﻿using AutomaticBonusProgression.Enchantments;
 using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Features
 {
@@ -52,15 +55,36 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryArmorDisplayName = "LegendaryArmor.Name";
     private const string LegendaryArmorDescription = "LegendaryArmor.Description";
 
+    private const string LegendaryArmorAbility = "LegendaryArmor.Ability";
+
     internal static BlueprintFeature ConfigureArmor()
     {
       Logger.Log("Configuring Legendary Armor");
+
+      var ability = ActivatableAbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
+        .SetDisplayName(LegendaryArmorDisplayName)
+        .SetDescription(LegendaryArmorDescription)
+        //.SetIcon()
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddActivatableAbilityVariants(
+          variants: 
+            new()
+            {
+              Guids.BalancedArmorAbility,
+              Guids.ShadowArmorAbility,
+              Guids.GreaterShadowArmorAbility
+            })
+        .AddActivationDisable()
+        .Configure();
 
       return FeatureSelectionConfigurator.New(LegendaryArmorName, Guids.LegendaryArmor)
         .SetIsClassFeature()
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
         //.SetIcon()
+        .AddFacts(new() { ability })
         .AddToAllFeatures(
           BalancedArmor.Configure(),
           ShadowArmor.Configure(),

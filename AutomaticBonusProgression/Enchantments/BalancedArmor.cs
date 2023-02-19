@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Patches;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
@@ -7,6 +8,8 @@ using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -26,7 +29,7 @@ namespace AutomaticBonusProgression.Enchantments
       Logger.Log($"Configuring Balanced Armor");
 
       var balancedFeature =
-        Common.AddEnhancementEquivalence(
+        EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.ArcaneArmorBalancedFeature, EnhancementType.Armor, Enhancement);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
@@ -43,7 +46,11 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .SetBuff(buff)
-        // .AddActivatableAbilityVariants()
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .SetGroup(ExpandedActivatableAbilityGroup.LegendaryArmor)
+        .SetHiddenInUI()
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, Enhancement))
         .Configure();
 
