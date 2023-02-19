@@ -17,7 +17,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string BuffName = "LegendaryArmor.Fortification.Buff";
     private const string AbilityName = "LegendaryArmor.Fortification.Ability";
 
-    private const string DisplayName = "LegendaryArmor.Fortification.Light.Name";
+    private const string DisplayName = "LegendaryArmor.Fortification.Name";
     private const int EnhancementCost = 1;
 
     internal static BlueprintFeature Configure()
