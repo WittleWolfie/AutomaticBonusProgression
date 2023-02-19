@@ -1,16 +1,12 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
-using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.FactLogic;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -80,6 +76,8 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.ImprovedShadowArmorAbility,
         featureName: ImprovedShadowArmorName,
         Guids.ImprovedShadowArmor,
+        ranks: 2,
+        prerequisiteFeature: Guids.ShadowArmor,
         buffComponents: shadowFeature.GetComponent<AddStatBonus>());
     }
 
@@ -89,7 +87,7 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string GreaterDisplayName = "LegendaryArmor.Shadow.Greater.Name";
     private const string GreaterDescription = "LegendaryArmor.Shadow.Greater.Description";
-    private const int GreaterEnhancement = 5;
+    private const int GreaterEnhancementCost = 5;
 
     internal static BlueprintFeature ConfigureGreater()
     {
@@ -100,29 +98,23 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(GreaterDescription)
         //.SetIcon()
         .AddStatBonus(stat: StatType.SkillStealth, value: 15, descriptor: ModifierDescriptor.Competence)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, GreaterEnhancement))
+        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, GreaterEnhancementCost))
         .Configure();
 
-      var ability = ActivatableAbilityConfigurator.New(GreaterAbilityName, Guids.GreaterShadowArmorAbility)
-        .SetDisplayName(GreaterDisplayName)
-        .SetDescription(GreaterDescription)
-        //.SetIcon()
-        .SetBuff(buff)
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .SetHiddenInUI()
-        .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, GreaterEnhancement))
-        .Configure();
-
-      return FeatureConfigurator.New(GreaterShadowArmorName, Guids.GreaterShadowArmor)
-        .SetIsClassFeature()
-        .SetDisplayName(GreaterDisplayName)
-        .SetDescription(GreaterDescription)
-        //.SetIcon()
-        .AddComponent(new PrerequisiteHasFeatureRanks(Guids.ImprovedShadowArmor, 2))
-        .AddFacts(new() { ability })
-        .Configure();
+      return EnchantmentTool.CreateEnchant(
+        buff: buff,
+        displayName: GreaterDisplayName,
+        description: GreaterDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: GreaterEnhancementCost,
+        abilityName: GreaterAbilityName,
+        abilityGuid: Guids.GreaterShadowArmorAbility,
+        featureName: GreaterShadowArmorName,
+        Guids.GreaterShadowArmor,
+        ranks: 2,
+        prerequisiteFeature: Guids.ImprovedShadowArmor,
+        prerequisiteRanks: 2);
     }
   }
 }

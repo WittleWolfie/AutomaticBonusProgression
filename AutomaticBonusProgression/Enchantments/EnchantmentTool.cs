@@ -8,6 +8,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -31,8 +32,7 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     internal static BlueprintFeature CreateEnchant(
-      string buffName,
-      string buffGuid,
+      BlueprintBuff buff,
       string displayName,
       string description,
       //string icon,
@@ -44,19 +44,8 @@ namespace AutomaticBonusProgression.Enchantments
       string featureGuid,
       int ranks = 1,
       string prerequisiteFeature = "",
-      int prerequisiteRanks = 0,
-      params BlueprintComponent[] buffComponents)
+      int prerequisiteRanks = 0)
     {
-      var buffConfigurator = BuffConfigurator.New(buffName, buffGuid)
-        .SetDisplayName(displayName)
-        .SetDescription(description)
-        //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(type, enhancementCost));
-
-      foreach (var component in buffComponents)
-        buffConfigurator.AddComponent(component);
-
-      var buff = buffConfigurator.Configure();
       var ability = ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
         .SetDisplayName(displayName)
         .SetDescription(description)
@@ -93,8 +82,51 @@ namespace AutomaticBonusProgression.Enchantments
         else
           configurator.AddPrerequisiteFeature(prerequisiteFeature);
       }
-       
+
       return configurator.Configure();
+    }
+
+    internal static BlueprintFeature CreateEnchant(
+      string buffName,
+      string buffGuid,
+      string displayName,
+      string description,
+      //string icon,
+      EnhancementType type,
+      int enhancementCost,
+      string abilityName,
+      string abilityGuid,
+      string featureName,
+      string featureGuid,
+      int ranks = 1,
+      string prerequisiteFeature = "",
+      int prerequisiteRanks = 0,
+      params BlueprintComponent[] buffComponents)
+    {
+      var buffConfigurator = BuffConfigurator.New(buffName, buffGuid)
+        .SetDisplayName(displayName)
+        .SetDescription(description)
+        //.SetIcon(icon)
+        .AddComponent(new EnhancementEquivalenceComponent(type, enhancementCost));
+
+      foreach (var component in buffComponents)
+        buffConfigurator.AddComponent(component);
+
+      var buff = buffConfigurator.Configure();
+      return CreateEnchant(
+        buff,
+        displayName,
+        description,
+        //icon,
+        type,
+        enhancementCost,
+        abilityName,
+        abilityGuid,
+        featureName,
+        featureGuid,
+        ranks: ranks,
+        prerequisiteFeature: prerequisiteFeature,
+        prerequisiteRanks: prerequisiteRanks);
     }
   }
 }
