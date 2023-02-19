@@ -1,6 +1,5 @@
 ﻿using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.ActivatableAbilities.Restrictions;
 using Kingmaker.UnitLogic.Buffs;
