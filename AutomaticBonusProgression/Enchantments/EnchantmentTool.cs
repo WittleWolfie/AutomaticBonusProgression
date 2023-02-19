@@ -65,7 +65,9 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(icon)
         ;
 
-      var requiredRanks = enhancementCost - prerequisiteCost;
+      var requiredRanks = enhancementCost;
+      if (!string.IsNullOrEmpty(prerequisiteFeature))
+        requiredRanks -= prerequisiteCost;
       if (requiredRanks > 1)
       {
         configurator.SetRanks(requiredRanks)
