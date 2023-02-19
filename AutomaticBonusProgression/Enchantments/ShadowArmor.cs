@@ -72,7 +72,7 @@ namespace AutomaticBonusProgression.Enchantments
           FeatureRefs.ArcaneArmorShadowGreaterFeature, EnhancementType.Armor, GreaterEnhancement);
       Common.AddEnhancementEquivalence(ArmorEnchantmentRefs.GreaterShadow, EnhancementType.Armor, GreaterEnhancement);
 
-      var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
+      var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowGreaterEnchant.Reference.Get();
       var buff = BuffConfigurator.New(GreaterBuffName, Guids.GreaterShadowArmorBuff)
         .SetDisplayName(GreaterDisplayName)
         .SetDescription(enchant.m_Description)
@@ -92,7 +92,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       return FeatureConfigurator.New(GreaterShadowArmorName, Guids.GreaterShadowArmor)
         .SetIsClassFeature()
-        .SetDisplayName(DisplayName)
+        .SetDisplayName(GreaterDisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .AddComponent(new AddFactsOnRank(rank: GreaterEnhancement, ability))
