@@ -29,14 +29,14 @@ namespace AutomaticBonusProgression.Enchantments
       var enchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
       return EnchantmentTool.CreateEnchant(
         buffName: BuffName,
-        buffGuid: Guids.FortificationBuff,
+        buffGuid: Guids.BalancedArmorBuff,
         displayName: DisplayName,
         description: enchant.m_Description,
         //icon: ??,
         type: EnhancementType.Armor,
         enhancementCost: EnhancementCost,
         abilityName: AbilityName,
-        abilityGuid: Guids.FortificationAbility,
+        abilityGuid: Guids.BalancedArmorAbility,
         featureName: BalancedArmorName,
         Guids.BalancedArmor,
         buffComponents: balancedFeature.GetComponent<CMDBonusAgainstManeuvers>());
