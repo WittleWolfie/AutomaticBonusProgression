@@ -62,7 +62,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string GreaterBuffName = "LegendaryArmor.Shadow.Greater.Buff";
     private const string GreaterAbilityName = "LegendaryArmor.Shadow.Greater.Ability";
 
-    private const string GreaterDisplayName = "LegendaryArmor.Shadow.Name";
+    private const string GreaterDisplayName = "LegendaryArmor.Shadow.Greater.Name";
     private const int GreaterEnhancement = 5;
 
     internal static BlueprintFeature ConfigureGreater()
