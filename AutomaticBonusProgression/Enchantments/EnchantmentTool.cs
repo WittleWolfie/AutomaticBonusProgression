@@ -68,7 +68,7 @@ namespace AutomaticBonusProgression.Enchantments
       if (ranks > 1)
       {
         var requiredRanks = enhancementCost - prerequisiteRanks;
-        configurator.SetRanks(enhancementCost)
+        configurator.SetRanks(requiredRanks)
           .AddRecommendationHasFeature(featureGuid)
           .AddComponent(new AddFactsOnRank(rank: requiredRanks, ability));
       }
