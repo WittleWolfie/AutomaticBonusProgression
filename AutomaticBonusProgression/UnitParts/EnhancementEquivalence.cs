@@ -1,6 +1,7 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
 using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs;
 using Newtonsoft.Json;
 using System;
@@ -36,7 +37,7 @@ namespace AutomaticBonusProgression.UnitParts
       }
     }
 
-    private static void Add(ref int enhancement, List<Buff> enchantments, int toAdd, Buff buff)
+    private void Add(ref int enhancement, List<Buff> enchantments, int toAdd, Buff buff)
     {
       enhancement += toAdd;
 
@@ -57,7 +58,7 @@ namespace AutomaticBonusProgression.UnitParts
         }
 
         foreach (var enchant in toRemove)
-          enchant.Remove();
+          ActivatableAbility.GetBuffOwningAbility(Owner, enchant)?.TurnOffImmediately();
       }
     }
 
@@ -69,18 +70,6 @@ namespace AutomaticBonusProgression.UnitParts
         if (component.Fact is Buff buff)
           ArmorEnchantments.Remove(buff);
       }
-    }
-
-    internal bool CanEnchant(int enhancement, EnhancementType type)
-    {
-      return type switch
-      {
-        EnhancementType.Armor => ArmorEnhancement + enhancement <= 5,
-        EnhancementType.Shield => false,
-        EnhancementType.MainHand => false,
-        EnhancementType.OffHand => false,
-        _ => throw new ArgumentException($"Unexpected type: {type}"),
-      };
     }
   }
 }

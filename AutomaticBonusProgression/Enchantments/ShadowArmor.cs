@@ -39,7 +39,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .AddComponent(shadowFeature.GetComponent<AddStatBonus>())
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, 5, checkOnChange: true))
+        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, 5))
         .Configure();
 
       var ability = ActivatableAbilityConfigurator.New(AbilityName, Guids.ShadowArmorAbility)

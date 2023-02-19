@@ -54,8 +54,6 @@ namespace AutomaticBonusProgression
           }
           Initialized = true;
 
-          EnhancementEquivalence.Configure();
-
           AttunementProgression.Configure();
         }
         catch (Exception e)

@@ -34,7 +34,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .AddComponent(balancedFeature.GetComponent<CMDBonusAgainstManeuvers>())
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, 1, checkOnChange: true))
+        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, 1))
         .Configure();
 
       var ability = ActivatableAbilityConfigurator.New(AbilityName, Guids.BalancedArmorAbility)
