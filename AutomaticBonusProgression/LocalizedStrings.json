@@ -147,17 +147,17 @@
   },
 
   {
-    "Key": "LegendaryArmor.Fortification.Light.Name",
+    "Key": "LegendaryArmor.Fortification.Name",
     "ProcessTemplates": false,
     "enGB": "Light Fortification (+1)"
   },
   {
-    "Key": "LegendaryArmor.Fortification.Moderate.Name",
+    "Key": "LegendaryArmor.Fortification.Improved.Name",
     "ProcessTemplates": false,
     "enGB": "Moderate Fortification (+3)"
   },
   {
-    "Key": "LegendaryArmor.Fortification.Heavy.Name",
+    "Key": "LegendaryArmor.Fortification.Greater.Name",
     "ProcessTemplates": false,
     "enGB": "Heavy Fortification (+5)"
   },
