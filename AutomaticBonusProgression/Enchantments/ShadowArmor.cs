@@ -1,5 +1,4 @@
 ﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Patches;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
