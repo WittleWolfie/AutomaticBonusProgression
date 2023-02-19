@@ -10,14 +10,32 @@ namespace AutomaticBonusProgression.UnitParts
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalence));
 
     [JsonProperty]
-    private int ArmorEnhancement = 0;
+    private int Armor = 0;
+
+    [JsonProperty]
+    private int Shield = 0;
+
+    [JsonProperty]
+    private int MainHand = 0;
+
+    [JsonProperty]
+    private int OffHand = 0;
 
     internal void AddEnchantment(EnhancementType type, int enhancement)
     {
       switch (type)
       {
         case EnhancementType.Armor:
-          ArmorEnhancement += enhancement;
+          Armor += enhancement;
+          return;
+        case EnhancementType.Shield:
+          Shield += enhancement;
+          return;
+        case EnhancementType.MainHand:
+          MainHand += enhancement;
+          return;
+        case EnhancementType.OffHand:
+          OffHand += enhancement;
           return;
       }
     }
@@ -27,7 +45,16 @@ namespace AutomaticBonusProgression.UnitParts
       switch (type)
       {
         case EnhancementType.Armor:
-          ArmorEnhancement -= enhancement;
+          Armor -= enhancement;
+          return;
+        case EnhancementType.Shield:
+          Shield -= enhancement;
+          return;
+        case EnhancementType.MainHand:
+          MainHand -= enhancement;
+          return;
+        case EnhancementType.OffHand:
+          OffHand -= enhancement;
           return;
       }
     }
@@ -39,10 +66,10 @@ namespace AutomaticBonusProgression.UnitParts
     {
       return type switch
       {
-        EnhancementType.Armor => ArmorEnhancement + enhancement <= 5,
-        EnhancementType.Shield => throw new System.NotImplementedException(),
-        EnhancementType.MainHand => throw new System.NotImplementedException(),
-        EnhancementType.OffHand => throw new System.NotImplementedException(),
+        EnhancementType.Armor => Armor + enhancement <= 5,
+        EnhancementType.Shield => Shield + enhancement <= 5,
+        EnhancementType.MainHand => MainHand + enhancement <= 5,
+        EnhancementType.OffHand => OffHand + enhancement <= 5,
         _ => throw new System.NotImplementedException(),
       };
     }
@@ -54,10 +81,10 @@ namespace AutomaticBonusProgression.UnitParts
     {
       return type switch
       {
-        EnhancementType.Armor => ArmorEnhancement <= 5,
-        EnhancementType.Shield => throw new System.NotImplementedException(),
-        EnhancementType.MainHand => throw new System.NotImplementedException(),
-        EnhancementType.OffHand => throw new System.NotImplementedException(),
+        EnhancementType.Armor => Armor <= 5,
+        EnhancementType.Shield => Shield <= 5,
+        EnhancementType.MainHand => MainHand <= 5,
+        EnhancementType.OffHand => OffHand <= 5,
         _ => throw new System.NotImplementedException(),
       };
     }
