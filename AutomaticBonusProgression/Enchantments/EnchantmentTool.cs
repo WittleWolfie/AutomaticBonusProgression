@@ -9,6 +9,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Microsoft.Build.Utilities;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -42,9 +43,8 @@ namespace AutomaticBonusProgression.Enchantments
       string abilityGuid,
       string featureName,
       string featureGuid,
-      int ranks = 1,
       string prerequisiteFeature = "",
-      int prerequisiteRanks = 0)
+      int prerequisiteCost = 0)
     {
       var ability = ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
         .SetDisplayName(displayName)
@@ -65,9 +65,9 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(icon)
         ;
 
-      if (ranks > 1)
+      var requiredRanks = enhancementCost - prerequisiteCost;
+      if (requiredRanks > 1)
       {
-        var requiredRanks = enhancementCost - prerequisiteRanks;
         configurator.SetRanks(requiredRanks)
           .AddRecommendationHasFeature(featureGuid)
           .AddComponent(new AddFactsOnRank(rank: requiredRanks, ability));
@@ -77,8 +77,8 @@ namespace AutomaticBonusProgression.Enchantments
 
       if (!string.IsNullOrEmpty(prerequisiteFeature))
       {
-        if (prerequisiteRanks > 1)
-          configurator.AddComponent(new PrerequisiteHasFeatureRanks(prerequisiteFeature, prerequisiteRanks));
+        if (prerequisiteCost > 1)
+          configurator.AddComponent(new PrerequisiteHasFeatureRanks(prerequisiteFeature, prerequisiteCost));
         else
           configurator.AddPrerequisiteFeature(prerequisiteFeature);
       }
@@ -98,9 +98,8 @@ namespace AutomaticBonusProgression.Enchantments
       string abilityGuid,
       string featureName,
       string featureGuid,
-      int ranks = 1,
       string prerequisiteFeature = "",
-      int prerequisiteRanks = 0,
+      int prerequisiteCost = 0,
       params BlueprintComponent[] buffComponents)
     {
       var buffConfigurator = BuffConfigurator.New(buffName, buffGuid)
@@ -124,9 +123,8 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid,
         featureName,
         featureGuid,
-        ranks: ranks,
         prerequisiteFeature: prerequisiteFeature,
-        prerequisiteRanks: prerequisiteRanks);
+        prerequisiteCost: prerequisiteCost);
     }
   }
 }

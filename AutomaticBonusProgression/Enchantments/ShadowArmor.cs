@@ -76,9 +76,8 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.ImprovedShadowArmorAbility,
         featureName: ImprovedShadowArmorName,
         Guids.ImprovedShadowArmor,
-        ranks: 2,
         prerequisiteFeature: Guids.ShadowArmor,
-        prerequisiteRanks: 2,
+        prerequisiteCost: 2,
         buffComponents: shadowFeature.GetComponent<AddStatBonus>());
     }
 
