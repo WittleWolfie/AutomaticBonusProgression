@@ -19,13 +19,14 @@ namespace AutomaticBonusProgression.Enchantments
     private const string AbilityName = "LegendaryArmor.Balanced.Ability";
 
     private const string DisplayName = "LegendaryArmor.Balanced.Name";
+    private const int Enhancement = 1;
 
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Balanced Armor");
 
       var balancedFeature = FeatureConfigurator.For(FeatureRefs.ArcaneArmorBalancedFeature)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, 1))
+        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, Enhancement))
         .Configure();
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
@@ -34,7 +35,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(enchant.m_Description)
         //.SetIcon()
         .AddComponent(balancedFeature.GetComponent<CMDBonusAgainstManeuvers>())
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, 1))
+        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, Enhancement))
         .Configure();
 
       var ability = ActivatableAbilityConfigurator.New(AbilityName, Guids.BalancedArmorAbility)
