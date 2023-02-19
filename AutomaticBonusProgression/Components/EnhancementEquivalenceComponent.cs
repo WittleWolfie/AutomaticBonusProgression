@@ -24,7 +24,7 @@ namespace AutomaticBonusProgression.Components
   /// </summary>
   internal interface IEnhancementEquivalence : IUnitSubscriber
   {
-    void OnChanged(EnhancementType type, int rank);
+    void OnChanged(EnhancementType type, Buff buff);
   }
 
   [TypeId("4c9f19e3-0b2c-45b6-87c4-d22140b55f64")]
@@ -63,17 +63,22 @@ namespace AutomaticBonusProgression.Components
           _ => throw new NotImplementedException(),
         };
 
-        var appliedBuff = owner.AddBuff(buff, Context);
-        if (appliedBuff == null)
+        var currentRank = 0;
+        if (owner.GetFact(buff) is not Buff enhancementBuff)
+          enhancementBuff = owner.AddBuff(buff, Context);
+        else
+          currentRank = enhancementBuff.GetRank();
+
+        if (enhancementBuff == null)
         {
           Logger.Warning("Not applied");
           return;
         }
 
-        var rank = appliedBuff.Rank + Enhancement;
+        var rank = currentRank + Enhancement;
         Logger.Verbose(() => $"Setting {Type} rank to {rank} for {owner}");
-        appliedBuff.SetRank(rank);
-        EventBus.RaiseEvent<IEnhancementEquivalence>(owner, c => c.OnChanged(Type, rank));
+        enhancementBuff.SetRank(rank);
+        EventBus.RaiseEvent<IEnhancementEquivalence>(owner, c => c.OnChanged(Type, enhancementBuff));
       }
       catch (Exception e)
       {
@@ -121,7 +126,7 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
-    public void OnChanged(EnhancementType type, int rank)
+    public void OnChanged(EnhancementType type, Buff buff)
     {
       try
       {
@@ -131,15 +136,15 @@ namespace AutomaticBonusProgression.Components
         if (type != Type)
           return;
 
-        if (rank > 5)
+        if (buff.GetRank() > 5)
         {
-          if (Fact is not Buff buff)
+          if (Fact is not Buff enchantment)
           {
             Logger.Warning($"Should remove {Fact} but it is not a buff");
             return;
           }
-          Logger.Verbose(() => $"Removing {buff}, enhancement bonus is over 5");
-          buff.Remove();
+          Logger.Verbose(() => $"Removing {enchantment}, enhancement bonus is over 5");
+          enchantment.Remove();
         }
       }
       catch (Exception e)
