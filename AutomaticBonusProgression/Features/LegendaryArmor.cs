@@ -74,6 +74,7 @@ namespace AutomaticBonusProgression.Features
             {
               Guids.BalancedArmorAbility,
               Guids.ShadowArmorAbility,
+              Guids.ImprovedShadowArmorAbility,
               Guids.GreaterShadowArmorAbility
             })
         .AddActivationDisable()
