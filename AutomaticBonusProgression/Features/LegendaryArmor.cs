@@ -12,12 +12,6 @@ namespace AutomaticBonusProgression.Features
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryArmor));
 
-    // GENERAL Approach:
-    //  - Create EnhancementEquivalent buff which stacks to limit enhancement bonus
-    //  - Update existing enchantments to apply the buff appropriately
-    //  - Create buffs (as needed) to apply the enchantment effects
-    //    - These are used by LegendaryX abilities to apply the enchantment so it doesn't need to apply to items
-
     // Armor In Game
     // - ArcaneArmorBalanced [DONE] [Untested]
     // - Shadow [DONE] [Untested]
