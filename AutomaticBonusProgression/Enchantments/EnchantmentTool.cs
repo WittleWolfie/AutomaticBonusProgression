@@ -9,7 +9,6 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using Microsoft.Build.Utilities;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -44,7 +43,7 @@ namespace AutomaticBonusProgression.Enchantments
       string featureName,
       string featureGuid,
       string prerequisiteFeature = "",
-      int prerequisiteCost = 0)
+      int prerequisiteCost = 1)
     {
       var ability = ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
         .SetDisplayName(displayName)
