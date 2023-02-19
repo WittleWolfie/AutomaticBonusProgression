@@ -17,7 +17,6 @@ namespace AutomaticBonusProgression.Enchantments
     private const string BalancedArmorName = "LegendaryArmor.Balanced";
     private const string BuffName = "LegendaryArmor.Balanced.Buff";
     private const string AbilityName = "LegendaryArmor.Balanced.Ability";
-    private const string ShieldAbilityName = "LegendaryArmor.Balanced.Ability.Shield";
 
     private const string DisplayName = "LegendaryArmor.Balanced.Name";
     private const int Enhancement = 1;
@@ -48,17 +47,12 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Armor, Enhancement))
         .Configure();
 
-      var shieldAbility = ActivatableAbilityConfigurator.New(ShieldAbilityName, Guids.BalancedArmorShieldAbility)
-        .CopyFrom(ability)
-        .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Shield, Enhancement))
-        .Configure();
-
       return FeatureConfigurator.New(BalancedArmorName, Guids.BalancedArmor)
         .SetIsClassFeature()
         .SetDisplayName(DisplayName)
         .SetDescription(enchant.m_Description)
         //.SetIcon()
-        .AddFacts(new() { ability, shieldAbility })
+        .AddFacts(new() { ability })
         .Configure();
     }
   }
