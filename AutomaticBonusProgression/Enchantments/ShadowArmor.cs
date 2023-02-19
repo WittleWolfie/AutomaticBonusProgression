@@ -35,7 +35,7 @@ namespace AutomaticBonusProgression.Enchantments
         buffName: BuffName,
         buffGuid: Guids.ShadowArmorBuff,
         displayName: DisplayName,
-        description: enchant.m_Description,
+        description: enchant.m_Description.m_Key,
         //icon: ??,
         type: EnhancementType.Armor,
         enhancementCost: EnhancementCost,
@@ -68,7 +68,7 @@ namespace AutomaticBonusProgression.Enchantments
         buffName: ImprovedBuffName,
         buffGuid: Guids.ImprovedShadowArmorBuff,
         displayName: ImprovedDisplayName,
-        description: enchant.m_Description,
+        description: enchant.m_Description.m_Key,
         //icon: ??,
         type: EnhancementType.Armor,
         enhancementCost: ImprovedEnhancementCost,
@@ -76,8 +76,9 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.ImprovedShadowArmorAbility,
         featureName: ImprovedShadowArmorName,
         Guids.ImprovedShadowArmor,
-        ranks: 3,
+        ranks: 2,
         prerequisiteFeature: Guids.ShadowArmor,
+        prerequisiteRanks: 2,
         buffComponents: shadowFeature.GetComponent<AddStatBonus>());
     }
 

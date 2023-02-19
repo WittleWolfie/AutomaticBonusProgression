@@ -33,7 +33,7 @@ namespace AutomaticBonusProgression.Enchantments
         buffName: BuffName,
         buffGuid: Guids.FortificationBuff,
         displayName: DisplayName,
-        description: enchant.m_Description,
+        description: enchant.m_Description.m_Key,
         //icon: ??,
         type: EnhancementType.Armor,
         enhancementCost: EnhancementCost,
@@ -64,7 +64,7 @@ namespace AutomaticBonusProgression.Enchantments
         buffName: ImprovedBuffName,
         buffGuid: Guids.ImprovedFortificationBuff,
         displayName: ImprovedDisplayName,
-        description: enchant.m_Description,
+        description: enchant.m_Description.m_Key,
         //icon: ??,
         type: EnhancementType.Armor,
         enhancementCost: ImprovedEnhancementCost,
@@ -98,7 +98,7 @@ namespace AutomaticBonusProgression.Enchantments
         buffName: GreaterBuffName,
         buffGuid: Guids.GreaterFortificationBuff,
         displayName: GreaterDisplayName,
-        description: enchant.m_Description,
+        description: enchant.m_Description.m_Key,
         //icon: ??,
         type: EnhancementType.Armor,
         enhancementCost: GreaterEnhancementCost,
@@ -107,7 +107,8 @@ namespace AutomaticBonusProgression.Enchantments
         featureName: GreaterFortificationName,
         Guids.GreaterFortification,
         ranks: 2,
-        prerequisiteFeature: Guids.GreaterFortification,
+        prerequisiteFeature: Guids.ImprovedFortification,
+        prerequisiteRanks: 2,
         buffComponents: fortificationFeature.GetComponent<AddFortification>());
     }
   }
