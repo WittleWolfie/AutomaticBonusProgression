@@ -103,9 +103,14 @@
     internal const string LegendaryProwess = "4af6f190-145c-473e-a584-bcc0143e838d";
 
     #region Legendary Armor
-    internal const string LegendaryArmor = "171db362-874c-468a-8626-b3e2c9deb1d4";
+    internal const string ArmorEnhancementEquivalence = "6d34c7a5-be26-49de-87d0-2c58e14a960b";
 
+    internal const string LegendaryArmor = "171db362-874c-468a-8626-b3e2c9deb1d4";
     internal const string LegendaryShield = "8db1c050-f274-4c51-a0b1-55f396b1501b";
+
+    internal const string BalancedArmor = "395f73da-d5a6-440c-a018-e9c0b83a92b6";
+    internal const string BalancedArmorAbility = "fe735c67-37a2-412e-88cb-032ef9feacb8";
+    internal const string BalancedArmorBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
     #endregion
     #endregion
   }

@@ -4,6 +4,7 @@ using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 
 namespace AutomaticBonusProgression.Util
 {
@@ -28,6 +29,16 @@ namespace AutomaticBonusProgression.Util
       {
         _shieldAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.ShieldAttunement);
         return _shieldAttunement;
+      }
+    }
+
+    private static BlueprintBuff _armorEquivalence;
+    internal static BlueprintBuff ArmorEquivalence
+    {
+      get
+      {
+        _armorEquivalence ??= BlueprintTool.Get<BlueprintBuff>(Guids.ArmorEnhancementEquivalence);
+        return _armorEquivalence;
       }
     }
 

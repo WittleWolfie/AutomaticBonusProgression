@@ -1,5 +1,9 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 
 namespace AutomaticBonusProgression.Features
@@ -8,6 +12,11 @@ namespace AutomaticBonusProgression.Features
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryArmor));
 
+    // GENERAL Approach:
+    //  - Create EnhancementEquivalent buff which stacks to limit enhancement bonus
+    //  - Update existing enchantments to apply the buff appropriately
+    //  - Create buffs (as needed) to apply the enchantment effects
+    //    - These are used by LegendaryX abilities to apply the enchantment so it doesn't need to apply to items
 
     // Armor In Game
     // - ArcaneArmorBalanced
@@ -54,8 +63,8 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
-        .SetRanks(5) // TODO: Does this actually restrict it?
         //.SetIcon()
+        .AddToAllFeatures(ConfigureBalancedArmor())
         .Configure();
     }
 
@@ -71,8 +80,36 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryShieldDisplayName)
         .SetDescription(LegendaryShieldDescription)
-        .SetRanks(5)
         //.SetIcon()
+        .Configure();
+    }
+
+    private const string BalancedArmorName = "LegendaryArmor.Balanced";
+    private const string BalancedArmorAbilityName = "LegendaryArmor.Balanced.Ability";
+    private const string BalancedArmorBuffName = "LegendaryArmor.Balanced.Buff";
+    private const string BalancedArmorDisplayName = "LegendaryArmor.Balanced.Name";
+
+    private static BlueprintFeature ConfigureBalancedArmor()
+    {
+      Logger.Log("Configuring Balanced Legendary Armor");
+
+      var balancedEnchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
+
+      var ability = ActivatableAbilityConfigurator.New(BalancedArmorAbilityName, Guids.BalancedArmorAbility)
+        .SetDisplayName(BalancedArmorDisplayName)
+        .SetDescription(balancedEnchant.m_Description)
+        //.SetIcon()
+        .SetBuff(BalancedArmor.Configure())
+       // .AddActivatableAbilityVariants()
+        .AddComponent(new EnhancementEquivalenceRestriction(EnhancementType.Armor, 1))
+        .Configure();
+
+      return FeatureConfigurator.New(BalancedArmorName, Guids.BalancedArmor)
+        .SetIsClassFeature()
+        .SetDisplayName(BalancedArmorDisplayName)
+        .SetDescription(balancedEnchant.m_Description)
+        //.SetIcon()
+        .AddFacts(new() { ability } )
         .Configure();
     }
   }
