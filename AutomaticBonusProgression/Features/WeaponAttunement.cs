@@ -31,7 +31,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(WeaponDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddComponent<NaturalEnhancementBonus>()
+        .AddComponent<WeaponEnhancementBonus>()
         .Configure();
     }
 
@@ -53,7 +53,7 @@ namespace AutomaticBonusProgression.Features
     }
 
     [TypeId("4af2e953-6831-4bae-92a6-28621272f010")]
-    private class NaturalEnhancementBonus
+    private class WeaponEnhancementBonus
       : UnitFactComponentDelegate,
       IInitiatorRulebookHandler<RuleCalculateWeaponStats>,
       IInitiatorRulebookHandler<RuleCalculateDamage>,
@@ -63,16 +63,16 @@ namespace AutomaticBonusProgression.Features
       {
         try
         {
-          if (!CheckWeapon(evt.Weapon))
+          if (IsNull(evt.Weapon))
             return;
 
           var bonus = GameHelper.GetItemEnhancementBonus(evt.Weapon);
-          evt.Enhancement += bonus;
+          evt.Enhancement.AddModifier(new(bonus, Fact, ModifierDescriptor.Enhancement));
           evt.EnhancementTotal += bonus;
         }
         catch (Exception e)
         {
-          Logger.LogException("NaturalEnhancementBonus.OnEventAboutToTrigger(RuleCalculateAttackBonusWithoutTarget)", e);
+          Logger.LogException("WeaponEnhancementBonus.OnEventAboutToTrigger(RuleCalculateAttackBonusWithoutTarget)", e);
         }
       }
 
@@ -80,7 +80,7 @@ namespace AutomaticBonusProgression.Features
       {
         try
         {
-          if (!CheckWeapon(evt.DamageBundle.Weapon))
+          if (IsNull(evt.DamageBundle.Weapon))
             return;
 
           var damage = evt.DamageBundle.WeaponDamage as PhysicalDamage;
@@ -93,7 +93,7 @@ namespace AutomaticBonusProgression.Features
         }
         catch (Exception e)
         {
-          Logger.LogException("NaturalEnhancementBonus.OnEventAboutToTrigger(RuleCalculateDamage)", e);
+          Logger.LogException("WeaponEnhancementBonus.OnEventAboutToTrigger(RuleCalculateDamage)", e);
         }
       }
 
@@ -101,20 +101,25 @@ namespace AutomaticBonusProgression.Features
       {
         try
         {
-          if (!CheckWeapon(evt.Weapon))
+          if (IsNull(evt.Weapon))
             return;
 
           evt.AddModifier(GameHelper.GetItemEnhancementBonus(evt.Weapon), Fact, ModifierDescriptor.Enhancement);
         }
         catch (Exception e)
         {
-          Logger.LogException("NaturalEnhancementBonus.OnEventAboutToTrigger(RuleCalculateAttackBonusWithoutTarget)", e);
+          Logger.LogException("WeaponEnhancementBonus.OnEventAboutToTrigger(RuleCalculateAttackBonusWithoutTarget)", e);
         }
       }
 
-      private bool CheckWeapon(ItemEntityWeapon weapon)
+      private bool IsNull(ItemEntityWeapon weapon)
       {
-        return weapon is not null && (weapon.Blueprint.IsNatural || weapon.Blueprint.IsUnarmed);
+        if (weapon is null)
+        {
+          Logger.Verbose(() => "Missing weapon!");
+          return true;
+        }
+        return false;
       }
 
       public void OnEventDidTrigger(RuleCalculateWeaponStats evt) { }

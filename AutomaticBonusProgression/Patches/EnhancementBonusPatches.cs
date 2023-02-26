@@ -4,7 +4,6 @@ using HarmonyLib;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers;
 using Kingmaker.Designers.Mechanics.EquipmentEnchants;
-using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic;
@@ -173,31 +172,6 @@ namespace AutomaticBonusProgression.Patches
         catch (Exception e)
         {
           Logger.LogException("GameHelper_Patch.GetWeaponEnhancementBonus", e);
-        }
-      }
-    }
-
-    // Weapon
-    [HarmonyPatch(typeof(WeaponEnhancementBonus))]
-    static class WeaponEnhancementBonus_Patch
-    {
-      [HarmonyPatch(nameof(WeaponEnhancementBonus.CalculateBonus)), HarmonyPostfix]
-      static void CalculateBonus(WeaponEnhancementBonus __instance, ref int __result)
-      {
-        try
-        {
-          var wielder = __instance.Owner.Wielder?.Unit;
-          if (wielder is null)
-            return;
-
-          if (!Common.IsAffectedByABP(__instance.Owner.Wielder))
-            return;
-
-          __result = GameHelper.GetItemEnhancementBonus(__instance.Owner);
-        }
-        catch (Exception e)
-        {
-          Logger.LogException("WeaponEnhancementBonus_Patch.CalculateBonus", e);
         }
       }
     }
