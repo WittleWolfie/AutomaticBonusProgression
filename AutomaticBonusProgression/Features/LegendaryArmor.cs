@@ -12,6 +12,8 @@ namespace AutomaticBonusProgression.Features
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryArmor));
 
+
+    // TODO: Look at new enchantments & items!
     // Armor In Game
     // - ArcaneArmorBalanced [DONE] [Untested]
     // - Shadow [DONE] [Untested]
