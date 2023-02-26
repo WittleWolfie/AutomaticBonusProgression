@@ -4,6 +4,7 @@ using HarmonyLib;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers;
 using Kingmaker.Designers.Mechanics.EquipmentEnchants;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic;
@@ -173,6 +174,34 @@ namespace AutomaticBonusProgression.Patches
         {
           Logger.LogException("GameHelper_Patch.GetWeaponEnhancementBonus", e);
         }
+      }
+    }
+
+    // Weapon
+    [HarmonyPatch(typeof(WeaponEnhancementBonus))]
+    static class WeaponEnhancementBonus_Patch
+    {
+      [HarmonyBefore("TabletopTweaks-Base")]
+      [HarmonyPatch(nameof(WeaponEnhancementBonus.OnEventAboutToTrigger)), HarmonyPrefix]
+      static bool OnEventAboutToTrigger(WeaponEnhancementBonus __instance)
+      {
+        try
+        {
+          var wielder = __instance.Owner.Wielder?.Unit;
+          if (wielder is null)
+            return true;
+
+          if (!Common.IsAffectedByABP(__instance.Owner.Wielder))
+            return true;
+
+          Logger.Verbose(() => $"Skipping base weapon enhancement bonus");
+          return false; // Don't use the default logic for attuned characters. Actual logic is in WeaponAttunement component.
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("WeaponEnhancementBonus_Patch.OnEventAboutToTrigger", e);
+        }
+        return true;
       }
     }
 

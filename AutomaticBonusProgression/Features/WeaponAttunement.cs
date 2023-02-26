@@ -63,10 +63,11 @@ namespace AutomaticBonusProgression.Features
       {
         try
         {
-          if (IsNull(evt.Weapon))
+          if (ShouldIgnore(evt.Weapon))
             return;
 
           var bonus = GameHelper.GetItemEnhancementBonus(evt.Weapon);
+          Logger.Verbose(() => $"Adding {bonus} to enhancement (stats)");
           evt.Enhancement.AddModifier(new(bonus, Fact, ModifierDescriptor.Enhancement));
           evt.EnhancementTotal += bonus;
         }
@@ -80,14 +81,14 @@ namespace AutomaticBonusProgression.Features
       {
         try
         {
-          if (IsNull(evt.DamageBundle.Weapon))
+          if (ShouldIgnore(evt.DamageBundle.Weapon))
             return;
 
-          var damage = evt.DamageBundle.WeaponDamage as PhysicalDamage;
-          if (damage == null)
+          if (evt.DamageBundle.WeaponDamage is not PhysicalDamage damage)
             return;
 
           var bonus = GameHelper.GetItemEnhancementBonus(evt.DamageBundle.Weapon);
+          Logger.Verbose(() => $"Adding {bonus} to enhancement (damage)");
           damage.Enchantment += bonus;
           damage.EnchantmentTotal += bonus;
         }
@@ -101,10 +102,12 @@ namespace AutomaticBonusProgression.Features
       {
         try
         {
-          if (IsNull(evt.Weapon))
+          if (ShouldIgnore(evt.Weapon))
             return;
 
-          evt.AddModifier(GameHelper.GetItemEnhancementBonus(evt.Weapon), Fact, ModifierDescriptor.Enhancement);
+          var bonus = GameHelper.GetItemEnhancementBonus(evt.Weapon);
+          Logger.Verbose(() => $"Adding {bonus} to enhancement (attack w/o target)");
+          evt.AddModifier(bonus, Fact, ModifierDescriptor.Enhancement);
         }
         catch (Exception e)
         {
@@ -112,7 +115,7 @@ namespace AutomaticBonusProgression.Features
         }
       }
 
-      private bool IsNull(ItemEntityWeapon weapon)
+      private bool ShouldIgnore(ItemEntityWeapon weapon)
       {
         if (weapon is null)
         {
