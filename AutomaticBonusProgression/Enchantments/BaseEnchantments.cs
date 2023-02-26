@@ -7,17 +7,17 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using System;
 
-namespace AutomaticBonusProgression.Features
+namespace AutomaticBonusProgression.Enchantments
 {
-  internal class Enchantments
+  internal class BaseEnchantments
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Enchantments));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(BaseEnchantments));
 
     internal static void Configure()
     {
       try
       {
-        Logger.Log($"Configuring {nameof(Enchantments)}");
+        Logger.Log($"Configuring {nameof(BaseEnchantments)}");
 
         UpdateArmorEnchantments();
         UpdateWeaponEnchantments();
