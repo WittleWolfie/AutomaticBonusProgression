@@ -43,6 +43,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.ShadowArmorAbility,
         featureName: ShadowArmorName,
         Guids.ShadowArmor,
+        featureRanks: EnhancementCost,
         buffComponents: shadowFeature.GetComponent<AddStatBonus>());
     }
 
