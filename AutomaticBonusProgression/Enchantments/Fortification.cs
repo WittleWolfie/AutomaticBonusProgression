@@ -41,6 +41,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.FortificationAbility,
         featureName: FortificationName,
         Guids.Fortification,
+        featureRanks: EnhancementCost,
         buffComponents: fortificationFeature.GetComponent<AddFortification>());
     }
 
@@ -72,7 +73,9 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.ImprovedFortificationAbility,
         featureName: ImprovedFortificationName,
         Guids.ImprovedFortification,
+        featureRanks: ImprovedEnhancementCost - EnhancementCost,
         prerequisiteFeature: Guids.Fortification,
+        prerequisiteRanks: EnhancementCost,
         buffComponents: fortificationFeature.GetComponent<AddFortification>());
     }
 
@@ -105,8 +108,9 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.GreaterFortificationAbility,
         featureName: GreaterFortificationName,
         Guids.GreaterFortification,
+        featureRanks: GreaterEnhancementCost - ImprovedEnhancementCost,
         prerequisiteFeature: Guids.ImprovedFortification,
-        prerequisiteCost: 2,
+        prerequisiteRanks: ImprovedEnhancementCost - EnhancementCost,
         buffComponents: fortificationFeature.GetComponent<AddFortification>());
     }
   }

@@ -41,6 +41,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.SpellResistance13Ability,
         featureName: SpellResistance13Name,
         Guids.SpellResistance13,
+        featureRanks: EnhancementCost13,
         buffComponents: spellResistFeature.GetComponent<AddSpellResistance>());
     }
 
@@ -142,7 +143,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.SpellResistance22Ability,
         featureName: SpellResistance22Name,
         Guids.SpellResistance22,
-        prerequisiteFeature: Guids.SpellResistance22,
+        prerequisiteFeature: Guids.SpellResistance19,
         buffComponents: spellResistFeature.GetComponent<AddSpellResistance>());
     }
 

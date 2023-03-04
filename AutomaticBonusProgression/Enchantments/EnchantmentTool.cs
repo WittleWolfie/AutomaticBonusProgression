@@ -42,8 +42,9 @@ namespace AutomaticBonusProgression.Enchantments
       string abilityGuid,
       string featureName,
       string featureGuid,
+      int featureRanks,
       string prerequisiteFeature = "",
-      int prerequisiteCost = 1)
+      int prerequisiteRanks = 1)
     {
       var ability = ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
         .SetDisplayName(displayName)
@@ -64,22 +65,19 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(icon)
         ;
 
-      var requiredRanks = enhancementCost;
-      if (!string.IsNullOrEmpty(prerequisiteFeature))
-        requiredRanks -= prerequisiteCost;
-      if (requiredRanks > 1)
+      if (featureRanks > 1)
       {
-        configurator.SetRanks(requiredRanks)
+        configurator.SetRanks(featureRanks)
           .AddRecommendationHasFeature(featureGuid)
-          .AddComponent(new AddFactsOnRank(rank: requiredRanks, ability));
+          .AddComponent(new AddFactsOnRank(rank: featureRanks, ability));
       }
       else
         configurator.AddFacts(new() { ability });
 
       if (!string.IsNullOrEmpty(prerequisiteFeature))
       {
-        if (prerequisiteCost > 1)
-          configurator.AddComponent(new PrerequisiteHasFeatureRanks(prerequisiteFeature, prerequisiteCost));
+        if (prerequisiteRanks > 1)
+          configurator.AddComponent(new PrerequisiteHasFeatureRanks(prerequisiteFeature, prerequisiteRanks));
         else
           configurator.AddPrerequisiteFeature(prerequisiteFeature);
       }
@@ -99,8 +97,9 @@ namespace AutomaticBonusProgression.Enchantments
       string abilityGuid,
       string featureName,
       string featureGuid,
+      int featureRanks = 1,
       string prerequisiteFeature = "",
-      int prerequisiteCost = 1,
+      int prerequisiteRanks = 1,
       params BlueprintComponent[] buffComponents)
     {
       var buffConfigurator = BuffConfigurator.New(buffName, buffGuid)
@@ -124,8 +123,9 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid,
         featureName,
         featureGuid,
+        featureRanks: featureRanks,
         prerequisiteFeature: prerequisiteFeature,
-        prerequisiteCost: prerequisiteCost);
+        prerequisiteRanks: prerequisiteRanks);
     }
   }
 }

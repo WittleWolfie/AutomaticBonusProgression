@@ -69,12 +69,16 @@ namespace AutomaticBonusProgression.Features
             new()
             {
               Guids.BalancedArmorAbility,
-              Guids.ShadowArmorAbility,
-              Guids.ImprovedShadowArmorAbility,
-              Guids.GreaterShadowArmorAbility,
               Guids.FortificationAbility,
               Guids.ImprovedFortificationAbility,
               Guids.GreaterFortificationAbility,
+              Guids.ShadowArmorAbility,
+              Guids.ImprovedShadowArmorAbility,
+              Guids.GreaterShadowArmorAbility,
+              Guids.SpellResistance13Ability,
+              Guids.SpellResistance16Ability,
+              Guids.SpellResistance19Ability,
+              Guids.SpellResistance22Ability,
             })
         .AddActivationDisable()
         .Configure();

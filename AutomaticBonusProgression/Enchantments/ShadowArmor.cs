@@ -76,8 +76,9 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.ImprovedShadowArmorAbility,
         featureName: ImprovedShadowArmorName,
         Guids.ImprovedShadowArmor,
+        featureRanks: ImprovedEnhancementCost - EnhancementCost,
         prerequisiteFeature: Guids.ShadowArmor,
-        prerequisiteCost: 2,
+        prerequisiteRanks: EnhancementCost,
         buffComponents: shadowFeature.GetComponent<AddStatBonus>());
     }
 
@@ -112,7 +113,9 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.GreaterShadowArmorAbility,
         featureName: GreaterShadowArmorName,
         Guids.GreaterShadowArmor,
-        prerequisiteFeature: Guids.ImprovedShadowArmor);
+        featureRanks: GreaterEnhancementCost - ImprovedEnhancementCost,
+        prerequisiteFeature: Guids.ImprovedShadowArmor,
+        prerequisiteRanks: ImprovedEnhancementCost - EnhancementCost);
     }
   }
 }
