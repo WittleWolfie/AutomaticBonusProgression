@@ -18,7 +18,7 @@ namespace AutomaticBonusProgression.Features
     // - ArcaneArmorBalanced [DONE] [Untested]
     // - Shadow [DONE] [Untested]
     // - Fortification [DONE] [Untested]
-    // - Spell Resistance
+    // - Spell Resistance [DONE] [Untested]
     // - Invulnerability
     // - Energy Resistance
     //
@@ -87,12 +87,16 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability })
         .AddToAllFeatures(
           BalancedArmor.Configure(),
+          Fortification.Configure(),
+          Fortification.ConfigureImproved(),
+          Fortification.ConfigureGreater(),
           ShadowArmor.Configure(),
           ShadowArmor.ConfigureImproved(),
           ShadowArmor.ConfigureGreater(),
-          Fortification.Configure(),
-          Fortification.ConfigureImproved(),
-          Fortification.ConfigureGreater())
+          SpellResistance.Configure13(),
+          SpellResistance.Configure16(),
+          SpellResistance.Configure19(),
+          SpellResistance.Configure22())
         .Configure();
     }
 

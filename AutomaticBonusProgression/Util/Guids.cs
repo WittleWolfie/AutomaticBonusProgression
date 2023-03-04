@@ -112,6 +112,18 @@
     internal const string BalancedArmorAbility = "fe735c67-37a2-412e-88cb-032ef9feacb8";
     internal const string BalancedArmorBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
 
+    internal const string Fortification = "8c0470a2-a1fa-44f9-8d42-a46faf3145c1";
+    internal const string FortificationAbility = "a5f06b4c-8070-48ca-afb3-0f7d377a0ab1";
+    internal const string FortificationBuff = "b8b39cb6-7ce3-4a10-ab24-0f773e22f9b2";
+
+    internal const string ImprovedFortification = "450ca6b5-6951-4e76-ab21-fb9f62fc901b";
+    internal const string ImprovedFortificationAbility = "825fa562-9df4-4e1a-aea7-9499ed2d2e54";
+    internal const string ImprovedFortificationBuff = "bb04409f-824e-4c0b-b3ab-457bbfebf38d";
+
+    internal const string GreaterFortification = "73f6c79d-9e1e-49bd-a097-b0beaa1ab4c0";
+    internal const string GreaterFortificationAbility = "c80eb265-b9d0-425b-a94e-da01b52b10ed";
+    internal const string GreaterFortificationBuff = "a5fbdedb-4d43-4b5a-8fe3-016e12dd90ed";
+
     internal const string ShadowArmor = "86580aff-6433-4b70-823a-8d4d8d904f46";
     internal const string ShadowArmorAbility = "f0096427-0ec6-4e72-b21b-e5251d39bed6";
     internal const string ShadowArmorBuff = "1cb18f84-4ae0-4990-930f-f47f42ff549d";
@@ -124,17 +136,21 @@
     internal const string GreaterShadowArmorAbility = "1af9720f-872a-4780-86ef-32c7a49e8e10";
     internal const string GreaterShadowArmorBuff = "3b48de35-4127-474e-a3bb-020329815de4";
 
-    internal const string Fortification = "8c0470a2-a1fa-44f9-8d42-a46faf3145c1";
-    internal const string FortificationAbility = "a5f06b4c-8070-48ca-afb3-0f7d377a0ab1";
-    internal const string FortificationBuff = "b8b39cb6-7ce3-4a10-ab24-0f773e22f9b2";
+    internal const string SpellResistance13 = "e60ba111-956c-437d-8491-b4f4e4ecadb7";
+    internal const string SpellResistance13Ability = "11b0f11b-6bc5-46a1-83dd-cf13ee416d4e";
+    internal const string SpellResistance13Buff = "d96fab7a-c514-42ff-b336-a27a8e6e7730";
 
-    internal const string ImprovedFortification = "450ca6b5-6951-4e76-ab21-fb9f62fc901b";
-    internal const string ImprovedFortificationAbility = "825fa562-9df4-4e1a-aea7-9499ed2d2e54";
-    internal const string ImprovedFortificationBuff = "bb04409f-824e-4c0b-b3ab-457bbfebf38d";
+    internal const string SpellResistance16 = "00c6c4f2-72e1-4be4-8f3f-9c501f71ee44";
+    internal const string SpellResistance16Ability = "7accba64-307e-424b-8524-3ec0a4850dca";
+    internal const string SpellResistance16Buff = "0a254e25-aa90-4c6c-a0bc-0950eb00e923";
 
-    internal const string GreaterFortification = "73f6c79d-9e1e-49bd-a097-b0beaa1ab4c0";
-    internal const string GreaterFortificationAbility = "c80eb265-b9d0-425b-a94e-da01b52b10ed";
-    internal const string GreaterFortificationBuff = "a5fbdedb-4d43-4b5a-8fe3-016e12dd90ed";
+    internal const string SpellResistance19 = "b74f7f6d-b20b-4168-b648-edc11051c349";
+    internal const string SpellResistance19Ability = "e5fffcc3-068e-4f4c-a8cc-e148c4309866";
+    internal const string SpellResistance19Buff = "ad53e752-146a-484c-a8e4-53eeff4c62f9";
+
+    internal const string SpellResistance22 = "8771a086-5fe3-41ee-a917-761e7982a0fd";
+    internal const string SpellResistance22Ability = "f80b78e1-c450-404c-b553-1fe1abf758cd";
+    internal const string SpellResistance22Buff = "70b71910-1c40-476a-84d6-cd838ced2260";
     #endregion
     #endregion
   }

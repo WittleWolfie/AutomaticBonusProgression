@@ -127,6 +127,22 @@
   },
 
   {
+    "Key": "LegendaryArmor.Fortification.Name",
+    "ProcessTemplates": false,
+    "enGB": "Light Fortification (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Fortification.Improved.Name",
+    "ProcessTemplates": false,
+    "enGB": "Moderate Fortification (+3)"
+  },
+  {
+    "Key": "LegendaryArmor.Fortification.Greater.Name",
+    "ProcessTemplates": false,
+    "enGB": "Heavy Fortification (+5)"
+  },
+
+  {
     "Key": "LegendaryArmor.Shadow.Name",
     "ProcessTemplates": false,
     "enGB": "Shadow Armor (+2)"
@@ -147,19 +163,40 @@
   },
 
   {
-    "Key": "LegendaryArmor.Fortification.Name",
+    "Key": "LegendaryArmor.SpellResistance.13.Name",
     "ProcessTemplates": false,
-    "enGB": "Light Fortification (+1)"
+    "enGB": "Spell Resistance 13 (+2)"
   },
   {
-    "Key": "LegendaryArmor.Fortification.Improved.Name",
-    "ProcessTemplates": false,
-    "enGB": "Moderate Fortification (+3)"
+    "Key": "LegendaryArmor.SpellResistance.13.Description",
+    "enGB": "This armor grants its wearer spell resistance 13."
   },
   {
-    "Key": "LegendaryArmor.Fortification.Greater.Name",
+    "Key": "LegendaryArmor.SpellResistance.16.Name",
     "ProcessTemplates": false,
-    "enGB": "Heavy Fortification (+5)"
+    "enGB": "Spell Resistance 16 (+3)"
+  },
+  {
+    "Key": "LegendaryArmor.SpellResistance.16.Description",
+    "enGB": "This armor grants its wearer spell resistance 16."
+  },
+  {
+    "Key": "LegendaryArmor.SpellResistance.19.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spell Resistance 19 (+4)"
+  },
+  {
+    "Key": "LegendaryArmor.SpellResistance.19.Description",
+    "enGB": "This armor grants its wearer spell resistance 19."
+  },
+  {
+    "Key": "LegendaryArmor.SpellResistance.22.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spell Resistance 22 (+5)"
+  },
+  {
+    "Key": "LegendaryArmor.SpellResistance.22.Description",
+    "enGB": "This armor grants its wearer spell resistance 22."
   },
 
   {
