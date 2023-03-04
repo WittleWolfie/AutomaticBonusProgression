@@ -124,6 +124,10 @@
     internal const string GreaterFortificationAbility = "c80eb265-b9d0-425b-a94e-da01b52b10ed";
     internal const string GreaterFortificationBuff = "a5fbdedb-4d43-4b5a-8fe3-016e12dd90ed";
 
+    internal const string Invulnerability = "03d89904-8e99-4856-8c9c-719e77463141";
+    internal const string InvulnerabilityAbility = "bc659b72-52c3-4414-9c10-9d67e533d12d";
+    internal const string InvulnerabilityBuff = "d77e2446-276a-4246-924e-d679b526eea8";
+
     internal const string ShadowArmor = "86580aff-6433-4b70-823a-8d4d8d904f46";
     internal const string ShadowArmorAbility = "f0096427-0ec6-4e72-b21b-e5251d39bed6";
     internal const string ShadowArmorBuff = "1cb18f84-4ae0-4990-930f-f47f42ff549d";

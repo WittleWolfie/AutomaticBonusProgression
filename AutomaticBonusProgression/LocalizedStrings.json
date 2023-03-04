@@ -143,6 +143,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Invulnerability.Name",
+    "ProcessTemplates": false,
+    "enGB": "Invulnerability (+3)"
+  },
+  {
+    "Key": "LegendaryArmor.Invulnerability.Description",
+    "enGB": "This armor grants its wearer DR 10/magic."
+  },
+
+  {
     "Key": "LegendaryArmor.Shadow.Name",
     "ProcessTemplates": false,
     "enGB": "Shadow Armor (+2)"
