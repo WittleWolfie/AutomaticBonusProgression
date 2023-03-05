@@ -81,7 +81,7 @@ namespace AutomaticBonusProgression.Features
 
               Guids.DastardAbility,
 
-              Guids.Deathless,
+              Guids.DeathlessAbility,
 
               Guids.AcidResist10Ability,
               Guids.ColdResist10Ability,
