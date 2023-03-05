@@ -111,10 +111,6 @@
     internal const string BalancedArmorAbility = "fe735c67-37a2-412e-88cb-032ef9feacb8";
     internal const string BalancedArmorBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
 
-    internal const string Fortification = "8c0470a2-a1fa-44f9-8d42-a46faf3145c1";
-    internal const string FortificationAbility = "a5f06b4c-8070-48ca-afb3-0f7d377a0ab1";
-    internal const string FortificationBuff = "b8b39cb6-7ce3-4a10-ab24-0f773e22f9b2";
-
     internal const string EnergyResist10 = "9fdc3494-2df3-4584-b732-646b4655ab0b";
     internal const string AcidResist10Ability = "459f021a-ff77-410f-8e24-32d541505961";
     internal const string AcidResist10Buff = "737b2b79-63d6-4677-ab4b-57e1c6d4c0a6";
@@ -181,13 +177,23 @@
     internal const string SonicResist30ShieldAbility = "f962d547-dd1c-4416-9781-49eb2657bad8";
     internal const string SonicResist30ShieldBuff = "f9a9cacc-ab26-4d27-b587-f2aab4d45777";
 
+    internal const string Fortification = "8c0470a2-a1fa-44f9-8d42-a46faf3145c1";
+    internal const string FortificationAbility = "a5f06b4c-8070-48ca-afb3-0f7d377a0ab1";
+    internal const string FortificationBuff = "b8b39cb6-7ce3-4a10-ab24-0f773e22f9b2";
+    internal const string FortificationShieldAbility = "3d3df8d8-635e-47dc-86ac-848b44505089";
+    internal const string FortificationShieldBuff = "035bf5bc-4180-4163-a2f7-377a1e12b9e6";
+
     internal const string ImprovedFortification = "450ca6b5-6951-4e76-ab21-fb9f62fc901b";
     internal const string ImprovedFortificationAbility = "825fa562-9df4-4e1a-aea7-9499ed2d2e54";
     internal const string ImprovedFortificationBuff = "bb04409f-824e-4c0b-b3ab-457bbfebf38d";
+    internal const string ImprovedFortificationShieldAbility = "ff285961-c89e-44e0-ad8a-f4c9fb2308ee";
+    internal const string ImprovedFortificationShieldBuff = "9e471109-647b-427b-9aa0-858518489952";
 
     internal const string GreaterFortification = "73f6c79d-9e1e-49bd-a097-b0beaa1ab4c0";
     internal const string GreaterFortificationAbility = "c80eb265-b9d0-425b-a94e-da01b52b10ed";
     internal const string GreaterFortificationBuff = "a5fbdedb-4d43-4b5a-8fe3-016e12dd90ed";
+    internal const string GreaterFortificationShieldAbility = "622fe986-11c1-478c-ba04-dd4bbb366c11";
+    internal const string GreaterFortificationShieldBuff = "c0dd6ab0-d52c-4772-8811-1d4aa422e550";
 
     internal const string Invulnerability = "03d89904-8e99-4856-8c9c-719e77463141";
     internal const string InvulnerabilityAbility = "bc659b72-52c3-4414-9c10-9d67e533d12d";

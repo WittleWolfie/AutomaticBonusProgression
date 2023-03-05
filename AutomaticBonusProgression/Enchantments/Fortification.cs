@@ -7,8 +7,6 @@ using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Enchantments
 {
-  // TODO: Functional testing to make sure these enchants I made _work_, especially w/ refactor
-  // TODO: Support on shields
   internal class Fortification
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Fortification));
@@ -16,6 +14,8 @@ namespace AutomaticBonusProgression.Enchantments
     private const string FortificationName = "LegendaryArmor.Fortification";
     private const string BuffName = "LegendaryArmor.Fortification.Buff";
     private const string AbilityName = "LegendaryArmor.Fortification.Ability";
+    private const string BuffShieldName = "LegendaryArmor.Fortification.Shield.Buff";
+    private const string AbilityShieldName = "LegendaryArmor.Fortification.Shield.Ability";
 
     private const string DisplayName = "LegendaryArmor.Fortification.Name";
     private const int EnhancementCost = 1;
@@ -29,7 +29,7 @@ namespace AutomaticBonusProgression.Enchantments
           FeatureRefs.Fortification25Feature, EnhancementType.Armor, EnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.Fortification25Enchant.Reference.Get();
-      return EnchantmentTool.CreateEnchant(
+      var ability = EnchantmentTool.CreateEnchantAbility(
         buffName: BuffName,
         buffGuid: Guids.FortificationBuff,
         displayName: DisplayName,
@@ -39,15 +39,32 @@ namespace AutomaticBonusProgression.Enchantments
         enhancementCost: EnhancementCost,
         abilityName: AbilityName,
         abilityGuid: Guids.FortificationAbility,
+        buffComponents: fortificationFeature.GetComponent<AddFortification>());
+      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        ability,
+        buffName: BuffShieldName,
+        buffGuid: Guids.FortificationShieldBuff,
+        abilityName: AbilityShieldName,
+        abilityGuid: Guids.FortificationShieldAbility);
+
+      return EnchantmentTool.CreateEnchantFeature(
+        displayName: DisplayName,
+        description: enchant.m_Description.m_Key,
+        //icon: ??,
         featureName: FortificationName,
         Guids.Fortification,
         featureRanks: EnhancementCost,
-        buffComponents: fortificationFeature.GetComponent<AddFortification>());
+        prerequisiteFeature: "",
+        prerequisiteRanks: 1,
+        ability,
+        abilityShield);
     }
 
     private const string ImprovedFortificationName = "LegendaryArmor.Fortification.Improved";
     private const string ImprovedBuffName = "LegendaryArmor.Fortification.Improved.Buff";
     private const string ImprovedAbilityName = "LegendaryArmor.Fortification.Improved.Ability";
+    private const string ImprovedBuffShieldName = "LegendaryArmor.Fortification.Improved.Shield.Buff";
+    private const string ImprovedAbilityShieldName = "LegendaryArmor.Fortification.Improved.Shield.Ability";
 
     private const string ImprovedDisplayName = "LegendaryArmor.Fortification.Improved.Name";
     private const int ImprovedEnhancementCost = 3;
@@ -61,7 +78,7 @@ namespace AutomaticBonusProgression.Enchantments
           FeatureRefs.Fortification50Feature, EnhancementType.Armor, ImprovedEnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.Fortification50Enchant.Reference.Get();
-      return EnchantmentTool.CreateEnchant(
+      var ability = EnchantmentTool.CreateEnchantAbility(
         buffName: ImprovedBuffName,
         buffGuid: Guids.ImprovedFortificationBuff,
         displayName: ImprovedDisplayName,
@@ -71,17 +88,32 @@ namespace AutomaticBonusProgression.Enchantments
         enhancementCost: ImprovedEnhancementCost,
         abilityName: ImprovedAbilityName,
         abilityGuid: Guids.ImprovedFortificationAbility,
-        featureName: ImprovedFortificationName,
-        Guids.ImprovedFortification,
-        featureRanks: ImprovedEnhancementCost - EnhancementCost,
-        prerequisiteFeature: Guids.Fortification,
-        prerequisiteRanks: EnhancementCost,
         buffComponents: fortificationFeature.GetComponent<AddFortification>());
+      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        ability,
+        buffName: ImprovedBuffShieldName,
+        buffGuid: Guids.ImprovedFortificationShieldBuff,
+        abilityName: ImprovedAbilityShieldName,
+        abilityGuid: Guids.ImprovedFortificationShieldAbility);
+
+      return EnchantmentTool.CreateEnchantFeature(
+        displayName: DisplayName,
+        description: enchant.m_Description.m_Key,
+        //icon: ??,
+        featureName: FortificationName,
+        Guids.ImprovedFortification,
+        featureRanks: 2,
+        prerequisiteFeature: Guids.Fortification,
+        prerequisiteRanks: 1,
+        ability,
+        abilityShield);
     }
 
     private const string GreaterFortificationName = "LegendaryArmor.Fortification.Greater";
     private const string GreaterBuffName = "LegendaryArmor.Fortification.Greater.Buff";
     private const string GreaterAbilityName = "LegendaryArmor.Fortification.Greater.Ability";
+    private const string GreaterBuffShieldName = "LegendaryArmor.Fortification.Greater.Shield.Buff";
+    private const string GreaterAbilityShieldName = "LegendaryArmor.Fortification.Greater.Shield.Ability";
 
     private const string GreaterDisplayName = "LegendaryArmor.Fortification.Greater.Name";
     private const string GreaterDescription = "LegendaryArmor.Fortification.Greater.Description";
@@ -96,7 +128,7 @@ namespace AutomaticBonusProgression.Enchantments
           FeatureRefs.Fortification75Feature, EnhancementType.Armor, GreaterEnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.Fortification75Enchant.Reference.Get();
-      return EnchantmentTool.CreateEnchant(
+      var ability = EnchantmentTool.CreateEnchantAbility(
         buffName: GreaterBuffName,
         buffGuid: Guids.GreaterFortificationBuff,
         displayName: GreaterDisplayName,
@@ -106,12 +138,25 @@ namespace AutomaticBonusProgression.Enchantments
         enhancementCost: GreaterEnhancementCost,
         abilityName: GreaterAbilityName,
         abilityGuid: Guids.GreaterFortificationAbility,
+        buffComponents: fortificationFeature.GetComponent<AddFortification>());
+      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        ability,
+        buffName: GreaterBuffShieldName,
+        buffGuid: Guids.GreaterFortificationShieldBuff,
+        abilityName: GreaterAbilityShieldName,
+        abilityGuid: Guids.GreaterFortificationShieldAbility);
+
+      return EnchantmentTool.CreateEnchantFeature(
+        displayName: DisplayName,
+        description: enchant.m_Description.m_Key,
+        //icon: ??,
         featureName: GreaterFortificationName,
         Guids.GreaterFortification,
-        featureRanks: GreaterEnhancementCost - ImprovedEnhancementCost,
+        featureRanks: 2,
         prerequisiteFeature: Guids.ImprovedFortification,
-        prerequisiteRanks: ImprovedEnhancementCost - EnhancementCost,
-        buffComponents: fortificationFeature.GetComponent<AddFortification>());
+        prerequisiteRanks: 2,
+        ability,
+        abilityShield);
     }
   }
 }

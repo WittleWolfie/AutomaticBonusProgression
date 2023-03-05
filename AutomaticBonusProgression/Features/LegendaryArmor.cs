@@ -140,6 +140,10 @@ namespace AutomaticBonusProgression.Features
               Guids.FireResist30ShieldAbility,
               Guids.SonicResist30ShieldAbility,
 
+              Guids.FortificationShieldAbility,
+              Guids.ImprovedFortificationShieldAbility,
+              Guids.GreaterFortificationShieldAbility,
+
               Guids.SpellResistance13ShieldAbility,
               Guids.SpellResistance16ShieldAbility,
               Guids.SpellResistance19ShieldAbility,
