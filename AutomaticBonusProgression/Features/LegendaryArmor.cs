@@ -24,7 +24,7 @@ namespace AutomaticBonusProgression.Features
     //
     // Maybe Add
     // - Bolstering [Done]
-    // - Champion
+    // - Champion [Done]
     // - Dastard
     // - Deathless
     // - Defiant
