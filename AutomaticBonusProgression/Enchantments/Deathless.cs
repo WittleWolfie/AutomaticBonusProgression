@@ -19,8 +19,6 @@ namespace AutomaticBonusProgression.Enchantments
     private const string BuffName = "LegendaryArmor.Deathless.Buff";
     private const string AbilityName = "LegendaryArmor.Deathless.Ability";
 
-    private const string TargetBuffName = "LegendaryArmor.Deathless.Target.Buff";
-
     private const string DisplayName = "LegendaryArmor.Deathless.Name";
     private const string Description = "LegendaryArmor.Deathless.Description";
     private const int EnhancementCost = 1;
