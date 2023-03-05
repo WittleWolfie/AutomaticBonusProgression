@@ -9,6 +9,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using System.Linq;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -31,6 +32,71 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
     }
 
+    /// <summary>
+    /// Creates the buff and activatable ability.
+    /// </summary>
+    internal static BlueprintActivatableAbility CreateEnchantAbility(
+      string buffName,
+      string buffGuid,
+      string displayName,
+      string description,
+      //string icon,
+      EnhancementType type,
+      int enhancementCost,
+      string abilityName,
+      string abilityGuid,
+      params BlueprintComponent[] buffComponents)
+    {
+      var buffConfigurator = BuffConfigurator.New(buffName, buffGuid)
+        .SetDisplayName(displayName)
+        .SetDescription(description)
+        //.SetIcon(icon)
+        .AddComponent(new EnhancementEquivalenceComponent(type, enhancementCost));
+
+      foreach (var component in buffComponents)
+        buffConfigurator.AddComponent(component);
+
+      var buff = buffConfigurator.Configure();
+      return CreateEnchantAbility(
+        buff,
+        displayName: displayName,
+        description: description,
+        //icon: icon,
+        type: type,
+        enhancementCost: enhancementCost,
+        abilityName: abilityName,
+        abilityGuid: abilityGuid);
+    }
+
+    /// <summary>
+    /// Creates the activatable ability which applies the specified buff.
+    /// </summary>
+    internal static BlueprintActivatableAbility CreateEnchantAbility(
+      BlueprintBuff buff,
+      string displayName,
+      string description,
+      //string icon,
+      EnhancementType type,
+      int enhancementCost,
+      string abilityName,
+      string abilityGuid)
+    {
+      return ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
+        .SetDisplayName(displayName)
+        .SetDescription(description)
+      //.SetIcon(icon)
+        .SetBuff(buff)
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddComponent(new EnhancementEquivalentRestriction(type, enhancementCost))
+        .SetHiddenInUI()
+        .Configure();
+    }
+
+    /// <summary>
+    /// Creates the enchant feature and ability using the specified buff.
+    /// </summary>
     internal static BlueprintFeature CreateEnchant(
       BlueprintBuff buff,
       string displayName,
@@ -46,18 +112,42 @@ namespace AutomaticBonusProgression.Enchantments
       string prerequisiteFeature = "",
       int prerequisiteRanks = 1)
     {
-      var ability = ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
-        .SetDisplayName(displayName)
-        .SetDescription(description)
-        //.SetIcon(icon)
-        .SetBuff(buff)
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddComponent(new EnhancementEquivalentRestriction(type, enhancementCost))
-        .SetHiddenInUI()
-        .Configure();
+      var ability = CreateEnchantAbility(
+        buff,
+        displayName: displayName,
+        description: description,
+        //icon: icon,
+        type: type,
+        enhancementCost: enhancementCost,
+        abilityName: abilityName,
+        abilityGuid: abilityGuid);
 
+      return CreateEnchantFeature(
+        displayName: displayName,
+        description: description,
+        // icon: icon,
+        featureName: featureName,
+        featureGuid: featureGuid,
+        featureRanks: featureRanks,
+        prerequisiteFeature: prerequisiteFeature,
+        prerequisiteRanks: prerequisiteRanks,
+        abilities: ability);
+    }
+
+    /// <summary>
+    /// Creates the enchant feature which grants the specified abilities.
+    /// </summary>
+    internal static BlueprintFeature CreateEnchantFeature(
+      string displayName,
+      string description,
+      //string icon,
+      string featureName,
+      string featureGuid,
+      int featureRanks,
+      string prerequisiteFeature = "",
+      int prerequisiteRanks = 1,
+      params Blueprint<BlueprintUnitFactReference>[] abilities)
+    {
       var configurator = FeatureConfigurator.New(featureName, featureGuid)
         .SetIsClassFeature()
         .SetDisplayName(displayName)
@@ -69,10 +159,10 @@ namespace AutomaticBonusProgression.Enchantments
       {
         configurator.SetRanks(featureRanks)
           .AddRecommendationHasFeature(featureGuid)
-          .AddComponent(new AddFactsOnRank(rank: featureRanks, ability));
+          .AddComponent(new AddFactsOnRank(rank: featureRanks, abilities));
       }
       else
-        configurator.AddFacts(new() { ability });
+        configurator.AddFacts(abilities.ToList());
 
       if (!string.IsNullOrEmpty(prerequisiteFeature))
       {
@@ -85,6 +175,9 @@ namespace AutomaticBonusProgression.Enchantments
       return configurator.Configure();
     }
 
+    /// <summary>
+    /// Creates the enchant feature, buff, and ability.
+    /// </summary>
     internal static BlueprintFeature CreateEnchant(
       string buffName,
       string buffGuid,
