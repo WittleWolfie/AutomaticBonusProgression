@@ -50,7 +50,7 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string DisplayName = "LegendaryArmor.EnergyResistance.Name";
     private const string Description = "LegendaryArmor.EnergyResistance.Description";
-    private const int EnhancementCost = 3;
+    private const int EnhancementCost = 2;
 
     internal static BlueprintFeature Configure()
     {
