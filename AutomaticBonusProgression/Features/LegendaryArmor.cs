@@ -29,7 +29,7 @@ namespace AutomaticBonusProgression.Features
     // - Champion [Done]
     // - Dastard [Done]
     // - Deathless [Done]
-    // - Defiant
+    // - Defiant [Done]
     // - Expeditious
     // - Creeping
     // - Rallying?
