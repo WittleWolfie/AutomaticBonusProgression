@@ -117,7 +117,7 @@
   },
   {
     "Key": "LegendaryArmor.Description",
-    "enGB": "Select a special ability you can apply to your armor or shield. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. To acquire Spell Resistance (19) you must select it as a Legendary Gift 4 times. You cannot apply Spell Resistance (19) to armor with Shadow, which has an enhancement of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor.\nSome abilities can be applied to armor, shields, or both.\nArmor: Balanced Armor, Bolstering Armor, Energy Resistance, Fortification, Invulnerability, Shadow Armor, Spell Resistance\nShield: Bolstering Armor, Energy Resistance, Fortification, SpellResistance"
+    "enGB": "Select a special ability you can apply to your armor or shield. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. To acquire Spell Resistance (19) you must select it as a Legendary Gift 4 times. You cannot apply Spell Resistance (19) to armor with Shadow, which has an enhancement of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor.\nSome abilities can be applied to armor, shields, or both.\nArmor: Balanced Armor, Bolstering Armor, Champion Armor, Energy Resistance, Fortification, Invulnerability, Shadow Armor, Spell Resistance\nShield: Bolstering Armor, Energy Resistance, Fortification, SpellResistance"
   },
   {
     "Key": "LegendaryArmor.Ability.Description",
@@ -148,6 +148,16 @@
   {
     "Key": "LegendaryArmor.Bolstering.Description",
     "enGB": "Anytime the wearer of bolstering armor damages a creature with a melee or ranged attack, he gains a +2 competence bonus on saving throws against that creature’s abilities until the start of his next turn."
+  },
+
+  {
+    "Key": "LegendaryArmor.Champion.Name",
+    "ProcessTemplates": false,
+    "enGB": "Champion Armor (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Champion.Description",
+    "enGB": "This armor special ability works only for good creatures with the challenge ability or the smite evil ability. A wearer with one of these abilities gains a +2 sacred bonus to AC against attacks from the chosen opponent."
   },
 
   {

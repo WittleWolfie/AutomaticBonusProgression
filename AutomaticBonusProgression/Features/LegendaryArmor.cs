@@ -77,6 +77,8 @@ namespace AutomaticBonusProgression.Features
 
               Guids.BolsteringAbility,
 
+              Guids.ChampionAbility,
+
               Guids.AcidResist10Ability,
               Guids.ColdResist10Ability,
               Guids.ElectricityResist10Ability,
@@ -165,6 +167,7 @@ namespace AutomaticBonusProgression.Features
         .AddToAllFeatures(
           BalancedArmor.Configure(),
           Bolstering.Configure(),
+          Champion.Configure(),
           EnergyResistance.Configure(),
           EnergyResistance.ConfigureImproved(),
           EnergyResistance.ConfigureGreater(),

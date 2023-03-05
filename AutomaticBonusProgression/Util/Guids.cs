@@ -118,6 +118,10 @@
     internal const string BolsteringShieldAbility = "345d4a07-ad19-4d38-98c6-14f959613342";
     internal const string BolsteringShieldBuff = "649dbf11-9213-409c-bf27-d833778621ba";
 
+    internal const string Champion = "481c31bb-24ef-45be-aa53-55587f8e4377";
+    internal const string ChampionAbility = "0cc47fcd-b173-4ad3-ae37-50e8d1b9abc5";
+    internal const string ChampionBuff = "ff5e6c75-9b43-473c-a174-61663c709fb9";
+
     internal const string EnergyResist10 = "9fdc3494-2df3-4584-b732-646b4655ab0b";
     internal const string AcidResist10Ability = "459f021a-ff77-410f-8e24-32d541505961";
     internal const string AcidResist10Buff = "737b2b79-63d6-4677-ab4b-57e1c6d4c0a6";
