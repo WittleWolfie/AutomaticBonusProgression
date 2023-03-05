@@ -1,9 +1,13 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Features;
 using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.FactLogic;
+using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -12,6 +16,11 @@ namespace AutomaticBonusProgression.Enchantments
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnergyResistance));
 
     private const string EnergyResistanceName = "LegendaryArmor.EnergyResistance";
+
+    private const string EnergyResistanceAbility = "LegendaryArmor.EnergyResistance.Ability";
+    private const string EnergyResistanceAbilityName = "LegendaryArmor.EnergyResistance.Ability.Name";
+    private const string EnergyResistanceShieldAbility = "LegendaryArmor.EnergyResistance.Shield.Ability";
+    private const string EnergyResistanceShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Name";
 
     private const string AcidBuffName = "LegendaryArmor.EnergyResistance.Buff.Acid";
     private const string AcidAbilityName = "LegendaryArmor.EnergyResistance.Ability.Acid";
@@ -55,6 +64,69 @@ namespace AutomaticBonusProgression.Enchantments
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Energy Resistance 10");
+
+      var parent = ActivatableAbilityConfigurator.New(EnergyResistanceAbility, Guids.EnergyResistParent)
+        .SetDisplayName(EnergyResistanceAbilityName)
+        .SetDescription(LegendaryArmor.LegendaryArmorAbilityDescription)
+        //.SetIcon()
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddActivatableAbilityVariants(
+          variants:
+            new()
+            {
+              Guids.AcidResist10Ability,
+              Guids.ColdResist10Ability,
+              Guids.ElectricityResist10Ability,
+              Guids.FireResist10Ability,
+              Guids.SonicResist10Ability,
+
+              Guids.AcidResist20Ability,
+              Guids.ColdResist20Ability,
+              Guids.ElectricityResist20Ability,
+              Guids.FireResist20Ability,
+              Guids.SonicResist20Ability,
+
+              Guids.AcidResist30Ability,
+              Guids.ColdResist30Ability,
+              Guids.ElectricityResist30Ability,
+              Guids.FireResist30Ability,
+              Guids.SonicResist30Ability,
+            })
+        .AddActivationDisable()
+        .Configure();
+      var shieldParent = ActivatableAbilityConfigurator.New(EnergyResistanceShieldAbility, Guids.EnergyResistShieldParent)
+        .SetDisplayName(EnergyResistanceShieldAbilityName)
+        .SetDescription(LegendaryArmor.LegendaryShieldDescription)
+        //.SetIcon()
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddActivatableAbilityVariants(
+          variants:
+            new()
+            {
+              Guids.AcidResist10ShieldAbility,
+              Guids.ColdResist10ShieldAbility,
+              Guids.ElectricityResist10ShieldAbility,
+              Guids.FireResist10ShieldAbility,
+              Guids.SonicResist10ShieldAbility,
+
+              Guids.AcidResist20ShieldAbility,
+              Guids.ColdResist20ShieldAbility,
+              Guids.ElectricityResist20ShieldAbility,
+              Guids.FireResist20ShieldAbility,
+              Guids.SonicResist20ShieldAbility,
+
+              Guids.AcidResist30ShieldAbility,
+              Guids.ColdResist30ShieldAbility,
+              Guids.ElectricityResist30ShieldAbility,
+              Guids.FireResist30ShieldAbility,
+              Guids.SonicResist30ShieldAbility,
+            })
+        .AddActivationDisable()
+        .Configure();
 
       var resistAcidFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -170,6 +242,8 @@ namespace AutomaticBonusProgression.Enchantments
         featureRanks: EnhancementCost,
         prerequisiteFeature: "",
         prerequisiteRanks: 1,
+        parent,
+        shieldParent,
         resistAcid,
         resistAcidShield,
         resistCold,
@@ -340,6 +414,8 @@ namespace AutomaticBonusProgression.Enchantments
         featureRanks: ImprovedEnhancementCost - EnhancementCost,
         prerequisiteFeature: Guids.EnergyResist10,
         prerequisiteRanks: EnhancementCost,
+        Guids.EnergyResistParent,
+        Guids.EnergyResistShieldParent,
         resistAcid,
         resistAcidShield,
         resistCold,

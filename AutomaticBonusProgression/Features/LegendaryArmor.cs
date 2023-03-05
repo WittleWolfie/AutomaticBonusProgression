@@ -51,11 +51,11 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryArmorDisplayName = "LegendaryArmor.Name";
     private const string LegendaryArmorDescription = "LegendaryArmor.Description";
     private const string LegendaryArmorAbility = "LegendaryArmor.Ability";
-    private const string LegendaryArmorAbilityDescription = "LegendaryArmor.Ability.Description";
+    internal const string LegendaryArmorAbilityDescription = "LegendaryArmor.Ability.Description";
 
     private const string LegendaryShieldName = "LegendaryShield";
     private const string LegendaryShieldDisplayName = "LegendaryShield.Name";
-    private const string LegendaryShieldDescription = "LegendaryShield.Description";
+    internal const string LegendaryShieldDescription = "LegendaryShield.Description";
     private const string LegendaryShieldAbility = "LegendaryShield.Ability";
 
     internal static BlueprintFeature ConfigureArmor()
@@ -82,24 +82,6 @@ namespace AutomaticBonusProgression.Features
               Guids.DastardAbility,
 
               Guids.DeathlessAbility,
-
-              Guids.AcidResist10Ability,
-              Guids.ColdResist10Ability,
-              Guids.ElectricityResist10Ability,
-              Guids.FireResist10Ability,
-              Guids.SonicResist10Ability,
-
-              Guids.AcidResist20Ability,
-              Guids.ColdResist20Ability,
-              Guids.ElectricityResist20Ability,
-              Guids.FireResist20Ability,
-              Guids.SonicResist20Ability,
-
-              Guids.AcidResist30Ability,
-              Guids.ColdResist30Ability,
-              Guids.ElectricityResist30Ability,
-              Guids.FireResist30Ability,
-              Guids.SonicResist30Ability,
 
               Guids.FortificationAbility,
               Guids.ImprovedFortificationAbility,
@@ -131,24 +113,6 @@ namespace AutomaticBonusProgression.Features
             new()
             {
               Guids.BolsteringShieldAbility,
-
-              Guids.AcidResist10ShieldAbility,
-              Guids.ColdResist10ShieldAbility,
-              Guids.ElectricityResist10ShieldAbility,
-              Guids.FireResist10ShieldAbility,
-              Guids.SonicResist10ShieldAbility,
-
-              Guids.AcidResist20ShieldAbility,
-              Guids.ColdResist20ShieldAbility,
-              Guids.ElectricityResist20ShieldAbility,
-              Guids.FireResist20ShieldAbility,
-              Guids.SonicResist20ShieldAbility,
-
-              Guids.AcidResist30ShieldAbility,
-              Guids.ColdResist30ShieldAbility,
-              Guids.ElectricityResist30ShieldAbility,
-              Guids.FireResist30ShieldAbility,
-              Guids.SonicResist30ShieldAbility,
 
               Guids.FortificationShieldAbility,
               Guids.ImprovedFortificationShieldAbility,

@@ -190,6 +190,16 @@
     "enGB": "This armor protects against one type of energy (acid, cold, electricity, fire, or sonic) and is designed with patterns depicting the element it protects against. The armor absorbs the first 10 points of energy damage per attack that the wearer would normally take (similar to the resist energy spell)."
   },
   {
+    "Key": "LegendaryArmor.EnergyResistance.Ability.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Armor (Energy Resistance)"
+  },
+  {
+    "Key": "LegendaryShield.EnergyResistance.Shield.Ability.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Shield (Energy Resistance)"
+  },
+  {
     "Key": "LegendaryArmor.EnergyResistance.Acid.Name",
     "ProcessTemplates": false,
     "enGB": "Acid Resistance 10 (+2)"

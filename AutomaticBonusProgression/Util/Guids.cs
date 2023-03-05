@@ -130,6 +130,10 @@
     internal const string DeathlessAbility = "adf4bdcb-3608-427e-b1f4-e59cc94e495a";
     internal const string DeathlessBuff = "a0750060-80f0-4652-b4fd-dd4bae5cca67";
 
+    #region Energy Resistance
+    internal const string EnergyResistParent = "295f255f-0a3c-42f9-b8a0-2f6d80f9dc16";
+    internal const string EnergyResistShieldParent = "8721d4dc-30f8-4ec9-847b-23854bae0d22";
+
     internal const string EnergyResist10 = "9fdc3494-2df3-4584-b732-646b4655ab0b";
     internal const string AcidResist10Ability = "459f021a-ff77-410f-8e24-32d541505961";
     internal const string AcidResist10Buff = "737b2b79-63d6-4677-ab4b-57e1c6d4c0a6";
@@ -195,6 +199,7 @@
     internal const string SonicResist30Buff = "15c76fa0-08f9-4dae-a6a3-adc26551d1d7";
     internal const string SonicResist30ShieldAbility = "f962d547-dd1c-4416-9781-49eb2657bad8";
     internal const string SonicResist30ShieldBuff = "f9a9cacc-ab26-4d27-b587-f2aab4d45777";
+    #endregion
 
     internal const string Fortification = "8c0470a2-a1fa-44f9-8d42-a46faf3145c1";
     internal const string FortificationAbility = "a5f06b4c-8070-48ca-afb3-0f7d377a0ab1";
