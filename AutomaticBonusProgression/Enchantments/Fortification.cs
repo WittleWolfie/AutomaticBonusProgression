@@ -100,7 +100,7 @@ namespace AutomaticBonusProgression.Enchantments
         displayName: DisplayName,
         description: enchant.m_Description.m_Key,
         //icon: ??,
-        featureName: FortificationName,
+        featureName: ImprovedFortificationName,
         Guids.ImprovedFortification,
         featureRanks: 2,
         prerequisiteFeature: Guids.Fortification,
