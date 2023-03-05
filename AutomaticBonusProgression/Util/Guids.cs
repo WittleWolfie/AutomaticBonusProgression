@@ -132,7 +132,9 @@
 
     #region Defiant
     internal const string Defiant = "97592981-105e-4789-bdb7-af5316231987";
+
     internal const string DefiantParent = "1ad92549-0b42-4ea6-a3e0-33301026c0d9";
+    internal const string DefiantShieldParent = "c7e450da-454f-4564-a673-27c27f52724c";
 
     internal const string DefiantAberrations = "192c32aa-5995-464c-8c5f-52298f8366f4";
     internal const string DefiantAberrationsAbility = "2e3e7c49-b64f-44fc-ad37-5b892387bf18";

@@ -14,6 +14,8 @@ namespace AutomaticBonusProgression.Features
 
 
     // TODO: Look at new enchantments & items!
+    // TODO: I should actually add the restriction on armor types cause that might be a benefit for heavy armor? Dunno.
+
     // Armor In Game
     // - ArcaneArmorBalanced [DONE]
     // - Shadow [DONE]
