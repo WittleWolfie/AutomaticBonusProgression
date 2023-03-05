@@ -20,7 +20,7 @@ namespace AutomaticBonusProgression.Features
     // - Fortification [DONE] (Shield)
     // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19] (Shield)
     // - Invulnerability [DONE] [Change: Made it 10/magic instead of 5/magic]
-    // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana] (Shield)
+    // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana]
     //
     // Maybe Add
     // - Bolstering
@@ -156,18 +156,6 @@ namespace AutomaticBonusProgression.Features
           SpellResistance.Configure16(),
           SpellResistance.Configure19(),
           SpellResistance.Configure22())
-        .Configure();
-    }
-
-    internal static BlueprintFeature ConfigureShield()
-    {
-      Logger.Log("Configuring Legendary Shield");
-
-      return FeatureSelectionConfigurator.New(LegendaryShieldName, Guids.LegendaryShield)
-        .SetIsClassFeature()
-        .SetDisplayName(LegendaryShieldDisplayName)
-        .SetDescription(LegendaryShieldDescription)
-        //.SetIcon()
         .Configure();
     }
   }
