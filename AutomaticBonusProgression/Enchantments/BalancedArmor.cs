@@ -31,7 +31,7 @@ namespace AutomaticBonusProgression.Enchantments
         buffName: BuffName,
         buffGuid: Guids.BalancedArmorBuff,
         displayName: DisplayName,
-        description: enchant.m_Description,
+        description: enchant.m_Description.m_Key,
         //icon: ??,
         type: EnhancementType.Armor,
         enhancementCost: EnhancementCost,
