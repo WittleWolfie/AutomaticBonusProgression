@@ -23,7 +23,7 @@ namespace AutomaticBonusProgression.Features
     // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana]
     //
     // Maybe Add
-    // - Bolstering
+    // - Bolstering [Done]
     // - Champion
     // - Dastard
     // - Deathless
