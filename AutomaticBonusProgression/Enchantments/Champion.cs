@@ -2,6 +2,7 @@
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Enums;
 
@@ -27,9 +28,9 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Champion");
 
-      var smiteEvil = BuffRefs.SmiteEvilBuff.Reference.Get();
-      var smiteEvilAura = BuffRefs.AuraOfJusticeSmiteEvilBuff.Reference.Get();
-      var challenge = BuffRefs.CavalierChallengeBuffTarget.Reference.Get();
+      var smiteEvil = BuffRefs.SmiteEvilBuff.Cast<BlueprintBuffReference>().Reference;
+      var smiteEvilAura = BuffRefs.AuraOfJusticeSmiteEvilBuff.Cast<BlueprintBuffReference>().Reference;
+      var challenge = BuffRefs.CavalierChallengeBuffTarget.Cast<BlueprintBuffReference>().Reference;
       var buff = BuffConfigurator.New(BuffName, Guids.ChampionBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)

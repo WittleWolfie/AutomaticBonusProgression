@@ -25,7 +25,7 @@ namespace AutomaticBonusProgression.Features
     // Maybe Add
     // - Bolstering [Done]
     // - Champion [Done]
-    // - Dastard
+    // - Dastard [Done]
     // - Deathless
     // - Defiant
     // - Expeditious
@@ -78,6 +78,8 @@ namespace AutomaticBonusProgression.Features
               Guids.BolsteringAbility,
 
               Guids.ChampionAbility,
+
+              Guids.DastardAbility,
 
               Guids.AcidResist10Ability,
               Guids.ColdResist10Ability,
@@ -168,6 +170,7 @@ namespace AutomaticBonusProgression.Features
           BalancedArmor.Configure(),
           Bolstering.Configure(),
           Champion.Configure(),
+          Dastard.Configure(),
           EnergyResistance.Configure(),
           EnergyResistance.ConfigureImproved(),
           EnergyResistance.ConfigureGreater(),

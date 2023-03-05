@@ -161,6 +161,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Dastard.Name",
+    "ProcessTemplates": false,
+    "enGB": "Dastard Armor (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Dastard.Description",
+    "enGB": "This armor special ability works only for evil creatures with the challenge ability or the smite good ability. A wearer with one of these abilities gains a +2 profane bonus to AC against attacks from the chosen opponent."
+  },
+
+  {
     "Key": "LegendaryArmor.EnergyResistance.Name",
     "ProcessTemplates": false,
     "enGB": "Energy Resistance 10 (+3)"

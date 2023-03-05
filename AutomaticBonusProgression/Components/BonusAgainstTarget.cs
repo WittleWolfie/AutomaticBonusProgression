@@ -27,13 +27,13 @@ namespace AutomaticBonusProgression.Components
       AC
     }
 
-    private readonly BlueprintBuff TargetBuff;
+    private readonly BlueprintBuffReference TargetBuff;
     private readonly BonusType Type;
     private readonly ContextValue Bonus;
     private readonly ModifierDescriptor Descriptor;
 
     private BonusAgainstTarget(
-      BlueprintBuff targetBuff,
+      BlueprintBuffReference targetBuff,
       BonusType type,
       ContextValue bonus,
       ModifierDescriptor descriptor)
@@ -45,13 +45,13 @@ namespace AutomaticBonusProgression.Components
     }
 
     internal static BonusAgainstTarget Saves(
-      BlueprintBuff targetBuff, ContextValue bonus, ModifierDescriptor descriptor = ModifierDescriptor.UntypedStackable)
+      BlueprintBuffReference targetBuff, ContextValue bonus, ModifierDescriptor descriptor = ModifierDescriptor.UntypedStackable)
     {
       return new(targetBuff, BonusType.SavingThrows, bonus, descriptor);
     }
 
     internal static BonusAgainstTarget AC(
-      BlueprintBuff targetBuff, ContextValue bonus, ModifierDescriptor descriptor = ModifierDescriptor.UntypedStackable)
+      BlueprintBuffReference targetBuff, ContextValue bonus, ModifierDescriptor descriptor = ModifierDescriptor.UntypedStackable)
     {
       return new(targetBuff, BonusType.AC, bonus, descriptor);
     }

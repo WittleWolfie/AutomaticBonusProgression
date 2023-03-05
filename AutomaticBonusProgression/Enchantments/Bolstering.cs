@@ -4,6 +4,7 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Enums;
 
@@ -43,7 +44,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddInitiatorAttackWithWeaponTrigger(
           onlyHit: true,
           action: ActionsBuilder.New().ApplyBuff(targetBuff, ContextDuration.Fixed(1)))
-        .AddComponent(BonusAgainstTarget.Saves(targetBuff, 2, ModifierDescriptor.Competence))
+        .AddComponent(BonusAgainstTarget.Saves(targetBuff.ToReference<BlueprintBuffReference>(), 2, ModifierDescriptor.Competence))
         .Configure();
 
       var ability = EnchantmentTool.CreateEnchantAbility(

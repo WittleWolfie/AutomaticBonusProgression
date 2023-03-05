@@ -122,6 +122,10 @@
     internal const string ChampionAbility = "0cc47fcd-b173-4ad3-ae37-50e8d1b9abc5";
     internal const string ChampionBuff = "ff5e6c75-9b43-473c-a174-61663c709fb9";
 
+    internal const string Dastard = "4abddf52-82b5-4d6a-a533-de8180ecfc79";
+    internal const string DastardAbility = "bf642899-ae85-4f82-94d9-145970a4e11b";
+    internal const string DastardBuff = "a21bd358-167e-4482-82ec-2362bfbfcb61";
+
     internal const string EnergyResist10 = "9fdc3494-2df3-4584-b732-646b4655ab0b";
     internal const string AcidResist10Ability = "459f021a-ff77-410f-8e24-32d541505961";
     internal const string AcidResist10Buff = "737b2b79-63d6-4677-ab4b-57e1c6d4c0a6";
@@ -246,6 +250,14 @@
     internal const string SpellResistance22ShieldAbility = "d5cfab52-86ee-44ed-ac85-3c2e8fffe79e";
     internal const string SpellResistance22ShieldBuff = "15c1bbf0-db26-4a92-b309-345f8159395c";
     #endregion
+    #endregion
+
+    #region From Mods
+    // Expanded Content - Anti-Paladin Smite
+    internal const string SinfulAbsolutionBuff = "B13960D1-559A-414D-819B-FA53CF8526D4";
+
+    // Microscopic Content Expansion - Anti-Paladin Smite
+    internal const string SmiteGoodBuff = "7ff9e143-dd21-4641-a7f5-3ee10d7e98b5";
     #endregion
   }
 }
