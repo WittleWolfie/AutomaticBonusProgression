@@ -20,7 +20,7 @@ namespace AutomaticBonusProgression.Features
     // - Fortification [DONE]
     // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19]
     // - Invulnerability [DONE] [Change: Made it 10/magic instead of 5/magic]
-    // - Energy Resistance
+    // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana]
     //
     // Maybe Add
     // - Bolstering
@@ -74,6 +74,16 @@ namespace AutomaticBonusProgression.Features
               Guids.ElectricityResist10Ability,
               Guids.FireResist10Ability,
               Guids.SonicResist10Ability,
+              Guids.AcidResist20Ability,
+              Guids.ColdResist20Ability,
+              Guids.ElectricityResist20Ability,
+              Guids.FireResist20Ability,
+              Guids.SonicResist20Ability,
+              Guids.AcidResist30Ability,
+              Guids.ColdResist30Ability,
+              Guids.ElectricityResist30Ability,
+              Guids.FireResist30Ability,
+              Guids.SonicResist30Ability,
               Guids.FortificationAbility,
               Guids.ImprovedFortificationAbility,
               Guids.GreaterFortificationAbility,
@@ -98,6 +108,8 @@ namespace AutomaticBonusProgression.Features
         .AddToAllFeatures(
           BalancedArmor.Configure(),
           EnergyResistance.Configure(),
+          EnergyResistance.ConfigureImproved(),
+          EnergyResistance.ConfigureGreater(),
           Fortification.Configure(),
           Fortification.ConfigureImproved(),
           Fortification.ConfigureGreater(),

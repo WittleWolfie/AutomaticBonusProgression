@@ -39,7 +39,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string SonicDescription = "LegendaryArmor.EnergyResistance.Sonic.Description";
 
     private const string DisplayName = "LegendaryArmor.EnergyResistance.Name";
-    private const string Description = "LegendaryArmor.EnergyResistance.Name";
+    private const string Description = "LegendaryArmor.EnergyResistance.Description";
     private const int EnhancementCost = 3;
 
     internal static BlueprintFeature Configure()
@@ -130,6 +130,257 @@ namespace AutomaticBonusProgression.Enchantments
         featureRanks: EnhancementCost,
         prerequisiteFeature: "",
         prerequisiteRanks: 1,
+        resistAcid,
+        resistCold,
+        resistElectricity,
+        resistFire,
+        resistSonic);
+    }
+
+    private const string ImprovedEnergyResistanceName = "LegendaryArmor.EnergyResistance.Improved";
+
+    private const string AcidImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Acid";
+    private const string AcidImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Acid";
+    private const string AcidImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Acid.Name";
+    private const string AcidImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Acid.Description";
+
+    private const string ColdImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Cold";
+    private const string ColdImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Cold";
+    private const string ColdImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Cold.Name";
+    private const string ColdImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Cold.Description";
+
+    private const string ElectricityImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Electricity";
+    private const string ElectricityImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Electricity";
+    private const string ElectricityImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Electricity.Name";
+    private const string ElectricityImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Electricity.Description";
+
+    private const string FireImprovedBuffName = "LegendaryArmor.EnergyResistance.Buff.Fire";
+    private const string FireImprovedAbilityName = "LegendaryArmor.EnergyResistance.Ability.Fire";
+    private const string FireImprovedDisplayName = "LegendaryArmor.EnergyResistance.Fire.Name";
+    private const string FireImprovedDescription = "LegendaryArmor.EnergyResistance.Fire.Description";
+
+    private const string SonicImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Sonic";
+    private const string SonicImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Sonic";
+    private const string SonicImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Sonic.Name";
+    private const string SonicImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Sonic.Description";
+
+    private const string ImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Name";
+    private const string ImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Name";
+    private const int ImprovedEnhancementCost = 4;
+
+    internal static BlueprintFeature ConfigureImproved()
+    {
+      Logger.Log($"Configuring Energy Resistance 20");
+
+      var resistAcidFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.AcidResistance20Feature, EnhancementType.Armor, ImprovedEnhancementCost);
+      var resistAcid = EnchantmentTool.CreateEnchantAbility(
+        buffName: AcidImprovedBuffName,
+        buffGuid: Guids.AcidResist20Buff,
+        displayName: AcidImprovedDisplayName,
+        description: AcidImprovedDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: ImprovedEnhancementCost,
+        abilityName: AcidImprovedAbilityName,
+        abilityGuid: Guids.AcidResist20Ability,
+        buffComponents: resistAcidFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      var resistColdFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.ColdResistance20Feature, EnhancementType.Armor, ImprovedEnhancementCost);
+      var resistCold = EnchantmentTool.CreateEnchantAbility(
+        buffName: ColdImprovedBuffName,
+        buffGuid: Guids.ColdResist20Buff,
+        displayName: ColdImprovedDisplayName,
+        description: ColdImprovedDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: ImprovedEnhancementCost,
+        abilityName: ColdImprovedAbilityName,
+        abilityGuid: Guids.ColdResist20Ability,
+        buffComponents: resistColdFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      var resistElectricityFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.ElectricityResistance20Feature, EnhancementType.Armor, ImprovedEnhancementCost);
+      var resistElectricity = EnchantmentTool.CreateEnchantAbility(
+        buffName: ElectricityImprovedBuffName,
+        buffGuid: Guids.ElectricityResist20Buff,
+        displayName: ElectricityImprovedDisplayName,
+        description: ElectricityImprovedDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: ImprovedEnhancementCost,
+        abilityName: ElectricityImprovedAbilityName,
+        abilityGuid: Guids.ElectricityResist20Ability,
+        buffComponents: resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      var resistFireFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.FireResistance20Feature, EnhancementType.Armor, ImprovedEnhancementCost);
+      var resistFire = EnchantmentTool.CreateEnchantAbility(
+        buffName: FireImprovedBuffName,
+        buffGuid: Guids.FireResist20Buff,
+        displayName: FireImprovedDisplayName,
+        description: FireImprovedDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: ImprovedEnhancementCost,
+        abilityName: FireImprovedAbilityName,
+        abilityGuid: Guids.FireResist20Ability,
+        buffComponents: resistFireFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      // Sonic doesn't have a +20 enhcant for some reason
+      var resistSonicFeature = FeatureRefs.SonicResistance20.Reference.Get();
+      var resistSonic = EnchantmentTool.CreateEnchantAbility(
+        buffName: SonicImprovedBuffName,
+        buffGuid: Guids.SonicResist20Buff,
+        displayName: SonicImprovedDisplayName,
+        description: SonicImprovedDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: ImprovedEnhancementCost,
+        abilityName: SonicImprovedAbilityName,
+        abilityGuid: Guids.SonicResist20Ability,
+        buffComponents: resistSonicFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      return EnchantmentTool.CreateEnchantFeature(
+        displayName: ImprovedDisplayName,
+        description: ImprovedDescription,
+        //icon: ??,
+        featureName: ImprovedEnergyResistanceName,
+        Guids.EnergyResist20,
+        featureRanks: ImprovedEnhancementCost - EnhancementCost,
+        prerequisiteFeature: Guids.EnergyResist10,
+        prerequisiteRanks: EnhancementCost,
+        resistAcid,
+        resistCold,
+        resistElectricity,
+        resistFire,
+        resistSonic);
+    }
+
+    private const string GreaterEnergyResistanceName = "LegendaryArmor.EnergyResistance.Greater";
+
+    private const string AcidGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Acid";
+    private const string AcidGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Acid";
+    private const string AcidGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Acid.Name";
+    private const string AcidGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Acid.Description";
+
+    private const string ColdGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Cold";
+    private const string ColdGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Cold";
+    private const string ColdGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Cold.Name";
+    private const string ColdGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Cold.Description";
+
+    private const string ElectricityGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Electricity";
+    private const string ElectricityGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Electricity";
+    private const string ElectricityGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Electricity.Name";
+    private const string ElectricityGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Electricity.Description";
+
+    private const string FireGreaterBuffName = "LegendaryArmor.EnergyResistance.Buff.Fire";
+    private const string FireGreaterAbilityName = "LegendaryArmor.EnergyResistance.Ability.Fire";
+    private const string FireGreaterDisplayName = "LegendaryArmor.EnergyResistance.Fire.Name";
+    private const string FireGreaterDescription = "LegendaryArmor.EnergyResistance.Fire.Description";
+
+    private const string SonicGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Sonic";
+    private const string SonicGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Sonic";
+    private const string SonicGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Sonic.Name";
+    private const string SonicGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Sonic.Description";
+
+    private const string GreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Name";
+    private const string GreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Name";
+    private const int GreaterEnhancementCost = 5;
+
+    internal static BlueprintFeature ConfigureGreater()
+    {
+      Logger.Log($"Configuring Energy Resistance 30");
+
+      var resistAcidFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.AcidResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
+      var resistAcid = EnchantmentTool.CreateEnchantAbility(
+        buffName: AcidGreaterBuffName,
+        buffGuid: Guids.AcidResist30Buff,
+        displayName: AcidGreaterDisplayName,
+        description: AcidGreaterDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: GreaterEnhancementCost,
+        abilityName: AcidGreaterAbilityName,
+        abilityGuid: Guids.AcidResist30Ability,
+        buffComponents: resistAcidFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      var resistColdFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.ColdResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
+      var resistCold = EnchantmentTool.CreateEnchantAbility(
+        buffName: ColdGreaterBuffName,
+        buffGuid: Guids.ColdResist30Buff,
+        displayName: ColdGreaterDisplayName,
+        description: ColdGreaterDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: GreaterEnhancementCost,
+        abilityName: ColdGreaterAbilityName,
+        abilityGuid: Guids.ColdResist30Ability,
+        buffComponents: resistColdFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      var resistElectricityFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.ElectricityResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
+      var resistElectricity = EnchantmentTool.CreateEnchantAbility(
+        buffName: ElectricityGreaterBuffName,
+        buffGuid: Guids.ElectricityResist30Buff,
+        displayName: ElectricityGreaterDisplayName,
+        description: ElectricityGreaterDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: GreaterEnhancementCost,
+        abilityName: ElectricityGreaterAbilityName,
+        abilityGuid: Guids.ElectricityResist30Ability,
+        buffComponents: resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      var resistFireFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.FireResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
+      var resistFire = EnchantmentTool.CreateEnchantAbility(
+        buffName: FireGreaterBuffName,
+        buffGuid: Guids.FireResist30Buff,
+        displayName: FireGreaterDisplayName,
+        description: FireGreaterDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: GreaterEnhancementCost,
+        abilityName: FireGreaterAbilityName,
+        abilityGuid: Guids.FireResist30Ability,
+        buffComponents: resistFireFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      var resistSonicFeature =
+        EnchantmentTool.AddEnhancementEquivalence(
+          FeatureRefs.SonicResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
+      var resistSonic = EnchantmentTool.CreateEnchantAbility(
+        buffName: SonicGreaterBuffName,
+        buffGuid: Guids.SonicResist30Buff,
+        displayName: SonicGreaterDisplayName,
+        description: SonicGreaterDescription,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: GreaterEnhancementCost,
+        abilityName: SonicGreaterAbilityName,
+        abilityGuid: Guids.SonicResist30Ability,
+        buffComponents: resistSonicFeature.GetComponent<AddDamageResistanceEnergy>());
+
+      return EnchantmentTool.CreateEnchantFeature(
+        displayName: GreaterDisplayName,
+        description: GreaterDescription,
+        //icon: ??,
+        featureName: GreaterEnergyResistanceName,
+        Guids.EnergyResist30,
+        featureRanks: GreaterEnhancementCost - ImprovedEnhancementCost,
+        prerequisiteFeature: Guids.EnergyResist20,
+        prerequisiteRanks: ImprovedEnhancementCost,
         resistAcid,
         resistCold,
         resistElectricity,
