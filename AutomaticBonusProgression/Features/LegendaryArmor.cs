@@ -18,7 +18,7 @@ namespace AutomaticBonusProgression.Features
     // - ArcaneArmorBalanced [DONE]
     // - Shadow [DONE]
     // - Fortification [DONE] (Shield)
-    // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19] (Shield)
+    // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19]
     // - Invulnerability [DONE] [Change: Made it 10/magic instead of 5/magic]
     // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana]
     //
@@ -74,28 +74,35 @@ namespace AutomaticBonusProgression.Features
             new()
             {
               Guids.BalancedArmorAbility,
+
               Guids.AcidResist10Ability,
               Guids.ColdResist10Ability,
               Guids.ElectricityResist10Ability,
               Guids.FireResist10Ability,
               Guids.SonicResist10Ability,
+
               Guids.AcidResist20Ability,
               Guids.ColdResist20Ability,
               Guids.ElectricityResist20Ability,
               Guids.FireResist20Ability,
               Guids.SonicResist20Ability,
+
               Guids.AcidResist30Ability,
               Guids.ColdResist30Ability,
               Guids.ElectricityResist30Ability,
               Guids.FireResist30Ability,
               Guids.SonicResist30Ability,
+
               Guids.FortificationAbility,
               Guids.ImprovedFortificationAbility,
               Guids.GreaterFortificationAbility,
+
               Guids.InvulnerabilityAbility,
+
               Guids.ShadowArmorAbility,
               Guids.ImprovedShadowArmorAbility,
               Guids.GreaterShadowArmorAbility,
+
               Guids.SpellResistance13Ability,
               Guids.SpellResistance16Ability,
               Guids.SpellResistance19Ability,
@@ -120,16 +127,23 @@ namespace AutomaticBonusProgression.Features
               Guids.ElectricityResist10ShieldAbility,
               Guids.FireResist10ShieldAbility,
               Guids.SonicResist10ShieldAbility,
+
               Guids.AcidResist20ShieldAbility,
               Guids.ColdResist20ShieldAbility,
               Guids.ElectricityResist20ShieldAbility,
               Guids.FireResist20ShieldAbility,
               Guids.SonicResist20ShieldAbility,
+
               Guids.AcidResist30ShieldAbility,
               Guids.ColdResist30ShieldAbility,
               Guids.ElectricityResist30ShieldAbility,
               Guids.FireResist30ShieldAbility,
               Guids.SonicResist30ShieldAbility,
+
+              Guids.SpellResistance13ShieldAbility,
+              Guids.SpellResistance16ShieldAbility,
+              Guids.SpellResistance19ShieldAbility,
+              Guids.SpellResistance22ShieldAbility,
             })
         .AddActivationDisable()
         .Configure();
