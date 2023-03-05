@@ -15,26 +15,36 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string AcidBuffName = "LegendaryArmor.EnergyResistance.Buff.Acid";
     private const string AcidAbilityName = "LegendaryArmor.EnergyResistance.Ability.Acid";
+    private const string AcidShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Acid";
+    private const string AcidShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Acid";
     private const string AcidDisplayName = "LegendaryArmor.EnergyResistance.Acid.Name";
     private const string AcidDescription = "LegendaryArmor.EnergyResistance.Acid.Description";
 
     private const string ColdBuffName = "LegendaryArmor.EnergyResistance.Buff.Cold";
     private const string ColdAbilityName = "LegendaryArmor.EnergyResistance.Ability.Cold";
+    private const string ColdShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Cold";
+    private const string ColdShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Cold";
     private const string ColdDisplayName = "LegendaryArmor.EnergyResistance.Cold.Name";
     private const string ColdDescription = "LegendaryArmor.EnergyResistance.Cold.Description";
 
     private const string ElectricityBuffName = "LegendaryArmor.EnergyResistance.Buff.Electricity";
     private const string ElectricityAbilityName = "LegendaryArmor.EnergyResistance.Ability.Electricity";
+    private const string ElectricityShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Electricity";
+    private const string ElectricityShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Electricity";
     private const string ElectricityDisplayName = "LegendaryArmor.EnergyResistance.Electricity.Name";
     private const string ElectricityDescription = "LegendaryArmor.EnergyResistance.Electricity.Description";
 
     private const string FireBuffName = "LegendaryArmor.EnergyResistance.Buff.Fire";
     private const string FireAbilityName = "LegendaryArmor.EnergyResistance.Ability.Fire";
+    private const string FireShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Fire";
+    private const string FireShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Fire";
     private const string FireDisplayName = "LegendaryArmor.EnergyResistance.Fire.Name";
     private const string FireDescription = "LegendaryArmor.EnergyResistance.Fire.Description";
 
     private const string SonicBuffName = "LegendaryArmor.EnergyResistance.Buff.Sonic";
     private const string SonicAbilityName = "LegendaryArmor.EnergyResistance.Ability.Sonic";
+    private const string SonicShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Sonic";
+    private const string SonicShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Sonic";
     private const string SonicDisplayName = "LegendaryArmor.EnergyResistance.Sonic.Name";
     private const string SonicDescription = "LegendaryArmor.EnergyResistance.Sonic.Description";
 
@@ -60,6 +70,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: AcidAbilityName,
         abilityGuid: Guids.AcidResist10Ability,
         buffComponents: resistAcidFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistAcidShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistAcid,
+        buffName: AcidShieldBuffName,
+        buffGuid: Guids.AcidResist10ShieldBuff,
+        abilityName: AcidShieldAbilityName,
+        abilityGuid: Guids.AcidResist10ShieldAbility);
 
       var resistColdFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -75,6 +91,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: ColdAbilityName,
         abilityGuid: Guids.ColdResist10Ability,
         buffComponents: resistColdFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistColdShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistCold,
+        buffName: ColdShieldBuffName,
+        buffGuid: Guids.ColdResist10ShieldBuff,
+        abilityName: ColdShieldAbilityName,
+        abilityGuid: Guids.ColdResist10ShieldAbility);
 
       var resistElectricityFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -90,6 +112,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: ElectricityAbilityName,
         abilityGuid: Guids.ElectricityResist10Ability,
         buffComponents: resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistElectricityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistElectricity,
+        buffName: ElectricityShieldBuffName,
+        buffGuid: Guids.ElectricityResist10ShieldBuff,
+        abilityName: ElectricityShieldAbilityName,
+        abilityGuid: Guids.ElectricityResist10ShieldAbility);
 
       var resistFireFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -105,6 +133,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: FireAbilityName,
         abilityGuid: Guids.FireResist10Ability,
         buffComponents: resistFireFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistFireShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistFire,
+        buffName: FireShieldBuffName,
+        buffGuid: Guids.FireResist10ShieldBuff,
+        abilityName: FireShieldAbilityName,
+        abilityGuid: Guids.FireResist10ShieldAbility);
 
       var resistSonicFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -120,6 +154,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: SonicAbilityName,
         abilityGuid: Guids.SonicResist10Ability,
         buffComponents: resistSonicFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistSonicShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistSonic,
+        buffName: SonicShieldBuffName,
+        buffGuid: Guids.SonicResist10ShieldBuff,
+        abilityName: SonicShieldAbilityName,
+        abilityGuid: Guids.SonicResist10ShieldAbility);
 
       return EnchantmentTool.CreateEnchantFeature(
         displayName: DisplayName,
@@ -131,36 +171,51 @@ namespace AutomaticBonusProgression.Enchantments
         prerequisiteFeature: "",
         prerequisiteRanks: 1,
         resistAcid,
+        resistAcidShield,
         resistCold,
+        resistColdShield,
         resistElectricity,
+        resistElectricityShield,
         resistFire,
-        resistSonic);
+        resistFireShield,
+        resistSonic,
+        resistSonicShield);
     }
 
     private const string ImprovedEnergyResistanceName = "LegendaryArmor.EnergyResistance.Improved";
 
     private const string AcidImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Acid";
     private const string AcidImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Acid";
+    private const string AcidImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Acid";
+    private const string AcidImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Acid";
     private const string AcidImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Acid.Name";
     private const string AcidImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Acid.Description";
 
     private const string ColdImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Cold";
     private const string ColdImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Cold";
+    private const string ColdImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Cold";
+    private const string ColdImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Cold";
     private const string ColdImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Cold.Name";
     private const string ColdImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Cold.Description";
 
     private const string ElectricityImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Electricity";
     private const string ElectricityImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Electricity";
+    private const string ElectricityImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Electricity";
+    private const string ElectricityImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Electricity";
     private const string ElectricityImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Electricity.Name";
     private const string ElectricityImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Electricity.Description";
 
     private const string FireImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Fire";
     private const string FireImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Fire";
+    private const string FireImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Fire";
+    private const string FireImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Fire";
     private const string FireImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Fire.Name";
     private const string FireImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Fire.Description";
 
     private const string SonicImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Sonic";
     private const string SonicImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Sonic";
+    private const string SonicImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Sonic";
+    private const string SonicImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Sonic";
     private const string SonicImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Sonic.Name";
     private const string SonicImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Sonic.Description";
 
@@ -186,6 +241,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: AcidImprovedAbilityName,
         abilityGuid: Guids.AcidResist20Ability,
         buffComponents: resistAcidFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistAcidShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistAcid,
+        buffName: AcidImprovedShieldBuffName,
+        buffGuid: Guids.AcidResist20ShieldBuff,
+        abilityName: AcidImprovedShieldAbilityName,
+        abilityGuid: Guids.AcidResist20ShieldAbility);
 
       var resistColdFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -201,6 +262,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: ColdImprovedAbilityName,
         abilityGuid: Guids.ColdResist20Ability,
         buffComponents: resistColdFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistColdShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistCold,
+        buffName: ColdImprovedShieldBuffName,
+        buffGuid: Guids.ColdResist20ShieldBuff,
+        abilityName: ColdImprovedShieldAbilityName,
+        abilityGuid: Guids.ColdResist20ShieldAbility);
 
       var resistElectricityFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -216,6 +283,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: ElectricityImprovedAbilityName,
         abilityGuid: Guids.ElectricityResist20Ability,
         buffComponents: resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistElectricityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistElectricity,
+        buffName: ElectricityImprovedShieldBuffName,
+        buffGuid: Guids.ElectricityResist20ShieldBuff,
+        abilityName: ElectricityImprovedShieldAbilityName,
+        abilityGuid: Guids.ElectricityResist20ShieldAbility);
 
       var resistFireFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -231,6 +304,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: FireImprovedAbilityName,
         abilityGuid: Guids.FireResist20Ability,
         buffComponents: resistFireFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistFireShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistFire,
+        buffName: FireImprovedShieldBuffName,
+        buffGuid: Guids.FireResist20ShieldBuff,
+        abilityName: FireImprovedShieldAbilityName,
+        abilityGuid: Guids.FireResist20ShieldAbility);
 
       // Sonic doesn't have a +20 enhcant for some reason
       var resistSonicFeature = FeatureRefs.SonicResistance20.Reference.Get();
@@ -245,6 +324,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: SonicImprovedAbilityName,
         abilityGuid: Guids.SonicResist20Ability,
         buffComponents: resistSonicFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistSonicShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistSonic,
+        buffName: SonicImprovedShieldBuffName,
+        buffGuid: Guids.SonicResist20ShieldBuff,
+        abilityName: SonicImprovedShieldAbilityName,
+        abilityGuid: Guids.SonicResist20ShieldAbility);
 
       return EnchantmentTool.CreateEnchantFeature(
         displayName: ImprovedDisplayName,
@@ -256,10 +341,15 @@ namespace AutomaticBonusProgression.Enchantments
         prerequisiteFeature: Guids.EnergyResist10,
         prerequisiteRanks: EnhancementCost,
         resistAcid,
+        resistAcidShield,
         resistCold,
+        resistColdShield,
         resistElectricity,
+        resistElectricityShield,
         resistFire,
-        resistSonic);
+        resistFireShield,
+        resistSonic,
+        resistSonicShield);
     }
 
     private const string GreaterEnergyResistanceName = "LegendaryArmor.EnergyResistance.Greater";
