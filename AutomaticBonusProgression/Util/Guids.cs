@@ -116,6 +116,42 @@
     internal const string FortificationAbility = "a5f06b4c-8070-48ca-afb3-0f7d377a0ab1";
     internal const string FortificationBuff = "b8b39cb6-7ce3-4a10-ab24-0f773e22f9b2";
 
+    internal const string EnergyResist10 = "9fdc3494-2df3-4584-b732-646b4655ab0b";
+    internal const string AcidResist10Ability = "459f021a-ff77-410f-8e24-32d541505961";
+    internal const string AcidResist10Buff = "737b2b79-63d6-4677-ab4b-57e1c6d4c0a6";
+    internal const string ColdResist10Ability = "cec7be47-fa90-4664-8a84-9a1730b1ca09";
+    internal const string ColdResist10Buff = "6e3b9b46-ed38-4cb7-9083-54e427b2deee";
+    internal const string ElectricityResist10Ability = "b57b6d8d-cf93-4580-8d0e-85e645433914";
+    internal const string ElectricityResist10Buff = "5b78e287-397c-45c7-8b02-8a74c1db6081";
+    internal const string FireResist10Ability = "f18fd49d-943f-461c-b274-4e6f1f21efa0";
+    internal const string FireResist10Buff = "a8cf1622-79a9-45c2-9429-51a963f29406";
+    internal const string SonicResist10Ability = "1e2d6827-fe4d-4c58-acb2-cedf71255ecf";
+    internal const string SonicResist10Buff = "36d2ec4d-d1bd-4dfa-aee0-e18f0ca338b6";
+
+    internal const string EnergyResist20 = "a105f2d7-7338-4299-824a-a01e6ccc7e31";
+    internal const string AcidResist20Ability = "4a61cdfc-1e55-4a39-8022-6826b7edc113";
+    internal const string AcidResist20Buff = "0efd352a-b3d2-41e7-9cd6-7b8a84493c08";
+    internal const string ColdResist20Ability = "34518a03-6ccb-43ac-9bea-9a4aafe3b9cc";
+    internal const string ColdResist20Buff = "77502710-6b75-4db7-811d-f7a903e5b109";
+    internal const string ElectricityResist20Ability = "9f598605-ec89-44d5-8194-bd72da9c1cfe";
+    internal const string ElectricityResist20Buff = "4ad93d3c-1632-464a-989f-2be2d5dd4354";
+    internal const string FireResist20Ability = "8c94339b-2fbf-4fd0-bff5-1626905d8423";
+    internal const string FireResist20Buff = "cebaa178-8457-4e76-a2d8-52865ad55020";
+    internal const string SonicResist20Ability = "b3a09bb3-b5df-490d-ad67-8b63ea5e6439";
+    internal const string SonicResist20Buff = "e36f3f8c-a81d-4de4-b0b2-4eb039f73f5a";
+
+    internal const string EnergyResist30 = "3df00008-64c7-46e2-a5ea-b69de1f98bf6";
+    internal const string AcidResist30Ability = "af71eebc-bfb3-4d5a-bed9-10cf81ca2382";
+    internal const string AcidResist30Buff = "50fc2507-045b-4ae1-87c6-c5f5e19524a0";
+    internal const string ColdResist30Ability = "fbacbbb6-f776-46ce-bf23-a4e2498d2a20";
+    internal const string ColdResist30Buff = "c6dbd36b-e791-48ae-8774-cef122b0107d";
+    internal const string ElectricityResist30Ability = "2b3eb230-055c-4aea-9f85-9a8af61221e1";
+    internal const string ElectricityResist30Buff = "50ebb877-881b-45ec-97de-2a22f635ed0f";
+    internal const string FireResist30Ability = "5ca47d6d-4c04-407e-97c4-0dff35d394f3";
+    internal const string FireResist30Buff = "cbf5f8a2-5bb1-419b-9fbe-bac804dea9a5";
+    internal const string SonicResist30Ability = "e0736dad-d2e3-40be-b88b-57f225fe3e12";
+    internal const string SonicResist30Buff = "15c76fa0-08f9-4dae-a6a3-adc26551d1d7";
+
     internal const string ImprovedFortification = "450ca6b5-6951-4e76-ab21-fb9f62fc901b";
     internal const string ImprovedFortificationAbility = "825fa562-9df4-4e1a-aea7-9499ed2d2e54";
     internal const string ImprovedFortificationBuff = "bb04409f-824e-4c0b-b3ab-457bbfebf38d";
