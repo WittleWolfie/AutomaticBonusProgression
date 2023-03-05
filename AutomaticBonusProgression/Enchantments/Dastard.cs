@@ -33,6 +33,7 @@ namespace AutomaticBonusProgression.Enchantments
       var smiteGoodAlt = BuffRefs.HalfFiendSmiteGoodBuff.Cast<BlueprintBuffReference>().Reference;
       var sinfulAbsolution = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.SinfulAbsolutionBuff);
       var smiteGoodMod = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.SmiteGoodBuff);
+      var challenge = BuffRefs.CavalierChallengeBuffTarget.Cast<BlueprintBuffReference>().Reference;
       var buff = BuffConfigurator.New(BuffName, Guids.DastardBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
@@ -42,6 +43,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(BonusAgainstTarget.AC(smiteGoodAlt, 2, ModifierDescriptor.Profane))
         .AddComponent(BonusAgainstTarget.AC(sinfulAbsolution, 2, ModifierDescriptor.Profane))
         .AddComponent(BonusAgainstTarget.AC(smiteGoodMod, 2, ModifierDescriptor.Profane))
+        .AddComponent(BonusAgainstTarget.AC(challenge, 2, ModifierDescriptor.Profane))
         .Configure();
 
       var ability = EnchantmentTool.CreateEnchantAbility(
