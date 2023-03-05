@@ -221,7 +221,7 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string ImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Name";
     private const string ImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Description";
-    private const int ImprovedEnhancementCost = 4;
+    private const int ImprovedEnhancementCost = 3;
 
     internal static BlueprintFeature ConfigureImproved()
     {
@@ -391,7 +391,7 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string GreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Name";
     private const string GreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Description";
-    private const int GreaterEnhancementCost = 5;
+    private const int GreaterEnhancementCost = 4;
 
     internal static BlueprintFeature ConfigureGreater()
     {
