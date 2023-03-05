@@ -195,92 +195,92 @@
     "enGB": "Legendary Armor (Defiant)"
   },
   {
-    "Key": "LegendaryShield.Defiant.Shield.Ability.Name",
+    "Key": "LegendaryShield.Defiant.Ability.Name",
     "ProcessTemplates": false,
     "enGB": "Legendary Shield (Defiant)"
   },
   {
-    "Key": "LegendaryShield.Defiant.Aberrations.Name",
+    "Key": "LegendaryArmor.Defiant.Aberrations.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Aberrations"
   },
   {
-    "Key": "LegendaryShield.Defiant.Animals.Name",
+    "Key": "LegendaryArmor.Defiant.Animals.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Animals"
   },
   {
-    "Key": "LegendaryShield.Defiant.Constructs.Name",
+    "Key": "LegendaryArmor.Defiant.Constructs.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Constructs"
   },
   {
-    "Key": "LegendaryShield.Defiant.Dragons.Name",
+    "Key": "LegendaryArmor.Defiant.Dragons.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Dragons"
   },
   {
-    "Key": "LegendaryShield.Defiant.Fey.Name",
+    "Key": "LegendaryArmor.Defiant.Fey.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Fey"
   },
   {
-    "Key": "LegendaryShield.Defiant.Humanoid.Giant.Name",
+    "Key": "LegendaryArmor.Defiant.Humanoid.Giant.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Giant Humanoids"
   },
   {
-    "Key": "LegendaryShield.Defiant.Humanoid.Reptilian.Name",
+    "Key": "LegendaryArmor.Defiant.Humanoid.Reptilian.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Reptilian Humanoids"
   },
   {
-    "Key": "LegendaryShield.Defiant.Humanoid.Monstrous.Name",
+    "Key": "LegendaryArmor.Defiant.Humanoid.Monstrous.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Monstrous Humanoids"
   },
   {
-    "Key": "LegendaryShield.Defiant.MagicalBeasts.Name",
+    "Key": "LegendaryArmor.Defiant.MagicalBeasts.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Magical Beasts"
   },
   {
-    "Key": "LegendaryShield.Defiant.Outsider.Good.Name",
+    "Key": "LegendaryArmor.Defiant.Outsider.Good.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Good Outsiders"
   },
   {
-    "Key": "LegendaryShield.Defiant.Outsider.Evil.Name",
+    "Key": "LegendaryArmor.Defiant.Outsider.Evil.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Evil Outsiders"
   },
   {
-    "Key": "LegendaryShield.Defiant.Outsider.Lawful.Name",
+    "Key": "LegendaryArmor.Defiant.Outsider.Lawful.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Lawful Outsiders"
   },
   {
-    "Key": "LegendaryShield.Defiant.Outsider.Chaotic.Name",
+    "Key": "LegendaryArmor.Defiant.Outsider.Chaotic.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Chaotic Outsiders"
   },
   {
-    "Key": "LegendaryShield.Defiant.Outsider.Neutral.Name",
+    "Key": "LegendaryArmor.Defiant.Outsider.Neutral.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Neutral Outsiders"
   },
   {
-    "Key": "LegendaryShield.Defiant.Plants.Name",
+    "Key": "LegendaryArmor.Defiant.Plants.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Plants"
   },
   {
-    "Key": "LegendaryShield.Defiant.Undead.Name",
+    "Key": "LegendaryArmor.Defiant.Undead.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Undead"
   },
   {
-    "Key": "LegendaryShield.Defiant.Vermin.Name",
+    "Key": "LegendaryArmor.Defiant.Vermin.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Vermin"
   },

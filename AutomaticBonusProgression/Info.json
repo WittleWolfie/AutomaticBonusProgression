@@ -4,7 +4,7 @@
   "Author": "WittleWolfie",
   "Version": "0.1",
   "ManagerVersion": "0.21.3",
-  "Requirements": [],
+  "Requirements": [ "TabletopTweaks-Core" ],
   "AssemblyName": "AutomaticBonusProgression.dll",
   "EntryMethod": "AutomaticBonusProgression.Main.Load",
   "LoadAfter": ["MewsiferConsole.Mod"] 

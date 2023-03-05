@@ -19,6 +19,7 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using System;
+using TabletopTweaks.Core.NewComponents.OwlcatReplacements.DamageResistance;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -32,13 +33,49 @@ namespace AutomaticBonusProgression.Enchantments
     private const string DefiantAbility = "LegendaryArmor.Defiant.Ability";
     private const string DefiantAbilityName = "LegendaryArmor.Defiant.Ability.Name";
     private const string DefiantShieldAbility = "LegendaryArmor.Defiant.Shield.Ability";
-    private const string DefiantShieldAbilityName = "LegendaryArmor.Defiant.Shield.Ability.Name";
+    private const string DefiantShieldAbilityName = "LegendaryShield.Defiant.Ability.Name";
 
     private const string DefiantAberrationsName = "LegendaryArmor.Defiant.Aberrations.Name";
     private const string DefiantAberrationsAbility = "LegendaryArmor.Defiant.Aberrations.Ability";
     private const string DefiantAberrationsShieldAbility = "LegendaryArmor.Defiant.Aberrations.Shield.Ability";
     private const string DefiantAberrationsBuff = "LegendaryArmor.Defiant.Aberrations.Buff";
     private const string DefiantAberrationsShieldBuff = "LegendaryArmor.Defiant.Aberrations.Shield.Buff";
+
+    private const string DefiantAnimalsName = "LegendaryArmor.Defiant.Animals.Name";
+    private const string DefiantAnimalsAbility = "LegendaryArmor.Defiant.Animals.Ability";
+    private const string DefiantAnimalsShieldAbility = "LegendaryArmor.Defiant.Animals.Shield.Ability";
+    private const string DefiantAnimalsBuff = "LegendaryArmor.Defiant.Animals.Buff";
+    private const string DefiantAnimalsShieldBuff = "LegendaryArmor.Defiant.Animals.Shield.Buff";
+
+    private const string DefiantConstructsName = "LegendaryArmor.Defiant.Constructs.Name";
+    private const string DefiantConstructsAbility = "LegendaryArmor.Defiant.Constructs.Ability";
+    private const string DefiantConstructsShieldAbility = "LegendaryArmor.Defiant.Constructs.Shield.Ability";
+    private const string DefiantConstructsBuff = "LegendaryArmor.Defiant.Constructs.Buff";
+    private const string DefiantConstructsShieldBuff = "LegendaryArmor.Defiant.Constructs.Shield.Buff";
+
+    private const string DefiantDragonsName = "LegendaryArmor.Defiant.Dragons.Name";
+    private const string DefiantDragonsAbility = "LegendaryArmor.Defiant.Dragons.Ability";
+    private const string DefiantDragonsShieldAbility = "LegendaryArmor.Defiant.Dragons.Shield.Ability";
+    private const string DefiantDragonsBuff = "LegendaryArmor.Defiant.Dragons.Buff";
+    private const string DefiantDragonsShieldBuff = "LegendaryArmor.Defiant.Dragons.Shield.Buff";
+
+    private const string DefiantFeyName = "LegendaryArmor.Defiant.Fey.Name";
+    private const string DefiantFeyAbility = "LegendaryArmor.Defiant.Fey.Ability";
+    private const string DefiantFeyShieldAbility = "LegendaryArmor.Defiant.Fey.Shield.Ability";
+    private const string DefiantFeyBuff = "LegendaryArmor.Defiant.Fey.Buff";
+    private const string DefiantFeyShieldBuff = "LegendaryArmor.Defiant.Fey.Shield.Buff";
+
+    private const string DefiantHumanoidGiantName = "LegendaryArmor.Defiant.Humanoid.Giant.Name";
+    private const string DefiantHumanoidGiantAbility = "LegendaryArmor.Defiant.Humanoid.Giant.Ability";
+    private const string DefiantHumanoidGiantShieldAbility = "LegendaryArmor.Defiant.Humanoid.Giant.Shield.Ability";
+    private const string DefiantHumanoidGiantBuff = "LegendaryArmor.Defiant.Humanoid.Giant.Buff";
+    private const string DefiantHumanoidGiantShieldBuff = "LegendaryArmor.Defiant.Humanoid.Giant.Shield.Buff";
+
+    private const string DefiantHumanoidReptilianName = "LegendaryArmor.Defiant.Humanoid.Reptilian.Name";
+    private const string DefiantHumanoidReptilianAbility = "LegendaryArmor.Defiant.Humanoid.Reptilian.Ability";
+    private const string DefiantHumanoidReptilianShieldAbility = "LegendaryArmor.Defiant.Humanoid.Reptilian.Shield.Ability";
+    private const string DefiantHumanoidReptilianBuff = "LegendaryArmor.Defiant.Humanoid.Reptilian.Buff";
+    private const string DefiantHumanoidReptilianShieldBuff = "LegendaryArmor.Defiant.Humanoid.Reptilian.Shield.Buff";
 
     private const string DisplayName = "LegendaryArmor.Defiant.Name";
     private const string Description = "LegendaryArmor.Defiant.Description";
@@ -131,6 +168,126 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantAberrationsShieldAbility,
         abilityGuid: Guids.DefiantAberrationsShieldAbility);
 
+      var animals = EnchantmentTool.CreateEnchantAbility(
+        buff: ConfigureBuff(
+          DefiantAnimalsBuff,
+          Guids.DefiantAnimalsBuff,
+          DefiantAnimalsName,
+          FeatureRefs.AnimalType.ToString()),
+        displayName: DefiantAnimalsName,
+        description: Description,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: EnhancementCost,
+        abilityName: DefiantAnimalsAbility,
+        abilityGuid: Guids.DefiantAnimalsAbility);
+      var animalsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        animals,
+        buffName: DefiantAnimalsShieldBuff,
+        buffGuid: Guids.DefiantAnimalsShieldBuff,
+        abilityName: DefiantAnimalsShieldAbility,
+        abilityGuid: Guids.DefiantAnimalsShieldAbility);
+
+      var constructs = EnchantmentTool.CreateEnchantAbility(
+        buff: ConfigureBuff(
+          DefiantConstructsBuff,
+          Guids.DefiantConstructsBuff,
+          DefiantConstructsName,
+          FeatureRefs.ConstructType.ToString()),
+        displayName: DefiantConstructsName,
+        description: Description,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: EnhancementCost,
+        abilityName: DefiantConstructsAbility,
+        abilityGuid: Guids.DefiantConstructsAbility);
+      var constructsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        constructs,
+        buffName: DefiantConstructsShieldBuff,
+        buffGuid: Guids.DefiantConstructsShieldBuff,
+        abilityName: DefiantConstructsShieldAbility,
+        abilityGuid: Guids.DefiantConstructsShieldAbility);
+
+      var dragons = EnchantmentTool.CreateEnchantAbility(
+        buff: ConfigureBuff(
+          DefiantDragonsBuff,
+          Guids.DefiantDragonsBuff,
+          DefiantDragonsName,
+          FeatureRefs.DragonType.ToString()),
+        displayName: DefiantDragonsName,
+        description: Description,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: EnhancementCost,
+        abilityName: DefiantDragonsAbility,
+        abilityGuid: Guids.DefiantDragonsAbility);
+      var dragonsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        dragons,
+        buffName: DefiantDragonsShieldBuff,
+        buffGuid: Guids.DefiantDragonsShieldBuff,
+        abilityName: DefiantDragonsShieldAbility,
+        abilityGuid: Guids.DefiantDragonsShieldAbility);
+
+      var fey = EnchantmentTool.CreateEnchantAbility(
+        buff: ConfigureBuff(
+          DefiantFeyBuff,
+          Guids.DefiantFeyBuff,
+          DefiantFeyName,
+          FeatureRefs.FeyType.ToString()),
+        displayName: DefiantFeyName,
+        description: Description,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: EnhancementCost,
+        abilityName: DefiantFeyAbility,
+        abilityGuid: Guids.DefiantFeyAbility);
+      var feyShield = EnchantmentTool.CreateEnchantShieldVariant(
+        fey,
+        buffName: DefiantFeyShieldBuff,
+        buffGuid: Guids.DefiantFeyShieldBuff,
+        abilityName: DefiantFeyShieldAbility,
+        abilityGuid: Guids.DefiantFeyShieldAbility);
+
+      var humanoidGiant = EnchantmentTool.CreateEnchantAbility(
+        buff: ConfigureBuff(
+          DefiantHumanoidGiantBuff,
+          Guids.DefiantHumanoidGiantBuff,
+          DefiantHumanoidGiantName,
+          FeatureRefs.GiantSubtype.ToString()),
+        displayName: DefiantHumanoidGiantName,
+        description: Description,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: EnhancementCost,
+        abilityName: DefiantHumanoidGiantAbility,
+        abilityGuid: Guids.DefiantHumanoidGiantAbility);
+      var humanoidGiantShield = EnchantmentTool.CreateEnchantShieldVariant(
+        humanoidGiant,
+        buffName: DefiantHumanoidGiantShieldBuff,
+        buffGuid: Guids.DefiantHumanoidGiantShieldBuff,
+        abilityName: DefiantHumanoidGiantShieldAbility,
+        abilityGuid: Guids.DefiantHumanoidGiantShieldAbility);
+
+      var humanoidReptilian = EnchantmentTool.CreateEnchantAbility(
+        buff: ConfigureBuff(
+          DefiantHumanoidReptilianBuff,
+          Guids.DefiantHumanoidReptilianBuff,
+          DefiantHumanoidReptilianName,
+          FeatureRefs.ReptilianSubtype.ToString()),
+        displayName: DefiantHumanoidReptilianName,
+        description: Description,
+        //icon: ??,
+        type: EnhancementType.Armor,
+        enhancementCost: EnhancementCost,
+        abilityName: DefiantHumanoidReptilianAbility,
+        abilityGuid: Guids.DefiantHumanoidReptilianAbility);
+      var humanoidReptilianShield = EnchantmentTool.CreateEnchantShieldVariant(
+        humanoidReptilian,
+        buffName: DefiantHumanoidReptilianShieldBuff,
+        buffGuid: Guids.DefiantHumanoidReptilianShieldBuff,
+        abilityName: DefiantHumanoidReptilianShieldAbility,
+        abilityGuid: Guids.DefiantHumanoidReptilianShieldAbility);
+
       return EnchantmentTool.CreateEnchantFeature(
         displayName: DisplayName,
         description: Description,
@@ -143,7 +300,19 @@ namespace AutomaticBonusProgression.Enchantments
         parent,
         shieldParent,
         aberrations,
-        aberrationsShield);
+        aberrationsShield,
+        animals,
+        animalsShield,
+        constructs,
+        constructsShield,
+        dragons,
+        dragonsShield,
+        fey,
+        feyShield,
+        humanoidGiant,
+        humanoidGiantShield,
+        humanoidReptilian,
+        humanoidReptilianShield);
     }
 
     private static BlueprintBuff ConfigureBuff(
@@ -204,7 +373,7 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     [TypeId("ac8768d8-3995-48e6-b8b0-4048252d0a8e")]
-    private class DefiantResistanceComponent : AddDamageResistanceBase
+    private class DefiantResistanceComponent : TTAddDamageResistanceBase
     {
       private readonly BlueprintFeatureReference RequisiteFeature;
       private readonly AlignmentComponent? Alignment;
@@ -216,7 +385,7 @@ namespace AutomaticBonusProgression.Enchantments
         Value = 2;
       }
 
-      public override bool Bypassed(ComponentRuntime runtime, BaseDamage damage, ItemEntityWeapon weapon)
+      protected override bool Bypassed(ComponentRuntime runtime, BaseDamage damage, ItemEntityWeapon weapon)
       {
         try
         {
@@ -240,6 +409,13 @@ namespace AutomaticBonusProgression.Enchantments
         }
         return true;
       }
+
+      public override bool IsSameDRTypeAs(TTAddDamageResistanceBase other)
+      {
+        return other is DefiantResistanceComponent;
+      }
+
+      protected override void AdditionalInitFromVanillaDamageResistance(AddDamageResistanceBase vanillaResistance) { }
     }
   }
 }
