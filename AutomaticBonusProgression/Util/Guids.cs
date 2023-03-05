@@ -130,6 +130,113 @@
     internal const string DeathlessAbility = "adf4bdcb-3608-427e-b1f4-e59cc94e495a";
     internal const string DeathlessBuff = "a0750060-80f0-4652-b4fd-dd4bae5cca67";
 
+    #region Defiant
+    internal const string Defiant = "97592981-105e-4789-bdb7-af5316231987";
+    internal const string DefiantParent = "1ad92549-0b42-4ea6-a3e0-33301026c0d9";
+
+    internal const string DefiantAberrations = "192c32aa-5995-464c-8c5f-52298f8366f4";
+    internal const string DefiantAberrationsAbility = "2e3e7c49-b64f-44fc-ad37-5b892387bf18";
+    internal const string DefiantAberrationsBuff = "ba3eba6b-3fe1-479a-81b7-b222321e52dd";
+    internal const string DefiantAberrationsShieldAbility = "32e8a12a-4abe-406f-adfe-f2b8440e82e4";
+    internal const string DefiantAberrationsShieldBuff = "da005b7d-a2af-430f-ab7f-7bba8e69fff8";
+
+    internal const string DefiantAnimals = "43374da6-5f08-4adf-bb7f-a6b3c8b24cbc";
+    internal const string DefiantAnimalsAbility = "0e2ae4a6-3739-45da-9f19-da1cca55ef87";
+    internal const string DefiantAnimalsBuff = "a15c9d9c-f900-47ce-8ecb-059b668659d3";
+    internal const string DefiantAnimalsShieldAbility = "77d499c4-7534-40e0-b670-8fc67074e7ae";
+    internal const string DefiantAnimalsShieldBuff = "025f0216-9c6e-4a64-bc32-25e1beebd051";
+
+    internal const string DefiantConstructs = "2699b5ec-17e1-4503-b1af-c174103295a1";
+    internal const string DefiantConstructsAbility = "bab8db40-1cc8-401f-bebb-a7eb8c076551";
+    internal const string DefiantConstructsBuff = "3e5e8c87-c603-4498-b189-76b9d075089c";
+    internal const string DefiantConstructsShieldAbility = "437bc337-711e-4e24-af00-aef8ab6401aa";
+    internal const string DefiantConstructsShieldBuff = "0609550c-0f0c-4aea-a1a3-954cfbdb0fb3";
+
+    internal const string DefiantDragons = "15e363fd-6b81-47e0-b7d6-c70847fadc56";
+    internal const string DefiantDragonsAbility = "779f01a2-076f-4c95-ad90-5ea811767aa9";
+    internal const string DefiantDragonsBuff = "68ef104d-bf90-48c6-aa5a-6f15e318fee5";
+    internal const string DefiantDragonsShieldAbility = "b03f6759-66e9-4cc1-a1dc-1d6427cea8c7";
+    internal const string DefiantDragonsShieldBuff = "88c61541-98a8-4a43-9a63-edaf9ea942dd";
+
+    internal const string DefiantFey = "6fc07785-7e74-4b65-ad9f-0b2ad0f4619d";
+    internal const string DefiantFeyAbility = "47410129-d369-4e67-89e3-39533853fef6";
+    internal const string DefiantFeyBuff = "d801a36a-df08-4d41-829a-00541ccab9e8";
+    internal const string DefiantFeyShieldAbility = "58c8388a-13f7-47cd-b836-3d3a9ee19155";
+    internal const string DefiantFeyShieldBuff = "055863b2-1a9f-4c74-a320-5e46049541f1";
+
+    internal const string DefiantHumanoidGiant = "bcda585d-bf64-4f33-adf2-ab140f95aa6b";
+    internal const string DefiantHumanoidGiantAbility = "77994916-96c8-4630-a60e-16ffe1ff2a6d";
+    internal const string DefiantHumanoidGiantBuff = "e2453e4f-384b-4332-8cfa-126960c991c5";
+    internal const string DefiantHumanoidGiantShieldAbility = "e90db591-2eb0-41f5-b31e-f187fbadf257";
+    internal const string DefiantHumanoidGiantShieldBuff = "a8ad1a79-34e2-4a25-b69e-6b012478acc6";
+
+    internal const string DefiantHumanoidReptilian = "a92b6974-9ca1-43bd-8ad6-7e3578554723";
+    internal const string DefiantHumanoidReptilianAbility = "f216cd02-1462-403c-b462-1774ae914d09";
+    internal const string DefiantHumanoidReptilianBuff = "5f022777-fd7e-48fe-8f74-4230b63419f4";
+    internal const string DefiantHumanoidReptilianShieldAbility = "95be3f59-4963-4419-9ca5-5e0f635b1822";
+    internal const string DefiantHumanoidReptilianShieldBuff = "b7e6e592-2bed-498a-a0b8-f7259392c803";
+
+    internal const string DefiantHumanoidMonstrous = "03628a54-2498-4d61-bd79-cf1156adedc3";
+    internal const string DefiantHumanoidMonstrousAbility = "cc8cfdce-2e0a-4571-b8f9-7d8ca0c99042";
+    internal const string DefiantHumanoidMonstrousBuff = "3feb2322-5ee5-42e3-97db-05352deb6af4";
+    internal const string DefiantHumanoidMonstrousShieldAbility = "a2cd6855-018f-419c-b3a6-959a288ff098";
+    internal const string DefiantHumanoidMonstrousShieldBuff = "ab5468f1-b134-4ba4-b8ac-5ef74816756e";
+
+    internal const string DefiantMagicalBeasts = "d2b09fe0-2eb2-4a33-a095-7b48e5db64fc";
+    internal const string DefiantMagicalBeastsAbility = "b8e89ae7-bf40-4bec-9a78-884dc7d6139c";
+    internal const string DefiantMagicalBeastsBuff = "e2dd7276-49fd-476a-87b3-ebfd37fcc8b6";
+    internal const string DefiantMagicalBeastsShieldAbility = "db3b4f4c-a434-4e1a-847b-b40c4a533ebc";
+    internal const string DefiantMagicalBeastsShieldBuff = "c994ebcf-85b6-46e2-98c8-fd857aaf9f62";
+
+    internal const string DefiantOutsiderGood = "365053c4-672b-4706-909c-39d1df92f267";
+    internal const string DefiantOutsiderGoodAbility = "e4a900c3-5ac8-4ef9-8954-95ea15417569";
+    internal const string DefiantOutsiderGoodBuff = "a02c7c21-3e2b-422a-a222-12ddd1f7de11";
+    internal const string DefiantOutsiderGoodShieldAbility = "fb8cb5f2-1d8a-48d0-a0e5-a4bec09e3097";
+    internal const string DefiantOutsiderGoodShieldBuff = "e1ee5b41-2ac2-45b9-95a1-70773783ffe6";
+
+    internal const string DefiantOutsiderEvil = "e7b9f37a-ac9e-4cf3-9f7a-007e2ec416da";
+    internal const string DefiantOutsiderEvilAbility = "255ed55d-4cd7-48bd-8cc2-6799b999e4c5";
+    internal const string DefiantOutsiderEvilBuff = "ae263068-dfd9-45e9-9bcb-358e180486ea";
+    internal const string DefiantOutsiderEvilShieldAbility = "8122b83d-8081-4eb3-91b9-c2dc5b911608";
+    internal const string DefiantOutsiderEvilShieldBuff = "b96bde35-e59c-4271-b719-711d788f565f";
+
+    internal const string DefiantOutsiderLawful = "223f9cdf-0f58-4ef3-bdae-cfcf0d929460";
+    internal const string DefiantOutsiderLawfulAbility = "965247c6-ad1e-455e-8b85-6861d7d60c4b";
+    internal const string DefiantOutsiderLawfulBuff = "4cc5dc5c-186d-4de1-9818-8e7792600368";
+    internal const string DefiantOutsiderLawfulShieldAbility = "eac33e1b-8427-4bbe-beaa-d543e920387c";
+    internal const string DefiantOutsiderLawfulShieldBuff = "0d1e0971-f9d5-4200-b6f2-5c6c46ec6f16";
+
+    internal const string DefiantOutsiderChaotic = "75bc18f1-81ad-464c-94de-b2d4a94aca58";
+    internal const string DefiantOutsiderChaoticAbility = "572ca8b5-301b-4a29-9e55-4a06c1a82639";
+    internal const string DefiantOutsiderChaoticBuff = "09fdab88-6744-4d72-a38b-4419e527b9c3";
+    internal const string DefiantOutsiderChaoticShieldAbility = "12adfa84-f7fc-4ebf-bc6f-d86c7d605c42";
+    internal const string DefiantOutsiderChaoticShieldBuff = "867036b8-aaba-42b6-9425-4fca7132370a";
+
+    internal const string DefiantOutsiderNeutral = "1c052f78-bb2e-4783-a3a9-06ecada8915b";
+    internal const string DefiantOutsiderNeutralAbility = "739df56f-fb75-4597-a7ab-5f7cfd04a429";
+    internal const string DefiantOutsiderNeutralBuff = "d8895833-86cb-4883-af3d-ba19d2867887";
+    internal const string DefiantOutsiderNeutralShieldAbility = "40db8125-92b5-4328-9c3e-5318becf00b2";
+    internal const string DefiantOutsiderNeutralShieldBuff = "9c2d748d-6c18-4cd6-96db-d21576e3aed7";
+
+    internal const string DefiantPlants = "31890128-fbc4-4994-b0ba-2a8ba8f7b12f";
+    internal const string DefiantPlantsAbility = "5683447f-8ebe-445b-ab03-5952ec548833";
+    internal const string DefiantPlantsBuff = "3b2f059b-3233-4dee-a188-ec06f89a791c";
+    internal const string DefiantPlantsShieldAbility = "351da87d-3cd4-48b6-ac5c-5ccaa96cdf4f";
+    internal const string DefiantPlantsShieldBuff = "bcb894fb-4dc2-477e-8d74-8fe3f64ca2e5";
+
+    internal const string DefiantUndead = "598998fe-1999-4670-b184-fce2661dda81";
+    internal const string DefiantUndeadAbility = "542779a9-640f-4c75-8772-8b45a49a0766";
+    internal const string DefiantUndeadBuff = "a767aa99-3c8f-4533-a226-4ae5b2f45afd";
+    internal const string DefiantUndeadShieldAbility = "9fdd271b-7f20-45da-a08f-354a544ccdfb";
+    internal const string DefiantUndeadShieldBuff = "d7b3b11a-7ae7-4e55-aa9c-fecca4eb04fa";
+
+    internal const string DefiantVermin = "b4508f69-8316-47ee-ac3c-1b9ea8979103";
+    internal const string DefiantVerminAbility = "c6e8654f-d38d-40fe-9a2b-3fc8aeb11d96";
+    internal const string DefiantVerminBuff = "cd0fa7ea-3954-4f54-8dd6-c1a502d9fc32";
+    internal const string DefiantVerminShieldAbility = "1432922d-17d6-4745-8b52-a817f1896976";
+    internal const string DefiantVerminShieldBuff = "dc684853-855e-48bb-8b19-354509c157ce";
+    #endregion
+
     #region Energy Resistance
     internal const string EnergyResistParent = "295f255f-0a3c-42f9-b8a0-2f6d80f9dc16";
     internal const string EnergyResistShieldParent = "8721d4dc-30f8-4ec9-847b-23854bae0d22";

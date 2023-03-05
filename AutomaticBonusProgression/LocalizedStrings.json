@@ -181,6 +181,111 @@
   },
 
   {
+    "Key": "LegendaryArmor.Defiant.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Defiant.Description",
+    "enGB": "Armor and shields with this special ability excel at blocking the attacks of certain types of creatures, similar to a bane weapon’s excelling against certain foes. Against the designated foe, the item’s enhancement bonus to AC is +2 better than its actual bonus and provides DR 2/— against attacks from that foe."
+  },
+  {
+    "Key": "LegendaryArmor.Defiant.Ability.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Armor (Defiant)"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Shield.Ability.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Shield (Defiant)"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Aberrations.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Aberrations"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Animals.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Animals"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Constructs.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Constructs"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Dragons.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Dragons"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Fey.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Fey"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Humanoid.Giant.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Giant Humanoids"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Humanoid.Reptilian.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Reptilian Humanoids"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Humanoid.Monstrous.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Monstrous Humanoids"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.MagicalBeasts.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Magical Beasts"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Outsider.Good.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Good Outsiders"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Outsider.Evil.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Evil Outsiders"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Outsider.Lawful.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Lawful Outsiders"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Outsider.Chaotic.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Chaotic Outsiders"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Outsider.Neutral.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Neutral Outsiders"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Plants.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Plants"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Undead.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Undead"
+  },
+  {
+    "Key": "LegendaryShield.Defiant.Vermin.Name",
+    "ProcessTemplates": false,
+    "enGB": "Defiant: Vermin"
+  },
+
+  {
     "Key": "LegendaryArmor.EnergyResistance.Name",
     "ProcessTemplates": false,
     "enGB": "Energy Resistance 10 (+2)"
