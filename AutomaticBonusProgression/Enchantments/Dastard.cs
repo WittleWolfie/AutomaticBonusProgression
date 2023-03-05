@@ -1,11 +1,13 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Alignments;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -57,7 +59,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.DastardAbility,
         new ActivatableAlignmentRestriction(AlignmentComponent.Evil));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      var feature = EnchantmentTool.CreateEnchantFeature(
         displayName: DisplayName,
         description: Description,
         featureName: DastardName,
@@ -66,6 +68,8 @@ namespace AutomaticBonusProgression.Enchantments
         prerequisiteFeature: "",
         prerequisiteRanks: 1,
         ability);
+
+      return FeatureConfigurator.For(feature).AddPrerequisiteAlignment(AlignmentMaskType.Evil).Configure();
     }
   }
 }

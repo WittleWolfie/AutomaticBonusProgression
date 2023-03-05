@@ -1,10 +1,12 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Alignments;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -52,7 +54,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityGuid: Guids.ChampionAbility,
         new ActivatableAlignmentRestriction(AlignmentComponent.Good));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      var feature = EnchantmentTool.CreateEnchantFeature(
         displayName: DisplayName,
         description: Description,
         featureName: ChampionName,
@@ -61,6 +63,8 @@ namespace AutomaticBonusProgression.Enchantments
         prerequisiteFeature: "",
         prerequisiteRanks: 1,
         ability);
+
+      return FeatureConfigurator.For(feature).AddPrerequisiteAlignment(AlignmentMaskType.Good).Configure();
     }
   }
 }
