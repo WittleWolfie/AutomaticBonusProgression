@@ -126,6 +126,10 @@
     internal const string DastardAbility = "bf642899-ae85-4f82-94d9-145970a4e11b";
     internal const string DastardBuff = "a21bd358-167e-4482-82ec-2362bfbfcb61";
 
+    internal const string Deathless = "d44cfbde-4b53-4507-9dd2-e21b3ec48bab";
+    internal const string DeathlessAbility = "adf4bdcb-3608-427e-b1f4-e59cc94e495a";
+    internal const string DeathlessBuff = "a0750060-80f0-4652-b4fd-dd4bae5cca67";
+
     internal const string EnergyResist10 = "9fdc3494-2df3-4584-b732-646b4655ab0b";
     internal const string AcidResist10Ability = "459f021a-ff77-410f-8e24-32d541505961";
     internal const string AcidResist10Buff = "737b2b79-63d6-4677-ab4b-57e1c6d4c0a6";
