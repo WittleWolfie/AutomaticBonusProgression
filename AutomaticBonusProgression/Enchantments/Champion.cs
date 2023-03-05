@@ -17,8 +17,6 @@ namespace AutomaticBonusProgression.Enchantments
     private const string ChampionName = "LegendaryArmor.Champion";
     private const string BuffName = "LegendaryArmor.Champion.Buff";
     private const string AbilityName = "LegendaryArmor.Champion.Ability";
-    private const string BuffShieldName = "LegendaryArmor.Champion.Shield.Buff";
-    private const string AbilityShieldName = "LegendaryArmor.Champion.Shield.Ability";
 
     private const string TargetBuffName = "LegendaryArmor.Champion.Target.Buff";
 

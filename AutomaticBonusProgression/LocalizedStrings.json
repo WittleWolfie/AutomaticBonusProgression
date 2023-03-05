@@ -117,7 +117,7 @@
   },
   {
     "Key": "LegendaryArmor.Description",
-    "enGB": "Select a special ability you can apply to your armor or shield. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. To acquire Spell Resistance (19) you must select it as a Legendary Gift 4 times. You cannot apply Spell Resistance (19) to armor with Shadow, which has an enhancement of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor.\nSome abilities can be applied to armor, shields, or both.\nArmor: Balanced Armor, Bolstering Armor, Champion Armor, Energy Resistance, Fortification, Invulnerability, Shadow Armor, Spell Resistance\nShield: Bolstering Armor, Energy Resistance, Fortification, SpellResistance"
+    "enGB": "Select a special ability you can apply to your armor or shield. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. To acquire Spell Resistance (19) you must select it as a Legendary Gift 4 times. You cannot apply Spell Resistance (19) to armor with Shadow, which has an enhancement of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor.\nSome abilities can be applied to armor, shields, or both.\nArmor: Balanced, Bolstering, Champion, Dastard, Deathless, Energy Resistance, Fortification, Invulnerability, Shadow Armor, Spell Resistance\nShield: Bolstering, Energy Resistance, Fortification, SpellResistance"
   },
   {
     "Key": "LegendaryArmor.Ability.Description",
@@ -137,13 +137,13 @@
   {
     "Key": "LegendaryArmor.Balanced.Name",
     "ProcessTemplates": false,
-    "enGB": "Balanced Armor (+1)"
+    "enGB": "Balanced (+1)"
   },
 
   {
     "Key": "LegendaryArmor.Bolstering.Name",
     "ProcessTemplates": false,
-    "enGB": "Bolstering Armor (+1)"
+    "enGB": "Bolstering (+1)"
   },
   {
     "Key": "LegendaryArmor.Bolstering.Description",
@@ -153,7 +153,7 @@
   {
     "Key": "LegendaryArmor.Champion.Name",
     "ProcessTemplates": false,
-    "enGB": "Champion Armor (+1)"
+    "enGB": "Champion (+1)"
   },
   {
     "Key": "LegendaryArmor.Champion.Description",
@@ -163,11 +163,21 @@
   {
     "Key": "LegendaryArmor.Dastard.Name",
     "ProcessTemplates": false,
-    "enGB": "Dastard Armor (+1)"
+    "enGB": "Dastard (+1)"
   },
   {
     "Key": "LegendaryArmor.Dastard.Description",
     "enGB": "This armor special ability works only for evil creatures with the challenge ability or the smite good ability. A wearer with one of these abilities gains a +2 profane bonus to AC against attacks from the chosen opponent."
+  },
+
+  {
+    "Key": "LegendaryArmor.Deathless.Name",
+    "ProcessTemplates": false,
+    "enGB": "Deathless (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Deathless.Description",
+    "enGB": "This armor protects its wearer from harmful negative and positive energy, including channeled energy. The armor absorbs the first 10 points of positive or negative energy damage per attack that the wearer would normally take. The wearer has a 25% chance to ignore negative levels from any attack. Deathless armor does not block healing of any kind and does not protect against positive or negative energy effects that do not deal damage or bestow negative levels."
   },
 
   {
@@ -364,17 +374,17 @@
   {
     "Key": "LegendaryArmor.Shadow.Name",
     "ProcessTemplates": false,
-    "enGB": "Shadow Armor (+2)"
+    "enGB": "Shadow (+2)"
   },
   {
     "Key": "LegendaryArmor.Shadow.Improved.Name",
     "ProcessTemplates": false,
-    "enGB": "Improved Shadow Armor (+4)"
+    "enGB": "Improved Shadow (+4)"
   },
   {
     "Key": "LegendaryArmor.Shadow.Greater.Name",
     "ProcessTemplates": false,
-    "enGB": "Greater Shadow Armor (+5)"
+    "enGB": "Greater Shadow (+5)"
   },
   {
     "Key": "LegendaryArmor.Shadow.Greater.Description",

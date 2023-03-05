@@ -18,8 +18,6 @@ namespace AutomaticBonusProgression.Enchantments
     private const string DastardName = "LegendaryArmor.Dastard";
     private const string BuffName = "LegendaryArmor.Dastard.Buff";
     private const string AbilityName = "LegendaryArmor.Dastard.Ability";
-    private const string BuffShieldName = "LegendaryArmor.Dastard.Shield.Buff";
-    private const string AbilityShieldName = "LegendaryArmor.Dastard.Shield.Ability";
 
     private const string TargetBuffName = "LegendaryArmor.Dastard.Target.Buff";
 
