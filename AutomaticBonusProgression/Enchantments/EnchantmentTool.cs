@@ -103,9 +103,10 @@ namespace AutomaticBonusProgression.Enchantments
       EnhancementType type,
       int enhancementCost,
       string abilityName,
-      string abilityGuid)
+      string abilityGuid,
+      params BlueprintComponent[] components)
     {
-      return ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
+      var ability = ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
         .SetDisplayName(displayName)
         .SetDescription(description)
       //.SetIcon(icon)
@@ -114,8 +115,12 @@ namespace AutomaticBonusProgression.Enchantments
         .SetActivationType(AbilityActivationType.Immediately)
         .SetActivateWithUnitCommand(CommandType.Free)
         .AddComponent(new EnhancementEquivalentRestriction(type, enhancementCost))
-        .SetHiddenInUI()
-        .Configure();
+        .SetHiddenInUI();
+
+      foreach (var component in components)
+        ability.AddComponent(component);
+
+      return ability.Configure();
     }
 
     /// <summary>

@@ -48,7 +48,8 @@ namespace AutomaticBonusProgression.Enchantments
         type: EnhancementType.Armor,
         enhancementCost: EnhancementCost,
         abilityName: AbilityName,
-        abilityGuid: Guids.ChampionAbility);
+        abilityGuid: Guids.ChampionAbility,
+        new ActivatableAlignmentRestriction(AlignmentComponent.Good));
 
       return EnchantmentTool.CreateEnchantFeature(
         displayName: DisplayName,
