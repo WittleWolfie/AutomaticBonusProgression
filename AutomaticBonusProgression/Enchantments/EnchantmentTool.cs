@@ -113,8 +113,9 @@ namespace AutomaticBonusProgression.Enchantments
         .SetBuff(buff)
         .SetDeactivateImmediately()
         .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Move)
+        .SetActivateWithUnitCommand(CommandType.Free)
         .AddComponent(new EnhancementEquivalentRestriction(type, enhancementCost))
+        .AddComponent<OutOfCombatRestriction>()
         .SetHiddenInUI();
 
       foreach (var component in components)
