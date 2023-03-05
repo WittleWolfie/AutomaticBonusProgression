@@ -165,7 +165,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string SonicImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Sonic.Description";
 
     private const string ImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Name";
-    private const string ImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Name";
+    private const string ImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Description";
     private const int ImprovedEnhancementCost = 4;
 
     internal static BlueprintFeature ConfigureImproved()
@@ -266,31 +266,41 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string AcidGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Acid";
     private const string AcidGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Acid";
+    private const string AcidGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Acid";
+    private const string AcidGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Acid";
     private const string AcidGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Acid.Name";
     private const string AcidGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Acid.Description";
 
     private const string ColdGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Cold";
     private const string ColdGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Cold";
+    private const string ColdGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Cold";
+    private const string ColdGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Cold";
     private const string ColdGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Cold.Name";
     private const string ColdGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Cold.Description";
 
     private const string ElectricityGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Electricity";
     private const string ElectricityGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Electricity";
+    private const string ElectricityGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Electricity";
+    private const string ElectricityGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Electricity";
     private const string ElectricityGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Electricity.Name";
     private const string ElectricityGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Electricity.Description";
 
     private const string FireGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Fire";
     private const string FireGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Fire";
+    private const string FireGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Fire";
+    private const string FireGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Fire";
     private const string FireGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Fire.Name";
     private const string FireGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Fire.Description";
 
     private const string SonicGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Sonic";
     private const string SonicGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Sonic";
+    private const string SonicGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Sonic";
+    private const string SonicGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Sonic";
     private const string SonicGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Sonic.Name";
     private const string SonicGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Sonic.Description";
 
     private const string GreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Name";
-    private const string GreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Name";
+    private const string GreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Description";
     private const int GreaterEnhancementCost = 5;
 
     internal static BlueprintFeature ConfigureGreater()
@@ -311,6 +321,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: AcidGreaterAbilityName,
         abilityGuid: Guids.AcidResist30Ability,
         buffComponents: resistAcidFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistAcidShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistAcid,
+        buffName: AcidGreaterShieldBuffName,
+        buffGuid: Guids.AcidResist30ShieldBuff,
+        abilityName: AcidGreaterShieldAbilityName,
+        abilityGuid: Guids.AcidResist30ShieldAbility);
 
       var resistColdFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -326,6 +342,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: ColdGreaterAbilityName,
         abilityGuid: Guids.ColdResist30Ability,
         buffComponents: resistColdFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistColdShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistCold,
+        buffName: ColdGreaterShieldBuffName,
+        buffGuid: Guids.ColdResist30ShieldBuff,
+        abilityName: ColdGreaterShieldAbilityName,
+        abilityGuid: Guids.ColdResist30ShieldAbility);
 
       var resistElectricityFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -341,6 +363,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: ElectricityGreaterAbilityName,
         abilityGuid: Guids.ElectricityResist30Ability,
         buffComponents: resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistElectricityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistElectricity,
+        buffName: ElectricityGreaterShieldBuffName,
+        buffGuid: Guids.ElectricityResist30ShieldBuff,
+        abilityName: ElectricityGreaterShieldAbilityName,
+        abilityGuid: Guids.ElectricityResist30ShieldAbility);
 
       var resistFireFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -356,6 +384,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: FireGreaterAbilityName,
         abilityGuid: Guids.FireResist30Ability,
         buffComponents: resistFireFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistFireShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistFire,
+        buffName: FireGreaterShieldBuffName,
+        buffGuid: Guids.FireResist30ShieldBuff,
+        abilityName: FireGreaterShieldAbilityName,
+        abilityGuid: Guids.FireResist30ShieldAbility);
 
       var resistSonicFeature =
         EnchantmentTool.AddEnhancementEquivalence(
@@ -371,6 +405,12 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: SonicGreaterAbilityName,
         abilityGuid: Guids.SonicResist30Ability,
         buffComponents: resistSonicFeature.GetComponent<AddDamageResistanceEnergy>());
+      var resistSonicShield = EnchantmentTool.CreateEnchantShieldVariant(
+        resistSonic,
+        buffName: SonicGreaterShieldBuffName,
+        buffGuid: Guids.SonicResist30ShieldBuff,
+        abilityName: SonicGreaterShieldAbilityName,
+        abilityGuid: Guids.SonicResist30ShieldAbility);
 
       return EnchantmentTool.CreateEnchantFeature(
         displayName: GreaterDisplayName,
@@ -382,10 +422,15 @@ namespace AutomaticBonusProgression.Enchantments
         prerequisiteFeature: Guids.EnergyResist20,
         prerequisiteRanks: ImprovedEnhancementCost,
         resistAcid,
+        resistAcidShield,
         resistCold,
+        resistColdShield,
         resistElectricity,
+        resistElectricityShield,
         resistFire,
-        resistSonic);
+        resistFireShield,
+        resistSonic,
+        resistSonicShield);
     }
   }
 }

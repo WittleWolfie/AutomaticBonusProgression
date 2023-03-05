@@ -69,6 +69,30 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     /// <summary>
+    /// Creates a version of the specified armor enchant for use with shields.
+    /// </summary>
+    internal static BlueprintActivatableAbility CreateEnchantShieldVariant(
+      BlueprintActivatableAbility armorEnchant,
+      string buffName,
+      string buffGuid,
+      string abilityName,
+      string abilityGuid)
+    {
+      var enhancementCost = armorEnchant.GetComponent<EnhancementEquivalentRestriction>().Enhancement;
+      var buff = BuffConfigurator.New(buffName, buffGuid)
+        .CopyFrom(armorEnchant.Buff, c => c is not EnhancementEquivalenceComponent)
+        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Shield, enhancementCost))
+        .Configure();
+
+      return ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
+        .CopyFrom(armorEnchant, c => c is not EnhancementEquivalentRestriction)
+        .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Shield, enhancementCost))
+        .AddComponent<ShieldEquippedRestriction>()
+        .SetBuff(buff)
+        .Configure();
+    }
+
+    /// <summary>
     /// Creates the activatable ability which applies the specified buff.
     /// </summary>
     internal static BlueprintActivatableAbility CreateEnchantAbility(

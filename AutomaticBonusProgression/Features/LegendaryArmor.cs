@@ -17,10 +17,10 @@ namespace AutomaticBonusProgression.Features
     // Armor In Game
     // - ArcaneArmorBalanced [DONE]
     // - Shadow [DONE]
-    // - Fortification [DONE]
-    // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19]
+    // - Fortification [DONE] (Shield)
+    // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19] (Shield)
     // - Invulnerability [DONE] [Change: Made it 10/magic instead of 5/magic]
-    // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana]
+    // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana] (Shield)
     //
     // Maybe Add
     // - Bolstering
@@ -50,8 +50,12 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryArmorName = "LegendaryArmor";
     private const string LegendaryArmorDisplayName = "LegendaryArmor.Name";
     private const string LegendaryArmorDescription = "LegendaryArmor.Description";
-
     private const string LegendaryArmorAbility = "LegendaryArmor.Ability";
+
+    private const string LegendaryShieldName = "LegendaryShield";
+    private const string LegendaryShieldDisplayName = "LegendaryShield.Name";
+    private const string LegendaryShieldDescription = "LegendaryShield.Description";
+    private const string LegendaryShieldAbility = "LegendaryShield.Ability";
 
     internal static BlueprintFeature ConfigureArmor()
     {
@@ -99,12 +103,42 @@ namespace AutomaticBonusProgression.Features
         .AddActivationDisable()
         .Configure();
 
+      var shieldAbility = ActivatableAbilityConfigurator.New(LegendaryShieldAbility, Guids.LegendaryShieldAbility)
+        .SetDisplayName(LegendaryShieldDisplayName)
+        .SetDescription(LegendaryShieldDescription)
+        //.SetIcon()
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddActivatableAbilityVariants(
+          variants: 
+            new()
+            {
+              Guids.AcidResist10ShieldAbility,
+              Guids.ColdResist10ShieldAbility,
+              Guids.ElectricityResist10ShieldAbility,
+              Guids.FireResist10ShieldAbility,
+              Guids.SonicResist10ShieldAbility,
+              Guids.AcidResist20ShieldAbility,
+              Guids.ColdResist20ShieldAbility,
+              Guids.ElectricityResist20ShieldAbility,
+              Guids.FireResist20ShieldAbility,
+              Guids.SonicResist20ShieldAbility,
+              Guids.AcidResist30ShieldAbility,
+              Guids.ColdResist30ShieldAbility,
+              Guids.ElectricityResist30ShieldAbility,
+              Guids.FireResist30ShieldAbility,
+              Guids.SonicResist30ShieldAbility,
+            })
+        .AddActivationDisable()
+        .Configure();
+
       return FeatureSelectionConfigurator.New(LegendaryArmorName, Guids.LegendaryArmor)
         .SetIsClassFeature()
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
         //.SetIcon()
-        .AddFacts(new() { ability })
+        .AddFacts(new() { ability, shieldAbility })
         .AddToAllFeatures(
           BalancedArmor.Configure(),
           EnergyResistance.Configure(),
@@ -123,10 +157,6 @@ namespace AutomaticBonusProgression.Features
           SpellResistance.Configure22())
         .Configure();
     }
-
-    private const string LegendaryShieldName = "LegendaryShield";
-    private const string LegendaryShieldDisplayName = "LegendaryShield.Name";
-    private const string LegendaryShieldDescription = "LegendaryShield.Description";
 
     internal static BlueprintFeature ConfigureShield()
     {

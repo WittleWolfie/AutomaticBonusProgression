@@ -12,7 +12,7 @@ namespace AutomaticBonusProgression.Components
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalentRestriction));
 
     private readonly EnhancementType Type;
-    private readonly int Enhancement;
+    internal readonly int Enhancement;
 
     internal EnhancementEquivalentRestriction(EnhancementType type, int enhancement)
     {
