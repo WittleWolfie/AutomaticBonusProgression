@@ -18,8 +18,8 @@ namespace AutomaticBonusProgression.Features
     // - ArcaneArmorBalanced [DONE]
     // - Shadow [DONE]
     // - Fortification [DONE]
-    // - Spell Resistance [DONE]
-    // - Invulnerability [DONE]
+    // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19]
+    // - Invulnerability [DONE] [Change: Made it 10/magic instead of 5/magic]
     // - Energy Resistance
     //
     // Maybe Add
