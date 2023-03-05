@@ -51,6 +51,7 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryArmorDisplayName = "LegendaryArmor.Name";
     private const string LegendaryArmorDescription = "LegendaryArmor.Description";
     private const string LegendaryArmorAbility = "LegendaryArmor.Ability";
+    private const string LegendaryArmorAbilityDescription = "LegendaryArmor.Ability.Description";
 
     private const string LegendaryShieldName = "LegendaryShield";
     private const string LegendaryShieldDisplayName = "LegendaryShield.Name";
@@ -63,7 +64,7 @@ namespace AutomaticBonusProgression.Features
 
       var ability = ActivatableAbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
-        .SetDescription(LegendaryArmorDescription)
+        .SetDescription(LegendaryArmorAbilityDescription)
         //.SetIcon()
         .SetDeactivateImmediately()
         .SetActivationType(AbilityActivationType.Immediately)
