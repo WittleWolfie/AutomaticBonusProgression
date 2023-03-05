@@ -69,6 +69,11 @@ namespace AutomaticBonusProgression.Features
             new()
             {
               Guids.BalancedArmorAbility,
+              Guids.AcidResist10Ability,
+              Guids.ColdResist10Ability,
+              Guids.ElectricityResist10Ability,
+              Guids.FireResist10Ability,
+              Guids.SonicResist10Ability,
               Guids.FortificationAbility,
               Guids.ImprovedFortificationAbility,
               Guids.GreaterFortificationAbility,
@@ -92,6 +97,7 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability })
         .AddToAllFeatures(
           BalancedArmor.Configure(),
+          EnergyResistance.Configure(),
           Fortification.Configure(),
           Fortification.ConfigureImproved(),
           Fortification.ConfigureGreater(),
