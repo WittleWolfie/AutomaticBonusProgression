@@ -15,11 +15,11 @@ namespace AutomaticBonusProgression.Features
 
     // TODO: Look at new enchantments & items!
     // Armor In Game
-    // - ArcaneArmorBalanced [DONE] [Untested]
-    // - Shadow [DONE] [Untested]
-    // - Fortification [DONE] [Untested]
-    // - Spell Resistance [DONE] [Untested]
-    // - Invulnerability
+    // - ArcaneArmorBalanced [DONE]
+    // - Shadow [DONE]
+    // - Fortification [DONE]
+    // - Spell Resistance [DONE]
+    // - Invulnerability [DONE]
     // - Energy Resistance
     //
     // Maybe Add
@@ -72,6 +72,7 @@ namespace AutomaticBonusProgression.Features
               Guids.FortificationAbility,
               Guids.ImprovedFortificationAbility,
               Guids.GreaterFortificationAbility,
+              Guids.InvulnerabilityAbility,
               Guids.ShadowArmorAbility,
               Guids.ImprovedShadowArmorAbility,
               Guids.GreaterShadowArmorAbility,
@@ -94,6 +95,7 @@ namespace AutomaticBonusProgression.Features
           Fortification.Configure(),
           Fortification.ConfigureImproved(),
           Fortification.ConfigureGreater(),
+          Invulnerability.Configure(),
           ShadowArmor.Configure(),
           ShadowArmor.ConfigureImproved(),
           ShadowArmor.ConfigureGreater(),
