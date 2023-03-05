@@ -154,10 +154,10 @@ namespace AutomaticBonusProgression.Enchantments
     private const string ElectricityImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Electricity.Name";
     private const string ElectricityImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Electricity.Description";
 
-    private const string FireImprovedBuffName = "LegendaryArmor.EnergyResistance.Buff.Fire";
-    private const string FireImprovedAbilityName = "LegendaryArmor.EnergyResistance.Ability.Fire";
-    private const string FireImprovedDisplayName = "LegendaryArmor.EnergyResistance.Fire.Name";
-    private const string FireImprovedDescription = "LegendaryArmor.EnergyResistance.Fire.Description";
+    private const string FireImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Fire";
+    private const string FireImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Fire";
+    private const string FireImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Fire.Name";
+    private const string FireImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Fire.Description";
 
     private const string SonicImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Sonic";
     private const string SonicImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Sonic";
@@ -279,10 +279,10 @@ namespace AutomaticBonusProgression.Enchantments
     private const string ElectricityGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Electricity.Name";
     private const string ElectricityGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Electricity.Description";
 
-    private const string FireGreaterBuffName = "LegendaryArmor.EnergyResistance.Buff.Fire";
-    private const string FireGreaterAbilityName = "LegendaryArmor.EnergyResistance.Ability.Fire";
-    private const string FireGreaterDisplayName = "LegendaryArmor.EnergyResistance.Fire.Name";
-    private const string FireGreaterDescription = "LegendaryArmor.EnergyResistance.Fire.Description";
+    private const string FireGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Fire";
+    private const string FireGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Fire";
+    private const string FireGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Fire.Name";
+    private const string FireGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Fire.Description";
 
     private const string SonicGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Sonic";
     private const string SonicGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Sonic";

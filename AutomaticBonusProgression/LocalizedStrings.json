@@ -182,6 +182,61 @@
   },
 
   {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Name",
+    "ProcessTemplates": false,
+    "enGB": "Energy Resistance 20 (+4)"
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Description",
+    "enGB": "This armor protects against one type of energy (acid, cold, electricity, fire, or sonic) and is designed with patterns depicting the element it protects against. The armor absorbs the first 20 points of energy damage per attack that the wearer would normally take (similar to the resist energy spell)."
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Acid.Name",
+    "ProcessTemplates": false,
+    "enGB": "Acid Resistance 20 (+4)"
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Acid.Description",
+    "enGB": "This armor absorbs the first 20 points of acid energy damage per attack that the wearer would normally take."
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Cold.Name",
+    "ProcessTemplates": false,
+    "enGB": "Cold Resistance 20 (+4)"
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Cold.Description",
+    "enGB": "This armor absorbs the first 20 points of cold energy damage per attack that the wearer would normally take."
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Electricity.Name",
+    "ProcessTemplates": false,
+    "enGB": "Electricity Resistance 20 (+4)"
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Electricity.Description",
+    "enGB": "This armor absorbs the first 20 points of electricity energy damage per attack that the wearer would normally take."
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Fire.Name",
+    "ProcessTemplates": false,
+    "enGB": "Fire Resistance 20 (+4)"
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Fire.Description",
+    "enGB": "This armor absorbs the first 20 points of fire energy damage per attack that the wearer would normally take."
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Sonic.Name",
+    "ProcessTemplates": false,
+    "enGB": "Sonic Resistance 20 (+4)"
+  },
+  {
+    "Key": "LegendaryArmor.EnergyResistance.Improved.Sonic.Description",
+    "enGB": "This armor absorbs the first 20 points of sonic energy damage per attack that the wearer would normally take."
+  },
+
+  {
     "Key": "LegendaryArmor.Fortification.Name",
     "ProcessTemplates": false,
     "enGB": "Light Fortification (+1)"
