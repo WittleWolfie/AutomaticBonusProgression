@@ -75,6 +75,8 @@ namespace AutomaticBonusProgression.Features
             {
               Guids.BalancedArmorAbility,
 
+              Guids.BolsteringAbility,
+
               Guids.AcidResist10Ability,
               Guids.ColdResist10Ability,
               Guids.ElectricityResist10Ability,
@@ -122,6 +124,8 @@ namespace AutomaticBonusProgression.Features
           variants: 
             new()
             {
+              Guids.BolsteringShieldAbility,
+
               Guids.AcidResist10ShieldAbility,
               Guids.ColdResist10ShieldAbility,
               Guids.ElectricityResist10ShieldAbility,
@@ -160,6 +164,7 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability, shieldAbility })
         .AddToAllFeatures(
           BalancedArmor.Configure(),
+          Bolstering.Configure(),
           EnergyResistance.Configure(),
           EnergyResistance.ConfigureImproved(),
           EnergyResistance.ConfigureGreater(),
