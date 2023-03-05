@@ -140,6 +140,7 @@ namespace AutomaticBonusProgression.Features
           Champion.Configure(),
           Dastard.Configure(),
           Deathless.Configure(),
+          Defiant.Configure(),
           EnergyResistance.Configure(),
           EnergyResistance.ConfigureImproved(),
           EnergyResistance.ConfigureGreater(),
