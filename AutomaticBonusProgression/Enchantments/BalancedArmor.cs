@@ -3,6 +3,7 @@ using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Designers.Mechanics.Facts;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -22,27 +23,28 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Balanced Armor");
 
+      var balancedEnchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
+
+      var enchantInfo = new ArmorEnchantInfo(
+        DisplayName,
+        balancedEnchant.m_Description.m_Key,
+        "",
+        EnhancementType.Armor,
+        EnhancementCost,
+        ranks: 1,
+        prerequisite: null,
+        ArmorProficiencyGroup.Light,
+        ArmorProficiencyGroup.Medium);
+
       var balancedFeature =
-        EnchantmentTool.AddEnhancementEquivalence(
-          FeatureRefs.ArcaneArmorBalancedFeature, EnhancementType.Armor, EnhancementCost);
+        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
 
-      var enchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
-      var balanced = EnchantmentTool.CreateArmorEnchant(
-        buffName: BuffName,
-        buffGuid: Guids.BalancedArmorBuff,
-        displayName: DisplayName,
-        description: enchant.m_Description.m_Key,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: AbilityName,
-        abilityGuid: Guids.BalancedArmorAbility,
-        featureName: BalancedArmorName,
-        Guids.BalancedArmor,
-        buffComponents: balancedFeature.GetComponent<CMDBonusAgainstManeuvers>());
+      var buffInfo =
+        new BlueprintInfo(BuffName, Guids.BalancedArmorBuff, balancedFeature.GetComponent<CMDBonusAgainstManeuvers>());
+      var abilityInfo = new BlueprintInfo(AbilityName, Guids.BalancedArmorAbility);
+      var featureInfo = new BlueprintInfo(BalancedArmorName, Guids.BalancedArmor);
 
-
-      return balanced;
+      return EnchantmentTool.CreateEnchant(enchantInfo, buffInfo, abilityInfo, featureInfo);
     }
   }
 }

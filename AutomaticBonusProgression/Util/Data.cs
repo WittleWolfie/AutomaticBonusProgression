@@ -2,7 +2,6 @@
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
-using System.Collections.Generic;
 
 namespace AutomaticBonusProgression.Util
 {

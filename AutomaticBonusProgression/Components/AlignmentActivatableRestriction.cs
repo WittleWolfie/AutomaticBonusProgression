@@ -7,13 +7,13 @@ using System;
 namespace AutomaticBonusProgression.Components
 {
   [TypeId("960ff8a4-baff-4ebb-aa2a-3c92a9072912")]
-  internal class ActivatableAlignmentRestriction : ActivatableAbilityRestriction
+  internal class AlignmentActivatableRestriction : ActivatableAbilityRestriction
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ActivatableAlignmentRestriction));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AlignmentActivatableRestriction));
 
     private readonly AlignmentComponent Alignment;
 
-    internal ActivatableAlignmentRestriction(AlignmentComponent alignment)
+    internal AlignmentActivatableRestriction(AlignmentComponent alignment)
     {
       Alignment = alignment;
     }
@@ -26,7 +26,7 @@ namespace AutomaticBonusProgression.Components
       }
       catch (Exception e)
       {
-        Logger.LogException("ActivatableAlignmentRestriction.IsAvailable", e);
+        Logger.LogException("AlignmentActivatableRestriction.IsAvailable", e);
       }
       return false;
     }

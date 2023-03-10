@@ -50,7 +50,7 @@ namespace AutomaticBonusProgression.Enchantments
         enhancementCost: EnhancementCost,
         abilityName: AbilityName,
         abilityGuid: Guids.ChampionAbility,
-        new ActivatableAlignmentRestriction(AlignmentComponent.Good));
+        new AlignmentActivatableRestriction(AlignmentComponent.Good));
 
       var feature = EnchantmentTool.CreateEnchantFeature(
         displayName: DisplayName,

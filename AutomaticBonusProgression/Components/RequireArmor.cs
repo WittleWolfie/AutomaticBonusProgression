@@ -6,19 +6,18 @@ using Kingmaker.Items.Slots;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic.Buffs.Components;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace AutomaticBonusProgression.Components
 {
   [TypeId("4b835824-d53d-470b-8e7b-a8acb450005a")]
-  internal class RequireArmorType : UnitBuffComponentDelegate, IUnitEquipmentHandler
+  internal class RequireArmor : UnitBuffComponentDelegate, IUnitEquipmentHandler
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UnitBuffComponentDelegate));
 
     private readonly ArmorProficiencyGroup[] AllowedTypes;
 
-    internal RequireArmorType(params ArmorProficiencyGroup[] allowedTypes)
+    internal RequireArmor(params ArmorProficiencyGroup[] allowedTypes)
     {
       AllowedTypes = allowedTypes;
     }
@@ -43,12 +42,12 @@ namespace AutomaticBonusProgression.Components
         if (AllowedTypes.Contains(armor.Armor.ArmorType()))
           return;
 
-        Logger.Verbose(() => $"Armor switched to type {armor.Armor.ArmorType()}, removing {Buff.Name}");
+        Logger.Verbose(() => $"Armor type is {armor.Armor.ArmorType()}, removing {Buff.Name}");
         Buff.Remove();
       }
       catch (Exception e)
       {
-        Logger.LogException("RequireArmorType.HandleEquipmentSlotUpdated", e);
+        Logger.LogException("RequireArmor.HandleEquipmentSlotUpdated", e);
       }
     }
   }

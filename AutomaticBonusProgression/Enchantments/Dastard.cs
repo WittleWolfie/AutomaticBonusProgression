@@ -55,7 +55,7 @@ namespace AutomaticBonusProgression.Enchantments
         enhancementCost: EnhancementCost,
         abilityName: AbilityName,
         abilityGuid: Guids.DastardAbility,
-        new ActivatableAlignmentRestriction(AlignmentComponent.Evil));
+        new AlignmentActivatableRestriction(AlignmentComponent.Evil));
 
       var feature = EnchantmentTool.CreateEnchantFeature(
         displayName: DisplayName,

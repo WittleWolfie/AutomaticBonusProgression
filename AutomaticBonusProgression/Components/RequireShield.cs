@@ -1,10 +1,13 @@
 ﻿using AutomaticBonusProgression.Util;
+using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Items;
 using Kingmaker.Items.Slots;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic.Buffs.Components;
+using Kingmaker.Utility;
 using System;
+using System.Linq;
 
 namespace AutomaticBonusProgression.Components
 {
@@ -13,6 +16,13 @@ namespace AutomaticBonusProgression.Components
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UnitBuffComponentDelegate));
 
+    private readonly ArmorProficiencyGroup[] AllowedTypes;
+
+    internal RequireShield(params ArmorProficiencyGroup[] allowedTypes)
+    {
+      AllowedTypes = allowedTypes;
+    }
+
     public void HandleEquipmentSlotUpdated(ItemSlot slot, ItemEntity previousItem)
     {
       try
@@ -20,10 +30,17 @@ namespace AutomaticBonusProgression.Components
         if (slot.Owner != Owner)
           return;
 
-        if (Owner.Body.SecondaryHand.HasShield)
+        if (!Owner.Body.SecondaryHand.HasShield)
+        {
+          Logger.Verbose(() => $"No shield equipped, removing {Buff.Name}");
+          return;
+        }
+
+        var shield = Owner.Body.SecondaryHand.Shield.ArmorComponent;
+        if (AllowedTypes.Contains(shield.ArmorType()))
           return;
 
-        Logger.Verbose(() => $"Shield removed, removing {Buff.Name}");
+        Logger.Verbose(() => $"Shield type is {shield.ArmorType()}, removing {Buff.Name}");
         Buff.Remove();
       }
       catch (Exception e)
