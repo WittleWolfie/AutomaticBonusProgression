@@ -1,11 +1,11 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Alignments;
 
@@ -34,11 +34,21 @@ namespace AutomaticBonusProgression.Enchantments
       var sinfulAbsolution = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.SinfulAbsolutionBuff);
       var smiteGoodMod = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.SmiteGoodBuff);
       var challenge = BuffRefs.CavalierChallengeBuffTarget.Cast<BlueprintBuffReference>().Reference;
+
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          Description,
+          "",
+          EnhancementType.Armor,
+          EnhancementCost,
+          ranks: 1);
+
       var buff = BuffConfigurator.New(BuffName, Guids.DastardBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, EnhancementCost))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent(BonusAgainstTarget.AC(smiteGood, 2, ModifierDescriptor.Profane))
         .AddComponent(BonusAgainstTarget.AC(smiteGoodAlt, 2, ModifierDescriptor.Profane))
         .AddComponent(BonusAgainstTarget.AC(sinfulAbsolution, 2, ModifierDescriptor.Profane))
@@ -46,28 +56,15 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(BonusAgainstTarget.AC(challenge, 2, ModifierDescriptor.Profane))
         .Configure();
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
-        buff: buff,
-        displayName: DisplayName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: AbilityName,
-        abilityGuid: Guids.DastardAbility,
-        new AlignmentActivatableRestriction(AlignmentComponent.Evil));
+      var abilityInfo =
+        new BlueprintInfo(
+          AbilityName, Guids.DastardAbility, new AlignmentActivatableRestriction(AlignmentComponent.Evil));
+      var featureInfo =
+        new BlueprintInfo(
+          DastardName, Guids.Dastard, new PrerequisiteAlignment() { Alignment = AlignmentMaskType.Evil });
 
-      var feature = EnchantmentTool.CreateEnchantFeature(
-        displayName: DisplayName,
-        description: Description,
-        featureName: DastardName,
-        featureGuid: Guids.Dastard,
-        featureRanks: 1,
-        prerequisiteFeature: "",
-        prerequisiteRanks: 1,
-        ability);
-
-      return FeatureConfigurator.For(feature).AddPrerequisiteAlignment(AlignmentMaskType.Evil).Configure();
+      var ability = EnchantmentTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
     }
   }
 }
