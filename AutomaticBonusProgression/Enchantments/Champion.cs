@@ -1,10 +1,10 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Alignments;
 
@@ -31,38 +31,35 @@ namespace AutomaticBonusProgression.Enchantments
       var smiteEvil = BuffRefs.SmiteEvilBuff.Cast<BlueprintBuffReference>().Reference;
       var smiteEvilAura = BuffRefs.AuraOfJusticeSmiteEvilBuff.Cast<BlueprintBuffReference>().Reference;
       var challenge = BuffRefs.CavalierChallengeBuffTarget.Cast<BlueprintBuffReference>().Reference;
+
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          Description,
+          "",
+          EnhancementType.Armor,
+          EnhancementCost,
+          ranks: 1);
+
       var buff = BuffConfigurator.New(BuffName, Guids.ChampionBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, EnhancementCost))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent(BonusAgainstTarget.AC(smiteEvil, 2, ModifierDescriptor.Sacred))
         .AddComponent(BonusAgainstTarget.AC(smiteEvilAura, 2, ModifierDescriptor.Sacred))
         .AddComponent(BonusAgainstTarget.AC(challenge, 2, ModifierDescriptor.Sacred))
         .Configure();
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
-        buff: buff,
-        displayName: DisplayName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: AbilityName,
-        abilityGuid: Guids.ChampionAbility,
-        new AlignmentActivatableRestriction(AlignmentComponent.Good));
+      var abilityInfo =
+        new BlueprintInfo(
+          AbilityName, Guids.ChampionAbility, new AlignmentActivatableRestriction(AlignmentComponent.Good));
+      var featureInfo =
+        new BlueprintInfo(
+          ChampionName, Guids.Champion, new PrerequisiteAlignment() { Alignment = AlignmentMaskType.Good });
 
-      var feature = EnchantmentTool.CreateEnchantFeature(
-        displayName: DisplayName,
-        description: Description,
-        featureName: ChampionName,
-        featureGuid: Guids.Champion,
-        featureRanks: 1,
-        prerequisiteFeature: "",
-        prerequisiteRanks: 1,
-        ability);
-
-      return FeatureConfigurator.For(feature).AddPrerequisiteAlignment(AlignmentMaskType.Good).Configure();
+      var ability = EnchantmentTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
     }
   }
 }

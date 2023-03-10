@@ -3,6 +3,7 @@ using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
@@ -10,6 +11,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.Items.Ecnchantments;
+using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using System.Collections.Generic;
@@ -172,6 +174,9 @@ namespace AutomaticBonusProgression.Enchantments
         else
           featureConfigurator.AddPrerequisiteFeature(enchant.Prerequisite.Feature);
       }
+
+      foreach (var component in feature.Components)
+        featureConfigurator.AddComponent(component);
 
       return featureConfigurator.Configure();
     }
