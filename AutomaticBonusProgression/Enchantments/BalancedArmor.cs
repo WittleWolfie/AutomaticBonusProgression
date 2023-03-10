@@ -29,7 +29,6 @@ namespace AutomaticBonusProgression.Enchantments
         DisplayName,
         balancedEnchant.m_Description.m_Key,
         "",
-        EnhancementType.Armor,
         EnhancementCost,
         ranks: 1,
         ArmorProficiencyGroup.Light,

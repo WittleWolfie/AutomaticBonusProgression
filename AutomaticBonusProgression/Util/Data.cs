@@ -59,12 +59,11 @@ namespace AutomaticBonusProgression.Util
         string displayName,
         string description,
         string icon,
-        EnhancementType type,
         int cost,
         int ranks,
         PrerequisiteInfo prerequisite,
         params ArmorProficiencyGroup[] allowedTypes) :
-      base(displayName, description, icon, type, cost, ranks, prerequisite)
+      base(displayName, description, icon, EnhancementType.Armor, cost, ranks, prerequisite)
     {
       AllowedTypes = allowedTypes;
     }
@@ -73,14 +72,11 @@ namespace AutomaticBonusProgression.Util
         string displayName,
         string description,
         string icon,
-        EnhancementType type,
         int cost,
         int ranks,
         params ArmorProficiencyGroup[] allowedTypes) :
-      base(displayName, description, icon, type, cost, ranks, prerequisite: null)
-    {
-      AllowedTypes = allowedTypes;
-    }
+      this(displayName, description, icon, cost, ranks, prerequisite: null, allowedTypes)
+    { }
   }
 
   internal class PrerequisiteInfo

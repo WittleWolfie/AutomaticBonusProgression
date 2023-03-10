@@ -40,7 +40,6 @@ namespace AutomaticBonusProgression.Enchantments
           DisplayName,
           Description,
           "",
-          EnhancementType.Armor,
           EnhancementCost,
           ranks: 1);
 

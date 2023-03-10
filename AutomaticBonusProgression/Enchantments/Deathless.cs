@@ -27,35 +27,29 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Deathless");
 
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+
       var buff = BuffConfigurator.New(BuffName, Guids.DeathlessBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, EnhancementCost))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent<DeathlessComponent>()
         .AddDamageResistanceEnergy(type: DamageEnergyType.NegativeEnergy, value: 10)
         .AddDamageResistanceEnergy(type: DamageEnergyType.PositiveEnergy, value: 10)
         .Configure();
 
-      var ability = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: buff,
-        displayName: DisplayName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: AbilityName,
-        abilityGuid: Guids.DeathlessAbility);
+      var abilityInfo = new BlueprintInfo(AbilityName, Guids.DeathlessAbility);
+      var featureInfo = new BlueprintInfo(DeathlessName, Guids.Deathless);
 
-      return EnchantmentTool.CreateArmorEnchantFeature(
-        displayName: DisplayName,
-        description: Description,
-        featureName: DeathlessName,
-        featureGuid: Guids.Deathless,
-        featureRanks: 1,
-        prerequisiteFeature: "",
-        prerequisiteRanks: 1,
-        ability);
+      var ability = EnchantmentTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
     }
 
     [TypeId("23ca83d5-128e-4937-9fd5-646a86a3ed0d")]
