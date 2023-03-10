@@ -6,6 +6,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Enums;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -36,43 +37,40 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(icon)
         .Configure();
 
+      var enchantInfo = new ArmorEnchantInfo(
+        DisplayName,
+        Description,
+        "",
+        EnhancementType.Armor,
+        EnhancementCost,
+        ranks: 1,
+        ArmorProficiencyGroup.Medium,
+        ArmorProficiencyGroup.Heavy,
+        ArmorProficiencyGroup.LightShield,
+        ArmorProficiencyGroup.HeavyShield,
+        ArmorProficiencyGroup.TowerShield);
+
       var buff = BuffConfigurator.New(BuffName, Guids.BolsteringBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, EnhancementCost))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddInitiatorAttackWithWeaponTrigger(
           onlyHit: true,
           action: ActionsBuilder.New().ApplyBuff(targetBuff, ContextDuration.Fixed(1)))
         .AddComponent(BonusAgainstTarget.Saves(targetBuff.ToReference<BlueprintBuffReference>(), 2, ModifierDescriptor.Competence))
         .Configure();
 
-      var ability = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: buff,
-        displayName: DisplayName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: AbilityName,
-        abilityGuid: Guids.BolsteringAbility);
-      var shieldAbility = EnchantmentTool.CreateEnchantShieldVariant(
-        ability,
-        buffName: BuffShieldName,
-        buffGuid: Guids.BolsteringShieldBuff,
-        abilityName: AbilityShieldName,
-        abilityGuid: Guids.BolsteringShieldAbility);
+      var abilityInfo = new BlueprintInfo(AbilityName, Guids.BolsteringAbility);
+      var shieldBuffInfo = new BlueprintInfo(BuffShieldName, Guids.BolsteringShieldBuff);
+      var shieldAbilityInfo = new BlueprintInfo(AbilityShieldName, Guids.BolsteringShieldAbility);
 
-      return EnchantmentTool.CreateArmorEnchantFeature(
-        displayName: DisplayName,
-        description: Description,
-        featureName: BolsteringName,
-        featureGuid: Guids.Bolstering,
-        featureRanks: 1,
-        prerequisiteFeature: "",
-        prerequisiteRanks: 1,
-        ability,
-        shieldAbility);
+      var ability = EnchantmentTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      var shieldAbility =
+        EnchantmentTool.CreateEnchantShieldVariant(enchantInfo, ability, shieldBuffInfo, shieldAbilityInfo);
+
+      var featureInfo = new BlueprintInfo(BolsteringName, Guids.Bolstering);
+      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, shieldAbility);
     }
   }
 }

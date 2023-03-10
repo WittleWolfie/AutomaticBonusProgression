@@ -2,6 +2,7 @@
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
+using System.Collections.Generic;
 
 namespace AutomaticBonusProgression.Util
 {
@@ -61,9 +62,22 @@ namespace AutomaticBonusProgression.Util
         EnhancementType type,
         int cost,
         int ranks,
-        PrerequisiteInfo prerequisite = null,
+        PrerequisiteInfo prerequisite,
         params ArmorProficiencyGroup[] allowedTypes) :
       base(displayName, description, icon, type, cost, ranks, prerequisite)
+    {
+      AllowedTypes = allowedTypes;
+    }
+
+    public ArmorEnchantInfo(
+        string displayName,
+        string description,
+        string icon,
+        EnhancementType type,
+        int cost,
+        int ranks,
+        params ArmorProficiencyGroup[] allowedTypes) :
+      base(displayName, description, icon, type, cost, ranks, prerequisite: null)
     {
       AllowedTypes = allowedTypes;
     }

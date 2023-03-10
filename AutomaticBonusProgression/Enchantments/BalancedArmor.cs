@@ -32,7 +32,6 @@ namespace AutomaticBonusProgression.Enchantments
         EnhancementType.Armor,
         EnhancementCost,
         ranks: 1,
-        prerequisite: null,
         ArmorProficiencyGroup.Light,
         ArmorProficiencyGroup.Medium);
 
