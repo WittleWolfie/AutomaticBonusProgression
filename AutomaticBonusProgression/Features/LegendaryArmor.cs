@@ -22,7 +22,7 @@ namespace AutomaticBonusProgression.Features
     // - Fortification [DONE] 
     // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19]
     // - Invulnerability [DONE] [Change: Made it 10/magic instead of 5/magic]
-    // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana]
+    // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana] [Change: Bonus Cost]
     //
     // Maybe Add
     // - Bolstering [Done]

@@ -131,7 +131,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistAcidFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.AcidResistance10Feature, EnhancementType.Armor, EnhancementCost);
-      var resistAcid = EnchantmentTool.CreateEnchantAbility(
+      var resistAcid = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: AcidBuffName,
         buffGuid: Guids.AcidResist10Buff,
         displayName: AcidDisplayName,
@@ -152,7 +152,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistColdFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.ColdResistance10Feature, EnhancementType.Armor, EnhancementCost);
-      var resistCold = EnchantmentTool.CreateEnchantAbility(
+      var resistCold = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: ColdBuffName,
         buffGuid: Guids.ColdResist10Buff,
         displayName: ColdDisplayName,
@@ -173,7 +173,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistElectricityFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.ElectricityResistance10Feature, EnhancementType.Armor, EnhancementCost);
-      var resistElectricity = EnchantmentTool.CreateEnchantAbility(
+      var resistElectricity = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: ElectricityBuffName,
         buffGuid: Guids.ElectricityResist10Buff,
         displayName: ElectricityDisplayName,
@@ -194,7 +194,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistFireFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.FireResistance10Feature, EnhancementType.Armor, EnhancementCost);
-      var resistFire = EnchantmentTool.CreateEnchantAbility(
+      var resistFire = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: FireBuffName,
         buffGuid: Guids.FireResist10Buff,
         displayName: FireDisplayName,
@@ -215,7 +215,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistSonicFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.SonicResistance10Feature, EnhancementType.Armor, EnhancementCost);
-      var resistSonic = EnchantmentTool.CreateEnchantAbility(
+      var resistSonic = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: SonicBuffName,
         buffGuid: Guids.SonicResist10Buff,
         displayName: SonicDisplayName,
@@ -233,7 +233,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: SonicShieldAbilityName,
         abilityGuid: Guids.SonicResist10ShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName,
         description: Description,
         //icon: ??,
@@ -304,7 +304,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistAcidFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.AcidResistance20Feature, EnhancementType.Armor, ImprovedEnhancementCost);
-      var resistAcid = EnchantmentTool.CreateEnchantAbility(
+      var resistAcid = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: AcidImprovedBuffName,
         buffGuid: Guids.AcidResist20Buff,
         displayName: AcidImprovedDisplayName,
@@ -325,7 +325,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistColdFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.ColdResistance20Feature, EnhancementType.Armor, ImprovedEnhancementCost);
-      var resistCold = EnchantmentTool.CreateEnchantAbility(
+      var resistCold = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: ColdImprovedBuffName,
         buffGuid: Guids.ColdResist20Buff,
         displayName: ColdImprovedDisplayName,
@@ -346,7 +346,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistElectricityFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.ElectricityResistance20Feature, EnhancementType.Armor, ImprovedEnhancementCost);
-      var resistElectricity = EnchantmentTool.CreateEnchantAbility(
+      var resistElectricity = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: ElectricityImprovedBuffName,
         buffGuid: Guids.ElectricityResist20Buff,
         displayName: ElectricityImprovedDisplayName,
@@ -367,7 +367,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistFireFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.FireResistance20Feature, EnhancementType.Armor, ImprovedEnhancementCost);
-      var resistFire = EnchantmentTool.CreateEnchantAbility(
+      var resistFire = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: FireImprovedBuffName,
         buffGuid: Guids.FireResist20Buff,
         displayName: FireImprovedDisplayName,
@@ -387,7 +387,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       // Sonic doesn't have a +20 enhcant for some reason
       var resistSonicFeature = FeatureRefs.SonicResistance20.Reference.Get();
-      var resistSonic = EnchantmentTool.CreateEnchantAbility(
+      var resistSonic = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: SonicImprovedBuffName,
         buffGuid: Guids.SonicResist20Buff,
         displayName: SonicImprovedDisplayName,
@@ -405,7 +405,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: SonicImprovedShieldAbilityName,
         abilityGuid: Guids.SonicResist20ShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: ImprovedDisplayName,
         description: ImprovedDescription,
         //icon: ??,
@@ -476,7 +476,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistAcidFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.AcidResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
-      var resistAcid = EnchantmentTool.CreateEnchantAbility(
+      var resistAcid = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: AcidGreaterBuffName,
         buffGuid: Guids.AcidResist30Buff,
         displayName: AcidGreaterDisplayName,
@@ -497,7 +497,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistColdFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.ColdResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
-      var resistCold = EnchantmentTool.CreateEnchantAbility(
+      var resistCold = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: ColdGreaterBuffName,
         buffGuid: Guids.ColdResist30Buff,
         displayName: ColdGreaterDisplayName,
@@ -518,7 +518,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistElectricityFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.ElectricityResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
-      var resistElectricity = EnchantmentTool.CreateEnchantAbility(
+      var resistElectricity = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: ElectricityGreaterBuffName,
         buffGuid: Guids.ElectricityResist30Buff,
         displayName: ElectricityGreaterDisplayName,
@@ -539,7 +539,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistFireFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.FireResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
-      var resistFire = EnchantmentTool.CreateEnchantAbility(
+      var resistFire = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: FireGreaterBuffName,
         buffGuid: Guids.FireResist30Buff,
         displayName: FireGreaterDisplayName,
@@ -560,7 +560,7 @@ namespace AutomaticBonusProgression.Enchantments
       var resistSonicFeature =
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.SonicResistance30Feature, EnhancementType.Armor, GreaterEnhancementCost);
-      var resistSonic = EnchantmentTool.CreateEnchantAbility(
+      var resistSonic = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: SonicGreaterBuffName,
         buffGuid: Guids.SonicResist30Buff,
         displayName: SonicGreaterDisplayName,
@@ -578,7 +578,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: SonicGreaterShieldAbilityName,
         abilityGuid: Guids.SonicResist30ShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: GreaterDisplayName,
         description: GreaterDescription,
         //icon: ??,

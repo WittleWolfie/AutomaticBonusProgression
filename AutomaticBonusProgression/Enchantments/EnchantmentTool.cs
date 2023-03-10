@@ -1,14 +1,18 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using System.Collections.Generic;
 using System.Linq;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
@@ -32,10 +36,121 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
     }
 
+    // TODO: Finish this refactor cause damn I need it.
+
+    internal static BlueprintFeature CreateEnchant(
+      ArmorEnchantInfo enchant, BlueprintInfo buff, BlueprintInfo ability, BlueprintInfo feature)
+    {
+      var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        .AddComponent(new EnhancementEquivalenceComponent(enchant));
+
+      if (enchant.AllowedTypes.Any())
+        buffConfigurator.AddComponent(new RequireArmorType(enchant.AllowedTypes));
+
+      foreach (var component in buff.Components)
+        buffConfigurator.AddComponent(component);
+
+      return CreateEnchant(enchant, buffConfigurator.Configure(), ability, feature);
+    }
+
+    internal static BlueprintFeature CreateEnchant(
+      ArmorEnchantInfo enchant, BlueprintBuff buff, BlueprintInfo ability, BlueprintInfo feature)
+    {
+      return CreateEnchantFeature(enchant, feature, CreateEnchantAbility(enchant, buff, ability));
+    }
+
+    internal static BlueprintActivatableAbility CreateEnchantAbility(
+      ArmorEnchantInfo enchant, BlueprintBuff buff, BlueprintInfo ability)
+    {
+      var abilityConfigurator = ActivatableAbilityConfigurator.New(ability.Name, ability.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        .SetBuff(buff)
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddComponent(new EnhancementEquivalentRestriction(enchant))
+        .AddComponent<OutOfCombatRestriction>()
+        .SetHiddenInUI();
+
+      if (enchant.AllowedTypes.Any())
+        abilityConfigurator.AddComponent(new ArmorTypeRestriction(enchant.AllowedTypes));
+
+      foreach (var component in ability.Components)
+        abilityConfigurator.AddComponent(component);
+
+      return abilityConfigurator.Configure();
+    }
+
+    internal static BlueprintFeature CreateEnchantFeature(
+      ArmorEnchantInfo enchant,
+      BlueprintInfo feature,
+      params BlueprintActivatableAbility[] abilities)
+    {
+      var featureConfigurator = FeatureConfigurator.New(feature.Name, feature.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        ;
+
+      // Unarmored works as Light Armor and also everyone can use Light so ignore that.
+      if (enchant.AllowedTypes.Any() && !enchant.AllowedTypes.Contains(ArmorProficiencyGroup.Light))
+      {
+        List<Blueprint<BlueprintFeatureReference>> proficiencies = new();
+        foreach (var type in enchant.AllowedTypes)
+        {
+          switch (type)
+          {
+            case ArmorProficiencyGroup.Medium:
+              proficiencies.Add(FeatureRefs.MediumArmorProficiency.ToString());
+              break;
+            case ArmorProficiencyGroup.Heavy:
+              proficiencies.Add(FeatureRefs.HeavyArmorProficiency.ToString());
+              break;
+            case ArmorProficiencyGroup.Buckler:
+              proficiencies.Add(FeatureRefs.BucklerProficiency.ToString());
+              break;
+            case ArmorProficiencyGroup.LightShield:
+            case ArmorProficiencyGroup.HeavyShield:
+              proficiencies.Add(FeatureRefs.ShieldsProficiency.ToString());
+              break;
+            case ArmorProficiencyGroup.TowerShield:
+              proficiencies.Add(FeatureRefs.TowerShieldProficiency.ToString());
+              break;
+          }
+        }
+        featureConfigurator.AddPrerequisiteFeaturesFromList(proficiencies, amount: 1);
+      }
+
+      if (enchant.Ranks > 1)
+      {
+        featureConfigurator.SetRanks(enchant.Ranks)
+          .AddRecommendationHasFeature(feature.Guid)
+          .AddComponent(new AddFactsOnRank(rank: enchant.Ranks, abilities));
+      }
+      else
+        featureConfigurator.AddFacts(abilities.ToList());
+
+      if (enchant.Prerequisite is not null)
+      {
+        if (enchant.Prerequisite.Ranks > 1)
+          featureConfigurator.AddComponent(
+            new PrerequisiteHasFeatureRanks(enchant.Prerequisite.Feature, enchant.Prerequisite.Ranks));
+        else
+          featureConfigurator.AddPrerequisiteFeature(enchant.Prerequisite.Feature);
+      }
+
+      return featureConfigurator.Configure();
+    }
+
     /// <summary>
     /// Creates the buff and activatable ability.
     /// </summary>
-    internal static BlueprintActivatableAbility CreateEnchantAbility(
+    internal static BlueprintActivatableAbility CreateArmorEnchantAbility(
       string buffName,
       string buffGuid,
       string displayName,
@@ -45,6 +160,7 @@ namespace AutomaticBonusProgression.Enchantments
       int enhancementCost,
       string abilityName,
       string abilityGuid,
+      List<ArmorProficiencyGroup> armorTypes = null,
       params BlueprintComponent[] buffComponents)
     {
       var buffConfigurator = BuffConfigurator.New(buffName, buffGuid)
@@ -53,11 +169,14 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(icon)
         .AddComponent(new EnhancementEquivalenceComponent(type, enhancementCost));
 
+      if (armorTypes is not null)
+        buffConfigurator.AddComponent(new RequireArmorType(armorTypes));
+
       foreach (var component in buffComponents)
         buffConfigurator.AddComponent(component);
 
       var buff = buffConfigurator.Configure();
-      return CreateEnchantAbility(
+      return CreateArmorEnchantAbility(
         buff,
         displayName: displayName,
         description: description,
@@ -65,7 +184,8 @@ namespace AutomaticBonusProgression.Enchantments
         type: type,
         enhancementCost: enhancementCost,
         abilityName: abilityName,
-        abilityGuid: abilityGuid);
+        abilityGuid: abilityGuid,
+        armorTypes: armorTypes);
     }
 
     /// <summary>
@@ -80,12 +200,13 @@ namespace AutomaticBonusProgression.Enchantments
     {
       var enhancementCost = armorEnchant.GetComponent<EnhancementEquivalentRestriction>().Enhancement;
       var buff = BuffConfigurator.New(buffName, buffGuid)
-        .CopyFrom(armorEnchant.Buff, c => c is not EnhancementEquivalenceComponent)
+        .CopyFrom(armorEnchant.Buff, c => c is not EnhancementEquivalenceComponent && c is not RequireArmorType)
         .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Shield, enhancementCost))
+        .AddComponent<RequireShield>()
         .Configure();
 
       return ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
-        .CopyFrom(armorEnchant, c => c is not EnhancementEquivalentRestriction)
+        .CopyFrom(armorEnchant, c => c is not EnhancementEquivalentRestriction && c is not ArmorTypeRestriction)
         .AddComponent(new EnhancementEquivalentRestriction(EnhancementType.Shield, enhancementCost))
         .AddComponent<ShieldEquippedRestriction>()
         .SetBuff(buff)
@@ -95,7 +216,7 @@ namespace AutomaticBonusProgression.Enchantments
     /// <summary>
     /// Creates the activatable ability which applies the specified buff.
     /// </summary>
-    internal static BlueprintActivatableAbility CreateEnchantAbility(
+    internal static BlueprintActivatableAbility CreateArmorEnchantAbility(
       BlueprintBuff buff,
       string displayName,
       string description,
@@ -104,6 +225,7 @@ namespace AutomaticBonusProgression.Enchantments
       int enhancementCost,
       string abilityName,
       string abilityGuid,
+      List<ArmorProficiencyGroup> armorTypes = null,
       params BlueprintComponent[] components)
     {
       var ability = ActivatableAbilityConfigurator.New(abilityName, abilityGuid)
@@ -118,6 +240,9 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent<OutOfCombatRestriction>()
         .SetHiddenInUI();
 
+      if (armorTypes != null)
+        ability.AddComponent(new ArmorTypeRestriction(armorTypes));
+
       foreach (var component in components)
         ability.AddComponent(component);
 
@@ -127,7 +252,7 @@ namespace AutomaticBonusProgression.Enchantments
     /// <summary>
     /// Creates the enchant feature and ability using the specified buff.
     /// </summary>
-    internal static BlueprintFeature CreateEnchant(
+    internal static BlueprintFeature CreateArmorEnchant(
       BlueprintBuff buff,
       string displayName,
       string description,
@@ -140,9 +265,10 @@ namespace AutomaticBonusProgression.Enchantments
       string featureGuid,
       int featureRanks,
       string prerequisiteFeature = "",
-      int prerequisiteRanks = 1)
+      int prerequisiteRanks = 1,
+      List<ArmorProficiencyGroup> armorTypes = null)
     {
-      var ability = CreateEnchantAbility(
+      var ability = CreateArmorEnchantAbility(
         buff,
         displayName: displayName,
         description: description,
@@ -150,9 +276,10 @@ namespace AutomaticBonusProgression.Enchantments
         type: type,
         enhancementCost: enhancementCost,
         abilityName: abilityName,
-        abilityGuid: abilityGuid);
+        abilityGuid: abilityGuid,
+        armorTypes: armorTypes);
 
-      return CreateEnchantFeature(
+      return CreateArmorEnchantFeature(
         displayName: displayName,
         description: description,
         // icon: icon,
@@ -161,13 +288,14 @@ namespace AutomaticBonusProgression.Enchantments
         featureRanks: featureRanks,
         prerequisiteFeature: prerequisiteFeature,
         prerequisiteRanks: prerequisiteRanks,
-        abilities: ability);
+        abilities: ability,
+        armorTypes: armorTypes);
     }
 
     /// <summary>
     /// Creates the enchant feature which grants the specified abilities.
     /// </summary>
-    internal static BlueprintFeature CreateEnchantFeature(
+    internal static BlueprintFeature CreateArmorEnchantFeature(
       string displayName,
       string description,
       //string icon,
@@ -176,6 +304,7 @@ namespace AutomaticBonusProgression.Enchantments
       int featureRanks,
       string prerequisiteFeature = "",
       int prerequisiteRanks = 1,
+      List<ArmorProficiencyGroup> armorTypes = null,
       params Blueprint<BlueprintUnitFactReference>[] abilities)
     {
       var configurator = FeatureConfigurator.New(featureName, featureGuid)
@@ -184,6 +313,35 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(description)
         //.SetIcon(icon)
         ;
+
+      // Unarmored works as Light Armor and also everyone can use Light so ignore that.
+      if (armorTypes is not null && !armorTypes.Contains(ArmorProficiencyGroup.Light))
+      {
+        List<Blueprint<BlueprintFeatureReference>> proficiencies = new();
+        foreach (var type in armorTypes)
+        {
+          switch (type)
+          {
+            case ArmorProficiencyGroup.Medium:
+              proficiencies.Add(FeatureRefs.MediumArmorProficiency.ToString());
+              break;
+            case ArmorProficiencyGroup.Heavy:
+              proficiencies.Add(FeatureRefs.HeavyArmorProficiency.ToString());
+              break;
+            case ArmorProficiencyGroup.Buckler:
+              proficiencies.Add(FeatureRefs.BucklerProficiency.ToString());
+              break;
+            case ArmorProficiencyGroup.LightShield:
+            case ArmorProficiencyGroup.HeavyShield:
+              proficiencies.Add(FeatureRefs.ShieldsProficiency.ToString());
+              break;
+            case ArmorProficiencyGroup.TowerShield:
+              proficiencies.Add(FeatureRefs.TowerShieldProficiency.ToString());
+              break;
+          }
+        }
+        configurator.AddPrerequisiteFeaturesFromList(proficiencies, amount: 1);
+      }
 
       if (featureRanks > 1)
       {
@@ -206,9 +364,9 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     /// <summary>
-    /// Creates the enchant feature, buff, and ability.
+    /// Creates the armor enchant feature, buff, and ability.
     /// </summary>
-    internal static BlueprintFeature CreateEnchant(
+    internal static BlueprintFeature CreateArmorEnchant(
       string buffName,
       string buffGuid,
       string displayName,
@@ -223,6 +381,7 @@ namespace AutomaticBonusProgression.Enchantments
       int featureRanks = 1,
       string prerequisiteFeature = "",
       int prerequisiteRanks = 1,
+      List<ArmorProficiencyGroup> armorTypes = null,
       params BlueprintComponent[] buffComponents)
     {
       var buffConfigurator = BuffConfigurator.New(buffName, buffGuid)
@@ -231,11 +390,14 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(icon)
         .AddComponent(new EnhancementEquivalenceComponent(type, enhancementCost));
 
+      if (armorTypes is not null)
+        buffConfigurator.AddComponent(new RequireArmorType(armorTypes));
+
       foreach (var component in buffComponents)
         buffConfigurator.AddComponent(component);
 
       var buff = buffConfigurator.Configure();
-      return CreateEnchant(
+      return CreateArmorEnchant(
         buff,
         displayName,
         description,

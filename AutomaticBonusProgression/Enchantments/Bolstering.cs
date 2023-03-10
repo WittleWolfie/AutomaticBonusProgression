@@ -47,7 +47,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(BonusAgainstTarget.Saves(targetBuff.ToReference<BlueprintBuffReference>(), 2, ModifierDescriptor.Competence))
         .Configure();
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buff: buff,
         displayName: DisplayName,
         description: Description,
@@ -63,7 +63,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: AbilityShieldName,
         abilityGuid: Guids.BolsteringShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName,
         description: Description,
         featureName: BolsteringName,

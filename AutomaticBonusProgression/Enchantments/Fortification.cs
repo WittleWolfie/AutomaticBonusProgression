@@ -29,7 +29,7 @@ namespace AutomaticBonusProgression.Enchantments
           FeatureRefs.Fortification25Feature, EnhancementType.Armor, EnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.Fortification25Enchant.Reference.Get();
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: BuffName,
         buffGuid: Guids.FortificationBuff,
         displayName: DisplayName,
@@ -47,7 +47,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: AbilityShieldName,
         abilityGuid: Guids.FortificationShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName,
         description: enchant.m_Description.m_Key,
         //icon: ??,
@@ -78,7 +78,7 @@ namespace AutomaticBonusProgression.Enchantments
           FeatureRefs.Fortification50Feature, EnhancementType.Armor, ImprovedEnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.Fortification50Enchant.Reference.Get();
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: ImprovedBuffName,
         buffGuid: Guids.ImprovedFortificationBuff,
         displayName: ImprovedDisplayName,
@@ -96,7 +96,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: ImprovedAbilityShieldName,
         abilityGuid: Guids.ImprovedFortificationShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName,
         description: enchant.m_Description.m_Key,
         //icon: ??,
@@ -128,7 +128,7 @@ namespace AutomaticBonusProgression.Enchantments
           FeatureRefs.Fortification75Feature, EnhancementType.Armor, GreaterEnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.Fortification75Enchant.Reference.Get();
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: GreaterBuffName,
         buffGuid: Guids.GreaterFortificationBuff,
         displayName: GreaterDisplayName,
@@ -146,7 +146,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: GreaterAbilityShieldName,
         abilityGuid: Guids.GreaterFortificationShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName,
         description: enchant.m_Description.m_Key,
         //icon: ??,

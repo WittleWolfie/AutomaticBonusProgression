@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddDamageResistanceEnergy(type: DamageEnergyType.PositiveEnergy, value: 10)
         .Configure();
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buff: buff,
         displayName: DisplayName,
         description: Description,
@@ -47,7 +47,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: AbilityName,
         abilityGuid: Guids.DeathlessAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName,
         description: Description,
         featureName: DeathlessName,

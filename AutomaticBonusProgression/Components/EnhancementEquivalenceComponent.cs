@@ -32,10 +32,10 @@ namespace AutomaticBonusProgression.Components
     internal readonly EnhancementType Type;
     internal readonly int Enhancement;
 
-    internal EnhancementEquivalenceComponent(EnhancementType type, int enhancement)
+    internal EnhancementEquivalenceComponent(EnchantInfo enchant)
     {
-      Type = type;
-      Enhancement = enhancement;
+      Type = enchant.Type;
+      Enhancement = enchant.Cost;
     }
 
     public override void OnActivate()

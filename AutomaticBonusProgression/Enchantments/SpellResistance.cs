@@ -31,7 +31,7 @@ namespace AutomaticBonusProgression.Enchantments
         EnchantmentTool.AddEnhancementEquivalence(
           FeatureRefs.SpellResistance13Feature, EnhancementType.Armor, EnhancementCost13);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: Buff13Name,
         buffGuid: Guids.SpellResistance13Buff,
         displayName: DisplayName13,
@@ -49,7 +49,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: Ability13ShieldName,
         abilityGuid: Guids.SpellResistance13ShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName13,
         description: Description13,
         //icon: ??,
@@ -82,7 +82,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       UpdateSpellResistance(FeatureRefs.SpellResistance15Feature, 16);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: Buff16Name,
         buffGuid: Guids.SpellResistance16Buff,
         displayName: DisplayName16,
@@ -100,7 +100,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: Ability16ShieldName,
         abilityGuid: Guids.SpellResistance16ShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName16,
         description: Description16,
         //icon: ??,
@@ -133,7 +133,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       UpdateSpellResistance(FeatureRefs.SpellResistance17Feature, 19);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: Buff19Name,
         buffGuid: Guids.SpellResistance19Buff,
         displayName: DisplayName19,
@@ -151,7 +151,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: Ability19ShieldName,
         abilityGuid: Guids.SpellResistance19ShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName19,
         description: Description19,
         //icon: ??,
@@ -184,7 +184,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       UpdateSpellResistance(FeatureRefs.SpellResistance19Feature, 22);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantmentTool.CreateArmorEnchantAbility(
         buffName: Buff22Name,
         buffGuid: Guids.SpellResistance22Buff,
         displayName: DisplayName22,
@@ -202,7 +202,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: Ability22ShieldName,
         abilityGuid: Guids.SpellResistance22ShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName22,
         description: Description22,
         //icon: ??,

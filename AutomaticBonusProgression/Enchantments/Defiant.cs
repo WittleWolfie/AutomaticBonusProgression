@@ -208,7 +208,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddActivationDisable()
         .Configure();
 
-      var aberrations = EnchantmentTool.CreateEnchantAbility(
+      var aberrations = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantAberrationsBuff,
           Guids.DefiantAberrationsBuff,
@@ -228,7 +228,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantAberrationsShieldAbility,
         abilityGuid: Guids.DefiantAberrationsShieldAbility);
 
-      var animals = EnchantmentTool.CreateEnchantAbility(
+      var animals = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantAnimalsBuff,
           Guids.DefiantAnimalsBuff,
@@ -248,7 +248,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantAnimalsShieldAbility,
         abilityGuid: Guids.DefiantAnimalsShieldAbility);
 
-      var constructs = EnchantmentTool.CreateEnchantAbility(
+      var constructs = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantConstructsBuff,
           Guids.DefiantConstructsBuff,
@@ -268,7 +268,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantConstructsShieldAbility,
         abilityGuid: Guids.DefiantConstructsShieldAbility);
 
-      var dragons = EnchantmentTool.CreateEnchantAbility(
+      var dragons = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantDragonsBuff,
           Guids.DefiantDragonsBuff,
@@ -288,7 +288,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantDragonsShieldAbility,
         abilityGuid: Guids.DefiantDragonsShieldAbility);
 
-      var fey = EnchantmentTool.CreateEnchantAbility(
+      var fey = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantFeyBuff,
           Guids.DefiantFeyBuff,
@@ -308,7 +308,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantFeyShieldAbility,
         abilityGuid: Guids.DefiantFeyShieldAbility);
 
-      var humanoidGiant = EnchantmentTool.CreateEnchantAbility(
+      var humanoidGiant = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantHumanoidGiantBuff,
           Guids.DefiantHumanoidGiantBuff,
@@ -328,7 +328,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantHumanoidGiantShieldAbility,
         abilityGuid: Guids.DefiantHumanoidGiantShieldAbility);
 
-      var humanoidReptilian = EnchantmentTool.CreateEnchantAbility(
+      var humanoidReptilian = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantHumanoidReptilianBuff,
           Guids.DefiantHumanoidReptilianBuff,
@@ -348,7 +348,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantHumanoidReptilianShieldAbility,
         abilityGuid: Guids.DefiantHumanoidReptilianShieldAbility);
 
-      var humanoidMonstrous = EnchantmentTool.CreateEnchantAbility(
+      var humanoidMonstrous = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantHumanoidMonstrousBuff,
           Guids.DefiantHumanoidMonstrousBuff,
@@ -368,7 +368,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantHumanoidMonstrousShieldAbility,
         abilityGuid: Guids.DefiantHumanoidMonstrousShieldAbility);
 
-      var magicalBeasts = EnchantmentTool.CreateEnchantAbility(
+      var magicalBeasts = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantMagicalBeastsBuff,
           Guids.DefiantMagicalBeastsBuff,
@@ -388,7 +388,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantMagicalBeastsShieldAbility,
         abilityGuid: Guids.DefiantMagicalBeastsShieldAbility);
 
-      var outsiderGood = EnchantmentTool.CreateEnchantAbility(
+      var outsiderGood = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantOutsiderGoodBuff,
           Guids.DefiantOutsiderGoodBuff,
@@ -409,7 +409,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantOutsiderGoodShieldAbility,
         abilityGuid: Guids.DefiantOutsiderGoodShieldAbility);
 
-      var outsiderEvil = EnchantmentTool.CreateEnchantAbility(
+      var outsiderEvil = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantOutsiderEvilBuff,
           Guids.DefiantOutsiderEvilBuff,
@@ -430,7 +430,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantOutsiderEvilShieldAbility,
         abilityGuid: Guids.DefiantOutsiderEvilShieldAbility);
 
-      var outsiderLawful = EnchantmentTool.CreateEnchantAbility(
+      var outsiderLawful = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantOutsiderLawfulBuff,
           Guids.DefiantOutsiderLawfulBuff,
@@ -451,7 +451,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantOutsiderLawfulShieldAbility,
         abilityGuid: Guids.DefiantOutsiderLawfulShieldAbility);
 
-      var outsiderChaotic = EnchantmentTool.CreateEnchantAbility(
+      var outsiderChaotic = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantOutsiderChaoticBuff,
           Guids.DefiantOutsiderChaoticBuff,
@@ -472,7 +472,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantOutsiderChaoticShieldAbility,
         abilityGuid: Guids.DefiantOutsiderChaoticShieldAbility);
 
-      var outsiderNeutral = EnchantmentTool.CreateEnchantAbility(
+      var outsiderNeutral = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantOutsiderNeutralBuff,
           Guids.DefiantOutsiderNeutralBuff,
@@ -493,7 +493,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantOutsiderNeutralShieldAbility,
         abilityGuid: Guids.DefiantOutsiderNeutralShieldAbility);
 
-      var plants = EnchantmentTool.CreateEnchantAbility(
+      var plants = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantPlantsBuff,
           Guids.DefiantPlantsBuff,
@@ -513,7 +513,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantPlantsShieldAbility,
         abilityGuid: Guids.DefiantPlantsShieldAbility);
 
-      var undead = EnchantmentTool.CreateEnchantAbility(
+      var undead = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantUndeadBuff,
           Guids.DefiantUndeadBuff,
@@ -533,7 +533,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantUndeadShieldAbility,
         abilityGuid: Guids.DefiantUndeadShieldAbility);
 
-      var vermin = EnchantmentTool.CreateEnchantAbility(
+      var vermin = EnchantmentTool.CreateArmorEnchantAbility(
         buff: ConfigureBuff(
           DefiantVerminBuff,
           Guids.DefiantVerminBuff,
@@ -553,7 +553,7 @@ namespace AutomaticBonusProgression.Enchantments
         abilityName: DefiantVerminShieldAbility,
         abilityGuid: Guids.DefiantVerminShieldAbility);
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantmentTool.CreateArmorEnchantFeature(
         displayName: DisplayName,
         description: Description,
         //icon: ??,

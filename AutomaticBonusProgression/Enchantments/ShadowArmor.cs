@@ -31,7 +31,7 @@ namespace AutomaticBonusProgression.Enchantments
       EnchantmentTool.AddEnhancementEquivalence(ArmorEnchantmentRefs.ShadowArmor, EnhancementType.Armor, EnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
-      return EnchantmentTool.CreateEnchant(
+      return EnchantmentTool.CreateArmorEnchant(
         buffName: BuffName,
         buffGuid: Guids.ShadowArmorBuff,
         displayName: DisplayName,
@@ -65,7 +65,7 @@ namespace AutomaticBonusProgression.Enchantments
         ArmorEnchantmentRefs.GreaterShadow, EnhancementType.Armor, ImprovedEnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowGreaterEnchant.Reference.Get();
-      return EnchantmentTool.CreateEnchant(
+      return EnchantmentTool.CreateArmorEnchant(
         buffName: ImprovedBuffName,
         buffGuid: Guids.ImprovedShadowArmorBuff,
         displayName: ImprovedDisplayName,
@@ -103,7 +103,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, GreaterEnhancementCost))
         .Configure();
 
-      return EnchantmentTool.CreateEnchant(
+      return EnchantmentTool.CreateArmorEnchant(
         buff: buff,
         displayName: GreaterDisplayName,
         description: GreaterDescription,

@@ -14,10 +14,10 @@ namespace AutomaticBonusProgression.Components
     private readonly EnhancementType Type;
     internal readonly int Enhancement;
 
-    internal EnhancementEquivalentRestriction(EnhancementType type, int enhancement)
+    internal EnhancementEquivalentRestriction(EnchantInfo enchant)
     {
-      Type = type;
-      Enhancement = enhancement;
+      Type = enchant.Type;
+      Enhancement = enchant.Cost;
     }
 
     public override bool IsAvailable()

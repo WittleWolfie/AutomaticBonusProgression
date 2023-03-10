@@ -27,7 +27,7 @@ namespace AutomaticBonusProgression.Enchantments
           FeatureRefs.ArcaneArmorBalancedFeature, EnhancementType.Armor, EnhancementCost);
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
-      return EnchantmentTool.CreateEnchant(
+      var balanced = EnchantmentTool.CreateArmorEnchant(
         buffName: BuffName,
         buffGuid: Guids.BalancedArmorBuff,
         displayName: DisplayName,
@@ -40,6 +40,9 @@ namespace AutomaticBonusProgression.Enchantments
         featureName: BalancedArmorName,
         Guids.BalancedArmor,
         buffComponents: balancedFeature.GetComponent<CMDBonusAgainstManeuvers>());
+
+
+      return balanced;
     }
   }
 }
