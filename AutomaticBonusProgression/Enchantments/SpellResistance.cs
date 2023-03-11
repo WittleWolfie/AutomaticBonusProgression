@@ -1,5 +1,4 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
@@ -27,37 +26,29 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Spell Resistance 13");
 
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName13,
+          Description13,
+          "",
+          EnhancementCost13,
+          ranks: 2);
       var spellResistFeature =
-        EnchantmentTool.AddEnhancementEquivalence(
-          FeatureRefs.SpellResistance13Feature, EnhancementType.Armor, EnhancementCost13);
+        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance13Feature, enchantInfo);
 
-      var ability = EnchantmentTool.CreateArmorEnchantAbility(
-        buffName: Buff13Name,
-        buffGuid: Guids.SpellResistance13Buff,
-        displayName: DisplayName13,
-        description: Description13,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost13,
-        abilityName: Ability13Name,
-        abilityGuid: Guids.SpellResistance13Ability,
-        buffComponents: spellResistFeature.GetComponent<AddSpellResistance>());
+      var ability = EnchantmentTool.CreateEnchantAbility(
+        enchantInfo,
+        new BlueprintInfo(Buff13Name, Guids.SpellResistance13Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
+        new(Ability13Name, Guids.SpellResistance13Ability));
       var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        enchantInfo,
         ability,
-        buffName: Buff13ShieldName,
-        buffGuid: Guids.SpellResistance13ShieldBuff,
-        abilityName: Ability13ShieldName,
-        abilityGuid: Guids.SpellResistance13ShieldAbility);
+        new(Buff13ShieldName, Guids.SpellResistance13ShieldBuff),
+        new(Ability13ShieldName, Guids.SpellResistance13ShieldAbility));
 
-      return EnchantmentTool.CreateArmorEnchantFeature(
-        displayName: DisplayName13,
-        description: Description13,
-        //icon: ??,
-        featureName: SpellResistance13Name,
-        Guids.SpellResistance13,
-        featureRanks: EnhancementCost13,
-        prerequisiteFeature: "",
-        prerequisiteRanks: 1,
+      return EnchantmentTool.CreateEnchantFeature(
+        enchantInfo,
+        new(SpellResistance13Name, Guids.SpellResistance13),
         ability,
         abilityShield);
     }
@@ -76,39 +67,32 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Spell Resistance 16");
 
-      var spellResistFeature =
-        EnchantmentTool.AddEnhancementEquivalence(
-          FeatureRefs.SpellResistance15Feature, EnhancementType.Armor, EnhancementCost16);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName16,
+          Description16,
+          "",
+          EnhancementCost16,
+          ranks: 1,
+          prerequisite: new(Guids.SpellResistance13, ranks: 2));
 
+      var spellResistFeature =
+        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance15Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance15Feature, 16);
 
-      var ability = EnchantmentTool.CreateArmorEnchantAbility(
-        buffName: Buff16Name,
-        buffGuid: Guids.SpellResistance16Buff,
-        displayName: DisplayName16,
-        description: Description16,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost16,
-        abilityName: Ability16Name,
-        abilityGuid: Guids.SpellResistance16Ability,
-        buffComponents: spellResistFeature.GetComponent<AddSpellResistance>());
+      var ability = EnchantmentTool.CreateEnchantAbility(
+        enchantInfo,
+        new BlueprintInfo(Buff16Name, Guids.SpellResistance16Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
+        new(Ability16Name, Guids.SpellResistance16Ability));
       var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        enchantInfo,
         ability,
-        buffName: Buff16ShieldName,
-        buffGuid: Guids.SpellResistance16ShieldBuff,
-        abilityName: Ability16ShieldName,
-        abilityGuid: Guids.SpellResistance16ShieldAbility);
+        new(Buff16ShieldName, Guids.SpellResistance16ShieldBuff),
+        new(Ability16ShieldName, Guids.SpellResistance16ShieldAbility));
 
-      return EnchantmentTool.CreateArmorEnchantFeature(
-        displayName: DisplayName16,
-        description: Description16,
-        //icon: ??,
-        featureName: SpellResistance16Name,
-        Guids.SpellResistance16,
-        featureRanks: EnhancementCost16 - EnhancementCost13,
-        prerequisiteFeature: Guids.SpellResistance13,
-        prerequisiteRanks: 1,
+      return EnchantmentTool.CreateEnchantFeature(
+        enchantInfo,
+        new(SpellResistance16Name, Guids.SpellResistance16),
         ability,
         abilityShield);
     }
@@ -121,45 +105,38 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string DisplayName19 = "LegendaryArmor.SpellResistance.19.Name";
     private const string Description19 = "LegendaryArmor.SpellResistance.19.Name";
-    private const int EnhancementCost19 = 3;
+    private const int EnhancementCost19 = 4;
 
     internal static BlueprintFeature Configure19()
     {
       Logger.Log($"Configuring Spell Resistance 19");
 
-      var spellResistFeature =
-        EnchantmentTool.AddEnhancementEquivalence(
-          FeatureRefs.SpellResistance17Feature, EnhancementType.Armor, EnhancementCost19);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName19,
+          Description19,
+          "",
+          EnhancementCost19,
+          ranks: 1,
+          prerequisite: new(Guids.SpellResistance16));
 
+      var spellResistFeature =
+        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance17Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance17Feature, 19);
 
-      var ability = EnchantmentTool.CreateArmorEnchantAbility(
-        buffName: Buff19Name,
-        buffGuid: Guids.SpellResistance19Buff,
-        displayName: DisplayName19,
-        description: Description19,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost19,
-        abilityName: Ability19Name,
-        abilityGuid: Guids.SpellResistance19Ability,
-        buffComponents: spellResistFeature.GetComponent<AddSpellResistance>());
+      var ability = EnchantmentTool.CreateEnchantAbility(
+        enchantInfo,
+        new BlueprintInfo(Buff19Name, Guids.SpellResistance19Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
+        new(Ability19Name, Guids.SpellResistance19Ability));
       var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        enchantInfo,
         ability,
-        buffName: Buff19ShieldName,
-        buffGuid: Guids.SpellResistance19ShieldBuff,
-        abilityName: Ability19ShieldName,
-        abilityGuid: Guids.SpellResistance19ShieldAbility);
+        new(Buff19ShieldName, Guids.SpellResistance19ShieldBuff),
+        new(Ability19ShieldName, Guids.SpellResistance19ShieldAbility));
 
-      return EnchantmentTool.CreateArmorEnchantFeature(
-        displayName: DisplayName19,
-        description: Description19,
-        //icon: ??,
-        featureName: SpellResistance19Name,
-        Guids.SpellResistance19,
-        featureRanks: EnhancementCost19 - EnhancementCost16,
-        prerequisiteFeature: Guids.SpellResistance16,
-        prerequisiteRanks: 1,
+      return EnchantmentTool.CreateEnchantFeature(
+        enchantInfo,
+        new(SpellResistance19Name, Guids.SpellResistance19),
         ability,
         abilityShield);
     }
@@ -172,45 +149,38 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string DisplayName22 = "LegendaryArmor.SpellResistance.22.Name";
     private const string Description22 = "LegendaryArmor.SpellResistance.22.Name";
-    private const int EnhancementCost22 = 3;
+    private const int EnhancementCost22 = 5;
 
     internal static BlueprintFeature Configure22()
     {
       Logger.Log($"Configuring Spell Resistance 22");
 
-      var spellResistFeature =
-        EnchantmentTool.AddEnhancementEquivalence(
-          FeatureRefs.SpellResistance19Feature, EnhancementType.Armor, EnhancementCost22);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName22,
+          Description22,
+          "",
+          EnhancementCost22,
+          ranks: 1,
+          prerequisite: new(Guids.SpellResistance19));
 
+      var spellResistFeature =
+        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance19Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance19Feature, 22);
 
-      var ability = EnchantmentTool.CreateArmorEnchantAbility(
-        buffName: Buff22Name,
-        buffGuid: Guids.SpellResistance22Buff,
-        displayName: DisplayName22,
-        description: Description22,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost22,
-        abilityName: Ability22Name,
-        abilityGuid: Guids.SpellResistance22Ability,
-        buffComponents: spellResistFeature.GetComponent<AddSpellResistance>());
+      var ability = EnchantmentTool.CreateEnchantAbility(
+        enchantInfo,
+        new BlueprintInfo(Buff22Name, Guids.SpellResistance22Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
+        new(Ability22Name, Guids.SpellResistance22Ability));
       var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+        enchantInfo,
         ability,
-        buffName: Buff22ShieldName,
-        buffGuid: Guids.SpellResistance22ShieldBuff,
-        abilityName: Ability22ShieldName,
-        abilityGuid: Guids.SpellResistance22ShieldAbility);
+        new(Buff22ShieldName, Guids.SpellResistance22ShieldBuff),
+        new(Ability22ShieldName, Guids.SpellResistance22ShieldAbility));
 
-      return EnchantmentTool.CreateArmorEnchantFeature(
-        displayName: DisplayName22,
-        description: Description22,
-        //icon: ??,
-        featureName: SpellResistance22Name,
-        Guids.SpellResistance22,
-        featureRanks: EnhancementCost22 - EnhancementCost19,
-        prerequisiteFeature: Guids.SpellResistance19,
-        prerequisiteRanks: 1,
+      return EnchantmentTool.CreateEnchantFeature(
+        enchantInfo,
+        new(SpellResistance22Name, Guids.SpellResistance22),
         ability,
         abilityShield);
     }
