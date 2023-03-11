@@ -55,7 +55,9 @@ namespace AutomaticBonusProgression.Enchantments
             .Conditional(
               ConditionsBuilder.New()
                 .Add<HasResource>(a => a.Resource = castResource.ToReference<BlueprintAbilityResourceReference>()),
-              ifTrue: ActionsBuilder.New().CastSpell(AbilityRefs.BreathOfLifeTouch.ToString())))
+              ifTrue: ActionsBuilder.New()
+                .CastSpell(AbilityRefs.BreathOfLifeTouch.ToString())
+                .ContextSpendResource(castResource)))
         .Configure();
 
       var ability = EnchantmentTool.CreateEnchantAbility(
