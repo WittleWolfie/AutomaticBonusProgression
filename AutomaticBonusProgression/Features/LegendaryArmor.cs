@@ -34,7 +34,7 @@ namespace AutomaticBonusProgression.Features
     // - Brawling [Done]
     // - Ghost [Done]
     // - Righteous - Unbound - Unrighteous - Vigilant [Done]
-    // - Determination
+    // - Determination [Done]
     // - Etherealness
     // - Expeditious for real though
     // - Creeping for real tho
@@ -81,6 +81,8 @@ namespace AutomaticBonusProgression.Features
               Guids.DastardAbility,
 
               Guids.DeathlessAbility,
+
+              Guids.DeterminationAbility,
 
               Guids.FortificationAbility,
               Guids.ImprovedFortificationAbility,
@@ -149,6 +151,7 @@ namespace AutomaticBonusProgression.Features
           Dastard.Configure(),
           Deathless.Configure(),
           Defiant.Configure(),
+          Determination.Configure(),
           EnergyResistance.Configure(),
           EnergyResistance.ConfigureImproved(),
           EnergyResistance.ConfigureGreater(),

@@ -300,6 +300,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Determination.Name",
+    "ProcessTemplates": false,
+    "enGB": "Determination (+5)"
+  },
+  {
+    "Key": "LegendaryArmor.Determination.Description",
+    "enGB": "A shield or armor with the determination special ability provides the ability to fight on even in the face of seemingly impossible odds. The first time each day the owner reaches 0 or fewer hit points, the item automatically provides a breath of life spell using character level as your caster level."
+  },
+
+  {
     "Key": "LegendaryArmor.EnergyResistance.Name",
     "ProcessTemplates": false,
     "enGB": "Energy Resistance 10 (+2)"
@@ -527,7 +537,7 @@
   },
   {
     "Key": "LegendaryArmor.Righteous.Description",
-    "enGB": "Armor with this special ability is often engraved or enameled with religious symbols. Once per day on command, the wearer can invoke an effect, as per the spell righteous might, lasting for 10 rounds. The caster level for this effect is 10."
+    "enGB": "Armor with this special ability is often engraved or enameled with religious symbols. Once per day on command, the wearer can invoke an effect, as per the spell righteous might."
   },
 
   {

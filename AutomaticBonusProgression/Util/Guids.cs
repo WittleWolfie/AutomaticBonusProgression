@@ -243,6 +243,11 @@
     internal const string DefiantVerminShieldBuff = "dc684853-855e-48bb-8b19-354509c157ce";
     #endregion
 
+    internal const string Determination = "76df287a-eb8b-46e4-aefb-b0b8bdffb6e2";
+    internal const string DeterminationAbility = "9f592dd8-a746-4b11-b753-6da7395e8b76";
+    internal const string DeterminationBuff = "0be08da1-8f39-459e-a6e8-89eead23a135";
+    internal const string DeterminationResource = "45e5d3b4-3c7d-4156-986f-aa731cf95811";
+
     #region Energy Resistance
     internal const string EnergyResistParent = "295f255f-0a3c-42f9-b8a0-2f6d80f9dc16";
     internal const string EnergyResistShieldParent = "8721d4dc-30f8-4ec9-847b-23854bae0d22";
