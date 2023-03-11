@@ -34,6 +34,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string Description = "LegendaryArmor.Rallying.Description";
     private const int EnhancementCost = 2;
 
+    // TODO: Aura FX?
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Rallying Armor");
@@ -125,7 +126,7 @@ namespace AutomaticBonusProgression.Enchantments
           if (evt.Reason.Context is null)
             return;
 
-          if (!evt.Reason.Context.SpellSchool.HasFlag(SpellDescriptor.Fear))
+          if (!evt.Reason.Context.SpellDescriptor.HasFlag(SpellDescriptor.Fear))
             return;
 
           var bonus = 4;
