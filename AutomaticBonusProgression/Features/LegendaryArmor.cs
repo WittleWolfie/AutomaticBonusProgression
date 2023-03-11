@@ -41,7 +41,7 @@ namespace AutomaticBonusProgression.Features
     // (Shield)
     // - Bashing [Done]
     // - Blinding [Done]
-    // - Wyrmsbreath
+    // - Wyrmsbreath I need to do something here to make this not suck and not be too strong...
     // - Reflecting
 
     private const string LegendaryArmorName = "LegendaryArmor";
