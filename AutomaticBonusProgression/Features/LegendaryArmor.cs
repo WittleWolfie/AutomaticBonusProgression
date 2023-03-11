@@ -33,13 +33,11 @@ namespace AutomaticBonusProgression.Features
     // - Rallying [Done]
     // - Brawling [Done]
     // - Ghost [Done]
-    // - Martyring
-    // - Righteous
-    // - Unbound?
-    // - Unrighteous?
-    // - Vigilant?
+    // - Righteous - Unbound - Unrighteous - Vigilant (Make a single ability cause lazy I think)
     // - Determination
     // - Etherealness
+    // - Expeditious for real though
+    // - Creeping for real tho
     // (Shield)
     // - Bashing
     // - Blinding
