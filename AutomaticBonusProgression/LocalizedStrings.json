@@ -485,6 +485,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Expeditious.Name",
+    "ProcessTemplates": false,
+    "enGB": "Expeditious (+2)"
+  },
+  {
+    "Key": "LegendaryArmor.Expeditious.Description",
+    "enGB": "Three times per day as a swift action, the wearer of expeditious armor can summon a burst of speed and gain a +10-foot enhancement bonus on all modes of movement for 1 round."
+  },
+
+  {
     "Key": "LegendaryArmor.Fortification.Name",
     "ProcessTemplates": false,
     "enGB": "Light Fortification (+1)"

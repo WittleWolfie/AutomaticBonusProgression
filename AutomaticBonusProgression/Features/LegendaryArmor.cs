@@ -35,9 +35,9 @@ namespace AutomaticBonusProgression.Features
     // - Ghost [Done]
     // - Righteous - Unbound - Unrighteous - Vigilant [Done]
     // - Determination [Done]
-    // - Etherealness
-    // - Expeditious for real though
-    // - Creeping for real tho
+    // - Martyring [Done]
+    // - Expeditious [Done]
+    // - Creeping 
     // (Shield)
     // - Bashing
     // - Blinding
@@ -83,6 +83,8 @@ namespace AutomaticBonusProgression.Features
               Guids.DeathlessAbility,
 
               Guids.DeterminationAbility,
+
+              Guids.ExpeditiousAbility,
 
               Guids.FortificationAbility,
               Guids.ImprovedFortificationAbility,
@@ -157,6 +159,7 @@ namespace AutomaticBonusProgression.Features
           EnergyResistance.Configure(),
           EnergyResistance.ConfigureImproved(),
           EnergyResistance.ConfigureGreater(),
+          Expeditious.Configure(),
           Fortification.Configure(),
           Fortification.ConfigureImproved(),
           Fortification.ConfigureGreater(),

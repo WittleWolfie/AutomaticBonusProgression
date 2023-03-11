@@ -57,7 +57,7 @@ namespace AutomaticBonusProgression.Features
         .AddToLevelEntry(level: 1, ConfigureEnhancementCalculator())
         .AddToLevelEntry(level: 3, resistance)
         .AddToLevelEntry(level: 4, armorAttunement, weaponAttunement)
-        .AddToLevelEntry(level: 5, deflection, legendaryGifts, legendaryGifts)
+        .AddToLevelEntry(level: 5, deflection, legendaryGifts, legendaryGifts, legendaryGifts, legendaryGifts, legendaryGifts)
         .AddToLevelEntry(level: 6, mentalProwessPrimary, legendaryGifts, legendaryGifts)
         .AddToLevelEntry(level: 7, physicalProwessPrimary, legendaryGifts, legendaryGifts)
         .AddToLevelEntry(level: 8, shieldAttunement, offHandAttunement, toughening, resistance)

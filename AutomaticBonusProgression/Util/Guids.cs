@@ -319,6 +319,13 @@
     internal const string SonicResist30ShieldBuff = "f9a9cacc-ab26-4d27-b587-f2aab4d45777";
     #endregion
 
+    internal const string Expeditious = "31136772-b598-4af7-a752-f22c48975df1";
+    internal const string ExpeditiousAbility = "9b28ffe1-e85b-439e-9e50-e7d334be9151";
+    internal const string ExpeditiousBuff = "c737fc3f-d4ee-485b-97b9-d4255cca521a";
+    internal const string ExpeditiousCastAbility = "9d94a4f9-88b1-49d4-9379-f88ffce54478";
+    internal const string ExpeditiousCastBuff = "ad7d2353-1959-45d8-84a2-7fb93f15f8a2";
+    internal const string ExpeditiousCastResource = "cb3168e0-c05f-41b2-a9f3-c3fd7dfb34b3";
+
     internal const string Fortification = "8c0470a2-a1fa-44f9-8d42-a46faf3145c1";
     internal const string FortificationAbility = "a5f06b4c-8070-48ca-afb3-0f7d377a0ab1";
     internal const string FortificationBuff = "b8b39cb6-7ce3-4a10-ab24-0f773e22f9b2";
