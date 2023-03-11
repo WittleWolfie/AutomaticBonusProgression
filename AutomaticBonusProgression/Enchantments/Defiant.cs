@@ -7,6 +7,7 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums;
 using Kingmaker.Items;
@@ -28,6 +29,7 @@ namespace AutomaticBonusProgression.Enchantments
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Defiant));
 
+    #region Too Many Constants
     private const string DefiantName = "LegendaryArmor.Defiant";
 
     private const string DefiantAbility = "LegendaryArmor.Defiant.Ability";
@@ -136,6 +138,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string DefiantVerminShieldAbility = "LegendaryArmor.Defiant.Vermin.Shield.Ability";
     private const string DefiantVerminBuff = "LegendaryArmor.Defiant.Vermin.Buff";
     private const string DefiantVerminShieldBuff = "LegendaryArmor.Defiant.Vermin.Shield.Buff";
+    #endregion
 
     private const string DisplayName = "LegendaryArmor.Defiant.Name";
     private const string Description = "LegendaryArmor.Defiant.Description";
@@ -208,360 +211,349 @@ namespace AutomaticBonusProgression.Enchantments
         .AddActivationDisable()
         .Configure();
 
-      var aberrations = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantAberrationsBuff,
-          Guids.DefiantAberrationsBuff,
+      var aberrationsEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantAberrationsName,
-          FeatureRefs.AberrationType.ToString()),
-        displayName: DefiantAberrationsName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantAberrationsAbility,
-        abilityGuid: Guids.DefiantAberrationsAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var aberrationsBuffInfo = new BlueprintInfo(DefiantAberrationsBuff, Guids.DefiantAberrationsBuff);
+      var aberrationsAbilityInfo = new BlueprintInfo(DefiantAberrationsAbility, Guids.DefiantAberrationsAbility);
+
+      var aberrations = EnchantmentTool.CreateEnchantAbility(
+        aberrationsEnchantInfo,
+        ConfigureBuff(aberrationsEnchantInfo, aberrationsBuffInfo, FeatureRefs.AberrationType.ToString()),
+        aberrationsAbilityInfo);
       var aberrationsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        aberrationsEnchantInfo,
         aberrations,
-        buffName: DefiantAberrationsShieldBuff,
-        buffGuid: Guids.DefiantAberrationsShieldBuff,
-        abilityName: DefiantAberrationsShieldAbility,
-        abilityGuid: Guids.DefiantAberrationsShieldAbility);
+        buff: new(DefiantAberrationsShieldBuff, Guids.DefiantAberrationsShieldBuff),
+        ability: new(DefiantAberrationsShieldAbility, Guids.DefiantAberrationsShieldAbility));
 
-      var animals = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantAnimalsBuff,
-          Guids.DefiantAnimalsBuff,
+      var animalsEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantAnimalsName,
-          FeatureRefs.AnimalType.ToString()),
-        displayName: DefiantAnimalsName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantAnimalsAbility,
-        abilityGuid: Guids.DefiantAnimalsAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var animalsBuffInfo = new BlueprintInfo(DefiantAnimalsBuff, Guids.DefiantAnimalsBuff);
+      var animalsAbilityInfo = new BlueprintInfo(DefiantAnimalsAbility, Guids.DefiantAnimalsAbility);
+
+      var animals = EnchantmentTool.CreateEnchantAbility(
+        animalsEnchantInfo,
+        ConfigureBuff(animalsEnchantInfo, animalsBuffInfo, FeatureRefs.AnimalType.ToString()),
+        animalsAbilityInfo);
       var animalsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        animalsEnchantInfo,
         animals,
-        buffName: DefiantAnimalsShieldBuff,
-        buffGuid: Guids.DefiantAnimalsShieldBuff,
-        abilityName: DefiantAnimalsShieldAbility,
-        abilityGuid: Guids.DefiantAnimalsShieldAbility);
+        buff: new(DefiantAnimalsShieldBuff, Guids.DefiantAnimalsShieldBuff),
+        ability: new(DefiantAnimalsShieldAbility, Guids.DefiantAnimalsShieldAbility));
 
-      var constructs = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantConstructsBuff,
-          Guids.DefiantConstructsBuff,
+      var constructsEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantConstructsName,
-          FeatureRefs.ConstructType.ToString()),
-        displayName: DefiantConstructsName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantConstructsAbility,
-        abilityGuid: Guids.DefiantConstructsAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var constructsBuffInfo = new BlueprintInfo(DefiantConstructsBuff, Guids.DefiantConstructsBuff);
+      var constructsAbilityInfo = new BlueprintInfo(DefiantConstructsAbility, Guids.DefiantConstructsAbility);
+
+      var constructs = EnchantmentTool.CreateEnchantAbility(
+        constructsEnchantInfo,
+        ConfigureBuff(constructsEnchantInfo, constructsBuffInfo, FeatureRefs.ConstructType.ToString()),
+        constructsAbilityInfo);
       var constructsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        constructsEnchantInfo,
         constructs,
-        buffName: DefiantConstructsShieldBuff,
-        buffGuid: Guids.DefiantConstructsShieldBuff,
-        abilityName: DefiantConstructsShieldAbility,
-        abilityGuid: Guids.DefiantConstructsShieldAbility);
+        buff: new(DefiantConstructsShieldBuff, Guids.DefiantConstructsShieldBuff),
+        ability: new(DefiantConstructsShieldAbility, Guids.DefiantConstructsShieldAbility));
 
-      var dragons = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantDragonsBuff,
-          Guids.DefiantDragonsBuff,
+      var dragonsEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantDragonsName,
-          FeatureRefs.DragonType.ToString()),
-        displayName: DefiantDragonsName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantDragonsAbility,
-        abilityGuid: Guids.DefiantDragonsAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var dragonsBuffInfo = new BlueprintInfo(DefiantDragonsBuff, Guids.DefiantDragonsBuff);
+      var dragonsAbilityInfo = new BlueprintInfo(DefiantDragonsAbility, Guids.DefiantDragonsAbility);
+
+      var dragons = EnchantmentTool.CreateEnchantAbility(
+        dragonsEnchantInfo,
+        ConfigureBuff(dragonsEnchantInfo, dragonsBuffInfo, FeatureRefs.DragonType.ToString()),
+        dragonsAbilityInfo);
       var dragonsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        dragonsEnchantInfo,
         dragons,
-        buffName: DefiantDragonsShieldBuff,
-        buffGuid: Guids.DefiantDragonsShieldBuff,
-        abilityName: DefiantDragonsShieldAbility,
-        abilityGuid: Guids.DefiantDragonsShieldAbility);
+        buff: new(DefiantDragonsShieldBuff, Guids.DefiantDragonsShieldBuff),
+        ability: new(DefiantDragonsShieldAbility, Guids.DefiantDragonsShieldAbility));
 
-      var fey = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantFeyBuff,
-          Guids.DefiantFeyBuff,
+      var feyEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantFeyName,
-          FeatureRefs.FeyType.ToString()),
-        displayName: DefiantFeyName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantFeyAbility,
-        abilityGuid: Guids.DefiantFeyAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var feyBuffInfo = new BlueprintInfo(DefiantFeyBuff, Guids.DefiantFeyBuff);
+      var feyAbilityInfo = new BlueprintInfo(DefiantFeyAbility, Guids.DefiantFeyAbility);
+
+      var fey = EnchantmentTool.CreateEnchantAbility(
+        feyEnchantInfo,
+        ConfigureBuff(feyEnchantInfo, feyBuffInfo, FeatureRefs.FeyType.ToString()),
+        feyAbilityInfo);
       var feyShield = EnchantmentTool.CreateEnchantShieldVariant(
+        feyEnchantInfo,
         fey,
-        buffName: DefiantFeyShieldBuff,
-        buffGuid: Guids.DefiantFeyShieldBuff,
-        abilityName: DefiantFeyShieldAbility,
-        abilityGuid: Guids.DefiantFeyShieldAbility);
+        buff: new(DefiantFeyShieldBuff, Guids.DefiantFeyShieldBuff),
+        ability: new(DefiantFeyShieldAbility, Guids.DefiantFeyShieldAbility));
 
-      var humanoidGiant = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantHumanoidGiantBuff,
-          Guids.DefiantHumanoidGiantBuff,
+      var humanoidGiantEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantHumanoidGiantName,
-          FeatureRefs.GiantSubtype.ToString()),
-        displayName: DefiantHumanoidGiantName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantHumanoidGiantAbility,
-        abilityGuid: Guids.DefiantHumanoidGiantAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var humanoidGiantBuffInfo = new BlueprintInfo(DefiantHumanoidGiantBuff, Guids.DefiantHumanoidGiantBuff);
+      var humanoidGiantAbilityInfo = new BlueprintInfo(DefiantHumanoidGiantAbility, Guids.DefiantHumanoidGiantAbility);
+
+      var humanoidGiant = EnchantmentTool.CreateEnchantAbility(
+        humanoidGiantEnchantInfo,
+        ConfigureBuff(humanoidGiantEnchantInfo, humanoidGiantBuffInfo, FeatureRefs.GiantSubtype.ToString()),
+        humanoidGiantAbilityInfo);
       var humanoidGiantShield = EnchantmentTool.CreateEnchantShieldVariant(
+        humanoidGiantEnchantInfo,
         humanoidGiant,
-        buffName: DefiantHumanoidGiantShieldBuff,
-        buffGuid: Guids.DefiantHumanoidGiantShieldBuff,
-        abilityName: DefiantHumanoidGiantShieldAbility,
-        abilityGuid: Guids.DefiantHumanoidGiantShieldAbility);
+        buff: new(DefiantHumanoidGiantShieldBuff, Guids.DefiantHumanoidGiantShieldBuff),
+        ability: new(DefiantHumanoidGiantShieldAbility, Guids.DefiantHumanoidGiantShieldAbility));
 
-      var humanoidReptilian = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantHumanoidReptilianBuff,
-          Guids.DefiantHumanoidReptilianBuff,
+      var humanoidReptilianEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantHumanoidReptilianName,
-          FeatureRefs.ReptilianSubtype.ToString()),
-        displayName: DefiantHumanoidReptilianName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantHumanoidReptilianAbility,
-        abilityGuid: Guids.DefiantHumanoidReptilianAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var humanoidReptilianBuffInfo = new BlueprintInfo(DefiantHumanoidReptilianBuff, Guids.DefiantHumanoidReptilianBuff);
+      var humanoidReptilianAbilityInfo = new BlueprintInfo(DefiantHumanoidReptilianAbility, Guids.DefiantHumanoidReptilianAbility);
+
+      var humanoidReptilian = EnchantmentTool.CreateEnchantAbility(
+        humanoidReptilianEnchantInfo,
+        ConfigureBuff(humanoidReptilianEnchantInfo, humanoidReptilianBuffInfo, FeatureRefs.ReptilianSubtype.ToString()),
+        humanoidReptilianAbilityInfo);
       var humanoidReptilianShield = EnchantmentTool.CreateEnchantShieldVariant(
+        humanoidReptilianEnchantInfo,
         humanoidReptilian,
-        buffName: DefiantHumanoidReptilianShieldBuff,
-        buffGuid: Guids.DefiantHumanoidReptilianShieldBuff,
-        abilityName: DefiantHumanoidReptilianShieldAbility,
-        abilityGuid: Guids.DefiantHumanoidReptilianShieldAbility);
+        buff: new(DefiantHumanoidReptilianShieldBuff, Guids.DefiantHumanoidReptilianShieldBuff),
+        ability: new(DefiantHumanoidReptilianShieldAbility, Guids.DefiantHumanoidReptilianShieldAbility));
 
-      var humanoidMonstrous = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantHumanoidMonstrousBuff,
-          Guids.DefiantHumanoidMonstrousBuff,
+      var humanoidMonstrousEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantHumanoidMonstrousName,
-          FeatureRefs.MonstrousHumanoidType.ToString()),
-        displayName: DefiantHumanoidMonstrousName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantHumanoidMonstrousAbility,
-        abilityGuid: Guids.DefiantHumanoidMonstrousAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var humanoidMonstrousBuffInfo = new BlueprintInfo(DefiantHumanoidMonstrousBuff, Guids.DefiantHumanoidMonstrousBuff);
+      var humanoidMonstrousAbilityInfo = new BlueprintInfo(DefiantHumanoidMonstrousAbility, Guids.DefiantHumanoidMonstrousAbility);
+
+      var humanoidMonstrous = EnchantmentTool.CreateEnchantAbility(
+        humanoidMonstrousEnchantInfo,
+        ConfigureBuff(humanoidMonstrousEnchantInfo, humanoidMonstrousBuffInfo, FeatureRefs.MonstrousHumanoidType.ToString()),
+        humanoidMonstrousAbilityInfo);
       var humanoidMonstrousShield = EnchantmentTool.CreateEnchantShieldVariant(
+        humanoidMonstrousEnchantInfo,
         humanoidMonstrous,
-        buffName: DefiantHumanoidMonstrousShieldBuff,
-        buffGuid: Guids.DefiantHumanoidMonstrousShieldBuff,
-        abilityName: DefiantHumanoidMonstrousShieldAbility,
-        abilityGuid: Guids.DefiantHumanoidMonstrousShieldAbility);
+        buff: new(DefiantHumanoidMonstrousShieldBuff, Guids.DefiantHumanoidMonstrousShieldBuff),
+        ability: new(DefiantHumanoidMonstrousShieldAbility, Guids.DefiantHumanoidMonstrousShieldAbility));
 
-      var magicalBeasts = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantMagicalBeastsBuff,
-          Guids.DefiantMagicalBeastsBuff,
+      var magicalBeastsEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantMagicalBeastsName,
-          FeatureRefs.MagicalBeastType.ToString()),
-        displayName: DefiantMagicalBeastsName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantMagicalBeastsAbility,
-        abilityGuid: Guids.DefiantMagicalBeastsAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var magicalBeastsBuffInfo = new BlueprintInfo(DefiantMagicalBeastsBuff, Guids.DefiantMagicalBeastsBuff);
+      var magicalBeastsAbilityInfo = new BlueprintInfo(DefiantMagicalBeastsAbility, Guids.DefiantMagicalBeastsAbility);
+
+      var magicalBeasts = EnchantmentTool.CreateEnchantAbility(
+        magicalBeastsEnchantInfo,
+        ConfigureBuff(magicalBeastsEnchantInfo, magicalBeastsBuffInfo, FeatureRefs.MagicalBeastType.ToString()),
+        magicalBeastsAbilityInfo);
       var magicalBeastsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        magicalBeastsEnchantInfo,
         magicalBeasts,
-        buffName: DefiantMagicalBeastsShieldBuff,
-        buffGuid: Guids.DefiantMagicalBeastsShieldBuff,
-        abilityName: DefiantMagicalBeastsShieldAbility,
-        abilityGuid: Guids.DefiantMagicalBeastsShieldAbility);
+        buff: new(DefiantMagicalBeastsShieldBuff, Guids.DefiantMagicalBeastsShieldBuff),
+        ability: new(DefiantMagicalBeastsShieldAbility, Guids.DefiantMagicalBeastsShieldAbility));
 
-      var outsiderGood = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantOutsiderGoodBuff,
-          Guids.DefiantOutsiderGoodBuff,
+      var outsiderGoodEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantOutsiderGoodName,
-          FeatureRefs.OutsiderType.ToString(),
-          AlignmentComponent.Good),
-        displayName: DefiantOutsiderGoodName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantOutsiderGoodAbility,
-        abilityGuid: Guids.DefiantOutsiderGoodAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var outsiderGoodBuffInfo = new BlueprintInfo(DefiantOutsiderGoodBuff, Guids.DefiantOutsiderGoodBuff);
+      var outsiderGoodAbilityInfo = new BlueprintInfo(DefiantOutsiderGoodAbility, Guids.DefiantOutsiderGoodAbility);
+
+      var outsiderGood = EnchantmentTool.CreateEnchantAbility(
+        outsiderGoodEnchantInfo,
+        ConfigureBuff(outsiderGoodEnchantInfo, outsiderGoodBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Good),
+        outsiderGoodAbilityInfo);
       var outsiderGoodShield = EnchantmentTool.CreateEnchantShieldVariant(
+        outsiderGoodEnchantInfo,
         outsiderGood,
-        buffName: DefiantOutsiderGoodShieldBuff,
-        buffGuid: Guids.DefiantOutsiderGoodShieldBuff,
-        abilityName: DefiantOutsiderGoodShieldAbility,
-        abilityGuid: Guids.DefiantOutsiderGoodShieldAbility);
+        buff: new(DefiantOutsiderGoodShieldBuff, Guids.DefiantOutsiderGoodShieldBuff),
+        ability: new(DefiantOutsiderGoodShieldAbility, Guids.DefiantOutsiderGoodShieldAbility));
 
-      var outsiderEvil = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantOutsiderEvilBuff,
-          Guids.DefiantOutsiderEvilBuff,
+      var outsiderEvilEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantOutsiderEvilName,
-          FeatureRefs.OutsiderType.ToString(),
-          AlignmentComponent.Evil),
-        displayName: DefiantOutsiderEvilName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantOutsiderEvilAbility,
-        abilityGuid: Guids.DefiantOutsiderEvilAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var outsiderEvilBuffInfo = new BlueprintInfo(DefiantOutsiderEvilBuff, Guids.DefiantOutsiderEvilBuff);
+      var outsiderEvilAbilityInfo = new BlueprintInfo(DefiantOutsiderEvilAbility, Guids.DefiantOutsiderEvilAbility);
+
+      var outsiderEvil = EnchantmentTool.CreateEnchantAbility(
+        outsiderEvilEnchantInfo,
+        ConfigureBuff(outsiderEvilEnchantInfo, outsiderEvilBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Evil),
+        outsiderEvilAbilityInfo);
       var outsiderEvilShield = EnchantmentTool.CreateEnchantShieldVariant(
+        outsiderEvilEnchantInfo,
         outsiderEvil,
-        buffName: DefiantOutsiderEvilShieldBuff,
-        buffGuid: Guids.DefiantOutsiderEvilShieldBuff,
-        abilityName: DefiantOutsiderEvilShieldAbility,
-        abilityGuid: Guids.DefiantOutsiderEvilShieldAbility);
+        buff: new(DefiantOutsiderEvilShieldBuff, Guids.DefiantOutsiderEvilShieldBuff),
+        ability: new(DefiantOutsiderEvilShieldAbility, Guids.DefiantOutsiderEvilShieldAbility));
 
-      var outsiderLawful = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantOutsiderLawfulBuff,
-          Guids.DefiantOutsiderLawfulBuff,
+      var outsiderLawfulEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantOutsiderLawfulName,
-          FeatureRefs.OutsiderType.ToString(),
-          AlignmentComponent.Lawful),
-        displayName: DefiantOutsiderLawfulName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantOutsiderLawfulAbility,
-        abilityGuid: Guids.DefiantOutsiderLawfulAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var outsiderLawfulBuffInfo = new BlueprintInfo(DefiantOutsiderLawfulBuff, Guids.DefiantOutsiderLawfulBuff);
+      var outsiderLawfulAbilityInfo = new BlueprintInfo(DefiantOutsiderLawfulAbility, Guids.DefiantOutsiderLawfulAbility);
+
+      var outsiderLawful = EnchantmentTool.CreateEnchantAbility(
+        outsiderLawfulEnchantInfo,
+        ConfigureBuff(outsiderLawfulEnchantInfo, outsiderLawfulBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Lawful),
+        outsiderLawfulAbilityInfo);
       var outsiderLawfulShield = EnchantmentTool.CreateEnchantShieldVariant(
+        outsiderLawfulEnchantInfo,
         outsiderLawful,
-        buffName: DefiantOutsiderLawfulShieldBuff,
-        buffGuid: Guids.DefiantOutsiderLawfulShieldBuff,
-        abilityName: DefiantOutsiderLawfulShieldAbility,
-        abilityGuid: Guids.DefiantOutsiderLawfulShieldAbility);
+        buff: new(DefiantOutsiderLawfulShieldBuff, Guids.DefiantOutsiderLawfulShieldBuff),
+        ability: new(DefiantOutsiderLawfulShieldAbility, Guids.DefiantOutsiderLawfulShieldAbility));
 
-      var outsiderChaotic = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantOutsiderChaoticBuff,
-          Guids.DefiantOutsiderChaoticBuff,
+      var outsiderChaoticEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantOutsiderChaoticName,
-          FeatureRefs.OutsiderType.ToString(),
-          AlignmentComponent.Chaotic),
-        displayName: DefiantOutsiderChaoticName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantOutsiderChaoticAbility,
-        abilityGuid: Guids.DefiantOutsiderChaoticAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var outsiderChaoticBuffInfo = new BlueprintInfo(DefiantOutsiderChaoticBuff, Guids.DefiantOutsiderChaoticBuff);
+      var outsiderChaoticAbilityInfo = new BlueprintInfo(DefiantOutsiderChaoticAbility, Guids.DefiantOutsiderChaoticAbility);
+
+      var outsiderChaotic = EnchantmentTool.CreateEnchantAbility(
+        outsiderChaoticEnchantInfo,
+        ConfigureBuff(outsiderChaoticEnchantInfo, outsiderChaoticBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Chaotic),
+        outsiderChaoticAbilityInfo);
       var outsiderChaoticShield = EnchantmentTool.CreateEnchantShieldVariant(
+        outsiderChaoticEnchantInfo,
         outsiderChaotic,
-        buffName: DefiantOutsiderChaoticShieldBuff,
-        buffGuid: Guids.DefiantOutsiderChaoticShieldBuff,
-        abilityName: DefiantOutsiderChaoticShieldAbility,
-        abilityGuid: Guids.DefiantOutsiderChaoticShieldAbility);
+        buff: new(DefiantOutsiderChaoticShieldBuff, Guids.DefiantOutsiderChaoticShieldBuff),
+        ability: new(DefiantOutsiderChaoticShieldAbility, Guids.DefiantOutsiderChaoticShieldAbility));
 
-      var outsiderNeutral = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantOutsiderNeutralBuff,
-          Guids.DefiantOutsiderNeutralBuff,
+      var outsiderNeutralEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantOutsiderNeutralName,
-          FeatureRefs.OutsiderType.ToString(),
-          AlignmentComponent.Neutral),
-        displayName: DefiantOutsiderNeutralName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantOutsiderNeutralAbility,
-        abilityGuid: Guids.DefiantOutsiderNeutralAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var outsiderNeutralBuffInfo = new BlueprintInfo(DefiantOutsiderNeutralBuff, Guids.DefiantOutsiderNeutralBuff);
+      var outsiderNeutralAbilityInfo = new BlueprintInfo(DefiantOutsiderNeutralAbility, Guids.DefiantOutsiderNeutralAbility);
+
+      var outsiderNeutral = EnchantmentTool.CreateEnchantAbility(
+        outsiderNeutralEnchantInfo,
+        ConfigureBuff(outsiderNeutralEnchantInfo, outsiderNeutralBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Neutral),
+        outsiderNeutralAbilityInfo);
       var outsiderNeutralShield = EnchantmentTool.CreateEnchantShieldVariant(
+        outsiderNeutralEnchantInfo,
         outsiderNeutral,
-        buffName: DefiantOutsiderNeutralShieldBuff,
-        buffGuid: Guids.DefiantOutsiderNeutralShieldBuff,
-        abilityName: DefiantOutsiderNeutralShieldAbility,
-        abilityGuid: Guids.DefiantOutsiderNeutralShieldAbility);
+        buff: new(DefiantOutsiderNeutralShieldBuff, Guids.DefiantOutsiderNeutralShieldBuff),
+        ability: new(DefiantOutsiderNeutralShieldAbility, Guids.DefiantOutsiderNeutralShieldAbility));
 
-      var plants = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantPlantsBuff,
-          Guids.DefiantPlantsBuff,
+      var plantsEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantPlantsName,
-          FeatureRefs.PlantType.ToString()),
-        displayName: DefiantPlantsName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantPlantsAbility,
-        abilityGuid: Guids.DefiantPlantsAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var plantsBuffInfo = new BlueprintInfo(DefiantPlantsBuff, Guids.DefiantPlantsBuff);
+      var plantsAbilityInfo = new BlueprintInfo(DefiantPlantsAbility, Guids.DefiantPlantsAbility);
+
+      var plants = EnchantmentTool.CreateEnchantAbility(
+        plantsEnchantInfo,
+        ConfigureBuff(plantsEnchantInfo, plantsBuffInfo, FeatureRefs.PlantType.ToString()),
+        plantsAbilityInfo);
       var plantsShield = EnchantmentTool.CreateEnchantShieldVariant(
+        plantsEnchantInfo,
         plants,
-        buffName: DefiantPlantsShieldBuff,
-        buffGuid: Guids.DefiantPlantsShieldBuff,
-        abilityName: DefiantPlantsShieldAbility,
-        abilityGuid: Guids.DefiantPlantsShieldAbility);
+        buff: new(DefiantPlantsShieldBuff, Guids.DefiantPlantsShieldBuff),
+        ability: new(DefiantPlantsShieldAbility, Guids.DefiantPlantsShieldAbility));
 
-      var undead = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantUndeadBuff,
-          Guids.DefiantUndeadBuff,
+      var undeadEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantUndeadName,
-          FeatureRefs.UndeadType.ToString()),
-        displayName: DefiantUndeadName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantUndeadAbility,
-        abilityGuid: Guids.DefiantUndeadAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var undeadBuffInfo = new BlueprintInfo(DefiantUndeadBuff, Guids.DefiantUndeadBuff);
+      var undeadAbilityInfo = new BlueprintInfo(DefiantUndeadAbility, Guids.DefiantUndeadAbility);
+
+      var undead = EnchantmentTool.CreateEnchantAbility(
+        undeadEnchantInfo,
+        ConfigureBuff(undeadEnchantInfo, undeadBuffInfo, FeatureRefs.UndeadType.ToString()),
+        undeadAbilityInfo);
       var undeadShield = EnchantmentTool.CreateEnchantShieldVariant(
+        undeadEnchantInfo,
         undead,
-        buffName: DefiantUndeadShieldBuff,
-        buffGuid: Guids.DefiantUndeadShieldBuff,
-        abilityName: DefiantUndeadShieldAbility,
-        abilityGuid: Guids.DefiantUndeadShieldAbility);
+        buff: new(DefiantUndeadShieldBuff, Guids.DefiantUndeadShieldBuff),
+        ability: new(DefiantUndeadShieldAbility, Guids.DefiantUndeadShieldAbility));
 
-      var vermin = EnchantmentTool.CreateArmorEnchantAbility(
-        buff: ConfigureBuff(
-          DefiantVerminBuff,
-          Guids.DefiantVerminBuff,
+      var verminEnchantInfo =
+        new ArmorEnchantInfo(
           DefiantVerminName,
-          FeatureRefs.VerminType.ToString()),
-        displayName: DefiantVerminName,
-        description: Description,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: DefiantVerminAbility,
-        abilityGuid: Guids.DefiantVerminAbility);
-      var verminShield = EnchantmentTool.CreateEnchantShieldVariant(
-        vermin,
-        buffName: DefiantVerminShieldBuff,
-        buffGuid: Guids.DefiantVerminShieldBuff,
-        abilityName: DefiantVerminShieldAbility,
-        abilityGuid: Guids.DefiantVerminShieldAbility);
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 1);
+      var verminBuffInfo = new BlueprintInfo(DefiantVerminBuff, Guids.DefiantVerminBuff);
+      var verminAbilityInfo = new BlueprintInfo(DefiantVerminAbility, Guids.DefiantVerminAbility);
 
-      return EnchantmentTool.CreateArmorEnchantFeature(
-        displayName: DisplayName,
-        description: Description,
-        //icon: ??,
-        featureName: DefiantName,
-        Guids.Defiant,
-        featureRanks: EnhancementCost,
-        prerequisiteFeature: "",
-        prerequisiteRanks: 1,
+      var vermin = EnchantmentTool.CreateEnchantAbility(
+        verminEnchantInfo,
+        ConfigureBuff(verminEnchantInfo, verminBuffInfo, FeatureRefs.VerminType.ToString()),
+        verminAbilityInfo);
+      var verminShield = EnchantmentTool.CreateEnchantShieldVariant(
+        verminEnchantInfo,
+        vermin,
+        buff: new(DefiantVerminShieldBuff, Guids.DefiantVerminShieldBuff),
+        ability: new(DefiantVerminShieldAbility, Guids.DefiantVerminShieldAbility));
+
+      return EnchantmentTool.CreateEnchantFeature(
+        new(DisplayName, Description, "", EnhancementCost, ranks: 1),
+        new(DefiantName, Guids.Defiant),
         parent,
         shieldParent,
         aberrations,
@@ -601,20 +593,18 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     private static BlueprintBuff ConfigureBuff(
-      string buffName,
-      string buffGuid,
-      string displayName,
-      //string icon,
-      Blueprint<BlueprintFeatureReference> requisiteFeature,
+      ArmorEnchantInfo enchantInfo,
+      BlueprintInfo buff,
+      Blueprint<BlueprintFeatureReference> typeFeature,
       AlignmentComponent? alignment = null)
     {
-      return BuffConfigurator.New(buffName, buffGuid)
-        .SetDisplayName(displayName)
-        .SetDescription(Description)
+      return BuffConfigurator.New(buff.Name, buff.Guid)
+        .SetDisplayName(enchantInfo.DisplayName)
+        .SetDescription(enchantInfo.Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, EnhancementCost))
-        .AddComponent(new DefiantComponent(requisiteFeature.Reference, alignment))
-        .AddComponent(new DefiantResistanceComponent(requisiteFeature.Reference, alignment))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
+        .AddComponent(new DefiantComponent(typeFeature.Reference, alignment))
+        .AddComponent(new DefiantResistanceComponent(typeFeature.Reference, alignment))
         .Configure();
     }
 
