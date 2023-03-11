@@ -4,6 +4,8 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
+using BlueprintCore.Conditions.Builder;
+using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
@@ -50,15 +52,19 @@ namespace AutomaticBonusProgression.Enchantments
         .AddAbilityTargetsAround(targetType: TargetType.Any, radius: 20.Feet())
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.BlindingBuff })
-        .AddContextRankConfig(ContextRankConfigs.MythicLevel().WithBonusValueProgression(4))
-        .AddContextSetAbilityParams(
-          add10ToDC: true, dC: ContextValues.Rank(), casterLevel: -1, concentration: -1, spellLevel: -1)
+        .AddContextRankConfig(ContextRankConfigs.MythicLevel().WithBonusValueProgression(14))
         .AddAbilityEffectRunAction(
           ActionsBuilder.New()
-            .ConditionalSaved(
-              failed: ActionsBuilder.New()
-                .ApplyBuff(BuffRefs.Blind.ToString(), ContextDuration.FixedDice(DiceType.D4))),
-          savingThrowType: SavingThrowType.Reflex)
+            .Conditional(
+              ConditionsBuilder.New().IsCaster(),
+              ifFalse: ActionsBuilder.New()
+                .SavingThrow(
+                  SavingThrowType.Reflex,
+                  customDC: ContextValues.Rank(),
+                  onResult: ActionsBuilder.New()
+                    .ConditionalSaved(
+                      failed: ActionsBuilder.New()
+                        .ApplyBuff(BuffRefs.Blind.ToString(), ContextDuration.FixedDice(DiceType.D4))))))
         .Configure();
 
       var enchantInfo =
