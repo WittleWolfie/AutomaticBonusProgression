@@ -188,15 +188,56 @@ namespace AutomaticBonusProgression.Enchantments
       var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
         .CopyFrom(armorEnchant.Buff, c => c is not EnhancementEquivalenceComponent && c is not RequireArmor)
         .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.Shield))
-        .AddComponent(new RequireShield(enchant.AllowedTypes))
-        .Configure();
+        .AddComponent(new RequireShield(enchant.AllowedTypes));
 
-      return ActivatableAbilityConfigurator.New(ability.Name, ability.Guid)
+      foreach (var component in buff.Components)
+        buffConfigurator.AddComponent(component);
+
+      var abilityConfigurator = ActivatableAbilityConfigurator.New(ability.Name, ability.Guid)
         .CopyFrom(armorEnchant, c => c is not EnhancementRestriction && c is not ArmorRestriction)
         .AddComponent(new EnhancementRestriction(enchant, typeOverride: EnhancementType.Shield))
         .AddComponent(new ShieldRestriction(enchant.AllowedTypes))
-        .SetBuff(buffConfigurator)
-        .Configure();
+        .SetBuff(buffConfigurator.Configure());
+
+      foreach (var component in ability.Components)
+        abilityConfigurator.AddComponent(component);
+
+      return abilityConfigurator.Configure();
+    }
+
+    /// <summary>
+    /// Creates a variant of the armor enchant for use with shields
+    /// </summary>
+    internal static BlueprintActivatableAbility CreateEnchantShieldVariant(
+      ArmorEnchantInfo enchant, BlueprintInfo buff, BlueprintInfo ability)
+    {
+      var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.Shield))
+        .AddComponent(new RequireShield(enchant.AllowedTypes));
+
+      foreach (var component in buff.Components)
+        buffConfigurator.AddComponent(component);
+
+      var abilityConfigurator = ActivatableAbilityConfigurator.New(ability.Name, ability.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(icon)
+        .SetHiddenInUI()
+        .SetBuff(buffConfigurator.Configure())
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddComponent(new EnhancementRestriction(enchant, typeOverride: EnhancementType.Shield))
+        .AddComponent(new ShieldRestriction(enchant.AllowedTypes))
+        .AddComponent<OutOfCombatRestriction>();
+
+      foreach (var component in ability.Components)
+        abilityConfigurator.AddComponent(component);
+
+      return abilityConfigurator.Configure();
     }
   }
 }

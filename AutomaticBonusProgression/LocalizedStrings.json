@@ -155,6 +155,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Blinding.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bashing (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Blinding.Description",
+    "enGB": "A shield with this ability flashes with a brilliant light up to twice per day upon command of the wielder. Except for the wielder, anyone within 20 feet must make a successful Reflex save or be blinded for 1d4 rounds. The DC of the save is 14 + Mythic Rank."
+  },
+
+  {
     "Key": "LegendaryArmor.Bolstering.Name",
     "ProcessTemplates": false,
     "enGB": "Bolstering (+1)"

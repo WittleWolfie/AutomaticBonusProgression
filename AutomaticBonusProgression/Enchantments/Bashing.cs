@@ -1,16 +1,11 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+﻿using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules;
-using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Components;
 using System;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -39,29 +34,10 @@ namespace AutomaticBonusProgression.Enchantments
         ArmorProficiencyGroup.LightShield,
         ArmorProficiencyGroup.HeavyShield);
 
-      var buff = BuffConfigurator.New(BuffName, Guids.BashingBuff)
-        .SetDisplayName(DisplayName)
-        .SetDescription(Description)
-        //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo, typeOverride: EnhancementType.Shield))
-        .AddComponent(new RequireShield(enchantInfo.AllowedTypes))
-        .AddComponent<BashingComponent>()
-        .Configure();
-
-      var ability = ActivatableAbilityConfigurator.New(AbilityName, Guids.BashingAbility)
-        .SetDisplayName(DisplayName)
-        .SetDescription(Description)
-        //.SetIcon(icon)
-        .SetBuff(buff)
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddComponent(new EnhancementRestriction(enchantInfo, typeOverride: EnhancementType.Shield))
-        .AddComponent(new ShieldRestriction(enchantInfo.AllowedTypes))
-        .AddComponent<OutOfCombatRestriction>()
-        .SetHiddenInUI()
-        .Configure();
-
+      var ability = EnchantmentTool.CreateEnchantShieldVariant(
+        enchantInfo,
+        new(BuffName, Guids.BashingBuff, new BashingComponent()),
+        new(AbilityName, Guids.BashingAbility));
       return EnchantmentTool.CreateEnchantFeature(enchantInfo, new(BashingName, Guids.Bashing), ability);
     }
 
