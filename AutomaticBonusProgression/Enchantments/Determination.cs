@@ -27,6 +27,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string Description = "LegendaryArmor.Determination.Description";
     private const int EnhancementCost = 5;
 
+    // TODO: Add Shield variant!
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Determination");
