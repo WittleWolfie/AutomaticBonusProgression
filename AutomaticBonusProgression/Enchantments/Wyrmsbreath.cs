@@ -13,6 +13,8 @@ using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.Utility;
 using System;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
@@ -48,7 +50,7 @@ namespace AutomaticBonusProgression.Enchantments
       Logger.Log($"Configuring Wyrmsbreath");
 
       var castResource = AbilityResourceConfigurator.New(ResourceName, Guids.WyrmsbreathResource)
-        .SetMaxAmount(ResourceAmountBuilder.New(2))
+        .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
       var acidAbility = CreateBreathAbility(
@@ -122,7 +124,7 @@ namespace AutomaticBonusProgression.Enchantments
           descriptor = SpellDescriptor.Cold;
           break;
         case DamageEnergyType.Electricity:
-          projectile = ProjectileRefs.SonicCone15Feet00.ToString();
+          projectile = ProjectileRefs.AirCone15Feet00.ToString();
           descriptor = SpellDescriptor.Electricity;
           break;
         case DamageEnergyType.Fire:
@@ -139,11 +141,15 @@ namespace AutomaticBonusProgression.Enchantments
         .SetType(AbilityType.SpellLike)
         .SetRange(AbilityRange.Projectile)
         .SetActionType(CommandType.Swift)
+        .AllowTargeting(true, true, true, true)
         .AddSpellDescriptorComponent(descriptor | SpellDescriptor.BreathWeapon)
         .AddAbilityResourceLogic(requiredResource: Guids.WyrmsbreathResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.WyrmsbreathBuff })
         .AddContextRankConfig(ContextRankConfigs.MythicLevel().WithBonusValueProgression(11))
-        .AddAbilityDeliverProjectile(projectiles: new() { projectile })
+        .AddAbilityDeliverProjectile(
+          type: AbilityProjectileType.Cone,
+          length: 15.Feet(),
+          projectiles: new() { projectile })
         .AddAbilityEffectRunAction(
           ActionsBuilder.New()
             .SavingThrow(
