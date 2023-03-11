@@ -14,7 +14,7 @@ namespace AutomaticBonusProgression.Components
     {
       try
       {
-        return !Owner.IsInCombat;
+        return Fact.IsOn || !Owner.IsInCombat;
       }
       catch (Exception e)
       {
