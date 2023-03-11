@@ -491,6 +491,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Rallying.Name",
+    "ProcessTemplates": false,
+    "enGB": "Rallying (+2)"
+  },
+  {
+    "Key": "LegendaryArmor.Rallying.Description",
+    "enGB": "This armor or shield is brightly polished, and its mirror-bright surface is magically endowed with the ability to bring comfort to the wearer’s companions. Allies within 30 feet of the wearer gain a +4 morale bonus on saving throws against fear effects. If the wearer has levels in Paladin, Bard, or Cavalier the bonus increases to +6."
+  },
+
+  {
     "Key": "LegendaryArmor.Shadow.Name",
     "ProcessTemplates": false,
     "enGB": "Shadow (+2)"

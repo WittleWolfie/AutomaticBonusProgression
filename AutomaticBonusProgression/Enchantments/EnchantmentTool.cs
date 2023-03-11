@@ -24,7 +24,7 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintReference<BlueprintFeature>> feature, EnchantInfo enchant)
     {
       return FeatureConfigurator.For(feature)
-        .AddComponent(new EnhancementEquivalence(enchant))
+        .AddComponent(new EnhancementEquivalenceComponent(enchant))
         .Configure();
     }
 
@@ -32,7 +32,7 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintReference<BlueprintArmorEnchantment>> enchantment, EnchantInfo enchant)
     {
       return ArmorEnchantmentConfigurator.For(enchantment)
-        .AddComponent(new EnhancementEquivalence(enchant))
+        .AddComponent(new EnhancementEquivalenceComponent(enchant))
         .Configure();
     }
 
@@ -46,7 +46,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
-        .AddComponent(new EnhancementEquivalence(enchant));
+        .AddComponent(new EnhancementEquivalenceComponent(enchant));
 
       if (enchant.AllowedTypes.Any())
         buffConfigurator.AddComponent(new RequireArmor(enchant.AllowedTypes));
@@ -76,7 +76,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
-        .AddComponent(new EnhancementEquivalence(enchant));
+        .AddComponent(new EnhancementEquivalenceComponent(enchant));
 
       if (enchant.AllowedTypes.Any())
         buffConfigurator.AddComponent(new RequireArmor(enchant.AllowedTypes));
@@ -186,8 +186,8 @@ namespace AutomaticBonusProgression.Enchantments
       ArmorEnchantInfo enchant, BlueprintActivatableAbility armorEnchant, BlueprintInfo buff, BlueprintInfo ability)
     {
       var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
-        .CopyFrom(armorEnchant.Buff, c => c is not EnhancementEquivalence && c is not RequireArmor)
-        .AddComponent(new EnhancementEquivalence(enchant, typeOverride: EnhancementType.Shield))
+        .CopyFrom(armorEnchant.Buff, c => c is not EnhancementEquivalenceComponent && c is not RequireArmor)
+        .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.Shield))
         .AddComponent(new RequireShield(enchant.AllowedTypes))
         .Configure();
 

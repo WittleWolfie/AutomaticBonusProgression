@@ -332,6 +332,14 @@
     internal const string InvulnerabilityAbility = "bc659b72-52c3-4414-9c10-9d67e533d12d";
     internal const string InvulnerabilityBuff = "d77e2446-276a-4246-924e-d679b526eea8";
 
+    internal const string Rallying = "cfc8a849-c422-4043-b6e3-f96506b6b5b3";
+    internal const string RallyingAbility = "2a403882-0466-4e6b-b4a0-7506a12f2427";
+    internal const string RallyingBuff = "d513d85b-636f-46c0-9359-316bf7b23ba1";
+    internal const string RallyingShieldAbility = "8d265df3-110b-43c1-b52e-fd7fa2947044";
+    internal const string RallyingShieldBuff = "635a522c-880c-4eeb-a599-361ea3f6cb70";
+    internal const string RallyingAura = "087eee7a-8632-4d9b-b5f3-074b23c52371";
+    internal const string RallyingAuraBuff = "298dbc80-b704-446c-a3fd-efcdea5190ec";
+
     internal const string ShadowArmor = "86580aff-6433-4b70-823a-8d4d8d904f46";
     internal const string ShadowArmorAbility = "f0096427-0ec6-4e72-b21b-e5251d39bed6";
     internal const string ShadowArmorBuff = "1cb18f84-4ae0-4990-930f-f47f42ff549d";

@@ -24,14 +24,14 @@ namespace AutomaticBonusProgression.Components
   [AllowedOn(typeof(BlueprintUnitFact))]
   [AllowedOn(typeof(BlueprintItemEnchantment))]
   [TypeId("4c9f19e3-0b2c-45b6-87c4-d22140b55f64")]
-  internal class EnhancementEquivalence : EntityFactComponentDelegate
+  internal class EnhancementEquivalenceComponent : EntityFactComponentDelegate
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalence));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalenceComponent));
 
     internal readonly EnhancementType Type;
     internal readonly int Enhancement;
 
-    internal EnhancementEquivalence(EnchantInfo enchant, EnhancementType? typeOverride = null)
+    internal EnhancementEquivalenceComponent(EnchantInfo enchant, EnhancementType? typeOverride = null)
     {
       Type = typeOverride ?? enchant.Type;
       Enhancement = enchant.Cost;

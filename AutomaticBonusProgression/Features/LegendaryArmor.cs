@@ -30,9 +30,7 @@ namespace AutomaticBonusProgression.Features
     // - Dastard [Done]
     // - Deathless [Done]
     // - Defiant [Done]
-    // - Expeditious
-    // - Creeping
-    // - Rallying?
+    // - Rallying [Done]
     // - Brawling
     // - Putrid?
     // - Ghost
@@ -91,6 +89,8 @@ namespace AutomaticBonusProgression.Features
 
               Guids.InvulnerabilityAbility,
 
+              Guids.RallyingAbility,
+
               Guids.ShadowArmorAbility,
               Guids.ImprovedShadowArmorAbility,
               Guids.GreaterShadowArmorAbility,
@@ -120,6 +120,8 @@ namespace AutomaticBonusProgression.Features
               Guids.ImprovedFortificationShieldAbility,
               Guids.GreaterFortificationShieldAbility,
 
+              Guids.RallyingShieldAbility,
+
               Guids.SpellResistance13ShieldAbility,
               Guids.SpellResistance16ShieldAbility,
               Guids.SpellResistance19ShieldAbility,
@@ -148,6 +150,7 @@ namespace AutomaticBonusProgression.Features
           Fortification.ConfigureImproved(),
           Fortification.ConfigureGreater(),
           Invulnerability.Configure(),
+          Rallying.Configure(),
           ShadowArmor.Configure(),
           ShadowArmor.ConfigureImproved(),
           ShadowArmor.ConfigureGreater(),

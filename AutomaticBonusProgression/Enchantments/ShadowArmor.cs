@@ -101,7 +101,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(GreaterDescription)
         //.SetIcon()
         .AddStatBonus(stat: StatType.SkillStealth, value: 15, descriptor: ModifierDescriptor.Competence)
-        .AddComponent(new EnhancementEquivalence(enchantInfo))
+        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
         .Configure();
 
       return EnchantmentTool.CreateEnchant(
