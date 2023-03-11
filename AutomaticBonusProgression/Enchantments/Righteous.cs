@@ -34,7 +34,7 @@ namespace AutomaticBonusProgression.Enchantments
       var righteousMight = AbilityRefs.RighteousMight.Reference.Get();
       var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.RighteousCastResource)
         .SetIcon(righteousMight.Icon)
-        .SetMax(1)
+        .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
       var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.RighteousCastAbility)
