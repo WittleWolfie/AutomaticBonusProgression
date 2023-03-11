@@ -25,7 +25,7 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string DisplayName = "LegendaryArmor.Martyring.Name";
     private const string Description = "LegendaryArmor.Martyring.Description";
-    private const int EnhancementCost = 5;
+    private const int EnhancementCost = 4;
 
     internal static BlueprintFeature Configure()
     {
@@ -41,16 +41,16 @@ namespace AutomaticBonusProgression.Enchantments
           Description,
           "",
           EnhancementCost,
-          ranks: 5);
+          ranks: 4);
 
       var buff = BuffConfigurator.New(BuffName, Guids.MartyringBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
         .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
-        .AddIncomingDamageTrigger(
-          reduceBelowZero: true,
-          actions: ActionsBuilder.New()
+        .AddTargetAttackRollTrigger(
+          criticalHit: true,
+          actionOnSelf: ActionsBuilder.New()
             .Conditional(
               ConditionsBuilder.New()
                 .Add<HasResource>(a => a.Resource = castResource.ToReference<BlueprintAbilityResourceReference>()),
