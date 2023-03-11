@@ -33,7 +33,7 @@ namespace AutomaticBonusProgression.Features
     // - Rallying [Done]
     // - Brawling [Done]
     // - Ghost [Done]
-    // - Righteous - Unbound - Unrighteous - Vigilant (Make a single ability cause lazy I think)
+    // - Righteous - Unbound - Unrighteous - Vigilant [Done]
     // - Determination
     // - Etherealness
     // - Expeditious for real though
@@ -91,6 +91,8 @@ namespace AutomaticBonusProgression.Features
               Guids.InvulnerabilityAbility,
 
               Guids.RallyingAbility,
+
+              Guids.RighteousAbility,
 
               Guids.ShadowArmorAbility,
               Guids.ImprovedShadowArmorAbility,
@@ -156,6 +158,7 @@ namespace AutomaticBonusProgression.Features
           GhostArmor.Configure(),
           Invulnerability.Configure(),
           Rallying.Configure(),
+          Righteous.Configure(),
           ShadowArmor.Configure(),
           ShadowArmor.ConfigureImproved(),
           ShadowArmor.ConfigureGreater(),
