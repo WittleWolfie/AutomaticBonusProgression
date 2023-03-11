@@ -13,25 +13,25 @@ using Kingmaker.Designers.Mechanics.Facts;
 
 namespace AutomaticBonusProgression.Enchantments
 {
-  internal class Determination
+  internal class Martyring
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Determination));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Martyring));
 
-    private const string DeterminationName = "LegendaryArmor.Determination";
-    private const string BuffName = "LegendaryArmor.Determination.Buff";
-    private const string AbilityName = "LegendaryArmor.Determination.Ability";
+    private const string MartyringName = "LegendaryArmor.Martyring";
+    private const string BuffName = "LegendaryArmor.Martyring.Buff";
+    private const string AbilityName = "LegendaryArmor.Martyring.Ability";
 
-    private const string CastResourceName = "LegendaryArmor.Determination.Cast.Resource";
+    private const string CastResourceName = "LegendaryArmor.Martyring.Cast.Resource";
 
-    private const string DisplayName = "LegendaryArmor.Determination.Name";
-    private const string Description = "LegendaryArmor.Determination.Description";
+    private const string DisplayName = "LegendaryArmor.Martyring.Name";
+    private const string Description = "LegendaryArmor.Martyring.Description";
     private const int EnhancementCost = 5;
 
     internal static BlueprintFeature Configure()
     {
-      Logger.Log($"Configuring Determination");
+      Logger.Log($"Configuring Martyring");
 
-      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.DeterminationResource)
+      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.MartyringResource)
         .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
@@ -43,7 +43,7 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 5);
 
-      var buff = BuffConfigurator.New(BuffName, Guids.DeterminationBuff)
+      var buff = BuffConfigurator.New(BuffName, Guids.MartyringBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
@@ -55,19 +55,19 @@ namespace AutomaticBonusProgression.Enchantments
               ConditionsBuilder.New()
                 .Add<HasResource>(a => a.Resource = castResource.ToReference<BlueprintAbilityResourceReference>()),
               ifTrue: ActionsBuilder.New()
-                .CastSpell(AbilityRefs.BreathOfLifeTouch.ToString())
+                .CastSpell(AbilityRefs.CureLightWoundsMass.ToString())
                 .ContextSpendResource(castResource)))
         .Configure();
 
       var ability = EnchantmentTool.CreateEnchantAbility(
         enchantInfo,
         buff,
-        new(AbilityName, Guids.DeterminationAbility));
+        new(AbilityName, Guids.MartyringAbility));
 
       var featureInfo =
         new BlueprintInfo(
-          DeterminationName,
-          Guids.Determination,
+          MartyringName,
+          Guids.Martyring,
           new AddAbilityResources()
           {
             RestoreAmount = true,

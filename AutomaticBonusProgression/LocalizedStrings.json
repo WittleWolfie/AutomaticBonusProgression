@@ -521,6 +521,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Martyring.Name",
+    "ProcessTemplates": false,
+    "enGB": "Martyring (+4)"
+  },
+  {
+    "Key": "LegendaryArmor.Martyring.Description",
+    "enGB": "This armor allows the wearer to capitalize on her own injuries to heal her allies. The first time each day an enemy confirms a critical hit against someone wearing martyring armor, the armor automatically casts Mass Cure Light Wounds."
+  },
+
+  {
     "Key": "LegendaryArmor.Rallying.Name",
     "ProcessTemplates": false,
     "enGB": "Rallying (+2)"
@@ -537,7 +547,7 @@
   },
   {
     "Key": "LegendaryArmor.Righteous.Description",
-    "enGB": "Armor with this special ability is often engraved or enameled with religious symbols. Once per day on command, the wearer can invoke an effect, as per the spell righteous might."
+    "enGB": "Armor with this special ability is often engraved or enameled with religious symbols. Once per day on command, the wearer can invoke an effect, as per the spell Righteous Might."
   },
 
   {

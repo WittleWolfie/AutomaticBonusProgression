@@ -92,6 +92,8 @@ namespace AutomaticBonusProgression.Features
 
               Guids.InvulnerabilityAbility,
 
+              Guids.MartyringAbility,
+
               Guids.RallyingAbility,
 
               Guids.RighteousAbility,
@@ -160,6 +162,7 @@ namespace AutomaticBonusProgression.Features
           Fortification.ConfigureGreater(),
           GhostArmor.Configure(),
           Invulnerability.Configure(),
+          Martyring.Configure(),
           Rallying.Configure(),
           Righteous.Configure(),
           ShadowArmor.Configure(),

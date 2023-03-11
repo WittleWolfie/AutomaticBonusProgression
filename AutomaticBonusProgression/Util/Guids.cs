@@ -347,6 +347,11 @@
     internal const string InvulnerabilityAbility = "bc659b72-52c3-4414-9c10-9d67e533d12d";
     internal const string InvulnerabilityBuff = "d77e2446-276a-4246-924e-d679b526eea8";
 
+    internal const string Martyring = "78bf888f-1501-467a-9b0b-b17da3decebf";
+    internal const string MartyringAbility = "ff1b7b02-aa03-42be-93c9-78d39d513c7d";
+    internal const string MartyringBuff = "14df227c-794d-4328-acbb-389c9d9b081f";
+    internal const string MartyringResource = "f6bc327f-4031-42b0-b068-16992ce73975";
+
     internal const string Rallying = "cfc8a849-c422-4043-b6e3-f96506b6b5b3";
     internal const string RallyingAbility = "2a403882-0466-4e6b-b4a0-7506a12f2427";
     internal const string RallyingBuff = "d513d85b-636f-46c0-9359-316bf7b23ba1";
