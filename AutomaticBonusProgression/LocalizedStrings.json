@@ -491,6 +491,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.GhostArmor.Name",
+    "ProcessTemplates": false,
+    "enGB": "Ghost Touch (+3)"
+  },
+  {
+    "Key": "LegendaryArmor.GhostArmor.Description",
+    "enGB": "This armor or shield seems almost translucent. Both its enhancement bonus and its armor bonus count against the attacks of corporeal and incorporeal creatures."
+  },
+
+  {
     "Key": "LegendaryArmor.Invulnerability.Name",
     "ProcessTemplates": false,
     "enGB": "Invulnerability (+3)"

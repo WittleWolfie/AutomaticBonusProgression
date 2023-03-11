@@ -32,7 +32,7 @@ namespace AutomaticBonusProgression.Features
     // - Defiant [Done]
     // - Rallying [Done]
     // - Brawling [Done]
-    // - Ghost
+    // - Ghost [Done]
     // - Martyring
     // - Righteous
     // - Unbound?
@@ -88,6 +88,8 @@ namespace AutomaticBonusProgression.Features
               Guids.ImprovedFortificationAbility,
               Guids.GreaterFortificationAbility,
 
+              Guids.GhostArmorAbility,
+
               Guids.InvulnerabilityAbility,
 
               Guids.RallyingAbility,
@@ -121,6 +123,8 @@ namespace AutomaticBonusProgression.Features
               Guids.ImprovedFortificationShieldAbility,
               Guids.GreaterFortificationShieldAbility,
 
+              Guids.GhostArmorShieldAbility,
+
               Guids.RallyingShieldAbility,
 
               Guids.SpellResistance13ShieldAbility,
@@ -151,6 +155,7 @@ namespace AutomaticBonusProgression.Features
           Fortification.Configure(),
           Fortification.ConfigureImproved(),
           Fortification.ConfigureGreater(),
+          GhostArmor.Configure(),
           Invulnerability.Configure(),
           Rallying.Configure(),
           ShadowArmor.Configure(),
