@@ -39,7 +39,7 @@ namespace AutomaticBonusProgression.Features
     // - Expeditious [Done]
     // - Creeping [Done]
     // (Shield)
-    // - Bashing
+    // - Bashing [Done]
     // - Blinding
     // - Wyrmsbreath
     // - Reflecting
@@ -125,6 +125,8 @@ namespace AutomaticBonusProgression.Features
           variants: 
             new()
             {
+              Guids.BashingAbility,
+
               Guids.BolsteringShieldAbility,
 
               Guids.FortificationShieldAbility,
@@ -151,6 +153,7 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability, shieldAbility })
         .AddToAllFeatures(
           BalancedArmor.Configure(),
+          Bashing.Configure(),
           Bolstering.Configure(),
           Brawling.Configure(),
           Champion.Configure(),

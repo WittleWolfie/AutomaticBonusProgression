@@ -145,6 +145,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Bashing.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bashing (+1)"
+  },
+  {
+    "Key": "LegendaryArmor.Bashing.Description",
+    "enGB": "A shield with this special ability is designed to perform a shield bash. A bashing shield deals damage as if it were a bashing weapon of two size categories larger (a Medium light shield thus deals 1d6 points of damage and a Medium heavy shield deals 1d8 points of damage).\nRequires: Light Shield or Heavy Shield"
+  },
+
+  {
     "Key": "LegendaryArmor.Bolstering.Name",
     "ProcessTemplates": false,
     "enGB": "Bolstering (+1)"

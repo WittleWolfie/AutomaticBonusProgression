@@ -111,6 +111,10 @@
     internal const string BalancedArmorAbility = "fe735c67-37a2-412e-88cb-032ef9feacb8";
     internal const string BalancedArmorBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
 
+    internal const string Bashing = "01a0061e-5fe1-40a1-b870-84dbfacf04de";
+    internal const string BashingAbility = "a0e94cc2-8004-4803-9f81-e94f446f31b3";
+    internal const string BashingBuff = "d3db2785-81b5-4a9f-aa1e-e91dc8b1bd95";
+
     internal const string Bolstering = "32731c48-a494-48eb-a11e-d4725a808849";
     internal const string BolsteringTargetBuff = "d2022e07-3594-4563-b50b-bce30378c4f0";
     internal const string BolsteringAbility = "c32606ce-2792-48ae-9e20-026ae1ae4bf5";
