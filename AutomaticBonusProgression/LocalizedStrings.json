@@ -521,6 +521,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Righteous.Name",
+    "ProcessTemplates": false,
+    "enGB": "Righteous (+5)"
+  },
+  {
+    "Key": "LegendaryArmor.Righteous.Description",
+    "enGB": "Armor with this special ability is often engraved or enameled with religious symbols. Once per day on command, the wearer can invoke an effect, as per the spell righteous might, lasting for 10 rounds. The caster level for this effect is 10."
+  },
+
+  {
     "Key": "LegendaryArmor.Shadow.Name",
     "ProcessTemplates": false,
     "enGB": "Shadow (+2)"

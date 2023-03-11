@@ -350,6 +350,12 @@
     internal const string RallyingAura = "087eee7a-8632-4d9b-b5f3-074b23c52371";
     internal const string RallyingAuraBuff = "298dbc80-b704-446c-a3fd-efcdea5190ec";
 
+    internal const string Righteous = "851716fc-bb95-4b35-8fc5-690a590030fa";
+    internal const string RighteousAbility = "bd4e66a7-4dd1-4747-96ba-423ccc32b32a";
+    internal const string RighteousBuff = "9a5872b7-ca30-4f0b-98e2-8e2cb0fc6c4c";
+    internal const string RighteousCastAbility = "aa581f86-1d74-4cc2-9e8b-d312719b88f1";
+    internal const string RighteousCastResource = "ea9b5caf-e283-4614-b51f-8a60cd128b43";
+
     internal const string ShadowArmor = "86580aff-6433-4b70-823a-8d4d8d904f46";
     internal const string ShadowArmorAbility = "f0096427-0ec6-4e72-b21b-e5251d39bed6";
     internal const string ShadowArmorBuff = "1cb18f84-4ae0-4990-930f-f47f42ff549d";
