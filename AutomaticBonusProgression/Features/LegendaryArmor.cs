@@ -154,6 +154,7 @@ namespace AutomaticBonusProgression.Features
           Bolstering.Configure(),
           Brawling.Configure(),
           Champion.Configure(),
+          Creeping.Configure(),
           Dastard.Configure(),
           Deathless.Configure(),
           Defiant.Configure(),
