@@ -12,7 +12,6 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.PubSubSystem;
-using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
@@ -95,33 +94,54 @@ namespace AutomaticBonusProgression.Enchantments
 
     [TypeId("4b2da1d4-6a78-4ab2-8896-c540dd968a89")]
     private class CreepingComponent :
-      UnitBuffComponentDelegate, IInitiatorRulebookHandler<RuleSkillCheck>
+      UnitBuffComponentDelegate, IInitiatorRulebookHandler<RuleCalculateArmorCheckPenalty>
     {
-      public void OnEventAboutToTrigger(RuleSkillCheck evt)
+      public override void OnTurnOn()
       {
         try
         {
-          if (evt.StatType != StatType.SkillStealth)
-            return;
+          Owner.Body.Armor.MaybeArmor?.RecalculateStats();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CreepingComponent.OnTurnOn", e);
+        }
+      }
 
+      public override void OnTurnOff()
+      {
+        try
+        {
+          Owner.Body.Armor.MaybeArmor?.RecalculateStats();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CreepingComponent.OnTurnOff", e);
+        }
+      }
+
+      public void OnEventAboutToTrigger(RuleCalculateArmorCheckPenalty evt) { }
+
+      public void OnEventDidTrigger(RuleCalculateArmorCheckPenalty evt)
+      {
+        try
+        {
           var armor = Owner.Body.Armor.MaybeArmor;
           if (armor is null)
             return;
 
-          var bonus = -Rulebook.Trigger<RuleCalculateArmorCheckPenalty>(new(Owner, armor)).Result;
-          if (bonus >= 0)
+          if (evt.Result >= 0)
             return;
 
+          var bonus = -evt.Result;
           Logger.Verbose(() => $"Adding {bonus} to stealth check for {Owner.CharacterName}");
-          evt.AddModifier(bonus, Buff, ModifierDescriptor.UntypedStackable);
+          armor.AddModifier(Owner.Stats.GetStat(StatType.SkillStealth), bonus);
         }
         catch (Exception e)
         {
-          Logger.LogException("CreepingComponent.OnEventAboutToTrigger", e);
+          Logger.LogException("CreepingComponent.OnEventDidTrigger", e);
         }
       }
-
-      public void OnEventDidTrigger(RuleSkillCheck evt) { }
     }
   }
 }
