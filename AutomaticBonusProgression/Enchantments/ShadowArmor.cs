@@ -25,26 +25,23 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Shadow Armor");
 
-      var shadowFeature =
-        EnchantmentTool.AddEnhancementEquivalence(
-          FeatureRefs.ArcaneArmorShadowFeature, EnhancementType.Armor, EnhancementCost);
-      EnchantmentTool.AddEnhancementEquivalence(ArmorEnchantmentRefs.ShadowArmor, EnhancementType.Armor, EnhancementCost);
-
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
-      return EnchantmentTool.CreateArmorEnchant(
-        buffName: BuffName,
-        buffGuid: Guids.ShadowArmorBuff,
-        displayName: DisplayName,
-        description: enchant.m_Description.m_Key,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: EnhancementCost,
-        abilityName: AbilityName,
-        abilityGuid: Guids.ShadowArmorAbility,
-        featureName: ShadowArmorName,
-        Guids.ShadowArmor,
-        featureRanks: EnhancementCost,
-        buffComponents: shadowFeature.GetComponent<AddStatBonus>());
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          enchant.m_Description.m_Key,
+          "",
+          EnhancementCost,
+          ranks: 2);
+
+      var shadowFeature = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowFeature, enchantInfo);
+      EnchantmentTool.AddEnhancementEquivalence(ArmorEnchantmentRefs.ShadowArmor, enchantInfo);
+
+      return EnchantmentTool.CreateEnchant(
+        enchantInfo,
+        new BlueprintInfo(BuffName, Guids.ShadowArmorBuff, shadowFeature.GetComponent<AddStatBonus>()),
+        new(AbilityName, Guids.ShadowArmorAbility),
+        new(ShadowArmorName, Guids.ShadowArmor));
     }
 
     private const string ImprovedShadowArmorName = "LegendaryArmor.Shadow.Improved";
@@ -58,29 +55,24 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Shadow Armor (Improved)");
 
-      var shadowFeature =
-        EnchantmentTool.AddEnhancementEquivalence(
-          FeatureRefs.ArcaneArmorShadowGreaterFeature, EnhancementType.Armor, ImprovedEnhancementCost);
-      EnchantmentTool.AddEnhancementEquivalence(
-        ArmorEnchantmentRefs.GreaterShadow, EnhancementType.Armor, ImprovedEnhancementCost);
-
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowGreaterEnchant.Reference.Get();
-      return EnchantmentTool.CreateArmorEnchant(
-        buffName: ImprovedBuffName,
-        buffGuid: Guids.ImprovedShadowArmorBuff,
-        displayName: ImprovedDisplayName,
-        description: enchant.m_Description.m_Key,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: ImprovedEnhancementCost,
-        abilityName: ImprovedAbilityName,
-        abilityGuid: Guids.ImprovedShadowArmorAbility,
-        featureName: ImprovedShadowArmorName,
-        Guids.ImprovedShadowArmor,
-        featureRanks: ImprovedEnhancementCost - EnhancementCost,
-        prerequisiteFeature: Guids.ShadowArmor,
-        prerequisiteRanks: EnhancementCost,
-        buffComponents: shadowFeature.GetComponent<AddStatBonus>());
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          ImprovedDisplayName,
+          enchant.m_Description.m_Key,
+          "",
+          ImprovedEnhancementCost,
+          ranks: 2,
+          prerequisite: new(Guids.ShadowArmor, ranks: 2));
+
+      var shadowFeature = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowGreaterFeature, enchantInfo);
+      EnchantmentTool.AddEnhancementEquivalence(ArmorEnchantmentRefs.GreaterShadow, enchantInfo);
+
+      return EnchantmentTool.CreateEnchant(
+        enchantInfo,
+        new BlueprintInfo(ImprovedBuffName, Guids.ImprovedShadowArmorBuff, shadowFeature.GetComponent<AddStatBonus>()),
+        new(ImprovedAbilityName, Guids.ImprovedShadowArmorAbility),
+        new(ImprovedShadowArmorName, Guids.ImprovedShadowArmor));
     }
 
     private const string GreaterShadowArmorName = "LegendaryArmor.Shadow.Greater";
@@ -95,28 +87,28 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Shadow Armor (Greater)");
 
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          GreaterDisplayName,
+          GreaterDescription,
+          "",
+          GreaterEnhancementCost,
+          ranks: 1,
+          prerequisite: new(Guids.ImprovedShadowArmor, ranks: 2));
+
       var buff = BuffConfigurator.New(GreaterBuffName, Guids.GreaterShadowArmorBuff)
         .SetDisplayName(GreaterDisplayName)
         .SetDescription(GreaterDescription)
         //.SetIcon()
         .AddStatBonus(stat: StatType.SkillStealth, value: 15, descriptor: ModifierDescriptor.Competence)
-        .AddComponent(new EnhancementEquivalenceComponent(EnhancementType.Armor, GreaterEnhancementCost))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .Configure();
 
-      return EnchantmentTool.CreateArmorEnchant(
-        buff: buff,
-        displayName: GreaterDisplayName,
-        description: GreaterDescription,
-        //icon: ??,
-        type: EnhancementType.Armor,
-        enhancementCost: GreaterEnhancementCost,
-        abilityName: GreaterAbilityName,
-        abilityGuid: Guids.GreaterShadowArmorAbility,
-        featureName: GreaterShadowArmorName,
-        Guids.GreaterShadowArmor,
-        featureRanks: GreaterEnhancementCost - ImprovedEnhancementCost,
-        prerequisiteFeature: Guids.ImprovedShadowArmor,
-        prerequisiteRanks: ImprovedEnhancementCost - EnhancementCost);
+      return EnchantmentTool.CreateEnchant(
+        enchantInfo,
+        buff,
+        new(GreaterAbilityName, Guids.GreaterShadowArmorAbility),
+        new(GreaterShadowArmorName, Guids.GreaterShadowArmor));
     }
   }
 }
