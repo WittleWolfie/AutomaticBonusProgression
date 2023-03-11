@@ -304,8 +304,7 @@ namespace AutomaticBonusProgression.Enchantments
           AcidImprovedDescription,
           "",
           ImprovedEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist10, ranks: 2));
+          ranks: 1);
       var resistAcidFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance20Feature, acidInfo);
 
@@ -326,8 +325,7 @@ namespace AutomaticBonusProgression.Enchantments
           ColdImprovedDescription,
           "",
           ImprovedEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist10, ranks: 2));
+          ranks: 1);
       var resistColdFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance20Feature, coldInfo);
 
@@ -348,8 +346,7 @@ namespace AutomaticBonusProgression.Enchantments
           ElectricityImprovedDescription,
           "",
           ImprovedEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist10, ranks: 2));
+          ranks: 1);
       var resistElectricityFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance20Feature, electricityInfo);
 
@@ -370,8 +367,7 @@ namespace AutomaticBonusProgression.Enchantments
           FireImprovedDescription,
           "",
           ImprovedEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist10, ranks: 2));
+          ranks: 1);
       var resistFireFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.FireResistance20Feature, fireInfo);
 
@@ -392,8 +388,7 @@ namespace AutomaticBonusProgression.Enchantments
           SonicImprovedDescription,
           "",
           ImprovedEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist10, ranks: 2));
+          ranks: 1);
       // Sonic doesn't have a +20 enhcant for some reason
       var resistSonicFeature = FeatureRefs.SonicResistance20.Reference.Get();
 
@@ -409,7 +404,13 @@ namespace AutomaticBonusProgression.Enchantments
           new(SonicImprovedShieldAbilityName, Guids.SonicResist20ShieldAbility));
 
       return EnchantmentTool.CreateEnchantFeature(
-        new(ImprovedDisplayName, ImprovedDescription, "", ImprovedEnhancementCost, ranks: 1),
+        new(
+          ImprovedDisplayName,
+          ImprovedDescription,
+          "",
+          ImprovedEnhancementCost,
+          ranks: 1,
+          prerequisite: new(Guids.EnergyResist10, ranks: 2)),
         new(ImprovedEnergyResistanceName, Guids.EnergyResist20),
         resistAcid,
         resistAcidShield,
@@ -476,8 +477,7 @@ namespace AutomaticBonusProgression.Enchantments
           AcidGreaterDescription,
           "",
           GreaterEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist20, ranks: 1));
+          ranks: 1);
       var resistAcidFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance30Feature, acidInfo);
 
@@ -498,8 +498,7 @@ namespace AutomaticBonusProgression.Enchantments
           ColdGreaterDescription,
           "",
           GreaterEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist20, ranks: 1));
+          ranks: 1);
       var resistColdFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance30Feature, coldInfo);
 
@@ -520,8 +519,7 @@ namespace AutomaticBonusProgression.Enchantments
           ElectricityGreaterDescription,
           "",
           GreaterEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist20, ranks: 1));
+          ranks: 1);
       var resistElectricityFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance30Feature, electricityInfo);
 
@@ -542,8 +540,7 @@ namespace AutomaticBonusProgression.Enchantments
           FireGreaterDescription,
           "",
           GreaterEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist20, ranks: 1));
+          ranks: 1);
       var resistFireFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.FireResistance30Feature, fireInfo);
 
@@ -564,8 +561,7 @@ namespace AutomaticBonusProgression.Enchantments
           SonicGreaterDescription,
           "",
           GreaterEnhancementCost,
-          ranks: 1,
-          new PrerequisiteInfo(Guids.EnergyResist20, ranks: 1));
+          ranks: 1);
       var resistSonicFeature =
         EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance30Feature, sonicInfo);
 
@@ -581,7 +577,13 @@ namespace AutomaticBonusProgression.Enchantments
           new(SonicGreaterShieldAbilityName, Guids.SonicResist30ShieldAbility));
 
       return EnchantmentTool.CreateEnchantFeature(
-        new(GreaterDisplayName, GreaterDescription, "", GreaterEnhancementCost, ranks: 1),
+        new(
+          GreaterDisplayName,
+          GreaterDescription,
+          "",
+          GreaterEnhancementCost,
+          ranks: 1,
+          prerequisite: new(Guids.EnergyResist20)),
         new(GreaterEnergyResistanceName, Guids.EnergyResist30),
         resistAcid,
         resistAcidShield,
