@@ -175,6 +175,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Creeping.Name",
+    "ProcessTemplates": false,
+    "enGB": "Creeping (+2)"
+  },
+  {
+    "Key": "LegendaryArmor.Creeping.Description",
+    "enGB": "A suit of creeping armor is made to keep the wearer’s movement covert. The armor’s armor check penalty does not apply to the wearer’s Stealth checks. Once per day, the wearer can speak a command word to grant himself a bonus on Stealth checks equal to the armor’s enhancement bonus for 1 minute."
+  },
+
+  {
     "Key": "LegendaryArmor.Dastard.Name",
     "ProcessTemplates": false,
     "enGB": "Dastard (+1)"

@@ -126,6 +126,13 @@
     internal const string ChampionAbility = "0cc47fcd-b173-4ad3-ae37-50e8d1b9abc5";
     internal const string ChampionBuff = "ff5e6c75-9b43-473c-a174-61663c709fb9";
 
+    internal const string Creeping = "d6a3ac53-2012-4444-adc6-4fa9194af62a";
+    internal const string CreepingAbility = "d5b06e1d-8278-4ce4-a3e2-f7540b179390";
+    internal const string CreepingBuff = "87eaad30-abdc-4cc1-8bea-46ca587e77d7";
+    internal const string CreepingCastAbility = "a233ebd4-a677-4100-b417-209bf5daafb6";
+    internal const string CreepingCastBuff = "95ab4589-fcb6-4254-a0fe-e09d2b4a78b2";
+    internal const string CreepingCastResource = "ecd8026d-4884-4108-bf86-67bf58456f85";
+
     internal const string Dastard = "4abddf52-82b5-4d6a-a533-de8180ecfc79";
     internal const string DastardAbility = "bf642899-ae85-4f82-94d9-145970a4e11b";
     internal const string DastardBuff = "a21bd358-167e-4482-82ec-2362bfbfcb61";

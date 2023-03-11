@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Features
     // - Determination [Done]
     // - Martyring [Done]
     // - Expeditious [Done]
-    // - Creeping 
+    // - Creeping [Done]
     // (Shield)
     // - Bashing
     // - Blinding
@@ -77,6 +77,8 @@ namespace AutomaticBonusProgression.Features
               Guids.BrawlingAbility,
 
               Guids.ChampionAbility,
+
+              Guids.CreepingAbility,
 
               Guids.DastardAbility,
 
