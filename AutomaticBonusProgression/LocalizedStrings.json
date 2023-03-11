@@ -139,6 +139,10 @@
     "ProcessTemplates": false,
     "enGB": "Balanced (+1)"
   },
+  {
+    "Key": "LegendaryArmor.Balanced.Description",
+    "enGB": "This armor pushes back against anything that threatens to knock its wearer to the ground. The wearer gains a +4 bonus to CMD against grapple, trip and overrun combat maneuvers.\nRequires: Light Armor or Medium Armor"
+  },
 
   {
     "Key": "LegendaryArmor.Bolstering.Name",
@@ -147,7 +151,7 @@
   },
   {
     "Key": "LegendaryArmor.Bolstering.Description",
-    "enGB": "Anytime the wearer of bolstering armor damages a creature with a melee or ranged attack, he gains a +2 competence bonus on saving throws against that creature’s abilities until the start of his next turn."
+    "enGB": "Anytime the wearer of bolstering armor damages a creature with a melee or ranged attack, he gains a +2 competence bonus on saving throws against that creature’s abilities until the start of his next turn.\nRequires: Medium Armor, Heavy Armor, Light Shield, Heavy Shield, or Tower Shield"
   },
 
   {

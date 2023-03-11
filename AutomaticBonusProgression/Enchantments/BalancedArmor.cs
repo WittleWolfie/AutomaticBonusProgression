@@ -17,17 +17,16 @@ namespace AutomaticBonusProgression.Enchantments
     private const string AbilityName = "LegendaryArmor.Balanced.Ability";
 
     private const string DisplayName = "LegendaryArmor.Balanced.Name";
+    private const string Description = "LegendaryArmor.Balanced.Description";
     private const int EnhancementCost = 1;
 
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Balanced Armor");
 
-      var balancedEnchant = ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant.Reference.Get();
-
       var enchantInfo = new ArmorEnchantInfo(
         DisplayName,
-        balancedEnchant.m_Description.m_Key,
+        Description,
         "",
         EnhancementCost,
         ranks: 1,
