@@ -425,6 +425,16 @@
     internal const string SpellResistance22Buff = "70b71910-1c40-476a-84d6-cd838ced2260";
     internal const string SpellResistance22ShieldAbility = "d5cfab52-86ee-44ed-ac85-3c2e8fffe79e";
     internal const string SpellResistance22ShieldBuff = "15c1bbf0-db26-4a92-b309-345f8159395c";
+
+    internal const string Wyrmsbreath = "834c540c-25f8-4341-956e-cf3d5c7b9172";
+    internal const string WyrmsbreathAbility = "aa5a7b83-a942-4093-8589-ba293384b61e";
+    internal const string WyrmsbreathBuff = "904e71ac-9dab-4880-92c0-63c3c33ebaab";
+    internal const string WyrmsbreathResource = "a4fc0d20-70cf-4350-9c92-f7fe2ce987be";
+
+    internal const string WyrmsbreathAcidAbility = "47d87415-0471-4a90-91ac-070dc3c74d7a";
+    internal const string WyrmsbreathColdAbility = "7c9acbf9-3b16-4abd-b287-0697c342d303";
+    internal const string WyrmsbreathElectricityAbility = "f6bdf2f2-97c8-4a3a-ad09-03c19984a121";
+    internal const string WyrmsbreathFireAbility = "ee07cef2-167a-46ef-953b-e7a8e596b744";
     #endregion
     #endregion
 

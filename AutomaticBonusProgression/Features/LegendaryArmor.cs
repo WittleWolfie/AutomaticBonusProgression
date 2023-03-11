@@ -41,7 +41,7 @@ namespace AutomaticBonusProgression.Features
     // (Shield)
     // - Bashing [Done]
     // - Blinding [Done]
-    // - Wyrmsbreath I need to do something here to make this not suck and not be too strong...
+    // - Wyrmsbreath [Done]
     // - Reflecting
 
     private const string LegendaryArmorName = "LegendaryArmor";
@@ -143,6 +143,8 @@ namespace AutomaticBonusProgression.Features
               Guids.SpellResistance16ShieldAbility,
               Guids.SpellResistance19ShieldAbility,
               Guids.SpellResistance22ShieldAbility,
+
+              Guids.WyrmsbreathAbility,
             })
         .AddActivationDisable()
         .Configure();
@@ -183,7 +185,8 @@ namespace AutomaticBonusProgression.Features
           SpellResistance.Configure13(),
           SpellResistance.Configure16(),
           SpellResistance.Configure19(),
-          SpellResistance.Configure22())
+          SpellResistance.Configure22(),
+          Wyrmsbreath.Configure())
         .Configure();
     }
   }

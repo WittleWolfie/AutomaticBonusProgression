@@ -656,6 +656,26 @@
     "Key": "LegendaryArmor.Wyrmsbreath.Description",
     "enGB": "A shield with the wyrmsbreath special ability is keyed to one type of energy (acid, cold, electricity, or fire). Once per day as a swift action, the bearer can make a breath weapon attack. The breath weapon deals 5d4 points of energy damage in a 15 foot cone. Those caught in the area can attempt a Reflex save with a DC = 11 + Mythic Rank to halve the normal damage."
   },
+  {
+    "Key": "LegendaryArmor.Wyrmsbreath.Acid.Name",
+    "ProcessTemplates": false,
+    "enGB": "Wyrmsbreath: Acid"
+  },
+  {
+    "Key": "LegendaryArmor.Wyrmsbreath.Cold.Name",
+    "ProcessTemplates": false,
+    "enGB": "Wyrmsbreath: Cold"
+  },
+  {
+    "Key": "LegendaryArmor.Wyrmsbreath.Electricity.Name",
+    "ProcessTemplates": false,
+    "enGB": "Wyrmsbreath: Electricity"
+  },
+  {
+    "Key": "LegendaryArmor.Wyrmsbreath.Fire.Name",
+    "ProcessTemplates": false,
+    "enGB": "Wyrmsbreath: Fire"
+  },
   // End Legendary Armor
 
   // Start Legendary Ability
