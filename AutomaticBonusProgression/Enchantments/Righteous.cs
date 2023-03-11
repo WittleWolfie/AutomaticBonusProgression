@@ -42,7 +42,6 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetType(AbilityType.SpellLike)
         .SetAvailableMetamagic()
-        .AddContextCalculateAbilityParams(casterLevel: 10, replaceCasterLevel: true)
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.RighteousBuff })
         .Configure();
