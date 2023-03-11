@@ -60,7 +60,7 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon()
         .SetType(AbilityType.SpellLike)
         .SetRange(AbilityRange.Personal)
-        .SetActionType(CommandType.Free)
+        .SetActionType(CommandType.Swift)
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.CreepingBuff })
         .AddAbilityEffectRunAction(

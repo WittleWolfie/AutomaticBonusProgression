@@ -42,7 +42,7 @@ namespace AutomaticBonusProgression.Enchantments
         .CopyFrom(righteousMight, typeof(SpellComponent), typeof(AbilityEffectRunAction), typeof(AbilitySpawnFx))
         .SetDisplayName(DisplayName)
         .SetType(AbilityType.SpellLike)
-        .SetActionType(CommandType.Free)
+        .SetActionType(CommandType.Swift)
         .SetAvailableMetamagic()
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.RighteousBuff })

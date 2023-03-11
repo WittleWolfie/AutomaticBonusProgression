@@ -161,7 +161,7 @@
   },
   {
     "Key": "LegendaryArmor.Blinding.Description",
-    "enGB": "A shield with this ability flashes with a brilliant light up to twice per day upon command of the wielder. Except for the wielder, anyone within 20 feet must make a successful Reflex save or be blinded for 1d4 rounds. The DC of the save is 14 + Mythic Rank."
+    "enGB": "A shield with this ability flashes with a brilliant light up to twice per day as a swift action. Except for the wielder, anyone within 20 feet must make a successful Reflex save or be blinded for 1d4 rounds. The DC of the save is 14 + Mythic Rank."
   },
 
   {
@@ -201,7 +201,7 @@
   },
   {
     "Key": "LegendaryArmor.Creeping.Description",
-    "enGB": "A suit of creeping armor is made to keep the wearer’s movement covert. The armor’s armor check penalty does not apply to the wearer’s Stealth checks. Once per day, the wearer can speak a command word to grant himself a bonus on Stealth checks equal to the armor’s enhancement bonus for 1 minute."
+    "enGB": "A suit of creeping armor is made to keep the wearer’s movement covert. The armor’s armor check penalty does not apply to the wearer’s Stealth checks. Once per day as a swift action, the wearer can grant himself a bonus on Stealth checks equal to the armor’s enhancement bonus for 1 minute."
   },
 
   {
@@ -587,7 +587,7 @@
   },
   {
     "Key": "LegendaryArmor.Righteous.Description",
-    "enGB": "Armor with this special ability is often engraved or enameled with religious symbols. Once per day on command, the wearer can invoke an effect, as per the spell Righteous Might."
+    "enGB": "Armor with this special ability is often engraved or enameled with religious symbols. Once per as a swift action, the wearer can cast the spell Righteous Might."
   },
 
   {
@@ -645,6 +645,16 @@
   {
     "Key": "LegendaryArmor.SpellResistance.22.Description",
     "enGB": "This armor grants its wearer spell resistance 22."
+  },
+
+  {
+    "Key": "LegendaryArmor.Wyrmsbreath.Name",
+    "ProcessTemplates": false,
+    "enGB": "Wyrmsbreath (+2)"
+  },
+  {
+    "Key": "LegendaryArmor.Wyrmsbreath.Description",
+    "enGB": "A shield with the wyrmsbreath special ability is keyed to one type of energy (acid, cold, electricity, or fire). Once per day as a swift action, the bearer can make a breath weapon attack. The breath weapon deals 5d4 points of energy damage in a 15 foot cone. Those caught in the area can attempt a Reflex save with a DC = 11 + Mythic Rank to halve the normal damage."
   },
   // End Legendary Armor
 

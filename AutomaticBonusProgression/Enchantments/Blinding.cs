@@ -48,7 +48,7 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon()
         .SetType(AbilityType.SpellLike)
         .SetRange(AbilityRange.Personal)
-        .SetActionType(CommandType.Free)
+        .SetActionType(CommandType.Swift)
         .AddAbilityTargetsAround(targetType: TargetType.Any, radius: 20.Feet())
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.BlindingBuff })
