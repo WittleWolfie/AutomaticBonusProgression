@@ -84,7 +84,7 @@ namespace AutomaticBonusProgression.Util
     internal readonly Blueprint<BlueprintFeatureReference> Feature;
     internal readonly int Ranks;
 
-    internal PrerequisiteInfo(Blueprint<BlueprintFeatureReference> feature, int ranks)
+    internal PrerequisiteInfo(Blueprint<BlueprintFeatureReference> feature, int ranks = 1)
     {
       Feature = feature;
       Ranks = ranks;
