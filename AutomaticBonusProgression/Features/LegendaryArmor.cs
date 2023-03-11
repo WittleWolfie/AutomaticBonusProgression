@@ -31,8 +31,7 @@ namespace AutomaticBonusProgression.Features
     // - Deathless [Done]
     // - Defiant [Done]
     // - Rallying [Done]
-    // - Brawling
-    // - Putrid?
+    // - Brawling [Done]
     // - Ghost
     // - Martyring
     // - Righteous
@@ -76,6 +75,8 @@ namespace AutomaticBonusProgression.Features
               Guids.BalancedArmorAbility,
 
               Guids.BolsteringAbility,
+
+              Guids.BrawlingAbility,
 
               Guids.ChampionAbility,
 
@@ -139,6 +140,7 @@ namespace AutomaticBonusProgression.Features
         .AddToAllFeatures(
           BalancedArmor.Configure(),
           Bolstering.Configure(),
+          Brawling.Configure(),
           Champion.Configure(),
           Dastard.Configure(),
           Deathless.Configure(),
