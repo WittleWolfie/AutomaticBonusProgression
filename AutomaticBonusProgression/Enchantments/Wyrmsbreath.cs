@@ -28,16 +28,16 @@ namespace AutomaticBonusProgression.Enchantments
     private const string ResourceName = "LegendaryArmor.Wyrmsbreath.Cast.Resource";
 
     private const string AcidAbilityName = "LegendaryArmor.Wyrmsbreath.Ability.Acid";
-    private const string AcidDisplayName = "LegendaryArmor.Wyrmsbreath.Ability.Acid.Name";
+    private const string AcidDisplayName = "LegendaryArmor.Wyrmsbreath.Acid.Name";
 
     private const string ColdAbilityName = "LegendaryArmor.Wyrmsbreath.Ability.Cold";
-    private const string ColdDisplayName = "LegendaryArmor.Wyrmsbreath.Ability.Cold.Name";
+    private const string ColdDisplayName = "LegendaryArmor.Wyrmsbreath.Cold.Name";
 
     private const string ElectricityAbilityName = "LegendaryArmor.Wyrmsbreath.Ability.Electricity";
-    private const string ElectricityDisplayName = "LegendaryArmor.Wyrmsbreath.Ability.Electricity.Name";
+    private const string ElectricityDisplayName = "LegendaryArmor.Wyrmsbreath.Electricity.Name";
 
     private const string FireAbilityName = "LegendaryArmor.Wyrmsbreath.Ability.Fire";
-    private const string FireDisplayName = "LegendaryArmor.Wyrmsbreath.Ability.Fire.Name";
+    private const string FireDisplayName = "LegendaryArmor.Wyrmsbreath.Fire.Name";
 
     private const string DisplayName = "LegendaryArmor.Wyrmsbreath.Name";
     private const string Description = "LegendaryArmor.Wyrmsbreath.Description";
