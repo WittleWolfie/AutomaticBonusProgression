@@ -9,6 +9,7 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
+using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -41,6 +42,7 @@ namespace AutomaticBonusProgression.Enchantments
         .CopyFrom(righteousMight, typeof(SpellComponent), typeof(AbilityEffectRunAction), typeof(AbilitySpawnFx))
         .SetDisplayName(DisplayName)
         .SetType(AbilityType.SpellLike)
+        .SetActionType(CommandType.Free)
         .SetAvailableMetamagic()
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.RighteousBuff })
