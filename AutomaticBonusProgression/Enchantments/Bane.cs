@@ -10,7 +10,6 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums;
-using Kingmaker.Items;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
@@ -19,9 +18,7 @@ using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
-using Kingmaker.UnitLogic.FactLogic;
 using System;
-using TabletopTweaks.Core.NewComponents.OwlcatReplacements.DamageResistance;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -605,11 +602,10 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(icon)
         .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
         .AddComponent(new BaneComponent(typeFeature.Reference, alignment))
-        .AddComponent(new BaneResistanceComponent(typeFeature.Reference, alignment))
         .Configure();
     }
 
-    [TypeId("dd8ce838-7897-4932-9963-8901b27218ae")]
+    [TypeId("fbfd28cf-37f9-4160-85bc-8e4425d7691e")]
     private class BaneComponent :
       UnitBuffComponentDelegate,
       IInitiatorRulebookHandler<RuleCalculateWeaponStats>,
@@ -634,15 +630,22 @@ namespace AutomaticBonusProgression.Enchantments
       {
         try
         {
-          if (Alignment is not null && !evt.Initiator.Alignment.ValueRaw.HasComponent(Alignment.Value))
+          var target = evt.GetRuleTarget();
+          if (target is null)
           {
-            Logger.Verbose(() => $"Bane does not apply: {evt.Initiator.Alignment}, {Alignment} required");
+            Logger.Warning("No target!");
             return;
           }
 
-          if (!evt.Initiator.HasFact(RequisiteFeature))
+          if (Alignment is not null && !target.Alignment.ValueRaw.HasComponent(Alignment.Value))
           {
-            Logger.Verbose(() => $"Bane does not apply, attacker does not have {RequisiteFeature}");
+            Logger.Verbose(() => $"Bane does not apply: {target.Alignment}, {Alignment} required");
+            return;
+          }
+
+          if (!target.HasFact(RequisiteFeature))
+          {
+            Logger.Verbose(() => $"Bane does not apply, target does not have {RequisiteFeature}");
             return;
           }
 
@@ -660,15 +663,22 @@ namespace AutomaticBonusProgression.Enchantments
       {
         try
         {
-          if (Alignment is not null && !evt.Initiator.Alignment.ValueRaw.HasComponent(Alignment.Value))
+          var target = evt.GetRuleTarget();
+          if (target is null)
           {
-            Logger.Verbose(() => $"Bane does not apply: {evt.Initiator.Alignment}, {Alignment} required");
+            Logger.Warning("No target!");
             return;
           }
 
-          if (!evt.Initiator.HasFact(RequisiteFeature))
+          if (Alignment is not null && !target.Alignment.ValueRaw.HasComponent(Alignment.Value))
           {
-            Logger.Verbose(() => $"Bane does not apply, attacker does not have {RequisiteFeature}");
+            Logger.Verbose(() => $"Bane does not apply: {target.Alignment}, {Alignment} required");
+            return;
+          }
+
+          if (!target.HasFact(RequisiteFeature))
+          {
+            Logger.Verbose(() => $"Bane does not apply, target does not have {RequisiteFeature}");
             return;
           }
 
@@ -681,52 +691,6 @@ namespace AutomaticBonusProgression.Enchantments
       }
 
       public void OnEventDidTrigger(RulePrepareDamage evt) { }
-    }
-
-    [TypeId("ac8768d8-3995-48e6-b8b0-4048252d0a8e")]
-    private class BaneResistanceComponent : TTAddDamageResistanceBase
-    {
-      private readonly BlueprintFeatureReference RequisiteFeature;
-      private readonly AlignmentComponent? Alignment;
-
-      internal BaneResistanceComponent(BlueprintFeatureReference requisiteFeature, AlignmentComponent? alignment) : base()
-      {
-        RequisiteFeature = requisiteFeature;
-        Alignment = alignment;
-        Value = 2;
-      }
-
-      protected override bool Bypassed(ComponentRuntime runtime, BaseDamage damage, ItemEntityWeapon weapon)
-      {
-        try
-        {
-          if (Alignment is not null && !weapon.Owner.Alignment.ValueRaw.HasComponent(Alignment.Value))
-          {
-            Logger.Verbose(() => $"Bane DR does not apply: {weapon.Owner.Alignment}, {Alignment} required");
-            return true;
-          }
-
-          if (!weapon.Owner.HasFact(RequisiteFeature))
-          {
-            Logger.Verbose(() => $"Bane does not apply, attacker does not have {RequisiteFeature}");
-            return true;
-          }
-
-          return false;
-        }
-        catch (Exception e)
-        {
-          Logger.LogException("BaneComponent.OnEventAboutToTrigger", e);
-        }
-        return true;
-      }
-
-      public override bool IsSameDRTypeAs(TTAddDamageResistanceBase other)
-      {
-        return other is BaneResistanceComponent;
-      }
-
-      protected override void AdditionalInitFromVanillaDamageResistance(AddDamageResistanceBase vanillaResistance) { }
     }
   }
 }

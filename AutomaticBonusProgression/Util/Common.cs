@@ -13,6 +13,8 @@ namespace AutomaticBonusProgression.Util
   /// </summary>
   internal static class Common
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Common));
+
     private static BlueprintFeature _armorAttunement;
     internal static BlueprintFeature ArmorAttunement
     {
@@ -83,10 +85,7 @@ namespace AutomaticBonusProgression.Util
 
     internal static bool HasSecondaryWeapon(UnitEntityData unit)
     {
-      if (unit.Body.SecondaryHand.HasWeapon)
-        return true;
-
-      var secondaryWeapon = unit.Body.FindWeaponSlot(slot => slot.HasWeapon && !Common.IsPrimaryWeapon(slot.Weapon));
+      var secondaryWeapon = unit.Body.FindWeaponSlot(slot => slot.HasWeapon && !IsPrimaryWeapon(slot.Weapon));
       return secondaryWeapon is not null;
     }
 
