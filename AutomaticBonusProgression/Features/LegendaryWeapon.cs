@@ -23,7 +23,7 @@ namespace AutomaticBonusProgression.Features
     internal const string LegendaryOffHandDescription = "LegendaryOffHand.Description";
     private const string LegendaryOffHandAbility = "LegendaryOffHand.Ability";
 
-    internal static BlueprintFeature ConfigureArmor()
+    internal static BlueprintFeature Configure()
     {
       Logger.Log("Configuring Legendary Armor");
 
@@ -115,7 +115,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryWeaponDescription)
         //.SetIcon()
         .AddFacts(new() { ability, offHandAbility })
-        .AddToAllFeatures()
+        .AddToAllFeatures(
+          Bane.Configure())
         .Configure();
     }
   }

@@ -26,7 +26,8 @@ namespace AutomaticBonusProgression.Features
           LegendaryShieldmaster.Configure(),
           LegendaryTwinWeapons.Configure(),
           LegendaryProwess.Configure(),
-          LegendaryArmor.ConfigureArmor())
+          LegendaryArmor.Configure(),
+          LegendaryWeapon.Configure())
         .Configure();
     }
   }

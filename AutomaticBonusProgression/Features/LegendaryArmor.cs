@@ -23,7 +23,7 @@ namespace AutomaticBonusProgression.Features
     internal const string LegendaryShieldDescription = "LegendaryShield.Description";
     private const string LegendaryShieldAbility = "LegendaryShield.Ability";
 
-    internal static BlueprintFeature ConfigureArmor()
+    internal static BlueprintFeature Configure()
     {
       Logger.Log("Configuring Legendary Armor");
 
