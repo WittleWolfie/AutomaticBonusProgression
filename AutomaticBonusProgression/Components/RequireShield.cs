@@ -33,6 +33,7 @@ namespace AutomaticBonusProgression.Components
         if (!Owner.Body.SecondaryHand.HasShield)
         {
           Logger.Verbose(() => $"No shield equipped, removing {Buff.Name}");
+          Buff.Remove();
           return;
         }
 

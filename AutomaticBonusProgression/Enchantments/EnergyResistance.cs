@@ -404,7 +404,7 @@ namespace AutomaticBonusProgression.Enchantments
           new(SonicImprovedShieldAbilityName, Guids.SonicResist20ShieldAbility));
 
       return EnchantmentTool.CreateEnchantFeature(
-        new(
+        new ArmorEnchantInfo(
           ImprovedDisplayName,
           ImprovedDescription,
           "",
@@ -577,7 +577,7 @@ namespace AutomaticBonusProgression.Enchantments
           new(SonicGreaterShieldAbilityName, Guids.SonicResist30ShieldAbility));
 
       return EnchantmentTool.CreateEnchantFeature(
-        new(
+        new ArmorEnchantInfo(
           GreaterDisplayName,
           GreaterDescription,
           "",

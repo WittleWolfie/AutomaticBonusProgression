@@ -551,7 +551,7 @@ namespace AutomaticBonusProgression.Enchantments
         ability: new(DefiantVerminShieldAbility, Guids.DefiantVerminShieldAbility));
 
       return EnchantmentTool.CreateEnchantFeature(
-        new(DisplayName, Description, "", EnhancementCost, ranks: 1),
+        new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 1),
         new(DefiantName, Guids.Defiant),
         parent,
         shieldParent,

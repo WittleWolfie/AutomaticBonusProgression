@@ -3,6 +3,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.Items;
 using Kingmaker.UnitLogic;
 
 namespace AutomaticBonusProgression.Util
@@ -78,6 +79,37 @@ namespace AutomaticBonusProgression.Util
     internal static bool IsAffectedByABP(UnitEntityData unit)
     {
       return unit.IsInCompanionRoster() || (unit.Master is not null && unit.Master.IsInCompanionRoster());
+    }
+
+    internal static bool HasSecondaryWeapon(UnitEntityData unit)
+    {
+      if (unit.Body.SecondaryHand.HasWeapon)
+        return true;
+
+      var secondaryWeapon = unit.Body.FindWeaponSlot(slot => slot.HasWeapon && !Common.IsPrimaryWeapon(slot.Weapon));
+      return secondaryWeapon is not null;
+    }
+
+    internal static bool IsPrimaryWeapon(ItemEntityWeapon weapon)
+    {
+      if (weapon.Blueprint.AlwaysPrimary || weapon.Blueprint.IsUnarmed)
+        return true;
+
+      if (weapon.ForceSecondary)
+        return false;
+
+      if (!weapon.Blueprint.IsNatural)
+        return weapon.Wielder.Body.PrimaryHand.Weapon == weapon;
+
+      var wielder = weapon.Wielder;
+      if (weapon == wielder.Body.PrimaryHand.MaybeWeapon)
+        return true;
+
+      if (weapon == wielder.Body.SecondaryHand.MaybeWeapon)
+        return true;
+
+      // Natural weapons are secondary when they are not the primary or secondary hand
+      return false;
     }
   }
 }

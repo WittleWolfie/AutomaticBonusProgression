@@ -96,6 +96,24 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     /// <summary>
+    /// Creates the weapon enchant buff and ability.
+    /// </summary>
+    internal static BlueprintActivatableAbility CreateEnchantAbility(
+      WeaponEnchantInfo enchant, BlueprintInfo buff, BlueprintInfo ability)
+    {
+      var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        .AddComponent(new EnhancementEquivalenceComponent(enchant));
+
+      foreach (var component in buff.Components)
+        buffConfigurator.AddComponent(component);
+
+      return CreateEnchantAbility(enchant, buffConfigurator.Configure(), ability);
+    }
+
+    /// <summary>
     /// Creates the armor enchant ability which activates the buff.
     /// </summary>
     internal static BlueprintActivatableAbility CreateEnchantAbility(
@@ -123,10 +141,34 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     /// <summary>
+    /// Creates the weapon enchant ability which activates the buff.
+    /// </summary>
+    internal static BlueprintActivatableAbility CreateEnchantAbility(
+      WeaponEnchantInfo enchant, BlueprintBuff buff, BlueprintInfo ability)
+    {
+      var abilityConfigurator = ActivatableAbilityConfigurator.New(ability.Name, ability.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        .SetBuff(buff)
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddComponent(new EnhancementRestriction(enchant))
+        .AddComponent<OutOfCombatRestriction>()
+        .SetHiddenInUI();
+
+      foreach (var component in ability.Components)
+        abilityConfigurator.AddComponent(component);
+
+      return abilityConfigurator.Configure();
+    }
+
+    /// <summary>
     /// Creates the armor enchant feature which grants the specified abilities.
     /// </summary>
     internal static BlueprintFeature CreateEnchantFeature(
-      ArmorEnchantInfo enchant, BlueprintInfo feature, params Blueprint<BlueprintUnitFactReference>[] abilities)
+      EnchantInfo enchant, BlueprintInfo feature, params Blueprint<BlueprintUnitFactReference>[] abilities)
     {
       var featureConfigurator = FeatureConfigurator.New(feature.Name, feature.Guid)
         .SetDisplayName(enchant.DisplayName)
@@ -135,10 +177,12 @@ namespace AutomaticBonusProgression.Enchantments
         ;
 
       // Unarmored works as Light Armor and also everyone can use Light so ignore that.
-      if (enchant.AllowedTypes.Any() && !enchant.AllowedTypes.Contains(ArmorProficiencyGroup.Light))
+      if (enchant is ArmorEnchantInfo armorEnchant
+        && armorEnchant.AllowedTypes.Any()
+        && !armorEnchant.AllowedTypes.Contains(ArmorProficiencyGroup.Light))
       {
         List<Blueprint<BlueprintFeatureReference>> proficiencies = new();
-        foreach (var type in enchant.AllowedTypes)
+        foreach (var type in armorEnchant.AllowedTypes)
         {
           switch (type)
           {
@@ -214,6 +258,32 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     /// <summary>
+    /// Creates a variant of the weapon enchant for use with off-hand and secondary attacks
+    /// </summary>
+    internal static BlueprintActivatableAbility CreateEnchantOffHandVariant(
+      WeaponEnchantInfo enchant, BlueprintActivatableAbility weaponEnchant, BlueprintInfo buff, BlueprintInfo ability)
+    {
+      var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
+        .CopyFrom(weaponEnchant.Buff, c => c is not EnhancementEquivalenceComponent && c is not RequireWeapon)
+        .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.OffHand))
+        .AddComponent(new RequireOffHand());
+
+      foreach (var component in buff.Components)
+        buffConfigurator.AddComponent(component);
+
+      var abilityConfigurator = ActivatableAbilityConfigurator.New(ability.Name, ability.Guid)
+        .CopyFrom(weaponEnchant, c => c is not EnhancementRestriction && c is not WeaponRestriction)
+        .AddComponent(new EnhancementRestriction(enchant, typeOverride: EnhancementType.OffHand))
+        .AddComponent(new OffHandRestriction())
+        .SetBuff(buffConfigurator.Configure());
+
+      foreach (var component in ability.Components)
+        abilityConfigurator.AddComponent(component);
+
+      return abilityConfigurator.Configure();
+    }
+
+    /// <summary>
     /// Creates a variant of the armor enchant for use with shields
     /// </summary>
     internal static BlueprintActivatableAbility CreateEnchantShieldVariant(
@@ -240,6 +310,41 @@ namespace AutomaticBonusProgression.Enchantments
         .SetActivateWithUnitCommand(CommandType.Free)
         .AddComponent(new EnhancementRestriction(enchant, typeOverride: EnhancementType.Shield))
         .AddComponent(new ShieldRestriction(enchant.AllowedTypes))
+        .AddComponent<OutOfCombatRestriction>();
+
+      foreach (var component in ability.Components)
+        abilityConfigurator.AddComponent(component);
+
+      return abilityConfigurator.Configure();
+    }
+
+    /// <summary>
+    /// Creates a variant of the weapon enchant for use with shields
+    /// </summary>
+    internal static BlueprintActivatableAbility CreateEnchantOffHandVariant(
+      WeaponEnchantInfo enchant, BlueprintInfo buff, BlueprintInfo ability)
+    {
+      var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.OffHand))
+        .AddComponent(new RequireOffHand());
+
+      foreach (var component in buff.Components)
+        buffConfigurator.AddComponent(component);
+
+      var abilityConfigurator = ActivatableAbilityConfigurator.New(ability.Name, ability.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(icon)
+        .SetHiddenInUI()
+        .SetBuff(buffConfigurator.Configure())
+        .SetDeactivateImmediately()
+        .SetActivationType(AbilityActivationType.Immediately)
+        .SetActivateWithUnitCommand(CommandType.Free)
+        .AddComponent(new EnhancementRestriction(enchant, typeOverride: EnhancementType.OffHand))
+        .AddComponent(new OffHandRestriction())
         .AddComponent<OutOfCombatRestriction>();
 
       foreach (var component in ability.Components)
