@@ -1,8 +1,6 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Features;
+﻿using AutomaticBonusProgression.Features;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
@@ -16,7 +14,6 @@ using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.ActivatableAbilities;
-using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using System;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
@@ -216,17 +213,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var aberrationsBuffInfo = new BlueprintInfo(BaneAberrationsBuff, Guids.BaneAberrationsBuff);
-      var aberrationsAbilityInfo = new BlueprintInfo(BaneAberrationsAbility, Guids.BaneAberrationsAbility);
 
       var aberrations = EnchantmentTool.CreateEnchantAbility(
         aberrationsEnchantInfo,
-        ConfigureBuff(aberrationsEnchantInfo, aberrationsBuffInfo, FeatureRefs.AberrationType.ToString()),
-        aberrationsAbilityInfo);
+        GetBuffInfo(BaneAberrationsBuff, Guids.BaneAberrationsBuff, FeatureRefs.AberrationType.ToString()),
+        new(BaneAberrationsAbility, Guids.BaneAberrationsAbility));
       var aberrationsOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         aberrationsEnchantInfo,
-        aberrations,
-        buff: new(BaneAberrationsOffHandBuff, Guids.BaneAberrationsOffHandBuff),
+        GetBuffInfo(BaneAberrationsOffHandBuff, Guids.BaneAberrationsOffHandBuff, FeatureRefs.AberrationType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneAberrationsOffHandAbility, Guids.BaneAberrationsOffHandAbility));
 
       var animalsEnchantInfo =
@@ -236,17 +230,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var animalsBuffInfo = new BlueprintInfo(BaneAnimalsBuff, Guids.BaneAnimalsBuff);
-      var animalsAbilityInfo = new BlueprintInfo(BaneAnimalsAbility, Guids.BaneAnimalsAbility);
 
       var animals = EnchantmentTool.CreateEnchantAbility(
         animalsEnchantInfo,
-        ConfigureBuff(animalsEnchantInfo, animalsBuffInfo, FeatureRefs.AnimalType.ToString()),
-        animalsAbilityInfo);
+        GetBuffInfo(BaneAnimalsBuff, Guids.BaneAnimalsBuff, FeatureRefs.AnimalType.ToString()),
+        new(BaneAnimalsAbility, Guids.BaneAnimalsAbility));
       var animalsOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         animalsEnchantInfo,
-        animals,
-        buff: new(BaneAnimalsOffHandBuff, Guids.BaneAnimalsOffHandBuff),
+        GetBuffInfo(BaneAnimalsOffHandBuff, Guids.BaneAnimalsOffHandBuff, FeatureRefs.AnimalType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneAnimalsOffHandAbility, Guids.BaneAnimalsOffHandAbility));
 
       var constructsEnchantInfo =
@@ -256,17 +247,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var constructsBuffInfo = new BlueprintInfo(BaneConstructsBuff, Guids.BaneConstructsBuff);
-      var constructsAbilityInfo = new BlueprintInfo(BaneConstructsAbility, Guids.BaneConstructsAbility);
 
       var constructs = EnchantmentTool.CreateEnchantAbility(
         constructsEnchantInfo,
-        ConfigureBuff(constructsEnchantInfo, constructsBuffInfo, FeatureRefs.ConstructType.ToString()),
-        constructsAbilityInfo);
+        GetBuffInfo(BaneConstructsBuff, Guids.BaneConstructsBuff, FeatureRefs.ConstructType.ToString()),
+        new(BaneConstructsAbility, Guids.BaneConstructsAbility));
       var constructsOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         constructsEnchantInfo,
-        constructs,
-        buff: new(BaneConstructsOffHandBuff, Guids.BaneConstructsOffHandBuff),
+        GetBuffInfo(BaneConstructsOffHandBuff, Guids.BaneConstructsOffHandBuff, FeatureRefs.ConstructType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneConstructsOffHandAbility, Guids.BaneConstructsOffHandAbility));
 
       var dragonsEnchantInfo =
@@ -276,17 +264,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var dragonsBuffInfo = new BlueprintInfo(BaneDragonsBuff, Guids.BaneDragonsBuff);
-      var dragonsAbilityInfo = new BlueprintInfo(BaneDragonsAbility, Guids.BaneDragonsAbility);
 
       var dragons = EnchantmentTool.CreateEnchantAbility(
         dragonsEnchantInfo,
-        ConfigureBuff(dragonsEnchantInfo, dragonsBuffInfo, FeatureRefs.DragonType.ToString()),
-        dragonsAbilityInfo);
+        GetBuffInfo(BaneDragonsBuff, Guids.BaneDragonsBuff, FeatureRefs.DragonType.ToString()),
+        new(BaneDragonsAbility, Guids.BaneDragonsAbility));
       var dragonsOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         dragonsEnchantInfo,
-        dragons,
-        buff: new(BaneDragonsOffHandBuff, Guids.BaneDragonsOffHandBuff),
+        GetBuffInfo(BaneDragonsOffHandBuff, Guids.BaneDragonsOffHandBuff, FeatureRefs.DragonType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneDragonsOffHandAbility, Guids.BaneDragonsOffHandAbility));
 
       var feyEnchantInfo =
@@ -296,17 +281,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var feyBuffInfo = new BlueprintInfo(BaneFeyBuff, Guids.BaneFeyBuff);
-      var feyAbilityInfo = new BlueprintInfo(BaneFeyAbility, Guids.BaneFeyAbility);
 
       var fey = EnchantmentTool.CreateEnchantAbility(
         feyEnchantInfo,
-        ConfigureBuff(feyEnchantInfo, feyBuffInfo, FeatureRefs.FeyType.ToString()),
-        feyAbilityInfo);
+        GetBuffInfo(BaneFeyBuff, Guids.BaneFeyBuff, FeatureRefs.FeyType.ToString()),
+        new(BaneFeyAbility, Guids.BaneFeyAbility));
       var feyOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         feyEnchantInfo,
-        fey,
-        buff: new(BaneFeyOffHandBuff, Guids.BaneFeyOffHandBuff),
+        GetBuffInfo(BaneFeyOffHandBuff, Guids.BaneFeyOffHandBuff, FeatureRefs.FeyType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneFeyOffHandAbility, Guids.BaneFeyOffHandAbility));
 
       var humanoidGiantEnchantInfo =
@@ -316,17 +298,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var humanoidGiantBuffInfo = new BlueprintInfo(BaneHumanoidGiantBuff, Guids.BaneHumanoidGiantBuff);
-      var humanoidGiantAbilityInfo = new BlueprintInfo(BaneHumanoidGiantAbility, Guids.BaneHumanoidGiantAbility);
 
       var humanoidGiant = EnchantmentTool.CreateEnchantAbility(
         humanoidGiantEnchantInfo,
-        ConfigureBuff(humanoidGiantEnchantInfo, humanoidGiantBuffInfo, FeatureRefs.GiantSubtype.ToString()),
-        humanoidGiantAbilityInfo);
+        GetBuffInfo(BaneHumanoidGiantBuff, Guids.BaneHumanoidGiantBuff, FeatureRefs.GiantSubtype.ToString()),
+        new(BaneHumanoidGiantAbility, Guids.BaneHumanoidGiantAbility));
       var humanoidGiantOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         humanoidGiantEnchantInfo,
-        humanoidGiant,
-        buff: new(BaneHumanoidGiantOffHandBuff, Guids.BaneHumanoidGiantOffHandBuff),
+        GetBuffInfo(BaneHumanoidGiantOffHandBuff, Guids.BaneHumanoidGiantOffHandBuff, FeatureRefs.GiantSubtype.ToString(), toPrimaryWeapon: false),
         ability: new(BaneHumanoidGiantOffHandAbility, Guids.BaneHumanoidGiantOffHandAbility));
 
       var humanoidReptilianEnchantInfo =
@@ -336,17 +315,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var humanoidReptilianBuffInfo = new BlueprintInfo(BaneHumanoidReptilianBuff, Guids.BaneHumanoidReptilianBuff);
-      var humanoidReptilianAbilityInfo = new BlueprintInfo(BaneHumanoidReptilianAbility, Guids.BaneHumanoidReptilianAbility);
 
       var humanoidReptilian = EnchantmentTool.CreateEnchantAbility(
         humanoidReptilianEnchantInfo,
-        ConfigureBuff(humanoidReptilianEnchantInfo, humanoidReptilianBuffInfo, FeatureRefs.ReptilianSubtype.ToString()),
-        humanoidReptilianAbilityInfo);
+        GetBuffInfo(BaneHumanoidReptilianBuff, Guids.BaneHumanoidReptilianBuff, FeatureRefs.ReptilianSubtype.ToString()),
+        new(BaneHumanoidReptilianAbility, Guids.BaneHumanoidReptilianAbility));
       var humanoidReptilianOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         humanoidReptilianEnchantInfo,
-        humanoidReptilian,
-        buff: new(BaneHumanoidReptilianOffHandBuff, Guids.BaneHumanoidReptilianOffHandBuff),
+        GetBuffInfo(BaneHumanoidReptilianOffHandBuff, Guids.BaneHumanoidReptilianOffHandBuff, FeatureRefs.ReptilianSubtype.ToString(), toPrimaryWeapon: false),
         ability: new(BaneHumanoidReptilianOffHandAbility, Guids.BaneHumanoidReptilianOffHandAbility));
 
       var humanoidMonstrousEnchantInfo =
@@ -356,17 +332,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var humanoidMonstrousBuffInfo = new BlueprintInfo(BaneHumanoidMonstrousBuff, Guids.BaneHumanoidMonstrousBuff);
-      var humanoidMonstrousAbilityInfo = new BlueprintInfo(BaneHumanoidMonstrousAbility, Guids.BaneHumanoidMonstrousAbility);
 
       var humanoidMonstrous = EnchantmentTool.CreateEnchantAbility(
         humanoidMonstrousEnchantInfo,
-        ConfigureBuff(humanoidMonstrousEnchantInfo, humanoidMonstrousBuffInfo, FeatureRefs.MonstrousHumanoidType.ToString()),
-        humanoidMonstrousAbilityInfo);
+        GetBuffInfo(BaneHumanoidMonstrousBuff, Guids.BaneHumanoidMonstrousBuff, FeatureRefs.MonstrousHumanoidType.ToString()),
+        new(BaneHumanoidMonstrousAbility, Guids.BaneHumanoidMonstrousAbility));
       var humanoidMonstrousOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         humanoidMonstrousEnchantInfo,
-        humanoidMonstrous,
-        buff: new(BaneHumanoidMonstrousOffHandBuff, Guids.BaneHumanoidMonstrousOffHandBuff),
+        GetBuffInfo(BaneHumanoidMonstrousOffHandBuff, Guids.BaneHumanoidMonstrousOffHandBuff, FeatureRefs.MonstrousHumanoidType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneHumanoidMonstrousOffHandAbility, Guids.BaneHumanoidMonstrousOffHandAbility));
 
       var magicalBeastsEnchantInfo =
@@ -376,17 +349,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var magicalBeastsBuffInfo = new BlueprintInfo(BaneMagicalBeastsBuff, Guids.BaneMagicalBeastsBuff);
-      var magicalBeastsAbilityInfo = new BlueprintInfo(BaneMagicalBeastsAbility, Guids.BaneMagicalBeastsAbility);
 
       var magicalBeasts = EnchantmentTool.CreateEnchantAbility(
         magicalBeastsEnchantInfo,
-        ConfigureBuff(magicalBeastsEnchantInfo, magicalBeastsBuffInfo, FeatureRefs.MagicalBeastType.ToString()),
-        magicalBeastsAbilityInfo);
+        GetBuffInfo(BaneMagicalBeastsBuff, Guids.BaneMagicalBeastsBuff, FeatureRefs.MagicalBeastType.ToString()),
+        new(BaneMagicalBeastsAbility, Guids.BaneMagicalBeastsAbility));
       var magicalBeastsOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         magicalBeastsEnchantInfo,
-        magicalBeasts,
-        buff: new(BaneMagicalBeastsOffHandBuff, Guids.BaneMagicalBeastsOffHandBuff),
+        GetBuffInfo(BaneMagicalBeastsOffHandBuff, Guids.BaneMagicalBeastsOffHandBuff, FeatureRefs.MagicalBeastType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneMagicalBeastsOffHandAbility, Guids.BaneMagicalBeastsOffHandAbility));
 
       var outsiderGoodEnchantInfo =
@@ -396,17 +366,23 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var outsiderGoodBuffInfo = new BlueprintInfo(BaneOutsiderGoodBuff, Guids.BaneOutsiderGoodBuff);
-      var outsiderGoodAbilityInfo = new BlueprintInfo(BaneOutsiderGoodAbility, Guids.BaneOutsiderGoodAbility);
 
       var outsiderGood = EnchantmentTool.CreateEnchantAbility(
         outsiderGoodEnchantInfo,
-        ConfigureBuff(outsiderGoodEnchantInfo, outsiderGoodBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Good),
-        outsiderGoodAbilityInfo);
+        GetBuffInfo(
+          BaneOutsiderGoodBuff,
+          Guids.BaneOutsiderGoodBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Chaotic),
+        new(BaneOutsiderGoodAbility, Guids.BaneOutsiderGoodAbility));
       var outsiderGoodOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         outsiderGoodEnchantInfo,
-        outsiderGood,
-        buff: new(BaneOutsiderGoodOffHandBuff, Guids.BaneOutsiderGoodOffHandBuff),
+        GetBuffInfo(
+          BaneOutsiderGoodOffHandBuff,
+          Guids.BaneOutsiderGoodOffHandBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Good,
+          toPrimaryWeapon: false),
         ability: new(BaneOutsiderGoodOffHandAbility, Guids.BaneOutsiderGoodOffHandAbility));
 
       var outsiderEvilEnchantInfo =
@@ -416,17 +392,23 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var outsiderEvilBuffInfo = new BlueprintInfo(BaneOutsiderEvilBuff, Guids.BaneOutsiderEvilBuff);
-      var outsiderEvilAbilityInfo = new BlueprintInfo(BaneOutsiderEvilAbility, Guids.BaneOutsiderEvilAbility);
 
       var outsiderEvil = EnchantmentTool.CreateEnchantAbility(
         outsiderEvilEnchantInfo,
-        ConfigureBuff(outsiderEvilEnchantInfo, outsiderEvilBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Evil),
-        outsiderEvilAbilityInfo);
+        GetBuffInfo(
+          BaneOutsiderEvilBuff,
+          Guids.BaneOutsiderEvilBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Chaotic),
+        new(BaneOutsiderEvilAbility, Guids.BaneOutsiderEvilAbility));
       var outsiderEvilOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         outsiderEvilEnchantInfo,
-        outsiderEvil,
-        buff: new(BaneOutsiderEvilOffHandBuff, Guids.BaneOutsiderEvilOffHandBuff),
+        GetBuffInfo(
+          BaneOutsiderEvilOffHandBuff,
+          Guids.BaneOutsiderEvilOffHandBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Evil,
+          toPrimaryWeapon: false),
         ability: new(BaneOutsiderEvilOffHandAbility, Guids.BaneOutsiderEvilOffHandAbility));
 
       var outsiderLawfulEnchantInfo =
@@ -436,17 +418,23 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var outsiderLawfulBuffInfo = new BlueprintInfo(BaneOutsiderLawfulBuff, Guids.BaneOutsiderLawfulBuff);
-      var outsiderLawfulAbilityInfo = new BlueprintInfo(BaneOutsiderLawfulAbility, Guids.BaneOutsiderLawfulAbility);
 
       var outsiderLawful = EnchantmentTool.CreateEnchantAbility(
         outsiderLawfulEnchantInfo,
-        ConfigureBuff(outsiderLawfulEnchantInfo, outsiderLawfulBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Lawful),
-        outsiderLawfulAbilityInfo);
+        GetBuffInfo(
+          BaneOutsiderLawfulBuff,
+          Guids.BaneOutsiderLawfulBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Chaotic),
+        new(BaneOutsiderLawfulAbility, Guids.BaneOutsiderLawfulAbility));
       var outsiderLawfulOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         outsiderLawfulEnchantInfo,
-        outsiderLawful,
-        buff: new(BaneOutsiderLawfulOffHandBuff, Guids.BaneOutsiderLawfulOffHandBuff),
+        GetBuffInfo(
+          BaneOutsiderLawfulOffHandBuff,
+          Guids.BaneOutsiderLawfulOffHandBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Lawful,
+          toPrimaryWeapon: false),
         ability: new(BaneOutsiderLawfulOffHandAbility, Guids.BaneOutsiderLawfulOffHandAbility));
 
       var outsiderChaoticEnchantInfo =
@@ -456,17 +444,23 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var outsiderChaoticBuffInfo = new BlueprintInfo(BaneOutsiderChaoticBuff, Guids.BaneOutsiderChaoticBuff);
-      var outsiderChaoticAbilityInfo = new BlueprintInfo(BaneOutsiderChaoticAbility, Guids.BaneOutsiderChaoticAbility);
 
       var outsiderChaotic = EnchantmentTool.CreateEnchantAbility(
         outsiderChaoticEnchantInfo,
-        ConfigureBuff(outsiderChaoticEnchantInfo, outsiderChaoticBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Chaotic),
-        outsiderChaoticAbilityInfo);
+        GetBuffInfo(
+          BaneOutsiderChaoticBuff,
+          Guids.BaneOutsiderChaoticBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Chaotic),
+        new(BaneOutsiderChaoticAbility, Guids.BaneOutsiderChaoticAbility));
       var outsiderChaoticOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         outsiderChaoticEnchantInfo,
-        outsiderChaotic,
-        buff: new(BaneOutsiderChaoticOffHandBuff, Guids.BaneOutsiderChaoticOffHandBuff),
+        GetBuffInfo(
+          BaneOutsiderChaoticOffHandBuff,
+          Guids.BaneOutsiderChaoticOffHandBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Chaotic,
+          toPrimaryWeapon: false),
         ability: new(BaneOutsiderChaoticOffHandAbility, Guids.BaneOutsiderChaoticOffHandAbility));
 
       var outsiderNeutralEnchantInfo =
@@ -476,17 +470,23 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var outsiderNeutralBuffInfo = new BlueprintInfo(BaneOutsiderNeutralBuff, Guids.BaneOutsiderNeutralBuff);
-      var outsiderNeutralAbilityInfo = new BlueprintInfo(BaneOutsiderNeutralAbility, Guids.BaneOutsiderNeutralAbility);
 
       var outsiderNeutral = EnchantmentTool.CreateEnchantAbility(
         outsiderNeutralEnchantInfo,
-        ConfigureBuff(outsiderNeutralEnchantInfo, outsiderNeutralBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Neutral),
-        outsiderNeutralAbilityInfo);
+        GetBuffInfo(
+          BaneOutsiderNeutralBuff,
+          Guids.BaneOutsiderNeutralBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Chaotic),
+        new(BaneOutsiderNeutralAbility, Guids.BaneOutsiderNeutralAbility));
       var outsiderNeutralOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         outsiderNeutralEnchantInfo,
-        outsiderNeutral,
-        buff: new(BaneOutsiderNeutralOffHandBuff, Guids.BaneOutsiderNeutralOffHandBuff),
+        GetBuffInfo(
+          BaneOutsiderNeutralOffHandBuff,
+          Guids.BaneOutsiderNeutralOffHandBuff,
+          FeatureRefs.OutsiderType.ToString(),
+          alignment: AlignmentComponent.Neutral,
+          toPrimaryWeapon: false),
         ability: new(BaneOutsiderNeutralOffHandAbility, Guids.BaneOutsiderNeutralOffHandAbility));
 
       var plantsEnchantInfo =
@@ -496,17 +496,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var plantsBuffInfo = new BlueprintInfo(BanePlantsBuff, Guids.BanePlantsBuff);
-      var plantsAbilityInfo = new BlueprintInfo(BanePlantsAbility, Guids.BanePlantsAbility);
 
       var plants = EnchantmentTool.CreateEnchantAbility(
         plantsEnchantInfo,
-        ConfigureBuff(plantsEnchantInfo, plantsBuffInfo, FeatureRefs.PlantType.ToString()),
-        plantsAbilityInfo);
+        GetBuffInfo(BanePlantsBuff, Guids.BanePlantsBuff, FeatureRefs.PlantType.ToString()),
+        new(BanePlantsAbility, Guids.BanePlantsAbility));
       var plantsOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         plantsEnchantInfo,
-        plants,
-        buff: new(BanePlantsOffHandBuff, Guids.BanePlantsOffHandBuff),
+        GetBuffInfo(BanePlantsOffHandBuff, Guids.BanePlantsOffHandBuff, FeatureRefs.PlantType.ToString(), toPrimaryWeapon: false),
         ability: new(BanePlantsOffHandAbility, Guids.BanePlantsOffHandAbility));
 
       var undeadEnchantInfo =
@@ -516,17 +513,14 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var undeadBuffInfo = new BlueprintInfo(BaneUndeadBuff, Guids.BaneUndeadBuff);
-      var undeadAbilityInfo = new BlueprintInfo(BaneUndeadAbility, Guids.BaneUndeadAbility);
 
       var undead = EnchantmentTool.CreateEnchantAbility(
         undeadEnchantInfo,
-        ConfigureBuff(undeadEnchantInfo, undeadBuffInfo, FeatureRefs.UndeadType.ToString()),
-        undeadAbilityInfo);
+        GetBuffInfo(BaneUndeadBuff, Guids.BaneUndeadBuff, FeatureRefs.UndeadType.ToString()),
+        new(BaneUndeadAbility, Guids.BaneUndeadAbility));
       var undeadOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         undeadEnchantInfo,
-        undead,
-        buff: new(BaneUndeadOffHandBuff, Guids.BaneUndeadOffHandBuff),
+        GetBuffInfo(BaneUndeadOffHandBuff, Guids.BaneUndeadOffHandBuff, FeatureRefs.UndeadType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneUndeadOffHandAbility, Guids.BaneUndeadOffHandAbility));
 
       var verminEnchantInfo =
@@ -536,17 +530,15 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var verminBuffInfo = new BlueprintInfo(BaneVerminBuff, Guids.BaneVerminBuff);
       var verminAbilityInfo = new BlueprintInfo(BaneVerminAbility, Guids.BaneVerminAbility);
 
       var vermin = EnchantmentTool.CreateEnchantAbility(
         verminEnchantInfo,
-        ConfigureBuff(verminEnchantInfo, verminBuffInfo, FeatureRefs.VerminType.ToString()),
-        verminAbilityInfo);
+        GetBuffInfo(BaneVerminBuff, Guids.BaneVerminBuff, FeatureRefs.VerminType.ToString()),
+        new(BaneVerminAbility, Guids.BaneVerminAbility));
       var verminOffHand = EnchantmentTool.CreateEnchantOffHandVariant(
         verminEnchantInfo,
-        vermin,
-        buff: new(BaneVerminOffHandBuff, Guids.BaneVerminOffHandBuff),
+        GetBuffInfo(BaneVerminOffHandBuff, Guids.BaneVerminOffHandBuff, FeatureRefs.VerminType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneVerminOffHandAbility, Guids.BaneVerminOffHandAbility));
 
       return EnchantmentTool.CreateEnchantFeature(
@@ -590,32 +582,29 @@ namespace AutomaticBonusProgression.Enchantments
         verminOffHand);
     }
 
-    private static BlueprintBuff ConfigureBuff(
-      WeaponEnchantInfo enchantInfo,
-      BlueprintInfo buff,
+    private static BlueprintInfo GetBuffInfo(
+      string name,
+      string guid,
       Blueprint<BlueprintFeatureReference> typeFeature,
-      AlignmentComponent? alignment = null)
+      AlignmentComponent? alignment = null,
+      bool toPrimaryWeapon = true)
     {
-      return BuffConfigurator.New(buff.Name, buff.Guid)
-        .SetDisplayName(enchantInfo.DisplayName)
-        .SetDescription(enchantInfo.Description)
-        //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
-        .AddComponent(new BaneComponent(typeFeature.Reference, alignment))
-        .Configure();
+      return new(name, guid, new BaneComponent(typeFeature.Reference, alignment, toPrimaryWeapon));
     }
 
     [TypeId("fbfd28cf-37f9-4160-85bc-8e4425d7691e")]
     private class BaneComponent :
       UnitBuffComponentDelegate,
-      IInitiatorRulebookHandler<RuleCalculateWeaponStats>,
+      IInitiatorRulebookHandler<RuleCalculateAttackBonus>,
       IInitiatorRulebookHandler<RulePrepareDamage>
     {
       private readonly BlueprintFeatureReference RequisiteFeature;
       private readonly AlignmentComponent? Alignment;
       private readonly DamageDescription Damage;
+      private readonly bool ToPrimaryWeapon;
 
-      internal BaneComponent(BlueprintFeatureReference requisiteFeature, AlignmentComponent? alignment)
+      internal BaneComponent(
+        BlueprintFeatureReference requisiteFeature, AlignmentComponent? alignment, bool toPrimaryWeapon)
       {
         RequisiteFeature = requisiteFeature;
         Alignment = alignment;
@@ -624,16 +613,24 @@ namespace AutomaticBonusProgression.Enchantments
           Dice = new(rollsCount: 2, diceType: DiceType.D6),
           TypeDescription = DamageTypes.Force()
         };
+        ToPrimaryWeapon = toPrimaryWeapon;
       }
 
-      public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
+      public void OnEventAboutToTrigger(RuleCalculateAttackBonus evt)
       {
         try
         {
-          var target = evt.GetRuleTarget();
+          var isPrimaryWeapon = Common.IsPrimaryWeapon(evt.Weapon);
+          if (ToPrimaryWeapon && !isPrimaryWeapon || !ToPrimaryWeapon && isPrimaryWeapon)
+          {
+            Logger.Verbose(() => $"Wrong weapon: {ToPrimaryWeapon} - {isPrimaryWeapon} - {evt.Weapon.Name}");
+            return;
+          }
+
+          var target = evt.Target;
           if (target is null)
           {
-            Logger.Warning("No target!");
+            Logger.Warning("No target! (attack w/ weapon)");
             return;
           }
 
@@ -653,20 +650,31 @@ namespace AutomaticBonusProgression.Enchantments
         }
         catch (Exception e)
         {
-          Logger.LogException("BaneComponent.OnEventAboutToTrigger(RuleCalculateWeaponStats)", e);
+          Logger.LogException("BaneComponent.OnEventAboutToTrigger(RuleAttackWithWeapon)", e);
         }
       }
 
-      public void OnEventDidTrigger(RuleCalculateWeaponStats evt) { }
+      public void OnEventDidTrigger(RuleCalculateAttackBonus evt) { }
 
       public void OnEventAboutToTrigger(RulePrepareDamage evt)
       {
         try
         {
-          var target = evt.GetRuleTarget();
+          var weapon = evt.ParentRule.AttackRoll?.Weapon;
+          if (weapon is null)
+            return;
+
+          var isPrimaryWeapon = Common.IsPrimaryWeapon(weapon);
+          if (ToPrimaryWeapon && !isPrimaryWeapon || !ToPrimaryWeapon && isPrimaryWeapon)
+          {
+            Logger.Verbose(() => $"Wrong weapon: {ToPrimaryWeapon} - {isPrimaryWeapon} - {weapon.Name}");
+            return;
+          }
+
+          var target = evt.Target;
           if (target is null)
           {
-            Logger.Warning("No target!");
+            Logger.Warning("No target! (damage)");
             return;
           }
 

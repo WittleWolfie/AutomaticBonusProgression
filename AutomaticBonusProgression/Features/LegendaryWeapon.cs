@@ -29,7 +29,7 @@ namespace AutomaticBonusProgression.Features
 
       // In Game:
       // - Agile
-      // - Bane
+      // - Bane [Done]
       // - Corrosive / Flaming / Frost / Shock / Thundering (Burst)
       // - Cruel
       // - Furious
