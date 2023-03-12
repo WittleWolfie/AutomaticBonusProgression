@@ -1,11 +1,18 @@
 ﻿using AutomaticBonusProgression.Util;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Kingmaker;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules.Abilities;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using System;
+using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -17,6 +24,13 @@ namespace AutomaticBonusProgression.Enchantments
     private const string BuffName = "LegendaryArmor.Reflecting.Buff";
     private const string AbilityName = "LegendaryArmor.Reflecting.Ability";
 
+    private const string CastAbilityName = "LegendaryArmor.Reflecting.Cast";
+    private const string CastBuffName = "LegendaryArmor.Reflecting.Cast.Buff";
+    private const string CastResourceName = "LegendaryArmor.Reflecting.Cast.Resource";
+
+    private const string CastDisplayName = "LegendaryArmor.Reflecting.Cast.Name";
+    private const string CastDescription = "LegendaryArmor.Reflecting.Cast.Description";
+
     private const string DisplayName = "LegendaryArmor.Reflecting.Name";
     private const string Description = "LegendaryArmor.Reflecting.Description";
     private const int EnhancementCost = 5;
@@ -24,6 +38,30 @@ namespace AutomaticBonusProgression.Enchantments
     internal static BlueprintFeature Configure()
     {
       Logger.Log($"Configuring Reflecting");
+
+      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.ReflectingCastResource)
+        .SetMaxAmount(ResourceAmountBuilder.New(1))
+        .Configure();
+
+      var castBuff = BuffConfigurator.New(CastBuffName, Guids.ReflectingCastBuff)
+        .SetDisplayName(CastDisplayName)
+        .SetDescription(CastDescription)
+        //.SetIcon()
+        .AddComponent<ReflectingComponent>()
+        .AddNotDispelable()
+        .Configure();
+
+      var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.ReflectingCastAbility)
+        .SetDisplayName(CastDisplayName)
+        .SetDescription(CastDescription)
+        //.SetIcon(icon)
+        .SetType(AbilityType.SpellLike)
+        .SetRange(AbilityRange.Personal)
+        .SetActionType(CommandType.Free)
+        .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
+        .AddAbilityCasterHasFacts(new() { Guids.ReflectingBuff })
+        .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(castBuff))
+        .Configure();
 
       var enchantInfo = new ArmorEnchantInfo(
         DisplayName,
@@ -34,9 +72,10 @@ namespace AutomaticBonusProgression.Enchantments
 
       var ability = EnchantmentTool.CreateEnchantShieldVariant(
         enchantInfo,
-        new(BuffName, Guids.ReflectingBuff, new ReflectingComponent()),
+        new(BuffName, Guids.ReflectingBuff),
         new(AbilityName, Guids.ReflectingAbility));
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, new(ReflectingName, Guids.Reflecting), ability);
+      return EnchantmentTool.CreateEnchantFeature(
+        enchantInfo, new(ReflectingName, Guids.Reflecting), ability, castAbility);
     }
 
     [TypeId("5e021fee-7b14-4bae-874b-d3e7ec0d594d")]
@@ -48,22 +87,22 @@ namespace AutomaticBonusProgression.Enchantments
       {
         try
         {
-          //if (!evt.Initiator.IsEnemy(Owner))
-          //  return;
+          var result = evt.Result;
+          if (!evt.Success || evt.Result is null)
+            return;
 
-          //var random = UnityEngine.Random.Range(1, 21);
-          //if (random < 20)
-          //{
-          //  Logger.Verbose(() => $"No spell Reflecting: {random}");
-          //  return;
-          //}
+          if (!evt.Initiator.IsEnemy(Owner))
+            return;
 
           Logger.Verbose(() => $"Reflecting {evt.Spell.Name} targeting {Owner.CharacterName} back at {evt.Initiator.CharacterName}");
+
           evt.SetSuccess(false);
           evt.CancelAbilityExecution();
-          var context = evt.Result.Context.CloneFor(Owner, evt.Initiator);
-          Game.Instance.AbilityExecutor.Execute(context);
+
+          Game.Instance.AbilityExecutor.Execute(result.Context.CloneFor(Owner, evt.Initiator));
           EventBus.RaiseEvent<ISpellTurningHandler>(h => h.HandleSpellTurned(evt.Initiator, Owner, evt.Spell));
+
+          Buff.Remove();
         }
         catch (Exception e)
         {

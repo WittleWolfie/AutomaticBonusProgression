@@ -587,7 +587,16 @@
   },
   {
     "Key": "LegendaryArmor.Reflecting.Description",
-    "enGB": "This shield is as highly polished as a mirror, and its surface is completely reflective. Each time an enemy casts a spell targeting the bearer, there is a 5% chance to reflect it back at its caster. This has no effect on area of effect spells."
+    "enGB": "This shield is as highly polished as a mirror, and its surface is completely reflective. Once per day, it can be called on to reflect a spell back at its caster. This has no effect on area of effect spells."
+  },
+  {
+    "Key": "LegendaryArmor.Reflecting.Cast.Name",
+    "ProcessTemplates": false,
+    "enGB": "Reflect Spell"
+  },
+  {
+    "Key": "LegendaryArmor.Reflecting.Cast.Description",
+    "enGB": "The next an enemy casts targeting you is reflected back at its caster."
   },
 
   {
