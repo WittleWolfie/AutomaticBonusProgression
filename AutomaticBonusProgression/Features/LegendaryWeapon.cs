@@ -18,14 +18,68 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryWeaponAbility = "LegendaryWeapon.Ability";
     internal const string LegendaryWeaponAbilityDescription = "LegendaryWeapon.Ability.Description";
 
-    private const string LegendaryShieldName = "LegendaryShield";
-    private const string LegendaryShieldDisplayName = "LegendaryShield.Name";
-    internal const string LegendaryShieldDescription = "LegendaryShield.Description";
-    private const string LegendaryShieldAbility = "LegendaryShield.Ability";
+    private const string LegendaryOffHandName = "LegendaryOffHand";
+    private const string LegendaryOffHandDisplayName = "LegendaryOffHand.Name";
+    internal const string LegendaryOffHandDescription = "LegendaryOffHand.Description";
+    private const string LegendaryOffHandAbility = "LegendaryOffHand.Ability";
 
     internal static BlueprintFeature ConfigureArmor()
     {
       Logger.Log("Configuring Legendary Armor");
+
+      // In Game:
+      // - Agile
+      // - Bane
+      // - Corrosive / Flaming / Frost / Shock / Thundering (Burst)
+      // - Cruel
+      // - Furious
+      // - Ghost Touch
+      // - Heartseeker
+      // - Keen
+      // - Vicious
+      // - Anarchic / Axiomatic /
+      // - Disruption
+      // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes]
+      // - Holy / Unholy
+      // - Nullifying
+      // - Speed
+      // - Brilliant Energy
+      // - Vorpal
+      //
+      // New:
+      // - Bewildering
+      // - Brawling
+      // - Catalytic? (Maybe make it part of the Corrosive chain)
+      // - Countering
+      // - Courageous
+      // - Cunning
+      // - Dazzling Radiance
+      // - Debilitating
+      // - Distracting
+      // - Dueling
+      // - Fortuitous
+      // - Grounding
+      // - Growing
+      // - Ki Focus (This might be too complicated)
+      // - Leveraging
+      // - Limning
+      // - Menacing
+      // - Ominous
+      // - Quenching
+      // - Thawing
+      // - Valiant
+      // - Sneaky
+      // - Culling
+      // - Defiant
+      // - Igniting ? (similar to Catalytic)
+      // - Impact
+      // - Invigorating
+      // - Legbreaker
+      // - Lifesurge
+      // - Phase Locking
+      // - Quaking
+      // - Wounding
+      // - Gory
 
       var ability = ActivatableAbilityConfigurator.New(LegendaryWeaponAbility, Guids.LegendaryWeaponAbility)
         .SetDisplayName(LegendaryWeaponDisplayName)
@@ -38,53 +92,13 @@ namespace AutomaticBonusProgression.Features
           variants: 
             new()
             {
-              Guids.BalancedArmorAbility,
-
-              Guids.BolsteringAbility,
-
-              Guids.BrawlingAbility,
-
-              Guids.ChampionAbility,
-
-              Guids.CreepingAbility,
-
-              Guids.DastardAbility,
-
-              Guids.DeathlessAbility,
-
-              Guids.DeterminationAbility,
-
-              Guids.ExpeditiousAbility,
-
-              Guids.FortificationAbility,
-              Guids.ImprovedFortificationAbility,
-              Guids.GreaterFortificationAbility,
-
-              Guids.GhostArmorAbility,
-
-              Guids.InvulnerabilityAbility,
-
-              Guids.MartyringAbility,
-
-              Guids.RallyingAbility,
-
-              Guids.RighteousAbility,
-
-              Guids.ShadowArmorAbility,
-              Guids.ImprovedShadowArmorAbility,
-              Guids.GreaterShadowArmorAbility,
-
-              Guids.SpellResistance13Ability,
-              Guids.SpellResistance16Ability,
-              Guids.SpellResistance19Ability,
-              Guids.SpellResistance22Ability,
             })
         .AddActivationDisable()
         .Configure();
 
-      var shieldAbility = ActivatableAbilityConfigurator.New(LegendaryShieldAbility, Guids.LegendaryShieldAbility)
-        .SetDisplayName(LegendaryShieldDisplayName)
-        .SetDescription(LegendaryShieldDescription)
+      var offHandAbility = ActivatableAbilityConfigurator.New(LegendaryOffHandAbility, Guids.LegendaryOffHandAbility)
+        .SetDisplayName(LegendaryOffHandDisplayName)
+        .SetDescription(LegendaryOffHandDescription)
         //.SetIcon()
         .SetDeactivateImmediately()
         .SetActivationType(AbilityActivationType.Immediately)
@@ -93,28 +107,6 @@ namespace AutomaticBonusProgression.Features
           variants: 
             new()
             {
-              Guids.BashingAbility,
-
-              Guids.BlindingAbility,
-
-              Guids.BolsteringShieldAbility,
-
-              Guids.FortificationShieldAbility,
-              Guids.ImprovedFortificationShieldAbility,
-              Guids.GreaterFortificationShieldAbility,
-
-              Guids.GhostArmorShieldAbility,
-
-              Guids.RallyingShieldAbility,
-
-              Guids.ReflectingAbility,
-
-              Guids.SpellResistance13ShieldAbility,
-              Guids.SpellResistance16ShieldAbility,
-              Guids.SpellResistance19ShieldAbility,
-              Guids.SpellResistance22ShieldAbility,
-
-              Guids.WyrmsbreathAbility,
             })
         .AddActivationDisable()
         .Configure();
@@ -124,40 +116,8 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryWeaponDisplayName)
         .SetDescription(LegendaryWeaponDescription)
         //.SetIcon()
-        .AddFacts(new() { ability, shieldAbility })
-        .AddToAllFeatures(
-          BalancedArmor.Configure(),
-          Bashing.Configure(),
-          Blinding.Configure(),
-          Bolstering.Configure(),
-          Brawling.Configure(),
-          Champion.Configure(),
-          Creeping.Configure(),
-          Dastard.Configure(),
-          Deathless.Configure(),
-          Defiant.Configure(),
-          Determination.Configure(),
-          EnergyResistance.Configure(),
-          EnergyResistance.ConfigureImproved(),
-          EnergyResistance.ConfigureGreater(),
-          Expeditious.Configure(),
-          Fortification.Configure(),
-          Fortification.ConfigureImproved(),
-          Fortification.ConfigureGreater(),
-          GhostArmor.Configure(),
-          Invulnerability.Configure(),
-          Martyring.Configure(),
-          Rallying.Configure(),
-          Reflecting.Configure(),
-          Righteous.Configure(),
-          ShadowArmor.Configure(),
-          ShadowArmor.ConfigureImproved(),
-          ShadowArmor.ConfigureGreater(),
-          SpellResistance.Configure13(),
-          SpellResistance.Configure16(),
-          SpellResistance.Configure19(),
-          SpellResistance.Configure22(),
-          Wyrmsbreath.Configure())
+        .AddFacts(new() { ability, offHandAbility })
+        .AddToAllFeatures()
         .Configure();
     }
   }
