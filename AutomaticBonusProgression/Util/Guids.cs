@@ -384,6 +384,10 @@
     internal const string RallyingAura = "087eee7a-8632-4d9b-b5f3-074b23c52371";
     internal const string RallyingAuraBuff = "298dbc80-b704-446c-a3fd-efcdea5190ec";
 
+    internal const string Reflecting = "88947511-2103-40b2-9c9e-4e26c2618952";
+    internal const string ReflectingAbility = "58765ceb-079f-4a42-ae1e-83cb6957cdbd";
+    internal const string ReflectingBuff = "93474eb1-e45e-40c5-a437-15963b72527e";
+
     internal const string Righteous = "851716fc-bb95-4b35-8fc5-690a590030fa";
     internal const string RighteousAbility = "bd4e66a7-4dd1-4747-96ba-423ccc32b32a";
     internal const string RighteousBuff = "9a5872b7-ca30-4f0b-98e2-8e2cb0fc6c4c";

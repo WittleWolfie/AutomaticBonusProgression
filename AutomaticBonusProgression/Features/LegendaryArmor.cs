@@ -12,10 +12,6 @@ namespace AutomaticBonusProgression.Features
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryArmor));
 
-
-    // TODO: Look at new enchantments & items!
-    // TODO: I should actually add the restriction on armor types cause that might be a benefit for heavy armor? Dunno.
-
     // Armor In Game
     // - ArcaneArmorBalanced [DONE]
     // - Shadow [DONE]
@@ -42,7 +38,7 @@ namespace AutomaticBonusProgression.Features
     // - Bashing [Done]
     // - Blinding [Done]
     // - Wyrmsbreath [Done]
-    // - Reflecting
+    // - Reflecting [Done]
 
     private const string LegendaryArmorName = "LegendaryArmor";
     private const string LegendaryArmorDisplayName = "LegendaryArmor.Name";
@@ -139,6 +135,8 @@ namespace AutomaticBonusProgression.Features
 
               Guids.RallyingShieldAbility,
 
+              Guids.ReflectingAbility,
+
               Guids.SpellResistance13ShieldAbility,
               Guids.SpellResistance16ShieldAbility,
               Guids.SpellResistance19ShieldAbility,
@@ -178,6 +176,7 @@ namespace AutomaticBonusProgression.Features
           Invulnerability.Configure(),
           Martyring.Configure(),
           Rallying.Configure(),
+          Reflecting.Configure(),
           Righteous.Configure(),
           ShadowArmor.Configure(),
           ShadowArmor.ConfigureImproved(),

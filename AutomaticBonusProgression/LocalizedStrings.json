@@ -581,6 +581,16 @@
   },
 
   {
+    "Key": "LegendaryArmor.Reflecting.Name",
+    "ProcessTemplates": false,
+    "enGB": "Reflecting (+5)"
+  },
+  {
+    "Key": "LegendaryArmor.Reflecting.Description",
+    "enGB": "This shield is as highly polished as a mirror, and its surface is completely reflective. Each time an enemy casts a spell targeting the bearer, there is a 5% chance to reflect it back at its caster. This has no effect on area of effect spells."
+  },
+
+  {
     "Key": "LegendaryArmor.Righteous.Name",
     "ProcessTemplates": false,
     "enGB": "Righteous (+5)"
