@@ -35,7 +35,7 @@ namespace AutomaticBonusProgression.Enchantments
           ranks: 2);
 
       var shadowFeature = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowFeature, enchantInfo);
-      EnchantmentTool.AddEnhancementEquivalence(ArmorEnchantmentRefs.ShadowArmor, enchantInfo);
+      EnchantmentTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ShadowArmor, enchantInfo);
 
       return EnchantmentTool.CreateEnchant(
         enchantInfo,
@@ -66,7 +66,7 @@ namespace AutomaticBonusProgression.Enchantments
           prerequisite: new(Guids.ShadowArmor, ranks: 2));
 
       var shadowFeature = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowGreaterFeature, enchantInfo);
-      EnchantmentTool.AddEnhancementEquivalence(ArmorEnchantmentRefs.GreaterShadow, enchantInfo);
+      EnchantmentTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.GreaterShadow, enchantInfo);
 
       return EnchantmentTool.CreateEnchant(
         enchantInfo,

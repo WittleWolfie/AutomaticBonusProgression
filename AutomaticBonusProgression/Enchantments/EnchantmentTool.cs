@@ -28,10 +28,18 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
     }
 
-    internal static BlueprintArmorEnchantment AddEnhancementEquivalence(
+    internal static BlueprintArmorEnchantment AddEnhancementEquivalenceArmor(
       Blueprint<BlueprintReference<BlueprintArmorEnchantment>> enchantment, EnchantInfo enchant)
     {
       return ArmorEnchantmentConfigurator.For(enchantment)
+        .AddComponent(new EnhancementEquivalenceComponent(enchant))
+        .Configure();
+    }
+
+    internal static BlueprintWeaponEnchantment AddEnhancementEquivalenceWeapon(
+      Blueprint<BlueprintReference<BlueprintWeaponEnchantment>> enchantment, EnchantInfo enchant)
+    {
+      return WeaponEnchantmentConfigurator.For(enchantment)
         .AddComponent(new EnhancementEquivalenceComponent(enchant))
         .Configure();
     }

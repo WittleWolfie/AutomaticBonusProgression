@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Features
       // - Heartseeker
       // - Keen
       // - Vicious
-      // - Anarchic / Axiomatic /
+      // - Anarchic / Axiomatic
       // - Disruption
       // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes]
       // - Holy / Unholy
@@ -49,7 +49,6 @@ namespace AutomaticBonusProgression.Features
       // New:
       // - Bewildering
       // - Brawling
-      // - Catalytic? (Maybe make it part of the Corrosive chain)
       // - Countering
       // - Courageous
       // - Cunning
@@ -71,7 +70,6 @@ namespace AutomaticBonusProgression.Features
       // - Sneaky
       // - Culling
       // - Defiant
-      // - Igniting ? (similar to Catalytic)
       // - Impact
       // - Invigorating
       // - Legbreaker
