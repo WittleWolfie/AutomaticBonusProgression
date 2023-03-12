@@ -220,11 +220,11 @@ namespace AutomaticBonusProgression.Enchantments
       var aberrationsBuffInfo = new BlueprintInfo(DefiantAberrationsBuff, Guids.DefiantAberrationsBuff);
       var aberrationsAbilityInfo = new BlueprintInfo(DefiantAberrationsAbility, Guids.DefiantAberrationsAbility);
 
-      var aberrations = EnchantmentTool.CreateEnchantAbility(
+      var aberrations = EnchantTool.CreateEnchantAbility(
         aberrationsEnchantInfo,
         ConfigureBuff(aberrationsEnchantInfo, aberrationsBuffInfo, FeatureRefs.AberrationType.ToString()),
         aberrationsAbilityInfo);
-      var aberrationsShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var aberrationsShield = EnchantTool.CreateEnchantShieldVariant(
         aberrationsEnchantInfo,
         aberrations,
         buff: new(DefiantAberrationsShieldBuff, Guids.DefiantAberrationsShieldBuff),
@@ -240,11 +240,11 @@ namespace AutomaticBonusProgression.Enchantments
       var animalsBuffInfo = new BlueprintInfo(DefiantAnimalsBuff, Guids.DefiantAnimalsBuff);
       var animalsAbilityInfo = new BlueprintInfo(DefiantAnimalsAbility, Guids.DefiantAnimalsAbility);
 
-      var animals = EnchantmentTool.CreateEnchantAbility(
+      var animals = EnchantTool.CreateEnchantAbility(
         animalsEnchantInfo,
         ConfigureBuff(animalsEnchantInfo, animalsBuffInfo, FeatureRefs.AnimalType.ToString()),
         animalsAbilityInfo);
-      var animalsShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var animalsShield = EnchantTool.CreateEnchantShieldVariant(
         animalsEnchantInfo,
         animals,
         buff: new(DefiantAnimalsShieldBuff, Guids.DefiantAnimalsShieldBuff),
@@ -260,11 +260,11 @@ namespace AutomaticBonusProgression.Enchantments
       var constructsBuffInfo = new BlueprintInfo(DefiantConstructsBuff, Guids.DefiantConstructsBuff);
       var constructsAbilityInfo = new BlueprintInfo(DefiantConstructsAbility, Guids.DefiantConstructsAbility);
 
-      var constructs = EnchantmentTool.CreateEnchantAbility(
+      var constructs = EnchantTool.CreateEnchantAbility(
         constructsEnchantInfo,
         ConfigureBuff(constructsEnchantInfo, constructsBuffInfo, FeatureRefs.ConstructType.ToString()),
         constructsAbilityInfo);
-      var constructsShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var constructsShield = EnchantTool.CreateEnchantShieldVariant(
         constructsEnchantInfo,
         constructs,
         buff: new(DefiantConstructsShieldBuff, Guids.DefiantConstructsShieldBuff),
@@ -280,11 +280,11 @@ namespace AutomaticBonusProgression.Enchantments
       var dragonsBuffInfo = new BlueprintInfo(DefiantDragonsBuff, Guids.DefiantDragonsBuff);
       var dragonsAbilityInfo = new BlueprintInfo(DefiantDragonsAbility, Guids.DefiantDragonsAbility);
 
-      var dragons = EnchantmentTool.CreateEnchantAbility(
+      var dragons = EnchantTool.CreateEnchantAbility(
         dragonsEnchantInfo,
         ConfigureBuff(dragonsEnchantInfo, dragonsBuffInfo, FeatureRefs.DragonType.ToString()),
         dragonsAbilityInfo);
-      var dragonsShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var dragonsShield = EnchantTool.CreateEnchantShieldVariant(
         dragonsEnchantInfo,
         dragons,
         buff: new(DefiantDragonsShieldBuff, Guids.DefiantDragonsShieldBuff),
@@ -300,11 +300,11 @@ namespace AutomaticBonusProgression.Enchantments
       var feyBuffInfo = new BlueprintInfo(DefiantFeyBuff, Guids.DefiantFeyBuff);
       var feyAbilityInfo = new BlueprintInfo(DefiantFeyAbility, Guids.DefiantFeyAbility);
 
-      var fey = EnchantmentTool.CreateEnchantAbility(
+      var fey = EnchantTool.CreateEnchantAbility(
         feyEnchantInfo,
         ConfigureBuff(feyEnchantInfo, feyBuffInfo, FeatureRefs.FeyType.ToString()),
         feyAbilityInfo);
-      var feyShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var feyShield = EnchantTool.CreateEnchantShieldVariant(
         feyEnchantInfo,
         fey,
         buff: new(DefiantFeyShieldBuff, Guids.DefiantFeyShieldBuff),
@@ -320,11 +320,11 @@ namespace AutomaticBonusProgression.Enchantments
       var humanoidGiantBuffInfo = new BlueprintInfo(DefiantHumanoidGiantBuff, Guids.DefiantHumanoidGiantBuff);
       var humanoidGiantAbilityInfo = new BlueprintInfo(DefiantHumanoidGiantAbility, Guids.DefiantHumanoidGiantAbility);
 
-      var humanoidGiant = EnchantmentTool.CreateEnchantAbility(
+      var humanoidGiant = EnchantTool.CreateEnchantAbility(
         humanoidGiantEnchantInfo,
         ConfigureBuff(humanoidGiantEnchantInfo, humanoidGiantBuffInfo, FeatureRefs.GiantSubtype.ToString()),
         humanoidGiantAbilityInfo);
-      var humanoidGiantShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var humanoidGiantShield = EnchantTool.CreateEnchantShieldVariant(
         humanoidGiantEnchantInfo,
         humanoidGiant,
         buff: new(DefiantHumanoidGiantShieldBuff, Guids.DefiantHumanoidGiantShieldBuff),
@@ -340,11 +340,11 @@ namespace AutomaticBonusProgression.Enchantments
       var humanoidReptilianBuffInfo = new BlueprintInfo(DefiantHumanoidReptilianBuff, Guids.DefiantHumanoidReptilianBuff);
       var humanoidReptilianAbilityInfo = new BlueprintInfo(DefiantHumanoidReptilianAbility, Guids.DefiantHumanoidReptilianAbility);
 
-      var humanoidReptilian = EnchantmentTool.CreateEnchantAbility(
+      var humanoidReptilian = EnchantTool.CreateEnchantAbility(
         humanoidReptilianEnchantInfo,
         ConfigureBuff(humanoidReptilianEnchantInfo, humanoidReptilianBuffInfo, FeatureRefs.ReptilianSubtype.ToString()),
         humanoidReptilianAbilityInfo);
-      var humanoidReptilianShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var humanoidReptilianShield = EnchantTool.CreateEnchantShieldVariant(
         humanoidReptilianEnchantInfo,
         humanoidReptilian,
         buff: new(DefiantHumanoidReptilianShieldBuff, Guids.DefiantHumanoidReptilianShieldBuff),
@@ -360,11 +360,11 @@ namespace AutomaticBonusProgression.Enchantments
       var humanoidMonstrousBuffInfo = new BlueprintInfo(DefiantHumanoidMonstrousBuff, Guids.DefiantHumanoidMonstrousBuff);
       var humanoidMonstrousAbilityInfo = new BlueprintInfo(DefiantHumanoidMonstrousAbility, Guids.DefiantHumanoidMonstrousAbility);
 
-      var humanoidMonstrous = EnchantmentTool.CreateEnchantAbility(
+      var humanoidMonstrous = EnchantTool.CreateEnchantAbility(
         humanoidMonstrousEnchantInfo,
         ConfigureBuff(humanoidMonstrousEnchantInfo, humanoidMonstrousBuffInfo, FeatureRefs.MonstrousHumanoidType.ToString()),
         humanoidMonstrousAbilityInfo);
-      var humanoidMonstrousShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var humanoidMonstrousShield = EnchantTool.CreateEnchantShieldVariant(
         humanoidMonstrousEnchantInfo,
         humanoidMonstrous,
         buff: new(DefiantHumanoidMonstrousShieldBuff, Guids.DefiantHumanoidMonstrousShieldBuff),
@@ -380,11 +380,11 @@ namespace AutomaticBonusProgression.Enchantments
       var magicalBeastsBuffInfo = new BlueprintInfo(DefiantMagicalBeastsBuff, Guids.DefiantMagicalBeastsBuff);
       var magicalBeastsAbilityInfo = new BlueprintInfo(DefiantMagicalBeastsAbility, Guids.DefiantMagicalBeastsAbility);
 
-      var magicalBeasts = EnchantmentTool.CreateEnchantAbility(
+      var magicalBeasts = EnchantTool.CreateEnchantAbility(
         magicalBeastsEnchantInfo,
         ConfigureBuff(magicalBeastsEnchantInfo, magicalBeastsBuffInfo, FeatureRefs.MagicalBeastType.ToString()),
         magicalBeastsAbilityInfo);
-      var magicalBeastsShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var magicalBeastsShield = EnchantTool.CreateEnchantShieldVariant(
         magicalBeastsEnchantInfo,
         magicalBeasts,
         buff: new(DefiantMagicalBeastsShieldBuff, Guids.DefiantMagicalBeastsShieldBuff),
@@ -400,11 +400,11 @@ namespace AutomaticBonusProgression.Enchantments
       var outsiderGoodBuffInfo = new BlueprintInfo(DefiantOutsiderGoodBuff, Guids.DefiantOutsiderGoodBuff);
       var outsiderGoodAbilityInfo = new BlueprintInfo(DefiantOutsiderGoodAbility, Guids.DefiantOutsiderGoodAbility);
 
-      var outsiderGood = EnchantmentTool.CreateEnchantAbility(
+      var outsiderGood = EnchantTool.CreateEnchantAbility(
         outsiderGoodEnchantInfo,
         ConfigureBuff(outsiderGoodEnchantInfo, outsiderGoodBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Good),
         outsiderGoodAbilityInfo);
-      var outsiderGoodShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var outsiderGoodShield = EnchantTool.CreateEnchantShieldVariant(
         outsiderGoodEnchantInfo,
         outsiderGood,
         buff: new(DefiantOutsiderGoodShieldBuff, Guids.DefiantOutsiderGoodShieldBuff),
@@ -420,11 +420,11 @@ namespace AutomaticBonusProgression.Enchantments
       var outsiderEvilBuffInfo = new BlueprintInfo(DefiantOutsiderEvilBuff, Guids.DefiantOutsiderEvilBuff);
       var outsiderEvilAbilityInfo = new BlueprintInfo(DefiantOutsiderEvilAbility, Guids.DefiantOutsiderEvilAbility);
 
-      var outsiderEvil = EnchantmentTool.CreateEnchantAbility(
+      var outsiderEvil = EnchantTool.CreateEnchantAbility(
         outsiderEvilEnchantInfo,
         ConfigureBuff(outsiderEvilEnchantInfo, outsiderEvilBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Evil),
         outsiderEvilAbilityInfo);
-      var outsiderEvilShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var outsiderEvilShield = EnchantTool.CreateEnchantShieldVariant(
         outsiderEvilEnchantInfo,
         outsiderEvil,
         buff: new(DefiantOutsiderEvilShieldBuff, Guids.DefiantOutsiderEvilShieldBuff),
@@ -440,11 +440,11 @@ namespace AutomaticBonusProgression.Enchantments
       var outsiderLawfulBuffInfo = new BlueprintInfo(DefiantOutsiderLawfulBuff, Guids.DefiantOutsiderLawfulBuff);
       var outsiderLawfulAbilityInfo = new BlueprintInfo(DefiantOutsiderLawfulAbility, Guids.DefiantOutsiderLawfulAbility);
 
-      var outsiderLawful = EnchantmentTool.CreateEnchantAbility(
+      var outsiderLawful = EnchantTool.CreateEnchantAbility(
         outsiderLawfulEnchantInfo,
         ConfigureBuff(outsiderLawfulEnchantInfo, outsiderLawfulBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Lawful),
         outsiderLawfulAbilityInfo);
-      var outsiderLawfulShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var outsiderLawfulShield = EnchantTool.CreateEnchantShieldVariant(
         outsiderLawfulEnchantInfo,
         outsiderLawful,
         buff: new(DefiantOutsiderLawfulShieldBuff, Guids.DefiantOutsiderLawfulShieldBuff),
@@ -460,11 +460,11 @@ namespace AutomaticBonusProgression.Enchantments
       var outsiderChaoticBuffInfo = new BlueprintInfo(DefiantOutsiderChaoticBuff, Guids.DefiantOutsiderChaoticBuff);
       var outsiderChaoticAbilityInfo = new BlueprintInfo(DefiantOutsiderChaoticAbility, Guids.DefiantOutsiderChaoticAbility);
 
-      var outsiderChaotic = EnchantmentTool.CreateEnchantAbility(
+      var outsiderChaotic = EnchantTool.CreateEnchantAbility(
         outsiderChaoticEnchantInfo,
         ConfigureBuff(outsiderChaoticEnchantInfo, outsiderChaoticBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Chaotic),
         outsiderChaoticAbilityInfo);
-      var outsiderChaoticShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var outsiderChaoticShield = EnchantTool.CreateEnchantShieldVariant(
         outsiderChaoticEnchantInfo,
         outsiderChaotic,
         buff: new(DefiantOutsiderChaoticShieldBuff, Guids.DefiantOutsiderChaoticShieldBuff),
@@ -480,11 +480,11 @@ namespace AutomaticBonusProgression.Enchantments
       var outsiderNeutralBuffInfo = new BlueprintInfo(DefiantOutsiderNeutralBuff, Guids.DefiantOutsiderNeutralBuff);
       var outsiderNeutralAbilityInfo = new BlueprintInfo(DefiantOutsiderNeutralAbility, Guids.DefiantOutsiderNeutralAbility);
 
-      var outsiderNeutral = EnchantmentTool.CreateEnchantAbility(
+      var outsiderNeutral = EnchantTool.CreateEnchantAbility(
         outsiderNeutralEnchantInfo,
         ConfigureBuff(outsiderNeutralEnchantInfo, outsiderNeutralBuffInfo, FeatureRefs.OutsiderType.ToString(), AlignmentComponent.Neutral),
         outsiderNeutralAbilityInfo);
-      var outsiderNeutralShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var outsiderNeutralShield = EnchantTool.CreateEnchantShieldVariant(
         outsiderNeutralEnchantInfo,
         outsiderNeutral,
         buff: new(DefiantOutsiderNeutralShieldBuff, Guids.DefiantOutsiderNeutralShieldBuff),
@@ -500,11 +500,11 @@ namespace AutomaticBonusProgression.Enchantments
       var plantsBuffInfo = new BlueprintInfo(DefiantPlantsBuff, Guids.DefiantPlantsBuff);
       var plantsAbilityInfo = new BlueprintInfo(DefiantPlantsAbility, Guids.DefiantPlantsAbility);
 
-      var plants = EnchantmentTool.CreateEnchantAbility(
+      var plants = EnchantTool.CreateEnchantAbility(
         plantsEnchantInfo,
         ConfigureBuff(plantsEnchantInfo, plantsBuffInfo, FeatureRefs.PlantType.ToString()),
         plantsAbilityInfo);
-      var plantsShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var plantsShield = EnchantTool.CreateEnchantShieldVariant(
         plantsEnchantInfo,
         plants,
         buff: new(DefiantPlantsShieldBuff, Guids.DefiantPlantsShieldBuff),
@@ -520,11 +520,11 @@ namespace AutomaticBonusProgression.Enchantments
       var undeadBuffInfo = new BlueprintInfo(DefiantUndeadBuff, Guids.DefiantUndeadBuff);
       var undeadAbilityInfo = new BlueprintInfo(DefiantUndeadAbility, Guids.DefiantUndeadAbility);
 
-      var undead = EnchantmentTool.CreateEnchantAbility(
+      var undead = EnchantTool.CreateEnchantAbility(
         undeadEnchantInfo,
         ConfigureBuff(undeadEnchantInfo, undeadBuffInfo, FeatureRefs.UndeadType.ToString()),
         undeadAbilityInfo);
-      var undeadShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var undeadShield = EnchantTool.CreateEnchantShieldVariant(
         undeadEnchantInfo,
         undead,
         buff: new(DefiantUndeadShieldBuff, Guids.DefiantUndeadShieldBuff),
@@ -540,17 +540,17 @@ namespace AutomaticBonusProgression.Enchantments
       var verminBuffInfo = new BlueprintInfo(DefiantVerminBuff, Guids.DefiantVerminBuff);
       var verminAbilityInfo = new BlueprintInfo(DefiantVerminAbility, Guids.DefiantVerminAbility);
 
-      var vermin = EnchantmentTool.CreateEnchantAbility(
+      var vermin = EnchantTool.CreateEnchantAbility(
         verminEnchantInfo,
         ConfigureBuff(verminEnchantInfo, verminBuffInfo, FeatureRefs.VerminType.ToString()),
         verminAbilityInfo);
-      var verminShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var verminShield = EnchantTool.CreateEnchantShieldVariant(
         verminEnchantInfo,
         vermin,
         buff: new(DefiantVerminShieldBuff, Guids.DefiantVerminShieldBuff),
         ability: new(DefiantVerminShieldAbility, Guids.DefiantVerminShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 1),
         new(DefiantName, Guids.Defiant),
         parent,

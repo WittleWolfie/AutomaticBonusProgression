@@ -34,10 +34,10 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 2);
 
-      var shadowFeature = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowFeature, enchantInfo);
-      EnchantmentTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ShadowArmor, enchantInfo);
+      var shadowFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowFeature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ShadowArmor, enchantInfo);
 
-      return EnchantmentTool.CreateEnchant(
+      return EnchantTool.CreateEnchant(
         enchantInfo,
         new BlueprintInfo(BuffName, Guids.ShadowArmorBuff, shadowFeature.GetComponent<AddStatBonus>()),
         new(AbilityName, Guids.ShadowArmorAbility),
@@ -65,10 +65,10 @@ namespace AutomaticBonusProgression.Enchantments
           ranks: 2,
           prerequisite: new(Guids.ShadowArmor, ranks: 2));
 
-      var shadowFeature = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowGreaterFeature, enchantInfo);
-      EnchantmentTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.GreaterShadow, enchantInfo);
+      var shadowFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowGreaterFeature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.GreaterShadow, enchantInfo);
 
-      return EnchantmentTool.CreateEnchant(
+      return EnchantTool.CreateEnchant(
         enchantInfo,
         new BlueprintInfo(ImprovedBuffName, Guids.ImprovedShadowArmorBuff, shadowFeature.GetComponent<AddStatBonus>()),
         new(ImprovedAbilityName, Guids.ImprovedShadowArmorAbility),
@@ -104,7 +104,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
         .Configure();
 
-      return EnchantmentTool.CreateEnchant(
+      return EnchantTool.CreateEnchant(
         enchantInfo,
         buff,
         new(GreaterAbilityName, Guids.GreaterShadowArmorAbility),

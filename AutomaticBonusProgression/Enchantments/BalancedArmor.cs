@@ -33,14 +33,14 @@ namespace AutomaticBonusProgression.Enchantments
         ArmorProficiencyGroup.Medium);
 
       var balancedFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
 
       var buffInfo =
         new BlueprintInfo(BuffName, Guids.BalancedArmorBuff, balancedFeature.GetComponent<CMDBonusAgainstManeuvers>());
       var abilityInfo = new BlueprintInfo(AbilityName, Guids.BalancedArmorAbility);
       var featureInfo = new BlueprintInfo(BalancedArmorName, Guids.BalancedArmor);
 
-      return EnchantmentTool.CreateEnchant(enchantInfo, buffInfo, abilityInfo, featureInfo);
+      return EnchantTool.CreateEnchant(enchantInfo, buffInfo, abilityInfo, featureInfo);
     }
   }
 }

@@ -18,7 +18,7 @@ using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
-  internal static class EnchantmentTool
+  internal static class EnchantTool
   {
     internal static BlueprintFeature AddEnhancementEquivalence(
       Blueprint<BlueprintReference<BlueprintFeature>> feature, EnchantInfo enchant)

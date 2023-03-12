@@ -68,18 +68,18 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
         .Configure();
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         buff,
         new(AbilityName, Guids.RallyingAbility));
       var shieldAbility =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           enchantInfo,
           ability,
           new(BuffShieldName, Guids.RallyingShieldBuff),
           new(AbilityShieldName, Guids.RallyingShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(RallyingName, Guids.Rallying),
         ability,

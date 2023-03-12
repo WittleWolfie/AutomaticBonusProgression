@@ -72,7 +72,7 @@ namespace AutomaticBonusProgression.Enchantments
         EnhancementCost,
         ranks: 5);
 
-      var ability = EnchantmentTool.CreateEnchantShieldVariant(
+      var ability = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         new(BuffName, Guids.ReflectingBuff),
         new(AbilityName, Guids.ReflectingAbility));
@@ -85,7 +85,7 @@ namespace AutomaticBonusProgression.Enchantments
             RestoreAmount = true,
             m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
           });
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
     }
 
     [TypeId("5e021fee-7b14-4bae-874b-d3e7ec0d594d")]

@@ -75,7 +75,7 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 2);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         new BlueprintInfo(BuffName, Guids.CreepingBuff, new CreepingComponent()),
         new(AbilityName, Guids.CreepingAbility));
@@ -89,7 +89,7 @@ namespace AutomaticBonusProgression.Enchantments
             RestoreAmount = true,
             m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
           });
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
     }
 
     [TypeId("4b2da1d4-6a78-4ab2-8896-c540dd968a89")]

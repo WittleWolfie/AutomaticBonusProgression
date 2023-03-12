@@ -82,7 +82,7 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 2);
 
-      var ability = EnchantmentTool.CreateEnchantShieldVariant(
+      var ability = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo, new(BuffName, Guids.WyrmsbreathBuff), new(AbilityName, Guids.WyrmsbreathAbility));
 
       var featureInfo =
@@ -94,7 +94,7 @@ namespace AutomaticBonusProgression.Enchantments
             RestoreAmount = true,
             m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
           });
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         featureInfo,
         ability,

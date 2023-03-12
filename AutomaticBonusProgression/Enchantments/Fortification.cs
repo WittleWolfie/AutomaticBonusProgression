@@ -32,19 +32,19 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 1);
 
-      var fortification = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.Fortification25Feature, enchantInfo);
+      var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification25Feature, enchantInfo);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         new BlueprintInfo(BuffName, Guids.FortificationBuff, fortification.GetComponent<AddFortification>()),
         new(AbilityName, Guids.FortificationAbility));
-      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         ability,
         new(BuffShieldName, Guids.FortificationShieldBuff),
         new(AbilityShieldName, Guids.FortificationShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(FortificationName, Guids.Fortification),
         ability,
@@ -74,19 +74,19 @@ namespace AutomaticBonusProgression.Enchantments
           ranks: 2,
           prerequisite: new(Guids.Fortification));
 
-      var fortification = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.Fortification50Feature, enchantInfo);
+      var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification50Feature, enchantInfo);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         new BlueprintInfo(ImprovedBuffName, Guids.ImprovedFortificationBuff, fortification.GetComponent<AddFortification>()),
         new(ImprovedAbilityName, Guids.ImprovedFortificationAbility));
-      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         ability,
         new(ImprovedBuffShieldName, Guids.ImprovedFortificationShieldBuff),
         new(ImprovedAbilityShieldName, Guids.ImprovedFortificationShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(ImprovedFortificationName, Guids.ImprovedFortification),
         ability,
@@ -117,19 +117,19 @@ namespace AutomaticBonusProgression.Enchantments
           ranks: 2,
           prerequisite: new(Guids.ImprovedFortification, ranks: 2));
 
-      var fortification = EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.Fortification75Feature, enchantInfo);
+      var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification75Feature, enchantInfo);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         new BlueprintInfo(GreaterBuffName, Guids.GreaterFortificationBuff, fortification.GetComponent<AddFortification>()),
         new(GreaterAbilityName, Guids.GreaterFortificationAbility));
-      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         ability,
         new(GreaterBuffShieldName, Guids.GreaterFortificationShieldBuff),
         new(GreaterAbilityShieldName, Guids.GreaterFortificationShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(GreaterFortificationName, Guids.GreaterFortification),
         ability,

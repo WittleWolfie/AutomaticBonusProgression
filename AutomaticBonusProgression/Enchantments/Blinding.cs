@@ -75,7 +75,7 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 1);
 
-      var ability = EnchantmentTool.CreateEnchantShieldVariant(
+      var ability = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo, new(BuffName, Guids.BlindingBuff), new(AbilityName, Guids.BlindingAbility));
 
       var featureInfo =
@@ -87,7 +87,7 @@ namespace AutomaticBonusProgression.Enchantments
             RestoreAmount = true,
             m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
           });
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
     }
   }
 }

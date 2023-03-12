@@ -65,12 +65,12 @@ namespace AutomaticBonusProgression.Enchantments
       var shieldBuffInfo = new BlueprintInfo(BuffShieldName, Guids.BolsteringShieldBuff);
       var shieldAbilityInfo = new BlueprintInfo(AbilityShieldName, Guids.BolsteringShieldAbility);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
       var shieldAbility =
-        EnchantmentTool.CreateEnchantShieldVariant(enchantInfo, ability, shieldBuffInfo, shieldAbilityInfo);
+        EnchantTool.CreateEnchantShieldVariant(enchantInfo, ability, shieldBuffInfo, shieldAbilityInfo);
 
       var featureInfo = new BlueprintInfo(BolsteringName, Guids.Bolstering);
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, shieldAbility);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, shieldAbility);
     }
   }
 }

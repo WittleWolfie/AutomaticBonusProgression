@@ -34,11 +34,11 @@ namespace AutomaticBonusProgression.Enchantments
         ArmorProficiencyGroup.LightShield,
         ArmorProficiencyGroup.HeavyShield);
 
-      var ability = EnchantmentTool.CreateEnchantShieldVariant(
+      var ability = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         new(BuffName, Guids.BashingBuff, new BashingComponent()),
         new(AbilityName, Guids.BashingAbility));
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, new(BashingName, Guids.Bashing), ability);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, new(BashingName, Guids.Bashing), ability);
     }
 
     [TypeId("db92a7db-5c80-461c-9744-0faa92d92ce6")]

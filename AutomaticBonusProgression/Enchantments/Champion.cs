@@ -57,8 +57,8 @@ namespace AutomaticBonusProgression.Enchantments
         new BlueprintInfo(
           ChampionName, Guids.Champion, new PrerequisiteAlignment() { Alignment = AlignmentMaskType.Good });
 
-      var ability = EnchantmentTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
+      var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
     }
   }
 }

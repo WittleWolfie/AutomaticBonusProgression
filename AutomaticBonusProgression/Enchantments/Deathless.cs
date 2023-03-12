@@ -48,8 +48,8 @@ namespace AutomaticBonusProgression.Enchantments
       var abilityInfo = new BlueprintInfo(AbilityName, Guids.DeathlessAbility);
       var featureInfo = new BlueprintInfo(DeathlessName, Guids.Deathless);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
+      var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
     }
 
     [TypeId("23ca83d5-128e-4937-9fd5-646a86a3ed0d")]

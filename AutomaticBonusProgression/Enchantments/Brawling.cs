@@ -41,7 +41,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddWeaponCategoryAttackBonus(category: WeaponCategory.UnarmedStrike, attackBonus: 2)
         .Configure();
 
-      return EnchantmentTool.CreateEnchant(
+      return EnchantTool.CreateEnchant(
         enchantInfo,
         buff,
         new(AbilityName, Guids.BrawlingAbility),

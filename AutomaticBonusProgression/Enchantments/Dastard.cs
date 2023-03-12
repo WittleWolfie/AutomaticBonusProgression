@@ -62,8 +62,8 @@ namespace AutomaticBonusProgression.Enchantments
         new BlueprintInfo(
           DastardName, Guids.Dastard, new PrerequisiteAlignment() { Alignment = AlignmentMaskType.Evil });
 
-      var ability = EnchantmentTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
+      var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
     }
   }
 }

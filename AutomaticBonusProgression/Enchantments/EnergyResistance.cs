@@ -137,14 +137,14 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 2);
       var resistAcidFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance10Feature, acidInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance10Feature, acidInfo);
 
-      var resistAcid = EnchantmentTool.CreateEnchantAbility(
+      var resistAcid = EnchantTool.CreateEnchantAbility(
         acidInfo,
         new BlueprintInfo(AcidBuffName, Guids.AcidResist10Buff, resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(AcidAbilityName, Guids.AcidResist10Ability));
       var resistAcidShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           acidInfo, 
           resistAcid,
           new(AcidShieldBuffName, Guids.AcidResist10ShieldBuff),
@@ -158,14 +158,14 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 2);
       var resistColdFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance10Feature, coldInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance10Feature, coldInfo);
 
-      var resistCold = EnchantmentTool.CreateEnchantAbility(
+      var resistCold = EnchantTool.CreateEnchantAbility(
         coldInfo,
         new BlueprintInfo(ColdBuffName, Guids.ColdResist10Buff, resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(ColdAbilityName, Guids.ColdResist10Ability));
       var resistColdShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           coldInfo,
           resistCold,
           new(ColdShieldBuffName, Guids.ColdResist10ShieldBuff),
@@ -179,14 +179,14 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 2);
       var resistElectricityFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance10Feature, electricityInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance10Feature, electricityInfo);
 
-      var resistElectricity = EnchantmentTool.CreateEnchantAbility(
+      var resistElectricity = EnchantTool.CreateEnchantAbility(
         electricityInfo,
         new BlueprintInfo(ElectricityBuffName, Guids.ElectricityResist10Buff, resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(ElectricityAbilityName, Guids.ElectricityResist10Ability));
       var resistElectricityShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           electricityInfo,
           resistElectricity,
           new(ElectricityShieldBuffName, Guids.ElectricityResist10ShieldBuff),
@@ -200,14 +200,14 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 2);
       var resistFireFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.FireResistance10Feature, fireInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance10Feature, fireInfo);
 
-      var resistFire = EnchantmentTool.CreateEnchantAbility(
+      var resistFire = EnchantTool.CreateEnchantAbility(
         fireInfo,
         new BlueprintInfo(FireBuffName, Guids.FireResist10Buff, resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(FireAbilityName, Guids.FireResist10Ability));
       var resistFireShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           fireInfo,
           resistFire,
           new(FireShieldBuffName, Guids.FireResist10ShieldBuff),
@@ -221,20 +221,20 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost,
           ranks: 2);
       var resistSonicFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance10Feature, sonicInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance10Feature, sonicInfo);
 
-      var resistSonic = EnchantmentTool.CreateEnchantAbility(
+      var resistSonic = EnchantTool.CreateEnchantAbility(
         sonicInfo,
         new BlueprintInfo(SonicBuffName, Guids.SonicResist10Buff, resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(SonicAbilityName, Guids.SonicResist10Ability));
       var resistSonicShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           sonicInfo,
           resistSonic,
           new(SonicShieldBuffName, Guids.SonicResist10ShieldBuff),
           new(SonicShieldAbilityName, Guids.SonicResist10ShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 2),
         new(EnergyResistanceName, Guids.EnergyResist10),
         parent,
@@ -306,14 +306,14 @@ namespace AutomaticBonusProgression.Enchantments
           ImprovedEnhancementCost,
           ranks: 1);
       var resistAcidFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance20Feature, acidInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance20Feature, acidInfo);
 
-      var resistAcid = EnchantmentTool.CreateEnchantAbility(
+      var resistAcid = EnchantTool.CreateEnchantAbility(
         acidInfo,
         new BlueprintInfo(AcidImprovedBuffName, Guids.AcidResist20Buff, resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(AcidImprovedAbilityName, Guids.AcidResist20Ability));
       var resistAcidShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           acidInfo,
           resistAcid,
           new(AcidImprovedShieldBuffName, Guids.AcidResist20ShieldBuff),
@@ -327,14 +327,14 @@ namespace AutomaticBonusProgression.Enchantments
           ImprovedEnhancementCost,
           ranks: 1);
       var resistColdFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance20Feature, coldInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance20Feature, coldInfo);
 
-      var resistCold = EnchantmentTool.CreateEnchantAbility(
+      var resistCold = EnchantTool.CreateEnchantAbility(
         coldInfo,
         new BlueprintInfo(ColdImprovedBuffName, Guids.ColdResist20Buff, resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(ColdImprovedAbilityName, Guids.ColdResist20Ability));
       var resistColdShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           coldInfo,
           resistCold,
           new(ColdImprovedShieldBuffName, Guids.ColdResist20ShieldBuff),
@@ -348,14 +348,14 @@ namespace AutomaticBonusProgression.Enchantments
           ImprovedEnhancementCost,
           ranks: 1);
       var resistElectricityFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance20Feature, electricityInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance20Feature, electricityInfo);
 
-      var resistElectricity = EnchantmentTool.CreateEnchantAbility(
+      var resistElectricity = EnchantTool.CreateEnchantAbility(
         electricityInfo,
         new BlueprintInfo(ElectricityImprovedBuffName, Guids.ElectricityResist20Buff, resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(ElectricityImprovedAbilityName, Guids.ElectricityResist20Ability));
       var resistElectricityShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           electricityInfo,
           resistElectricity,
           new(ElectricityImprovedShieldBuffName, Guids.ElectricityResist20ShieldBuff),
@@ -369,14 +369,14 @@ namespace AutomaticBonusProgression.Enchantments
           ImprovedEnhancementCost,
           ranks: 1);
       var resistFireFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.FireResistance20Feature, fireInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance20Feature, fireInfo);
 
-      var resistFire = EnchantmentTool.CreateEnchantAbility(
+      var resistFire = EnchantTool.CreateEnchantAbility(
         fireInfo,
         new BlueprintInfo(FireImprovedBuffName, Guids.FireResist20Buff, resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(FireImprovedAbilityName, Guids.FireResist20Ability));
       var resistFireShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           fireInfo,
           resistFire,
           new(FireImprovedShieldBuffName, Guids.FireResist20ShieldBuff),
@@ -392,18 +392,18 @@ namespace AutomaticBonusProgression.Enchantments
       // Sonic doesn't have a +20 enhcant for some reason
       var resistSonicFeature = FeatureRefs.SonicResistance20.Reference.Get();
 
-      var resistSonic = EnchantmentTool.CreateEnchantAbility(
+      var resistSonic = EnchantTool.CreateEnchantAbility(
         sonicInfo,
         new BlueprintInfo(SonicImprovedBuffName, Guids.SonicResist20Buff, resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(SonicImprovedAbilityName, Guids.SonicResist20Ability));
       var resistSonicShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           sonicInfo,
           resistSonic,
           new(SonicImprovedShieldBuffName, Guids.SonicResist20ShieldBuff),
           new(SonicImprovedShieldAbilityName, Guids.SonicResist20ShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         new ArmorEnchantInfo(
           ImprovedDisplayName,
           ImprovedDescription,
@@ -479,14 +479,14 @@ namespace AutomaticBonusProgression.Enchantments
           GreaterEnhancementCost,
           ranks: 1);
       var resistAcidFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance30Feature, acidInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance30Feature, acidInfo);
 
-      var resistAcid = EnchantmentTool.CreateEnchantAbility(
+      var resistAcid = EnchantTool.CreateEnchantAbility(
         acidInfo,
         new BlueprintInfo(AcidGreaterBuffName, Guids.AcidResist30Buff, resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(AcidGreaterAbilityName, Guids.AcidResist30Ability));
       var resistAcidShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           acidInfo,
           resistAcid,
           new(AcidGreaterShieldBuffName, Guids.AcidResist30ShieldBuff),
@@ -500,14 +500,14 @@ namespace AutomaticBonusProgression.Enchantments
           GreaterEnhancementCost,
           ranks: 1);
       var resistColdFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance30Feature, coldInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance30Feature, coldInfo);
 
-      var resistCold = EnchantmentTool.CreateEnchantAbility(
+      var resistCold = EnchantTool.CreateEnchantAbility(
         coldInfo,
         new BlueprintInfo(ColdGreaterBuffName, Guids.ColdResist30Buff, resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(ColdGreaterAbilityName, Guids.ColdResist30Ability));
       var resistColdShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           coldInfo,
           resistCold,
           new(ColdGreaterShieldBuffName, Guids.ColdResist30ShieldBuff),
@@ -521,14 +521,14 @@ namespace AutomaticBonusProgression.Enchantments
           GreaterEnhancementCost,
           ranks: 1);
       var resistElectricityFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance30Feature, electricityInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance30Feature, electricityInfo);
 
-      var resistElectricity = EnchantmentTool.CreateEnchantAbility(
+      var resistElectricity = EnchantTool.CreateEnchantAbility(
         electricityInfo,
         new BlueprintInfo(ElectricityGreaterBuffName, Guids.ElectricityResist30Buff, resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(ElectricityGreaterAbilityName, Guids.ElectricityResist30Ability));
       var resistElectricityShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           electricityInfo,
           resistElectricity,
           new(ElectricityGreaterShieldBuffName, Guids.ElectricityResist30ShieldBuff),
@@ -542,14 +542,14 @@ namespace AutomaticBonusProgression.Enchantments
           GreaterEnhancementCost,
           ranks: 1);
       var resistFireFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.FireResistance30Feature, fireInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance30Feature, fireInfo);
 
-      var resistFire = EnchantmentTool.CreateEnchantAbility(
+      var resistFire = EnchantTool.CreateEnchantAbility(
         fireInfo,
         new BlueprintInfo(FireGreaterBuffName, Guids.FireResist30Buff, resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(FireGreaterAbilityName, Guids.FireResist30Ability));
       var resistFireShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           fireInfo,
           resistFire,
           new(FireGreaterShieldBuffName, Guids.FireResist30ShieldBuff),
@@ -563,20 +563,20 @@ namespace AutomaticBonusProgression.Enchantments
           GreaterEnhancementCost,
           ranks: 1);
       var resistSonicFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance30Feature, sonicInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance30Feature, sonicInfo);
 
-      var resistSonic = EnchantmentTool.CreateEnchantAbility(
+      var resistSonic = EnchantTool.CreateEnchantAbility(
         sonicInfo,
         new BlueprintInfo(SonicGreaterBuffName, Guids.SonicResist30Buff, resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
         new(SonicGreaterAbilityName, Guids.SonicResist30Ability));
       var resistSonicShield =
-        EnchantmentTool.CreateEnchantShieldVariant(
+        EnchantTool.CreateEnchantShieldVariant(
           sonicInfo,
           resistSonic,
           new(SonicGreaterShieldBuffName, Guids.SonicResist30ShieldBuff),
           new(SonicGreaterShieldAbilityName, Guids.SonicResist30ShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         new ArmorEnchantInfo(
           GreaterDisplayName,
           GreaterDescription,

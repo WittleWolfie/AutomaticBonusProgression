@@ -59,7 +59,7 @@ namespace AutomaticBonusProgression.Enchantments
                 .ContextSpendResource(castResource)))
         .Configure();
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         buff,
         new(AbilityName, Guids.MartyringAbility));
@@ -73,7 +73,7 @@ namespace AutomaticBonusProgression.Enchantments
             RestoreAmount = true,
             m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
           });
-      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
     }
   }
 }

@@ -34,19 +34,19 @@ namespace AutomaticBonusProgression.Enchantments
           EnhancementCost13,
           ranks: 2);
       var spellResistFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance13Feature, enchantInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance13Feature, enchantInfo);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         new BlueprintInfo(Buff13Name, Guids.SpellResistance13Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
         new(Ability13Name, Guids.SpellResistance13Ability));
-      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         ability,
         new(Buff13ShieldName, Guids.SpellResistance13ShieldBuff),
         new(Ability13ShieldName, Guids.SpellResistance13ShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(SpellResistance13Name, Guids.SpellResistance13),
         ability,
@@ -77,20 +77,20 @@ namespace AutomaticBonusProgression.Enchantments
           prerequisite: new(Guids.SpellResistance13, ranks: 2));
 
       var spellResistFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance15Feature, enchantInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance15Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance15Feature, 16);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         new BlueprintInfo(Buff16Name, Guids.SpellResistance16Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
         new(Ability16Name, Guids.SpellResistance16Ability));
-      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         ability,
         new(Buff16ShieldName, Guids.SpellResistance16ShieldBuff),
         new(Ability16ShieldName, Guids.SpellResistance16ShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(SpellResistance16Name, Guids.SpellResistance16),
         ability,
@@ -121,20 +121,20 @@ namespace AutomaticBonusProgression.Enchantments
           prerequisite: new(Guids.SpellResistance16));
 
       var spellResistFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance17Feature, enchantInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance17Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance17Feature, 19);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         new BlueprintInfo(Buff19Name, Guids.SpellResistance19Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
         new(Ability19Name, Guids.SpellResistance19Ability));
-      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         ability,
         new(Buff19ShieldName, Guids.SpellResistance19ShieldBuff),
         new(Ability19ShieldName, Guids.SpellResistance19ShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(SpellResistance19Name, Guids.SpellResistance19),
         ability,
@@ -165,20 +165,20 @@ namespace AutomaticBonusProgression.Enchantments
           prerequisite: new(Guids.SpellResistance19));
 
       var spellResistFeature =
-        EnchantmentTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance19Feature, enchantInfo);
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance19Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance19Feature, 22);
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         new BlueprintInfo(Buff22Name, Guids.SpellResistance22Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
         new(Ability22Name, Guids.SpellResistance22Ability));
-      var abilityShield = EnchantmentTool.CreateEnchantShieldVariant(
+      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
         enchantInfo,
         ability,
         new(Buff22ShieldName, Guids.SpellResistance22ShieldBuff),
         new(Ability22ShieldName, Guids.SpellResistance22ShieldAbility));
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(SpellResistance22Name, Guids.SpellResistance22),
         ability,

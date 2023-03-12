@@ -51,7 +51,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(new GhostArmorComponent())
         .Configure();
 
-      var ability = EnchantmentTool.CreateEnchantAbility(
+      var ability = EnchantTool.CreateEnchantAbility(
         enchantInfo,
         buff,
         new(AbilityName, Guids.GhostArmorAbility));
@@ -70,7 +70,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetBuff(shieldBuff)
         .Configure();
 
-      return EnchantmentTool.CreateEnchantFeature(
+      return EnchantTool.CreateEnchantFeature(
         enchantInfo,
         new(GhostArmorName, Guids.GhostArmor),
         ability,
