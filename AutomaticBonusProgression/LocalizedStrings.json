@@ -697,6 +697,137 @@
   },
   // End Legendary Armor
 
+  // Start Legendary Weapon
+  {
+    "Key": "LegendaryWeapon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Armor"
+  },
+  {
+    "Key": "LegendaryWeapon.Description",
+    "enGB": "Select a special ability you can apply to your weapons. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Brilliant Energy has an enhancement cost of +4. To acquire Brilliant Energy you must select it as a Legendary Gift 4 times. You cannot apply Brilliant Energy to a weapon with Impact, which has an enhancement of +2. This applies to enchants present on the weapon already or applied through special abilities such as a Magus's Arcane Weapon."
+  },
+  {
+    "Key": "LegendaryWeapon.Ability.Description",
+    "enGB": "Select a special ability you can apply to your weapons. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Brilliant Energy has an enhancement cost of +4. You cannot apply Brilliant Energy to a weapon with Impact, which has an enhancement of +2. This applies to enchants present on the weapon already or applied through special abilities such as a Magus's Arcane Weapon."
+  },
+
+  {
+    "Key": "LegendaryOffHand.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Off-Hand"
+  },
+  {
+    "Key": "LegendaryOffHand.Description",
+    "enGB": "Select a special ability you can apply to your shield. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. You cannot apply Spell Resistance (19) to a shield with Rallying, which has an enhancement cost of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor."
+  },
+
+  {
+    "Key": "LegendaryWeapon.Bane.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane (+1)"
+  },
+  {
+    "Key": "LegendaryOffHand.Bane.Description",
+    "enGB": "A bane weapon excels against certain foes. Against a designated foe, the weapon’s enhancement bonus is +2 better than its actual bonus. It also deals an extra 2d6 points of damage against such foes."
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Ability.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Weapon (Bane)"
+  },
+  {
+    "Key": "LegendaryOffHand.Bane.Ability.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Off-Hand (Bane)"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Aberrations.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Aberrations"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Animals.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Animals"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Constructs.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Constructs"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Dragons.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Dragons"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Fey.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Fey"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Humanoid.Giant.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Giant Humanoids"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Humanoid.Reptilian.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Reptilian Humanoids"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Humanoid.Monstrous.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Monstrous Humanoids"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.MagicalBeasts.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Magical Beasts"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Outsider.Good.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Good Outsiders"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Outsider.Evil.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Evil Outsiders"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Outsider.Lawful.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Lawful Outsiders"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Outsider.Chaotic.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Chaotic Outsiders"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Outsider.Neutral.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Neutral Outsiders"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Plants.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Plants"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Undead.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Undead"
+  },
+  {
+    "Key": "LegendaryWeapon.Bane.Vermin.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bane: Vermin"
+  },
+  // End Legendary Weapon
+
   // Start Legendary Ability
   {
     "Key": "LegendaryAbility.Name",
