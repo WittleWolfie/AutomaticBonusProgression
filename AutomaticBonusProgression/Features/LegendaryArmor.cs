@@ -12,34 +12,6 @@ namespace AutomaticBonusProgression.Features
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryArmor));
 
-    // Armor In Game
-    // - ArcaneArmorBalanced [DONE]
-    // - Shadow [DONE]
-    // - Fortification [DONE] 
-    // - Spell Resistance [DONE] [Change: 13 / 16 / 19 / 22 instead of 13 / 15 / 17 / 19]
-    // - Invulnerability [DONE] [Change: Made it 10/magic instead of 5/magic]
-    // - Energy Resistance [DONE] [Note: Need to figure out how to interact w/ Trickster Knowledge: Arcana] [Change: Bonus Cost]
-    //
-    // Maybe Add
-    // - Bolstering [Done]
-    // - Champion [Done]
-    // - Dastard [Done]
-    // - Deathless [Done]
-    // - Defiant [Done]
-    // - Rallying [Done]
-    // - Brawling [Done]
-    // - Ghost [Done]
-    // - Righteous - Unbound - Unrighteous - Vigilant [Done]
-    // - Determination [Done]
-    // - Martyring [Done]
-    // - Expeditious [Done]
-    // - Creeping [Done]
-    // (Shield)
-    // - Bashing [Done]
-    // - Blinding [Done]
-    // - Wyrmsbreath [Done]
-    // - Reflecting [Done]
-
     private const string LegendaryArmorName = "LegendaryArmor";
     private const string LegendaryArmorDisplayName = "LegendaryArmor.Name";
     private const string LegendaryArmorDescription = "LegendaryArmor.Description";
