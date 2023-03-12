@@ -161,7 +161,7 @@
   },
   {
     "Key": "LegendaryArmor.Blinding.Description",
-    "enGB": "A shield with this ability flashes with a brilliant light up to twice per day as a swift action. Except for the wielder, anyone within 20 feet must make a successful Reflex save or be blinded for 1d4 rounds. The DC of the save is 14 + Mythic Rank."
+    "enGB": "A shield with this ability flashes with a brilliant light up to twice per day as a swift action. Except for the wielder, anyone within 20 feet must make a successful Reflex save or be blinded for 1d4 rounds. The DC of the save is 14 + Mythic Rank.\nRequires: Any Shield"
   },
 
   {
@@ -587,7 +587,7 @@
   },
   {
     "Key": "LegendaryArmor.Reflecting.Description",
-    "enGB": "This shield is as highly polished as a mirror, and its surface is completely reflective. Once per day, it can be called on to reflect a spell back at its caster. This has no effect on area of effect spells."
+    "enGB": "This shield is as highly polished as a mirror, and its surface is completely reflective. Once per day, it can be called on to reflect a spell back at its caster. This has no effect on area of effect spells.\nRequires: Any Shield"
   },
   {
     "Key": "LegendaryArmor.Reflecting.Cast.Name",
@@ -673,7 +673,7 @@
   },
   {
     "Key": "LegendaryArmor.Wyrmsbreath.Description",
-    "enGB": "A shield with the wyrmsbreath special ability is keyed to one type of energy (acid, cold, electricity, or fire). Once per day as a swift action, the bearer can make a breath weapon attack. The breath weapon deals 5d4 points of energy damage in a 15 foot cone. Those caught in the area can attempt a Reflex save with a DC = 11 + Mythic Rank to halve the normal damage."
+    "enGB": "A shield with the wyrmsbreath special ability is keyed to one type of energy (acid, cold, electricity, or fire). Once per day as a swift action, the bearer can make a breath weapon attack. The breath weapon deals 5d4 points of energy damage in a 15 foot cone. Those caught in the area can attempt a Reflex save with a DC = 11 + Mythic Rank to halve the normal damage.\nRequires: Any Shield"
   },
   {
     "Key": "LegendaryArmor.Wyrmsbreath.Acid.Name",

@@ -5,8 +5,10 @@ using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Kingmaker;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
@@ -74,8 +76,16 @@ namespace AutomaticBonusProgression.Enchantments
         enchantInfo,
         new(BuffName, Guids.ReflectingBuff),
         new(AbilityName, Guids.ReflectingAbility));
-      return EnchantmentTool.CreateEnchantFeature(
-        enchantInfo, new(ReflectingName, Guids.Reflecting), ability, castAbility);
+      var featureInfo =
+        new BlueprintInfo(
+          ReflectingName,
+          Guids.Reflecting,
+          new AddAbilityResources()
+          {
+            RestoreAmount = true,
+            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+          });
+      return EnchantmentTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
     }
 
     [TypeId("5e021fee-7b14-4bae-874b-d3e7ec0d594d")]
