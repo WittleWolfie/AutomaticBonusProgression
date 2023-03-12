@@ -143,7 +143,6 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Bane");
 
-
       var parent = ActivatableAbilityConfigurator.New(BaneAbility, Guids.BaneParent)
         .SetDisplayName(BaneAbilityName)
         .SetDescription(LegendaryWeapon.LegendaryWeaponAbilityDescription)
@@ -531,7 +530,6 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           EnhancementCost,
           ranks: 1);
-      var verminAbilityInfo = new BlueprintInfo(BaneVerminAbility, Guids.BaneVerminAbility);
 
       var vermin = EnchantTool.CreateEnchantAbility(
         verminEnchantInfo,
@@ -542,8 +540,27 @@ namespace AutomaticBonusProgression.Enchantments
         GetBuffInfo(BaneVerminOffHandBuff, Guids.BaneVerminOffHandBuff, FeatureRefs.VerminType.ToString(), toPrimaryWeapon: false),
         ability: new(BaneVerminOffHandAbility, Guids.BaneVerminOffHandAbility));
 
+      var enchantInfo = new WeaponEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 1);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneAberration, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneAnimal, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneConstruct, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneDragon, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneFey, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneHumanoidGiant, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneMonstrousHumanoid, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneHumanoidReptilian, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneMagicalBeast, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderChaotic, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderEvil, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderGood, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderLawful, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderNeutral, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BanePlant, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneUndead, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneVermin, enchantInfo);
+
       return EnchantTool.CreateEnchantFeature(
-        new WeaponEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 1),
+        enchantInfo,
         new(BaneName, Guids.Bane),
         parent,
         offHandParent,
