@@ -25,7 +25,7 @@ namespace AutomaticBonusProgression.Features
 
     internal static BlueprintFeature Configure()
     {
-      Logger.Log("Configuring Legendary Armor");
+      Logger.Log("Configuring Legendary Weapon");
 
       // In Game:
       // - Agile

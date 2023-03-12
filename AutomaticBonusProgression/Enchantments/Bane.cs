@@ -31,118 +31,118 @@ namespace AutomaticBonusProgression.Enchantments
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Bane));
 
     #region Too Many Constants
-    private const string BaneName = "LegendaryArmor.Bane";
+    private const string BaneName = "LegendaryWeapon.Bane";
 
-    private const string BaneAbility = "LegendaryArmor.Bane.Ability";
-    private const string BaneAbilityName = "LegendaryArmor.Bane.Ability.Name";
-    private const string BaneOffHandAbility = "LegendaryArmor.Bane.OffHand.Ability";
+    private const string BaneAbility = "LegendaryWeapon.Bane.Ability";
+    private const string BaneAbilityName = "LegendaryWeapon.Bane.Ability.Name";
+    private const string BaneOffHandAbility = "LegendaryWeapon.Bane.OffHand.Ability";
     private const string BaneOffHandAbilityName = "LegendaryOffHand.Bane.Ability.Name";
 
-    private const string BaneAberrationsName = "LegendaryArmor.Bane.Aberrations.Name";
-    private const string BaneAberrationsAbility = "LegendaryArmor.Bane.Aberrations.Ability";
-    private const string BaneAberrationsOffHandAbility = "LegendaryArmor.Bane.Aberrations.OffHand.Ability";
-    private const string BaneAberrationsBuff = "LegendaryArmor.Bane.Aberrations.Buff";
-    private const string BaneAberrationsOffHandBuff = "LegendaryArmor.Bane.Aberrations.OffHand.Buff";
+    private const string BaneAberrationsName = "LegendaryWeapon.Bane.Aberrations.Name";
+    private const string BaneAberrationsAbility = "LegendaryWeapon.Bane.Aberrations.Ability";
+    private const string BaneAberrationsOffHandAbility = "LegendaryWeapon.Bane.Aberrations.OffHand.Ability";
+    private const string BaneAberrationsBuff = "LegendaryWeapon.Bane.Aberrations.Buff";
+    private const string BaneAberrationsOffHandBuff = "LegendaryWeapon.Bane.Aberrations.OffHand.Buff";
 
-    private const string BaneAnimalsName = "LegendaryArmor.Bane.Animals.Name";
-    private const string BaneAnimalsAbility = "LegendaryArmor.Bane.Animals.Ability";
-    private const string BaneAnimalsOffHandAbility = "LegendaryArmor.Bane.Animals.OffHand.Ability";
-    private const string BaneAnimalsBuff = "LegendaryArmor.Bane.Animals.Buff";
-    private const string BaneAnimalsOffHandBuff = "LegendaryArmor.Bane.Animals.OffHand.Buff";
+    private const string BaneAnimalsName = "LegendaryWeapon.Bane.Animals.Name";
+    private const string BaneAnimalsAbility = "LegendaryWeapon.Bane.Animals.Ability";
+    private const string BaneAnimalsOffHandAbility = "LegendaryWeapon.Bane.Animals.OffHand.Ability";
+    private const string BaneAnimalsBuff = "LegendaryWeapon.Bane.Animals.Buff";
+    private const string BaneAnimalsOffHandBuff = "LegendaryWeapon.Bane.Animals.OffHand.Buff";
 
-    private const string BaneConstructsName = "LegendaryArmor.Bane.Constructs.Name";
-    private const string BaneConstructsAbility = "LegendaryArmor.Bane.Constructs.Ability";
-    private const string BaneConstructsOffHandAbility = "LegendaryArmor.Bane.Constructs.OffHand.Ability";
-    private const string BaneConstructsBuff = "LegendaryArmor.Bane.Constructs.Buff";
-    private const string BaneConstructsOffHandBuff = "LegendaryArmor.Bane.Constructs.OffHand.Buff";
+    private const string BaneConstructsName = "LegendaryWeapon.Bane.Constructs.Name";
+    private const string BaneConstructsAbility = "LegendaryWeapon.Bane.Constructs.Ability";
+    private const string BaneConstructsOffHandAbility = "LegendaryWeapon.Bane.Constructs.OffHand.Ability";
+    private const string BaneConstructsBuff = "LegendaryWeapon.Bane.Constructs.Buff";
+    private const string BaneConstructsOffHandBuff = "LegendaryWeapon.Bane.Constructs.OffHand.Buff";
 
-    private const string BaneDragonsName = "LegendaryArmor.Bane.Dragons.Name";
-    private const string BaneDragonsAbility = "LegendaryArmor.Bane.Dragons.Ability";
-    private const string BaneDragonsOffHandAbility = "LegendaryArmor.Bane.Dragons.OffHand.Ability";
-    private const string BaneDragonsBuff = "LegendaryArmor.Bane.Dragons.Buff";
-    private const string BaneDragonsOffHandBuff = "LegendaryArmor.Bane.Dragons.OffHand.Buff";
+    private const string BaneDragonsName = "LegendaryWeapon.Bane.Dragons.Name";
+    private const string BaneDragonsAbility = "LegendaryWeapon.Bane.Dragons.Ability";
+    private const string BaneDragonsOffHandAbility = "LegendaryWeapon.Bane.Dragons.OffHand.Ability";
+    private const string BaneDragonsBuff = "LegendaryWeapon.Bane.Dragons.Buff";
+    private const string BaneDragonsOffHandBuff = "LegendaryWeapon.Bane.Dragons.OffHand.Buff";
 
-    private const string BaneFeyName = "LegendaryArmor.Bane.Fey.Name";
-    private const string BaneFeyAbility = "LegendaryArmor.Bane.Fey.Ability";
-    private const string BaneFeyOffHandAbility = "LegendaryArmor.Bane.Fey.OffHand.Ability";
-    private const string BaneFeyBuff = "LegendaryArmor.Bane.Fey.Buff";
-    private const string BaneFeyOffHandBuff = "LegendaryArmor.Bane.Fey.OffHand.Buff";
+    private const string BaneFeyName = "LegendaryWeapon.Bane.Fey.Name";
+    private const string BaneFeyAbility = "LegendaryWeapon.Bane.Fey.Ability";
+    private const string BaneFeyOffHandAbility = "LegendaryWeapon.Bane.Fey.OffHand.Ability";
+    private const string BaneFeyBuff = "LegendaryWeapon.Bane.Fey.Buff";
+    private const string BaneFeyOffHandBuff = "LegendaryWeapon.Bane.Fey.OffHand.Buff";
 
-    private const string BaneHumanoidGiantName = "LegendaryArmor.Bane.Humanoid.Giant.Name";
-    private const string BaneHumanoidGiantAbility = "LegendaryArmor.Bane.Humanoid.Giant.Ability";
-    private const string BaneHumanoidGiantOffHandAbility = "LegendaryArmor.Bane.Humanoid.Giant.OffHand.Ability";
-    private const string BaneHumanoidGiantBuff = "LegendaryArmor.Bane.Humanoid.Giant.Buff";
-    private const string BaneHumanoidGiantOffHandBuff = "LegendaryArmor.Bane.Humanoid.Giant.OffHand.Buff";
+    private const string BaneHumanoidGiantName = "LegendaryWeapon.Bane.Humanoid.Giant.Name";
+    private const string BaneHumanoidGiantAbility = "LegendaryWeapon.Bane.Humanoid.Giant.Ability";
+    private const string BaneHumanoidGiantOffHandAbility = "LegendaryWeapon.Bane.Humanoid.Giant.OffHand.Ability";
+    private const string BaneHumanoidGiantBuff = "LegendaryWeapon.Bane.Humanoid.Giant.Buff";
+    private const string BaneHumanoidGiantOffHandBuff = "LegendaryWeapon.Bane.Humanoid.Giant.OffHand.Buff";
 
-    private const string BaneHumanoidReptilianName = "LegendaryArmor.Bane.Humanoid.Reptilian.Name";
-    private const string BaneHumanoidReptilianAbility = "LegendaryArmor.Bane.Humanoid.Reptilian.Ability";
-    private const string BaneHumanoidReptilianOffHandAbility = "LegendaryArmor.Bane.Humanoid.Reptilian.OffHand.Ability";
-    private const string BaneHumanoidReptilianBuff = "LegendaryArmor.Bane.Humanoid.Reptilian.Buff";
-    private const string BaneHumanoidReptilianOffHandBuff = "LegendaryArmor.Bane.Humanoid.Reptilian.OffHand.Buff";
+    private const string BaneHumanoidReptilianName = "LegendaryWeapon.Bane.Humanoid.Reptilian.Name";
+    private const string BaneHumanoidReptilianAbility = "LegendaryWeapon.Bane.Humanoid.Reptilian.Ability";
+    private const string BaneHumanoidReptilianOffHandAbility = "LegendaryWeapon.Bane.Humanoid.Reptilian.OffHand.Ability";
+    private const string BaneHumanoidReptilianBuff = "LegendaryWeapon.Bane.Humanoid.Reptilian.Buff";
+    private const string BaneHumanoidReptilianOffHandBuff = "LegendaryWeapon.Bane.Humanoid.Reptilian.OffHand.Buff";
 
-    private const string BaneHumanoidMonstrousName = "LegendaryArmor.Bane.Humanoid.Monstrous.Name";
-    private const string BaneHumanoidMonstrousAbility = "LegendaryArmor.Bane.Humanoid.Monstrous.Ability";
-    private const string BaneHumanoidMonstrousOffHandAbility = "LegendaryArmor.Bane.Humanoid.Monstrous.OffHand.Ability";
-    private const string BaneHumanoidMonstrousBuff = "LegendaryArmor.Bane.Humanoid.Monstrous.Buff";
-    private const string BaneHumanoidMonstrousOffHandBuff = "LegendaryArmor.Bane.Humanoid.Monstrous.OffHand.Buff";
+    private const string BaneHumanoidMonstrousName = "LegendaryWeapon.Bane.Humanoid.Monstrous.Name";
+    private const string BaneHumanoidMonstrousAbility = "LegendaryWeapon.Bane.Humanoid.Monstrous.Ability";
+    private const string BaneHumanoidMonstrousOffHandAbility = "LegendaryWeapon.Bane.Humanoid.Monstrous.OffHand.Ability";
+    private const string BaneHumanoidMonstrousBuff = "LegendaryWeapon.Bane.Humanoid.Monstrous.Buff";
+    private const string BaneHumanoidMonstrousOffHandBuff = "LegendaryWeapon.Bane.Humanoid.Monstrous.OffHand.Buff";
 
-    private const string BaneMagicalBeastsName = "LegendaryArmor.Bane.MagicalBeasts.Name";
-    private const string BaneMagicalBeastsAbility = "LegendaryArmor.Bane.MagicalBeasts.Ability";
-    private const string BaneMagicalBeastsOffHandAbility = "LegendaryArmor.Bane.MagicalBeasts.OffHand.Ability";
-    private const string BaneMagicalBeastsBuff = "LegendaryArmor.Bane.MagicalBeasts.Buff";
-    private const string BaneMagicalBeastsOffHandBuff = "LegendaryArmor.Bane.MagicalBeasts.OffHand.Buff";
+    private const string BaneMagicalBeastsName = "LegendaryWeapon.Bane.MagicalBeasts.Name";
+    private const string BaneMagicalBeastsAbility = "LegendaryWeapon.Bane.MagicalBeasts.Ability";
+    private const string BaneMagicalBeastsOffHandAbility = "LegendaryWeapon.Bane.MagicalBeasts.OffHand.Ability";
+    private const string BaneMagicalBeastsBuff = "LegendaryWeapon.Bane.MagicalBeasts.Buff";
+    private const string BaneMagicalBeastsOffHandBuff = "LegendaryWeapon.Bane.MagicalBeasts.OffHand.Buff";
 
-    private const string BaneOutsiderGoodName = "LegendaryArmor.Bane.Outsider.Good.Name";
-    private const string BaneOutsiderGoodAbility = "LegendaryArmor.Bane.Outsider.Good.Ability";
-    private const string BaneOutsiderGoodOffHandAbility = "LegendaryArmor.Bane.Outsider.Good.OffHand.Ability";
-    private const string BaneOutsiderGoodBuff = "LegendaryArmor.Bane.Outsider.Good.Buff";
-    private const string BaneOutsiderGoodOffHandBuff = "LegendaryArmor.Bane.Outsider.Good.OffHand.Buff";
+    private const string BaneOutsiderGoodName = "LegendaryWeapon.Bane.Outsider.Good.Name";
+    private const string BaneOutsiderGoodAbility = "LegendaryWeapon.Bane.Outsider.Good.Ability";
+    private const string BaneOutsiderGoodOffHandAbility = "LegendaryWeapon.Bane.Outsider.Good.OffHand.Ability";
+    private const string BaneOutsiderGoodBuff = "LegendaryWeapon.Bane.Outsider.Good.Buff";
+    private const string BaneOutsiderGoodOffHandBuff = "LegendaryWeapon.Bane.Outsider.Good.OffHand.Buff";
 
-    private const string BaneOutsiderEvilName = "LegendaryArmor.Bane.Outsider.Evil.Name";
-    private const string BaneOutsiderEvilAbility = "LegendaryArmor.Bane.Outsider.Evil.Ability";
-    private const string BaneOutsiderEvilOffHandAbility = "LegendaryArmor.Bane.Outsider.Evil.OffHand.Ability";
-    private const string BaneOutsiderEvilBuff = "LegendaryArmor.Bane.Outsider.Evil.Buff";
-    private const string BaneOutsiderEvilOffHandBuff = "LegendaryArmor.Bane.Outsider.Evil.OffHand.Buff";
+    private const string BaneOutsiderEvilName = "LegendaryWeapon.Bane.Outsider.Evil.Name";
+    private const string BaneOutsiderEvilAbility = "LegendaryWeapon.Bane.Outsider.Evil.Ability";
+    private const string BaneOutsiderEvilOffHandAbility = "LegendaryWeapon.Bane.Outsider.Evil.OffHand.Ability";
+    private const string BaneOutsiderEvilBuff = "LegendaryWeapon.Bane.Outsider.Evil.Buff";
+    private const string BaneOutsiderEvilOffHandBuff = "LegendaryWeapon.Bane.Outsider.Evil.OffHand.Buff";
 
-    private const string BaneOutsiderLawfulName = "LegendaryArmor.Bane.Outsider.Lawful.Name";
-    private const string BaneOutsiderLawfulAbility = "LegendaryArmor.Bane.Outsider.Lawful.Ability";
-    private const string BaneOutsiderLawfulOffHandAbility = "LegendaryArmor.Bane.Outsider.Lawful.OffHand.Ability";
-    private const string BaneOutsiderLawfulBuff = "LegendaryArmor.Bane.Outsider.Lawful.Buff";
-    private const string BaneOutsiderLawfulOffHandBuff = "LegendaryArmor.Bane.Outsider.Lawful.OffHand.Buff";
+    private const string BaneOutsiderLawfulName = "LegendaryWeapon.Bane.Outsider.Lawful.Name";
+    private const string BaneOutsiderLawfulAbility = "LegendaryWeapon.Bane.Outsider.Lawful.Ability";
+    private const string BaneOutsiderLawfulOffHandAbility = "LegendaryWeapon.Bane.Outsider.Lawful.OffHand.Ability";
+    private const string BaneOutsiderLawfulBuff = "LegendaryWeapon.Bane.Outsider.Lawful.Buff";
+    private const string BaneOutsiderLawfulOffHandBuff = "LegendaryWeapon.Bane.Outsider.Lawful.OffHand.Buff";
 
-    private const string BaneOutsiderChaoticName = "LegendaryArmor.Bane.Outsider.Chaotic.Name";
-    private const string BaneOutsiderChaoticAbility = "LegendaryArmor.Bane.Outsider.Chaotic.Ability";
-    private const string BaneOutsiderChaoticOffHandAbility = "LegendaryArmor.Bane.Outsider.Chaotic.OffHand.Ability";
-    private const string BaneOutsiderChaoticBuff = "LegendaryArmor.Bane.Outsider.Chaotic.Buff";
-    private const string BaneOutsiderChaoticOffHandBuff = "LegendaryArmor.Bane.Outsider.Chaotic.OffHand.Buff";
+    private const string BaneOutsiderChaoticName = "LegendaryWeapon.Bane.Outsider.Chaotic.Name";
+    private const string BaneOutsiderChaoticAbility = "LegendaryWeapon.Bane.Outsider.Chaotic.Ability";
+    private const string BaneOutsiderChaoticOffHandAbility = "LegendaryWeapon.Bane.Outsider.Chaotic.OffHand.Ability";
+    private const string BaneOutsiderChaoticBuff = "LegendaryWeapon.Bane.Outsider.Chaotic.Buff";
+    private const string BaneOutsiderChaoticOffHandBuff = "LegendaryWeapon.Bane.Outsider.Chaotic.OffHand.Buff";
 
-    private const string BaneOutsiderNeutralName = "LegendaryArmor.Bane.Outsider.Neutral.Name";
-    private const string BaneOutsiderNeutralAbility = "LegendaryArmor.Bane.Outsider.Neutral.Ability";
-    private const string BaneOutsiderNeutralOffHandAbility = "LegendaryArmor.Bane.Outsider.Neutral.OffHand.Ability";
-    private const string BaneOutsiderNeutralBuff = "LegendaryArmor.Bane.Outsider.Neutral.Buff";
-    private const string BaneOutsiderNeutralOffHandBuff = "LegendaryArmor.Bane.Outsider.Neutral.OffHand.Buff";
+    private const string BaneOutsiderNeutralName = "LegendaryWeapon.Bane.Outsider.Neutral.Name";
+    private const string BaneOutsiderNeutralAbility = "LegendaryWeapon.Bane.Outsider.Neutral.Ability";
+    private const string BaneOutsiderNeutralOffHandAbility = "LegendaryWeapon.Bane.Outsider.Neutral.OffHand.Ability";
+    private const string BaneOutsiderNeutralBuff = "LegendaryWeapon.Bane.Outsider.Neutral.Buff";
+    private const string BaneOutsiderNeutralOffHandBuff = "LegendaryWeapon.Bane.Outsider.Neutral.OffHand.Buff";
 
-    private const string BanePlantsName = "LegendaryArmor.Bane.Plants.Name";
-    private const string BanePlantsAbility = "LegendaryArmor.Bane.Plants.Ability";
-    private const string BanePlantsOffHandAbility = "LegendaryArmor.Bane.Plants.OffHand.Ability";
-    private const string BanePlantsBuff = "LegendaryArmor.Bane.Plants.Buff";
-    private const string BanePlantsOffHandBuff = "LegendaryArmor.Bane.Plants.OffHand.Buff";
+    private const string BanePlantsName = "LegendaryWeapon.Bane.Plants.Name";
+    private const string BanePlantsAbility = "LegendaryWeapon.Bane.Plants.Ability";
+    private const string BanePlantsOffHandAbility = "LegendaryWeapon.Bane.Plants.OffHand.Ability";
+    private const string BanePlantsBuff = "LegendaryWeapon.Bane.Plants.Buff";
+    private const string BanePlantsOffHandBuff = "LegendaryWeapon.Bane.Plants.OffHand.Buff";
 
-    private const string BaneUndeadName = "LegendaryArmor.Bane.Undead.Name";
-    private const string BaneUndeadAbility = "LegendaryArmor.Bane.Undead.Ability";
-    private const string BaneUndeadOffHandAbility = "LegendaryArmor.Bane.Undead.OffHand.Ability";
-    private const string BaneUndeadBuff = "LegendaryArmor.Bane.Undead.Buff";
-    private const string BaneUndeadOffHandBuff = "LegendaryArmor.Bane.Undead.OffHand.Buff";
+    private const string BaneUndeadName = "LegendaryWeapon.Bane.Undead.Name";
+    private const string BaneUndeadAbility = "LegendaryWeapon.Bane.Undead.Ability";
+    private const string BaneUndeadOffHandAbility = "LegendaryWeapon.Bane.Undead.OffHand.Ability";
+    private const string BaneUndeadBuff = "LegendaryWeapon.Bane.Undead.Buff";
+    private const string BaneUndeadOffHandBuff = "LegendaryWeapon.Bane.Undead.OffHand.Buff";
 
-    private const string BaneVerminName = "LegendaryArmor.Bane.Vermin.Name";
-    private const string BaneVerminAbility = "LegendaryArmor.Bane.Vermin.Ability";
-    private const string BaneVerminOffHandAbility = "LegendaryArmor.Bane.Vermin.OffHand.Ability";
-    private const string BaneVerminBuff = "LegendaryArmor.Bane.Vermin.Buff";
-    private const string BaneVerminOffHandBuff = "LegendaryArmor.Bane.Vermin.OffHand.Buff";
+    private const string BaneVerminName = "LegendaryWeapon.Bane.Vermin.Name";
+    private const string BaneVerminAbility = "LegendaryWeapon.Bane.Vermin.Ability";
+    private const string BaneVerminOffHandAbility = "LegendaryWeapon.Bane.Vermin.OffHand.Ability";
+    private const string BaneVerminBuff = "LegendaryWeapon.Bane.Vermin.Buff";
+    private const string BaneVerminOffHandBuff = "LegendaryWeapon.Bane.Vermin.OffHand.Buff";
     #endregion
 
-    private const string DisplayName = "LegendaryArmor.Bane.Name";
-    private const string Description = "LegendaryArmor.Bane.Description";
+    private const string DisplayName = "LegendaryWeapon.Bane.Name";
+    private const string Description = "LegendaryWeapon.Bane.Description";
     private const int EnhancementCost = 1;
 
     internal static BlueprintFeature Configure()
@@ -151,7 +151,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       var parent = ActivatableAbilityConfigurator.New(BaneAbility, Guids.BaneParent)
         .SetDisplayName(BaneAbilityName)
-        .SetDescription(LegendaryArmor.LegendaryArmorAbilityDescription)
+        .SetDescription(LegendaryWeapon.LegendaryWeaponAbilityDescription)
         //.SetIcon()
         .SetDeactivateImmediately()
         .SetActivationType(AbilityActivationType.Immediately)
