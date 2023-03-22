@@ -1137,6 +1137,13 @@
   {
     "Key": "PhysicalProwess.Con.Primary.Description",
     "enGB": "You receive a +2 enhancement bonus to Constitution. At level 12 the bonus increases to +4."
-  }
+  },
   // End Physical Prowess
+
+  // UI
+  {
+    "Key": "ABP.UI.Attunement",
+    "enGB": "Attunement"
+  }
+  //
 ]

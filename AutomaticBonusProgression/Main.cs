@@ -1,5 +1,6 @@
 using AutomaticBonusProgression.Enchantments;
 using AutomaticBonusProgression.Features;
+using AutomaticBonusProgression.UI;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Root;
 using HarmonyLib;
@@ -56,6 +57,7 @@ namespace AutomaticBonusProgression
 
           BaseEnchantments.Configure();
 
+          AttunementWindow.Configure();
           AttunementProgression.Configure();
         }
         catch (Exception e)
