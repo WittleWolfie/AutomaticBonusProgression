@@ -236,16 +236,31 @@ namespace AutomaticBonusProgression.Enchantments
           new(SonicShieldAbilityName, Guids.SonicResist10ShieldAbility));
 
       return EnchantTool.CreateEnchantFeature(
-        new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 2),
+        new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 4),
         new(
           EnergyResistanceName,
-          Guids.EnergyResist10,
+          Guids.EnergyResist,
           new AttunementComponent(
+            // 10 Armor
             (Guids.AcidResist10Buff, 2),
             (Guids.ColdResist10Buff, 2),
             (Guids.ElectricityResist10Buff, 2),
             (Guids.FireResist10Buff, 2),
-            (Guids.SonicResist10Buff, 2))),
+            (Guids.SonicResist10Buff, 2),
+
+            // 20 Armor
+            (Guids.AcidResist20Buff, 3),
+            (Guids.ColdResist20Buff, 3),
+            (Guids.ElectricityResist20Buff, 3),
+            (Guids.FireResist20Buff, 3),
+            (Guids.SonicResist20Buff, 3),
+
+            // 30 Armor
+            (Guids.AcidResist30Buff, 4),
+            (Guids.ColdResist30Buff, 4),
+            (Guids.ElectricityResist30Buff, 4),
+            (Guids.FireResist30Buff, 4),
+            (Guids.SonicResist30Buff, 4))),
         parent,
         shieldParent,
         resistAcid,
@@ -419,7 +434,7 @@ namespace AutomaticBonusProgression.Enchantments
           "",
           ImprovedEnhancementCost,
           ranks: 1,
-          prerequisite: new(Guids.EnergyResist10, ranks: 2)),
+          prerequisite: new(Guids.EnergyResist, ranks: 2)),
         new(ImprovedEnergyResistanceName, Guids.EnergyResist20),
         resistAcid,
         resistAcidShield,

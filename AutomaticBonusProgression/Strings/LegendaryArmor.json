@@ -231,11 +231,11 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Name",
     "ProcessTemplates": false,
-    "enGB": "Energy Resistance 10 (+2)"
+    "enGB": "Energy Resistance"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Description",
-    "enGB": "This armor protects against one type of energy (acid, cold, electricity, fire, or sonic) and is designed with patterns depicting the element it protects against. The armor absorbs the first 10 points of energy damage per attack that the wearer would normally take (similar to the resist energy spell)."
+    "enGB": "This armor protects against one type of energy (acid, cold, electricity, fire, or sonic) and is designed with patterns depicting the element it protects against. The armor absorbs energy damage for each attack that the wearer would normally take (similar to the resist energy spell).\n+2: Absorbs the first 10 points of energy damage\n:+3: Absorbs the first 20 points of energy damage\n:+4: Absorbs the first 30 points of energy damage"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Ability.Name",
@@ -250,7 +250,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Acid.Name",
     "ProcessTemplates": false,
-    "enGB": "Acid Resistance 10 (+2)"
+    "enGB": "Acid Resistance 10"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Acid.Description",
@@ -259,7 +259,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Cold.Name",
     "ProcessTemplates": false,
-    "enGB": "Cold Resistance 10 (+2)"
+    "enGB": "Cold Resistance 10"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Cold.Description",
@@ -268,7 +268,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Electricity.Name",
     "ProcessTemplates": false,
-    "enGB": "Electricity Resistance 10 (+2)"
+    "enGB": "Electricity Resistance 10"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Electricity.Description",
@@ -277,7 +277,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Fire.Name",
     "ProcessTemplates": false,
-    "enGB": "Fire Resistance 10 (+2)"
+    "enGB": "Fire Resistance 10"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Fire.Description",
@@ -286,7 +286,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Sonic.Name",
     "ProcessTemplates": false,
-    "enGB": "Sonic Resistance 10 (+2)"
+    "enGB": "Sonic Resistance 10"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Sonic.Description",
@@ -296,7 +296,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Name",
     "ProcessTemplates": false,
-    "enGB": "Energy Resistance 20 (+3)"
+    "enGB": "Energy Resistance 20"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Description",
@@ -305,7 +305,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Acid.Name",
     "ProcessTemplates": false,
-    "enGB": "Acid Resistance 20 (+3)"
+    "enGB": "Acid Resistance 20"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Acid.Description",
@@ -314,7 +314,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Cold.Name",
     "ProcessTemplates": false,
-    "enGB": "Cold Resistance 20 (+3)"
+    "enGB": "Cold Resistance 20"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Cold.Description",
@@ -323,7 +323,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Electricity.Name",
     "ProcessTemplates": false,
-    "enGB": "Electricity Resistance 20 (+3)"
+    "enGB": "Electricity Resistance 20"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Electricity.Description",
@@ -332,7 +332,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Fire.Name",
     "ProcessTemplates": false,
-    "enGB": "Fire Resistance 20 (+3)"
+    "enGB": "Fire Resistance 20"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Fire.Description",
@@ -341,7 +341,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Sonic.Name",
     "ProcessTemplates": false,
-    "enGB": "Sonic Resistance 20 (+3)"
+    "enGB": "Sonic Resistance 20"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Improved.Sonic.Description",
@@ -351,7 +351,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Name",
     "ProcessTemplates": false,
-    "enGB": "Energy Resistance 30 (+4)"
+    "enGB": "Energy Resistance 30"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Description",
@@ -360,7 +360,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Acid.Name",
     "ProcessTemplates": false,
-    "enGB": "Acid Resistance 30 (+4)"
+    "enGB": "Acid Resistance 30"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Acid.Description",
@@ -369,7 +369,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Cold.Name",
     "ProcessTemplates": false,
-    "enGB": "Cold Resistance 30 (+4)"
+    "enGB": "Cold Resistance 30"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Cold.Description",
@@ -378,7 +378,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Electricity.Name",
     "ProcessTemplates": false,
-    "enGB": "Electricity Resistance 30 (+4)"
+    "enGB": "Electricity Resistance 30"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Electricity.Description",
@@ -387,7 +387,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Fire.Name",
     "ProcessTemplates": false,
-    "enGB": "Fire Resistance 30 (+4)"
+    "enGB": "Fire Resistance 30"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Fire.Description",
@@ -396,7 +396,7 @@
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Sonic.Name",
     "ProcessTemplates": false,
-    "enGB": "Sonic Resistance 30 (+4)"
+    "enGB": "Sonic Resistance 30"
   },
   {
     "Key": "LegendaryArmor.EnergyResistance.Greater.Sonic.Description",
