@@ -42,6 +42,8 @@ namespace AutomaticBonusProgression.UI.Attunement
     private OwlcatButton CloseButton;
     private TextMeshProUGUI Header;
 
+    private EnchantmentsView Enchantments;
+
     private readonly List<Transform> Children = new();
 
     public override void BindViewImplementation()
@@ -51,20 +53,8 @@ namespace AutomaticBonusProgression.UI.Attunement
       AddDisposable(CloseButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.Close()));
 
       Header.text = ViewModel.GetHeader();
-
-      //ViewModel.Elements.ForEach(BindElement);
-      //ViewModel.Containers.ForEach(BindContainer);
+      Enchantments.Bind(new());
     }
-
-    //private void BindElement(BaseElement element)
-    //{
-    //  Children.Add(element.Instantiate(Window));
-    //}
-
-    //private void BindContainer(BaseContainer container)
-    //{
-    //  Children.Add(container.Instantiate(Window));
-    //}
 
     public override void DestroyViewImplementation()
     {
@@ -79,6 +69,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       Window = gameObject.ChildObject("Window").transform;
       CloseButton = gameObject.ChildObject("Window/Close").GetComponent<OwlcatButton>();
       Header = gameObject.ChildObject("Window/Header").GetComponentInChildren<TextMeshProUGUI>();
+      Enchantments = EnchantmentsView.Instantiate(Window);
     }
 
     #region Setup
@@ -91,8 +82,8 @@ namespace AutomaticBonusProgression.UI.Attunement
         try
         {
           Logger.Log("Initializing WindowView BaseView");
-          BaseView = Create(__instance.m_ChangeVisualPCView);
           Prefabs.Create();
+          BaseView = Create(__instance.m_ChangeVisualPCView);
         }
         catch (Exception e)
         {
