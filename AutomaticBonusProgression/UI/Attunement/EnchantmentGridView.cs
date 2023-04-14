@@ -27,8 +27,8 @@ namespace AutomaticBonusProgression.UI.Attunement
       var gridLayout = transform.GetComponentInChildren<GridLayoutGroupWorkaround>();
       gridLayout.startAxis = GridLayoutGroup.Axis.Horizontal;
       gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-      gridLayout.constraintCount = 3;
-      gridLayout.cellSize = new(346, 60); // Standard size for UIFeature, might change later
+      gridLayout.constraintCount = 4;
+      gridLayout.cellSize = new(346, 60);
 
       // Add the view & make sure viewport scales to fit
       var view = transform.gameObject.CreateComponent<EnchantmentGridView>(view => view.Grid = gridLayout.transform);
