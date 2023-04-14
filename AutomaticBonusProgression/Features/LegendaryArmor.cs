@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Enchantments;
+using AutomaticBonusProgression.UI.Attunement;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
@@ -33,7 +34,7 @@ namespace AutomaticBonusProgression.Features
       var ability = AbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorAbilityDescription)
-        .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowWindow>(a => a.Key = "ABP.Attunement"))
+        .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>())
         .Configure();
       //var ability = ActivatableAbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
       //  .SetDisplayName(LegendaryArmorDisplayName)

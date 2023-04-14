@@ -1142,8 +1142,20 @@
 
   // UI
   {
-    "Key": "ABP.UI.Attunement",
-    "enGB": "Attunement"
+    "Key": "ABP.UI.Attunement.MainHand",
+    "enGB": "Main Hand Attunement"
+  },
+  {
+    "Key": "ABP.UI.Attunement.OffHand",
+    "enGB": "Off-Hand Attunement"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Armor",
+    "enGB": "Armor Attunement"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Shield",
+    "enGB": "Shield Attunement"
   }
   //
 ]

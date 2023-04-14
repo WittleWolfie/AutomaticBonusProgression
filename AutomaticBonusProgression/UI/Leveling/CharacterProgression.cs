@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AutomaticBonusProgression.Patches
+namespace AutomaticBonusProgression.UI.Leveling
 {
   internal class UIPatches
   {
@@ -67,7 +67,7 @@ namespace AutomaticBonusProgression.Patches
         if (feature == Common.WeaponAttunement)
           return true;
         if (feature == Common.OffHandAttunement)
-          return true;
+           return true;
         return false;
       }
     }
