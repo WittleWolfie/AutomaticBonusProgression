@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Util;
+using BlueprintCore.Utils;
 using HarmonyLib;
 using Kingmaker;
 using Kingmaker.ElementsSystem;
@@ -49,15 +50,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       AddDisposable(Game.Instance.UI.EscManager.Subscribe(ViewModel.Close));
       AddDisposable(CloseButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.Close()));
 
-      //if (!string.IsNullOrEmpty(ViewModel.Header))
-      //{
-      //  Header.text = ViewModel.Header;
-      //  Header.gameObject.SetActive(true);
-      //}
-      //else
-      //{
-      Header.gameObject.SetActive(false);
-      //}
+      Header.text = ViewModel.GetHeader();
 
       //ViewModel.Elements.ForEach(BindElement);
       //ViewModel.Containers.ForEach(BindContainer);
@@ -148,6 +141,8 @@ namespace AutomaticBonusProgression.UI.Attunement
   {
     private readonly Action DisposeAction;
 
+    private AttunementType Type = AttunementType.Weapon;
+
     internal AttunementVM(Action disposeAction)
     {
       DisposeAction = disposeAction;
@@ -164,6 +159,26 @@ namespace AutomaticBonusProgression.UI.Attunement
     {
       DisposeImplementation();
     }
+
+    internal string GetHeader()
+    {
+      return Type switch
+      {
+        AttunementType.Weapon => UITool.GetString("Attunement.Weapon"),
+        AttunementType.OffHand => UITool.GetString("Attunement.OffHand"),
+        AttunementType.Armor => UITool.GetString("Attunement.Armor"),
+        AttunementType.Shield => UITool.GetString("Attunement.Shield"),
+        _ => throw new InvalidOperationException($"Unknown attunement type: {Type}"),
+      };
+    }
+  }
+
+  internal enum AttunementType
+  {
+    Weapon,
+    OffHand,
+    Armor,
+    Shield
   }
 
   internal class ShowAttunement : GameAction

@@ -1142,8 +1142,8 @@
 
   // UI
   {
-    "Key": "ABP.UI.Attunement.MainHand",
-    "enGB": "Main Hand Attunement"
+    "Key": "ABP.UI.Attunement.Weapon",
+    "enGB": "Weapon Attunement"
   },
   {
     "Key": "ABP.UI.Attunement.OffHand",

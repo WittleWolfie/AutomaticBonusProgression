@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Kingmaker;
+using BlueprintCore.Utils;
 
 namespace AutomaticBonusProgression.UI
 {
@@ -17,6 +18,14 @@ namespace AutomaticBonusProgression.UI
     /// Root transform for the static UI elements.
     /// </summary>
     public static GameObject StaticCanvas => Game.Instance.UI.Canvas.gameObject;
+
+    /// <summary>
+    /// Returns strings for use w/ the UI (i.e. preffixed w/ "ABP.UI")
+    /// </summary>
+    public static string GetString(string key)
+    {
+      return LocalizationTool.GetString($"ABP.UI.{key}");
+    }
 
     /// <summary>
     /// Returns the Transform matching the specified <paramref name="path"/>
