@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!--
@@ -19,6 +19,24 @@
     <Compile Remove="lib\**" />
     <EmbeddedResource Remove="lib\**" />
     <None Remove="lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Strings\LegendaryArmor.json" />
+    <None Remove="Strings\LocalizedStrings.json" />
+    <None Remove="Strings\UI.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Strings\LegendaryArmor.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\LocalizedStrings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\UI.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -98,9 +116,6 @@
     <None Update="Info.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LocalizedStrings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <!-- Generates Assembly-CSharp_public.dll and Owlcat.Runtime.UI_public.dll -->
@@ -141,13 +156,11 @@
     <ItemGroup>
       <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
       <ModConfig Include="$(OutputPath)\Info.json" />
-      <Strings Include="$(OutputPath)\LocalizedStrings.json" />
       <Assets Include="$(OutputPath)\*_assets" />
     </ItemGroup>
 
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
-    <Copy SourceFiles="@(Strings)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(Assets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
   </Target>
 

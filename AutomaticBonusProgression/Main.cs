@@ -3,6 +3,7 @@ using AutomaticBonusProgression.Features;
 using AutomaticBonusProgression.UI;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Root;
+using BlueprintCore.Utils;
 using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using System;
@@ -54,6 +55,12 @@ namespace AutomaticBonusProgression
             return;
           }
           Initialized = true;
+
+          // First strings
+          LocalizationTool.LoadEmbeddedLocalizationPacks(
+            "AutomaticBonusProgression.Strings.LegendaryArmor.json",
+            "AutomaticBonusProgression.Strings.LocalizedStrings.json",
+            "AutomaticBonusProgression.Strings.UI.json");
 
           BaseEnchantments.Configure();
 
