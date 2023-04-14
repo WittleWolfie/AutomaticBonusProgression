@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Features;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Features;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.References;
@@ -236,7 +237,15 @@ namespace AutomaticBonusProgression.Enchantments
 
       return EnchantTool.CreateEnchantFeature(
         new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 2),
-        new(EnergyResistanceName, Guids.EnergyResist10),
+        new(
+          EnergyResistanceName,
+          Guids.EnergyResist10,
+          new AttunementComponent(
+            (Guids.AcidResist10Buff, 2),
+            (Guids.ColdResist10Buff, 2),
+            (Guids.ElectricityResist10Buff, 2),
+            (Guids.FireResist10Buff, 2),
+            (Guids.SonicResist10Buff, 2))),
         parent,
         shieldParent,
         resistAcid,

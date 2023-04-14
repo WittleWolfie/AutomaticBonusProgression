@@ -2,12 +2,15 @@
 using AutomaticBonusProgression.Util;
 using Kingmaker;
 using Kingmaker.UI;
+using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.CharacterInfo.Sections.Abilities;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Abilities;
 using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Owlcat.Runtime.UI.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,11 +31,12 @@ namespace AutomaticBonusProgression.UI.Attunement
       gridLayout.cellSize = new(346, 60); // Standard size for UIFeature, might change later
 
       // Add the view & make sure viewport scales to fit
-      var view = transform.gameObject.CreateComponent<EnchantmentsView>(view => { });
+      var view = transform.gameObject.CreateComponent<EnchantmentsView>(view => view.Grid = gridLayout.transform);
       transform.Find("Viewport").Rect().offsetMin = Vector2.zero;
 
       // Add before configuring layout params or else some may be overridden
       transform.AddTo(parent);
+      //transform.gameObject.AddComponent<Image>().color = Color.blue;
 
       // Set up the size
       var rect = transform.Rect();
@@ -68,8 +72,8 @@ namespace AutomaticBonusProgression.UI.Attunement
       // TODO: How to handle clicks on items?
       // TODO: How can user refresh?
 
-      // CharInfoFeatures are copied as is from Owlcat so there's no Element class or styling.
-      ViewModel.CharInfoFeatures.ForEach(
+      // AvailableEnchantments are copied as is from Owlcat so there's no Element class or styling.
+      ViewModel.AvailableEnchantments.ForEach(
         feature =>
         {
           var view = GameObject.Instantiate<CharInfoFeaturePCView>(Prefabs.Feature);
@@ -86,7 +90,7 @@ namespace AutomaticBonusProgression.UI.Attunement
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnchantmentsVM));
 
-    internal List<CharInfoFeatureVM> CharInfoFeatures = new();
+    internal List<CharInfoFeatureVM> AvailableEnchantments = new();
 
     private Action OnRefresh;
     private UnitDescriptor Unit => SelectedUnit.Value;
@@ -108,10 +112,10 @@ namespace AutomaticBonusProgression.UI.Attunement
     private void Refresh()
     {
       Logger.Verbose(() => $"Refreshing Enchantments: {Unit}");
-      foreach (var vm in CharInfoFeatures)
+      foreach (var vm in AvailableEnchantments)
         vm.Dispose();
 
-      CharInfoFeatures.Clear();
+      AvailableEnchantments.Clear();
 
       if (Unit is null)
         return;
@@ -122,7 +126,14 @@ namespace AutomaticBonusProgression.UI.Attunement
         if (attunement is null)
           continue;
 
-        CharInfoFeatures.Add(new(feature));
+        Logger.Verbose(() => $"Adding enchantments: {feature.Name}");
+        foreach (var buff in attunement.Buffs)
+        {
+          if (feature.GetRank() < buff.ranks)
+            continue;
+          
+          AvailableEnchantments.Add(Create(buff.buff, buff.ranks));
+        }
       }
 
       OnRefresh?.Invoke();
@@ -131,6 +142,20 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal void Subscribe(Action onRefresh)
     {
       OnRefresh = onRefresh;
+    }
+
+    // TODO: Probably create our own view
+    private CharInfoFeatureVM Create(BlueprintBuff buff, int rank)
+    {
+      var viewModel = (CharInfoFeatureVM)FormatterServices.GetUninitializedObject(typeof(CharInfoFeatureVM));
+      viewModel.Icon = buff.Icon;
+      viewModel.DisplayName = buff.Name;
+      viewModel.IsSquare = true;
+      viewModel.IsActive = true;
+      viewModel.Acronym = UIUtility.GetAbilityAcronym(buff.name);
+      viewModel.Rank = rank;
+
+      return viewModel;
     }
   }
 }
