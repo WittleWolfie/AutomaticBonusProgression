@@ -15,7 +15,6 @@ namespace AutomaticBonusProgression.UI
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Prefabs));
 
-    internal static GameObject Text;
     internal static GameObject Button;
     internal static GameObject DataGrid;
 
@@ -25,16 +24,10 @@ namespace AutomaticBonusProgression.UI
     {
       Logger.Log("Creating prefabs");
 
-      CreateText();
       CreateButton();
       CreateDataGrid();
 
       CreateFeature();
-    }
-
-    private static void CreateText()
-    {
-      Text = GameObject.Instantiate(UITool.StaticCanvas.ChildObject("ChangeVisualPCView/Window/Header/Header"));
     }
 
     private static void CreateButton()

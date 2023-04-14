@@ -17,9 +17,9 @@ using UnityEngine.UI;
 
 namespace AutomaticBonusProgression.UI.Attunement
 {
-  internal class EnchantmentsView : ViewBase<EnchantmentsVM>
+  internal class EnchantmentGridView : ViewBase<EnchantmentsVM>
   {
-    internal static EnchantmentsView Instantiate(Transform parent)
+    internal static EnchantmentGridView Instantiate(Transform parent)
     {
       var transform = UnityEngine.Object.Instantiate(Prefabs.DataGrid).transform;
 
@@ -31,7 +31,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       gridLayout.cellSize = new(346, 60); // Standard size for UIFeature, might change later
 
       // Add the view & make sure viewport scales to fit
-      var view = transform.gameObject.CreateComponent<EnchantmentsView>(view => view.Grid = gridLayout.transform);
+      var view = transform.gameObject.CreateComponent<EnchantmentGridView>(view => view.Grid = gridLayout.transform);
       transform.Find("Viewport").Rect().offsetMin = Vector2.zero;
 
       // Add before configuring layout params or else some may be overridden
@@ -46,6 +46,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       return view;
     }
+
+    // TODO: Add a pretty frame like around buffs in bubble buffs
 
     // Track children so they are not retained when the window is destroyed
     private readonly List<Transform> Children = new();

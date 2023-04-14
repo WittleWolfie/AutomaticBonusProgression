@@ -42,7 +42,7 @@ namespace AutomaticBonusProgression.UI.Attunement
     private OwlcatButton CloseButton;
     private TextMeshProUGUI Header;
 
-    private EnchantmentsView Enchantments;
+    private EnchantmentGridView Enchantments;
 
     private readonly List<Transform> Children = new();
 
@@ -69,7 +69,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       Window = gameObject.ChildObject("Window").transform;
       CloseButton = gameObject.ChildObject("Window/Close").GetComponent<OwlcatButton>();
       Header = gameObject.ChildObject("Window/Header").GetComponentInChildren<TextMeshProUGUI>();
-      Enchantments = EnchantmentsView.Instantiate(Window);
+      Enchantments = EnchantmentGridView.Instantiate(Window);
     }
 
     #region Setup
