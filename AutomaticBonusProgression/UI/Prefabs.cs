@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.CharacterInfo.Sections.Abilities;
+using Kingmaker.UI.MVVM._PCView.ServiceWindows.Spellbook.KnownSpells;
 using UnityEngine;
 
 namespace AutomaticBonusProgression.UI
@@ -16,38 +17,33 @@ namespace AutomaticBonusProgression.UI
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Prefabs));
 
     internal static GameObject Button;
-    internal static GameObject DataGrid;
+    internal static GameObject EnchantmentContainer;
 
-    internal static CharInfoFeaturePCView Feature;
+    internal static SpellbookKnownSpellPCView Enchantment;
 
     internal static void Create()
     {
       Logger.Log("Creating prefabs");
 
-      CreateButton();
-      CreateDataGrid();
+      CreateBasics();
 
-      CreateFeature();
+      CreateEnchantmentPrefabs();
     }
 
-    private static void CreateButton()
+    private static void CreateBasics()
     {
       Button = GameObject.Instantiate(UITool.StaticCanvas.ChildObject("ChangeVisualPCView/Window/BackToStashButton/OwlcatButton"));
     }
 
-    private static void CreateDataGrid()
+    private static void CreateEnchantmentPrefabs()
     {
-      DataGrid = GameObject.Instantiate(
+      EnchantmentContainer = GameObject.Instantiate(
         UITool.StaticCanvas.ChildObject(
-          "ServiceWindowsPCView/Background/Windows/SpellbookPCView/SpellbookScreen/MainContainer/KnownSpells/StandardScrollView/"));
-    }
+          "ServiceWindowsPCView/Background/Windows/SpellbookPCView/SpellbookScreen/MainContainer/KnownSpells"));
 
-    private static void CreateFeature()
-    {
-      Feature = GameObject.Instantiate(
-        UITool.StaticCanvas.ChildObject(
-          "ServiceWindowsPCView/Background/Windows/CharacterInfoPCView/CharacterScreen/Abilities")
-            .GetComponent<CharInfoAbilitiesPCView>().m_WidgetEntityView.m_WidgetEntityView);
+      Enchantment = EnchantmentContainer.GetComponent<SpellbookKnownSpellsPCView>().m_KnownSpellView;
+      Enchantment.gameObject.DestroyChildren("Metamagic", "RemoveButton");
+      Enchantment.gameObject.ChildObject("Level").SetActive(true);
     }
   }
 }

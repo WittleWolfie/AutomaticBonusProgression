@@ -8,7 +8,7 @@
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Guids));
 
     #region Attunement
-    // Feature used to calculate armor / weapon / shield enhancement bonuses
+    // Enchantment used to calculate armor / weapon / shield enhancement bonuses
     internal const string EnhancementCalculator = "945f05cf-ffb5-489d-b4d8-2687d1f1b835";
 
     internal const string ArmorAttunement = "24af67c6-bc58-4dba-a9bf-d7d00925e7c7";

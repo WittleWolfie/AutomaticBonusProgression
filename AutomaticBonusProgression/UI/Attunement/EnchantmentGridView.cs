@@ -3,7 +3,6 @@ using AutomaticBonusProgression.Util;
 using Kingmaker;
 using Kingmaker.UI;
 using Kingmaker.UI.Common;
-using Kingmaker.UI.MVVM._PCView.ServiceWindows.CharacterInfo.Sections.Abilities;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Abilities;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
@@ -21,18 +20,19 @@ namespace AutomaticBonusProgression.UI.Attunement
   {
     internal static EnchantmentGridView Instantiate(Transform parent)
     {
-      var transform = UnityEngine.Object.Instantiate(Prefabs.DataGrid).transform;
+      var transform = UnityEngine.Object.Instantiate(Prefabs.EnchantmentContainer).transform;
+      var scrollView = transform.Find("StandardScrollView");
 
       // Create grid params
-      var gridLayout = transform.GetComponentInChildren<GridLayoutGroupWorkaround>();
+      var gridLayout = scrollView.GetComponentInChildren<GridLayoutGroupWorkaround>();
       gridLayout.startAxis = GridLayoutGroup.Axis.Horizontal;
       gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
       gridLayout.constraintCount = 4;
       gridLayout.cellSize = new(346, 60);
 
       // Add the view & make sure viewport scales to fit
-      var view = transform.gameObject.CreateComponent<EnchantmentGridView>(view => view.Grid = gridLayout.transform);
-      transform.Find("Viewport").Rect().offsetMin = Vector2.zero;
+      var view = scrollView.gameObject.CreateComponent<EnchantmentGridView>(view => view.Grid = gridLayout.transform);
+      scrollView.transform.Find("Viewport").Rect().offsetMin = Vector2.zero;
 
       // Add before configuring layout params or else some may be overridden
       transform.AddTo(parent);
@@ -46,8 +46,6 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       return view;
     }
-
-    // TODO: Add a pretty frame like around buffs in bubble buffs
 
     // Track children so they are not retained when the window is destroyed
     private readonly List<Transform> Children = new();
@@ -70,15 +68,10 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private void Refresh()
     {
-      // TODO: Should there be a bind callback here?
-      // TODO: How to handle clicks on items?
-      // TODO: How can user refresh?
-
-      // AvailableEnchantments are copied as is from Owlcat so there's no Element class or styling.
       ViewModel.AvailableEnchantments.ForEach(
         feature =>
         {
-          var view = GameObject.Instantiate<CharInfoFeaturePCView>(Prefabs.Feature);
+          var view = EnchantmentView.Instantiate();
           view.Bind(feature);
           view.transform.AddTo(Grid);
           Children.Add(view.transform);
@@ -92,7 +85,7 @@ namespace AutomaticBonusProgression.UI.Attunement
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnchantmentsVM));
 
-    internal List<CharInfoFeatureVM> AvailableEnchantments = new();
+    internal List<EnchantmentVM> AvailableEnchantments = new();
 
     private Action OnRefresh;
     private UnitDescriptor Unit => SelectedUnit.Value;
@@ -134,7 +127,7 @@ namespace AutomaticBonusProgression.UI.Attunement
           if (feature.GetRank() < buff.ranks)
             continue;
           
-          AvailableEnchantments.Add(Create(buff.buff, buff.ranks));
+          AvailableEnchantments.Add(new(buff.buff));
         }
       }
 
