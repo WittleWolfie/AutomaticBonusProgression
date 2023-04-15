@@ -118,7 +118,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       if (CurrentState.Value == State.Available)
         CurrentState.Value = State.Active;
       else if (CurrentState.Value == State.Active)
-        CurrentState.Value = State.Unaffordable;
+        CurrentState.Value = State.Available;
     }
 
     internal Sprite Icon;
