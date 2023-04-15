@@ -41,7 +41,7 @@ namespace AutomaticBonusProgression.UI
         UITool.StaticCanvas.ChildObject(
           "ServiceWindowsPCView/Background/Windows/SpellbookPCView/SpellbookScreen/MainContainer/KnownSpells"));
 
-      Enchantment = EnchantmentContainer.GetComponent<SpellbookKnownSpellsPCView>().m_KnownSpellView;
+      Enchantment = GameObject.Instantiate(EnchantmentContainer.GetComponent<SpellbookKnownSpellsPCView>().m_KnownSpellView);
       Enchantment.gameObject.DestroyChildren(
         "Metamagic", "RemoveButton", "Icon/Decoration", "Icon/Domain", "Icon/MythicArtFrame", "Icon/ArtArrowImage");
       Enchantment.gameObject.ChildObject("Level").SetActive(true);

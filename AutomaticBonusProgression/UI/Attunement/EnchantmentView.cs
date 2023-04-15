@@ -1,11 +1,14 @@
 ﻿using AutomaticBonusProgression.Components;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.Spellbook.KnownSpells;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.Utility;
 using Owlcat.Runtime.UI.Controls.Button;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
+using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -102,12 +105,19 @@ namespace AutomaticBonusProgression.UI.Attunement
       Incompatible, // i.e. Can't be used on the equipped item type
     }
 
-    internal EnchantmentVM(BlueprintBuff enchantment)
+    internal EnchantmentVM(BlueprintBuff enchantment, int cost, params ArmorProficiencyGroup[] armorProficiencies)
     {
       Icon = enchantment.Icon;
+
       Name = enchantment.Name;
-      Requirements = "Requires: ";
-      Cost = enchantment.GetComponent<EnhancementEquivalenceComponent>().Enhancement;
+
+      if (armorProficiencies.Any())
+      {
+        var proficiencyText = armorProficiencies.Select(LocalizedTexts.Instance.Stats.GetText);
+        Requirements = string.Format(UITool.GetString("Attunement.Requirements"), string.Join(", ", proficiencyText));
+      }
+
+      Cost = cost;
       CurrentState.Value = State.Available;
     }
 

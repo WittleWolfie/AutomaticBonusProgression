@@ -14,5 +14,10 @@
   {
     "Key": "ABP.UI.Attunement.Shield",
     "enGB": "Shield Attunement"
+  },
+
+  {
+    "Key": "ABP.UI.Attunement.Requirements",
+    "enGB": "Requirements: {0}"
   }
 ]

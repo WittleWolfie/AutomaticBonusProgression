@@ -16,7 +16,7 @@ namespace AutomaticBonusProgression.Components
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UnitBuffComponentDelegate));
 
-    private readonly ArmorProficiencyGroup[] AllowedTypes;
+    internal readonly ArmorProficiencyGroup[] AllowedTypes;
 
     internal RequireShield(params ArmorProficiencyGroup[] allowedTypes)
     {

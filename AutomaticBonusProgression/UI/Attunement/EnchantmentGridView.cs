@@ -1,6 +1,7 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
 using Kingmaker;
+using Kingmaker.Blueprints;
 using Kingmaker.UI;
 using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Abilities;
@@ -89,6 +90,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private Action OnRefresh;
     private UnitDescriptor Unit => SelectedUnit.Value;
+    private readonly ReactiveProperty<EnhancementType> Type = new();
     private readonly ReactiveProperty<UnitDescriptor> SelectedUnit = new();
 
     internal EnchantmentsVM()
@@ -100,6 +102,9 @@ namespace AutomaticBonusProgression.UI.Attunement
             SelectedUnit.Value = unit.Value;
             Refresh();
           }));
+
+      // TODO: Actually make this change w/ buttons and shit
+      Type.Value = EnhancementType.Armor;
     }
 
     public override void DisposeImplementation() { }
@@ -126,8 +131,37 @@ namespace AutomaticBonusProgression.UI.Attunement
         {
           if (feature.GetRank() < buff.ranks)
             continue;
-          
-          AvailableEnchantments.Add(new(buff.buff));
+
+          var bp = buff.buff.Get();
+          var enhancement = bp.GetComponent<EnhancementEquivalenceComponent>();
+          if (enhancement is null)
+            throw new InvalidOperationException($"Missing EnhancementEquivalentComponent: {bp.Name}");
+
+          if (enhancement.Type != Type.Value)
+            continue;
+
+          // TODO: Need to probably refactor the whole requirements model.
+          //  - Probably reduce to two components (EnhancementEquivalence & Requirements?)
+          //  - Update the UnitPart to use the components, store the active buffs, and enforce requirements
+          EnchantmentVM viewModel;
+          if (Type.Value == EnhancementType.Armor)
+          {
+            var requireArmor = bp.GetComponent<RequireArmor>();
+            if (requireArmor is null)
+              viewModel = new(bp, enhancement.Enhancement);
+            else
+              viewModel = new(bp, enhancement.Enhancement, requireArmor.AllowedTypes);
+
+          }
+          else //if (Type.Value == EnhancementType.Shield)
+          {
+            var requireShield = bp.GetComponent<RequireShield>();
+            if (requireShield is null)
+              viewModel = new(bp, enhancement.Enhancement);
+            else
+              viewModel = new(bp, enhancement.Enhancement, requireShield.AllowedTypes);
+          }
+          AvailableEnchantments.Add(viewModel);
         }
       }
 
