@@ -40,6 +40,8 @@ namespace AutomaticBonusProgression.UI
       EnchantmentContainer = GameObject.Instantiate(
         UITool.StaticCanvas.ChildObject(
           "ServiceWindowsPCView/Background/Windows/SpellbookPCView/SpellbookScreen/MainContainer/KnownSpells"));
+      // Destroy doesn't work for some reason.. just disable
+      EnchantmentContainer.gameObject.ChildObject("Toggle").SetActive(false);
 
       Enchantment = GameObject.Instantiate(EnchantmentContainer.GetComponent<SpellbookKnownSpellsPCView>().m_KnownSpellView);
       Enchantment.gameObject.DestroyChildren(

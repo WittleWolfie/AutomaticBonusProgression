@@ -29,7 +29,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       gridLayout.startAxis = GridLayoutGroup.Axis.Horizontal;
       gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
       gridLayout.constraintCount = 4;
-      gridLayout.cellSize = new(346, 60);
+      gridLayout.cellSize = new(353, 75);
 
       // Add the view & make sure viewport scales to fit
       var view = scrollView.gameObject.CreateComponent<EnchantmentGridView>(view => view.Grid = gridLayout.transform);
@@ -41,8 +41,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       // Set up the size
       var rect = transform.Rect();
-      rect.anchorMin = new(0.12f, 0.3f);
-      rect.anchorMax = new(0.89f, 0.85f);
+      rect.anchorMin = new(0.11f, 0.30f);
+      rect.anchorMax = new(0.90f, 0.85f);
       rect.sizeDelta = Vector2.zero;
 
       return view;
