@@ -24,14 +24,14 @@ namespace AutomaticBonusProgression.Components
   [AllowedOn(typeof(BlueprintUnitFact))]
   [AllowedOn(typeof(BlueprintItemEnchantment))]
   [TypeId("4c9f19e3-0b2c-45b6-87c4-d22140b55f64")]
-  internal class EnhancementEquivalenceComponent : EntityFactComponentDelegate
+  internal class EnhancementEquivalence : EntityFactComponentDelegate
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalenceComponent));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalence));
 
     internal readonly EnhancementType Type;
     internal readonly int Enhancement;
 
-    internal EnhancementEquivalenceComponent(EnchantInfo enchant, EnhancementType? typeOverride = null)
+    internal EnhancementEquivalence(EnchantInfo enchant, EnhancementType? typeOverride = null)
     {
       Type = typeOverride ?? enchant.Type;
       Enhancement = enchant.Cost;
@@ -48,11 +48,11 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        owner.Ensure<UnitParts.EnhancementEquivalence>().AddEnchantment(Type, Enhancement);
+        owner.Ensure<UnitParts.UnitPartEnhancement>().AddEnchantment(Type, Enhancement);
       }
       catch (Exception e)
       {
-        Logger.LogException("EnhancementEquivalence.OnActivate", e);
+        Logger.LogException("UnitPartEnhancement.OnActivate", e);
       }
     }
 
@@ -67,11 +67,11 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        owner.Get<UnitParts.EnhancementEquivalence>()?.RemoveEnchantment(Type, Enhancement);
+        owner.Get<UnitParts.UnitPartEnhancement>()?.RemoveEnchantment(Type, Enhancement);
       }
       catch (Exception e)
       {
-        Logger.LogException("EnhancementEquivalence.OnDeactivate", e);
+        Logger.LogException("UnitPartEnhancement.OnDeactivate", e);
       }
     }
 

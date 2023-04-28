@@ -44,7 +44,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent(BonusAgainstTarget.AC(smiteEvil, 2, ModifierDescriptor.Sacred))
         .AddComponent(BonusAgainstTarget.AC(smiteEvilAura, 2, ModifierDescriptor.Sacred))
         .AddComponent(BonusAgainstTarget.AC(challenge, 2, ModifierDescriptor.Sacred))

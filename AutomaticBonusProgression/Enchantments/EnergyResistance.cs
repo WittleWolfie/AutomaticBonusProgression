@@ -239,28 +239,28 @@ namespace AutomaticBonusProgression.Enchantments
         new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 4),
         new(
           EnergyResistanceName,
-          Guids.EnergyResist,
-          new AttunementComponent(
-            // 10 Armor
-            (Guids.AcidResist10Buff, 2),
-            (Guids.ColdResist10Buff, 2),
-            (Guids.ElectricityResist10Buff, 2),
-            (Guids.FireResist10Buff, 2),
-            (Guids.SonicResist10Buff, 2),
+          Guids.EnergyResist),
+          //new AttunementBuffsComponent(
+          //  // 10 Armor
+          //  (Guids.AcidResist10Buff, 2),
+          //  (Guids.ColdResist10Buff, 2),
+          //  (Guids.ElectricityResist10Buff, 2),
+          //  (Guids.FireResist10Buff, 2),
+          //  (Guids.SonicResist10Buff, 2),
 
-            // 20 Armor
-            (Guids.AcidResist20Buff, 3),
-            (Guids.ColdResist20Buff, 3),
-            (Guids.ElectricityResist20Buff, 3),
-            (Guids.FireResist20Buff, 3),
-            (Guids.SonicResist20Buff, 3),
+          //  // 20 Armor
+          //  (Guids.AcidResist20Buff, 3),
+          //  (Guids.ColdResist20Buff, 3),
+          //  (Guids.ElectricityResist20Buff, 3),
+          //  (Guids.FireResist20Buff, 3),
+          //  (Guids.SonicResist20Buff, 3),
 
-            // 30 Armor
-            (Guids.AcidResist30Buff, 4),
-            (Guids.ColdResist30Buff, 4),
-            (Guids.ElectricityResist30Buff, 4),
-            (Guids.FireResist30Buff, 4),
-            (Guids.SonicResist30Buff, 4))),
+          //  // 30 Armor
+          //  (Guids.AcidResist30Buff, 4),
+          //  (Guids.ColdResist30Buff, 4),
+          //  (Guids.ElectricityResist30Buff, 4),
+          //  (Guids.FireResist30Buff, 4),
+          //  (Guids.SonicResist30Buff, 4))),
         parent,
         shieldParent,
         resistAcid,

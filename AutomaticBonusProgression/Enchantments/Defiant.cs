@@ -601,7 +601,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchantInfo.DisplayName)
         .SetDescription(enchantInfo.Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent(new DefiantComponent(typeFeature.Reference, alignment))
         .AddComponent(new DefiantResistanceComponent(typeFeature.Reference, alignment))
         .Configure();

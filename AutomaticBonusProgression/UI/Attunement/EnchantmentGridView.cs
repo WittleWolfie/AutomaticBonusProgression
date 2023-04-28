@@ -1,16 +1,14 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
+using BlueprintCore.Utils;
 using Kingmaker;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
 using Kingmaker.UI;
-using Kingmaker.UI.Common;
-using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Abilities;
 using Kingmaker.UnitLogic;
-using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Owlcat.Runtime.UI.MVVM;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -109,6 +107,9 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     public override void DisposeImplementation() { }
 
+    private static BlueprintFeature LegendaryArmor => LegendaryArmorRef.Reference.Get();
+    private static readonly Blueprint<BlueprintFeatureReference> LegendaryArmorRef = Guids.LegendaryArmor;
+
     private void Refresh()
     {
       Logger.Verbose(() => $"Refreshing Enchantments: {Unit}");
@@ -120,49 +121,25 @@ namespace AutomaticBonusProgression.UI.Attunement
       if (Unit is null)
         return;
 
-      foreach (var feature in Unit.Progression.Features)
+      // TODO: Support for more than just armor
+      
+      var legendaryFeature = Unit.GetFeature(LegendaryArmor);
+      var attunement = LegendaryArmor.GetComponent<AttunementBuffsComponent>();
+      if (attunement is null)
+        throw new InvalidOperationException($"Missing AttunementBuffsComponent: {LegendaryArmor.Name}");
+
+      Logger.Verbose(() => $"Adding enchantments: {LegendaryArmor.Name}");
+      foreach (var buff in attunement.Buffs)
       {
-        var attunement = feature.GetComponent<AttunementComponent>();
-        if (attunement is null)
+        var bp = buff.Get();
+        var enhancement = bp.GetComponent<EnhancementEquivalence>();
+        if (enhancement is null)
+          throw new InvalidOperationException($"Missing EnhancementEquivalentComponent: {bp.Name}");
+
+        if (legendaryFeature.GetRank() < enhancement.Enhancement)
           continue;
 
-        Logger.Verbose(() => $"Adding enchantments: {feature.Name}");
-        foreach (var buff in attunement.Buffs)
-        {
-          if (feature.GetRank() < buff.ranks)
-            continue;
-
-          var bp = buff.buff.Get();
-          var enhancement = bp.GetComponent<EnhancementEquivalenceComponent>();
-          if (enhancement is null)
-            throw new InvalidOperationException($"Missing EnhancementEquivalentComponent: {bp.Name}");
-
-          if (enhancement.Type != Type.Value)
-            continue;
-
-          // TODO: Need to probably refactor the whole requirements model.
-          //  - Probably reduce to two components (EnhancementEquivalence & Requirements?)
-          //  - Update the UnitPart to use the components, store the active buffs, and enforce requirements
-          EnchantmentVM viewModel;
-          if (Type.Value == EnhancementType.Armor)
-          {
-            var requireArmor = bp.GetComponent<RequireArmor>();
-            if (requireArmor is null)
-              viewModel = new(bp, enhancement.Enhancement);
-            else
-              viewModel = new(bp, enhancement.Enhancement, requireArmor.AllowedTypes);
-
-          }
-          else //if (Type.Value == EnhancementType.Shield)
-          {
-            var requireShield = bp.GetComponent<RequireShield>();
-            if (requireShield is null)
-              viewModel = new(bp, enhancement.Enhancement);
-            else
-              viewModel = new(bp, enhancement.Enhancement, requireShield.AllowedTypes);
-          }
-          AvailableEnchantments.Add(viewModel);
-        }
+        AvailableEnchantments.Add(new(bp, enhancement, Unit));
       }
 
       OnRefresh?.Invoke();
@@ -171,20 +148,6 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal void Subscribe(Action onRefresh)
     {
       OnRefresh = onRefresh;
-    }
-
-    // TODO: Probably create our own view
-    private CharInfoFeatureVM Create(BlueprintBuff buff, int rank)
-    {
-      var viewModel = (CharInfoFeatureVM)FormatterServices.GetUninitializedObject(typeof(CharInfoFeatureVM));
-      viewModel.Icon = buff.Icon;
-      viewModel.DisplayName = buff.Name;
-      viewModel.IsSquare = true;
-      viewModel.IsActive = true;
-      viewModel.Acronym = UIUtility.GetAbilityAcronym(buff.name);
-      viewModel.Rank = rank;
-
-      return viewModel;
     }
   }
 }

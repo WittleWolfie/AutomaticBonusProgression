@@ -24,8 +24,8 @@ namespace AutomaticBonusProgression.Components
       try
       {
         if (Fact.IsOn)
-          return Owner.Ensure<UnitParts.EnhancementEquivalence>().CanKeep(Type);
-        return Owner.Ensure<UnitParts.EnhancementEquivalence>().CanAdd(Type, Enhancement);
+          return Owner.Ensure<UnitParts.UnitPartEnhancement>().CanKeep(Type);
+        return Owner.Ensure<UnitParts.UnitPartEnhancement>().CanAdd(Type, Enhancement);
       }
       catch (Exception e)
       {

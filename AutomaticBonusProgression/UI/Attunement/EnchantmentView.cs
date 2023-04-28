@@ -1,14 +1,15 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.UnitParts;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.Root;
+using Kingmaker.EntitySystem.Entities;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.Spellbook.KnownSpells;
+using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.Utility;
 using Owlcat.Runtime.UI.Controls.Button;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
-using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -88,7 +89,7 @@ namespace AutomaticBonusProgression.UI.Attunement
           Background.color = UIRoot.Instance.SpellBookColors.FavoriteSlotColor;
           break;
         case EnchantmentVM.State.Unaffordable:
-        case EnchantmentVM.State.Incompatible:
+        case EnchantmentVM.State.Unavailable:
           Background.color = UIRoot.Instance.SpellBookColors.OppositeSlotcolor;
           break;
       }
@@ -102,23 +103,27 @@ namespace AutomaticBonusProgression.UI.Attunement
       Available,
       Active,
       Unaffordable, // i.e. Not enough enhancement bonus
-      Incompatible, // i.e. Can't be used on the equipped item type
+      Unavailable, // i.e. Can't be used on the equipped item type
     }
 
-    internal EnchantmentVM(BlueprintBuff enchantment, int cost, params ArmorProficiencyGroup[] armorProficiencies)
+    internal EnchantmentVM(BlueprintBuff enchantment, EnhancementEquivalence cost, UnitEntityData unit)
     {
       Icon = enchantment.Icon;
-
       Name = enchantment.Name;
+      Cost = cost.Enhancement;
+      Unit = unit;
 
-      if (armorProficiencies.Any())
-      {
-        var proficiencyText = armorProficiencies.Select(LocalizedTexts.Instance.Stats.GetText);
-        Requirements = string.Format(UITool.GetString("Attunement.Requirements"), string.Join(", ", proficiencyText));
-      }
+      EffectComponent = enchantment.GetComponent<AttunementEffect>();
+      Requirements = string.Format(UITool.GetString("Attunement.Requirements"), EffectComponent.GetRequirements());
 
-      Cost = cost;
-      CurrentState.Value = State.Available;
+      if (!EffectComponent.IsAvailable(Unit))
+        CurrentState.Value = State.Unavailable;
+      else if (unit.HasFact(enchantment))
+        CurrentState.Value = State.Active;
+      else if (!unit.Ensure<UnitPartEnhancement>().CanAdd(cost.Type, cost.Enhancement))
+        CurrentState.Value = State.Unaffordable;
+      else
+        CurrentState.Value = State.Available;
     }
 
     public override void DisposeImplementation() { }
@@ -139,5 +144,8 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal int Cost;
 
     internal readonly ReactiveProperty<State> CurrentState = new();
+
+    private readonly AttunementEffect EffectComponent;
+    private readonly UnitDescriptor Unit;
   }
 }

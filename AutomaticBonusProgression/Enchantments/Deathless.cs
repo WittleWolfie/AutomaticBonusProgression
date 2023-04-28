@@ -39,7 +39,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent<DeathlessComponent>()
         .AddDamageResistanceEnergy(type: DamageEnergyType.NegativeEnergy, value: 10)
         .AddDamageResistanceEnergy(type: DamageEnergyType.PositiveEnergy, value: 10)

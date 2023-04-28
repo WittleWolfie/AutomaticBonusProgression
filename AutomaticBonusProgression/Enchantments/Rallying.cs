@@ -65,7 +65,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(Description)
         //.SetIcon()
         .AddAreaEffect(areaEffect: aura)
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .Configure();
 
       var ability = EnchantTool.CreateEnchantAbility(

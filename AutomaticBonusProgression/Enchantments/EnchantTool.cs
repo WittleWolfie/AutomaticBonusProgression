@@ -24,7 +24,7 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintReference<BlueprintFeature>> feature, EnchantInfo enchant)
     {
       return FeatureConfigurator.For(feature)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant))
+        .AddComponent(new EnhancementEquivalence(enchant))
         .Configure();
     }
 
@@ -32,7 +32,7 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintReference<BlueprintArmorEnchantment>> enchantment, EnchantInfo enchant)
     {
       return ArmorEnchantmentConfigurator.For(enchantment)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant))
+        .AddComponent(new EnhancementEquivalence(enchant))
         .Configure();
     }
 
@@ -40,7 +40,7 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintReference<BlueprintWeaponEnchantment>> enchantment, EnchantInfo enchant)
     {
       return WeaponEnchantmentConfigurator.For(enchantment)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant))
+        .AddComponent(new EnhancementEquivalence(enchant))
         .Configure();
     }
 
@@ -54,7 +54,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant));
+        .AddComponent(new EnhancementEquivalence(enchant));
 
       if (enchant.AllowedTypes.Any())
         buffConfigurator.AddComponent(new RequireArmor(enchant.AllowedTypes));
@@ -84,7 +84,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant));
+        .AddComponent(new EnhancementEquivalence(enchant));
 
       if (enchant.AllowedTypes.Any())
         buffConfigurator.AddComponent(new RequireArmor(enchant.AllowedTypes));
@@ -105,7 +105,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant));
+        .AddComponent(new EnhancementEquivalence(enchant));
 
       foreach (var component in buff.Components)
         buffConfigurator.AddComponent(component);
@@ -208,22 +208,7 @@ namespace AutomaticBonusProgression.Enchantments
       }
 
       if (enchant.Ranks > 1)
-      {
-        featureConfigurator.SetRanks(enchant.Ranks)
-          .AddRecommendationHasFeature(feature.Guid)
-          .AddComponent(new AddFactsOnRank(rank: enchant.Ranks, abilities));
-      }
-      else
-        featureConfigurator.AddFacts(abilities.ToList());
-
-      if (enchant.Prerequisite is not null)
-      {
-        if (enchant.Prerequisite.Ranks > 1)
-          featureConfigurator.AddComponent(
-            new PrerequisiteHasFeatureRanks(enchant.Prerequisite.Feature, enchant.Prerequisite.Ranks));
-        else
-          featureConfigurator.AddPrerequisiteFeature(enchant.Prerequisite.Feature);
-      }
+        featureConfigurator.SetRanks(enchant.Ranks).AddRecommendationHasFeature(feature.Guid);
 
       foreach (var component in feature.Components)
         featureConfigurator.AddComponent(component);
@@ -238,8 +223,8 @@ namespace AutomaticBonusProgression.Enchantments
       ArmorEnchantInfo enchant, BlueprintActivatableAbility armorEnchant, BlueprintInfo buff, BlueprintInfo ability)
     {
       var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
-        .CopyFrom(armorEnchant.Buff, c => c is not EnhancementEquivalenceComponent && c is not RequireArmor)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.Shield))
+        .CopyFrom(armorEnchant.Buff, c => c is not EnhancementEquivalence && c is not ArmorAttunement)
+        .AddComponent(new EnhancementEquivalence(enchant, typeOverride: EnhancementType.Shield))
         .AddComponent(new RequireShield(enchant.AllowedTypes));
 
       foreach (var component in buff.Components)
@@ -264,8 +249,8 @@ namespace AutomaticBonusProgression.Enchantments
       WeaponEnchantInfo enchant, BlueprintActivatableAbility weaponEnchant, BlueprintInfo buff, BlueprintInfo ability)
     {
       var buffConfigurator = BuffConfigurator.New(buff.Name, buff.Guid)
-        .CopyFrom(weaponEnchant.Buff, c => c is not EnhancementEquivalenceComponent && c is not RequireWeapon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.OffHand))
+        .CopyFrom(weaponEnchant.Buff, c => c is not EnhancementEquivalence && c is not RequireWeapon)
+        .AddComponent(new EnhancementEquivalence(enchant, typeOverride: EnhancementType.OffHand))
         .AddComponent(new RequireOffHand());
 
       foreach (var component in buff.Components)
@@ -293,7 +278,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.Shield))
+        .AddComponent(new EnhancementEquivalence(enchant, typeOverride: EnhancementType.Shield))
         .AddComponent(new RequireShield(enchant.AllowedTypes));
 
       foreach (var component in buff.Components)
@@ -328,7 +313,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
-        .AddComponent(new EnhancementEquivalenceComponent(enchant, typeOverride: EnhancementType.OffHand))
+        .AddComponent(new EnhancementEquivalence(enchant, typeOverride: EnhancementType.OffHand))
         .AddComponent(new RequireOffHand());
 
       foreach (var component in buff.Components)

@@ -4,6 +4,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AutomaticBonusProgression.Components
 {
@@ -12,14 +13,13 @@ namespace AutomaticBonusProgression.Components
   /// </summary>
   [TypeId("7c64b999-347e-4b62-b4f5-4f459b37276e")]
   [AllowedOn(typeof(BlueprintFeature))]
-  internal class AttunementComponent : UnitFactComponentDelegate
+  internal class AttunementBuffsComponent : UnitFactComponentDelegate
   {
-    internal readonly List<(BlueprintBuffReference buff, int ranks)> Buffs = new();
+    internal readonly List<BlueprintBuffReference> Buffs = new();
 
-    internal AttunementComponent(params (Blueprint<BlueprintBuffReference> buff, int ranks)[] buffs)
+    internal AttunementBuffsComponent(params Blueprint<BlueprintBuffReference>[] buffs)
     {
-      foreach ((var buff, int ranks) in buffs)
-        Buffs.Add(new(buff.Reference, ranks));
+      Buffs = buffs.Select(b => b.Reference).ToList();
     }
   }
 }

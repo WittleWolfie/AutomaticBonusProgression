@@ -1,8 +1,10 @@
-﻿using AutomaticBonusProgression.Enchantments;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Enchantments;
 using AutomaticBonusProgression.UI.Attunement;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.Blueprints.Classes;
@@ -128,45 +130,38 @@ namespace AutomaticBonusProgression.Features
         .AddActivationDisable()
         .Configure();
 
-      return FeatureSelectionConfigurator.New(LegendaryArmorName, Guids.LegendaryArmor)
+      return FeatureConfigurator.New(LegendaryArmorName, Guids.LegendaryArmor)
         .SetIsClassFeature()
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
         //.SetIcon()
-        .AddFacts(new() { ability, shieldAbility })
-        .AddToAllFeatures(
-          BalancedArmor.Configure(),
-          Bashing.Configure(),
-          Blinding.Configure(),
-          Bolstering.Configure(),
-          Brawling.Configure(),
-          Champion.Configure(),
-          Creeping.Configure(),
-          Dastard.Configure(),
-          Deathless.Configure(),
-          Defiant.Configure(),
-          Determination.Configure(),
-          EnergyResistance.Configure(),
-          EnergyResistance.ConfigureImproved(),
-          EnergyResistance.ConfigureGreater(),
-          Expeditious.Configure(),
-          Fortification.Configure(),
-          Fortification.ConfigureImproved(),
-          Fortification.ConfigureGreater(),
-          GhostArmor.Configure(),
-          Invulnerability.Configure(),
-          Martyring.Configure(),
-          Rallying.Configure(),
-          Reflecting.Configure(),
-          Righteous.Configure(),
-          ShadowArmor.Configure(),
-          ShadowArmor.ConfigureImproved(),
-          ShadowArmor.ConfigureGreater(),
-          SpellResistance.Configure13(),
-          SpellResistance.Configure16(),
-          SpellResistance.Configure19(),
-          SpellResistance.Configure22(),
-          Wyrmsbreath.Configure())
+        .SetRanks(5)
+        .AddFacts(new() { ability })
+        .AddComponent(
+          new AttunementBuffsComponent(
+      #region Energy Resistance
+            // 10 Armor
+            Guids.AcidResist10Buff,
+            Guids.ColdResist10Buff,
+            Guids.ElectricityResist10Buff,
+            Guids.FireResist10Buff,
+            Guids.SonicResist10Buff,
+
+            // 20 Armor
+            Guids.AcidResist20Buff,
+            Guids.ColdResist20Buff,
+            Guids.ElectricityResist20Buff,
+            Guids.FireResist20Buff,
+            Guids.SonicResist20Buff,
+
+            // 30 Armor
+            Guids.AcidResist30Buff,
+            Guids.ColdResist30Buff,
+            Guids.ElectricityResist30Buff,
+            Guids.FireResist30Buff,
+            Guids.SonicResist30Buff
+      #endregion
+          ))
         .Configure();
     }
   }

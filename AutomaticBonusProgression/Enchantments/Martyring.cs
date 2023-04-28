@@ -47,7 +47,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddTargetAttackRollTrigger(
           criticalHit: true,
           actionOnSelf: ActionsBuilder.New()

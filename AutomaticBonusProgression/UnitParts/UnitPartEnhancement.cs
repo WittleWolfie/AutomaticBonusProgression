@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace AutomaticBonusProgression.UnitParts
 {
-  internal class EnhancementEquivalence : UnitPart
+  internal class UnitPartEnhancement : UnitPart
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalence));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UnitPartEnhancement));
 
     [JsonProperty]
     private int Armor = 0;

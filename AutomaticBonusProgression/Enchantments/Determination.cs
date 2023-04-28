@@ -48,7 +48,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddIncomingDamageTrigger(
           reduceBelowZero: true,
           actions: ActionsBuilder.New()

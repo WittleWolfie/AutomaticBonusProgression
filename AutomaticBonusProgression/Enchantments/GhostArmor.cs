@@ -47,7 +47,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo))
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent(new GhostArmorComponent())
         .Configure();
 
@@ -59,7 +59,7 @@ namespace AutomaticBonusProgression.Enchantments
       // Since the buff is actually different for shield create the shield stuff manually (based on CreateEnchantShieldVariant)
       var shieldBuff = BuffConfigurator.New(BuffShieldName, Guids.GhostArmorShieldBuff)
         .CopyFrom(buff)
-        .AddComponent(new EnhancementEquivalenceComponent(enchantInfo, typeOverride: EnhancementType.Shield))
+        .AddComponent(new EnhancementEquivalence(enchantInfo, typeOverride: EnhancementType.Shield))
         .AddComponent(new RequireShield(enchantInfo.AllowedTypes))
         .AddComponent(new GhostArmorComponent(toShield: true))
         .Configure();
