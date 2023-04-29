@@ -36,6 +36,7 @@ namespace AutomaticBonusProgression.Enchantments
         Defiant.Configure();
         Determination.Configure();
         EnergyResistance.Configure();
+        Expeditious.Configure();
       }
       catch (Exception e)
       {

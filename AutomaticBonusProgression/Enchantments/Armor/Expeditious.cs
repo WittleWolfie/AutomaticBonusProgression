@@ -6,10 +6,10 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.FactLogic;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
@@ -18,23 +18,22 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Expeditious));
 
-    private const string ExpeditiousName = "LegendaryArmor.Expeditious";
-    private const string BuffName = "LegendaryArmor.Expeditious.Buff";
-    private const string AbilityName = "LegendaryArmor.Expeditious.Ability";
+    private const string EffectName = "LA.Expeditious.Effect";
+    private const string BuffName = "LA.Expeditious.Buff";
 
-    private const string CastAbilityName = "LegendaryArmor.Expeditious.Cast";
-    private const string CastBuffName = "LegendaryArmor.Expeditious.Cast.Buff";
-    private const string CastResourceName = "LegendaryArmor.Expeditious.Cast.Resource";
+    private const string AbilityName = "LA.Expeditious.Cast";
+    private const string CastBuffName = "LA.Expeditious.Cast.Buff";
+    private const string ResourceName = "LA.Expeditious.Cast.Resource";
 
-    private const string DisplayName = "LegendaryArmor.Expeditious.Name";
-    private const string Description = "LegendaryArmor.Expeditious.Description";
+    private const string DisplayName = "LA.Expeditious.Name";
+    private const string Description = "LA.Expeditious.Description";
     private const int EnhancementCost = 2;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Expeditious");
 
-      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.ExpeditiousCastResource)
+      var castResource = AbilityResourceConfigurator.New(ResourceName, Guids.ExpeditiousResource)
         .SetMaxAmount(ResourceAmountBuilder.New(3))
         .Configure();
 
@@ -45,7 +44,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .AddBuffMovementSpeed(value: 10, descriptor: ModifierDescriptor.Enhancement)
         .Configure();
 
-      var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.ExpeditiousCastAbility)
+      var castAbility = AbilityConfigurator.New(AbilityName, Guids.ExpeditiousAbility)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
@@ -57,29 +56,19 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuff(castBuff, ContextDuration.Fixed(1)))
         .Configure();
 
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 2);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var ability = EnchantTool.CreateEnchantAbility(
+      var addFacts = new AddFacts() { m_Facts = new[] { castAbility.ToReference<BlueprintUnitFactReference>() } };
+      var addResources =
+        new AddAbilityResources()
+        {
+          RestoreAmount = true,
+          m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+        };
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(BuffName, Guids.ExpeditiousBuff),
-        new(AbilityName, Guids.ExpeditiousAbility));
-
-      var featureInfo =
-        new BlueprintInfo(
-          ExpeditiousName,
-          Guids.Expeditious,
-          new AddAbilityResources()
-          {
-            RestoreAmount = true,
-            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-          });
-      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
+        effectBuff: new(EffectName, Guids.ExpeditiousEffect),
+        parentBuff: new(BuffName, Guids.ExpeditiousBuff, addFacts, addResources));
     }
   }
 }

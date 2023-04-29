@@ -84,8 +84,9 @@ namespace AutomaticBonusProgression.Features
             Guids.ColdResist30Buff,
             Guids.ElectricityResist30Buff,
             Guids.FireResist30Buff,
-            Guids.SonicResist30Buff
+            Guids.SonicResist30Buff,
       #endregion
+            Guids.ExpeditiousBuff
           ))
         .Configure();
     }
