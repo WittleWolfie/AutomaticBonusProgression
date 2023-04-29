@@ -111,8 +111,7 @@
     internal const string BalancedBuff = "fe735c67-37a2-412e-88cb-032ef9feacb8";
     internal const string BalancedShieldBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
 
-    internal const string Bashing = "01a0061e-5fe1-40a1-b870-84dbfacf04de";
-    internal const string BashingAbility = "a0e94cc2-8004-4803-9f81-e94f446f31b3";
+    internal const string BashingEffect = "01a0061e-5fe1-40a1-b870-84dbfacf04de";
     internal const string BashingBuff = "d3db2785-81b5-4a9f-aa1e-e91dc8b1bd95";
 
     internal const string Blinding = "72a010f1-2f82-4361-b591-d57bf448cecf";

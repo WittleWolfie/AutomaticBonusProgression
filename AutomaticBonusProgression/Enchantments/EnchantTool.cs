@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Enchantments
     }
 
     /// <summary>
-    /// Creates two buffs: the parent and the effect buff.
+    /// Creates an enchantment's parent and effect buff, plus an optional variant.
     /// </summary>
     /// 
     /// <remarks>
@@ -78,6 +78,32 @@ namespace AutomaticBonusProgression.Enchantments
 
       var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
         .CopyFrom(parentBuff.Guid)
+        .AddComponent(enchant.GetEnhancementComponent())
+        .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid, variant: true));
+      foreach (var component in variantBuff.Components)
+        variant.AddComponent(component);
+      variant.Configure();
+    }
+
+    /// <summary>
+    /// Creates a variant-only enchantment. See also <see cref="CreateEnchant(EnchantInfo, BlueprintInfo, BlueprintInfo, BlueprintInfo)"/>
+    /// </summary>
+    internal static void CreateVariantEnchant(
+      EnchantInfo enchant, BlueprintInfo effectBuff, BlueprintInfo variantBuff)
+    {
+      var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description);
+      //.SetIcon(enchant.Icon);
+      foreach (var component in effectBuff.Components)
+        effect.AddComponent(component);
+      effect.Configure();
+
+      var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
         .AddComponent(enchant.GetEnhancementComponent())
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid, variant: true));
       foreach (var component in variantBuff.Components)

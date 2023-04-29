@@ -1,5 +1,4 @@
 ﻿using AutomaticBonusProgression.Util;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.PubSubSystem;
@@ -13,32 +12,30 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Bashing));
 
-    private const string BashingName = "LegendaryArmor.Bashing";
-    private const string BuffName = "LegendaryArmor.Bashing.Buff";
-    private const string AbilityName = "LegendaryArmor.Bashing.Ability";
+    private const string EffectName = "LA.Bashing.Effect";
+    private const string BuffName = "LA.Bashing.Buff";
 
-    private const string DisplayName = "LegendaryArmor.Bashing.Name";
-    private const string Description = "LegendaryArmor.Bashing.Description";
+    private const string DisplayName = "LA.Bashing.Name";
+    private const string Description = "LA.Bashing.Description";
+
     private const int EnhancementCost = 1;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
-      Logger.Log($"Configuring Bashing");
+      Logger.Log($"Configuring BashingEffect");
 
       var enchantInfo = new ArmorEnchantInfo(
         DisplayName,
         Description,
         "",
         EnhancementCost,
-        ranks: 1,
         ArmorProficiencyGroup.LightShield,
         ArmorProficiencyGroup.HeavyShield);
 
-      var ability = EnchantTool.CreateEnchantShieldVariant(
+      EnchantTool.CreateVariantEnchant(
         enchantInfo,
-        new(BuffName, Guids.BashingBuff, new BashingComponent()),
-        new(AbilityName, Guids.BashingAbility));
-      return EnchantTool.CreateEnchantFeature(enchantInfo, new(BashingName, Guids.Bashing), ability);
+        effectBuff: new(EffectName, Guids.BashingEffect, new BashingComponent()),
+        variantBuff: new(BuffName, Guids.BashingBuff));
     }
 
     [TypeId("db92a7db-5c80-461c-9744-0faa92d92ce6")]

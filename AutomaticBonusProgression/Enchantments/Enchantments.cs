@@ -23,6 +23,9 @@ namespace AutomaticBonusProgression.Enchantments
         UpdateArmorEnchantments();
         UpdateWeaponEnchantments();
 
+        // Armor
+        Balanced.Configure();
+        Bashing.Configure();
         EnergyResistance.Configure();
       }
       catch (Exception e)

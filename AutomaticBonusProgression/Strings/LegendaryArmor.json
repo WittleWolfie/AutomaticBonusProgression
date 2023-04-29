@@ -24,106 +24,106 @@
   },
 
   {
-    "Key": "LegendaryArmor.Balanced.Name",
+    "Key": "LA.Balanced.Name",
     "ProcessTemplates": false,
     "enGB": "Balanced (+1)"
   },
   {
-    "Key": "LegendaryArmor.Balanced.Description",
+    "Key": "LA.Balanced.Description",
     "enGB": "This armor pushes back against anything that threatens to knock its wearer to the ground. The wearer gains a +4 bonus to CMD against grapple, trip and overrun combat maneuvers.\nRequires: Unarmored, Light Armor, or Medium Armor"
   },
 
   {
-    "Key": "LegendaryArmor.Bashing.Name",
+    "Key": "LA.Bashing.Name",
     "ProcessTemplates": false,
     "enGB": "Bashing (+1)"
   },
   {
-    "Key": "LegendaryArmor.Bashing.Description",
+    "Key": "LA.Bashing.Description",
     "enGB": "A shield with this special ability is designed to perform a shield bash. A bashing shield deals damage as if it were a bashing weapon of two size categories larger (a Medium light shield thus deals 1d6 points of damage and a Medium heavy shield deals 1d8 points of damage).\nRequires: Light Shield or Heavy Shield"
   },
 
   {
-    "Key": "LegendaryArmor.Blinding.Name",
+    "Key": "LA.Blinding.Name",
     "ProcessTemplates": false,
     "enGB": "Blinding (+1)"
   },
   {
-    "Key": "LegendaryArmor.Blinding.Description",
+    "Key": "LA.Blinding.Description",
     "enGB": "A shield with this ability flashes with a brilliant light up to twice per day as a swift action. Except for the wielder, anyone within 20 feet must make a successful Reflex save or be blinded for 1d4 rounds. The DC of the save is 14 + Mythic Rank.\nRequires: Any Shield"
   },
 
   {
-    "Key": "LegendaryArmor.Bolstering.Name",
+    "Key": "LA.Bolstering.Name",
     "ProcessTemplates": false,
     "enGB": "Bolstering (+1)"
   },
   {
-    "Key": "LegendaryArmor.Bolstering.Description",
+    "Key": "LA.Bolstering.Description",
     "enGB": "Anytime the wearer of bolstering armor damages a creature with a melee or ranged attack, he gains a +2 competence bonus on saving throws against that creature’s abilities until the start of his next turn.\nRequires: Medium Armor, Heavy Armor, Light Shield, Heavy Shield, or Tower Shield"
   },
 
   {
-    "Key": "LegendaryArmor.Brawling.Name",
+    "Key": "LA.Brawling.Name",
     "ProcessTemplates": false,
     "enGB": "Brawling (+3)"
   },
   {
-    "Key": "LegendaryArmor.Brawling.Description",
+    "Key": "LA.Brawling.Description",
     "enGB": "The wearer of brawling armor gains a +2 bonus on unarmed attack and damage rolls.\nRequires: Unarmored or Light Armor"
   },
 
   {
-    "Key": "LegendaryArmor.Champion.Name",
+    "Key": "LA.Champion.Name",
     "ProcessTemplates": false,
     "enGB": "Champion (+1)"
   },
   {
-    "Key": "LegendaryArmor.Champion.Description",
+    "Key": "LA.Champion.Description",
     "enGB": "This armor special ability works only for good creatures with the challenge ability or the smite evil ability. A wearer with one of these abilities gains a +2 sacred bonus to AC against attacks from the chosen opponent."
   },
 
   {
-    "Key": "LegendaryArmor.Creeping.Name",
+    "Key": "LA.Creeping.Name",
     "ProcessTemplates": false,
     "enGB": "Creeping (+2)"
   },
   {
-    "Key": "LegendaryArmor.Creeping.Description",
+    "Key": "LA.Creeping.Description",
     "enGB": "A suit of creeping armor is made to keep the wearer’s movement covert. The armor’s armor check penalty does not apply to the wearer’s Stealth checks. Once per day as a swift action, the wearer can grant himself a bonus on Stealth checks equal to the armor’s enhancement bonus for 1 minute."
   },
 
   {
-    "Key": "LegendaryArmor.Dastard.Name",
+    "Key": "LA.Dastard.Name",
     "ProcessTemplates": false,
     "enGB": "Dastard (+1)"
   },
   {
-    "Key": "LegendaryArmor.Dastard.Description",
+    "Key": "LA.Dastard.Description",
     "enGB": "This armor special ability works only for evil creatures with the challenge ability or the smite good ability. A wearer with one of these abilities gains a +2 profane bonus to AC against attacks from the chosen opponent."
   },
 
   {
-    "Key": "LegendaryArmor.Deathless.Name",
+    "Key": "LA.Deathless.Name",
     "ProcessTemplates": false,
     "enGB": "Deathless (+1)"
   },
   {
-    "Key": "LegendaryArmor.Deathless.Description",
+    "Key": "LA.Deathless.Description",
     "enGB": "This armor protects its wearer from harmful negative and positive energy, including channeled energy. The armor absorbs the first 10 points of positive or negative energy damage per attack that the wearer would normally take. The wearer has a 25% chance to ignore negative levels from any attack. Deathless armor does not block healing of any kind and does not protect against positive or negative energy effects that do not deal damage or bestow negative levels."
   },
 
   {
-    "Key": "LegendaryArmor.Defiant.Name",
+    "Key": "LA.Defiant.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant (+1)"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Description",
+    "Key": "LA.Defiant.Description",
     "enGB": "Armor and shields with this special ability excel at blocking the attacks of certain types of creatures, similar to a bane weapon’s excelling against certain foes. Against the designated foe, the item’s enhancement bonus to AC is +2 better than its actual bonus and provides DR 2/— against attacks from that foe."
   },
   {
-    "Key": "LegendaryArmor.Defiant.Ability.Name",
+    "Key": "LA.Defiant.Ability.Name",
     "ProcessTemplates": false,
     "enGB": "Legendary Armor (Defiant)"
   },
@@ -133,98 +133,98 @@
     "enGB": "Legendary Shield (Defiant)"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Aberrations.Name",
+    "Key": "LA.Defiant.Aberrations.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Aberrations"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Animals.Name",
+    "Key": "LA.Defiant.Animals.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Animals"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Constructs.Name",
+    "Key": "LA.Defiant.Constructs.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Constructs"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Dragons.Name",
+    "Key": "LA.Defiant.Dragons.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Dragons"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Fey.Name",
+    "Key": "LA.Defiant.Fey.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Fey"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Humanoid.Giant.Name",
+    "Key": "LA.Defiant.Humanoid.Giant.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Giant Humanoids"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Humanoid.Reptilian.Name",
+    "Key": "LA.Defiant.Humanoid.Reptilian.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Reptilian Humanoids"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Humanoid.Monstrous.Name",
+    "Key": "LA.Defiant.Humanoid.Monstrous.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Monstrous Humanoids"
   },
   {
-    "Key": "LegendaryArmor.Defiant.MagicalBeasts.Name",
+    "Key": "LA.Defiant.MagicalBeasts.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Magical Beasts"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Outsider.Good.Name",
+    "Key": "LA.Defiant.Outsider.Good.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Good Outsiders"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Outsider.Evil.Name",
+    "Key": "LA.Defiant.Outsider.Evil.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Evil Outsiders"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Outsider.Lawful.Name",
+    "Key": "LA.Defiant.Outsider.Lawful.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Lawful Outsiders"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Outsider.Chaotic.Name",
+    "Key": "LA.Defiant.Outsider.Chaotic.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Chaotic Outsiders"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Outsider.Neutral.Name",
+    "Key": "LA.Defiant.Outsider.Neutral.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Neutral Outsiders"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Plants.Name",
+    "Key": "LA.Defiant.Plants.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Plants"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Undead.Name",
+    "Key": "LA.Defiant.Undead.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Undead"
   },
   {
-    "Key": "LegendaryArmor.Defiant.Vermin.Name",
+    "Key": "LA.Defiant.Vermin.Name",
     "ProcessTemplates": false,
     "enGB": "Defiant: Vermin"
   },
 
   {
-    "Key": "LegendaryArmor.Determination.Name",
+    "Key": "LA.Determination.Name",
     "ProcessTemplates": false,
     "enGB": "Determination (+5)"
   },
   {
-    "Key": "LegendaryArmor.Determination.Description",
+    "Key": "LA.Determination.Description",
     "enGB": "A shield or armor with the determination special ability provides the ability to fight on even in the face of seemingly impossible odds. The first time each day the owner reaches 0 or fewer hit points, the item automatically provides a breath of life spell using character level as your caster level."
   },
 
@@ -369,183 +369,183 @@
   //// End Energy Resistance
 
   {
-    "Key": "LegendaryArmor.Expeditious.Name",
+    "Key": "LA.Expeditious.Name",
     "ProcessTemplates": false,
     "enGB": "Expeditious (+2)"
   },
   {
-    "Key": "LegendaryArmor.Expeditious.Description",
+    "Key": "LA.Expeditious.Description",
     "enGB": "Three times per day as a swift action, the wearer of expeditious armor can summon a burst of speed and gain a +10-foot enhancement bonus on all modes of movement for 1 round."
   },
 
   {
-    "Key": "LegendaryArmor.Fortification.Name",
+    "Key": "LA.Fortification.Name",
     "ProcessTemplates": false,
     "enGB": "Light Fortification (+1)"
   },
   {
-    "Key": "LegendaryArmor.Fortification.Improved.Name",
+    "Key": "LA.Fortification.Improved.Name",
     "ProcessTemplates": false,
     "enGB": "Moderate Fortification (+3)"
   },
   {
-    "Key": "LegendaryArmor.Fortification.Greater.Name",
+    "Key": "LA.Fortification.Greater.Name",
     "ProcessTemplates": false,
     "enGB": "Heavy Fortification (+5)"
   },
 
   {
-    "Key": "LegendaryArmor.GhostArmor.Name",
+    "Key": "LA.GhostArmor.Name",
     "ProcessTemplates": false,
     "enGB": "Ghost Touch (+3)"
   },
   {
-    "Key": "LegendaryArmor.GhostArmor.Description",
+    "Key": "LA.GhostArmor.Description",
     "enGB": "This armor or shield seems almost translucent. Both its enhancement bonus and its armor bonus count against the attacks of corporeal and incorporeal creatures."
   },
 
   {
-    "Key": "LegendaryArmor.Invulnerability.Name",
+    "Key": "LA.Invulnerability.Name",
     "ProcessTemplates": false,
     "enGB": "Invulnerability (+3)"
   },
   {
-    "Key": "LegendaryArmor.Invulnerability.Description",
+    "Key": "LA.Invulnerability.Description",
     "enGB": "This armor grants its wearer DR 10/magic."
   },
 
   {
-    "Key": "LegendaryArmor.Martyring.Name",
+    "Key": "LA.Martyring.Name",
     "ProcessTemplates": false,
     "enGB": "Martyring (+4)"
   },
   {
-    "Key": "LegendaryArmor.Martyring.Description",
+    "Key": "LA.Martyring.Description",
     "enGB": "This armor allows the wearer to capitalize on her own injuries to heal her allies. The first time each day an enemy confirms a critical hit against someone wearing martyring armor, the armor automatically casts Mass Cure Light Wounds."
   },
 
   {
-    "Key": "LegendaryArmor.Rallying.Name",
+    "Key": "LA.Rallying.Name",
     "ProcessTemplates": false,
     "enGB": "Rallying (+2)"
   },
   {
-    "Key": "LegendaryArmor.Rallying.Description",
+    "Key": "LA.Rallying.Description",
     "enGB": "This armor or shield is brightly polished, and its mirror-bright surface is magically endowed with the ability to bring comfort to the wearer’s companions. Allies within 30 feet of the wearer gain a +4 morale bonus on saving throws against fear effects. If the wearer has levels in Paladin, Bard, or Cavalier the bonus increases to +6."
   },
 
   {
-    "Key": "LegendaryArmor.Reflecting.Name",
+    "Key": "LA.Reflecting.Name",
     "ProcessTemplates": false,
     "enGB": "Reflecting (+5)"
   },
   {
-    "Key": "LegendaryArmor.Reflecting.Description",
+    "Key": "LA.Reflecting.Description",
     "enGB": "This shield is as highly polished as a mirror, and its surface is completely reflective. Once per day, it can be called on to reflect a spell back at its caster. This has no effect on area of effect spells.\nRequires: Any Shield"
   },
   {
-    "Key": "LegendaryArmor.Reflecting.Cast.Name",
+    "Key": "LA.Reflecting.Cast.Name",
     "ProcessTemplates": false,
     "enGB": "Reflect Spell"
   },
   {
-    "Key": "LegendaryArmor.Reflecting.Cast.Description",
+    "Key": "LA.Reflecting.Cast.Description",
     "enGB": "The next an enemy casts targeting you is reflected back at its caster."
   },
 
   {
-    "Key": "LegendaryArmor.Righteous.Name",
+    "Key": "LA.Righteous.Name",
     "ProcessTemplates": false,
     "enGB": "Righteous (+5)"
   },
   {
-    "Key": "LegendaryArmor.Righteous.Description",
+    "Key": "LA.Righteous.Description",
     "enGB": "Armor with this special ability is often engraved or enameled with religious symbols. Once per as a swift action, the wearer can cast the spell Righteous Might."
   },
 
   {
-    "Key": "LegendaryArmor.Shadow.Name",
+    "Key": "LA.Shadow.Name",
     "ProcessTemplates": false,
     "enGB": "Shadow (+2)"
   },
   {
-    "Key": "LegendaryArmor.Shadow.Improved.Name",
+    "Key": "LA.Shadow.Improved.Name",
     "ProcessTemplates": false,
     "enGB": "Improved Shadow (+4)"
   },
   {
-    "Key": "LegendaryArmor.Shadow.Greater.Name",
+    "Key": "LA.Shadow.Greater.Name",
     "ProcessTemplates": false,
     "enGB": "Greater Shadow (+5)"
   },
   {
-    "Key": "LegendaryArmor.Shadow.Greater.Description",
+    "Key": "LA.Shadow.Greater.Description",
     "enGB": "This armor grants its wearer a +15 competence bonus to Stealth skill checks."
   },
 
   {
-    "Key": "LegendaryArmor.SpellResistance.13.Name",
+    "Key": "LA.SpellResistance.13.Name",
     "ProcessTemplates": false,
     "enGB": "Spell Resistance 13 (+2)"
   },
   {
-    "Key": "LegendaryArmor.SpellResistance.13.Description",
+    "Key": "LA.SpellResistance.13.Description",
     "enGB": "This armor grants its wearer spell resistance 13."
   },
   {
-    "Key": "LegendaryArmor.SpellResistance.16.Name",
+    "Key": "LA.SpellResistance.16.Name",
     "ProcessTemplates": false,
     "enGB": "Spell Resistance 16 (+3)"
   },
   {
-    "Key": "LegendaryArmor.SpellResistance.16.Description",
+    "Key": "LA.SpellResistance.16.Description",
     "enGB": "This armor grants its wearer spell resistance 16."
   },
   {
-    "Key": "LegendaryArmor.SpellResistance.19.Name",
+    "Key": "LA.SpellResistance.19.Name",
     "ProcessTemplates": false,
     "enGB": "Spell Resistance 19 (+4)"
   },
   {
-    "Key": "LegendaryArmor.SpellResistance.19.Description",
+    "Key": "LA.SpellResistance.19.Description",
     "enGB": "This armor grants its wearer spell resistance 19."
   },
   {
-    "Key": "LegendaryArmor.SpellResistance.22.Name",
+    "Key": "LA.SpellResistance.22.Name",
     "ProcessTemplates": false,
     "enGB": "Spell Resistance 22 (+5)"
   },
   {
-    "Key": "LegendaryArmor.SpellResistance.22.Description",
+    "Key": "LA.SpellResistance.22.Description",
     "enGB": "This armor grants its wearer spell resistance 22."
   },
 
   {
-    "Key": "LegendaryArmor.Wyrmsbreath.Name",
+    "Key": "LA.Wyrmsbreath.Name",
     "ProcessTemplates": false,
     "enGB": "Wyrmsbreath (+2)"
   },
   {
-    "Key": "LegendaryArmor.Wyrmsbreath.Description",
+    "Key": "LA.Wyrmsbreath.Description",
     "enGB": "A shield with the wyrmsbreath special ability is keyed to one type of energy (acid, cold, electricity, or fire). Once per day as a swift action, the bearer can make a breath weapon attack. The breath weapon deals 5d4 points of energy damage in a 15 foot cone. Those caught in the area can attempt a Reflex save with a DC = 11 + Mythic Rank to halve the normal damage.\nRequires: Any Shield"
   },
   {
-    "Key": "LegendaryArmor.Wyrmsbreath.Acid.Name",
+    "Key": "LA.Wyrmsbreath.Acid.Name",
     "ProcessTemplates": false,
     "enGB": "Wyrmsbreath: Acid"
   },
   {
-    "Key": "LegendaryArmor.Wyrmsbreath.Cold.Name",
+    "Key": "LA.Wyrmsbreath.Cold.Name",
     "ProcessTemplates": false,
     "enGB": "Wyrmsbreath: Cold"
   },
   {
-    "Key": "LegendaryArmor.Wyrmsbreath.Electricity.Name",
+    "Key": "LA.Wyrmsbreath.Electricity.Name",
     "ProcessTemplates": false,
     "enGB": "Wyrmsbreath: Electricity"
   },
   {
-    "Key": "LegendaryArmor.Wyrmsbreath.Fire.Name",
+    "Key": "LA.Wyrmsbreath.Fire.Name",
     "ProcessTemplates": false,
     "enGB": "Wyrmsbreath: Fire"
   }
