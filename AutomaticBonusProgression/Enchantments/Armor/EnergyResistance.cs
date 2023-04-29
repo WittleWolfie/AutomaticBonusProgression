@@ -1,7 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Enchantments

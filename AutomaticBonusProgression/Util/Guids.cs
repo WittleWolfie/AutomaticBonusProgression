@@ -107,9 +107,9 @@
     internal const string LegendaryArmorAbility = "b1c038e4-f34f-443b-b080-23d44cfba390";
     internal const string LegendaryShieldAbility = "39db45ad-8f6f-4317-a0e6-6ae78e426d8e";
 
-    internal const string BalancedArmor = "395f73da-d5a6-440c-a018-e9c0b83a92b6";
-    internal const string BalancedArmorAbility = "fe735c67-37a2-412e-88cb-032ef9feacb8";
-    internal const string BalancedArmorBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
+    internal const string BalancedEffect = "395f73da-d5a6-440c-a018-e9c0b83a92b6";
+    internal const string BalancedBuff = "fe735c67-37a2-412e-88cb-032ef9feacb8";
+    internal const string BalancedShieldBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
 
     internal const string Bashing = "01a0061e-5fe1-40a1-b870-84dbfacf04de";
     internal const string BashingAbility = "a0e94cc2-8004-4803-9f81-e94f446f31b3";

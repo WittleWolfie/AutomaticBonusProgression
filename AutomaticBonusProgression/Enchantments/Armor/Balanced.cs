@@ -1,7 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Designers.Mechanics.Facts;
 
@@ -13,31 +12,25 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string BalancedArmorName = "LA.Balanced";
     private const string BuffName = "LA.Balanced.Buff";
-    private const string AbilityName = "LA.Balanced.Ability";
+    private const string ShieldBuffName = "LA.Balanced.Shield.Buff";
 
     private const string DisplayName = "LA.Balanced.Name";
     private const string Description = "LA.Balanced.Description";
     private const int EnhancementCost = 1;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Balanced Armor");
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "",
-        EnhancementCost,
-        ranks: 1,
-        ArmorProficiencyGroup.Light,
-        ArmorProficiencyGroup.Medium);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName, Description, "", EnhancementCost, ArmorProficiencyGroup.Light, ArmorProficiencyGroup.Medium);
+      var balancedFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
 
-      var balancedFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
-
-      var buffInfo =
-        new BlueprintInfo(BuffName, Guids.BalancedArmorBuff, balancedFeature.GetComponent<CMDBonusAgainstManeuvers>());
-      var abilityInfo = new BlueprintInfo(AbilityName, Guids.BalancedArmorAbility);
-      var featureInfo = new BlueprintInfo(BalancedArmorName, Guids.BalancedArmor);
-
-      return EnchantTool.CreateEnchant(enchantInfo, buffInfo, abilityInfo, featureInfo);
+      EnchantTool.CreateEnchant(
+        enchantInfo,
+        effectBuff: new(BuffName, Guids.BalancedEffect, balancedFeature.GetComponent<CMDBonusAgainstManeuvers>()),
+        parentBuff: new(BalancedArmorName, Guids.BalancedBuff));
     }
   }
 }
