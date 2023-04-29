@@ -38,9 +38,9 @@ namespace AutomaticBonusProgression.Enchantments
     /// <summary>
     /// Creates an enchantment's parent buff, plus an optional variant. See also <see cref="CreateEnchant(EnchantInfo, BlueprintInfo, BlueprintInfo, BlueprintInfo)"/>
     /// </summary>
-    internal static void CreateEnchant(
+    internal static void CreateEnchantWithEffect(
       EnchantInfo enchant,
-      string effectGuid,
+      BlueprintBuff effectBuff,
       BlueprintInfo parentBuff,
       BlueprintInfo variantBuff = null)
     {

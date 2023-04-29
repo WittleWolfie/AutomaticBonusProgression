@@ -124,8 +124,7 @@
     internal const string BolsteringBuff = "7e724a6b-54a2-4c93-bece-9bd18b3961dc";
     internal const string BolsteringShieldBuff = "649dbf11-9213-409c-bf27-d833778621ba";
 
-    internal const string Brawling = "10fc122a-2307-4f34-993b-63ae6b6bdc47";
-    internal const string BrawlingAbility = "6cb01292-69b5-4f13-81fb-c62a5f1b6f6d";
+    internal const string BrawlingEffect = "10fc122a-2307-4f34-993b-63ae6b6bdc47";
     internal const string BrawlingBuff = "3668e7c1-3ebf-4fd9-a6df-4d1768259649";
 
     internal const string Champion = "481c31bb-24ef-45be-aa53-55587f8e4377";

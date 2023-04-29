@@ -48,7 +48,7 @@ namespace AutomaticBonusProgression.Features
       //
       // New:
       // - Bewildering
-      // - Brawling
+      // - BrawlingEffect
       // - Countering
       // - Courageous
       // - Cunning

@@ -104,7 +104,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(new EnhancementEquivalence(enchantInfo))
         .Configure();
 
-      return EnchantTool.CreateEnchant(
+      return EnchantTool.CreateEnchantWithEffect(
         enchantInfo,
         buff,
         new(GreaterAbilityName, Guids.GreaterShadowArmorAbility),

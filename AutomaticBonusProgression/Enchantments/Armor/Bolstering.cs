@@ -26,7 +26,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     internal static void Configure()
     {
-      Logger.Log($"Configuring BolsteringEffect");
+      Logger.Log($"Configuring Bolstering");
 
       var targetBuff = BuffConfigurator.New(TargetBuffName, Guids.BolsteringTargetBuff)
         .SetDisplayName(DisplayName)
@@ -45,7 +45,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         ArmorProficiencyGroup.HeavyShield,
         ArmorProficiencyGroup.TowerShield);
 
-      BuffConfigurator.New(EffectName, Guids.BolsteringEffect)
+      var effectBuff = BuffConfigurator.New(EffectName, Guids.BolsteringEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
@@ -56,9 +56,9 @@ namespace AutomaticBonusProgression.Enchantments.Armor
           BonusAgainstTarget.Saves(targetBuff.ToReference<BlueprintBuffReference>(), 2, ModifierDescriptor.Competence))
         .Configure();
 
-      EnchantTool.CreateEnchant(
+      EnchantTool.CreateEnchantWithEffect(
         enchantInfo,
-        effectGuid: Guids.BolsteringEffect,
+        effectBuff,
         parentBuff: new(BuffName, Guids.BolsteringBuff),
         variantBuff: new(ShieldBuffName, Guids.BolsteringShieldBuff));
     }

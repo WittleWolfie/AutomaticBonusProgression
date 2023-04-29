@@ -28,6 +28,7 @@ namespace AutomaticBonusProgression.Enchantments
         Bashing.Configure();
         Blinding.Configure();
         Bolstering.Configure();
+        Brawling.Configure();
         EnergyResistance.Configure();
       }
       catch (Exception e)
