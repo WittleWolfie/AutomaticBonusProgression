@@ -127,8 +127,7 @@
     internal const string BrawlingEffect = "10fc122a-2307-4f34-993b-63ae6b6bdc47";
     internal const string BrawlingBuff = "3668e7c1-3ebf-4fd9-a6df-4d1768259649";
 
-    internal const string Champion = "481c31bb-24ef-45be-aa53-55587f8e4377";
-    internal const string ChampionAbility = "0cc47fcd-b173-4ad3-ae37-50e8d1b9abc5";
+    internal const string ChampionEffect = "481c31bb-24ef-45be-aa53-55587f8e4377";
     internal const string ChampionBuff = "ff5e6c75-9b43-473c-a174-61663c709fb9";
 
     internal const string Creeping = "d6a3ac53-2012-4444-adc6-4fa9194af62a";

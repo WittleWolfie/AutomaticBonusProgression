@@ -3,10 +3,7 @@ using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Enums;
-using Kingmaker.UnitLogic.Alignments;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
@@ -14,17 +11,14 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Champion));
 
-    private const string ChampionName = "LegendaryArmor.Champion";
-    private const string BuffName = "LegendaryArmor.Champion.Buff";
-    private const string AbilityName = "LegendaryArmor.Champion.Ability";
+    private const string ChampionEffect = "LA.Champion.Effect";
+    private const string BuffName = "LA.Champion.Buff";
 
-    private const string TargetBuffName = "LegendaryArmor.Champion.Target.Buff";
-
-    private const string DisplayName = "LegendaryArmor.Champion.Name";
-    private const string Description = "LegendaryArmor.Champion.Description";
+    private const string DisplayName = "LA.Champion.Name";
+    private const string Description = "LA.Champion.Description";
     private const int EnhancementCost = 1;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Champion");
 
@@ -32,33 +26,21 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var smiteEvilAura = BuffRefs.AuraOfJusticeSmiteEvilBuff.Cast<BlueprintBuffReference>().Reference;
       var challenge = BuffRefs.CavalierChallengeBuffTarget.Cast<BlueprintBuffReference>().Reference;
 
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var buff = BuffConfigurator.New(BuffName, Guids.ChampionBuff)
+      var effectBuff = BuffConfigurator.New(BuffName, Guids.ChampionBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent(BonusAgainstTarget.AC(smiteEvil, 2, ModifierDescriptor.Sacred))
         .AddComponent(BonusAgainstTarget.AC(smiteEvilAura, 2, ModifierDescriptor.Sacred))
         .AddComponent(BonusAgainstTarget.AC(challenge, 2, ModifierDescriptor.Sacred))
         .Configure();
 
-      var abilityInfo =
-        new BlueprintInfo(
-          AbilityName, Guids.ChampionAbility, new AlignmentActivatableRestriction(AlignmentComponent.Good));
-      var featureInfo =
-        new BlueprintInfo(
-          ChampionName, Guids.Champion, new PrerequisiteAlignment() { Alignment = AlignmentMaskType.Good });
-
-      var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
-      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
+      EnchantTool.CreateEnchantWithEffect(
+        enchantInfo,
+        effectBuff,
+        parentBuff: new(BuffName, Guids.ChampionEffect));
     }
   }
 }
