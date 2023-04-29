@@ -228,180 +228,145 @@
     "enGB": "A shield or armor with the determination special ability provides the ability to fight on even in the face of seemingly impossible odds. The first time each day the owner reaches 0 or fewer hit points, the item automatically provides a breath of life spell using character level as your caster level."
   },
 
+  //// Energy Resistance
   {
-    "Key": "LegendaryArmor.EnergyResistance.Name",
-    "ProcessTemplates": false,
-    "enGB": "Energy Resistance"
-  },
-  {
-    "Key": "LegendaryArmor.EnergyResistance.Description",
-    "enGB": "This armor protects against one type of energy (acid, cold, electricity, fire, or sonic) and is designed with patterns depicting the element it protects against. The armor absorbs energy damage for each attack that the wearer would normally take (similar to the resist energy spell).\n+2: Absorbs the first 10 points of energy damage\n:+3: Absorbs the first 20 points of energy damage\n:+4: Absorbs the first 30 points of energy damage"
-  },
-  {
-    "Key": "LegendaryArmor.EnergyResistance.Ability.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Armor (Energy Resistance)"
-  },
-  {
-    "Key": "LegendaryShield.EnergyResistance.Shield.Ability.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Shield (Energy Resistance)"
-  },
-  {
-    "Key": "LegendaryArmor.EnergyResistance.Acid.Name",
+    "Key": "LA.EnergyResistance.10.Acid.Name",
     "ProcessTemplates": false,
     "enGB": "Acid Resistance 10"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Acid.Description",
+    "Key": "LA.EnergyResistance.10.Acid.Description",
     "enGB": "This armor absorbs the first 10 points of acid energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Cold.Name",
+    "Key": "LA.EnergyResistance.10.Cold.Name",
     "ProcessTemplates": false,
     "enGB": "Cold Resistance 10"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Cold.Description",
+    "Key": "LA.EnergyResistance.10.Cold.Description",
     "enGB": "This armor absorbs the first 10 points of cold energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Electricity.Name",
+    "Key": "LA.EnergyResistance.10.Electricity.Name",
     "ProcessTemplates": false,
     "enGB": "Electricity Resistance 10"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Electricity.Description",
+    "Key": "LA.EnergyResistance.10.Electricity.Description",
     "enGB": "This armor absorbs the first 10 points of electricity energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Fire.Name",
+    "Key": "LA.EnergyResistance.10.Fire.Name",
     "ProcessTemplates": false,
     "enGB": "Fire Resistance 10"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Fire.Description",
+    "Key": "LA.EnergyResistance.10.Fire.Description",
     "enGB": "This armor absorbs the first 10 points of fire energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Sonic.Name",
+    "Key": "LA.EnergyResistance.10.Sonic.Name",
     "ProcessTemplates": false,
     "enGB": "Sonic Resistance 10"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Sonic.Description",
+    "Key": "LA.EnergyResistance.10.Sonic.Description",
     "enGB": "This armor absorbs the first 10 points of sonic energy damage per attack that the wearer would normally take."
   },
 
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Name",
-    "ProcessTemplates": false,
-    "enGB": "Energy Resistance 20"
-  },
-  {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Description",
-    "enGB": "This armor protects against one type of energy (acid, cold, electricity, fire, or sonic) and is designed with patterns depicting the element it protects against. The armor absorbs the first 20 points of energy damage per attack that the wearer would normally take (similar to the resist energy spell)."
-  },
-  {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Acid.Name",
+    "Key": "LA.EnergyResistance.20.Acid.Name",
     "ProcessTemplates": false,
     "enGB": "Acid Resistance 20"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Acid.Description",
+    "Key": "LA.EnergyResistance.20.Acid.Description",
     "enGB": "This armor absorbs the first 20 points of acid energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Cold.Name",
+    "Key": "LA.EnergyResistance.20.Cold.Name",
     "ProcessTemplates": false,
     "enGB": "Cold Resistance 20"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Cold.Description",
+    "Key": "LA.EnergyResistance.20.Cold.Description",
     "enGB": "This armor absorbs the first 20 points of cold energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Electricity.Name",
+    "Key": "LA.EnergyResistance.20.Electricity.Name",
     "ProcessTemplates": false,
     "enGB": "Electricity Resistance 20"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Electricity.Description",
+    "Key": "LA.EnergyResistance.20.Electricity.Description",
     "enGB": "This armor absorbs the first 20 points of electricity energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Fire.Name",
+    "Key": "LA.EnergyResistance.20.Fire.Name",
     "ProcessTemplates": false,
     "enGB": "Fire Resistance 20"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Fire.Description",
+    "Key": "LA.EnergyResistance.20.Fire.Description",
     "enGB": "This armor absorbs the first 20 points of fire energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Sonic.Name",
+    "Key": "LA.EnergyResistance.20.Sonic.Name",
     "ProcessTemplates": false,
     "enGB": "Sonic Resistance 20"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Improved.Sonic.Description",
+    "Key": "LA.EnergyResistance.20.Sonic.Description",
     "enGB": "This armor absorbs the first 20 points of sonic energy damage per attack that the wearer would normally take."
   },
 
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Name",
-    "ProcessTemplates": false,
-    "enGB": "Energy Resistance 30"
-  },
-  {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Description",
-    "enGB": "This armor protects against one type of energy (acid, cold, electricity, fire, or sonic) and is designed with patterns depicting the element it protects against. The armor absorbs the first 30 points of energy damage per attack that the wearer would normally take (similar to the resist energy spell)."
-  },
-  {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Acid.Name",
+    "Key": "LA.EnergyResistance.30.Acid.Name",
     "ProcessTemplates": false,
     "enGB": "Acid Resistance 30"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Acid.Description",
+    "Key": "LA.EnergyResistance.30.Acid.Description",
     "enGB": "This armor absorbs the first 30 points of acid energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Cold.Name",
+    "Key": "LA.EnergyResistance.30.Cold.Name",
     "ProcessTemplates": false,
     "enGB": "Cold Resistance 30"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Cold.Description",
+    "Key": "LA.EnergyResistance.30.Cold.Description",
     "enGB": "This armor absorbs the first 30 points of cold energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Electricity.Name",
+    "Key": "LA.EnergyResistance.30.Electricity.Name",
     "ProcessTemplates": false,
     "enGB": "Electricity Resistance 30"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Electricity.Description",
+    "Key": "LA.EnergyResistance.30.Electricity.Description",
     "enGB": "This armor absorbs the first 30 points of electricity energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Fire.Name",
+    "Key": "LA.EnergyResistance.30.Fire.Name",
     "ProcessTemplates": false,
     "enGB": "Fire Resistance 30"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Fire.Description",
+    "Key": "LA.EnergyResistance.30.Fire.Description",
     "enGB": "This armor absorbs the first 30 points of fire energy damage per attack that the wearer would normally take."
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Sonic.Name",
+    "Key": "LA.EnergyResistance.30.Sonic.Name",
     "ProcessTemplates": false,
     "enGB": "Sonic Resistance 30"
   },
   {
-    "Key": "LegendaryArmor.EnergyResistance.Greater.Sonic.Description",
+    "Key": "LA.EnergyResistance.30.Sonic.Description",
     "enGB": "This armor absorbs the first 30 points of sonic energy damage per attack that the wearer would normally take."
   },
+  //// End Energy Resistance
 
   {
     "Key": "LegendaryArmor.Expeditious.Name",

@@ -1,13 +1,8 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Features;
-using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
+﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.FactLogic;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -15,517 +10,312 @@ namespace AutomaticBonusProgression.Enchantments
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnergyResistance));
 
-    #region Too Many Constants
-    private const string EnergyResistanceName = "LegendaryArmor.EnergyResistance";
+    internal static void Configure()
+    {
+      ConfigureBasic();
+      ConfigureImproved();
+      ConfigureGreater();
+    }
 
-    private const string EnergyResistanceAbility = "LegendaryArmor.EnergyResistance.Ability";
-    private const string EnergyResistanceAbilityName = "LegendaryArmor.EnergyResistance.Ability.Name";
-    private const string EnergyResistanceShieldAbility = "LegendaryArmor.EnergyResistance.Shield.Ability";
-    private const string EnergyResistanceShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Name";
+    #region Resist 10 Constants
+    private const string Acid10EffectName = "LA.EnergyResistance.10.Acid.Effect";
+    private const string Acid10BuffName = "LA.EnergyResistance.10.Acid.Buff";
+    private const string Acid10ShieldBuffName = "LA.EnergyResistance.10.Acid.Buff.Shield";
+    private const string Acid10DisplayName = "LA.EnergyResistance.10.Acid.Name";
+    private const string Acid10Description = "LA.EnergyResistance.10.Acid.Description";
 
-    private const string AcidBuffName = "LegendaryArmor.EnergyResistance.Buff.Acid";
-    private const string AcidResistEffectBuffName = "LegendaryArmor.EnergyResistance.Ability.Acid";
-    private const string AcidShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Acid";
-    private const string AcidShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Acid";
-    private const string AcidDisplayName = "LegendaryArmor.EnergyResistance.Acid.Name";
-    private const string AcidDescription = "LegendaryArmor.EnergyResistance.Acid.Description";
+    private const string Cold10EffectName = "LA.EnergyResistance.10.Cold.Buff.Effect";
+    private const string Cold10BuffName = "LA.EnergyResistance.10.Cold.Buff";
+    private const string Cold10ShieldBuffName = "LA.EnergyResistance.10.Cold.Buff.Shield";
+    private const string Cold10DisplayName = "LA.EnergyResistance.10.Cold.Name";
+    private const string Cold10Description = "LA.EnergyResistance.10.Cold.Description";
 
-    private const string ColdBuffName = "LegendaryArmor.EnergyResistance.Buff.Cold";
-    private const string ColdAbilityName = "LegendaryArmor.EnergyResistance.Ability.Cold";
-    private const string ColdShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Cold";
-    private const string ColdShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Cold";
-    private const string ColdDisplayName = "LegendaryArmor.EnergyResistance.Cold.Name";
-    private const string ColdDescription = "LegendaryArmor.EnergyResistance.Cold.Description";
+    private const string Electricity10EffectName = "LA.EnergyResistance.10.Electricity.Buff.Effect";
+    private const string Electricity10BuffName = "LA.EnergyResistance.10.Electricity.Buff";
+    private const string Electricity10ShieldBuffName = "LA.EnergyResistance.10.Electricity.Buff.Shield";
+    private const string Electricity10DisplayName = "LA.EnergyResistance.10.Electricity.Name";
+    private const string Electricity10Description = "LA.EnergyResistance.10.Electricity.Description";
 
-    private const string ElectricityBuffName = "LegendaryArmor.EnergyResistance.Buff.Electricity";
-    private const string ElectricityAbilityName = "LegendaryArmor.EnergyResistance.Ability.Electricity";
-    private const string ElectricityShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Electricity";
-    private const string ElectricityShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Electricity";
-    private const string ElectricityDisplayName = "LegendaryArmor.EnergyResistance.Electricity.Name";
-    private const string ElectricityDescription = "LegendaryArmor.EnergyResistance.Electricity.Description";
+    private const string Fire10EffectName = "LA.EnergyResistance.10.Fire.Buff.Effect";
+    private const string Fire10BuffName = "LA.EnergyResistance.10.Fire.Buff";
+    private const string Fire10ShieldBuffName = "LA.EnergyResistance.10.Fire.Buff.Shield";
+    private const string Fire10DisplayName = "LA.EnergyResistance.10.Fire.Name";
+    private const string Fire10Description = "LA.EnergyResistance.10.Fire.Description";
 
-    private const string FireBuffName = "LegendaryArmor.EnergyResistance.Buff.Fire";
-    private const string FireAbilityName = "LegendaryArmor.EnergyResistance.Ability.Fire";
-    private const string FireShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Fire";
-    private const string FireShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Fire";
-    private const string FireDisplayName = "LegendaryArmor.EnergyResistance.Fire.Name";
-    private const string FireDescription = "LegendaryArmor.EnergyResistance.Fire.Description";
+    private const string Sonic10EffectName = "LA.EnergyResistance.10.Sonic.Buff.Effect";
+    private const string Sonic10BuffName = "LA.EnergyResistance.10.Sonic.Buff";
+    private const string Sonic10ShieldBuffName = "LA.EnergyResistance.10.Sonic.Buff.Shield";
+    private const string Sonic10DisplayName = "LA.EnergyResistance.10.Sonic.Name";
+    private const string Sonic10Description = "LA.EnergyResistance.10.Sonic.Description";
 
-    private const string SonicBuffName = "LegendaryArmor.EnergyResistance.Buff.Sonic";
-    private const string SonicAbilityName = "LegendaryArmor.EnergyResistance.Ability.Sonic";
-    private const string SonicShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Sonic";
-    private const string SonicShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Sonic";
-    private const string SonicDisplayName = "LegendaryArmor.EnergyResistance.Sonic.Name";
-    private const string SonicDescription = "LegendaryArmor.EnergyResistance.Sonic.Description";
+    private const int Resist10Cost = 2;
     #endregion
 
-    private const string DisplayName = "LegendaryArmor.EnergyResistance.Name";
-    private const string Description = "LegendaryArmor.EnergyResistance.Description";
-    private const int EnhancementCost = 2;
-
-    internal static void Configure()
+    internal static void ConfigureBasic()
     {
       Logger.Log($"Configuring Energy Resistance 10");
       
-      var acidInfo =
-        new ArmorEnchantInfo(
-          AcidDisplayName,
-          AcidDescription,
-          "",
-          EnhancementCost,
-          ranks: 2);
-      var resistAcidFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance10Feature, acidInfo);
+      var acidInfo = new ArmorEnchantInfo(Acid10DisplayName, Acid10Description, "", Resist10Cost);
+      var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance10Feature, acidInfo);
 
       EnchantTool.CreateEnchant(
         acidInfo,
         effectBuff: new(
-          AcidResistEffectBuffName,
-          Guids.AcidResist10EffectBuff,
+          Acid10EffectName,
+          Guids.AcidResist10Effect,
           resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
-        parentBuff: new(AcidBuffName, Guids.AcidResist10Buff),
-        variantBuff: new(AcidShieldBuffName, Guids.AcidResist10ShieldBuff));
+        parentBuff: new(Acid10BuffName, Guids.AcidResist10Buff),
+        variantBuff: new(Acid10ShieldBuffName, Guids.AcidResist10ShieldBuff));
 
-      //var resistAcid = EnchantTool.CreateEnchantAbility(
-      //  acidInfo,
-      //  new BlueprintInfo(AcidBuffName, Guids.AcidResist10Buff, resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
-      //  new(AcidResistEffectBuffName, Guids.AcidResist10EffectBuff));
-      //var resistAcidShield =
-      //  EnchantTool.CreateEnchantShieldVariant(
-      //    acidInfo, 
-      //    resistAcid,
-      //    new(AcidShieldBuffName, Guids.AcidResist10ShieldBuff),
-      //    new(AcidShieldAbilityName, Guids.AcidResist10ShieldAbility));
+      var coldInfo = new ArmorEnchantInfo(Cold10DisplayName, Cold10Description, "", Resist10Cost);
+      var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance10Feature, coldInfo);
 
-      var coldInfo =
-        new ArmorEnchantInfo(
-          ColdDisplayName,
-          ColdDescription,
-          "",
-          EnhancementCost,
-          ranks: 2);
-      var resistColdFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance10Feature, coldInfo);
-
-      var resistCold = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         coldInfo,
-        new BlueprintInfo(ColdBuffName, Guids.ColdResist10Buff, resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(ColdAbilityName, Guids.ColdResist10Ability));
-      var resistColdShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          coldInfo,
-          resistCold,
-          new(ColdShieldBuffName, Guids.ColdResist10ShieldBuff),
-          new(ColdShieldAbilityName, Guids.ColdResist10ShieldAbility));
+        effectBuff: new(
+          Cold10EffectName,
+          Guids.ColdResist10Effect,
+          resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Cold10BuffName, Guids.ColdResist10Buff),
+        variantBuff: new(Cold10ShieldBuffName, Guids.ColdResist10ShieldBuff));
 
-      var electricityInfo =
-        new ArmorEnchantInfo(
-          ElectricityDisplayName,
-          ElectricityDescription,
-          "",
-          EnhancementCost,
-          ranks: 2);
+      var electricityInfo = new ArmorEnchantInfo(Electricity10DisplayName, Electricity10Description, "", Resist10Cost);
       var resistElectricityFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance10Feature, electricityInfo);
 
-      var resistElectricity = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         electricityInfo,
-        new BlueprintInfo(ElectricityBuffName, Guids.ElectricityResist10Buff, resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(ElectricityAbilityName, Guids.ElectricityResist10Ability));
-      var resistElectricityShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          electricityInfo,
-          resistElectricity,
-          new(ElectricityShieldBuffName, Guids.ElectricityResist10ShieldBuff),
-          new(ElectricityShieldAbilityName, Guids.ElectricityResist10ShieldAbility));
+        effectBuff: new(
+          Electricity10EffectName,
+          Guids.ElectricityResist10Effect,
+          resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Electricity10BuffName, Guids.ElectricityResist10Buff),
+        variantBuff: new(Electricity10ShieldBuffName, Guids.ElectricityResist10ShieldBuff));
 
-      var fireInfo =
-        new ArmorEnchantInfo(
-          FireDisplayName,
-          FireDescription,
-          "",
-          EnhancementCost,
-          ranks: 2);
-      var resistFireFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance10Feature, fireInfo);
+      var fireInfo = new ArmorEnchantInfo(Fire10DisplayName, Fire10Description, "", Resist10Cost);
+      var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance10Feature, fireInfo);
 
-      var resistFire = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         fireInfo,
-        new BlueprintInfo(FireBuffName, Guids.FireResist10Buff, resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(FireAbilityName, Guids.FireResist10Ability));
-      var resistFireShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          fireInfo,
-          resistFire,
-          new(FireShieldBuffName, Guids.FireResist10ShieldBuff),
-          new(FireShieldAbilityName, Guids.FireResist10ShieldAbility));
+        effectBuff: new(
+          Fire10EffectName,
+          Guids.FireResist10Effect,
+          resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Fire10BuffName, Guids.FireResist10Buff),
+        variantBuff: new(Fire10ShieldBuffName, Guids.FireResist10ShieldBuff));
 
-      var sonicInfo =
-        new ArmorEnchantInfo(
-          SonicDisplayName,
-          SonicDescription,
-          "",
-          EnhancementCost,
-          ranks: 2);
-      var resistSonicFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance10Feature, sonicInfo);
+      var sonicInfo = new ArmorEnchantInfo(Sonic10DisplayName, Sonic10Description, "", Resist10Cost);
+      var resistSonicFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance10Feature, sonicInfo);
 
-      var resistSonic = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         sonicInfo,
-        new BlueprintInfo(SonicBuffName, Guids.SonicResist10Buff, resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(SonicAbilityName, Guids.SonicResist10Ability));
-      var resistSonicShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          sonicInfo,
-          resistSonic,
-          new(SonicShieldBuffName, Guids.SonicResist10ShieldBuff),
-          new(SonicShieldAbilityName, Guids.SonicResist10ShieldAbility));
+        effectBuff: new(
+          Sonic10EffectName,
+          Guids.SonicResist10Effect,
+          resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Sonic10BuffName, Guids.SonicResist10Buff),
+        variantBuff: new(Sonic10ShieldBuffName, Guids.SonicResist10ShieldBuff));
     }
 
-    #region Too Many Constants
-    private const string ImprovedEnergyResistanceName = "LegendaryArmor.EnergyResistance.Improved";
+    #region Resist 20 Constants
+    private const string Acid20EffectName = "LA.EnergyResistance.20.Acid.Effect";
+    private const string Acid20BuffName = "LA.EnergyResistance.20.Acid.Buff";
+    private const string Acid20ShieldBuffName = "LA.EnergyResistance.20.Acid.Buff.Shield";
+    private const string Acid20DisplayName = "LA.EnergyResistance.20.Acid.Name";
+    private const string Acid20Description = "LA.EnergyResistance.20.Acid.Description";
 
-    private const string AcidImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Acid";
-    private const string AcidImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Acid";
-    private const string AcidImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Acid";
-    private const string AcidImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Acid";
-    private const string AcidImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Acid.Name";
-    private const string AcidImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Acid.Description";
+    private const string Cold20EffectName = "LA.EnergyResistance.20.Cold.Buff.Effect";
+    private const string Cold20BuffName = "LA.EnergyResistance.20.Cold.Buff";
+    private const string Cold20ShieldBuffName = "LA.EnergyResistance.20.Cold.Buff.Shield";
+    private const string Cold20DisplayName = "LA.EnergyResistance.20.Cold.Name";
+    private const string Cold20Description = "LA.EnergyResistance.20.Cold.Description";
 
-    private const string ColdImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Cold";
-    private const string ColdImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Cold";
-    private const string ColdImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Cold";
-    private const string ColdImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Cold";
-    private const string ColdImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Cold.Name";
-    private const string ColdImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Cold.Description";
+    private const string Electricity20EffectName = "LA.EnergyResistance.20.Electricity.Buff.Effect";
+    private const string Electricity20BuffName = "LA.EnergyResistance.20.Electricity.Buff";
+    private const string Electricity20ShieldBuffName = "LA.EnergyResistance.20.Electricity.Buff.Shield";
+    private const string Electricity20DisplayName = "LA.EnergyResistance.20.Electricity.Name";
+    private const string Electricity20Description = "LA.EnergyResistance.20.Electricity.Description";
 
-    private const string ElectricityImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Electricity";
-    private const string ElectricityImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Electricity";
-    private const string ElectricityImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Electricity";
-    private const string ElectricityImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Electricity";
-    private const string ElectricityImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Electricity.Name";
-    private const string ElectricityImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Electricity.Description";
+    private const string Fire20EffectName = "LA.EnergyResistance.20.Fire.Buff.Effect";
+    private const string Fire20BuffName = "LA.EnergyResistance.20.Fire.Buff";
+    private const string Fire20ShieldBuffName = "LA.EnergyResistance.20.Fire.Buff.Shield";
+    private const string Fire20DisplayName = "LA.EnergyResistance.20.Fire.Name";
+    private const string Fire20Description = "LA.EnergyResistance.20.Fire.Description";
 
-    private const string FireImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Fire";
-    private const string FireImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Fire";
-    private const string FireImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Fire";
-    private const string FireImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Fire";
-    private const string FireImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Fire.Name";
-    private const string FireImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Fire.Description";
+    private const string Sonic20EffectName = "LA.EnergyResistance.20.Sonic.Buff.Effect";
+    private const string Sonic20BuffName = "LA.EnergyResistance.20.Sonic.Buff";
+    private const string Sonic20ShieldBuffName = "LA.EnergyResistance.20.Sonic.Buff.Shield";
+    private const string Sonic20DisplayName = "LA.EnergyResistance.20.Sonic.Name";
+    private const string Sonic20Description = "LA.EnergyResistance.20.Sonic.Description";
 
-    private const string SonicImprovedBuffName = "LegendaryArmor.EnergyResistance.Improved.Buff.Sonic";
-    private const string SonicImprovedAbilityName = "LegendaryArmor.EnergyResistance.Improved.Ability.Sonic";
-    private const string SonicImprovedShieldBuffName = "LegendaryArmor.EnergyResistance.Improved.Shield.Buff.Sonic";
-    private const string SonicImprovedShieldAbilityName = "LegendaryArmor.EnergyResistance.Improved.Shield.Ability.Sonic";
-    private const string SonicImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Sonic.Name";
-    private const string SonicImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Sonic.Description";
+    private const int Resist20Cost = 3;
     #endregion
 
-    private const string ImprovedDisplayName = "LegendaryArmor.EnergyResistance.Improved.Name";
-    private const string ImprovedDescription = "LegendaryArmor.EnergyResistance.Improved.Description";
-    private const int ImprovedEnhancementCost = 3;
-
-    internal static BlueprintFeature ConfigureImproved()
+    internal static void ConfigureImproved()
     {
       Logger.Log($"Configuring Energy Resistance 20");
 
-      var acidInfo =
-        new ArmorEnchantInfo(
-          AcidImprovedDisplayName,
-          AcidImprovedDescription,
-          "",
-          ImprovedEnhancementCost,
-          ranks: 1);
-      var resistAcidFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance20Feature, acidInfo);
+      var acidInfo = new ArmorEnchantInfo(Acid20DisplayName, Acid20Description, "", Resist20Cost);
+      var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance20Feature, acidInfo);
 
-      var resistAcid = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         acidInfo,
-        new BlueprintInfo(AcidImprovedBuffName, Guids.AcidResist20Buff, resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(AcidImprovedAbilityName, Guids.AcidResist20Ability));
-      var resistAcidShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          acidInfo,
-          resistAcid,
-          new(AcidImprovedShieldBuffName, Guids.AcidResist20ShieldBuff),
-          new(AcidImprovedShieldAbilityName, Guids.AcidResist20ShieldAbility));
+        effectBuff: new(
+          Acid20EffectName,
+          Guids.AcidResist20Effect,
+          resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Acid20BuffName, Guids.AcidResist20Buff),
+        variantBuff: new(Acid20ShieldBuffName, Guids.AcidResist20ShieldBuff));
 
-      var coldInfo =
-        new ArmorEnchantInfo(
-          ColdImprovedDisplayName,
-          ColdImprovedDescription,
-          "",
-          ImprovedEnhancementCost,
-          ranks: 1);
-      var resistColdFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance20Feature, coldInfo);
+      var coldInfo = new ArmorEnchantInfo(Cold20DisplayName, Cold20Description, "", Resist20Cost);
+      var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance20Feature, coldInfo);
 
-      var resistCold = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         coldInfo,
-        new BlueprintInfo(ColdImprovedBuffName, Guids.ColdResist20Buff, resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(ColdImprovedAbilityName, Guids.ColdResist20Ability));
-      var resistColdShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          coldInfo,
-          resistCold,
-          new(ColdImprovedShieldBuffName, Guids.ColdResist20ShieldBuff),
-          new(ColdImprovedShieldAbilityName, Guids.ColdResist20ShieldAbility));
+        effectBuff: new(
+          Cold20EffectName,
+          Guids.ColdResist20Effect,
+          resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Cold20BuffName, Guids.ColdResist20Buff),
+        variantBuff: new(Cold20ShieldBuffName, Guids.ColdResist20ShieldBuff));
 
-      var electricityInfo =
-        new ArmorEnchantInfo(
-          ElectricityImprovedDisplayName,
-          ElectricityImprovedDescription,
-          "",
-          ImprovedEnhancementCost,
-          ranks: 1);
+      var electricityInfo = new ArmorEnchantInfo(Electricity20DisplayName, Electricity20Description, "", Resist20Cost);
       var resistElectricityFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance20Feature, electricityInfo);
 
-      var resistElectricity = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         electricityInfo,
-        new BlueprintInfo(ElectricityImprovedBuffName, Guids.ElectricityResist20Buff, resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(ElectricityImprovedAbilityName, Guids.ElectricityResist20Ability));
-      var resistElectricityShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          electricityInfo,
-          resistElectricity,
-          new(ElectricityImprovedShieldBuffName, Guids.ElectricityResist20ShieldBuff),
-          new(ElectricityImprovedShieldAbilityName, Guids.ElectricityResist20ShieldAbility));
+        effectBuff: new(
+          Electricity20EffectName,
+          Guids.ElectricityResist20Effect,
+          resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Electricity20BuffName, Guids.ElectricityResist20Buff),
+        variantBuff: new(Electricity20ShieldBuffName, Guids.ElectricityResist20ShieldBuff));
 
-      var fireInfo =
-        new ArmorEnchantInfo(
-          FireImprovedDisplayName,
-          FireImprovedDescription,
-          "",
-          ImprovedEnhancementCost,
-          ranks: 1);
-      var resistFireFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance20Feature, fireInfo);
+      var fireInfo = new ArmorEnchantInfo(Fire20DisplayName, Fire20Description, "", Resist20Cost);
+      var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance20Feature, fireInfo);
 
-      var resistFire = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         fireInfo,
-        new BlueprintInfo(FireImprovedBuffName, Guids.FireResist20Buff, resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(FireImprovedAbilityName, Guids.FireResist20Ability));
-      var resistFireShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          fireInfo,
-          resistFire,
-          new(FireImprovedShieldBuffName, Guids.FireResist20ShieldBuff),
-          new(FireImprovedShieldAbilityName, Guids.FireResist20ShieldAbility));
+        effectBuff: new(
+          Fire20EffectName,
+          Guids.FireResist20Effect,
+          resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Fire20BuffName, Guids.FireResist20Buff),
+        variantBuff: new(Fire20ShieldBuffName, Guids.FireResist20ShieldBuff));
 
-      var sonicInfo =
-        new ArmorEnchantInfo(
-          SonicImprovedDisplayName,
-          SonicImprovedDescription,
-          "",
-          ImprovedEnhancementCost,
-          ranks: 1);
+      var sonicInfo = new ArmorEnchantInfo(Sonic20DisplayName, Sonic20Description, "", Resist20Cost);
       // Sonic doesn't have a +20 enhcant for some reason
       var resistSonicFeature = FeatureRefs.SonicResistance20.Reference.Get();
 
-      var resistSonic = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         sonicInfo,
-        new BlueprintInfo(SonicImprovedBuffName, Guids.SonicResist20Buff, resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(SonicImprovedAbilityName, Guids.SonicResist20Ability));
-      var resistSonicShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          sonicInfo,
-          resistSonic,
-          new(SonicImprovedShieldBuffName, Guids.SonicResist20ShieldBuff),
-          new(SonicImprovedShieldAbilityName, Guids.SonicResist20ShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        new ArmorEnchantInfo(
-          ImprovedDisplayName,
-          ImprovedDescription,
-          "",
-          ImprovedEnhancementCost,
-          ranks: 1,
-          prerequisite: new(Guids.EnergyResist, ranks: 2)),
-        new(ImprovedEnergyResistanceName, Guids.EnergyResist20),
-        resistAcid,
-        resistAcidShield,
-        resistCold,
-        resistColdShield,
-        resistElectricity,
-        resistElectricityShield,
-        resistFire,
-        resistFireShield,
-        resistSonic,
-        resistSonicShield);
+        effectBuff: new(
+          Sonic20EffectName,
+          Guids.SonicResist20Effect,
+          resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Sonic20BuffName, Guids.SonicResist20Buff),
+        variantBuff: new(Sonic20ShieldBuffName, Guids.SonicResist20ShieldBuff));
     }
 
-    private const string GreaterEnergyResistanceName = "LegendaryArmor.EnergyResistance.Greater";
+    #region Resist 30 Constants
+    private const string Acid30EffectName = "LA.EnergyResistance.30.Acid.Effect";
+    private const string Acid30BuffName = "LA.EnergyResistance.30.Acid.Buff";
+    private const string Acid30ShieldBuffName = "LA.EnergyResistance.30.Acid.Buff.Shield";
+    private const string Acid30DisplayName = "LA.EnergyResistance.30.Acid.Name";
+    private const string Acid30Description = "LA.EnergyResistance.30.Acid.Description";
 
-    #region Too Many Constants
-    private const string AcidGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Acid";
-    private const string AcidGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Acid";
-    private const string AcidGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Acid";
-    private const string AcidGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Acid";
-    private const string AcidGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Acid.Name";
-    private const string AcidGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Acid.Description";
+    private const string Cold30EffectName = "LA.EnergyResistance.30.Cold.Buff.Effect";
+    private const string Cold30BuffName = "LA.EnergyResistance.30.Cold.Buff";
+    private const string Cold30ShieldBuffName = "LA.EnergyResistance.30.Cold.Buff.Shield";
+    private const string Cold30DisplayName = "LA.EnergyResistance.30.Cold.Name";
+    private const string Cold30Description = "LA.EnergyResistance.30.Cold.Description";
 
-    private const string ColdGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Cold";
-    private const string ColdGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Cold";
-    private const string ColdGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Cold";
-    private const string ColdGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Cold";
-    private const string ColdGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Cold.Name";
-    private const string ColdGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Cold.Description";
+    private const string Electricity30EffectName = "LA.EnergyResistance.30.Electricity.Buff.Effect";
+    private const string Electricity30BuffName = "LA.EnergyResistance.30.Electricity.Buff";
+    private const string Electricity30ShieldBuffName = "LA.EnergyResistance.30.Electricity.Buff.Shield";
+    private const string Electricity30DisplayName = "LA.EnergyResistance.30.Electricity.Name";
+    private const string Electricity30Description = "LA.EnergyResistance.30.Electricity.Description";
 
-    private const string ElectricityGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Electricity";
-    private const string ElectricityGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Electricity";
-    private const string ElectricityGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Electricity";
-    private const string ElectricityGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Electricity";
-    private const string ElectricityGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Electricity.Name";
-    private const string ElectricityGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Electricity.Description";
+    private const string Fire30EffectName = "LA.EnergyResistance.30.Fire.Buff.Effect";
+    private const string Fire30BuffName = "LA.EnergyResistance.30.Fire.Buff";
+    private const string Fire30ShieldBuffName = "LA.EnergyResistance.30.Fire.Buff.Shield";
+    private const string Fire30DisplayName = "LA.EnergyResistance.30.Fire.Name";
+    private const string Fire30Description = "LA.EnergyResistance.30.Fire.Description";
 
-    private const string FireGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Fire";
-    private const string FireGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Fire";
-    private const string FireGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Fire";
-    private const string FireGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Fire";
-    private const string FireGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Fire.Name";
-    private const string FireGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Fire.Description";
+    private const string Sonic30EffectName = "LA.EnergyResistance.30.Sonic.Buff.Effect";
+    private const string Sonic30BuffName = "LA.EnergyResistance.30.Sonic.Buff";
+    private const string Sonic30ShieldBuffName = "LA.EnergyResistance.30.Sonic.Buff.Shield";
+    private const string Sonic30DisplayName = "LA.EnergyResistance.30.Sonic.Name";
+    private const string Sonic30Description = "LA.EnergyResistance.30.Sonic.Description";
 
-    private const string SonicGreaterBuffName = "LegendaryArmor.EnergyResistance.Greater.Buff.Sonic";
-    private const string SonicGreaterAbilityName = "LegendaryArmor.EnergyResistance.Greater.Ability.Sonic";
-    private const string SonicGreaterShieldBuffName = "LegendaryArmor.EnergyResistance.Greater.Shield.Buff.Sonic";
-    private const string SonicGreaterShieldAbilityName = "LegendaryArmor.EnergyResistance.Greater.Shield.Ability.Sonic";
-    private const string SonicGreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Sonic.Name";
-    private const string SonicGreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Sonic.Description";
+    private const int Resist30Cost = 4;
     #endregion
 
-    private const string GreaterDisplayName = "LegendaryArmor.EnergyResistance.Greater.Name";
-    private const string GreaterDescription = "LegendaryArmor.EnergyResistance.Greater.Description";
-    private const int GreaterEnhancementCost = 4;
-
-    internal static BlueprintFeature ConfigureGreater()
+    internal static void ConfigureGreater()
     {
       Logger.Log($"Configuring Energy Resistance 30");
 
-      var acidInfo =
-        new ArmorEnchantInfo(
-          AcidGreaterDisplayName,
-          AcidGreaterDescription,
-          "",
-          GreaterEnhancementCost,
-          ranks: 1);
-      var resistAcidFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance30Feature, acidInfo);
+      var acidInfo = new ArmorEnchantInfo(Acid30DisplayName, Acid30Description, "", Resist30Cost);
+      var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance30Feature, acidInfo);
 
-      var resistAcid = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         acidInfo,
-        new BlueprintInfo(AcidGreaterBuffName, Guids.AcidResist30Buff, resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(AcidGreaterAbilityName, Guids.AcidResist30Ability));
-      var resistAcidShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          acidInfo,
-          resistAcid,
-          new(AcidGreaterShieldBuffName, Guids.AcidResist30ShieldBuff),
-          new(AcidGreaterShieldAbilityName, Guids.AcidResist30ShieldAbility));
+        effectBuff: new(
+          Acid30EffectName,
+          Guids.AcidResist30Effect,
+          resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Acid30BuffName, Guids.AcidResist30Buff),
+        variantBuff: new(Acid30ShieldBuffName, Guids.AcidResist30ShieldBuff));
 
-      var coldInfo =
-        new ArmorEnchantInfo(
-          ColdGreaterDisplayName,
-          ColdGreaterDescription,
-          "",
-          GreaterEnhancementCost,
-          ranks: 1);
-      var resistColdFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance30Feature, coldInfo);
+      var coldInfo = new ArmorEnchantInfo(Cold30DisplayName, Cold30Description, "", Resist30Cost);
+      var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance30Feature, coldInfo);
 
-      var resistCold = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         coldInfo,
-        new BlueprintInfo(ColdGreaterBuffName, Guids.ColdResist30Buff, resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(ColdGreaterAbilityName, Guids.ColdResist30Ability));
-      var resistColdShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          coldInfo,
-          resistCold,
-          new(ColdGreaterShieldBuffName, Guids.ColdResist30ShieldBuff),
-          new(ColdGreaterShieldAbilityName, Guids.ColdResist30ShieldAbility));
+        effectBuff: new(
+          Cold30EffectName,
+          Guids.ColdResist30Effect,
+          resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Cold30BuffName, Guids.ColdResist30Buff),
+        variantBuff: new(Cold30ShieldBuffName, Guids.ColdResist30ShieldBuff));
 
-      var electricityInfo =
-        new ArmorEnchantInfo(
-          ElectricityGreaterDisplayName,
-          ElectricityGreaterDescription,
-          "",
-          GreaterEnhancementCost,
-          ranks: 1);
+      var electricityInfo = new ArmorEnchantInfo(Electricity30DisplayName, Electricity30Description, "", Resist30Cost);
       var resistElectricityFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance30Feature, electricityInfo);
 
-      var resistElectricity = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         electricityInfo,
-        new BlueprintInfo(ElectricityGreaterBuffName, Guids.ElectricityResist30Buff, resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(ElectricityGreaterAbilityName, Guids.ElectricityResist30Ability));
-      var resistElectricityShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          electricityInfo,
-          resistElectricity,
-          new(ElectricityGreaterShieldBuffName, Guids.ElectricityResist30ShieldBuff),
-          new(ElectricityGreaterShieldAbilityName, Guids.ElectricityResist30ShieldAbility));
+        effectBuff: new(
+          Electricity30EffectName,
+          Guids.ElectricityResist30Effect,
+          resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Electricity30BuffName, Guids.ElectricityResist30Buff),
+        variantBuff: new(Electricity30ShieldBuffName, Guids.ElectricityResist30ShieldBuff));
 
-      var fireInfo =
-        new ArmorEnchantInfo(
-          FireGreaterDisplayName,
-          FireGreaterDescription,
-          "",
-          GreaterEnhancementCost,
-          ranks: 1);
-      var resistFireFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance30Feature, fireInfo);
+      var fireInfo = new ArmorEnchantInfo(Fire30DisplayName, Fire30Description, "", Resist30Cost);
+      var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance30Feature, fireInfo);
 
-      var resistFire = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         fireInfo,
-        new BlueprintInfo(FireGreaterBuffName, Guids.FireResist30Buff, resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(FireGreaterAbilityName, Guids.FireResist30Ability));
-      var resistFireShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          fireInfo,
-          resistFire,
-          new(FireGreaterShieldBuffName, Guids.FireResist30ShieldBuff),
-          new(FireGreaterShieldAbilityName, Guids.FireResist30ShieldAbility));
+        effectBuff: new(
+          Fire30EffectName,
+          Guids.FireResist30Effect,
+          resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Fire30BuffName, Guids.FireResist30Buff),
+        variantBuff: new(Fire30ShieldBuffName, Guids.FireResist30ShieldBuff));
 
-      var sonicInfo =
-        new ArmorEnchantInfo(
-          SonicGreaterDisplayName,
-          SonicGreaterDescription,
-          "",
-          GreaterEnhancementCost,
-          ranks: 1);
-      var resistSonicFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance30Feature, sonicInfo);
+      var sonicInfo = new ArmorEnchantInfo(Sonic30DisplayName, Sonic30Description, "", Resist30Cost);
+      var resistSonicFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance30Feature, sonicInfo);
 
-      var resistSonic = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         sonicInfo,
-        new BlueprintInfo(SonicGreaterBuffName, Guids.SonicResist30Buff, resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(SonicGreaterAbilityName, Guids.SonicResist30Ability));
-      var resistSonicShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          sonicInfo,
-          resistSonic,
-          new(SonicGreaterShieldBuffName, Guids.SonicResist30ShieldBuff),
-          new(SonicGreaterShieldAbilityName, Guids.SonicResist30ShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        new ArmorEnchantInfo(
-          GreaterDisplayName,
-          GreaterDescription,
-          "",
-          GreaterEnhancementCost,
-          ranks: 1,
-          prerequisite: new(Guids.EnergyResist20)),
-        new(GreaterEnergyResistanceName, Guids.EnergyResist30),
-        resistAcid,
-        resistAcidShield,
-        resistCold,
-        resistColdShield,
-        resistElectricity,
-        resistElectricityShield,
-        resistFire,
-        resistFireShield,
-        resistSonic,
-        resistSonicShield);
+        effectBuff: new(
+          Sonic30EffectName,
+          Guids.SonicResist30Effect,
+          resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(Sonic30BuffName, Guids.SonicResist30Buff),
+        variantBuff: new(Sonic30ShieldBuffName, Guids.SonicResist30ShieldBuff));
     }
   }
 }

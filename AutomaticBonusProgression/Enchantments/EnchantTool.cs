@@ -69,8 +69,11 @@ namespace AutomaticBonusProgression.Enchantments
         effect.AddComponent(component);
       effect.Configure();
 
-      // Parent buff is not visual, basically just a watcher
+      // Although the parent buff shouldn't show up, it needs a name / description / icon for the attunement UI.
       var parent = BuffConfigurator.New(parentBuff.Name, parentBuff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
         .SetFlags(BlueprintBuff.Flags.HiddenInUi)
         .AddComponent(enchant.GetEnhancementComponent())
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid));
@@ -82,7 +85,7 @@ namespace AutomaticBonusProgression.Enchantments
         return;
 
       var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
-        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .CopyFrom(parentBuff.Guid)
         .AddComponent(enchant.GetEnhancementComponent())
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid, variant: true));
       foreach (var component in variantBuff.Components)

@@ -5,8 +5,6 @@ using Kingmaker.Blueprints.Items.Armors;
 
 namespace AutomaticBonusProgression.Util
 {
-  /// Classes here are just to simplify utilities and readability. Only data containers!
-
   internal class BlueprintInfo
   {
     internal readonly string Name;
@@ -31,25 +29,15 @@ namespace AutomaticBonusProgression.Util
     internal readonly string Icon;
     internal readonly EnhancementType Type;
     internal readonly int Cost;
-    internal readonly int Ranks;
-    internal readonly PrerequisiteInfo Prerequisite;
 
     protected EnchantInfo(
-      string displayName,
-      string description,
-      string icon,
-      EnhancementType type,
-      int cost,
-      int ranks,
-      PrerequisiteInfo prerequisite = null)
+      string displayName, string description, string icon, EnhancementType type, int cost)
     {
       DisplayName = displayName;
       Description = description;
       Icon = icon;
       Type = type;
       Cost = cost;
-      Ranks = ranks;
-      Prerequisite = prerequisite;
     }
 
     /// <summary>
@@ -60,6 +48,10 @@ namespace AutomaticBonusProgression.Util
     internal abstract AttunementEffect GetAttunementComponent(
       Blueprint<BlueprintBuffReference> effectBuff, bool variant = false);
 
+    /// <summary>
+    /// Creates the <see cref="EnhancementEquivalence"/> component for this enchantment.
+    /// </summary>
+    /// <returns></returns>
     internal BlueprintComponent GetEnhancementComponent()
     {
       return new EnhancementEquivalence(this);
@@ -71,27 +63,11 @@ namespace AutomaticBonusProgression.Util
     internal readonly ArmorProficiencyGroup[] AllowedTypes;
 
     public ArmorEnchantInfo(
-        string displayName,
-        string description,
-        string icon,
-        int cost,
-        int ranks,
-        PrerequisiteInfo prerequisite,
-        params ArmorProficiencyGroup[] allowedTypes) :
-      base(displayName, description, icon, EnhancementType.Armor, cost, ranks, prerequisite)
+        string displayName, string description, string icon, int cost, params ArmorProficiencyGroup[] allowedTypes)
+      : base(displayName, description, icon, EnhancementType.Armor, cost)
     {
       AllowedTypes = allowedTypes;
     }
-
-    public ArmorEnchantInfo(
-        string displayName,
-        string description,
-        string icon,
-        int cost,
-        int ranks,
-        params ArmorProficiencyGroup[] allowedTypes) :
-      this(displayName, description, icon, cost, ranks, prerequisite: null, allowedTypes)
-    { }
 
     internal override AttunementEffect GetAttunementComponent(
       Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
@@ -104,40 +80,13 @@ namespace AutomaticBonusProgression.Util
 
   internal class WeaponEnchantInfo : EnchantInfo
   {
-    public WeaponEnchantInfo(
-        string displayName,
-        string description,
-        string icon,
-        int cost,
-        int ranks,
-        PrerequisiteInfo prerequisite) :
-      base(displayName, description, icon, EnhancementType.MainHand, cost, ranks, prerequisite)
-    { }
-
-    public WeaponEnchantInfo(
-        string displayName,
-        string description,
-        string icon,
-        int cost,
-        int ranks) :
-      this(displayName, description, icon, cost, ranks, prerequisite: null)
+    public WeaponEnchantInfo(string displayName, string description, string icon, int cost)
+      : base(displayName, description, icon, EnhancementType.MainHand, cost)
     { }
 
     internal override AttunementEffect GetAttunementComponent(Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
     {
       throw new System.NotImplementedException();
-    }
-  }
-
-  internal class PrerequisiteInfo
-  {
-    internal readonly Blueprint<BlueprintFeatureReference> Feature;
-    internal readonly int Ranks;
-
-    internal PrerequisiteInfo(Blueprint<BlueprintFeatureReference> feature, int ranks = 1)
-    {
-      Feature = feature;
-      Ranks = ranks;
     }
   }
 }
