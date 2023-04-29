@@ -1,20 +1,14 @@
 ﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Enchantments.Armor;
 using AutomaticBonusProgression.UI.Attunement;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Actions.Builder;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.UnitLogic.ActivatableAbilities;
-using ModMenu.Window;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Features
 {
-    internal class LegendaryArmor
+  internal class LegendaryArmor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryArmor));
 
@@ -23,11 +17,6 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryArmorDescription = "LegendaryArmor.Description";
     private const string LegendaryArmorAbility = "LegendaryArmor.Ability";
     internal const string LegendaryArmorAbilityDescription = "LegendaryArmor.Ability.Description";
-
-    private const string LegendaryShieldName = "LegendaryShield";
-    private const string LegendaryShieldDisplayName = "LegendaryShield.Name";
-    internal const string LegendaryShieldDescription = "LegendaryShield.Description";
-    private const string LegendaryShieldAbility = "LegendaryShield.Ability";
 
     internal static BlueprintFeature Configure()
     {
