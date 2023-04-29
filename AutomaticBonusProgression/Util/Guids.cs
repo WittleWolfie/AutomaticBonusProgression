@@ -139,8 +139,7 @@
     internal const string DastardEffect = "4abddf52-82b5-4d6a-a533-de8180ecfc79";
     internal const string DastardBuff = "a21bd358-167e-4482-82ec-2362bfbfcb61";
 
-    internal const string Deathless = "d44cfbde-4b53-4507-9dd2-e21b3ec48bab";
-    internal const string DeathlessAbility = "adf4bdcb-3608-427e-b1f4-e59cc94e495a";
+    internal const string DeathlessEffect = "d44cfbde-4b53-4507-9dd2-e21b3ec48bab";
     internal const string DeathlessBuff = "a0750060-80f0-4652-b4fd-dd4bae5cca67";
 
     #region Defiant

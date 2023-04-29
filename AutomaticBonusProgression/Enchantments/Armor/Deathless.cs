@@ -1,7 +1,5 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums.Damage;
 using Kingmaker.PubSubSystem;
@@ -15,41 +13,32 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Deathless));
 
-    private const string DeathlessName = "LegendaryArmor.Deathless";
-    private const string BuffName = "LegendaryArmor.Deathless.Buff";
-    private const string AbilityName = "LegendaryArmor.Deathless.Ability";
+    private const string EffectName = "LA.Deathless.Effect";
+    private const string BuffName = "LA.Deathless.Buff";
 
-    private const string DisplayName = "LegendaryArmor.Deathless.Name";
-    private const string Description = "LegendaryArmor.Deathless.Description";
+    private const string DisplayName = "LA.Deathless.Name";
+    private const string Description = "LA.Deathless.Description";
     private const int EnhancementCost = 1;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Deathless");
 
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var buff = BuffConfigurator.New(BuffName, Guids.DeathlessBuff)
+      var effectBuff = BuffConfigurator.New(EffectName, Guids.DeathlessEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent<DeathlessComponent>()
         .AddDamageResistanceEnergy(type: DamageEnergyType.NegativeEnergy, value: 10)
         .AddDamageResistanceEnergy(type: DamageEnergyType.PositiveEnergy, value: 10)
         .Configure();
 
-      var abilityInfo = new BlueprintInfo(AbilityName, Guids.DeathlessAbility);
-      var featureInfo = new BlueprintInfo(DeathlessName, Guids.Deathless);
-
-      var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
-      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
+      EnchantTool.CreateEnchantWithEffect(
+        enchantInfo,
+        effectBuff,
+        parentBuff: new(BuffName, Guids.DeathlessBuff));
     }
 
     [TypeId("23ca83d5-128e-4937-9fd5-646a86a3ed0d")]
