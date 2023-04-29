@@ -114,108 +114,93 @@
   },
 
   {
-    "Key": "LA.Defiant.Name",
-    "ProcessTemplates": false,
-    "enGB": "Defiant (+1)"
-  },
-  {
     "Key": "LA.Defiant.Description",
     "enGB": "Armor and shields with this special ability excel at blocking the attacks of certain types of creatures, similar to a bane weapon’s excelling against certain foes. Against the designated foe, the item’s enhancement bonus to AC is +2 better than its actual bonus and provides DR 2/— against attacks from that foe."
   },
   {
-    "Key": "LA.Defiant.Ability.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Armor (Defiant)"
-  },
-  {
-    "Key": "LegendaryShield.Defiant.Ability.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Shield (Defiant)"
-  },
-  {
     "Key": "LA.Defiant.Aberrations.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Aberrations"
+    "enGB": "Defiant: Aberrations (+1)"
   },
   {
     "Key": "LA.Defiant.Animals.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Animals"
+    "enGB": "Defiant: Animals (+1)"
   },
   {
     "Key": "LA.Defiant.Constructs.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Constructs"
+    "enGB": "Defiant: Constructs (+1)"
   },
   {
     "Key": "LA.Defiant.Dragons.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Dragons"
+    "enGB": "Defiant: Dragons (+1)"
   },
   {
     "Key": "LA.Defiant.Fey.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Fey"
+    "enGB": "Defiant: Fey (+1)"
   },
   {
     "Key": "LA.Defiant.Humanoid.Giant.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Giant Humanoids"
+    "enGB": "Defiant: Giant Humanoids (+1)"
   },
   {
     "Key": "LA.Defiant.Humanoid.Reptilian.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Reptilian Humanoids"
+    "enGB": "Defiant: Reptilian Humanoids (+1)"
   },
   {
     "Key": "LA.Defiant.Humanoid.Monstrous.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Monstrous Humanoids"
+    "enGB": "Defiant: Monstrous Humanoids (+1)"
   },
   {
     "Key": "LA.Defiant.MagicalBeasts.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Magical Beasts"
+    "enGB": "Defiant: Magical Beasts (+1)"
   },
   {
     "Key": "LA.Defiant.Outsider.Good.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Good Outsiders"
+    "enGB": "Defiant: Good Outsiders (+1)"
   },
   {
     "Key": "LA.Defiant.Outsider.Evil.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Evil Outsiders"
+    "enGB": "Defiant: Evil Outsiders (+1)"
   },
   {
     "Key": "LA.Defiant.Outsider.Lawful.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Lawful Outsiders"
+    "enGB": "Defiant: Lawful Outsiders (+1)"
   },
   {
     "Key": "LA.Defiant.Outsider.Chaotic.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Chaotic Outsiders"
+    "enGB": "Defiant: Chaotic Outsiders (+1)"
   },
   {
     "Key": "LA.Defiant.Outsider.Neutral.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Neutral Outsiders"
+    "enGB": "Defiant: Neutral Outsiders (+1)"
   },
   {
     "Key": "LA.Defiant.Plants.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Plants"
+    "enGB": "Defiant: Plants (+1)"
   },
   {
     "Key": "LA.Defiant.Undead.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Undead"
+    "enGB": "Defiant: Undead (+1)"
   },
   {
     "Key": "LA.Defiant.Vermin.Name",
     "ProcessTemplates": false,
-    "enGB": "Defiant: Vermin"
+    "enGB": "Defiant: Vermin (+1)"
   },
 
   {

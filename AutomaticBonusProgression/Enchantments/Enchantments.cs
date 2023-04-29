@@ -33,6 +33,7 @@ namespace AutomaticBonusProgression.Enchantments
         Creeping.Configure();
         Dastard.Configure();
         Deathless.Configure();
+        Defiant.Configure();
         EnergyResistance.Configure();
       }
       catch (Exception e)

@@ -44,6 +44,25 @@ namespace AutomaticBonusProgression.Features
             Guids.CreepingBuff,
             Guids.DastardBuff,
             Guids.DeathlessBuff,
+      #region Defiant
+            Guids.DefiantAberrationsBuff,
+            Guids.DefiantAnimalsBuff,
+            Guids.DefiantConstructsBuff,
+            Guids.DefiantDragonsBuff,
+            Guids.DefiantFeyBuff,
+            Guids.DefiantHumanoidGiantBuff,
+            Guids.DefiantHumanoidReptilianBuff,
+            Guids.DefiantHumanoidMonstrousBuff,
+            Guids.DefiantMagicalBeastsBuff,
+            Guids.DefiantOutsiderGoodBuff,
+            Guids.DefiantOutsiderEvilBuff,
+            Guids.DefiantOutsiderLawfulBuff,
+            Guids.DefiantOutsiderChaoticBuff,
+            Guids.DefiantOutsiderNeutralBuff,
+            Guids.DefiantPlantsBuff,
+            Guids.DefiantUndeadBuff,
+            Guids.DefiantVerminBuff,
+      #endregion
       #region Energy Resistance
             // 10 Armor
             Guids.AcidResist10Buff,
