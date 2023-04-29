@@ -11,66 +11,66 @@ using Kingmaker.Enums;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
-    internal class Bolstering
+  internal class Bolstering
+  {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Bolstering));
+
+    private const string BolsteringName = "LegendaryArmor.Bolstering";
+    private const string BuffName = "LegendaryArmor.Bolstering.Buff";
+    private const string AbilityName = "LegendaryArmor.Bolstering.Ability";
+    private const string BuffShieldName = "LegendaryArmor.Bolstering.Shield.Buff";
+    private const string AbilityShieldName = "LegendaryArmor.Bolstering.Shield.Ability";
+
+    private const string TargetBuffName = "LegendaryArmor.Bolstering.Target.Buff";
+
+    private const string DisplayName = "LegendaryArmor.Bolstering.Name";
+    private const string Description = "LegendaryArmor.Bolstering.Description";
+    private const int EnhancementCost = 1;
+
+    internal static BlueprintFeature Configure()
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Bolstering));
+      Logger.Log($"Configuring Bolstering");
 
-        private const string BolsteringName = "LegendaryArmor.Bolstering";
-        private const string BuffName = "LegendaryArmor.Bolstering.Buff";
-        private const string AbilityName = "LegendaryArmor.Bolstering.Ability";
-        private const string BuffShieldName = "LegendaryArmor.Bolstering.Shield.Buff";
-        private const string AbilityShieldName = "LegendaryArmor.Bolstering.Shield.Ability";
+      var targetBuff = BuffConfigurator.New(TargetBuffName, Guids.BolsteringTargetBuff)
+        .SetDisplayName(DisplayName)
+        .SetDescription(Description)
+        //.SetIcon(icon)
+        .Configure();
 
-        private const string TargetBuffName = "LegendaryArmor.Bolstering.Target.Buff";
+      var enchantInfo = new ArmorEnchantInfo(
+        DisplayName,
+        Description,
+        "",
+        EnhancementCost,
+        ranks: 1,
+        ArmorProficiencyGroup.Medium,
+        ArmorProficiencyGroup.Heavy,
+        ArmorProficiencyGroup.LightShield,
+        ArmorProficiencyGroup.HeavyShield,
+        ArmorProficiencyGroup.TowerShield);
 
-        private const string DisplayName = "LegendaryArmor.Bolstering.Name";
-        private const string Description = "LegendaryArmor.Bolstering.Description";
-        private const int EnhancementCost = 1;
+      var buff = BuffConfigurator.New(BuffName, Guids.BolsteringBuff)
+        .SetDisplayName(DisplayName)
+        .SetDescription(Description)
+        //.SetIcon(icon)
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
+        //.AddComponent(new ArmorAttunement(enchantInfo.AllowedTypes))
+        .AddInitiatorAttackWithWeaponTrigger(
+          onlyHit: true,
+          action: ActionsBuilder.New().ApplyBuff(targetBuff, ContextDuration.Fixed(1)))
+        .AddComponent(BonusAgainstTarget.Saves(targetBuff.ToReference<BlueprintBuffReference>(), 2, ModifierDescriptor.Competence))
+        .Configure();
 
-        internal static BlueprintFeature Configure()
-        {
-            Logger.Log($"Configuring Bolstering");
+      var abilityInfo = new BlueprintInfo(AbilityName, Guids.BolsteringAbility);
+      var shieldBuffInfo = new BlueprintInfo(BuffShieldName, Guids.BolsteringShieldBuff);
+      var shieldAbilityInfo = new BlueprintInfo(AbilityShieldName, Guids.BolsteringShieldAbility);
 
-            var targetBuff = BuffConfigurator.New(TargetBuffName, Guids.BolsteringTargetBuff)
-              .SetDisplayName(DisplayName)
-              .SetDescription(Description)
-              //.SetIcon(icon)
-              .Configure();
+      var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
+      var shieldAbility =
+        EnchantTool.CreateEnchantShieldVariant(enchantInfo, ability, shieldBuffInfo, shieldAbilityInfo);
 
-            var enchantInfo = new ArmorEnchantInfo(
-              DisplayName,
-              Description,
-              "",
-              EnhancementCost,
-              ranks: 1,
-              ArmorProficiencyGroup.Medium,
-              ArmorProficiencyGroup.Heavy,
-              ArmorProficiencyGroup.LightShield,
-              ArmorProficiencyGroup.HeavyShield,
-              ArmorProficiencyGroup.TowerShield);
-
-            var buff = BuffConfigurator.New(BuffName, Guids.BolsteringBuff)
-              .SetDisplayName(DisplayName)
-              .SetDescription(Description)
-              //.SetIcon(icon)
-              .AddComponent(new EnhancementEquivalence(enchantInfo))
-              //.AddComponent(new ArmorAttunement(enchantInfo.AllowedTypes))
-              .AddInitiatorAttackWithWeaponTrigger(
-                onlyHit: true,
-                action: ActionsBuilder.New().ApplyBuff(targetBuff, ContextDuration.Fixed(1)))
-              .AddComponent(BonusAgainstTarget.Saves(targetBuff.ToReference<BlueprintBuffReference>(), 2, ModifierDescriptor.Competence))
-              .Configure();
-
-            var abilityInfo = new BlueprintInfo(AbilityName, Guids.BolsteringAbility);
-            var shieldBuffInfo = new BlueprintInfo(BuffShieldName, Guids.BolsteringShieldBuff);
-            var shieldAbilityInfo = new BlueprintInfo(AbilityShieldName, Guids.BolsteringShieldAbility);
-
-            var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
-            var shieldAbility =
-              EnchantTool.CreateEnchantShieldVariant(enchantInfo, ability, shieldBuffInfo, shieldAbilityInfo);
-
-            var featureInfo = new BlueprintInfo(BolsteringName, Guids.Bolstering);
-            return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, shieldAbility);
-        }
+      var featureInfo = new BlueprintInfo(BolsteringName, Guids.Bolstering);
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, shieldAbility);
     }
+  }
 }

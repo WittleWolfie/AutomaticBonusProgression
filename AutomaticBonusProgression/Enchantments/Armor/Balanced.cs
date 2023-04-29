@@ -7,40 +7,37 @@ using Kingmaker.Designers.Mechanics.Facts;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
-    internal class Balanced
+  internal class Balanced
+  {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Balanced));
+
+    private const string BalancedArmorName = "LA.Balanced";
+    private const string BuffName = "LA.Balanced.Buff";
+    private const string AbilityName = "LA.Balanced.Ability";
+
+    private const string DisplayName = "LA.Balanced.Name";
+    private const string Description = "LA.Balanced.Description";
+    private const int EnhancementCost = 1;
+
+    internal static BlueprintFeature Configure()
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Balanced));
+      Logger.Log($"Configuring Balanced Armor");
 
-        private const string BalancedArmorName = "LegendaryArmor.Balanced";
-        private const string BuffName = "LegendaryArmor.Balanced.Buff";
-        private const string AbilityName = "LegendaryArmor.Balanced.Ability";
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "",
+        EnhancementCost,
+        ranks: 1,
+        ArmorProficiencyGroup.Light,
+        ArmorProficiencyGroup.Medium);
 
-        private const string DisplayName = "LegendaryArmor.Balanced.Name";
-        private const string Description = "LegendaryArmor.Balanced.Description";
-        private const int EnhancementCost = 1;
+      var balancedFeature =
+        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
 
-        internal static BlueprintFeature Configure()
-        {
-            Logger.Log($"Configuring Balanced Armor");
+      var buffInfo =
+        new BlueprintInfo(BuffName, Guids.BalancedArmorBuff, balancedFeature.GetComponent<CMDBonusAgainstManeuvers>());
+      var abilityInfo = new BlueprintInfo(AbilityName, Guids.BalancedArmorAbility);
+      var featureInfo = new BlueprintInfo(BalancedArmorName, Guids.BalancedArmor);
 
-            var enchantInfo = new ArmorEnchantInfo(
-              DisplayName,
-              Description,
-              "",
-              EnhancementCost,
-              ranks: 1,
-              ArmorProficiencyGroup.Light,
-              ArmorProficiencyGroup.Medium);
-
-            var balancedFeature =
-              EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
-
-            var buffInfo =
-              new BlueprintInfo(BuffName, Guids.BalancedArmorBuff, balancedFeature.GetComponent<CMDBonusAgainstManeuvers>());
-            var abilityInfo = new BlueprintInfo(AbilityName, Guids.BalancedArmorAbility);
-            var featureInfo = new BlueprintInfo(BalancedArmorName, Guids.BalancedArmor);
-
-            return EnchantTool.CreateEnchant(enchantInfo, buffInfo, abilityInfo, featureInfo);
-        }
+      return EnchantTool.CreateEnchant(enchantInfo, buffInfo, abilityInfo, featureInfo);
     }
+  }
 }

@@ -21,127 +21,127 @@ using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
-    internal class Creeping
+  internal class Creeping
+  {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Creeping));
+
+    private const string CreepingName = "LegendaryArmor.Creeping";
+    private const string BuffName = "LegendaryArmor.Creeping.Buff";
+    private const string AbilityName = "LegendaryArmor.Creeping.Ability";
+
+    private const string CastAbilityName = "LegendaryArmor.Creeping.Cast";
+    private const string CastBuffName = "LegendaryArmor.Creeping.Cast.Buff";
+    private const string CastResourceName = "LegendaryArmor.Creeping.Cast.Resource";
+
+    private const string DisplayName = "LegendaryArmor.Creeping.Name";
+    private const string Description = "LegendaryArmor.Creeping.Description";
+    private const int EnhancementCost = 2;
+
+    internal static BlueprintFeature Configure()
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Creeping));
+      Logger.Log($"Configuring Creeping");
 
-        private const string CreepingName = "LegendaryArmor.Creeping";
-        private const string BuffName = "LegendaryArmor.Creeping.Buff";
-        private const string AbilityName = "LegendaryArmor.Creeping.Ability";
+      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.CreepingCastResource)
+        .SetMaxAmount(ResourceAmountBuilder.New(1))
+        .Configure();
 
-        private const string CastAbilityName = "LegendaryArmor.Creeping.Cast";
-        private const string CastBuffName = "LegendaryArmor.Creeping.Cast.Buff";
-        private const string CastResourceName = "LegendaryArmor.Creeping.Cast.Resource";
+      var castBuff = BuffConfigurator.New(CastBuffName, Guids.CreepingCastBuff)
+        .SetDisplayName(DisplayName)
+        .SetDescription(Description)
+        //.SetIcon()
+        .AddContextRankConfig(ContextRankConfigs.FeatureRank(Guids.ArmorAttunement))
+        .AddStatBonusAbilityValue(
+          stat: StatType.SkillStealth, value: ContextValues.Rank(), descriptor: ModifierDescriptor.UntypedStackable)
+        .Configure();
 
-        private const string DisplayName = "LegendaryArmor.Creeping.Name";
-        private const string Description = "LegendaryArmor.Creeping.Description";
-        private const int EnhancementCost = 2;
+      var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.CreepingCastAbility)
+        .SetDisplayName(DisplayName)
+        .SetDescription(Description)
+        //.SetIcon()
+        .SetType(AbilityType.SpellLike)
+        .SetRange(AbilityRange.Personal)
+        .SetActionType(CommandType.Swift)
+        .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
+        .AddAbilityCasterHasFacts(new() { Guids.CreepingBuff })
+        .AddAbilityEffectRunAction(
+          ActionsBuilder.New().ApplyBuff(castBuff, ContextDuration.Fixed(1, rate: DurationRate.Minutes)))
+        .Configure();
 
-        internal static BlueprintFeature Configure()
-        {
-            Logger.Log($"Configuring Creeping");
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 2);
 
-            var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.CreepingCastResource)
-              .SetMaxAmount(ResourceAmountBuilder.New(1))
-              .Configure();
+      var ability = EnchantTool.CreateEnchantAbility(
+        enchantInfo,
+        new BlueprintInfo(BuffName, Guids.CreepingBuff, new CreepingComponent()),
+        new(AbilityName, Guids.CreepingAbility));
 
-            var castBuff = BuffConfigurator.New(CastBuffName, Guids.CreepingCastBuff)
-              .SetDisplayName(DisplayName)
-              .SetDescription(Description)
-              //.SetIcon()
-              .AddContextRankConfig(ContextRankConfigs.FeatureRank(Guids.ArmorAttunement))
-              .AddStatBonusAbilityValue(
-                stat: StatType.SkillStealth, value: ContextValues.Rank(), descriptor: ModifierDescriptor.UntypedStackable)
-              .Configure();
-
-            var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.CreepingCastAbility)
-              .SetDisplayName(DisplayName)
-              .SetDescription(Description)
-              //.SetIcon()
-              .SetType(AbilityType.SpellLike)
-              .SetRange(AbilityRange.Personal)
-              .SetActionType(CommandType.Swift)
-              .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
-              .AddAbilityCasterHasFacts(new() { Guids.CreepingBuff })
-              .AddAbilityEffectRunAction(
-                ActionsBuilder.New().ApplyBuff(castBuff, ContextDuration.Fixed(1, rate: DurationRate.Minutes)))
-              .Configure();
-
-            var enchantInfo =
-              new ArmorEnchantInfo(
-                DisplayName,
-                Description,
-                "",
-                EnhancementCost,
-                ranks: 2);
-
-            var ability = EnchantTool.CreateEnchantAbility(
-              enchantInfo,
-              new BlueprintInfo(BuffName, Guids.CreepingBuff, new CreepingComponent()),
-              new(AbilityName, Guids.CreepingAbility));
-
-            var featureInfo =
-              new BlueprintInfo(
-                CreepingName,
-                Guids.Creeping,
-                new AddAbilityResources()
-                {
-                    RestoreAmount = true,
-                    m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-                });
-            return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
-        }
-
-        [TypeId("4b2da1d4-6a78-4ab2-8896-c540dd968a89")]
-        private class CreepingComponent :
-          UnitBuffComponentDelegate, IInitiatorRulebookHandler<RuleCalculateArmorCheckPenalty>
-        {
-            public override void OnTurnOn()
-            {
-                try
-                {
-                    Owner.Body.Armor.MaybeArmor?.RecalculateStats();
-                }
-                catch (Exception e)
-                {
-                    Logger.LogException("CreepingComponent.OnTurnOn", e);
-                }
-            }
-
-            public override void OnTurnOff()
-            {
-                try
-                {
-                    Owner.Body.Armor.MaybeArmor?.RecalculateStats();
-                }
-                catch (Exception e)
-                {
-                    Logger.LogException("CreepingComponent.OnTurnOff", e);
-                }
-            }
-
-            public void OnEventAboutToTrigger(RuleCalculateArmorCheckPenalty evt) { }
-
-            public void OnEventDidTrigger(RuleCalculateArmorCheckPenalty evt)
-            {
-                try
-                {
-                    var armor = Owner.Body.Armor.MaybeArmor;
-                    if (armor is null)
-                        return;
-
-                    if (evt.Result >= 0)
-                        return;
-
-                    var bonus = -evt.Result;
-                    Logger.Verbose(() => $"Adding {bonus} to stealth check for {Owner.CharacterName}");
-                    armor.AddModifier(Owner.Stats.GetStat(StatType.SkillStealth), bonus);
-                }
-                catch (Exception e)
-                {
-                    Logger.LogException("CreepingComponent.OnEventDidTrigger", e);
-                }
-            }
-        }
+      var featureInfo =
+        new BlueprintInfo(
+          CreepingName,
+          Guids.Creeping,
+          new AddAbilityResources()
+          {
+            RestoreAmount = true,
+            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+          });
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
     }
+
+    [TypeId("4b2da1d4-6a78-4ab2-8896-c540dd968a89")]
+    private class CreepingComponent :
+      UnitBuffComponentDelegate, IInitiatorRulebookHandler<RuleCalculateArmorCheckPenalty>
+    {
+      public override void OnTurnOn()
+      {
+        try
+        {
+          Owner.Body.Armor.MaybeArmor?.RecalculateStats();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CreepingComponent.OnTurnOn", e);
+        }
+      }
+
+      public override void OnTurnOff()
+      {
+        try
+        {
+          Owner.Body.Armor.MaybeArmor?.RecalculateStats();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CreepingComponent.OnTurnOff", e);
+        }
+      }
+
+      public void OnEventAboutToTrigger(RuleCalculateArmorCheckPenalty evt) { }
+
+      public void OnEventDidTrigger(RuleCalculateArmorCheckPenalty evt)
+      {
+        try
+        {
+          var armor = Owner.Body.Armor.MaybeArmor;
+          if (armor is null)
+            return;
+
+          if (evt.Result >= 0)
+            return;
+
+          var bonus = -evt.Result;
+          Logger.Verbose(() => $"Adding {bonus} to stealth check for {Owner.CharacterName}");
+          armor.AddModifier(Owner.Stats.GetStat(StatType.SkillStealth), bonus);
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CreepingComponent.OnEventDidTrigger", e);
+        }
+      }
+    }
+  }
 }

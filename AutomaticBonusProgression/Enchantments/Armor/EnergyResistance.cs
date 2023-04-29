@@ -54,7 +54,7 @@ namespace AutomaticBonusProgression.Enchantments
     internal static void ConfigureBasic()
     {
       Logger.Log($"Configuring Energy Resistance 10");
-      
+
       var acidInfo = new ArmorEnchantInfo(Acid10DisplayName, Acid10Description, "", Resist10Cost);
       var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance10Feature, acidInfo);
 

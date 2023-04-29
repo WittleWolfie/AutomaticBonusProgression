@@ -14,72 +14,72 @@ using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
-    internal class Expeditious
+  internal class Expeditious
+  {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Expeditious));
+
+    private const string ExpeditiousName = "LegendaryArmor.Expeditious";
+    private const string BuffName = "LegendaryArmor.Expeditious.Buff";
+    private const string AbilityName = "LegendaryArmor.Expeditious.Ability";
+
+    private const string CastAbilityName = "LegendaryArmor.Expeditious.Cast";
+    private const string CastBuffName = "LegendaryArmor.Expeditious.Cast.Buff";
+    private const string CastResourceName = "LegendaryArmor.Expeditious.Cast.Resource";
+
+    private const string DisplayName = "LegendaryArmor.Expeditious.Name";
+    private const string Description = "LegendaryArmor.Expeditious.Description";
+    private const int EnhancementCost = 2;
+
+    internal static BlueprintFeature Configure()
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Expeditious));
+      Logger.Log($"Configuring Expeditious");
 
-        private const string ExpeditiousName = "LegendaryArmor.Expeditious";
-        private const string BuffName = "LegendaryArmor.Expeditious.Buff";
-        private const string AbilityName = "LegendaryArmor.Expeditious.Ability";
+      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.ExpeditiousCastResource)
+        .SetMaxAmount(ResourceAmountBuilder.New(3))
+        .Configure();
 
-        private const string CastAbilityName = "LegendaryArmor.Expeditious.Cast";
-        private const string CastBuffName = "LegendaryArmor.Expeditious.Cast.Buff";
-        private const string CastResourceName = "LegendaryArmor.Expeditious.Cast.Resource";
+      var castBuff = BuffConfigurator.New(CastBuffName, Guids.ExpeditiousCastBuff)
+        .SetDisplayName(DisplayName)
+        .SetDescription(Description)
+        //.SetIcon()
+        .AddBuffMovementSpeed(value: 10, descriptor: ModifierDescriptor.Enhancement)
+        .Configure();
 
-        private const string DisplayName = "LegendaryArmor.Expeditious.Name";
-        private const string Description = "LegendaryArmor.Expeditious.Description";
-        private const int EnhancementCost = 2;
+      var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.ExpeditiousCastAbility)
+        .SetDisplayName(DisplayName)
+        .SetDescription(Description)
+        //.SetIcon()
+        .SetType(AbilityType.SpellLike)
+        .SetRange(AbilityRange.Personal)
+        .SetActionType(CommandType.Swift)
+        .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
+        .AddAbilityCasterHasFacts(new() { Guids.ExpeditiousBuff })
+        .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuff(castBuff, ContextDuration.Fixed(1)))
+        .Configure();
 
-        internal static BlueprintFeature Configure()
-        {
-            Logger.Log($"Configuring Expeditious");
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 2);
 
-            var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.ExpeditiousCastResource)
-              .SetMaxAmount(ResourceAmountBuilder.New(3))
-              .Configure();
+      var ability = EnchantTool.CreateEnchantAbility(
+        enchantInfo,
+        new BlueprintInfo(BuffName, Guids.ExpeditiousBuff),
+        new(AbilityName, Guids.ExpeditiousAbility));
 
-            var castBuff = BuffConfigurator.New(CastBuffName, Guids.ExpeditiousCastBuff)
-              .SetDisplayName(DisplayName)
-              .SetDescription(Description)
-              //.SetIcon()
-              .AddBuffMovementSpeed(value: 10, descriptor: ModifierDescriptor.Enhancement)
-              .Configure();
-
-            var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.ExpeditiousCastAbility)
-              .SetDisplayName(DisplayName)
-              .SetDescription(Description)
-              //.SetIcon()
-              .SetType(AbilityType.SpellLike)
-              .SetRange(AbilityRange.Personal)
-              .SetActionType(CommandType.Swift)
-              .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
-              .AddAbilityCasterHasFacts(new() { Guids.ExpeditiousBuff })
-              .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuff(castBuff, ContextDuration.Fixed(1)))
-              .Configure();
-
-            var enchantInfo =
-              new ArmorEnchantInfo(
-                DisplayName,
-                Description,
-                "",
-                EnhancementCost,
-                ranks: 2);
-
-            var ability = EnchantTool.CreateEnchantAbility(
-              enchantInfo,
-              new BlueprintInfo(BuffName, Guids.ExpeditiousBuff),
-              new(AbilityName, Guids.ExpeditiousAbility));
-
-            var featureInfo =
-              new BlueprintInfo(
-                ExpeditiousName,
-                Guids.Expeditious,
-                new AddAbilityResources()
-                {
-                    RestoreAmount = true,
-                    m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-                });
-            return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
-        }
+      var featureInfo =
+        new BlueprintInfo(
+          ExpeditiousName,
+          Guids.Expeditious,
+          new AddAbilityResources()
+          {
+            RestoreAmount = true,
+            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+          });
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
     }
+  }
 }

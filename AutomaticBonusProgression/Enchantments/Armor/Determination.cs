@@ -13,68 +13,68 @@ using Kingmaker.Designers.Mechanics.Facts;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
-    internal class Determination
+  internal class Determination
+  {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Determination));
+
+    private const string DeterminationName = "LegendaryArmor.Determination";
+    private const string BuffName = "LegendaryArmor.Determination.Buff";
+    private const string AbilityName = "LegendaryArmor.Determination.Ability";
+
+    private const string CastResourceName = "LegendaryArmor.Determination.Cast.Resource";
+
+    private const string DisplayName = "LegendaryArmor.Determination.Name";
+    private const string Description = "LegendaryArmor.Determination.Description";
+    private const int EnhancementCost = 5;
+
+    // TODO: Add Shield variant!
+    internal static BlueprintFeature Configure()
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Determination));
+      Logger.Log($"Configuring Determination");
 
-        private const string DeterminationName = "LegendaryArmor.Determination";
-        private const string BuffName = "LegendaryArmor.Determination.Buff";
-        private const string AbilityName = "LegendaryArmor.Determination.Ability";
+      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.DeterminationResource)
+        .SetMaxAmount(ResourceAmountBuilder.New(1))
+        .Configure();
 
-        private const string CastResourceName = "LegendaryArmor.Determination.Cast.Resource";
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          Description,
+          "",
+          EnhancementCost,
+          ranks: 5);
 
-        private const string DisplayName = "LegendaryArmor.Determination.Name";
-        private const string Description = "LegendaryArmor.Determination.Description";
-        private const int EnhancementCost = 5;
+      var buff = BuffConfigurator.New(BuffName, Guids.DeterminationBuff)
+        .SetDisplayName(DisplayName)
+        .SetDescription(Description)
+        //.SetIcon()
+        .AddComponent(new EnhancementEquivalence(enchantInfo))
+        .AddIncomingDamageTrigger(
+          reduceBelowZero: true,
+          actions: ActionsBuilder.New()
+            .Conditional(
+              ConditionsBuilder.New()
+                .Add<HasResource>(a => a.Resource = castResource.ToReference<BlueprintAbilityResourceReference>()),
+              ifTrue: ActionsBuilder.New()
+                .CastSpell(AbilityRefs.BreathOfLifeTouch.ToString())
+                .ContextSpendResource(castResource)))
+        .Configure();
 
-        // TODO: Add Shield variant!
-        internal static BlueprintFeature Configure()
-        {
-            Logger.Log($"Configuring Determination");
+      var ability = EnchantTool.CreateEnchantAbility(
+        enchantInfo,
+        buff,
+        new(AbilityName, Guids.DeterminationAbility));
 
-            var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.DeterminationResource)
-              .SetMaxAmount(ResourceAmountBuilder.New(1))
-              .Configure();
-
-            var enchantInfo =
-              new ArmorEnchantInfo(
-                DisplayName,
-                Description,
-                "",
-                EnhancementCost,
-                ranks: 5);
-
-            var buff = BuffConfigurator.New(BuffName, Guids.DeterminationBuff)
-              .SetDisplayName(DisplayName)
-              .SetDescription(Description)
-              //.SetIcon()
-              .AddComponent(new EnhancementEquivalence(enchantInfo))
-              .AddIncomingDamageTrigger(
-                reduceBelowZero: true,
-                actions: ActionsBuilder.New()
-                  .Conditional(
-                    ConditionsBuilder.New()
-                      .Add<HasResource>(a => a.Resource = castResource.ToReference<BlueprintAbilityResourceReference>()),
-                    ifTrue: ActionsBuilder.New()
-                      .CastSpell(AbilityRefs.BreathOfLifeTouch.ToString())
-                      .ContextSpendResource(castResource)))
-              .Configure();
-
-            var ability = EnchantTool.CreateEnchantAbility(
-              enchantInfo,
-              buff,
-              new(AbilityName, Guids.DeterminationAbility));
-
-            var featureInfo =
-              new BlueprintInfo(
-                DeterminationName,
-                Guids.Determination,
-                new AddAbilityResources()
-                {
-                    RestoreAmount = true,
-                    m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-                });
-            return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
-        }
+      var featureInfo =
+        new BlueprintInfo(
+          DeterminationName,
+          Guids.Determination,
+          new AddAbilityResources()
+          {
+            RestoreAmount = true,
+            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+          });
+      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
     }
+  }
 }
