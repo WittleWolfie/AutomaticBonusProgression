@@ -54,7 +54,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(Description)
         //.SetIcon(icon)
         .AddComponent(new EnhancementEquivalence(enchantInfo))
-        .AddComponent(new ArmorAttunement(enchantInfo.AllowedTypes))
+        //.AddComponent(new ArmorAttunement(enchantInfo.AllowedTypes))
         .AddInitiatorAttackWithWeaponTrigger(
           onlyHit: true,
           action: ActionsBuilder.New().ApplyBuff(targetBuff, ContextDuration.Fixed(1)))

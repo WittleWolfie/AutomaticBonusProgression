@@ -24,7 +24,7 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintReference<BlueprintFeature>> feature, EnchantInfo enchant)
     {
       return FeatureConfigurator.For(feature)
-        .AddComponent(new EnhancementEquivalence(enchant))
+        .AddComponent(enchant.GetEnhancementComponent())
         .Configure();
     }
 
@@ -32,7 +32,7 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintReference<BlueprintArmorEnchantment>> enchantment, EnchantInfo enchant)
     {
       return ArmorEnchantmentConfigurator.For(enchantment)
-        .AddComponent(new EnhancementEquivalence(enchant))
+        .AddComponent(enchant.GetEnhancementComponent())
         .Configure();
     }
 
@@ -40,8 +40,54 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintReference<BlueprintWeaponEnchantment>> enchantment, EnchantInfo enchant)
     {
       return WeaponEnchantmentConfigurator.For(enchantment)
-        .AddComponent(new EnhancementEquivalence(enchant))
+        .AddComponent(enchant.GetEnhancementComponent())
         .Configure();
+    }
+
+    /// <summary>
+    /// Creates two buffs: the parent and the effect buff.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// <para>
+    /// The <paramref name="parentBuff"/> is responsible for applying <paramref name="effectBuff"/> as long as the
+    /// requirements defined in <paramref name="enchant"/> are met. All functional components belong in <paramref name="effectBuff"/>.
+    /// </para>
+    /// 
+    /// <para>
+    /// The <paramref name="variantBuff"/> creates a second parent buff for shield / off-hand variants.
+    /// </para>
+    /// </remarks>
+    internal static void CreateEnchant(
+      EnchantInfo enchant, BlueprintInfo effectBuff, BlueprintInfo parentBuff, BlueprintInfo variantBuff = null)
+    {
+      var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description);
+        //.SetIcon(enchant.Icon);
+      foreach (var component in effectBuff.Components)
+        effect.AddComponent(component);
+      effect.Configure();
+
+      // Parent buff is not visual, basically just a watcher
+      var parent = BuffConfigurator.New(parentBuff.Name, parentBuff.Guid)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .AddComponent(enchant.GetEnhancementComponent())
+        .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid));
+      foreach (var component in parentBuff.Components)
+        parent.AddComponent(component);
+      parent.Configure();
+
+      if (variantBuff is null)
+        return;
+
+      var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .AddComponent(enchant.GetEnhancementComponent())
+        .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid, variant: true));
+      foreach (var component in variantBuff.Components)
+        variant.AddComponent(component);
+      variant.Configure();
     }
 
     /// <summary>
@@ -56,8 +102,8 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(enchant.Icon)
         .AddComponent(new EnhancementEquivalence(enchant));
 
-      if (enchant.AllowedTypes.Any())
-        buffConfigurator.AddComponent(new RequireArmor(enchant.AllowedTypes));
+      //if (enchant.AllowedTypes.Any())
+      //  buffConfigurator.AddComponent(new RequireArmor(enchant.AllowedTypes));
 
       foreach (var component in buff.Components)
         buffConfigurator.AddComponent(component);
@@ -86,8 +132,8 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(enchant.Icon)
         .AddComponent(new EnhancementEquivalence(enchant));
 
-      if (enchant.AllowedTypes.Any())
-        buffConfigurator.AddComponent(new RequireArmor(enchant.AllowedTypes));
+      //if (enchant.AllowedTypes.Any())
+      //  buffConfigurator.AddComponent(new RequireArmor(enchant.AllowedTypes));
 
       foreach (var component in buff.Components)
         buffConfigurator.AddComponent(component);

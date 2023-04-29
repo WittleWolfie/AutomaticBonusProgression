@@ -12,7 +12,7 @@ namespace AutomaticBonusProgression.Components
   [TypeId("4b835824-d53d-470b-8e7b-a8acb450005a")]
   internal class ArmorAttunement : AttunementEffect
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UnitBuffComponentDelegate));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ArmorAttunement));
 
     internal readonly ArmorProficiencyGroup[] AllowedTypes;
 

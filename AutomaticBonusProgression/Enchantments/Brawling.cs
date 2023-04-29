@@ -36,7 +36,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(Description)
         //.SetIcon()
         .AddComponent(new EnhancementEquivalence(enchantInfo))
-        .AddComponent(new RequireArmor(enchantInfo.AllowedTypes))
+        //.AddComponent(new RequireArmor(enchantInfo.AllowedTypes))
         .AddWeaponTypeDamageBonus(weaponType: WeaponTypeRefs.Unarmed.ToString(), damageBonus: 2)
         .AddWeaponCategoryAttackBonus(category: WeaponCategory.UnarmedStrike, attackBonus: 2)
         .Configure();

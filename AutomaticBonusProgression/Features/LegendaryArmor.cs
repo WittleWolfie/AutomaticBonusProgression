@@ -33,101 +33,12 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log("Configuring Legendary Armor");
 
+      EnergyResistance.Configure();
+
       var ability = AbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorAbilityDescription)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>())
-        .Configure();
-      //var ability = ActivatableAbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
-      //  .SetDisplayName(LegendaryArmorDisplayName)
-      //  .SetDescription(LegendaryArmorAbilityDescription)
-      //  //.SetIcon()
-      //  .SetDeactivateImmediately()
-      //  .SetActivationType(AbilityActivationType.Immediately)
-      //  .SetActivateWithUnitCommand(CommandType.Free)
-      //  .AddActivatableAbilityVariants(
-      //    variants: 
-      //      new()
-      //      {
-      //        Guids.BalancedArmorAbility,
-
-      //        Guids.BolsteringAbility,
-
-      //        Guids.BrawlingAbility,
-
-      //        Guids.ChampionAbility,
-
-      //        Guids.CreepingAbility,
-
-      //        Guids.DastardAbility,
-
-      //        Guids.DeathlessAbility,
-
-      //        Guids.DeterminationAbility,
-
-      //        Guids.ExpeditiousAbility,
-
-      //        Guids.FortificationAbility,
-      //        Guids.ImprovedFortificationAbility,
-      //        Guids.GreaterFortificationAbility,
-
-      //        Guids.GhostArmorAbility,
-
-      //        Guids.InvulnerabilityAbility,
-
-      //        Guids.MartyringAbility,
-
-      //        Guids.RallyingAbility,
-
-      //        Guids.RighteousAbility,
-
-      //        Guids.ShadowArmorAbility,
-      //        Guids.ImprovedShadowArmorAbility,
-      //        Guids.GreaterShadowArmorAbility,
-
-      //        Guids.SpellResistance13Ability,
-      //        Guids.SpellResistance16Ability,
-      //        Guids.SpellResistance19Ability,
-      //        Guids.SpellResistance22Ability,
-      //      })
-      //  .AddActivationDisable()
-      //  .Configure();
-
-      var shieldAbility = ActivatableAbilityConfigurator.New(LegendaryShieldAbility, Guids.LegendaryShieldAbility)
-        .SetDisplayName(LegendaryShieldDisplayName)
-        .SetDescription(LegendaryShieldDescription)
-        //.SetIcon()
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddActivatableAbilityVariants(
-          variants: 
-            new()
-            {
-              Guids.BashingAbility,
-
-              Guids.BlindingAbility,
-
-              Guids.BolsteringShieldAbility,
-
-              Guids.FortificationShieldAbility,
-              Guids.ImprovedFortificationShieldAbility,
-              Guids.GreaterFortificationShieldAbility,
-
-              Guids.GhostArmorShieldAbility,
-
-              Guids.RallyingShieldAbility,
-
-              Guids.ReflectingAbility,
-
-              Guids.SpellResistance13ShieldAbility,
-              Guids.SpellResistance16ShieldAbility,
-              Guids.SpellResistance19ShieldAbility,
-              Guids.SpellResistance22ShieldAbility,
-
-              Guids.WyrmsbreathAbility,
-            })
-        .AddActivationDisable()
         .Configure();
 
       return FeatureConfigurator.New(LegendaryArmorName, Guids.LegendaryArmor)

@@ -13,6 +13,9 @@ namespace AutomaticBonusProgression.Util
     internal readonly string Guid;
     internal readonly BlueprintComponent[] Components;
 
+    internal readonly string VariantName;
+    internal readonly string VariantGuid;
+
     internal BlueprintInfo(string name, string guid, params BlueprintComponent[] components)
     {
       Name = name;
@@ -48,6 +51,19 @@ namespace AutomaticBonusProgression.Util
       Ranks = ranks;
       Prerequisite = prerequisite;
     }
+
+    /// <summary>
+    /// Creates the <see cref="AttunementEffect"/> component to apply the enchant effect when available.
+    /// </summary>
+    /// <param name="effectBuff">Actual enchant effect bufff</param>
+    /// <param name="variant">If true, the appropriate variant component is created. e.g. Shield variant for armor enchantments</param>
+    internal abstract AttunementEffect GetAttunementComponent(
+      Blueprint<BlueprintBuffReference> effectBuff, bool variant = false);
+
+    internal BlueprintComponent GetEnhancementComponent()
+    {
+      return new EnhancementEquivalence(this);
+    }
   }
 
   internal class ArmorEnchantInfo : EnchantInfo
@@ -76,6 +92,14 @@ namespace AutomaticBonusProgression.Util
         params ArmorProficiencyGroup[] allowedTypes) :
       this(displayName, description, icon, cost, ranks, prerequisite: null, allowedTypes)
     { }
+
+    internal override AttunementEffect GetAttunementComponent(
+      Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
+    {
+      if (variant)
+        return new ShieldAttunement(effectBuff.Reference, AllowedTypes);
+      return new ArmorAttunement(effectBuff.Reference, AllowedTypes);
+    }
   }
 
   internal class WeaponEnchantInfo : EnchantInfo
@@ -98,6 +122,11 @@ namespace AutomaticBonusProgression.Util
         int ranks) :
       this(displayName, description, icon, cost, ranks, prerequisite: null)
     { }
+
+    internal override AttunementEffect GetAttunementComponent(Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
+    {
+      throw new System.NotImplementedException();
+    }
   }
 
   internal class PrerequisiteInfo

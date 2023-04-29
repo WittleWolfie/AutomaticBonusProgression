@@ -270,7 +270,7 @@
     internal const string EnergyResistShieldParent = "8721d4dc-30f8-4ec9-847b-23854bae0d22";
 
     internal const string EnergyResist = "9fdc3494-2df3-4584-b732-646b4655ab0b";
-    internal const string AcidResist10Ability = "459f021a-ff77-410f-8e24-32d541505961";
+    internal const string AcidResist10EffectBuff = "459f021a-ff77-410f-8e24-32d541505961";
     internal const string AcidResist10Buff = "737b2b79-63d6-4677-ab4b-57e1c6d4c0a6";
     internal const string AcidResist10ShieldAbility = "d7e0c101-69b8-4915-b4ec-e949bd8088e0";
     internal const string AcidResist10ShieldBuff = "060761d3-7975-44b0-a8ac-9da29df413c0";

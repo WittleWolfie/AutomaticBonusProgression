@@ -12,9 +12,12 @@ using System;
 namespace AutomaticBonusProgression.Components
 {
   /// <summary>
-  /// Base class for applying enchantment effects. Implementing classes indicate whether the effect buff should be applied,
-  /// this handles actually applying and removing it.
+  /// Base class for applying enchantment effects.
   /// </summary>
+  /// 
+  /// <remarks>
+  /// Implementing classes indicate whether the effect buff should be applied, this handles actually applying and removing it.
+  /// </remarks>
   [TypeId("9f0122b2-7afe-4289-9104-164a6b6e3671")]
   internal abstract class AttunementEffect : UnitBuffComponentDelegate<AttunementEffect.ComponentData>, IUnitEquipmentHandler
   {

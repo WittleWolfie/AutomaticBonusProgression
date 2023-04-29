@@ -24,7 +24,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string EnergyResistanceShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Name";
 
     private const string AcidBuffName = "LegendaryArmor.EnergyResistance.Buff.Acid";
-    private const string AcidAbilityName = "LegendaryArmor.EnergyResistance.Ability.Acid";
+    private const string AcidResistEffectBuffName = "LegendaryArmor.EnergyResistance.Ability.Acid";
     private const string AcidShieldBuffName = "LegendaryArmor.EnergyResistance.Shield.Buff.Acid";
     private const string AcidShieldAbilityName = "LegendaryArmor.EnergyResistance.Shield.Ability.Acid";
     private const string AcidDisplayName = "LegendaryArmor.EnergyResistance.Acid.Name";
@@ -63,73 +63,10 @@ namespace AutomaticBonusProgression.Enchantments
     private const string Description = "LegendaryArmor.EnergyResistance.Description";
     private const int EnhancementCost = 2;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Energy Resistance 10");
-
-      var parent = ActivatableAbilityConfigurator.New(EnergyResistanceAbility, Guids.EnergyResistParent)
-        .SetDisplayName(EnergyResistanceAbilityName)
-        .SetDescription(LegendaryArmor.LegendaryArmorAbilityDescription)
-        //.SetIcon()
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddActivatableAbilityVariants(
-          variants:
-            new()
-            {
-              Guids.AcidResist10Ability,
-              Guids.ColdResist10Ability,
-              Guids.ElectricityResist10Ability,
-              Guids.FireResist10Ability,
-              Guids.SonicResist10Ability,
-
-              Guids.AcidResist20Ability,
-              Guids.ColdResist20Ability,
-              Guids.ElectricityResist20Ability,
-              Guids.FireResist20Ability,
-              Guids.SonicResist20Ability,
-
-              Guids.AcidResist30Ability,
-              Guids.ColdResist30Ability,
-              Guids.ElectricityResist30Ability,
-              Guids.FireResist30Ability,
-              Guids.SonicResist30Ability,
-            })
-        .AddActivationDisable()
-        .Configure();
-      var shieldParent = ActivatableAbilityConfigurator.New(EnergyResistanceShieldAbility, Guids.EnergyResistShieldParent)
-        .SetDisplayName(EnergyResistanceShieldAbilityName)
-        .SetDescription(LegendaryArmor.LegendaryShieldDescription)
-        //.SetIcon()
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddActivatableAbilityVariants(
-          variants:
-            new()
-            {
-              Guids.AcidResist10ShieldAbility,
-              Guids.ColdResist10ShieldAbility,
-              Guids.ElectricityResist10ShieldAbility,
-              Guids.FireResist10ShieldAbility,
-              Guids.SonicResist10ShieldAbility,
-
-              Guids.AcidResist20ShieldAbility,
-              Guids.ColdResist20ShieldAbility,
-              Guids.ElectricityResist20ShieldAbility,
-              Guids.FireResist20ShieldAbility,
-              Guids.SonicResist20ShieldAbility,
-
-              Guids.AcidResist30ShieldAbility,
-              Guids.ColdResist30ShieldAbility,
-              Guids.ElectricityResist30ShieldAbility,
-              Guids.FireResist30ShieldAbility,
-              Guids.SonicResist30ShieldAbility,
-            })
-        .AddActivationDisable()
-        .Configure();
-
+      
       var acidInfo =
         new ArmorEnchantInfo(
           AcidDisplayName,
@@ -140,16 +77,25 @@ namespace AutomaticBonusProgression.Enchantments
       var resistAcidFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance10Feature, acidInfo);
 
-      var resistAcid = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         acidInfo,
-        new BlueprintInfo(AcidBuffName, Guids.AcidResist10Buff, resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
-        new(AcidAbilityName, Guids.AcidResist10Ability));
-      var resistAcidShield =
-        EnchantTool.CreateEnchantShieldVariant(
-          acidInfo, 
-          resistAcid,
-          new(AcidShieldBuffName, Guids.AcidResist10ShieldBuff),
-          new(AcidShieldAbilityName, Guids.AcidResist10ShieldAbility));
+        effectBuff: new(
+          AcidResistEffectBuffName,
+          Guids.AcidResist10EffectBuff,
+          resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
+        parentBuff: new(AcidBuffName, Guids.AcidResist10Buff),
+        variantBuff: new(AcidShieldBuffName, Guids.AcidResist10ShieldBuff));
+
+      //var resistAcid = EnchantTool.CreateEnchantAbility(
+      //  acidInfo,
+      //  new BlueprintInfo(AcidBuffName, Guids.AcidResist10Buff, resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
+      //  new(AcidResistEffectBuffName, Guids.AcidResist10EffectBuff));
+      //var resistAcidShield =
+      //  EnchantTool.CreateEnchantShieldVariant(
+      //    acidInfo, 
+      //    resistAcid,
+      //    new(AcidShieldBuffName, Guids.AcidResist10ShieldBuff),
+      //    new(AcidShieldAbilityName, Guids.AcidResist10ShieldAbility));
 
       var coldInfo =
         new ArmorEnchantInfo(
@@ -234,45 +180,6 @@ namespace AutomaticBonusProgression.Enchantments
           resistSonic,
           new(SonicShieldBuffName, Guids.SonicResist10ShieldBuff),
           new(SonicShieldAbilityName, Guids.SonicResist10ShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 4),
-        new(
-          EnergyResistanceName,
-          Guids.EnergyResist),
-          //new AttunementBuffsComponent(
-          //  // 10 Armor
-          //  (Guids.AcidResist10Buff, 2),
-          //  (Guids.ColdResist10Buff, 2),
-          //  (Guids.ElectricityResist10Buff, 2),
-          //  (Guids.FireResist10Buff, 2),
-          //  (Guids.SonicResist10Buff, 2),
-
-          //  // 20 Armor
-          //  (Guids.AcidResist20Buff, 3),
-          //  (Guids.ColdResist20Buff, 3),
-          //  (Guids.ElectricityResist20Buff, 3),
-          //  (Guids.FireResist20Buff, 3),
-          //  (Guids.SonicResist20Buff, 3),
-
-          //  // 30 Armor
-          //  (Guids.AcidResist30Buff, 4),
-          //  (Guids.ColdResist30Buff, 4),
-          //  (Guids.ElectricityResist30Buff, 4),
-          //  (Guids.FireResist30Buff, 4),
-          //  (Guids.SonicResist30Buff, 4))),
-        parent,
-        shieldParent,
-        resistAcid,
-        resistAcidShield,
-        resistCold,
-        resistColdShield,
-        resistElectricity,
-        resistElectricityShield,
-        resistFire,
-        resistFireShield,
-        resistSonic,
-        resistSonicShield);
     }
 
     #region Too Many Constants
