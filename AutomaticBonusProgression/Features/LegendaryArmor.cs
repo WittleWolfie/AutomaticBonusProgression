@@ -33,8 +33,6 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log("Configuring Legendary Armor");
 
-      EnergyResistance.Configure();
-
       var ability = AbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorAbilityDescription)
@@ -50,6 +48,13 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(
+            Guids.BalancedBuff,
+            Guids.BolsteringBuff,
+            Guids.BrawlingBuff,
+            Guids.ChampionBuff,
+            Guids.CreepingBuff,
+            Guids.DastardBuff,
+            Guids.DeathlessBuff,
       #region Energy Resistance
             // 10 Armor
             Guids.AcidResist10Buff,
