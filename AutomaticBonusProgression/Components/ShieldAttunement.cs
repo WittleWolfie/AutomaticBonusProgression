@@ -9,16 +9,12 @@ using System.Linq;
 namespace AutomaticBonusProgression.Components
 {
   [TypeId("d7779c1b-f19c-4453-a34b-7340d832878b")]
-  internal class ShieldAttunement : AttunementEffect
+  internal class ShieldAttunement : ArmorAttunement
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ShieldAttunement));
 
-    internal readonly ArmorProficiencyGroup[] AllowedTypes;
-
-    internal ShieldAttunement(BlueprintBuffReference effectBuff, params ArmorProficiencyGroup[] allowedTypes) : base(effectBuff)
-    {
-      AllowedTypes = allowedTypes;
-    }
+    internal ShieldAttunement(BlueprintBuffReference effectBuff, params ArmorProficiencyGroup[] allowedTypes)
+      : base(effectBuff, allowedTypes) { }
 
     protected override bool AffectsSlot(ItemSlot slot)
     {

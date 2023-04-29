@@ -8,12 +8,13 @@ using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Utility;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
@@ -23,26 +24,24 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Blinding));
 
-    private const string BlindingName = "LegendaryArmor.Blinding";
-    private const string BuffName = "LegendaryArmor.Blinding.Buff";
-    private const string AbilityName = "LegendaryArmor.Blinding.Ability";
+    private const string EffectName = "LA.Blinding.Effect";
+    private const string BuffName = "LA.Blinding.Buff";
+    private const string AbilityName = "LA.Blinding.Ability";
+    private const string ResourceName = "LA.Blinding.Resource";
 
-    private const string CastAbilityName = "LegendaryArmor.Blinding.Cast";
-    private const string CastResourceName = "LegendaryArmor.Blinding.Cast.Resource";
-
-    private const string DisplayName = "LegendaryArmor.Blinding.Name";
-    private const string Description = "LegendaryArmor.Blinding.Description";
+    private const string DisplayName = "LA.Blinding.Name";
+    private const string Description = "LA.Blinding.Description";
     private const int EnhancementCost = 1;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
-      Logger.Log($"Configuring Blinding");
+      Logger.Log($"Configuring BlindingEffect");
 
-      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.BlindingCastResource)
+      var castResource = AbilityResourceConfigurator.New(ResourceName, Guids.BlindingResource)
         .SetMaxAmount(ResourceAmountBuilder.New(2))
         .Configure();
 
-      var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.BlindingCastAbility)
+      var castAbility = AbilityConfigurator.New(AbilityName, Guids.BlindingAbility)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
@@ -67,27 +66,26 @@ namespace AutomaticBonusProgression.Enchantments.Armor
                         .ApplyBuff(BuffRefs.Blind.ToString(), ContextDuration.FixedDice(DiceType.D4))))))
         .Configure();
 
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      var enchantInfo = new ArmorEnchantInfo(
+        DisplayName,
+        Description,
+        "",
+        EnhancementCost,
+        ArmorProficiencyGroup.LightShield,
+        ArmorProficiencyGroup.HeavyShield,
+        ArmorProficiencyGroup.TowerShield);
 
-      var ability = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo, new(BuffName, Guids.BlindingBuff), new(AbilityName, Guids.BlindingAbility));
-
-      var featureInfo =
-        new BlueprintInfo(
-          BlindingName,
-          Guids.Blinding,
-          new AddAbilityResources()
-          {
-            RestoreAmount = true,
-            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-          });
-      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
+      var addFacts = new AddFacts() { m_Facts = new[] { castAbility.ToReference<BlueprintUnitFactReference>() } };
+      var addResources =
+        new AddAbilityResources()
+        {
+          RestoreAmount = true,
+          m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+        };
+      EnchantTool.CreateVariantEnchant(
+        enchantInfo,
+        effectBuff: new(EffectName, Guids.BlindingEffect),
+        variantBuff: new(BuffName, Guids.BlindingBuff, addFacts, addResources));
     }
   }
 }

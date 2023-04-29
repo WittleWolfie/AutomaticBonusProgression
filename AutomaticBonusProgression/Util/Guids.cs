@@ -114,11 +114,10 @@
     internal const string BashingEffect = "01a0061e-5fe1-40a1-b870-84dbfacf04de";
     internal const string BashingBuff = "d3db2785-81b5-4a9f-aa1e-e91dc8b1bd95";
 
-    internal const string Blinding = "72a010f1-2f82-4361-b591-d57bf448cecf";
-    internal const string BlindingAbility = "b4b6ff8b-41b9-4c92-a13e-d510f0c0e400";
+    internal const string BlindingEffect = "72a010f1-2f82-4361-b591-d57bf448cecf";
     internal const string BlindingBuff = "7b6a19ad-2a0e-4845-8ff7-33a656a97825";
-    internal const string BlindingCastAbility = "d7305e2a-3b76-480e-96e7-4db4515407cd";
-    internal const string BlindingCastResource = "6b9e185f-9e53-4344-9df1-46df15ff8c74";
+    internal const string BlindingAbility = "d7305e2a-3b76-480e-96e7-4db4515407cd";
+    internal const string BlindingResource = "6b9e185f-9e53-4344-9df1-46df15ff8c74";
 
     internal const string Bolstering = "32731c48-a494-48eb-a11e-d4725a808849";
     internal const string BolsteringTargetBuff = "d2022e07-3594-4563-b50b-bce30378c4f0";

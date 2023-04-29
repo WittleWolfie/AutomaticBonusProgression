@@ -2,9 +2,9 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Blueprints.Root;
 using Kingmaker.Items.Slots;
 using Kingmaker.UnitLogic;
-using Kingmaker.UnitLogic.Buffs.Components;
 using System.Linq;
 
 namespace AutomaticBonusProgression.Components
@@ -31,6 +31,11 @@ namespace AutomaticBonusProgression.Components
       var armor = unit.Body.Armor;
       var armorType = armor.HasArmor ? armor.Armor.ArmorType() : ArmorProficiencyGroup.Light;
       return AllowedTypes.Contains(armorType);
+    }
+
+    public override string GetRequirements()
+    {
+      return string.Join(", ", AllowedTypes.Select(LocalizedTexts.Instance.Stats.GetText));
     }
   }
 }
