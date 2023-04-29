@@ -26,6 +26,8 @@ namespace AutomaticBonusProgression.Enchantments
         // Armor
         Balanced.Configure();
         Bashing.Configure();
+        Blinding.Configure();
+        Bolstering.Configure();
         EnergyResistance.Configure();
       }
       catch (Exception e)

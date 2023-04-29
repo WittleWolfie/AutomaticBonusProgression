@@ -119,11 +119,9 @@
     internal const string BlindingAbility = "d7305e2a-3b76-480e-96e7-4db4515407cd";
     internal const string BlindingResource = "6b9e185f-9e53-4344-9df1-46df15ff8c74";
 
-    internal const string Bolstering = "32731c48-a494-48eb-a11e-d4725a808849";
+    internal const string BolsteringEffect = "32731c48-a494-48eb-a11e-d4725a808849";
     internal const string BolsteringTargetBuff = "d2022e07-3594-4563-b50b-bce30378c4f0";
-    internal const string BolsteringAbility = "c32606ce-2792-48ae-9e20-026ae1ae4bf5";
     internal const string BolsteringBuff = "7e724a6b-54a2-4c93-bece-9bd18b3961dc";
-    internal const string BolsteringShieldAbility = "345d4a07-ad19-4d38-98c6-14f959613342";
     internal const string BolsteringShieldBuff = "649dbf11-9213-409c-bf27-d833778621ba";
 
     internal const string Brawling = "10fc122a-2307-4f34-993b-63ae6b6bdc47";

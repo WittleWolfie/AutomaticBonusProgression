@@ -35,6 +35,38 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(enchant.GetEnhancementComponent())
         .Configure();
     }
+    /// <summary>
+    /// Creates an enchantment's parent buff, plus an optional variant. See also <see cref="CreateEnchant(EnchantInfo, BlueprintInfo, BlueprintInfo, BlueprintInfo)"/>
+    /// </summary>
+    internal static void CreateEnchant(
+      EnchantInfo enchant,
+      string effectGuid,
+      BlueprintInfo parentBuff,
+      BlueprintInfo variantBuff = null)
+    {
+      // Although the parent buff shouldn't show up, it needs a name / description / icon for the attunement UI.
+      var parent = BuffConfigurator.New(parentBuff.Name, parentBuff.Guid)
+        .SetDisplayName(enchant.DisplayName)
+        .SetDescription(enchant.Description)
+        //.SetIcon(enchant.Icon)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .AddComponent(enchant.GetEnhancementComponent())
+        .AddComponent(enchant.GetAttunementComponent(effectGuid));
+      foreach (var component in parentBuff.Components)
+        parent.AddComponent(component);
+      parent.Configure();
+
+      if (variantBuff is null)
+        return;
+
+      var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
+        .CopyFrom(parentBuff.Guid)
+        .AddComponent(enchant.GetEnhancementComponent())
+        .AddComponent(enchant.GetAttunementComponent(effectGuid, variant: true));
+      foreach (var component in variantBuff.Components)
+        variant.AddComponent(component);
+      variant.Configure();
+    }
 
     /// <summary>
     /// Creates an enchantment's parent and effect buff, plus an optional variant.
