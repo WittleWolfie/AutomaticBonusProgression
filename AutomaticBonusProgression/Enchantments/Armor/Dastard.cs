@@ -4,10 +4,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Enums;
-using Kingmaker.UnitLogic.Alignments;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
@@ -15,17 +12,14 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Dastard));
 
-    private const string DastardName = "LegendaryArmor.Dastard";
-    private const string BuffName = "LegendaryArmor.Dastard.Buff";
-    private const string AbilityName = "LegendaryArmor.Dastard.Ability";
+    private const string EffectName = "LA.Dastard.Effect";
+    private const string BuffName = "LA.Dastard.Buff";
 
-    private const string TargetBuffName = "LegendaryArmor.Dastard.Target.Buff";
-
-    private const string DisplayName = "LegendaryArmor.Dastard.Name";
-    private const string Description = "LegendaryArmor.Dastard.Description";
+    private const string DisplayName = "LA.Dastard.Name";
+    private const string Description = "LA.Dastard.Description";
     private const int EnhancementCost = 1;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Dastard");
 
@@ -35,19 +29,12 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var smiteGoodMod = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.SmiteGoodBuff);
       var challenge = BuffRefs.CavalierChallengeBuffTarget.Cast<BlueprintBuffReference>().Reference;
 
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var buff = BuffConfigurator.New(BuffName, Guids.DastardBuff)
+      var effectBuff = BuffConfigurator.New(EffectName, Guids.DastardEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
-        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddComponent(BonusAgainstTarget.AC(smiteGood, 2, ModifierDescriptor.Profane))
         .AddComponent(BonusAgainstTarget.AC(smiteGoodAlt, 2, ModifierDescriptor.Profane))
         .AddComponent(BonusAgainstTarget.AC(sinfulAbsolution, 2, ModifierDescriptor.Profane))
@@ -55,15 +42,10 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .AddComponent(BonusAgainstTarget.AC(challenge, 2, ModifierDescriptor.Profane))
         .Configure();
 
-      var abilityInfo =
-        new BlueprintInfo(
-          AbilityName, Guids.DastardAbility, new AlignmentActivatableRestriction(AlignmentComponent.Evil));
-      var featureInfo =
-        new BlueprintInfo(
-          DastardName, Guids.Dastard, new PrerequisiteAlignment() { Alignment = AlignmentMaskType.Evil });
-
-      var ability = EnchantTool.CreateEnchantAbility(enchantInfo, buff, abilityInfo);
-      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
+      EnchantTool.CreateEnchantWithEffect(
+        enchantInfo,
+        effectBuff,
+        parentBuff: new(BuffName, Guids.DastardBuff));
     }
   }
 }

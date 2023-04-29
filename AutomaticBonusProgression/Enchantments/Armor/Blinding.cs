@@ -50,7 +50,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetActionType(CommandType.Swift)
         .AddAbilityTargetsAround(targetType: TargetType.Any, radius: 20.Feet())
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
-        .AddAbilityCasterHasFacts(new() { Guids.BlindingBuff })
+        .AddAbilityCasterHasFacts(new() { Guids.BlindingEffect })
         .AddContextRankConfig(ContextRankConfigs.MythicLevel().WithBonusValueProgression(14))
         .AddAbilityEffectRunAction(
           ActionsBuilder.New()

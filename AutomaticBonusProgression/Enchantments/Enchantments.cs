@@ -30,6 +30,8 @@ namespace AutomaticBonusProgression.Enchantments
         Bolstering.Configure();
         Brawling.Configure();
         Champion.Configure();
+        Creeping.Configure();
+        Dastard.Configure();
         EnergyResistance.Configure();
       }
       catch (Exception e)

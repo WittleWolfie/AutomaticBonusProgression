@@ -6,7 +6,6 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
@@ -15,6 +14,7 @@ using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
+using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using System;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
@@ -25,23 +25,22 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Creeping));
 
-    private const string CreepingName = "LegendaryArmor.Creeping";
-    private const string BuffName = "LegendaryArmor.Creeping.Buff";
-    private const string AbilityName = "LegendaryArmor.Creeping.Ability";
+    private const string EffectName = "LA.Creeping.Effect";
+    private const string BuffName = "LA.Creeping.Buff";
 
-    private const string CastAbilityName = "LegendaryArmor.Creeping.Cast";
-    private const string CastBuffName = "LegendaryArmor.Creeping.Cast.Buff";
-    private const string CastResourceName = "LegendaryArmor.Creeping.Cast.Resource";
+    private const string AbilityName = "LA.Creeping.Cast";
+    private const string CastBuffName = "LA.Creeping.Cast.Buff";
+    private const string ResourceName = "LA.Creeping.Cast.Resource";
 
-    private const string DisplayName = "LegendaryArmor.Creeping.Name";
-    private const string Description = "LegendaryArmor.Creeping.Description";
+    private const string DisplayName = "LA.Creeping.Name";
+    private const string Description = "LA.Creeping.Description";
     private const int EnhancementCost = 2;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Creeping");
 
-      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.CreepingCastResource)
+      var castResource = AbilityResourceConfigurator.New(ResourceName, Guids.CreepingResource)
         .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
@@ -54,7 +53,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
           stat: StatType.SkillStealth, value: ContextValues.Rank(), descriptor: ModifierDescriptor.UntypedStackable)
         .Configure();
 
-      var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.CreepingCastAbility)
+      var castAbility = AbilityConfigurator.New(AbilityName, Guids.CreepingAbility)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
@@ -62,34 +61,24 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetRange(AbilityRange.Personal)
         .SetActionType(CommandType.Swift)
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
-        .AddAbilityCasterHasFacts(new() { Guids.CreepingBuff })
+        .AddAbilityCasterHasFacts(new() { Guids.CreepingEffect })
         .AddAbilityEffectRunAction(
           ActionsBuilder.New().ApplyBuff(castBuff, ContextDuration.Fixed(1, rate: DurationRate.Minutes)))
         .Configure();
 
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 2);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var ability = EnchantTool.CreateEnchantAbility(
+      var addFacts = new AddFacts() { m_Facts = new[] { castAbility.ToReference<BlueprintUnitFactReference>() } };
+      var addResources =
+        new AddAbilityResources()
+        {
+          RestoreAmount = true,
+          m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+        };
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(BuffName, Guids.CreepingBuff, new CreepingComponent()),
-        new(AbilityName, Guids.CreepingAbility));
-
-      var featureInfo =
-        new BlueprintInfo(
-          CreepingName,
-          Guids.Creeping,
-          new AddAbilityResources()
-          {
-            RestoreAmount = true,
-            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-          });
-      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
+        effectBuff: new(EffectName, Guids.CreepingEffect),
+        parentBuff: new(BuffName, Guids.CreepingBuff, addFacts, addResources));
     }
 
     [TypeId("4b2da1d4-6a78-4ab2-8896-c540dd968a89")]
