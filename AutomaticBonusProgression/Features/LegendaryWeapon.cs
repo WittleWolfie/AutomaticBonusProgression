@@ -1,4 +1,4 @@
-﻿using AutomaticBonusProgression.Enchantments;
+﻿using AutomaticBonusProgression.Enchantments.Weapon;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
@@ -8,7 +8,7 @@ using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Features
 {
-  internal class LegendaryWeapon
+    internal class LegendaryWeapon
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryWeapon));
 

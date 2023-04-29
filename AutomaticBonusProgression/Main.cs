@@ -62,7 +62,7 @@ namespace AutomaticBonusProgression
             "AutomaticBonusProgression.Strings.LocalizedStrings.json",
             "AutomaticBonusProgression.Strings.UI.json");
 
-          BaseEnchantments.Configure();
+          Enchantments.Enchantments.Configure();
 
           AttunementProgression.Configure();
         }

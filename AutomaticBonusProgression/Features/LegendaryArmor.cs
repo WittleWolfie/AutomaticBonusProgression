@@ -1,5 +1,5 @@
 ﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Enchantments;
+using AutomaticBonusProgression.Enchantments.Armor;
 using AutomaticBonusProgression.UI.Attunement;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Actions.Builder;
@@ -14,7 +14,7 @@ using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Features
 {
-  internal class LegendaryArmor
+    internal class LegendaryArmor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryArmor));
 
