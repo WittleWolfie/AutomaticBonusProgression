@@ -113,6 +113,7 @@
     "enGB": "This armor protects its wearer from harmful negative and positive energy, including channeled energy. The armor absorbs the first 10 points of positive or negative energy damage per attack that the wearer would normally take. The wearer has a 25% chance to ignore negative levels from any attack. Deathless armor does not block healing of any kind and does not protect against positive or negative energy effects that do not deal damage or bestow negative levels."
   },
 
+  //// Defiant
   {
     "Key": "LA.Defiant.Description",
     "enGB": "Armor and shields with this special ability excel at blocking the attacks of certain types of creatures, similar to a bane weapon’s excelling against certain foes. Against the designated foe, the item’s enhancement bonus to AC is +2 better than its actual bonus and provides DR 2/— against attacks from that foe."
@@ -202,6 +203,7 @@
     "ProcessTemplates": false,
     "enGB": "Defiant: Vermin (+1)"
   },
+  //// End Defiant
 
   {
     "Key": "LA.Determination.Name",

@@ -63,6 +63,7 @@ namespace AutomaticBonusProgression.Features
             Guids.DefiantUndeadBuff,
             Guids.DefiantVerminBuff,
       #endregion
+            Guids.DeterminationBuff,
       #region Energy Resistance
             // 10 Armor
             Guids.AcidResist10Buff,

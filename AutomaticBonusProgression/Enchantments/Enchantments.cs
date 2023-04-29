@@ -34,6 +34,7 @@ namespace AutomaticBonusProgression.Enchantments
         Dastard.Configure();
         Deathless.Configure();
         Defiant.Configure();
+        Determination.Configure();
         EnergyResistance.Configure();
       }
       catch (Exception e)
