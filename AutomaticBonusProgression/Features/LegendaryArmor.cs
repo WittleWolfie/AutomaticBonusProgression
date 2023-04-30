@@ -25,6 +25,7 @@ namespace AutomaticBonusProgression.Features
       var ability = AbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorAbilityDescription)
+        .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>())
         .Configure();
 
