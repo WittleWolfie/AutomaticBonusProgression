@@ -37,6 +37,7 @@ namespace AutomaticBonusProgression.Enchantments
         Determination.Configure();
         EnergyResistance.Configure();
         Expeditious.Configure();
+        Fortification.Configure();
       }
       catch (Exception e)
       {

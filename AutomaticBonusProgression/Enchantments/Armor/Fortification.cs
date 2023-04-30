@@ -1,7 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
@@ -10,130 +9,77 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Fortification));
 
-    private const string FortificationName = "LegendaryArmor.Fortification";
-    private const string BuffName = "LegendaryArmor.Fortification.Buff";
-    private const string AbilityName = "LegendaryArmor.Fortification.Ability";
-    private const string BuffShieldName = "LegendaryArmor.Fortification.Shield.Buff";
-    private const string AbilityShieldName = "LegendaryArmor.Fortification.Shield.Ability";
-
-    private const string DisplayName = "LegendaryArmor.Fortification.Name";
-    private const int EnhancementCost = 1;
-
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Fortification");
 
+      ConfigureBasic();
+      ConfigureImproved();
+      ConfigureGreater();
+    }
+
+    private const string EffectName = "LA.Fortification.Effect";
+    private const string BuffName = "LA.Fortification.Buff";
+    private const string BuffShieldName = "LA.Fortification.Shield.Buff";
+
+    private const string DisplayName = "LA.Fortification.Name";
+    private const int BasicCost = 1;
+
+    private static void ConfigureBasic()
+    {
       var enchant = ArmorEnchantmentRefs.Fortification25Enchant.Reference.Get();
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          enchant.m_Description.m_Key,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, enchant.m_Description.m_Key, "", BasicCost);
 
       var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification25Feature, enchantInfo);
-
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(BuffName, Guids.FortificationBuff, fortification.GetComponent<AddFortification>()),
-        new(AbilityName, Guids.FortificationAbility));
-      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo,
-        ability,
-        new(BuffShieldName, Guids.FortificationShieldBuff),
-        new(AbilityShieldName, Guids.FortificationShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(FortificationName, Guids.Fortification),
-        ability,
-        abilityShield);
+        effectBuff: new(EffectName, Guids.FortificationEffect, fortification.GetComponent<AddFortification>()),
+        parentBuff: new(BuffName, Guids.FortificationBuff),
+        variantBuff: new(BuffShieldName, Guids.FortificationShieldBuff));
     }
 
-    private const string ImprovedFortificationName = "LegendaryArmor.Fortification.Improved";
-    private const string ImprovedBuffName = "LegendaryArmor.Fortification.Improved.Buff";
-    private const string ImprovedAbilityName = "LegendaryArmor.Fortification.Improved.Ability";
-    private const string ImprovedBuffShieldName = "LegendaryArmor.Fortification.Improved.Shield.Buff";
-    private const string ImprovedAbilityShieldName = "LegendaryArmor.Fortification.Improved.Shield.Ability";
+    private const string ImprovedEffectName = "LA.Fortification.Improved.Effect";
+    private const string ImprovedBuffName = "LA.Fortification.Improved.Buff";
+    private const string ImprovedBuffShieldName = "LA.Fortification.Improved.Shield.Buff";
 
-    private const string ImprovedDisplayName = "LegendaryArmor.Fortification.Improved.Name";
-    private const int ImprovedEnhancementCost = 3;
+    private const string ImprovedDisplayName = "LA.Fortification.Improved.Name";
+    private const int ImprovedCost = 3;
 
-    internal static BlueprintFeature ConfigureImproved()
+    internal static void ConfigureImproved()
     {
-      Logger.Log($"Configuring Fortification Armor (Improved)");
-
       var enchant = ArmorEnchantmentRefs.Fortification50Enchant.Reference.Get();
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          ImprovedDisplayName,
-          enchant.m_Description.m_Key,
-          "",
-          ImprovedEnhancementCost,
-          ranks: 2,
-          prerequisite: new(Guids.Fortification));
+      var enchantInfo = new ArmorEnchantInfo(ImprovedDisplayName, enchant.m_Description.m_Key, "", ImprovedCost);
 
       var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification50Feature, enchantInfo);
-
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(ImprovedBuffName, Guids.ImprovedFortificationBuff, fortification.GetComponent<AddFortification>()),
-        new(ImprovedAbilityName, Guids.ImprovedFortificationAbility));
-      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo,
-        ability,
-        new(ImprovedBuffShieldName, Guids.ImprovedFortificationShieldBuff),
-        new(ImprovedAbilityShieldName, Guids.ImprovedFortificationShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(ImprovedFortificationName, Guids.ImprovedFortification),
-        ability,
-        abilityShield);
+        effectBuff: new(
+          ImprovedEffectName, Guids.ImprovedFortificationEffect, fortification.GetComponent<AddFortification>()),
+        parentBuff: new(ImprovedBuffName, Guids.ImprovedFortificationBuff),
+        variantBuff: new(ImprovedBuffShieldName, Guids.ImprovedFortificationShieldBuff));
     }
 
-    private const string GreaterFortificationName = "LegendaryArmor.Fortification.Greater";
-    private const string GreaterBuffName = "LegendaryArmor.Fortification.Greater.Buff";
-    private const string GreaterAbilityName = "LegendaryArmor.Fortification.Greater.Ability";
-    private const string GreaterBuffShieldName = "LegendaryArmor.Fortification.Greater.Shield.Buff";
-    private const string GreaterAbilityShieldName = "LegendaryArmor.Fortification.Greater.Shield.Ability";
+    private const string GreaterEffectName = "LA.Fortification.Greater.Effect";
+    private const string GreaterBuffName = "LA.Fortification.Greater.Buff";
+    private const string GreaterBuffShieldName = "LA.Fortification.Greater.Shield.Buff";
 
-    private const string GreaterDisplayName = "LegendaryArmor.Fortification.Greater.Name";
-    private const string GreaterDescription = "LegendaryArmor.Fortification.Greater.Description";
-    private const int GreaterEnhancementCost = 5;
+    private const string GreaterDisplayName = "LA.Fortification.Greater.Name";
+    private const int GreaterCost = 5;
 
-    internal static BlueprintFeature ConfigureGreater()
+    internal static void ConfigureGreater()
     {
       Logger.Log($"Configuring Fortification Armor (Greater)");
 
       var enchant = ArmorEnchantmentRefs.Fortification75Enchant.Reference.Get();
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          GreaterDisplayName,
-          enchant.m_Description.m_Key,
-          "",
-          GreaterEnhancementCost,
-          ranks: 2,
-          prerequisite: new(Guids.ImprovedFortification, ranks: 2));
+      var enchantInfo = new ArmorEnchantInfo(GreaterDisplayName, enchant.m_Description.m_Key, "", GreaterCost);
 
       var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification75Feature, enchantInfo);
-
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(GreaterBuffName, Guids.GreaterFortificationBuff, fortification.GetComponent<AddFortification>()),
-        new(GreaterAbilityName, Guids.GreaterFortificationAbility));
-      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo,
-        ability,
-        new(GreaterBuffShieldName, Guids.GreaterFortificationShieldBuff),
-        new(GreaterAbilityShieldName, Guids.GreaterFortificationShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(GreaterFortificationName, Guids.GreaterFortification),
-        ability,
-        abilityShield);
+        effectBuff: new(
+          GreaterEffectName, Guids.GreaterFortificationEffect, fortification.GetComponent<AddFortification>()),
+        parentBuff: new(GreaterBuffName, Guids.GreaterFortificationBuff),
+        variantBuff: new(GreaterBuffShieldName, Guids.GreaterFortificationShieldBuff));
     }
   }
 }
