@@ -8,6 +8,7 @@ using Kingmaker.UI;
 using Kingmaker.UI.FullScreenUITypes;
 using Kingmaker.UI.MVVM._PCView.ChangeVisual;
 using Kingmaker.UI.MVVM._PCView.InGame;
+using Kingmaker.UI.MVVM._PCView.Tooltip.Bricks;
 using Owlcat.Runtime.UI.Controls.Button;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
@@ -46,6 +47,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private EnchantmentGridView Enchantments;
 
+    private TooltipBrickEntityHeaderView Equipment;
+
     private OwlcatButton MainHand;
     private OwlcatButton OffHand;
     private OwlcatButton Armor;
@@ -63,6 +66,12 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       Header.text = ViewModel.GetHeader();
       Enchantments.Bind(new());
+
+      // TODO: Actually set up binding to equipment
+      Equipment.m_ItemContainer.SetActive(true);
+      Equipment.m_OtherContainer.SetActive(false);
+      Equipment.m_MainTitle.text = "Chainmail of Total Awesomeness +4";
+      Equipment.m_Title.text = "Medium Armor - Chainmail";
 
       switch (ViewModel.Type)
       {
@@ -104,11 +113,15 @@ namespace AutomaticBonusProgression.UI.Attunement
       Apply = CreateApplyButton(UITool.GetString("Attunement.Apply"));
     }
 
-    // Use for creating view elements that don't exist during first init
+    // Use for prefabs that don't exist during first init
     internal void LateInit()
     {
-      var equipment = GameObject.Instantiate(Prefabs.TooltipHeader);
-      equipment.transform.AddTo(transform);
+      Equipment = GameObject.Instantiate(Prefabs.ItemInfoBlock);
+      Equipment.transform.AddTo(transform);
+
+      var rect = Equipment.GetComponent<RectTransform>();
+      rect.localPosition = new(x: 0, y: -325);
+      rect.sizeDelta = new(x: 700, y: 90);
     }
 
     private OwlcatButton CreateAttunementTypeButton(string label, int position)

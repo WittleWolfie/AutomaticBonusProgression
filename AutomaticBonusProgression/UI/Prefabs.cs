@@ -58,22 +58,23 @@ namespace AutomaticBonusProgression.UI
 
       Enchantment = GameObject.Instantiate(EnchantmentContainer.GetComponent<SpellbookKnownSpellsPCView>().m_KnownSpellView);
       Enchantment.gameObject.DestroyChildren(
-        "Metamagic", "RemoveButton", "Icon/Decoration", "Icon/Domain", "Icon/MythicArtFrame", "Icon/ArtArrowImage", "Level");
+        "Metamagic", "RemoveButton", "Icon/ArtBackImage", "Icon/Decoration", "Icon/Domain", "Icon/MythicArtFrame", "Icon/ArtArrowImage", "Level");
     }
 
-    internal static TooltipBrickEntityHeaderView TooltipHeader;
+    internal static TooltipBrickEntityHeaderView ItemInfoBlock;
 
     internal static void InitFade()
     {
       Logger.Log("Initializing prefabs for FadeCanvas");
 
-      InitTooltips();
+      InitInfoBlocks();
     }
 
-    private static void InitTooltips()
+    private static void InitInfoBlocks()
     {
       var infoWindow = UITool.FadeCanvas.ChildObject("InfoWindowPCViewBig").GetComponent<InfoWindowPCView>();
-      TooltipHeader = infoWindow.m_BricksConfig.BrickEntityHeaderView;
+      ItemInfoBlock = GameObject.Instantiate(infoWindow.m_BricksConfig.BrickEntityHeaderView);
+      ItemInfoBlock.gameObject.DestroyChildren("IconBlock/IconArrow", "TextBlock/SideBySideText (1)");
     }
   }
 }
