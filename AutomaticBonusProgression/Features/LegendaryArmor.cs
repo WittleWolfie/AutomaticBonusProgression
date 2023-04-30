@@ -87,7 +87,8 @@ namespace AutomaticBonusProgression.Features
             Guids.SonicResist30Buff,
       #endregion
             Guids.ExpeditiousBuff,
-            Guids.FortificationBuff
+            Guids.FortificationBuff,
+            Guids.GhostArmorBuff
           ))
         .Configure();
     }

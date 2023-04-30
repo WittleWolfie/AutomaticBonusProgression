@@ -1,9 +1,5 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers;
@@ -19,62 +15,31 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(GhostArmor));
 
-    private const string GhostArmorName = "LegendaryArmor.GhostArmor";
-    private const string BuffName = "LegendaryArmor.GhostArmor.Buff";
-    private const string AbilityName = "LegendaryArmor.GhostArmor.Ability";
-    private const string BuffShieldName = "LegendaryArmor.GhostArmor.Buff.Shield";
-    private const string AbilityShieldName = "LegendaryArmor.GhostArmor.Ability.Shield";
+    private const string EffectName = "LA.GhostArmor.Effect";
+    private const string BuffName = "LA.GhostArmor.Buff";
+    private const string ShieldEffectName = "LA.GhostArmor.Shield.Effect";
+    private const string BuffShieldName = "LA.GhostArmor.Buff.Shield";
 
-    private const string AuraName = "LegendaryArmor.GhostArmor.Aura";
-    private const string AuraBuffName = "LegendaryArmor.GhostArmor.Aura.Buff";
-
-    private const string DisplayName = "LegendaryArmor.GhostArmor.Name";
-    private const string Description = "LegendaryArmor.GhostArmor.Description";
+    private const string DisplayName = "LA.GhostArmor.Name";
+    private const string Description = "LA.GhostArmor.Description";
     private const int EnhancementCost = 3;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring GhostArmor Armor");
 
-      var enchantInfo = new ArmorEnchantInfo(
-        DisplayName,
-        Description,
-        "",
-        EnhancementCost,
-        ranks: 3);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var buff = BuffConfigurator.New(BuffName, Guids.GhostArmorBuff)
-        .SetDisplayName(DisplayName)
-        .SetDescription(Description)
-        //.SetIcon()
-        .AddComponent(new EnhancementEquivalence(enchantInfo))
-        .AddComponent(new GhostArmorComponent())
-        .Configure();
-
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        buff,
-        new(AbilityName, Guids.GhostArmorAbility));
+        effectBuff: new(EffectName, Guids.GhostArmorEffect, new GhostArmorComponent()),
+        parentBuff: new(BuffName, Guids.GhostArmorBuff));
 
-      // Since the buff is actually different for shield create the shield stuff manually (based on CreateEnchantShieldVariant)
-      var shieldBuff = BuffConfigurator.New(BuffShieldName, Guids.GhostArmorShieldBuff)
-        .CopyFrom(buff)
-        .AddComponent(new EnhancementEquivalence(enchantInfo, typeOverride: EnhancementType.Shield))
-        .AddComponent(new RequireShield(enchantInfo.AllowedTypes))
-        .AddComponent(new GhostArmorComponent(toShield: true))
-        .Configure();
-      var shieldAbility = ActivatableAbilityConfigurator.New(AbilityShieldName, Guids.GhostArmorShieldAbility)
-        .CopyFrom(ability, c => c is not EnhancementRestriction && c is not ArmorRestriction)
-        .AddComponent(new EnhancementRestriction(enchantInfo, typeOverride: EnhancementType.Shield))
-        .AddComponent(new ShieldRestriction(enchantInfo.AllowedTypes))
-        .SetBuff(shieldBuff)
-        .Configure();
-
-      return EnchantTool.CreateEnchantFeature(
+      // Since the buff is actually different for shield create the variant separately
+      EnchantTool.CreateVariantEnchant(
         enchantInfo,
-        new(GhostArmorName, Guids.GhostArmor),
-        ability,
-        shieldAbility);
+        effectBuff: new(ShieldEffectName, Guids.GhostArmorShieldEffect, new GhostArmorComponent(toShield: true)),
+        variantBuff: new(BuffShieldName, Guids.GhostArmorShieldBuff));
     }
 
     [TypeId("cc1557d2-4726-47fc-8e3d-2158a97353e4")]

@@ -51,7 +51,7 @@ namespace AutomaticBonusProgression.Enchantments
         //.SetIcon(enchant.Icon)
         .SetFlags(BlueprintBuff.Flags.HiddenInUi)
         .AddComponent(enchant.GetEnhancementComponent())
-        .AddComponent(enchant.GetAttunementComponent(effectGuid));
+        .AddComponent(enchant.GetAttunementComponent(effectBuff));
       foreach (var component in parentBuff.Components)
         parent.AddComponent(component);
       parent.Configure();
@@ -62,7 +62,7 @@ namespace AutomaticBonusProgression.Enchantments
       var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
         .CopyFrom(parentBuff.Guid)
         .AddComponent(enchant.GetEnhancementComponent())
-        .AddComponent(enchant.GetAttunementComponent(effectGuid, variant: true));
+        .AddComponent(enchant.GetAttunementComponent(effectBuff, variant: true));
       foreach (var component in variantBuff.Components)
         variant.AddComponent(component);
       variant.Configure();

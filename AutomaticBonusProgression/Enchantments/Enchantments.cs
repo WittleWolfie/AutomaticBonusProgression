@@ -38,6 +38,7 @@ namespace AutomaticBonusProgression.Enchantments
         EnergyResistance.Configure();
         Expeditious.Configure();
         Fortification.Configure();
+        GhostArmor.Configure();
       }
       catch (Exception e)
       {
