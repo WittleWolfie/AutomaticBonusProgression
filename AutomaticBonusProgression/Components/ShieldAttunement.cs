@@ -17,7 +17,7 @@ namespace AutomaticBonusProgression.Components
     internal ShieldAttunement(BlueprintBuffReference effectBuff, int cost, params ArmorProficiencyGroup[] allowedTypes)
       : base(effectBuff, cost, allowedTypes) { }
 
-    protected override EnhancementType Type => EnhancementType.Shield;
+    public override EnhancementType Type => EnhancementType.Shield;
 
     public override bool IsAvailable(UnitDescriptor unit)
     {

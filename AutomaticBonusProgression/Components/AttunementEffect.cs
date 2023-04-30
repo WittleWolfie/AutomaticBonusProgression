@@ -78,18 +78,10 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
-    // Need to know if it's applied since EnchantmentView calls this w/o a configured context.
-    public bool CanAfford(UnitEntityData unit, bool applied = false)
-    {
-      if (applied)
-        return unit.Ensure<UnitPartEnhancement>().CanKeep(Type);
-      return unit.Ensure<UnitPartEnhancement>().CanAdd(Type, Cost);
-    }
-
     private void ApplyEffect()
     {
       var buffApplied = Data.AppliedBuff is not null;
-      var shouldApply = IsAvailable(Owner) && CanAfford(Owner, applied: buffApplied);
+      var shouldApply = IsAvailable(Owner) && CanAfford(buffApplied);
 
       if (buffApplied && !shouldApply)
       {
@@ -105,7 +97,14 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
-    protected abstract EnhancementType Type { get; }  
+    private bool CanAfford(bool applied)
+    {
+      if (applied)
+        return Owner.Ensure<UnitPartEnhancement>().CanKeep(Type);
+      return Owner.Ensure<UnitPartEnhancement>().CanAdd(Type, Cost);
+    }
+
+    public abstract EnhancementType Type { get; }  
     public abstract bool IsAvailable(UnitDescriptor unit);
 
     /// <summary>

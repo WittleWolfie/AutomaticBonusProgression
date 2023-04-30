@@ -22,7 +22,7 @@ namespace AutomaticBonusProgression.Components
       AllowedTypes = allowedTypes;
     }
 
-    protected override EnhancementType Type => EnhancementType.Armor; 
+    public override EnhancementType Type => EnhancementType.Armor; 
 
     public override bool IsAvailable(UnitDescriptor unit)
     {

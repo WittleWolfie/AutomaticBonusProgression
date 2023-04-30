@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.UnitParts;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Entities;
@@ -100,7 +101,8 @@ namespace AutomaticBonusProgression.UI.Attunement
       Unavailable, // i.e. Can't be used on the equipped item type
     }
 
-    internal EnchantmentVM(BlueprintBuff enchantment, EnhancementEquivalence cost, UnitEntityData unit)
+    internal EnchantmentVM(
+      BlueprintBuff enchantment, EnhancementEquivalence cost, UnitEntityData unit)
     {
       Icon = enchantment.Icon;
       Name = enchantment.Name;
@@ -115,11 +117,14 @@ namespace AutomaticBonusProgression.UI.Attunement
       if (!EffectComponent.IsAvailable(Unit))
         CurrentState.Value = State.Unavailable;
       else if (unit.HasFact(enchantment))
-        CurrentState.Value = State.Active;
-      else if (!EffectComponent.CanAfford(Unit))
+        TempApply(active: true);
+      else if (!Unit.Ensure<UnitPartEnhancement>().CanAddTemp(Cost))
         CurrentState.Value = State.Unaffordable;
       else
         CurrentState.Value = State.Available;
+
+      if (CurrentState.Value != State.Unavailable)
+        AddDisposable(Unit.Ensure<UnitPartEnhancement>().TempEnhancement.Subscribe(_ => Refresh()));
     }
 
     public override void DisposeImplementation() { }
@@ -127,9 +132,34 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal void Select()
     {
       if (CurrentState.Value == State.Available)
-        CurrentState.Value = State.Active;
+        TempApply();
       else if (CurrentState.Value == State.Active)
+        TempRemove();
+    }
+
+    private void Refresh()
+    {
+      if (CurrentState.Value == State.Active || CurrentState.Value == State.Unavailable)
+        return;
+
+      // Only update the cost, nothing else should change on refresh
+      var canAfford = Unit.Ensure<UnitPartEnhancement>().CanAddTemp(Cost);
+      if (canAfford && CurrentState.Value == State.Unaffordable)
         CurrentState.Value = State.Available;
+      else if (!canAfford && CurrentState.Value == State.Available)
+        CurrentState.Value = State.Unaffordable;
+    }
+
+    private void TempApply(bool active = false)
+    {
+      Unit.Ensure<UnitPartEnhancement>().AddTemp(Cost, active);
+      CurrentState.Value = State.Active;
+    }
+
+    private void TempRemove()
+    {
+      Unit.Ensure<UnitPartEnhancement>().RemoveTemp(Cost);
+      CurrentState.Value = State.Available;
     }
 
     internal Sprite Icon;
@@ -142,6 +172,6 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal readonly ReactiveProperty<State> CurrentState = new();
 
     private readonly AttunementEffect EffectComponent;
-    private readonly UnitDescriptor Unit;
+    private readonly UnitEntityData Unit;
   }
 }

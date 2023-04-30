@@ -12,7 +12,7 @@ namespace AutomaticBonusProgression.Components
 
     internal WeaponAttunement(BlueprintBuffReference effectBuff, int cost) : base(effectBuff, cost) { }
 
-    protected override EnhancementType Type => EnhancementType.MainHand;
+    public override EnhancementType Type => EnhancementType.MainHand;
 
     public override bool IsAvailable(UnitDescriptor unit)
     {

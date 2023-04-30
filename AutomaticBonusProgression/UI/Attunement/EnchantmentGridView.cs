@@ -1,9 +1,11 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.UnitParts;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Utils;
 using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.EntitySystem.Entities;
 using Kingmaker.UI;
 using Kingmaker.UnitLogic;
 using Owlcat.Runtime.UI.MVVM;
@@ -87,7 +89,7 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal List<EnchantmentVM> AvailableEnchantments = new();
 
     private Action OnRefresh;
-    private UnitDescriptor Unit => SelectedUnit.Value;
+    private UnitEntityData Unit => SelectedUnit.Value;
     private readonly ReactiveProperty<EnhancementType> Type = new();
     private readonly ReactiveProperty<UnitDescriptor> SelectedUnit = new();
 
@@ -112,7 +114,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private void Refresh()
     {
-      Logger.Verbose(() => $"Refreshing Enchantments: {Unit}");
+      Logger.Verbose(() => $"Refreshing Enchantment Grid: {Unit}");
       foreach (var vm in AvailableEnchantments)
         vm.Dispose();
 
@@ -122,11 +124,13 @@ namespace AutomaticBonusProgression.UI.Attunement
         return;
 
       // TODO: Support for more than just armor
-      
       var legendaryFeature = Unit.GetFeature(LegendaryArmor);
       var attunement = LegendaryArmor.GetComponent<AttunementBuffsComponent>();
       if (attunement is null)
         throw new InvalidOperationException($"Missing AttunementBuffsComponent: {LegendaryArmor.Name}");
+
+      var unitPart = Unit.Ensure<UnitPartEnhancement>();
+      unitPart.ResetTempEnhancement(EnhancementType.Armor, legendaryFeature.GetRank());
 
       Logger.Verbose(() => $"Adding enchantments: {LegendaryArmor.Name}");
       foreach (var buff in attunement.Buffs)
@@ -140,7 +144,7 @@ namespace AutomaticBonusProgression.UI.Attunement
         if (legendaryFeature.GetRank() < enhancement.Enhancement)
           continue;
 
-        AvailableEnchantments.Add(new(bp, enhancement, Unit));
+        AvailableEnchantments.Add(new EnchantmentVM(bp, enhancement, Unit));
       }
 
       OnRefresh?.Invoke();
