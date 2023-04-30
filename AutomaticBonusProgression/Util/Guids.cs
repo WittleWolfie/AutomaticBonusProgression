@@ -306,8 +306,7 @@
     internal const string InvulnerabilityEffect = "03d89904-8e99-4856-8c9c-719e77463141";
     internal const string InvulnerabilityBuff = "d77e2446-276a-4246-924e-d679b526eea8";
 
-    internal const string Martyring = "78bf888f-1501-467a-9b0b-b17da3decebf";
-    internal const string MartyringAbility = "ff1b7b02-aa03-42be-93c9-78d39d513c7d";
+    internal const string MartyringEffect = "78bf888f-1501-467a-9b0b-b17da3decebf";
     internal const string MartyringBuff = "14df227c-794d-4328-acbb-389c9d9b081f";
     internal const string MartyringResource = "f6bc327f-4031-42b0-b068-16992ce73975";
 

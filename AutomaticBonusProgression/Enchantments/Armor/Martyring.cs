@@ -1,5 +1,4 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Conditions;
+﻿using AutomaticBonusProgression.Conditions;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
@@ -8,8 +7,6 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
-using Kingmaker.Designers.Mechanics.Facts;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
@@ -17,17 +14,16 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Martyring));
 
-    private const string MartyringName = "LegendaryArmor.Martyring";
-    private const string BuffName = "LegendaryArmor.Martyring.Buff";
-    private const string AbilityName = "LegendaryArmor.Martyring.Ability";
+    private const string EffectName = "LA.Martyring.Effect";
+    private const string BuffName = "LA.Martyring.Buff";
 
-    private const string CastResourceName = "LegendaryArmor.Martyring.Cast.Resource";
+    private const string CastResourceName = "LA.Martyring.Cast.Resource";
 
-    private const string DisplayName = "LegendaryArmor.Martyring.Name";
-    private const string Description = "LegendaryArmor.Martyring.Description";
+    private const string DisplayName = "LA.Martyring.Name";
+    private const string Description = "LA.Martyring.Description";
     private const int EnhancementCost = 4;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Martyring");
 
@@ -35,19 +31,12 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 4);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var buff = BuffConfigurator.New(BuffName, Guids.MartyringBuff)
+      var effectBuff = BuffConfigurator.New(EffectName, Guids.MartyringEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
-        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .AddTargetAttackRollTrigger(
           criticalHit: true,
           actionOnSelf: ActionsBuilder.New()
@@ -59,21 +48,10 @@ namespace AutomaticBonusProgression.Enchantments.Armor
                 .ContextSpendResource(castResource)))
         .Configure();
 
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchantWithEffect(
         enchantInfo,
-        buff,
-        new(AbilityName, Guids.MartyringAbility));
-
-      var featureInfo =
-        new BlueprintInfo(
-          MartyringName,
-          Guids.Martyring,
-          new AddAbilityResources()
-          {
-            RestoreAmount = true,
-            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-          });
-      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability);
+        effectBuff,
+        parentBuff: new(BuffName, Guids.MartyringBuff));
     }
   }
 }

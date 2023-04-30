@@ -40,6 +40,7 @@ namespace AutomaticBonusProgression.Enchantments
         Fortification.Configure();
         GhostArmor.Configure();
         Invulnerability.Configure();
+        Martyring.Configure();
       }
       catch (Exception e)
       {
