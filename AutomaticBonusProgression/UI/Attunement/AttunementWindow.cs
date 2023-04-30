@@ -20,6 +20,13 @@ using UnityEngine;
 
 namespace AutomaticBonusProgression.UI.Attunement
 {
+  /// <summary>
+  /// TODO:
+  ///  - Actually bind view to current relevant equipment
+  ///  - Implement support for the different attunement types
+  ///  - Implement the Apply functionality
+  ///  - Add Available / Remaining labels
+  /// </summary>
   internal class AttunementView : ViewBase<AttunementVM>
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AttunementView));
