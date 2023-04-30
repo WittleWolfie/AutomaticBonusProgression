@@ -43,6 +43,7 @@ namespace AutomaticBonusProgression.Enchantments
         Martyring.Configure();
         Rallying.Configure();
         Reflecting.Configure();
+        Righteous.Configure();
       }
       catch (Exception e)
       {

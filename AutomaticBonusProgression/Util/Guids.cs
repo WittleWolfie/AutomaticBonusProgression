@@ -322,8 +322,7 @@
     internal const string ReflectingCastBuff = "2c483050-4c83-4afc-b671-4ee96b29882f";
     internal const string ReflectingCastResource = "c6b43c97-649b-42e4-b026-37cae8bca7f3";
 
-    internal const string Righteous = "851716fc-bb95-4b35-8fc5-690a590030fa";
-    internal const string RighteousAbility = "bd4e66a7-4dd1-4747-96ba-423ccc32b32a";
+    internal const string RighteousEffect = "851716fc-bb95-4b35-8fc5-690a590030fa";
     internal const string RighteousBuff = "9a5872b7-ca30-4f0b-98e2-8e2cb0fc6c4c";
     internal const string RighteousCastAbility = "aa581f86-1d74-4cc2-9e8b-d312719b88f1";
     internal const string RighteousCastResource = "ea9b5caf-e283-4614-b51f-8a60cd128b43";
