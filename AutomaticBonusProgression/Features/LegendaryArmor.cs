@@ -91,7 +91,8 @@ namespace AutomaticBonusProgression.Features
             Guids.GhostArmorBuff,
             Guids.InvulnerabilityBuff,
             Guids.MartyringBuff,
-            Guids.RallyingBuff
+            Guids.RallyingBuff,
+            Guids.ReflectingBuff
           ))
         .Configure();
     }

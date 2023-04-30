@@ -316,8 +316,7 @@
     internal const string RallyingAura = "087eee7a-8632-4d9b-b5f3-074b23c52371";
     internal const string RallyingAuraBuff = "298dbc80-b704-446c-a3fd-efcdea5190ec";
 
-    internal const string Reflecting = "88947511-2103-40b2-9c9e-4e26c2618952";
-    internal const string ReflectingAbility = "58765ceb-079f-4a42-ae1e-83cb6957cdbd";
+    internal const string ReflectingEffect = "88947511-2103-40b2-9c9e-4e26c2618952";
     internal const string ReflectingBuff = "93474eb1-e45e-40c5-a437-15963b72527e";
     internal const string ReflectingCastAbility = "5a5517af-27bb-4cc0-ac03-947e37472476";
     internal const string ReflectingCastBuff = "2c483050-4c83-4afc-b671-4ee96b29882f";

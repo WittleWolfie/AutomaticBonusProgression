@@ -6,13 +6,13 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Kingmaker;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
+using Kingmaker.UnitLogic.FactLogic;
 using System;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
@@ -22,22 +22,21 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Reflecting));
 
-    private const string ReflectingName = "LegendaryArmor.Reflecting";
-    private const string BuffName = "LegendaryArmor.Reflecting.Buff";
-    private const string AbilityName = "LegendaryArmor.Reflecting.Ability";
+    private const string EffectName = "LA.Reflecting";
+    private const string BuffName = "LA.Reflecting.Buff";
 
-    private const string CastAbilityName = "LegendaryArmor.Reflecting.Cast";
-    private const string CastBuffName = "LegendaryArmor.Reflecting.Cast.Buff";
-    private const string CastResourceName = "LegendaryArmor.Reflecting.Cast.Resource";
+    private const string CastAbilityName = "LA.Reflecting.Cast";
+    private const string CastBuffName = "LA.Reflecting.Cast.Buff";
+    private const string CastResourceName = "LA.Reflecting.Cast.Resource";
 
-    private const string CastDisplayName = "LegendaryArmor.Reflecting.Cast.Name";
-    private const string CastDescription = "LegendaryArmor.Reflecting.Cast.Description";
+    private const string CastDisplayName = "LA.Reflecting.Cast.Name";
+    private const string CastDescription = "LA.Reflecting.Cast.Description";
 
-    private const string DisplayName = "LegendaryArmor.Reflecting.Name";
-    private const string Description = "LegendaryArmor.Reflecting.Description";
+    private const string DisplayName = "LA.Reflecting.Name";
+    private const string Description = "LA.Reflecting.Description";
     private const int EnhancementCost = 5;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Reflecting");
 
@@ -61,31 +60,23 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetRange(AbilityRange.Personal)
         .SetActionType(CommandType.Free)
         .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
-        .AddAbilityCasterHasFacts(new() { Guids.ReflectingBuff })
+        .AddAbilityCasterHasFacts(new() { Guids.ReflectingEffect })
         .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(castBuff))
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(
-        DisplayName,
-        Description,
-        "",
-        EnhancementCost,
-        ranks: 5);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var ability = EnchantTool.CreateEnchantShieldVariant(
+      var addFacts = new AddFacts() { m_Facts = new[] { castAbility.ToReference<BlueprintUnitFactReference>() } };
+      var addResources =
+        new AddAbilityResources()
+        {
+          RestoreAmount = true,
+          m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+        };
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new(BuffName, Guids.ReflectingBuff),
-        new(AbilityName, Guids.ReflectingAbility));
-      var featureInfo =
-        new BlueprintInfo(
-          ReflectingName,
-          Guids.Reflecting,
-          new AddAbilityResources()
-          {
-            RestoreAmount = true,
-            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-          });
-      return EnchantTool.CreateEnchantFeature(enchantInfo, featureInfo, ability, castAbility);
+        effectBuff: new(EffectName, Guids.ReflectingEffect),
+        parentBuff: new(BuffName, Guids.ReflectingBuff, addFacts, addResources));
     }
 
     [TypeId("5e021fee-7b14-4bae-874b-d3e7ec0d594d")]

@@ -42,6 +42,7 @@ namespace AutomaticBonusProgression.Enchantments
         Invulnerability.Configure();
         Martyring.Configure();
         Rallying.Configure();
+        Reflecting.Configure();
       }
       catch (Exception e)
       {
