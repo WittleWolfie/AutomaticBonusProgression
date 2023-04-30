@@ -8,181 +8,108 @@ using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Enchantments
 {
+  /// <summary>
+  /// Includes rebalance from 13 / 15 / 17 / 19 --> 13 / 16 / 19 / 22
+  /// </summary>
   internal class SpellResistance
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(SpellResistance));
 
-    private const string SpellResistance13Name = "LegendaryArmor.SpellResistance.13";
-    private const string Buff13Name = "LegendaryArmor.SpellResistance.13.Buff";
-    private const string Ability13Name = "LegendaryArmor.SpellResistance.13.Ability";
-    private const string Buff13ShieldName = "LegendaryArmor.SpellResistance.13.Shield.Buff";
-    private const string Ability13ShieldName = "LegendaryArmor.SpellResistance.13.Shield.Ability";
+    internal static void Configure()
+    {
+      Logger.Log($"Configuring Spell Resistance");
 
-    private const string DisplayName13 = "LegendaryArmor.SpellResistance.13.Name";
-    private const string Description13 = "LegendaryArmor.SpellResistance.13.Name";
+      Configure13();
+      Configure16();
+      Configure19();
+      Configure22();
+    }
+
+    private const string Effect13Name = "LA.SpellResistance.13";
+    private const string Buff13Name = "LA.SpellResistance.13.Buff";
+    private const string Buff13ShieldName = "LA.SpellResistance.13.Shield.Buff";
+
+    private const string DisplayName13 = "LA.SpellResistance.13.Name";
+    private const string Description13 = "LA.SpellResistance.13.Name";
     private const int EnhancementCost13 = 2;
 
-    internal static BlueprintFeature Configure13()
+    private static void Configure13()
     {
-      Logger.Log($"Configuring Spell Resistance 13");
-
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName13,
-          Description13,
-          "",
-          EnhancementCost13,
-          ranks: 2);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName13, Description13, "", EnhancementCost13);
       var spellResistFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance13Feature, enchantInfo);
 
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(Buff13Name, Guids.SpellResistance13Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
-        new(Ability13Name, Guids.SpellResistance13Ability));
-      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo,
-        ability,
-        new(Buff13ShieldName, Guids.SpellResistance13ShieldBuff),
-        new(Ability13ShieldName, Guids.SpellResistance13ShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(SpellResistance13Name, Guids.SpellResistance13),
-        ability,
-        abilityShield);
+        effectBuff: new(Effect13Name, Guids.SpellResistance13Effect, spellResistFeature.GetComponent<AddSpellResistance>()),
+        parentBuff: new(Buff13Name, Guids.SpellResistance13Buff),
+        variantBuff: new(Buff13ShieldName, Guids.SpellResistance13ShieldBuff));
     }
 
-    private const string SpellResistance16Name = "LegendaryArmor.SpellResistance.16";
-    private const string Buff16Name = "LegendaryArmor.SpellResistance.16.Buff";
-    private const string Ability16Name = "LegendaryArmor.SpellResistance.16.Ability";
-    private const string Buff16ShieldName = "LegendaryArmor.SpellResistance.16.Shield.Buff";
-    private const string Ability16ShieldName = "LegendaryArmor.SpellResistance.16.Shield.Ability";
+    private const string Effect16Name = "LA.SpellResistance.16";
+    private const string Buff16Name = "LA.SpellResistance.16.Buff";
+    private const string Buff16ShieldName = "LA.SpellResistance.16.Shield.Buff";
 
-    private const string DisplayName16 = "LegendaryArmor.SpellResistance.16.Name";
-    private const string Description16 = "LegendaryArmor.SpellResistance.16.Name";
+    private const string DisplayName16 = "LA.SpellResistance.16.Name";
+    private const string Description16 = "LA.SpellResistance.16.Name";
     private const int EnhancementCost16 = 3;
 
-    internal static BlueprintFeature Configure16()
+    private static void Configure16()
     {
-      Logger.Log($"Configuring Spell Resistance 16");
-
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName16,
-          Description16,
-          "",
-          EnhancementCost16,
-          ranks: 1,
-          prerequisite: new(Guids.SpellResistance13, ranks: 2));
-
+      var enchantInfo = new ArmorEnchantInfo(DisplayName16, Description16, "", EnhancementCost16);
       var spellResistFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance15Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance15Feature, 16);
 
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(Buff16Name, Guids.SpellResistance16Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
-        new(Ability16Name, Guids.SpellResistance16Ability));
-      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo,
-        ability,
-        new(Buff16ShieldName, Guids.SpellResistance16ShieldBuff),
-        new(Ability16ShieldName, Guids.SpellResistance16ShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(SpellResistance16Name, Guids.SpellResistance16),
-        ability,
-        abilityShield);
+        effectBuff: new(Effect16Name, Guids.SpellResistance16Effect, spellResistFeature.GetComponent<AddSpellResistance>()),
+        parentBuff: new(Buff16Name, Guids.SpellResistance16Buff),
+        variantBuff: new(Buff16ShieldName, Guids.SpellResistance16ShieldBuff));
     }
 
-    private const string SpellResistance19Name = "LegendaryArmor.SpellResistance.19";
-    private const string Buff19Name = "LegendaryArmor.SpellResistance.19.Buff";
-    private const string Ability19Name = "LegendaryArmor.SpellResistance.19.Ability";
-    private const string Buff19ShieldName = "LegendaryArmor.SpellResistance.19.Shield.Buff";
-    private const string Ability19ShieldName = "LegendaryArmor.SpellResistance.19.Shield.Ability";
+    private const string Effect19Name = "LA.SpellResistance.19";
+    private const string Buff19Name = "LA.SpellResistance.19.Buff";
+    private const string Buff19ShieldName = "LA.SpellResistance.19.Shield.Buff";
 
-    private const string DisplayName19 = "LegendaryArmor.SpellResistance.19.Name";
-    private const string Description19 = "LegendaryArmor.SpellResistance.19.Name";
+    private const string DisplayName19 = "LA.SpellResistance.19.Name";
+    private const string Description19 = "LA.SpellResistance.19.Name";
     private const int EnhancementCost19 = 4;
 
-    internal static BlueprintFeature Configure19()
+    private static void Configure19()
     {
-      Logger.Log($"Configuring Spell Resistance 19");
-
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName19,
-          Description19,
-          "",
-          EnhancementCost19,
-          ranks: 1,
-          prerequisite: new(Guids.SpellResistance16));
-
+      var enchantInfo = new ArmorEnchantInfo(DisplayName19, Description19, "", EnhancementCost19);
       var spellResistFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance17Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance17Feature, 19);
 
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(Buff19Name, Guids.SpellResistance19Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
-        new(Ability19Name, Guids.SpellResistance19Ability));
-      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo,
-        ability,
-        new(Buff19ShieldName, Guids.SpellResistance19ShieldBuff),
-        new(Ability19ShieldName, Guids.SpellResistance19ShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(SpellResistance19Name, Guids.SpellResistance19),
-        ability,
-        abilityShield);
+        effectBuff: new(Effect19Name, Guids.SpellResistance19Effect, spellResistFeature.GetComponent<AddSpellResistance>()),
+        parentBuff: new(Buff19Name, Guids.SpellResistance19Buff),
+        variantBuff: new(Buff19ShieldName, Guids.SpellResistance19ShieldBuff));
     }
 
-    private const string SpellResistance22Name = "LegendaryArmor.SpellResistance.22";
-    private const string Buff22Name = "LegendaryArmor.SpellResistance.22.Buff";
-    private const string Ability22Name = "LegendaryArmor.SpellResistance.22.Ability";
-    private const string Buff22ShieldName = "LegendaryArmor.SpellResistance.22.Shield.Buff";
-    private const string Ability22ShieldName = "LegendaryArmor.SpellResistance.22.Shield.Ability";
+    private const string Effect22Name = "LA.SpellResistance.22";
+    private const string Buff22Name = "LA.SpellResistance.22.Buff";
+    private const string Buff22ShieldName = "LA.SpellResistance.22.Shield.Buff";
 
-    private const string DisplayName22 = "LegendaryArmor.SpellResistance.22.Name";
-    private const string Description22 = "LegendaryArmor.SpellResistance.22.Name";
+    private const string DisplayName22 = "LA.SpellResistance.22.Name";
+    private const string Description22 = "LA.SpellResistance.22.Name";
     private const int EnhancementCost22 = 5;
 
-    internal static BlueprintFeature Configure22()
+    private static void Configure22()
     {
-      Logger.Log($"Configuring Spell Resistance 22");
-
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName22,
-          Description22,
-          "",
-          EnhancementCost22,
-          ranks: 1,
-          prerequisite: new(Guids.SpellResistance19));
-
+      var enchantInfo = new ArmorEnchantInfo(DisplayName22, Description22, "", EnhancementCost22);
       var spellResistFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance19Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance19Feature, 22);
 
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchant(
         enchantInfo,
-        new BlueprintInfo(Buff22Name, Guids.SpellResistance22Buff, spellResistFeature.GetComponent<AddSpellResistance>()),
-        new(Ability22Name, Guids.SpellResistance22Ability));
-      var abilityShield = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo,
-        ability,
-        new(Buff22ShieldName, Guids.SpellResistance22ShieldBuff),
-        new(Ability22ShieldName, Guids.SpellResistance22ShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(SpellResistance22Name, Guids.SpellResistance22),
-        ability,
-        abilityShield);
+        effectBuff: new(Effect22Name, Guids.SpellResistance22Effect, spellResistFeature.GetComponent<AddSpellResistance>()),
+        parentBuff: new(Buff22Name, Guids.SpellResistance22Buff),
+        variantBuff: new(Buff22ShieldName, Guids.SpellResistance22ShieldBuff));
     }
 
     private static void UpdateSpellResistance(Blueprint<BlueprintReference<BlueprintFeature>> feature, int sr)

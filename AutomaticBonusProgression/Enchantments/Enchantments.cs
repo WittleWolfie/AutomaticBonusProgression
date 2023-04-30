@@ -45,6 +45,7 @@ namespace AutomaticBonusProgression.Enchantments
         Reflecting.Configure();
         Righteous.Configure();
         Shadow.Configure();
+        SpellResistance.Configure();
       }
       catch (Exception e)
       {

@@ -96,7 +96,11 @@ namespace AutomaticBonusProgression.Features
             Guids.RighteousBuff,
             Guids.ShadowBuff,
             Guids.ImprovedShadowBuff,
-            Guids.GreaterShadowBuff
+            Guids.GreaterShadowBuff,
+            Guids.SpellResistance13Buff,
+            Guids.SpellResistance16Buff,
+            Guids.SpellResistance19Buff,
+            Guids.SpellResistance22Buff
           ))
         .Configure();
     }
