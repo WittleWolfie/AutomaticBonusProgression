@@ -100,7 +100,8 @@ namespace AutomaticBonusProgression.Features
             Guids.SpellResistance13Buff,
             Guids.SpellResistance16Buff,
             Guids.SpellResistance19Buff,
-            Guids.SpellResistance22Buff
+            Guids.SpellResistance22Buff,
+            Guids.WyrmsbreathBuff
           ))
         .Configure();
     }

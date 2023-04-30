@@ -46,6 +46,7 @@ namespace AutomaticBonusProgression.Enchantments
         Righteous.Configure();
         Shadow.Configure();
         SpellResistance.Configure();
+        Wyrmsbreath.Configure();
       }
       catch (Exception e)
       {

@@ -352,8 +352,7 @@
     internal const string SpellResistance22Buff = "70b71910-1c40-476a-84d6-cd838ced2260";
     internal const string SpellResistance22ShieldBuff = "15c1bbf0-db26-4a92-b309-345f8159395c";
 
-    internal const string Wyrmsbreath = "834c540c-25f8-4341-956e-cf3d5c7b9172";
-    internal const string WyrmsbreathAbility = "aa5a7b83-a942-4093-8589-ba293384b61e";
+    internal const string WyrmsbreathEffect = "834c540c-25f8-4341-956e-cf3d5c7b9172";
     internal const string WyrmsbreathBuff = "904e71ac-9dab-4880-92c0-63c3c33ebaab";
     internal const string WyrmsbreathResource = "a4fc0d20-70cf-4350-9c92-f7fe2ce987be";
 

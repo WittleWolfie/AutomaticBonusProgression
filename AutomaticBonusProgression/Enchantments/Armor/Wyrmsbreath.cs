@@ -6,7 +6,6 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
@@ -14,6 +13,7 @@ using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Utility;
 using System;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
@@ -24,28 +24,27 @@ namespace AutomaticBonusProgression.Enchantments
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Wyrmsbreath));
 
-    private const string WyrmsbreathName = "LegendaryArmor.Wyrmsbreath";
-    private const string BuffName = "LegendaryArmor.Wyrmsbreath.Buff";
-    private const string AbilityName = "LegendaryArmor.Wyrmsbreath.Ability";
-    private const string ResourceName = "LegendaryArmor.Wyrmsbreath.Cast.Resource";
+    private const string EffectName = "LA.Wyrmsbreath";
+    private const string BuffName = "LA.Wyrmsbreath.Buff";
+    private const string ResourceName = "LA.Wyrmsbreath.Cast.Resource";
 
-    private const string AcidAbilityName = "LegendaryArmor.Wyrmsbreath.Ability.Acid";
-    private const string AcidDisplayName = "LegendaryArmor.Wyrmsbreath.Acid.Name";
+    private const string AcidAbilityName = "LA.Wyrmsbreath.Ability.Acid";
+    private const string AcidDisplayName = "LA.Wyrmsbreath.Acid.Name";
 
-    private const string ColdAbilityName = "LegendaryArmor.Wyrmsbreath.Ability.Cold";
-    private const string ColdDisplayName = "LegendaryArmor.Wyrmsbreath.Cold.Name";
+    private const string ColdAbilityName = "LA.Wyrmsbreath.Ability.Cold";
+    private const string ColdDisplayName = "LA.Wyrmsbreath.Cold.Name";
 
-    private const string ElectricityAbilityName = "LegendaryArmor.Wyrmsbreath.Ability.Electricity";
-    private const string ElectricityDisplayName = "LegendaryArmor.Wyrmsbreath.Electricity.Name";
+    private const string ElectricityAbilityName = "LA.Wyrmsbreath.Ability.Electricity";
+    private const string ElectricityDisplayName = "LA.Wyrmsbreath.Electricity.Name";
 
-    private const string FireAbilityName = "LegendaryArmor.Wyrmsbreath.Ability.Fire";
-    private const string FireDisplayName = "LegendaryArmor.Wyrmsbreath.Fire.Name";
+    private const string FireAbilityName = "LA.Wyrmsbreath.Ability.Fire";
+    private const string FireDisplayName = "LA.Wyrmsbreath.Fire.Name";
 
-    private const string DisplayName = "LegendaryArmor.Wyrmsbreath.Name";
-    private const string Description = "LegendaryArmor.Wyrmsbreath.Description";
+    private const string DisplayName = "LA.Wyrmsbreath.Name";
+    private const string Description = "LA.Wyrmsbreath.Description";
     private const int EnhancementCost = 2;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Wyrmsbreath");
 
@@ -74,34 +73,30 @@ namespace AutomaticBonusProgression.Enchantments
         Description,
         DamageEnergyType.Fire);
 
-      var enchantInfo =
-        new ArmorEnchantInfo(
-          DisplayName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 2);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var ability = EnchantTool.CreateEnchantShieldVariant(
-        enchantInfo, new(BuffName, Guids.WyrmsbreathBuff), new(AbilityName, Guids.WyrmsbreathAbility));
-
-      var featureInfo =
-        new BlueprintInfo(
-          WyrmsbreathName,
-          Guids.Wyrmsbreath,
-          new AddAbilityResources()
-          {
-            RestoreAmount = true,
-            m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
-          });
-      return EnchantTool.CreateEnchantFeature(
+      var addFacts =
+        new AddFacts()
+        {
+          m_Facts =
+           new[]
+           {
+             acidAbility.ToReference<BlueprintUnitFactReference>(),
+             coldAbility.ToReference<BlueprintUnitFactReference>(),
+             electricityAbility.ToReference<BlueprintUnitFactReference>(),
+             fireAbility.ToReference<BlueprintUnitFactReference>(),
+           }
+        };
+      var addResources =
+        new AddAbilityResources()
+        {
+          RestoreAmount = true,
+          m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+        };
+      EnchantTool.CreateVariantEnchant(
         enchantInfo,
-        featureInfo,
-        ability,
-        acidAbility,
-        coldAbility,
-        electricityAbility,
-        fireAbility);
+        effectBuff: new(EffectName, Guids.WyrmsbreathEffect),
+        variantBuff: new(BuffName, Guids.WyrmsbreathBuff, addFacts, addResources));
     }
 
     private static BlueprintAbility CreateBreathAbility(
@@ -144,7 +139,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AllowTargeting(true, true, true, true)
         .AddSpellDescriptorComponent(descriptor | SpellDescriptor.BreathWeapon)
         .AddAbilityResourceLogic(requiredResource: Guids.WyrmsbreathResource, isSpendResource: true)
-        .AddAbilityCasterHasFacts(new() { Guids.WyrmsbreathBuff })
+        .AddAbilityCasterHasFacts(new() { Guids.WyrmsbreathEffect })
         .AddContextRankConfig(ContextRankConfigs.MythicLevel().WithBonusValueProgression(11))
         .AddAbilityDeliverProjectile(
           type: AbilityProjectileType.Cone,
