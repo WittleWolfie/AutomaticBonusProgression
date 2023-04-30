@@ -1,5 +1,4 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
@@ -21,21 +20,19 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Rallying));
 
-    private const string RallyingName = "LegendaryArmor.Rallying";
-    private const string BuffName = "LegendaryArmor.Rallying.Buff";
-    private const string AbilityName = "LegendaryArmor.Rallying.Ability";
-    private const string BuffShieldName = "LegendaryArmor.Rallying.Buff.Shield";
-    private const string AbilityShieldName = "LegendaryArmor.Rallying.Ability.Shield";
+    private const string EffectName = "LA.Rallying";
+    private const string BuffName = "LA.Rallying.Buff";
+    private const string BuffShieldName = "LA.Rallying.Buff.Shield";
 
-    private const string AuraName = "LegendaryArmor.Rallying.Aura";
-    private const string AuraBuffName = "LegendaryArmor.Rallying.Aura.Buff";
+    private const string AuraName = "LA.Rallying.Aura";
+    private const string AuraBuffName = "LA.Rallying.Aura.Buff";
 
-    private const string DisplayName = "LegendaryArmor.Rallying.Name";
-    private const string Description = "LegendaryArmor.Rallying.Description";
+    private const string DisplayName = "LA.Rallying.Name";
+    private const string Description = "LA.Rallying.Description";
     private const int EnhancementCost = 2;
 
     // TODO: Aura FX?
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Rallying Armor");
 
@@ -53,37 +50,20 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .AddAbilityAreaEffectBuff(buff: auraBuff)
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(
-        DisplayName,
-        Description,
-        "",
-        EnhancementCost,
-        ranks: 2);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var buff = BuffConfigurator.New(BuffName, Guids.RallyingBuff)
+      var effectBuff = BuffConfigurator.New(EffectName, Guids.RallyingEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
         .AddAreaEffect(areaEffect: aura)
-        .AddComponent(new EnhancementEquivalence(enchantInfo))
         .Configure();
 
-      var ability = EnchantTool.CreateEnchantAbility(
+      EnchantTool.CreateEnchantWithEffect(
         enchantInfo,
-        buff,
-        new(AbilityName, Guids.RallyingAbility));
-      var shieldAbility =
-        EnchantTool.CreateEnchantShieldVariant(
-          enchantInfo,
-          ability,
-          new(BuffShieldName, Guids.RallyingShieldBuff),
-          new(AbilityShieldName, Guids.RallyingShieldAbility));
-
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(RallyingName, Guids.Rallying),
-        ability,
-        shieldAbility);
+        effectBuff,
+        parentBuff: new(BuffName, Guids.RallyingBuff),
+        variantBuff: new(BuffShieldName, Guids.RallyingShieldBuff));
     }
 
     [TypeId("cc1557d2-4726-47fc-8e3d-2158a97353e4")]

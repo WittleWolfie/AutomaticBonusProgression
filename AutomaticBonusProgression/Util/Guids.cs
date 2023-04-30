@@ -310,10 +310,8 @@
     internal const string MartyringBuff = "14df227c-794d-4328-acbb-389c9d9b081f";
     internal const string MartyringResource = "f6bc327f-4031-42b0-b068-16992ce73975";
 
-    internal const string Rallying = "cfc8a849-c422-4043-b6e3-f96506b6b5b3";
-    internal const string RallyingAbility = "2a403882-0466-4e6b-b4a0-7506a12f2427";
+    internal const string RallyingEffect = "cfc8a849-c422-4043-b6e3-f96506b6b5b3";
     internal const string RallyingBuff = "d513d85b-636f-46c0-9359-316bf7b23ba1";
-    internal const string RallyingShieldAbility = "8d265df3-110b-43c1-b52e-fd7fa2947044";
     internal const string RallyingShieldBuff = "635a522c-880c-4eeb-a599-361ea3f6cb70";
     internal const string RallyingAura = "087eee7a-8632-4d9b-b5f3-074b23c52371";
     internal const string RallyingAuraBuff = "298dbc80-b704-446c-a3fd-efcdea5190ec";

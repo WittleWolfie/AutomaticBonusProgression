@@ -41,6 +41,7 @@ namespace AutomaticBonusProgression.Enchantments
         GhostArmor.Configure();
         Invulnerability.Configure();
         Martyring.Configure();
+        Rallying.Configure();
       }
       catch (Exception e)
       {
