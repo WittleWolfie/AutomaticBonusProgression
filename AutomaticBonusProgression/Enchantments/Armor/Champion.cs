@@ -11,7 +11,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Champion));
 
-    private const string ChampionEffect = "LA.Champion.Effect";
+    private const string EffectName = "LA.Champion.Effect";
     private const string BuffName = "LA.Champion.Buff";
 
     private const string DisplayName = "LA.Champion.Name";
@@ -28,7 +28,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
       var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var effectBuff = BuffConfigurator.New(BuffName, Guids.ChampionBuff)
+      var effectBuff = BuffConfigurator.New(EffectName, Guids.ChampionEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon(icon)
