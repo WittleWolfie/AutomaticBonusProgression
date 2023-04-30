@@ -327,17 +327,14 @@
     internal const string RighteousCastAbility = "aa581f86-1d74-4cc2-9e8b-d312719b88f1";
     internal const string RighteousCastResource = "ea9b5caf-e283-4614-b51f-8a60cd128b43";
 
-    internal const string ShadowArmor = "86580aff-6433-4b70-823a-8d4d8d904f46";
-    internal const string ShadowArmorAbility = "f0096427-0ec6-4e72-b21b-e5251d39bed6";
-    internal const string ShadowArmorBuff = "1cb18f84-4ae0-4990-930f-f47f42ff549d";
+    internal const string ShadowEffect = "86580aff-6433-4b70-823a-8d4d8d904f46";
+    internal const string ShadowBuff = "1cb18f84-4ae0-4990-930f-f47f42ff549d";
 
-    internal const string ImprovedShadowArmor = "c06851ca-0d5e-45ae-a18d-de485622e4f1";
-    internal const string ImprovedShadowArmorAbility = "28e986dc-049d-461a-a170-3b267df847ba";
-    internal const string ImprovedShadowArmorBuff = "8026ac99-35ce-43c2-8e0b-f076530882f8";
+    internal const string ImprovedShadowEffect = "c06851ca-0d5e-45ae-a18d-de485622e4f1";
+    internal const string ImprovedShadowBuff = "8026ac99-35ce-43c2-8e0b-f076530882f8";
 
-    internal const string GreaterShadowArmor = "090411ba-8a36-4077-a558-b8d3e497f09f";
-    internal const string GreaterShadowArmorAbility = "1af9720f-872a-4780-86ef-32c7a49e8e10";
-    internal const string GreaterShadowArmorBuff = "3b48de35-4127-474e-a3bb-020329815de4";
+    internal const string GreaterShadowEffect = "090411ba-8a36-4077-a558-b8d3e497f09f";
+    internal const string GreaterShadowBuff = "3b48de35-4127-474e-a3bb-020329815de4";
 
     internal const string SpellResistance13 = "e60ba111-956c-437d-8491-b4f4e4ecadb7";
     internal const string SpellResistance13Ability = "11b0f11b-6bc5-46a1-83dd-cf13ee416d4e";

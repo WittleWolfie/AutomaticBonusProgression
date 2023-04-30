@@ -93,7 +93,10 @@ namespace AutomaticBonusProgression.Features
             Guids.MartyringBuff,
             Guids.RallyingBuff,
             Guids.ReflectingBuff,
-            Guids.RighteousBuff
+            Guids.RighteousBuff,
+            Guids.ShadowBuff,
+            Guids.ImprovedShadowBuff,
+            Guids.GreaterShadowBuff
           ))
         .Configure();
     }

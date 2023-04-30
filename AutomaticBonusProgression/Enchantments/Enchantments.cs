@@ -44,6 +44,7 @@ namespace AutomaticBonusProgression.Enchantments
         Rallying.Configure();
         Reflecting.Configure();
         Righteous.Configure();
+        Shadow.Configure();
       }
       catch (Exception e)
       {
