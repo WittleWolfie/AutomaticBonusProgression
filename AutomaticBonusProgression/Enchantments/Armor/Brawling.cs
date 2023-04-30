@@ -22,7 +22,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
       var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
 
-      var effectBuff = BuffConfigurator.New(BuffName, Guids.BrawlingBuff)
+      var effectBuff = BuffConfigurator.New(EffectBuff, Guids.BrawlingEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         //.SetIcon()
