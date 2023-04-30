@@ -28,6 +28,9 @@ namespace AutomaticBonusProgression.Components
       if (!unit.Body.SecondaryHand.HasShield)
         return false;
 
+      if (!AllowedTypes.Any())
+        return true;
+
       var shield = unit.Body.SecondaryHand.Shield.ArmorComponent;
       return AllowedTypes.Contains(shield.ArmorType());
     }

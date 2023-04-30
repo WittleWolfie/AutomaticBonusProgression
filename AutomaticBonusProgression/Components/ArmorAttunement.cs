@@ -29,6 +29,9 @@ namespace AutomaticBonusProgression.Components
 
     public override bool IsAvailable(UnitDescriptor unit)
     {
+      if (!AllowedTypes.Any())
+        return true;
+
       var armor = unit.Body.Armor;
       var armorType = armor.HasArmor ? armor.Armor.ArmorType() : ArmorProficiencyGroup.Light;
       return AllowedTypes.Contains(armorType);
