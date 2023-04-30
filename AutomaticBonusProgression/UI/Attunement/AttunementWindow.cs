@@ -4,6 +4,7 @@ using HarmonyLib;
 using Kingmaker;
 using Kingmaker.ElementsSystem;
 using Kingmaker.PubSubSystem;
+using Kingmaker.UI;
 using Kingmaker.UI.FullScreenUITypes;
 using Kingmaker.UI.MVVM._PCView.ChangeVisual;
 using Kingmaker.UI.MVVM._PCView.InGame;
@@ -103,9 +104,16 @@ namespace AutomaticBonusProgression.UI.Attunement
       Apply = CreateApplyButton(UITool.GetString("Attunement.Apply"));
     }
 
+    // Use for creating view elements that don't exist during first init
+    internal void LateInit()
+    {
+      var equipment = GameObject.Instantiate(Prefabs.TooltipHeader);
+      equipment.transform.AddTo(transform);
+    }
+
     private OwlcatButton CreateAttunementTypeButton(string label, int position)
     {
-      var button = Prefabs.GetButton(label);
+      var button = Prefabs.CreateButton(label);
 
       var buttonTransform = button.transform;
       buttonTransform.AddTo(transform);
@@ -119,7 +127,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private OwlcatButton CreateApplyButton(string label)
     {
-      var button = Prefabs.GetButton(label);
+      var button = Prefabs.CreateButton(label);
 
       var buttonTransform = button.transform;
       buttonTransform.AddTo(transform);
@@ -139,7 +147,7 @@ namespace AutomaticBonusProgression.UI.Attunement
         try
         {
           Logger.Log("Initializing WindowView BaseView");
-          Prefabs.Create();
+          Prefabs.InitStatic();
           BaseView = Create(__instance.m_ChangeVisualPCView);
         }
         catch (Exception e)
@@ -181,6 +189,24 @@ namespace AutomaticBonusProgression.UI.Attunement
           view.Initialize();
           return view;
         }
+    }
+
+    [HarmonyPatch(typeof(FadeCanvas))]
+    static class FadeCanvas_Patch
+    {
+      [HarmonyPatch(nameof(FadeCanvas.Initialize)), HarmonyPostfix]
+      static void Initialize()
+      {
+        try
+        {
+          Prefabs.InitFade();
+          BaseView.LateInit();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("FadeCanvas_Patch.Initialize", e);
+        }
+      }
     }
     #endregion
   }

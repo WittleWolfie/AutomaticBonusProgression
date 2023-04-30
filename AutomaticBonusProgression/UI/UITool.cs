@@ -15,9 +15,14 @@ namespace AutomaticBonusProgression.UI
   public static class UITool
   {
     /// <summary>
-    /// Root transform for the static UI elements.
+    /// Root game object for the static UI elements.
     /// </summary>
     public static GameObject StaticCanvas => Game.Instance.UI.Canvas.gameObject;
+
+    /// <summary>
+    /// Root game object for FadeCanvas UI elements, e.g. Tooltips.
+    /// </summary>
+    public static GameObject FadeCanvas => Kingmaker.UI.FadeCanvas.Instance.gameObject;
 
     /// <summary>
     /// Returns strings for use w/ the UI (i.e. preffixed w/ "ABP.UI")

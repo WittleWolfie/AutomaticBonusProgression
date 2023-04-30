@@ -1,7 +1,11 @@
 ﻿using AutomaticBonusProgression.Util;
+using Kingmaker.UI.MVVM._PCView.InfoWindow;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.CharacterInfo.Sections.Abilities;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.Spellbook.KnownSpells;
+using Kingmaker.UI.MVVM._PCView.Tooltip.Bricks;
+using Owlcat.Runtime.Core.Utils;
 using Owlcat.Runtime.UI.Controls.Button;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -21,25 +25,30 @@ namespace AutomaticBonusProgression.UI
     internal static OwlcatButton Button;
 
     internal static GameObject EnchantmentContainer;
-
     internal static SpellbookKnownSpellPCView Enchantment;
 
-    internal static void Create()
+    internal static OwlcatButton CreateButton(string label)
     {
-      Logger.Log("Creating prefabs");
-
-      CreateBasics();
-
-      CreateEnchantmentPrefabs();
+      var button = GameObject.Instantiate(Button);
+      button.gameObject.ChildObject("Text").GetComponent<TextMeshProUGUI>().SetText(label);
+      return button;
     }
 
-    private static void CreateBasics()
+    internal static void InitStatic()
+    {
+      Logger.Log("Initializing prefabs for StaticCanvas");
+
+      InitStaticBasics();
+      InitEnchantmentPrefabs();
+    }
+
+    private static void InitStaticBasics()
     {
       var button = GameObject.Instantiate(UITool.StaticCanvas.ChildObject("ChangeVisualPCView/Window/BackToStashButton/OwlcatButton"));
       Button = button.GetComponent<OwlcatButton>();
     }
 
-    private static void CreateEnchantmentPrefabs()
+    private static void InitEnchantmentPrefabs()
     {
       EnchantmentContainer = GameObject.Instantiate(
         UITool.StaticCanvas.ChildObject(
@@ -50,14 +59,21 @@ namespace AutomaticBonusProgression.UI
       Enchantment = GameObject.Instantiate(EnchantmentContainer.GetComponent<SpellbookKnownSpellsPCView>().m_KnownSpellView);
       Enchantment.gameObject.DestroyChildren(
         "Metamagic", "RemoveButton", "Icon/Decoration", "Icon/Domain", "Icon/MythicArtFrame", "Icon/ArtArrowImage", "Level");
-
     }
 
-    internal static OwlcatButton GetButton(string label)
+    internal static TooltipBrickEntityHeaderView TooltipHeader;
+
+    internal static void InitFade()
     {
-      var button = GameObject.Instantiate(Button);
-      button.gameObject.ChildObject("Text").GetComponent<TextMeshProUGUI>().SetText(label);
-      return button;
+      Logger.Log("Initializing prefabs for FadeCanvas");
+
+      InitTooltips();
+    }
+
+    private static void InitTooltips()
+    {
+      var infoWindow = UITool.FadeCanvas.ChildObject("InfoWindowPCViewBig").GetComponent<InfoWindowPCView>();
+      TooltipHeader = infoWindow.m_BricksConfig.BrickEntityHeaderView;
     }
   }
 }
