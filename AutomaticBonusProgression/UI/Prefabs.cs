@@ -2,6 +2,7 @@
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.CharacterInfo.Sections.Abilities;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.Spellbook.KnownSpells;
 using Owlcat.Runtime.UI.Controls.Button;
+using TMPro;
 using UnityEngine;
 
 namespace AutomaticBonusProgression.UI
@@ -50,6 +51,13 @@ namespace AutomaticBonusProgression.UI
       Enchantment.gameObject.DestroyChildren(
         "Metamagic", "RemoveButton", "Icon/Decoration", "Icon/Domain", "Icon/MythicArtFrame", "Icon/ArtArrowImage", "Level");
 
+    }
+
+    internal static OwlcatButton GetButton(string label)
+    {
+      var button = GameObject.Instantiate(Button);
+      button.gameObject.ChildObject("Text").GetComponent<TextMeshProUGUI>().SetText(label);
+      return button;
     }
   }
 }

@@ -28,6 +28,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     internal static void ShowWindow()
     {
+      AttunementVM.Value?.Close();
       AttunementVM.Value = new(DisposeWindow);
     }
 
@@ -48,6 +49,8 @@ namespace AutomaticBonusProgression.UI.Attunement
     private OwlcatButton OffHand;
     private OwlcatButton Armor;
     private OwlcatButton Shield;
+
+    private OwlcatButton Apply;
 
     private readonly List<Transform> Children = new();
 
@@ -96,12 +99,13 @@ namespace AutomaticBonusProgression.UI.Attunement
       OffHand = CreateAttunementTypeButton(UITool.GetString("OffHand"), 1);
       Armor = CreateAttunementTypeButton(UITool.GetString("Armor"), 2);
       Shield = CreateAttunementTypeButton(UITool.GetString("Shield"), 3);
+
+      Apply = CreateApplyButton(UITool.GetString("Attunement.Apply"));
     }
 
     private OwlcatButton CreateAttunementTypeButton(string label, int position)
     {
-      var button = GameObject.Instantiate(Prefabs.Button);
-      button.gameObject.ChildObject("Text").GetComponent<TextMeshProUGUI>().SetText(label);
+      var button = Prefabs.GetButton(label);
 
       var buttonTransform = button.transform;
       buttonTransform.AddTo(transform);
@@ -109,6 +113,18 @@ namespace AutomaticBonusProgression.UI.Attunement
       // Each button has a height of 50
       var offset = position * 50;
       buttonTransform.localPosition = new(x: -700, y: -260 - offset);
+
+      return button;
+    }
+
+    private OwlcatButton CreateApplyButton(string label)
+    {
+      var button = Prefabs.GetButton(label);
+
+      var buttonTransform = button.transform;
+      buttonTransform.AddTo(transform);
+
+      buttonTransform.localPosition = new(x: 700, y: -410);
 
       return button;
     }

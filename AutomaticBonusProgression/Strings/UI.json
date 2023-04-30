@@ -32,6 +32,10 @@
     "Key": "ABP.UI.Attunement.Shield",
     "enGB": "Shield Attunement"
   },
+  {
+    "Key": "ABP.UI.Attunement.Apply",
+    "enGB": "Apply"
+  },
 
   {
     "Key": "ABP.UI.Attunement.Armor.Light",
