@@ -13,11 +13,9 @@
 
     internal const string ArmorAttunement = "24af67c6-bc58-4dba-a9bf-d7d00925e7c7";
     internal const string ShieldAttunement = "58b87d99-125c-4300-9c87-ba0d90168ca2";
-    internal const string LegendaryArmorAttunement = "8b361c98-2aa0-4109-9a11-33a9fc997793";
 
     internal const string WeaponAttunement = "137eeed7-8487-411c-b861-15ded694bd08";
     internal const string OffHandAttunement = "84fedf0f-50fa-4b26-8e61-5c2e280bfc8e";
-    internal const string LegendaryWeaponAttunement = "066c8db2-569e-47bd-a912-c13407efc0a4";
 
     internal const string Deflection = "b9af42db-c718-42c5-89e1-5376619e2460";
     internal const string Toughening = "0de33c56-4913-4b69-b1d0-619cd663beff";
@@ -102,7 +100,7 @@
 
     internal const string LegendaryProwess = "4af6f190-145c-473e-a584-bcc0143e838d";
 
-    #region Legendary Armor
+    #region Legendary Armor / Shield
     internal const string LegendaryArmor = "171db362-874c-468a-8626-b3e2c9deb1d4";
     internal const string LegendaryArmorAbility = "b1c038e4-f34f-443b-b080-23d44cfba390";
     internal const string LegendaryShieldAbility = "39db45ad-8f6f-4317-a0e6-6ae78e426d8e";
