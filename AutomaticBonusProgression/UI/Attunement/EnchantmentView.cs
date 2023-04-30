@@ -36,8 +36,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
           view.Name = spellView.m_SpellNameLabel;
           view.Requirements = spellView.m_SchoolNameLabel;
-
-          view.CostLabel = spellView.m_SpellLevelLabel;
+          view.Requirements.enableWordWrapping = false;
         });
 
       transform.gameObject.DestroyComponents<SpellbookKnownSpellPCView>();
@@ -51,8 +50,6 @@ namespace AutomaticBonusProgression.UI.Attunement
     private TextMeshProUGUI Name;
     private TextMeshProUGUI Requirements;
 
-    private TextMeshProUGUI CostLabel;
-
     public override void BindViewImplementation()
     {
       gameObject.SetActive(true);
@@ -64,8 +61,6 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       Name.SetText(ViewModel.Name);
       Requirements.SetText(ViewModel.Requirements);
-
-      CostLabel.SetText(ViewModel.Cost.ToString());
     }
 
     public override void DestroyViewImplementation()
@@ -114,7 +109,9 @@ namespace AutomaticBonusProgression.UI.Attunement
       Unit = unit;
 
       EffectComponent = enchantment.GetComponent<AttunementEffect>();
-      Requirements = string.Format(UITool.GetString("Attunement.Requirements"), EffectComponent.GetRequirements());
+      var requirementsList = EffectComponent.GetRequirements();
+      if (!string.IsNullOrEmpty(requirementsList))
+        Requirements = requirementsList;
 
       if (!EffectComponent.IsAvailable(Unit))
         CurrentState.Value = State.Unavailable;

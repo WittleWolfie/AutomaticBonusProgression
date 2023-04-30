@@ -17,7 +17,31 @@
   },
 
   {
-    "Key": "ABP.UI.Attunement.Requirements",
-    "enGB": "Requirements: {0}"
+    "Key": "ABP.UI.Attunement.Armor.Light",
+    "enGB": "Light Armor"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Armor.Medium",
+    "enGB": "Medium Armor"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Armor.Heavy",
+    "enGB": "Heavy Armor"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Shield.Buckler",
+    "enGB": "Buckler"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Shield.Light",
+    "enGB": "Light Shield"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Shield.Heavy",
+    "enGB": "Heavy Shield"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Shield.Tower",
+    "enGB": "Tower Shield"
   }
 ]

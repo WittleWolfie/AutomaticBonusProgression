@@ -1,10 +1,11 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.UI;
+using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Blueprints.Root;
 using Kingmaker.Items.Slots;
 using Kingmaker.UnitLogic;
+using System;
 using System.Linq;
 
 namespace AutomaticBonusProgression.Components
@@ -14,7 +15,7 @@ namespace AutomaticBonusProgression.Components
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ArmorAttunement));
 
-    internal readonly ArmorProficiencyGroup[] AllowedTypes;
+    protected readonly ArmorProficiencyGroup[] AllowedTypes;
 
     internal ArmorAttunement(BlueprintBuffReference effectBuff, params ArmorProficiencyGroup[] allowedTypes) : base(effectBuff)
     {
@@ -35,7 +36,23 @@ namespace AutomaticBonusProgression.Components
 
     public override string GetRequirements()
     {
-      return string.Join(", ", AllowedTypes.Select(LocalizedTexts.Instance.Stats.GetText));
+      var requirements = string.Join(", ", AllowedTypes.Select(GetLocalizedText).Where(str => !string.IsNullOrEmpty(str)));
+      return requirements.Truncate(35);
+    }
+
+    protected virtual string GetLocalizedText(ArmorProficiencyGroup type)
+    {
+      return type switch
+      {
+        ArmorProficiencyGroup.Light => UITool.GetString("Attunement.Armor.Light"),
+        ArmorProficiencyGroup.Medium => UITool.GetString("Attunement.Armor.Medium"),
+        ArmorProficiencyGroup.Heavy => UITool.GetString("Attunement.Armor.Heavy"),
+        ArmorProficiencyGroup.Buckler => "",
+        ArmorProficiencyGroup.LightShield => "",
+        ArmorProficiencyGroup.HeavyShield => "",
+        ArmorProficiencyGroup.TowerShield => "",
+        _ => throw new InvalidOperationException($"Unsupported armor proficiency type: {type}")
+      };
     }
   }
 }

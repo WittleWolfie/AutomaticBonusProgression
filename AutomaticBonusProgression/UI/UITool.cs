@@ -143,5 +143,13 @@ namespace AutomaticBonusProgression.UI
     {
       obj.transform.SetSiblingIndex(obj.transform.parent.gameObject.ChildObject(path).transform.GetSiblingIndex());
     }
+
+    /// <summary>
+    /// Truncates strings and ends w/ ellipses
+    /// </summary>
+    public static string Truncate(this string value, int maxLength)
+    {
+      return value.Length <= maxLength ? value : $"{value.Substring(0, maxLength)}..."; 
+    }
   }
 }

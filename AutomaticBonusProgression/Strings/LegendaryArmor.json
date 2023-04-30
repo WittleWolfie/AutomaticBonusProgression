@@ -219,7 +219,7 @@
   {
     "Key": "LA.EnergyResistance.10.Acid.Name",
     "ProcessTemplates": false,
-    "enGB": "Acid Resistance 10"
+    "enGB": "Acid Resistance 10 (+2)"
   },
   {
     "Key": "LA.EnergyResistance.10.Acid.Description",
@@ -228,7 +228,7 @@
   {
     "Key": "LA.EnergyResistance.10.Cold.Name",
     "ProcessTemplates": false,
-    "enGB": "Cold Resistance 10"
+    "enGB": "Cold Resistance 10 (+2)"
   },
   {
     "Key": "LA.EnergyResistance.10.Cold.Description",
@@ -237,7 +237,7 @@
   {
     "Key": "LA.EnergyResistance.10.Electricity.Name",
     "ProcessTemplates": false,
-    "enGB": "Electricity Resistance 10"
+    "enGB": "Electricity Resistance 10 (+2)"
   },
   {
     "Key": "LA.EnergyResistance.10.Electricity.Description",
@@ -246,7 +246,7 @@
   {
     "Key": "LA.EnergyResistance.10.Fire.Name",
     "ProcessTemplates": false,
-    "enGB": "Fire Resistance 10"
+    "enGB": "Fire Resistance 10 (+2)"
   },
   {
     "Key": "LA.EnergyResistance.10.Fire.Description",
@@ -255,7 +255,7 @@
   {
     "Key": "LA.EnergyResistance.10.Sonic.Name",
     "ProcessTemplates": false,
-    "enGB": "Sonic Resistance 10"
+    "enGB": "Sonic Resistance 10 (+2)"
   },
   {
     "Key": "LA.EnergyResistance.10.Sonic.Description",
@@ -265,7 +265,7 @@
   {
     "Key": "LA.EnergyResistance.20.Acid.Name",
     "ProcessTemplates": false,
-    "enGB": "Acid Resistance 20"
+    "enGB": "Acid Resistance 20 (+3)"
   },
   {
     "Key": "LA.EnergyResistance.20.Acid.Description",
@@ -274,7 +274,7 @@
   {
     "Key": "LA.EnergyResistance.20.Cold.Name",
     "ProcessTemplates": false,
-    "enGB": "Cold Resistance 20"
+    "enGB": "Cold Resistance 20 (+3)"
   },
   {
     "Key": "LA.EnergyResistance.20.Cold.Description",
@@ -283,7 +283,7 @@
   {
     "Key": "LA.EnergyResistance.20.Electricity.Name",
     "ProcessTemplates": false,
-    "enGB": "Electricity Resistance 20"
+    "enGB": "Electricity Resistance 20 (+3)"
   },
   {
     "Key": "LA.EnergyResistance.20.Electricity.Description",
@@ -292,7 +292,7 @@
   {
     "Key": "LA.EnergyResistance.20.Fire.Name",
     "ProcessTemplates": false,
-    "enGB": "Fire Resistance 20"
+    "enGB": "Fire Resistance 20 (+3)"
   },
   {
     "Key": "LA.EnergyResistance.20.Fire.Description",
@@ -301,7 +301,7 @@
   {
     "Key": "LA.EnergyResistance.20.Sonic.Name",
     "ProcessTemplates": false,
-    "enGB": "Sonic Resistance 20"
+    "enGB": "Sonic Resistance 20 (+3)"
   },
   {
     "Key": "LA.EnergyResistance.20.Sonic.Description",
@@ -311,7 +311,7 @@
   {
     "Key": "LA.EnergyResistance.30.Acid.Name",
     "ProcessTemplates": false,
-    "enGB": "Acid Resistance 30"
+    "enGB": "Acid Resistance 30 (+4)"
   },
   {
     "Key": "LA.EnergyResistance.30.Acid.Description",
@@ -320,7 +320,7 @@
   {
     "Key": "LA.EnergyResistance.30.Cold.Name",
     "ProcessTemplates": false,
-    "enGB": "Cold Resistance 30"
+    "enGB": "Cold Resistance 30 (+4)"
   },
   {
     "Key": "LA.EnergyResistance.30.Cold.Description",
@@ -329,7 +329,7 @@
   {
     "Key": "LA.EnergyResistance.30.Electricity.Name",
     "ProcessTemplates": false,
-    "enGB": "Electricity Resistance 30"
+    "enGB": "Electricity Resistance 30 (+4)"
   },
   {
     "Key": "LA.EnergyResistance.30.Electricity.Description",
@@ -338,7 +338,7 @@
   {
     "Key": "LA.EnergyResistance.30.Fire.Name",
     "ProcessTemplates": false,
-    "enGB": "Fire Resistance 30"
+    "enGB": "Fire Resistance 30 (+4)"
   },
   {
     "Key": "LA.EnergyResistance.30.Fire.Description",
@@ -347,7 +347,7 @@
   {
     "Key": "LA.EnergyResistance.30.Sonic.Name",
     "ProcessTemplates": false,
-    "enGB": "Sonic Resistance 30"
+    "enGB": "Sonic Resistance 30 (+4)"
   },
   {
     "Key": "LA.EnergyResistance.30.Sonic.Description",
