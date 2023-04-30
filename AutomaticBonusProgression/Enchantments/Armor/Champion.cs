@@ -40,7 +40,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       EnchantTool.CreateEnchantWithEffect(
         enchantInfo,
         effectBuff,
-        parentBuff: new(BuffName, Guids.ChampionEffect));
+        parentBuff: new(BuffName, Guids.ChampionBuff));
     }
   }
 }

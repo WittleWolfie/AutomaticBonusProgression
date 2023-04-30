@@ -76,7 +76,7 @@ namespace AutomaticBonusProgression.Enchantments
 
       var enchantInfo = new ArmorEnchantInfo(GreaterDisplayName, GreaterDescription, "", GreaterCost);
 
-      var effectBuff = BuffConfigurator.New(GreaterBuffName, Guids.GreaterShadowBuff)
+      var effectBuff = BuffConfigurator.New(GreaterEffectName, Guids.GreaterShadowEffect)
         .SetDisplayName(GreaterDisplayName)
         .SetDescription(GreaterDescription)
         //.SetIcon()

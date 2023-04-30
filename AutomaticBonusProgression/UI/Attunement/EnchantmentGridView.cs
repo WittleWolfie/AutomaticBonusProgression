@@ -132,6 +132,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       foreach (var buff in attunement.Buffs)
       {
         var bp = buff.Get();
+        Logger.Verbose(() => $"Checking {bp.Name}");
         var enhancement = bp.GetComponent<EnhancementEquivalence>();
         if (enhancement is null)
           throw new InvalidOperationException($"Missing EnhancementEquivalentComponent: {bp.Name}");
