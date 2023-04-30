@@ -1,5 +1,4 @@
 ﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.UnitParts;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Entities;
@@ -117,7 +116,7 @@ namespace AutomaticBonusProgression.UI.Attunement
         CurrentState.Value = State.Unavailable;
       else if (unit.HasFact(enchantment))
         CurrentState.Value = State.Active;
-      else if (!unit.Ensure<UnitPartEnhancement>().CanAdd(cost.Type, cost.Enhancement))
+      else if (!EffectComponent.CanAfford(Unit))
         CurrentState.Value = State.Unaffordable;
       else
         CurrentState.Value = State.Available;

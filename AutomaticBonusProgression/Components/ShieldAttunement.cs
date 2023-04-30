@@ -3,7 +3,6 @@ using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Items.Slots;
 using Kingmaker.UnitLogic;
 using System;
 using System.Linq;
@@ -15,13 +14,10 @@ namespace AutomaticBonusProgression.Components
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ShieldAttunement));
 
-    internal ShieldAttunement(BlueprintBuffReference effectBuff, params ArmorProficiencyGroup[] allowedTypes)
-      : base(effectBuff, allowedTypes) { }
+    internal ShieldAttunement(BlueprintBuffReference effectBuff, int cost, params ArmorProficiencyGroup[] allowedTypes)
+      : base(effectBuff, cost, allowedTypes) { }
 
-    protected override bool AffectsSlot(ItemSlot slot)
-    {
-      return slot is HandSlot;
-    }
+    protected override EnhancementType Type => EnhancementType.Shield;
 
     public override bool IsAvailable(UnitDescriptor unit)
     {

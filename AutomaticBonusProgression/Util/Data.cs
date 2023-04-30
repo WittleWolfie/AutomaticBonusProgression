@@ -73,8 +73,8 @@ namespace AutomaticBonusProgression.Util
       Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
     {
       if (variant)
-        return new ShieldAttunement(effectBuff.Reference, AllowedTypes);
-      return new ArmorAttunement(effectBuff.Reference, AllowedTypes);
+        return new ShieldAttunement(effectBuff.Reference, Cost, AllowedTypes);
+      return new ArmorAttunement(effectBuff.Reference, Cost, AllowedTypes);
     }
   }
 

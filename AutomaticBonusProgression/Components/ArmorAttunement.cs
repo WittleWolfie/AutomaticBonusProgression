@@ -3,7 +3,6 @@ using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Items.Slots;
 using Kingmaker.UnitLogic;
 using System;
 using System.Linq;
@@ -17,15 +16,13 @@ namespace AutomaticBonusProgression.Components
 
     protected readonly ArmorProficiencyGroup[] AllowedTypes;
 
-    internal ArmorAttunement(BlueprintBuffReference effectBuff, params ArmorProficiencyGroup[] allowedTypes) : base(effectBuff)
+    internal ArmorAttunement(BlueprintBuffReference effectBuff, int cost, params ArmorProficiencyGroup[] allowedTypes)
+      : base(effectBuff, cost)
     {
       AllowedTypes = allowedTypes;
     }
 
-    protected override bool AffectsSlot(ItemSlot slot)
-    {
-      return slot is ArmorSlot;
-    }
+    protected override EnhancementType Type => EnhancementType.Armor; 
 
     public override bool IsAvailable(UnitDescriptor unit)
     {

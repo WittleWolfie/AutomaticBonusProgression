@@ -1,6 +1,8 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.UnitParts;
+using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
 using Kingmaker.Items.Slots;
 using Kingmaker.PubSubSystem;
@@ -24,10 +26,12 @@ namespace AutomaticBonusProgression.Components
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AttunementEffect));
 
     private readonly BlueprintBuffReference EffectBuff;
+    private readonly int Cost;
 
-    protected AttunementEffect(BlueprintBuffReference effectBuff)
+    protected AttunementEffect(BlueprintBuffReference effectBuff, int cost)
     {
       EffectBuff = effectBuff;
+      Cost = cost;
     }
 
     public override void OnActivate()
@@ -66,9 +70,6 @@ namespace AutomaticBonusProgression.Components
         if (slot.Owner != Owner)
           return;
 
-        if (!AffectsSlot(slot))
-          return;
-
         ApplyEffect();
       }
       catch (Exception e)
@@ -77,10 +78,18 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
+    // Need to know if it's applied since EnchantmentView calls this w/o a configured context.
+    public bool CanAfford(UnitEntityData unit, bool applied = false)
+    {
+      if (applied)
+        return unit.Ensure<UnitPartEnhancement>().CanKeep(Type);
+      return unit.Ensure<UnitPartEnhancement>().CanAdd(Type, Cost);
+    }
+
     private void ApplyEffect()
     {
       var buffApplied = Data.AppliedBuff is not null;
-      var shouldApply = IsAvailable(Owner);
+      var shouldApply = IsAvailable(Owner) && CanAfford(Owner, applied: buffApplied);
 
       if (buffApplied && !shouldApply)
       {
@@ -96,7 +105,7 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
-    protected abstract bool AffectsSlot(ItemSlot slot);
+    protected abstract EnhancementType Type { get; }  
     public abstract bool IsAvailable(UnitDescriptor unit);
 
     /// <summary>

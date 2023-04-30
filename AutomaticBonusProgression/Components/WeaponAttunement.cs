@@ -1,7 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Items.Slots;
 using Kingmaker.UnitLogic;
 
 namespace AutomaticBonusProgression.Components
@@ -11,12 +10,9 @@ namespace AutomaticBonusProgression.Components
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(WeaponAttunement));
 
-    internal WeaponAttunement(BlueprintBuffReference effectBuff) : base(effectBuff) { }
+    internal WeaponAttunement(BlueprintBuffReference effectBuff, int cost) : base(effectBuff, cost) { }
 
-    protected override bool AffectsSlot(ItemSlot slot)
-    {
-      return slot is HandSlot;
-    }
+    protected override EnhancementType Type => EnhancementType.MainHand;
 
     public override bool IsAvailable(UnitDescriptor unit)
     {
