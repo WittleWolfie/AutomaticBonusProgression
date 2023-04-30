@@ -115,8 +115,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryWeaponDescription)
         //.SetIcon()
         .AddFacts(new() { ability, offHandAbility })
-        .AddToAllFeatures(
-          Bane.Configure())
+        //.AddToAllFeatures(
+        //  Bane.Configure())
         .Configure();
     }
   }

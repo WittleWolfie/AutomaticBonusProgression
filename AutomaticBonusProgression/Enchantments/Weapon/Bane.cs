@@ -139,465 +139,465 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     private const string Description = "LegendaryWeapon.Bane.Description";
     private const int EnhancementCost = 1;
 
-    internal static BlueprintFeature Configure()
+    internal static void Configure()
     {
       Logger.Log($"Configuring Bane");
 
-      var parent = ActivatableAbilityConfigurator.New(BaneAbility, Guids.BaneParent)
-        .SetDisplayName(BaneAbilityName)
-        .SetDescription(LegendaryWeapon.LegendaryWeaponAbilityDescription)
-        //.SetIcon()
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddActivatableAbilityVariants(
-          variants:
-            new()
-            {
-              Guids.BaneAberrationsAbility,
-              Guids.BaneAnimalsAbility,
-              Guids.BaneConstructsAbility,
-              Guids.BaneDragonsAbility,
-              Guids.BaneFeyAbility,
-              Guids.BaneHumanoidGiantAbility,
-              Guids.BaneHumanoidMonstrousAbility,
-              Guids.BaneHumanoidReptilianAbility,
-              Guids.BaneMagicalBeastsAbility,
-              Guids.BaneOutsiderChaoticAbility,
-              Guids.BaneOutsiderEvilAbility,
-              Guids.BaneOutsiderGoodAbility,
-              Guids.BaneOutsiderLawfulAbility,
-              Guids.BaneOutsiderNeutralAbility,
-              Guids.BanePlantsAbility,
-              Guids.BaneUndeadAbility,
-              Guids.BaneVerminAbility,
-            })
-        .AddActivationDisable()
-        .Configure();
-      var offHandParent = ActivatableAbilityConfigurator.New(BaneOffHandAbility, Guids.BaneOffHandParent)
-        .SetDisplayName(BaneOffHandAbilityName)
-        .SetDescription(LegendaryWeapon.LegendaryOffHandDescription)
-        //.SetIcon()
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddActivatableAbilityVariants(
-          variants:
-            new()
-            {
-              Guids.BaneAberrationsOffHandAbility,
-              Guids.BaneAnimalsOffHandAbility,
-              Guids.BaneConstructsOffHandAbility,
-              Guids.BaneDragonsOffHandAbility,
-              Guids.BaneFeyOffHandAbility,
-              Guids.BaneHumanoidGiantOffHandAbility,
-              Guids.BaneHumanoidMonstrousOffHandAbility,
-              Guids.BaneHumanoidReptilianOffHandAbility,
-              Guids.BaneMagicalBeastsOffHandAbility,
-              Guids.BaneOutsiderChaoticOffHandAbility,
-              Guids.BaneOutsiderEvilOffHandAbility,
-              Guids.BaneOutsiderGoodOffHandAbility,
-              Guids.BaneOutsiderLawfulOffHandAbility,
-              Guids.BaneOutsiderNeutralOffHandAbility,
-              Guids.BanePlantsOffHandAbility,
-              Guids.BaneUndeadOffHandAbility,
-              Guids.BaneVerminOffHandAbility,
-            })
-        .AddActivationDisable()
-        .Configure();
+      //var parent = ActivatableAbilityConfigurator.New(BaneAbility, Guids.BaneParent)
+      //  .SetDisplayName(BaneAbilityName)
+      //  .SetDescription(LegendaryWeapon.LegendaryWeaponAbilityDescription)
+      //  //.SetIcon()
+      //  .SetDeactivateImmediately()
+      //  .SetActivationType(AbilityActivationType.Immediately)
+      //  .SetActivateWithUnitCommand(CommandType.Free)
+      //  .AddActivatableAbilityVariants(
+      //    variants:
+      //      new()
+      //      {
+      //        Guids.BaneAberrationsAbility,
+      //        Guids.BaneAnimalsAbility,
+      //        Guids.BaneConstructsAbility,
+      //        Guids.BaneDragonsAbility,
+      //        Guids.BaneFeyAbility,
+      //        Guids.BaneHumanoidGiantAbility,
+      //        Guids.BaneHumanoidMonstrousAbility,
+      //        Guids.BaneHumanoidReptilianAbility,
+      //        Guids.BaneMagicalBeastsAbility,
+      //        Guids.BaneOutsiderChaoticAbility,
+      //        Guids.BaneOutsiderEvilAbility,
+      //        Guids.BaneOutsiderGoodAbility,
+      //        Guids.BaneOutsiderLawfulAbility,
+      //        Guids.BaneOutsiderNeutralAbility,
+      //        Guids.BanePlantsAbility,
+      //        Guids.BaneUndeadAbility,
+      //        Guids.BaneVerminAbility,
+      //      })
+      //  .AddActivationDisable()
+      //  .Configure();
+      //var offHandParent = ActivatableAbilityConfigurator.New(BaneOffHandAbility, Guids.BaneOffHandParent)
+      //  .SetDisplayName(BaneOffHandAbilityName)
+      //  .SetDescription(LegendaryWeapon.LegendaryOffHandDescription)
+      //  //.SetIcon()
+      //  .SetDeactivateImmediately()
+      //  .SetActivationType(AbilityActivationType.Immediately)
+      //  .SetActivateWithUnitCommand(CommandType.Free)
+      //  .AddActivatableAbilityVariants(
+      //    variants:
+      //      new()
+      //      {
+      //        Guids.BaneAberrationsOffHandAbility,
+      //        Guids.BaneAnimalsOffHandAbility,
+      //        Guids.BaneConstructsOffHandAbility,
+      //        Guids.BaneDragonsOffHandAbility,
+      //        Guids.BaneFeyOffHandAbility,
+      //        Guids.BaneHumanoidGiantOffHandAbility,
+      //        Guids.BaneHumanoidMonstrousOffHandAbility,
+      //        Guids.BaneHumanoidReptilianOffHandAbility,
+      //        Guids.BaneMagicalBeastsOffHandAbility,
+      //        Guids.BaneOutsiderChaoticOffHandAbility,
+      //        Guids.BaneOutsiderEvilOffHandAbility,
+      //        Guids.BaneOutsiderGoodOffHandAbility,
+      //        Guids.BaneOutsiderLawfulOffHandAbility,
+      //        Guids.BaneOutsiderNeutralOffHandAbility,
+      //        Guids.BanePlantsOffHandAbility,
+      //        Guids.BaneUndeadOffHandAbility,
+      //        Guids.BaneVerminOffHandAbility,
+      //      })
+      //  .AddActivationDisable()
+      //  .Configure();
 
-      var aberrationsEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneAberrationsName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var aberrationsEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneAberrationsName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var aberrations = EnchantTool.CreateEnchantAbility(
-        aberrationsEnchantInfo,
-        GetBuffInfo(BaneAberrationsBuff, Guids.BaneAberrationsBuff, FeatureRefs.AberrationType.ToString()),
-        new(BaneAberrationsAbility, Guids.BaneAberrationsAbility));
-      var aberrationsOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        aberrationsEnchantInfo,
-        GetBuffInfo(BaneAberrationsOffHandBuff, Guids.BaneAberrationsOffHandBuff, FeatureRefs.AberrationType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneAberrationsOffHandAbility, Guids.BaneAberrationsOffHandAbility));
+      //var aberrations = EnchantTool.CreateEnchantAbility(
+      //  aberrationsEnchantInfo,
+      //  GetBuffInfo(BaneAberrationsBuff, Guids.BaneAberrationsBuff, FeatureRefs.AberrationType.ToString()),
+      //  new(BaneAberrationsAbility, Guids.BaneAberrationsAbility));
+      //var aberrationsOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  aberrationsEnchantInfo,
+      //  GetBuffInfo(BaneAberrationsOffHandBuff, Guids.BaneAberrationsOffHandBuff, FeatureRefs.AberrationType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneAberrationsOffHandAbility, Guids.BaneAberrationsOffHandAbility));
 
-      var animalsEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneAnimalsName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var animalsEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneAnimalsName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var animals = EnchantTool.CreateEnchantAbility(
-        animalsEnchantInfo,
-        GetBuffInfo(BaneAnimalsBuff, Guids.BaneAnimalsBuff, FeatureRefs.AnimalType.ToString()),
-        new(BaneAnimalsAbility, Guids.BaneAnimalsAbility));
-      var animalsOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        animalsEnchantInfo,
-        GetBuffInfo(BaneAnimalsOffHandBuff, Guids.BaneAnimalsOffHandBuff, FeatureRefs.AnimalType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneAnimalsOffHandAbility, Guids.BaneAnimalsOffHandAbility));
+      //var animals = EnchantTool.CreateEnchantAbility(
+      //  animalsEnchantInfo,
+      //  GetBuffInfo(BaneAnimalsBuff, Guids.BaneAnimalsBuff, FeatureRefs.AnimalType.ToString()),
+      //  new(BaneAnimalsAbility, Guids.BaneAnimalsAbility));
+      //var animalsOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  animalsEnchantInfo,
+      //  GetBuffInfo(BaneAnimalsOffHandBuff, Guids.BaneAnimalsOffHandBuff, FeatureRefs.AnimalType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneAnimalsOffHandAbility, Guids.BaneAnimalsOffHandAbility));
 
-      var constructsEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneConstructsName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var constructsEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneConstructsName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var constructs = EnchantTool.CreateEnchantAbility(
-        constructsEnchantInfo,
-        GetBuffInfo(BaneConstructsBuff, Guids.BaneConstructsBuff, FeatureRefs.ConstructType.ToString()),
-        new(BaneConstructsAbility, Guids.BaneConstructsAbility));
-      var constructsOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        constructsEnchantInfo,
-        GetBuffInfo(BaneConstructsOffHandBuff, Guids.BaneConstructsOffHandBuff, FeatureRefs.ConstructType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneConstructsOffHandAbility, Guids.BaneConstructsOffHandAbility));
+      //var constructs = EnchantTool.CreateEnchantAbility(
+      //  constructsEnchantInfo,
+      //  GetBuffInfo(BaneConstructsBuff, Guids.BaneConstructsBuff, FeatureRefs.ConstructType.ToString()),
+      //  new(BaneConstructsAbility, Guids.BaneConstructsAbility));
+      //var constructsOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  constructsEnchantInfo,
+      //  GetBuffInfo(BaneConstructsOffHandBuff, Guids.BaneConstructsOffHandBuff, FeatureRefs.ConstructType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneConstructsOffHandAbility, Guids.BaneConstructsOffHandAbility));
 
-      var dragonsEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneDragonsName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var dragonsEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneDragonsName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var dragons = EnchantTool.CreateEnchantAbility(
-        dragonsEnchantInfo,
-        GetBuffInfo(BaneDragonsBuff, Guids.BaneDragonsBuff, FeatureRefs.DragonType.ToString()),
-        new(BaneDragonsAbility, Guids.BaneDragonsAbility));
-      var dragonsOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        dragonsEnchantInfo,
-        GetBuffInfo(BaneDragonsOffHandBuff, Guids.BaneDragonsOffHandBuff, FeatureRefs.DragonType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneDragonsOffHandAbility, Guids.BaneDragonsOffHandAbility));
+      //var dragons = EnchantTool.CreateEnchantAbility(
+      //  dragonsEnchantInfo,
+      //  GetBuffInfo(BaneDragonsBuff, Guids.BaneDragonsBuff, FeatureRefs.DragonType.ToString()),
+      //  new(BaneDragonsAbility, Guids.BaneDragonsAbility));
+      //var dragonsOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  dragonsEnchantInfo,
+      //  GetBuffInfo(BaneDragonsOffHandBuff, Guids.BaneDragonsOffHandBuff, FeatureRefs.DragonType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneDragonsOffHandAbility, Guids.BaneDragonsOffHandAbility));
 
-      var feyEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneFeyName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var feyEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneFeyName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var fey = EnchantTool.CreateEnchantAbility(
-        feyEnchantInfo,
-        GetBuffInfo(BaneFeyBuff, Guids.BaneFeyBuff, FeatureRefs.FeyType.ToString()),
-        new(BaneFeyAbility, Guids.BaneFeyAbility));
-      var feyOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        feyEnchantInfo,
-        GetBuffInfo(BaneFeyOffHandBuff, Guids.BaneFeyOffHandBuff, FeatureRefs.FeyType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneFeyOffHandAbility, Guids.BaneFeyOffHandAbility));
+      //var fey = EnchantTool.CreateEnchantAbility(
+      //  feyEnchantInfo,
+      //  GetBuffInfo(BaneFeyBuff, Guids.BaneFeyBuff, FeatureRefs.FeyType.ToString()),
+      //  new(BaneFeyAbility, Guids.BaneFeyAbility));
+      //var feyOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  feyEnchantInfo,
+      //  GetBuffInfo(BaneFeyOffHandBuff, Guids.BaneFeyOffHandBuff, FeatureRefs.FeyType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneFeyOffHandAbility, Guids.BaneFeyOffHandAbility));
 
-      var humanoidGiantEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneHumanoidGiantName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var humanoidGiantEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneHumanoidGiantName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var humanoidGiant = EnchantTool.CreateEnchantAbility(
-        humanoidGiantEnchantInfo,
-        GetBuffInfo(BaneHumanoidGiantBuff, Guids.BaneHumanoidGiantBuff, FeatureRefs.GiantSubtype.ToString()),
-        new(BaneHumanoidGiantAbility, Guids.BaneHumanoidGiantAbility));
-      var humanoidGiantOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        humanoidGiantEnchantInfo,
-        GetBuffInfo(BaneHumanoidGiantOffHandBuff, Guids.BaneHumanoidGiantOffHandBuff, FeatureRefs.GiantSubtype.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneHumanoidGiantOffHandAbility, Guids.BaneHumanoidGiantOffHandAbility));
+      //var humanoidGiant = EnchantTool.CreateEnchantAbility(
+      //  humanoidGiantEnchantInfo,
+      //  GetBuffInfo(BaneHumanoidGiantBuff, Guids.BaneHumanoidGiantBuff, FeatureRefs.GiantSubtype.ToString()),
+      //  new(BaneHumanoidGiantAbility, Guids.BaneHumanoidGiantAbility));
+      //var humanoidGiantOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  humanoidGiantEnchantInfo,
+      //  GetBuffInfo(BaneHumanoidGiantOffHandBuff, Guids.BaneHumanoidGiantOffHandBuff, FeatureRefs.GiantSubtype.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneHumanoidGiantOffHandAbility, Guids.BaneHumanoidGiantOffHandAbility));
 
-      var humanoidReptilianEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneHumanoidReptilianName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var humanoidReptilianEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneHumanoidReptilianName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var humanoidReptilian = EnchantTool.CreateEnchantAbility(
-        humanoidReptilianEnchantInfo,
-        GetBuffInfo(BaneHumanoidReptilianBuff, Guids.BaneHumanoidReptilianBuff, FeatureRefs.ReptilianSubtype.ToString()),
-        new(BaneHumanoidReptilianAbility, Guids.BaneHumanoidReptilianAbility));
-      var humanoidReptilianOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        humanoidReptilianEnchantInfo,
-        GetBuffInfo(BaneHumanoidReptilianOffHandBuff, Guids.BaneHumanoidReptilianOffHandBuff, FeatureRefs.ReptilianSubtype.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneHumanoidReptilianOffHandAbility, Guids.BaneHumanoidReptilianOffHandAbility));
+      //var humanoidReptilian = EnchantTool.CreateEnchantAbility(
+      //  humanoidReptilianEnchantInfo,
+      //  GetBuffInfo(BaneHumanoidReptilianBuff, Guids.BaneHumanoidReptilianBuff, FeatureRefs.ReptilianSubtype.ToString()),
+      //  new(BaneHumanoidReptilianAbility, Guids.BaneHumanoidReptilianAbility));
+      //var humanoidReptilianOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  humanoidReptilianEnchantInfo,
+      //  GetBuffInfo(BaneHumanoidReptilianOffHandBuff, Guids.BaneHumanoidReptilianOffHandBuff, FeatureRefs.ReptilianSubtype.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneHumanoidReptilianOffHandAbility, Guids.BaneHumanoidReptilianOffHandAbility));
 
-      var humanoidMonstrousEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneHumanoidMonstrousName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var humanoidMonstrousEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneHumanoidMonstrousName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var humanoidMonstrous = EnchantTool.CreateEnchantAbility(
-        humanoidMonstrousEnchantInfo,
-        GetBuffInfo(BaneHumanoidMonstrousBuff, Guids.BaneHumanoidMonstrousBuff, FeatureRefs.MonstrousHumanoidType.ToString()),
-        new(BaneHumanoidMonstrousAbility, Guids.BaneHumanoidMonstrousAbility));
-      var humanoidMonstrousOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        humanoidMonstrousEnchantInfo,
-        GetBuffInfo(BaneHumanoidMonstrousOffHandBuff, Guids.BaneHumanoidMonstrousOffHandBuff, FeatureRefs.MonstrousHumanoidType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneHumanoidMonstrousOffHandAbility, Guids.BaneHumanoidMonstrousOffHandAbility));
+      //var humanoidMonstrous = EnchantTool.CreateEnchantAbility(
+      //  humanoidMonstrousEnchantInfo,
+      //  GetBuffInfo(BaneHumanoidMonstrousBuff, Guids.BaneHumanoidMonstrousBuff, FeatureRefs.MonstrousHumanoidType.ToString()),
+      //  new(BaneHumanoidMonstrousAbility, Guids.BaneHumanoidMonstrousAbility));
+      //var humanoidMonstrousOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  humanoidMonstrousEnchantInfo,
+      //  GetBuffInfo(BaneHumanoidMonstrousOffHandBuff, Guids.BaneHumanoidMonstrousOffHandBuff, FeatureRefs.MonstrousHumanoidType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneHumanoidMonstrousOffHandAbility, Guids.BaneHumanoidMonstrousOffHandAbility));
 
-      var magicalBeastsEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneMagicalBeastsName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var magicalBeastsEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneMagicalBeastsName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var magicalBeasts = EnchantTool.CreateEnchantAbility(
-        magicalBeastsEnchantInfo,
-        GetBuffInfo(BaneMagicalBeastsBuff, Guids.BaneMagicalBeastsBuff, FeatureRefs.MagicalBeastType.ToString()),
-        new(BaneMagicalBeastsAbility, Guids.BaneMagicalBeastsAbility));
-      var magicalBeastsOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        magicalBeastsEnchantInfo,
-        GetBuffInfo(BaneMagicalBeastsOffHandBuff, Guids.BaneMagicalBeastsOffHandBuff, FeatureRefs.MagicalBeastType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneMagicalBeastsOffHandAbility, Guids.BaneMagicalBeastsOffHandAbility));
+      //var magicalBeasts = EnchantTool.CreateEnchantAbility(
+      //  magicalBeastsEnchantInfo,
+      //  GetBuffInfo(BaneMagicalBeastsBuff, Guids.BaneMagicalBeastsBuff, FeatureRefs.MagicalBeastType.ToString()),
+      //  new(BaneMagicalBeastsAbility, Guids.BaneMagicalBeastsAbility));
+      //var magicalBeastsOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  magicalBeastsEnchantInfo,
+      //  GetBuffInfo(BaneMagicalBeastsOffHandBuff, Guids.BaneMagicalBeastsOffHandBuff, FeatureRefs.MagicalBeastType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneMagicalBeastsOffHandAbility, Guids.BaneMagicalBeastsOffHandAbility));
 
-      var outsiderGoodEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneOutsiderGoodName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var outsiderGoodEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneOutsiderGoodName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var outsiderGood = EnchantTool.CreateEnchantAbility(
-        outsiderGoodEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderGoodBuff,
-          Guids.BaneOutsiderGoodBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Chaotic),
-        new(BaneOutsiderGoodAbility, Guids.BaneOutsiderGoodAbility));
-      var outsiderGoodOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        outsiderGoodEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderGoodOffHandBuff,
-          Guids.BaneOutsiderGoodOffHandBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Good,
-          toPrimaryWeapon: false),
-        ability: new(BaneOutsiderGoodOffHandAbility, Guids.BaneOutsiderGoodOffHandAbility));
+      //var outsiderGood = EnchantTool.CreateEnchantAbility(
+      //  outsiderGoodEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderGoodBuff,
+      //    Guids.BaneOutsiderGoodBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Chaotic),
+      //  new(BaneOutsiderGoodAbility, Guids.BaneOutsiderGoodAbility));
+      //var outsiderGoodOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  outsiderGoodEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderGoodOffHandBuff,
+      //    Guids.BaneOutsiderGoodOffHandBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Good,
+      //    toPrimaryWeapon: false),
+      //  ability: new(BaneOutsiderGoodOffHandAbility, Guids.BaneOutsiderGoodOffHandAbility));
 
-      var outsiderEvilEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneOutsiderEvilName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var outsiderEvilEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneOutsiderEvilName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var outsiderEvil = EnchantTool.CreateEnchantAbility(
-        outsiderEvilEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderEvilBuff,
-          Guids.BaneOutsiderEvilBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Chaotic),
-        new(BaneOutsiderEvilAbility, Guids.BaneOutsiderEvilAbility));
-      var outsiderEvilOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        outsiderEvilEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderEvilOffHandBuff,
-          Guids.BaneOutsiderEvilOffHandBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Evil,
-          toPrimaryWeapon: false),
-        ability: new(BaneOutsiderEvilOffHandAbility, Guids.BaneOutsiderEvilOffHandAbility));
+      //var outsiderEvil = EnchantTool.CreateEnchantAbility(
+      //  outsiderEvilEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderEvilBuff,
+      //    Guids.BaneOutsiderEvilBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Chaotic),
+      //  new(BaneOutsiderEvilAbility, Guids.BaneOutsiderEvilAbility));
+      //var outsiderEvilOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  outsiderEvilEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderEvilOffHandBuff,
+      //    Guids.BaneOutsiderEvilOffHandBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Evil,
+      //    toPrimaryWeapon: false),
+      //  ability: new(BaneOutsiderEvilOffHandAbility, Guids.BaneOutsiderEvilOffHandAbility));
 
-      var outsiderLawfulEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneOutsiderLawfulName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var outsiderLawfulEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneOutsiderLawfulName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var outsiderLawful = EnchantTool.CreateEnchantAbility(
-        outsiderLawfulEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderLawfulBuff,
-          Guids.BaneOutsiderLawfulBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Chaotic),
-        new(BaneOutsiderLawfulAbility, Guids.BaneOutsiderLawfulAbility));
-      var outsiderLawfulOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        outsiderLawfulEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderLawfulOffHandBuff,
-          Guids.BaneOutsiderLawfulOffHandBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Lawful,
-          toPrimaryWeapon: false),
-        ability: new(BaneOutsiderLawfulOffHandAbility, Guids.BaneOutsiderLawfulOffHandAbility));
+      //var outsiderLawful = EnchantTool.CreateEnchantAbility(
+      //  outsiderLawfulEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderLawfulBuff,
+      //    Guids.BaneOutsiderLawfulBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Chaotic),
+      //  new(BaneOutsiderLawfulAbility, Guids.BaneOutsiderLawfulAbility));
+      //var outsiderLawfulOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  outsiderLawfulEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderLawfulOffHandBuff,
+      //    Guids.BaneOutsiderLawfulOffHandBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Lawful,
+      //    toPrimaryWeapon: false),
+      //  ability: new(BaneOutsiderLawfulOffHandAbility, Guids.BaneOutsiderLawfulOffHandAbility));
 
-      var outsiderChaoticEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneOutsiderChaoticName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var outsiderChaoticEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneOutsiderChaoticName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var outsiderChaotic = EnchantTool.CreateEnchantAbility(
-        outsiderChaoticEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderChaoticBuff,
-          Guids.BaneOutsiderChaoticBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Chaotic),
-        new(BaneOutsiderChaoticAbility, Guids.BaneOutsiderChaoticAbility));
-      var outsiderChaoticOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        outsiderChaoticEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderChaoticOffHandBuff,
-          Guids.BaneOutsiderChaoticOffHandBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Chaotic,
-          toPrimaryWeapon: false),
-        ability: new(BaneOutsiderChaoticOffHandAbility, Guids.BaneOutsiderChaoticOffHandAbility));
+      //var outsiderChaotic = EnchantTool.CreateEnchantAbility(
+      //  outsiderChaoticEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderChaoticBuff,
+      //    Guids.BaneOutsiderChaoticBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Chaotic),
+      //  new(BaneOutsiderChaoticAbility, Guids.BaneOutsiderChaoticAbility));
+      //var outsiderChaoticOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  outsiderChaoticEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderChaoticOffHandBuff,
+      //    Guids.BaneOutsiderChaoticOffHandBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Chaotic,
+      //    toPrimaryWeapon: false),
+      //  ability: new(BaneOutsiderChaoticOffHandAbility, Guids.BaneOutsiderChaoticOffHandAbility));
 
-      var outsiderNeutralEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneOutsiderNeutralName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var outsiderNeutralEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneOutsiderNeutralName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var outsiderNeutral = EnchantTool.CreateEnchantAbility(
-        outsiderNeutralEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderNeutralBuff,
-          Guids.BaneOutsiderNeutralBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Chaotic),
-        new(BaneOutsiderNeutralAbility, Guids.BaneOutsiderNeutralAbility));
-      var outsiderNeutralOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        outsiderNeutralEnchantInfo,
-        GetBuffInfo(
-          BaneOutsiderNeutralOffHandBuff,
-          Guids.BaneOutsiderNeutralOffHandBuff,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Neutral,
-          toPrimaryWeapon: false),
-        ability: new(BaneOutsiderNeutralOffHandAbility, Guids.BaneOutsiderNeutralOffHandAbility));
+      //var outsiderNeutral = EnchantTool.CreateEnchantAbility(
+      //  outsiderNeutralEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderNeutralBuff,
+      //    Guids.BaneOutsiderNeutralBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Chaotic),
+      //  new(BaneOutsiderNeutralAbility, Guids.BaneOutsiderNeutralAbility));
+      //var outsiderNeutralOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  outsiderNeutralEnchantInfo,
+      //  GetBuffInfo(
+      //    BaneOutsiderNeutralOffHandBuff,
+      //    Guids.BaneOutsiderNeutralOffHandBuff,
+      //    FeatureRefs.OutsiderType.ToString(),
+      //    alignment: AlignmentComponent.Neutral,
+      //    toPrimaryWeapon: false),
+      //  ability: new(BaneOutsiderNeutralOffHandAbility, Guids.BaneOutsiderNeutralOffHandAbility));
 
-      var plantsEnchantInfo =
-        new WeaponEnchantInfo(
-          BanePlantsName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var plantsEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BanePlantsName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var plants = EnchantTool.CreateEnchantAbility(
-        plantsEnchantInfo,
-        GetBuffInfo(BanePlantsBuff, Guids.BanePlantsBuff, FeatureRefs.PlantType.ToString()),
-        new(BanePlantsAbility, Guids.BanePlantsAbility));
-      var plantsOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        plantsEnchantInfo,
-        GetBuffInfo(BanePlantsOffHandBuff, Guids.BanePlantsOffHandBuff, FeatureRefs.PlantType.ToString(), toPrimaryWeapon: false),
-        ability: new(BanePlantsOffHandAbility, Guids.BanePlantsOffHandAbility));
+      //var plants = EnchantTool.CreateEnchantAbility(
+      //  plantsEnchantInfo,
+      //  GetBuffInfo(BanePlantsBuff, Guids.BanePlantsBuff, FeatureRefs.PlantType.ToString()),
+      //  new(BanePlantsAbility, Guids.BanePlantsAbility));
+      //var plantsOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  plantsEnchantInfo,
+      //  GetBuffInfo(BanePlantsOffHandBuff, Guids.BanePlantsOffHandBuff, FeatureRefs.PlantType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BanePlantsOffHandAbility, Guids.BanePlantsOffHandAbility));
 
-      var undeadEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneUndeadName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var undeadEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneUndeadName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var undead = EnchantTool.CreateEnchantAbility(
-        undeadEnchantInfo,
-        GetBuffInfo(BaneUndeadBuff, Guids.BaneUndeadBuff, FeatureRefs.UndeadType.ToString()),
-        new(BaneUndeadAbility, Guids.BaneUndeadAbility));
-      var undeadOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        undeadEnchantInfo,
-        GetBuffInfo(BaneUndeadOffHandBuff, Guids.BaneUndeadOffHandBuff, FeatureRefs.UndeadType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneUndeadOffHandAbility, Guids.BaneUndeadOffHandAbility));
+      //var undead = EnchantTool.CreateEnchantAbility(
+      //  undeadEnchantInfo,
+      //  GetBuffInfo(BaneUndeadBuff, Guids.BaneUndeadBuff, FeatureRefs.UndeadType.ToString()),
+      //  new(BaneUndeadAbility, Guids.BaneUndeadAbility));
+      //var undeadOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  undeadEnchantInfo,
+      //  GetBuffInfo(BaneUndeadOffHandBuff, Guids.BaneUndeadOffHandBuff, FeatureRefs.UndeadType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneUndeadOffHandAbility, Guids.BaneUndeadOffHandAbility));
 
-      var verminEnchantInfo =
-        new WeaponEnchantInfo(
-          BaneVerminName,
-          Description,
-          "",
-          EnhancementCost,
-          ranks: 1);
+      //var verminEnchantInfo =
+      //  new WeaponEnchantInfo(
+      //    BaneVerminName,
+      //    Description,
+      //    "",
+      //    EnhancementCost,
+      //    ranks: 1);
 
-      var vermin = EnchantTool.CreateEnchantAbility(
-        verminEnchantInfo,
-        GetBuffInfo(BaneVerminBuff, Guids.BaneVerminBuff, FeatureRefs.VerminType.ToString()),
-        new(BaneVerminAbility, Guids.BaneVerminAbility));
-      var verminOffHand = EnchantTool.CreateEnchantOffHandVariant(
-        verminEnchantInfo,
-        GetBuffInfo(BaneVerminOffHandBuff, Guids.BaneVerminOffHandBuff, FeatureRefs.VerminType.ToString(), toPrimaryWeapon: false),
-        ability: new(BaneVerminOffHandAbility, Guids.BaneVerminOffHandAbility));
+      //var vermin = EnchantTool.CreateEnchantAbility(
+      //  verminEnchantInfo,
+      //  GetBuffInfo(BaneVerminBuff, Guids.BaneVerminBuff, FeatureRefs.VerminType.ToString()),
+      //  new(BaneVerminAbility, Guids.BaneVerminAbility));
+      //var verminOffHand = EnchantTool.CreateEnchantOffHandVariant(
+      //  verminEnchantInfo,
+      //  GetBuffInfo(BaneVerminOffHandBuff, Guids.BaneVerminOffHandBuff, FeatureRefs.VerminType.ToString(), toPrimaryWeapon: false),
+      //  ability: new(BaneVerminOffHandAbility, Guids.BaneVerminOffHandAbility));
 
-      var enchantInfo = new WeaponEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 1);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneAberration, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneAnimal, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneConstruct, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneDragon, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneFey, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneHumanoidGiant, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneMonstrousHumanoid, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneHumanoidReptilian, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneMagicalBeast, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderChaotic, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderEvil, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderGood, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderLawful, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderNeutral, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BanePlant, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneUndead, enchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneVermin, enchantInfo);
+      //var enchantInfo = new WeaponEnchantInfo(DisplayName, Description, "", EnhancementCost, ranks: 1);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneAberration, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneAnimal, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneConstruct, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneDragon, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneFey, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneHumanoidGiant, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneMonstrousHumanoid, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneHumanoidReptilian, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneMagicalBeast, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderChaotic, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderEvil, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderGood, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderLawful, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderNeutral, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BanePlant, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneUndead, enchantInfo);
+      //EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneVermin, enchantInfo);
 
-      return EnchantTool.CreateEnchantFeature(
-        enchantInfo,
-        new(BaneName, Guids.Bane),
-        parent,
-        offHandParent,
-        aberrations,
-        aberrationsOffHand,
-        animals,
-        animalsOffHand,
-        constructs,
-        constructsOffHand,
-        dragons,
-        dragonsOffHand,
-        fey,
-        feyOffHand,
-        humanoidGiant,
-        humanoidGiantOffHand,
-        humanoidReptilian,
-        humanoidReptilianOffHand,
-        humanoidMonstrous,
-        humanoidMonstrousOffHand,
-        magicalBeasts,
-        magicalBeastsOffHand,
-        outsiderGood,
-        outsiderGoodOffHand,
-        outsiderEvil,
-        outsiderEvilOffHand,
-        outsiderLawful,
-        outsiderLawfulOffHand,
-        outsiderChaotic,
-        outsiderChaoticOffHand,
-        outsiderNeutral,
-        outsiderNeutralOffHand,
-        plants,
-        plantsOffHand,
-        undead,
-        undeadOffHand,
-        vermin,
-        verminOffHand);
+      //return EnchantTool.CreateEnchantFeature(
+      //  enchantInfo,
+      //  new(BaneName, Guids.Bane),
+      //  parent,
+      //  offHandParent,
+      //  aberrations,
+      //  aberrationsOffHand,
+      //  animals,
+      //  animalsOffHand,
+      //  constructs,
+      //  constructsOffHand,
+      //  dragons,
+      //  dragonsOffHand,
+      //  fey,
+      //  feyOffHand,
+      //  humanoidGiant,
+      //  humanoidGiantOffHand,
+      //  humanoidReptilian,
+      //  humanoidReptilianOffHand,
+      //  humanoidMonstrous,
+      //  humanoidMonstrousOffHand,
+      //  magicalBeasts,
+      //  magicalBeastsOffHand,
+      //  outsiderGood,
+      //  outsiderGoodOffHand,
+      //  outsiderEvil,
+      //  outsiderEvilOffHand,
+      //  outsiderLawful,
+      //  outsiderLawfulOffHand,
+      //  outsiderChaotic,
+      //  outsiderChaoticOffHand,
+      //  outsiderNeutral,
+      //  outsiderNeutralOffHand,
+      //  plants,
+      //  plantsOffHand,
+      //  undead,
+      //  undeadOffHand,
+      //  vermin,
+      //  verminOffHand);
     }
 
     private static BlueprintInfo GetBuffInfo(
