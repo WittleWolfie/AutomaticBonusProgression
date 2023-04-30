@@ -62,13 +62,12 @@ namespace AutomaticBonusProgression.UI.Attunement
     public override void DestroyViewImplementation()
     {
       gameObject.SetActive(false);
-
-      Children.ForEach(child => GameObject.DestroyImmediate(child.gameObject));
-      Children.Clear();
+      DisposeChildren();
     }
 
     private void Refresh()
     {
+      DisposeChildren();
       ViewModel.AvailableEnchantments.ForEach(
         feature =>
         {
@@ -77,6 +76,12 @@ namespace AutomaticBonusProgression.UI.Attunement
           view.transform.AddTo(Grid);
           Children.Add(view.transform);
         });
+    }
+
+    private void DisposeChildren()
+    {
+      Children.ForEach(child => GameObject.DestroyImmediate(child.gameObject));
+      Children.Clear();
     }
 
     internal Transform Grid;
@@ -132,6 +137,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       var unitPart = Unit.Ensure<UnitPartEnhancement>();
       unitPart.ResetTempEnhancement(EnhancementType.Armor, legendaryFeature.GetRank());
 
+      // TODO: Add text to center of the page for characters w/o any available enchantments
       Logger.Verbose(() => $"Adding enchantments: {LegendaryArmor.Name}");
       foreach (var buff in attunement.Buffs)
       {
