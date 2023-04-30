@@ -1,5 +1,22 @@
 [
   {
+    "Key": "ABP.UI.Weapon",
+    "enGB": "Weapon"
+  },
+  {
+    "Key": "ABP.UI.OffHand",
+    "enGB": "Off-Hand"
+  },
+  {
+    "Key": "ABP.UI.Armor",
+    "enGB": "Armor"
+  },
+  {
+    "Key": "ABP.UI.Shield",
+    "enGB": "Shield"
+  },
+
+  {
     "Key": "ABP.UI.Attunement.Weapon",
     "enGB": "Weapon Attunement"
   },
