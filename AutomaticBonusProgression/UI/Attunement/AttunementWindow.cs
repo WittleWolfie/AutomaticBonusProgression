@@ -132,7 +132,7 @@ namespace AutomaticBonusProgression.UI.Attunement
   {
     private readonly Action DisposeAction;
 
-    private AttunementType Type = AttunementType.Weapon;
+    private AttunementType Type = AttunementType.Armor;
 
     internal AttunementVM(Action disposeAction)
     {
