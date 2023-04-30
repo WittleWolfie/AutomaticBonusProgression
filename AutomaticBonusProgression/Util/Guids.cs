@@ -303,8 +303,7 @@
     internal const string GhostArmorShieldEffect = "0ac87ee2-c1f0-4c40-bc1c-b1e49cc0be5a";
     internal const string GhostArmorShieldBuff = "af372ef8-26cc-41b3-8301-6e653c98409f";
 
-    internal const string Invulnerability = "03d89904-8e99-4856-8c9c-719e77463141";
-    internal const string InvulnerabilityAbility = "bc659b72-52c3-4414-9c10-9d67e533d12d";
+    internal const string InvulnerabilityEffect = "03d89904-8e99-4856-8c9c-719e77463141";
     internal const string InvulnerabilityBuff = "d77e2446-276a-4246-924e-d679b526eea8";
 
     internal const string Martyring = "78bf888f-1501-467a-9b0b-b17da3decebf";

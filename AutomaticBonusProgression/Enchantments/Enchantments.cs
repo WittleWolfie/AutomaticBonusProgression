@@ -39,6 +39,7 @@ namespace AutomaticBonusProgression.Enchantments
         Expeditious.Configure();
         Fortification.Configure();
         GhostArmor.Configure();
+        Invulnerability.Configure();
       }
       catch (Exception e)
       {

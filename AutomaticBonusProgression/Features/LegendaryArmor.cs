@@ -88,7 +88,8 @@ namespace AutomaticBonusProgression.Features
       #endregion
             Guids.ExpeditiousBuff,
             Guids.FortificationBuff,
-            Guids.GhostArmorBuff
+            Guids.GhostArmorBuff,
+            Guids.InvulnerabilityBuff
           ))
         .Configure();
     }
