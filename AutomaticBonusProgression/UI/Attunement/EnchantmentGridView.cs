@@ -106,12 +106,21 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     public override void DisposeImplementation() { }
 
+    private static BlueprintFeature LegendaryWeapon => LegendaryWeaponRef.Reference.Get();
+    private static readonly Blueprint<BlueprintFeatureReference> LegendaryWeaponRef = Guids.LegendaryWeapon;
+
+    private static BlueprintFeature LegendaryOffHand => LegendaryOffHandRef.Reference.Get();
+    private static readonly Blueprint<BlueprintFeatureReference> LegendaryOffHandRef = Guids.LegendaryOffHand;
+
     private static BlueprintFeature LegendaryArmor => LegendaryArmorRef.Reference.Get();
     private static readonly Blueprint<BlueprintFeatureReference> LegendaryArmorRef = Guids.LegendaryArmor;
 
+    private static BlueprintFeature LegendaryShield => LegendaryShieldRef.Reference.Get();
+    private static readonly Blueprint<BlueprintFeatureReference> LegendaryShieldRef = Guids.LegendaryShield;
+
     private void Refresh()
     {
-      Logger.Verbose(() => $"Refreshing Enchantment Grid: {Unit}");
+      Logger.Verbose(() => $"Refreshing Enchantment Grid: {Unit}, {Type.Value}");
       foreach (var vm in AvailableEnchantments)
         vm.Dispose();
 
@@ -120,17 +129,25 @@ namespace AutomaticBonusProgression.UI.Attunement
       if (Unit is null)
         return;
 
-      // TODO: Support for more than just armor
-      var legendaryFeature = Unit.GetFeature(LegendaryArmor);
-      var attunement = LegendaryArmor.GetComponent<AttunementBuffsComponent>();
+      var legendaryFeature = Type.Value switch
+        {
+          EnhancementType.Armor => Unit.GetFeature(LegendaryArmor),
+          EnhancementType.Shield => Unit.GetFeature(LegendaryShield),
+          EnhancementType.MainHand => Unit.GetFeature(LegendaryWeapon),
+          EnhancementType.OffHand => Unit.GetFeature(LegendaryOffHand),
+          _ => throw new NotImplementedException(),
+        };
+      if (legendaryFeature is null)
+        return; // TODO: Show text when character doesn't have attunement
+
+      var attunement = legendaryFeature.GetComponent<AttunementBuffsComponent>();
       if (attunement is null)
-        throw new InvalidOperationException($"Missing AttunementBuffsComponent: {LegendaryArmor.Name}");
+        throw new InvalidOperationException($"Missing AttunementBuffsComponent: {legendaryFeature.Name}");
 
       var unitPart = Unit.Ensure<UnitPartEnhancement>();
-      unitPart.ResetTempEnhancement(EnhancementType.Armor, legendaryFeature.GetRank());
+      unitPart.ResetTempEnhancement(Type.Value, legendaryFeature.GetRank());
 
-      // TODO: Add text to center of the page for characters w/o any available enchantments
-      Logger.Verbose(() => $"Adding enchantments: {LegendaryArmor.Name}");
+      Logger.Verbose(() => $"Adding enchantments: {legendaryFeature.Name}");
       foreach (var buff in attunement.Buffs)
       {
         var bp = buff.Get();
