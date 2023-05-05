@@ -4,12 +4,15 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.Spellbook.KnownSpells;
+using Kingmaker.UI.MVVM._VM.Tooltip.Utils;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.Utility;
 using Owlcat.Runtime.UI.Controls.Button;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
+using Owlcat.Runtime.UI.Tooltips;
+using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -61,6 +64,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       Name.SetText(ViewModel.Name);
       Requirements.SetText(ViewModel.Requirements);
+
+      this.SetTooltip(ViewModel.Tooltip);
     }
 
     public override void DestroyViewImplementation()
@@ -93,6 +98,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 
   internal class EnchantmentVM : BaseDisposable, IViewModel
   {
+    private static readonly Dictionary<string, TooltipBaseTemplate> Tooltips = new();
+
     internal enum State
     {
       Available,
@@ -108,6 +115,13 @@ namespace AutomaticBonusProgression.UI.Attunement
       Name = enchantment.Name;
       Cost = cost.Enhancement;
       Unit = unit;
+
+      var key = enchantment.AssetGuid.ToString();
+      if (!Tooltips.TryGetValue(key, out Tooltip))
+      {
+        Tooltip = new TooltipTemplateEnchantment(enchantment);
+        Tooltips[key] = Tooltip;
+      }
 
       EffectComponent = enchantment.GetComponent<AttunementEffect>();
       var requirementsList = EffectComponent.GetRequirements();
@@ -168,6 +182,8 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal string Requirements;
 
     internal int Cost;
+
+    internal TooltipBaseTemplate Tooltip;
 
     internal readonly ReactiveProperty<State> CurrentState = new();
 

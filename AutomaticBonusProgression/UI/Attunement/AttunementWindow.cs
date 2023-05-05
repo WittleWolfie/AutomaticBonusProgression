@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.UI.Attunement
   /// TODO:
   ///  - Implement the Apply functionality
   ///  - Add Available / Remaining labels
-  ///  - Add tooltips!
   /// </summary>
   internal class AttunementView : ViewBase<AttunementVM>
   {
