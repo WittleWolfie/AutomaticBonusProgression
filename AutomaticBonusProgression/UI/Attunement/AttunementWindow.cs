@@ -74,9 +74,13 @@ namespace AutomaticBonusProgression.UI.Attunement
     {
       gameObject.SetActive(true);
 
-      Enchantments.Bind(new());
+      Enchantments.Bind(new(ViewModel.Type));
       AddDisposable(Game.Instance.UI.EscManager.Subscribe(ViewModel.Close));
       AddDisposable(CloseButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.Close()));
+      AddDisposable(MainHand.OnLeftClickAsObservable().Subscribe(_ => ViewModel.SetType(EnhancementType.MainHand)));
+      AddDisposable(OffHand.OnLeftClickAsObservable().Subscribe(_ => ViewModel.SetType(EnhancementType.OffHand)));
+      AddDisposable(Armor.OnLeftClickAsObservable().Subscribe(_ => ViewModel.SetType(EnhancementType.Armor)));
+      AddDisposable(Shield.OnLeftClickAsObservable().Subscribe(_ => ViewModel.SetType(EnhancementType.Shield)));
 
       Refresh();
       ViewModel.Subscribe(Refresh);
@@ -120,24 +124,25 @@ namespace AutomaticBonusProgression.UI.Attunement
     {
       Header.text = ViewModel.GetHeader();
 
+      MainHand.SetInteractable(ViewModel.Type.Value != EnhancementType.MainHand);
+      OffHand.SetInteractable(ViewModel.Type.Value != EnhancementType.OffHand);
+      Armor.SetInteractable(ViewModel.Type.Value != EnhancementType.Armor);
+      Shield.SetInteractable(ViewModel.Type.Value != EnhancementType.Shield);
+
       switch (ViewModel.Type.Value)
       {
         case EnhancementType.MainHand:
-          MainHand.SetInteractable(false);
           BindEquippedItem(ViewModel.Unit.Body.PrimaryHand.Weapon);
           break;
         // TODO: Handle Secondary Natural Weapons, shield in off-hand
         case EnhancementType.OffHand:
-          OffHand.SetInteractable(false);
           BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Weapon);
           break;
         // TODO: Handle unarmored
         case EnhancementType.Armor:
-          Armor.SetInteractable(false);
           BindEquippedItem(ViewModel.Unit.Body.Armor.Armor);
           break;
         case EnhancementType.Shield:
-          Shield.SetInteractable(false);
           BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Shield);
           break;
       }
@@ -303,6 +308,12 @@ namespace AutomaticBonusProgression.UI.Attunement
         EnhancementType.Shield => UITool.GetString("Attunement.Shield"),
         _ => throw new InvalidOperationException($"Unknown enhancement type: {Type}"),
       };
+    }
+
+    internal void SetType(EnhancementType type)
+    {
+      if (Type.Value != type)
+        Type.Value = type;
     }
 
     private void Refresh()

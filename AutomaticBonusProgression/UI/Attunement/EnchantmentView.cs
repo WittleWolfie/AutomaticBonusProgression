@@ -65,7 +65,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     public override void DestroyViewImplementation()
     {
-      gameObject.SetActive(false);
+      gameObject?.SetActive(false);
     }
 
     private void OnClick()

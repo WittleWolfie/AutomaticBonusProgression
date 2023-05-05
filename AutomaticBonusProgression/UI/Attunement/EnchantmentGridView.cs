@@ -94,22 +94,14 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal List<EnchantmentVM> AvailableEnchantments = new();
 
     private Action OnRefresh;
-    private UnitEntityData Unit => SelectedUnit.Value;
-    private readonly ReactiveProperty<EnhancementType> Type = new();
-    private readonly ReactiveProperty<UnitDescriptor> SelectedUnit = new();
+    private UnitEntityData Unit => Game.Instance.SelectionCharacter.SelectedUnit.Value;
+    private readonly ReactiveProperty<EnhancementType> Type;
 
-    internal EnchantmentsVM()
+    internal EnchantmentsVM(ReactiveProperty<EnhancementType> type)
     {
-      AddDisposable(
-        Game.Instance.SelectionCharacter.SelectedUnit.Subscribe(
-          unit =>
-          {
-            SelectedUnit.Value = unit.Value;
-            Refresh();
-          }));
-
-      // TODO: Actually make this change w/ buttons and shit
-      Type.Value = EnhancementType.Armor;
+      Type = type;
+      AddDisposable(Game.Instance.SelectionCharacter.SelectedUnit.Subscribe(_ => Refresh()));
+      AddDisposable(Type.Subscribe(_ => Refresh()));
     }
 
     public override void DisposeImplementation() { }
