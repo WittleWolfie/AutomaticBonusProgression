@@ -138,9 +138,11 @@ namespace AutomaticBonusProgression.UI.Attunement
         case EnhancementType.OffHand:
           BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Weapon);
           break;
-        // TODO: Handle unarmored
         case EnhancementType.Armor:
-          BindEquippedItem(ViewModel.Unit.Body.Armor.Armor);
+          if (ViewModel.Unit.Body.Armor.HasArmor)
+            BindEquippedItem(ViewModel.Unit.Body.Armor.Armor);
+          else
+            BindUnarmored();
           break;
         case EnhancementType.Shield:
           BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Shield);
@@ -165,6 +167,16 @@ namespace AutomaticBonusProgression.UI.Attunement
       var rightLabel = tooltipData.GetText(TooltipElement.Twohanded);
       if (!string.IsNullOrEmpty(rightLabel))
         Equipment.m_RightLabel.text = rightLabel;
+    }
+
+    private void BindUnarmored()
+    {
+      Equipment.m_ItemContainer.SetActive(true);
+      Equipment.m_OtherContainer.SetActive(false);
+      Equipment.m_ImageContainer.SetActive(false);
+
+      Equipment.m_MainTitle.text = UITool.GetString("Attunement.Armor.None");
+      Equipment.m_Title.text = UITool.GetString("Attunement.Armor.Light");
     }
 
     private OwlcatButton CreateAttunementTypeButton(string label, int position)
