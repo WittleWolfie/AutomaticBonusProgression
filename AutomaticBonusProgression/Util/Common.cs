@@ -83,6 +83,11 @@ namespace AutomaticBonusProgression.Util
       return unit.IsInCompanionRoster() || (unit.Master is not null && unit.Master.IsInCompanionRoster());
     }
 
+    internal static ItemEntityWeapon GetSecondaryWeapon(UnitEntityData unit)
+    {
+      return unit.Body.FindWeaponSlot(slot => slot.HasWeapon && !IsPrimaryWeapon(slot.Weapon))?.Weapon;
+    }
+
     internal static bool HasSecondaryWeapon(UnitEntityData unit)
     {
       var secondaryWeapon = unit.Body.FindWeaponSlot(slot => slot.HasWeapon && !IsPrimaryWeapon(slot.Weapon));

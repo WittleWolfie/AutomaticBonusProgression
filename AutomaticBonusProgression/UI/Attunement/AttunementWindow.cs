@@ -134,12 +134,12 @@ namespace AutomaticBonusProgression.UI.Attunement
         case EnhancementType.MainHand:
           BindEquippedItem(ViewModel.Unit.Body.PrimaryHand.Weapon);
           break;
-        // TODO: Handle Secondary Natural Weapons, shield in off-hand
         case EnhancementType.OffHand:
-          if (ViewModel.Unit.Body.SecondaryHand.HasWeapon)
-            BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Weapon);
-          else
+          var weapon = Common.GetSecondaryWeapon(ViewModel.Unit);
+          if (weapon is null)
             BindUnequipped();
+          else
+            BindEquippedItem(weapon);
           break;
         case EnhancementType.Armor:
           if (ViewModel.Unit.Body.Armor.HasArmor)
