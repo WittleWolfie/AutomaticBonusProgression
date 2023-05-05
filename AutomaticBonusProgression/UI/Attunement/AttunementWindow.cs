@@ -1,14 +1,18 @@
-﻿using AutomaticBonusProgression.Util;
-using BlueprintCore.Utils;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using HarmonyLib;
 using Kingmaker;
 using Kingmaker.ElementsSystem;
+using Kingmaker.EntitySystem.Entities;
+using Kingmaker.Items;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UI;
 using Kingmaker.UI.FullScreenUITypes;
 using Kingmaker.UI.MVVM._PCView.ChangeVisual;
 using Kingmaker.UI.MVVM._PCView.InGame;
 using Kingmaker.UI.MVVM._PCView.Tooltip.Bricks;
+using Kingmaker.UI.MVVM._VM.Tooltip.Templates;
+using Kingmaker.UI.Tooltip;
 using Owlcat.Runtime.UI.Controls.Button;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
@@ -22,7 +26,6 @@ namespace AutomaticBonusProgression.UI.Attunement
 {
   /// <summary>
   /// TODO:
-  ///  - Actually bind view to current relevant equipment
   ///  - Implement support for the different attunement types
   ///  - Implement the Apply functionality
   ///  - Add Available / Remaining labels
@@ -37,10 +40,10 @@ namespace AutomaticBonusProgression.UI.Attunement
     private static AttunementView BaseView;
     internal static readonly ReactiveProperty<AttunementVM> AttunementVM = new();
 
-    internal static void ShowWindow()
+    internal static void ShowWindow(EnhancementType type)
     {
       AttunementVM.Value?.Close();
-      AttunementVM.Value = new(DisposeWindow);
+      AttunementVM.Value = new(DisposeWindow, type);
     }
 
     internal static void DisposeWindow()
@@ -70,33 +73,13 @@ namespace AutomaticBonusProgression.UI.Attunement
     public override void BindViewImplementation()
     {
       gameObject.SetActive(true);
+
+      Enchantments.Bind(new());
       AddDisposable(Game.Instance.UI.EscManager.Subscribe(ViewModel.Close));
       AddDisposable(CloseButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.Close()));
 
-      Header.text = ViewModel.GetHeader();
-      Enchantments.Bind(new());
-
-      // TODO: Actually set up binding to equipment
-      Equipment.m_ItemContainer.SetActive(true);
-      Equipment.m_OtherContainer.SetActive(false);
-      Equipment.m_MainTitle.text = "Chainmail of Total Awesomeness +4";
-      Equipment.m_Title.text = "Medium Armor - Chainmail";
-
-      switch (ViewModel.Type)
-      {
-        case AttunementType.Weapon:
-          MainHand.SetInteractable(false);
-          break;
-        case AttunementType.OffHand:
-          OffHand.SetInteractable(false);
-          break;
-        case AttunementType.Armor:
-          Armor.SetInteractable(false);
-          break;
-        case AttunementType.Shield:
-          Shield.SetInteractable(false);
-          break;
-      }
+      Refresh();
+      ViewModel.Subscribe(Refresh);
     }
 
     public override void DestroyViewImplementation()
@@ -131,6 +114,49 @@ namespace AutomaticBonusProgression.UI.Attunement
       var rect = Equipment.GetComponent<RectTransform>();
       rect.localPosition = new(x: 0, y: -325);
       rect.sizeDelta = new(x: 700, y: 90);
+    }
+
+    private void Refresh()
+    {
+      Header.text = ViewModel.GetHeader();
+
+      switch (ViewModel.Type.Value)
+      {
+        case EnhancementType.MainHand:
+          MainHand.SetInteractable(false);
+          BindEquippedItem(ViewModel.Unit.Body.PrimaryHand.Weapon);
+          break;
+        // TODO: Handle Secondary Natural Weapons, shield in off-hand
+        case EnhancementType.OffHand:
+          OffHand.SetInteractable(false);
+          BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Weapon);
+          break;
+        // TODO: Handle unarmored
+        case EnhancementType.Armor:
+          Armor.SetInteractable(false);
+          BindEquippedItem(ViewModel.Unit.Body.Armor.Armor);
+          break;
+        case EnhancementType.Shield:
+          Shield.SetInteractable(false);
+          BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Shield);
+          break;
+      }
+    }
+
+    private void BindEquippedItem(ItemEntity item)
+    {
+      Equipment.m_ItemContainer.SetActive(true);
+      Equipment.m_OtherContainer.SetActive(false);
+
+      Equipment.m_Image.sprite = item.Icon ?? item.Blueprint.Icon;
+      Equipment.m_MainTitle.text = item.Name;
+
+      var tooltipData = new ItemTooltipData(item);
+      Equipment.m_Title.text = tooltipData.GetText(TooltipElement.Subname);
+
+      var rightLabel = tooltipData.GetText(TooltipElement.Twohanded);
+      if (!string.IsNullOrEmpty(rightLabel))
+        Equipment.m_RightLabel.text = rightLabel;
     }
 
     private OwlcatButton CreateAttunementTypeButton(string label, int position)
@@ -235,14 +261,22 @@ namespace AutomaticBonusProgression.UI.Attunement
 
   internal class AttunementVM : BaseDisposable, IViewModel
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AttunementVM));
+
     private readonly Action DisposeAction;
+    private Action OnRefresh;
 
-    internal AttunementType Type = AttunementType.Armor;
+    internal UnitEntityData Unit => Game.Instance.SelectionCharacter.SelectedUnit.Value;
+    internal readonly ReactiveProperty<EnhancementType> Type = new();
 
-    internal AttunementVM(Action disposeAction)
+    internal AttunementVM(Action disposeAction, EnhancementType type)
     {
       DisposeAction = disposeAction;
+      Type.Value = type;
       EventBus.RaiseEvent<IFullScreenUIHandler>(h => h.HandleFullScreenUiChanged(state: true, FullScreenUIType.Unknown));
+
+      AddDisposable(Game.Instance.SelectionCharacter.SelectedUnit.Subscribe(unit => Refresh()));
+      AddDisposable(Type.Subscribe(type => Refresh()));
     }
 
     public override void DisposeImplementation()
@@ -258,27 +292,32 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     internal string GetHeader()
     {
-      return Type switch
+      return Type.Value switch
       {
-        AttunementType.Weapon => UITool.GetString("Attunement.Weapon"),
-        AttunementType.OffHand => UITool.GetString("Attunement.OffHand"),
-        AttunementType.Armor => UITool.GetString("Attunement.Armor"),
-        AttunementType.Shield => UITool.GetString("Attunement.Shield"),
-        _ => throw new InvalidOperationException($"Unknown attunement type: {Type}"),
+        EnhancementType.MainHand => UITool.GetString("Attunement.Weapon"),
+        EnhancementType.OffHand => UITool.GetString("Attunement.OffHand"),
+        EnhancementType.Armor => UITool.GetString("Attunement.Armor"),
+        EnhancementType.Shield => UITool.GetString("Attunement.Shield"),
+        _ => throw new InvalidOperationException($"Unknown enhancement type: {Type}"),
       };
     }
-  }
 
-  internal enum AttunementType
-  {
-    Weapon,
-    OffHand,
-    Armor,
-    Shield
+    private void Refresh()
+    {
+      Logger.Verbose(() => $"Refreshing Attunement Window: {Unit}, {Type.Value}");
+      OnRefresh?.Invoke();
+    }
+
+    internal void Subscribe(Action onRefresh)
+    {
+      OnRefresh = onRefresh;
+    }
   }
 
   internal class ShowAttunement : GameAction
   {
+    internal EnhancementType Type;
+
     public override string GetCaption()
     {
       return "Shows the attunement window";
@@ -286,7 +325,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     public override void RunAction()
     {
-      AttunementView.ShowWindow();
+      AttunementView.ShowWindow(Type);
     }
   }
 }
