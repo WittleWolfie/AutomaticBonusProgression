@@ -38,9 +38,14 @@
   },
 
   {
+    "Key": "ABP.UI.Attunement.Unequipped",
+    "enGB": "None Equipped"
+  },
+  {
     "Key": "ABP.UI.Attunement.Armor.None",
     "enGB": "Unarmored"
   },
+
   {
     "Key": "ABP.UI.Attunement.Armor.Light",
     "enGB": "Light Armor"

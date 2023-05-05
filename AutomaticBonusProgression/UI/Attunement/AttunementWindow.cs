@@ -136,7 +136,10 @@ namespace AutomaticBonusProgression.UI.Attunement
           break;
         // TODO: Handle Secondary Natural Weapons, shield in off-hand
         case EnhancementType.OffHand:
-          BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Weapon);
+          if (ViewModel.Unit.Body.SecondaryHand.HasWeapon)
+            BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Weapon);
+          else
+            BindUnequipped();
           break;
         case EnhancementType.Armor:
           if (ViewModel.Unit.Body.Armor.HasArmor)
@@ -145,7 +148,10 @@ namespace AutomaticBonusProgression.UI.Attunement
             BindUnarmored();
           break;
         case EnhancementType.Shield:
-          BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Shield);
+          if (ViewModel.Unit.Body.SecondaryHand.HasShield)
+            BindEquippedItem(ViewModel.Unit.Body.SecondaryHand.Shield);
+          else
+            BindUnequipped();
           break;
       }
     }
@@ -164,9 +170,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       var tooltipData = UIUtilityItem.GetItemTooltipData(item);
       Equipment.m_Title.text = tooltipData.GetText(TooltipElement.Subname);
 
-      var rightLabel = tooltipData.GetText(TooltipElement.Twohanded);
-      if (!string.IsNullOrEmpty(rightLabel))
-        Equipment.m_RightLabel.text = rightLabel;
+      Equipment.m_RightLabel.text = tooltipData.GetText(TooltipElement.Twohanded);
     }
 
     private void BindUnarmored()
@@ -177,6 +181,18 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       Equipment.m_MainTitle.text = UITool.GetString("Attunement.Armor.None");
       Equipment.m_Title.text = UITool.GetString("Attunement.Armor.Light");
+    }
+
+    private void BindUnequipped()
+    {
+      Equipment.m_ItemContainer.SetActive(true);
+      Equipment.m_OtherContainer.SetActive(false);
+      Equipment.m_ImageContainer.SetActive(false);
+
+      Equipment.m_MainTitle.text = UITool.GetString("Attunement.Unequipped");
+
+      Equipment.m_Title.text = null;
+      Equipment.m_RightLabel.text = null;
     }
 
     private OwlcatButton CreateAttunementTypeButton(string label, int position)
