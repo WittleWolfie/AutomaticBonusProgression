@@ -74,7 +74,8 @@ namespace AutomaticBonusProgression.UI
     {
       var infoWindow = UITool.FadeCanvas.ChildObject("InfoWindowPCViewBig").GetComponent<InfoWindowPCView>();
       ItemInfoBlock = GameObject.Instantiate(infoWindow.m_BricksConfig.BrickEntityHeaderView);
-      ItemInfoBlock.gameObject.DestroyChildren("IconBlock/IconArrow", "TextBlock/SideBySideText (1)");
+      ItemInfoBlock.gameObject.DestroyChildren(
+        "IconBlock/IconArrow", "TextBlock/SideBySideText (1)", "IconBlock/Icon/DecorationIcon (2)", "IconBlock/Icon/Icon (1)");
     }
   }
 }

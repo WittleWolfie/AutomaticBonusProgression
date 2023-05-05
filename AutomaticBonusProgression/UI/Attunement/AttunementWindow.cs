@@ -7,11 +7,11 @@ using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UI;
+using Kingmaker.UI.Common;
 using Kingmaker.UI.FullScreenUITypes;
 using Kingmaker.UI.MVVM._PCView.ChangeVisual;
 using Kingmaker.UI.MVVM._PCView.InGame;
 using Kingmaker.UI.MVVM._PCView.Tooltip.Bricks;
-using Kingmaker.UI.MVVM._VM.Tooltip.Templates;
 using Kingmaker.UI.Tooltip;
 using Owlcat.Runtime.UI.Controls.Button;
 using Owlcat.Runtime.UI.Controls.Other;
@@ -148,10 +148,13 @@ namespace AutomaticBonusProgression.UI.Attunement
       Equipment.m_ItemContainer.SetActive(true);
       Equipment.m_OtherContainer.SetActive(false);
 
-      Equipment.m_Image.sprite = item.Icon ?? item.Blueprint.Icon;
+      var icon = item.Icon ?? item.Blueprint.Icon;
+      Equipment.m_ImageContainer.SetActive(icon is not null);
+      Equipment.m_Image.sprite = icon;
+
       Equipment.m_MainTitle.text = item.Name;
 
-      var tooltipData = new ItemTooltipData(item);
+      var tooltipData = UIUtilityItem.GetItemTooltipData(item);
       Equipment.m_Title.text = tooltipData.GetText(TooltipElement.Subname);
 
       var rightLabel = tooltipData.GetText(TooltipElement.Twohanded);
