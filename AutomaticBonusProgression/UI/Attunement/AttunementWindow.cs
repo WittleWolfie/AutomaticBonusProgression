@@ -26,7 +26,6 @@ namespace AutomaticBonusProgression.UI.Attunement
 {
   /// <summary>
   /// TODO:
-  ///  - Implement support for the different attunement types
   ///  - Implement the Apply functionality
   ///  - Add Available / Remaining labels
   ///  - Add tooltips!
