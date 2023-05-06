@@ -53,6 +53,43 @@ namespace AutomaticBonusProgression.Util
       }
     }
 
+    private static BlueprintFeature _legendaryWeapon;
+    internal static BlueprintFeature LegendaryWeapon
+    {
+      get
+      {
+        _legendaryWeapon ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryWeapon);
+        return _legendaryWeapon;
+      }
+    }
+    private static BlueprintFeature _legendaryOffHand;
+    internal static BlueprintFeature LegendaryOffHand
+    {
+      get
+      {
+        _legendaryOffHand ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryOffHand);
+        return _legendaryOffHand;
+      }
+    }
+    private static BlueprintFeature _legendaryArmor;
+    internal static BlueprintFeature LegendaryArmor
+    {
+      get
+      {
+        _legendaryArmor ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryArmor);
+        return _legendaryArmor;
+      }
+    }
+    private static BlueprintFeature _legendaryShield;
+    internal static BlueprintFeature LegendaryShield
+    {
+      get
+      {
+        _legendaryShield ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryShield);
+        return _legendaryShield;
+      }
+    }
+
     internal static bool IsReplacedByABP(StatType stat, ModifierDescriptor descriptor)
     {
       switch (stat)

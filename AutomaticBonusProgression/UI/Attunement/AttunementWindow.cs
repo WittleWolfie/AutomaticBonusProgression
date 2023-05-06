@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.UnitParts;
 using AutomaticBonusProgression.Util;
 using HarmonyLib;
 using Kingmaker;
@@ -27,7 +28,7 @@ namespace AutomaticBonusProgression.UI.Attunement
   /// <summary>
   /// TODO:
   ///  - Implement the Apply functionality
-  ///  - Add Available / Remaining labels
+  ///  - Use the fancy header (red first letter)
   /// </summary>
   internal class AttunementView : ViewBase<AttunementVM>
   {
@@ -55,6 +56,7 @@ namespace AutomaticBonusProgression.UI.Attunement
     private TextMeshProUGUI Header;
 
     private EnchantmentGridView Enchantments;
+    private TextMeshProUGUI EnhancementBonus;
 
     private TooltipBrickEntityHeaderView Equipment;
 
@@ -96,7 +98,9 @@ namespace AutomaticBonusProgression.UI.Attunement
       Window = gameObject.ChildObject("Window").transform;
       CloseButton = gameObject.ChildObject("Window/Close").GetComponent<OwlcatButton>();
       Header = gameObject.ChildObject("Window/Header").GetComponentInChildren<TextMeshProUGUI>();
+
       Enchantments = EnchantmentGridView.Instantiate(Window);
+      EnhancementBonus = CreateEnhancementBonus();
 
       MainHand = CreateAttunementTypeButton(UITool.GetString("Weapon"), 0);
       OffHand = CreateAttunementTypeButton(UITool.GetString("OffHand"), 1);
@@ -151,7 +155,23 @@ namespace AutomaticBonusProgression.UI.Attunement
             BindUnequipped();
           break;
       }
+
+      var unitPartEnhancement = ViewModel.Unit.Ensure<UnitPartEnhancement>();
+      if (EnhancementSubscription is not null)
+        RemoveDisposable(EnhancementSubscription);
+      EnhancementSubscription =
+        unitPartEnhancement.TempEnhancement.Subscribe(
+          bonus =>
+            EnhancementBonus.text =
+              string.Format(
+                UITool.GetString("Attunement.Enhancement"),
+                bonus,
+                unitPartEnhancement.GetMax(ViewModel.Type.Value)));
+      AddDisposable(EnhancementSubscription);
     }
+
+    // Used since we need a subscription per unit for UnitPartEnhancement. Prevents continually adding subscriptions.
+    private IDisposable EnhancementSubscription;
 
     private void BindEquippedItem(ItemEntity item)
     {
@@ -218,6 +238,34 @@ namespace AutomaticBonusProgression.UI.Attunement
       return button;
     }
 
+    private TextMeshProUGUI CreateEnhancementBonus()
+    {
+      var label = GameObject.Instantiate(Prefabs.Text);
+      label.fontSize = 32;
+      label.enableAutoSizing = true;
+
+      var labelTransform = label.transform;
+      labelTransform.AddTo(transform);
+
+      labelTransform.localPosition = new(x: 0, y: -235);
+
+      return label;
+    }
+
+    private TextMeshProUGUI CreateEnhancementValue()
+    {
+      var label = GameObject.Instantiate(Prefabs.Text);
+      label.fontStyle = FontStyles.Bold;
+      label.fontSize = 36;
+
+      var labelTransform = label.transform;
+      labelTransform.AddTo(transform);
+
+      labelTransform.localPosition = new(x: 750, y: -350);
+
+      return label;
+    }
+
     #region Setup
     [HarmonyPatch(typeof(InGameStaticPartPCView))]
     static class InGameStaticPartPCView_Patch
@@ -237,39 +285,39 @@ namespace AutomaticBonusProgression.UI.Attunement
         }
       }
 
-        [HarmonyPatch(nameof(InGameStaticPartPCView.BindViewImplementation)), HarmonyPostfix]
-        static void BindViewImplementation(InGameStaticPartPCView __instance)
+      [HarmonyPatch(nameof(InGameStaticPartPCView.BindViewImplementation)), HarmonyPostfix]
+      static void BindViewImplementation(InGameStaticPartPCView __instance)
+      {
+        try
         {
-          try
-          {
-              Logger.Log("Binding to AttunementVM");
-              __instance.AddDisposable(AttunementVM.Subscribe(BaseView.Bind));
-          }
-          catch (Exception e)
-          {
-              Logger.LogException("InGameStaticPartPCView_Patch.BindViewImplementation", e);
-          }
+            Logger.Log("Binding to AttunementVM");
+            __instance.AddDisposable(AttunementVM.Subscribe(BaseView.Bind));
         }
-
-        internal static AttunementView Create(ChangeVisualPCView changeVisualView)
+        catch (Exception e)
         {
-          var obj = Instantiate(changeVisualView.gameObject);
-          obj.transform.AddTo(changeVisualView.transform.parent);
-          obj.MakeSibling("ServiceWindowsPCView");
-
-          obj.DestroyComponents<ChangeVisualPCView>();
-          // TODO: Add as components!
-          obj.DestroyChildren(
-            "Window/InteractionSlot",
-            "Window/Inventory",
-            "Window/Doll",
-            "Window/BackToStashButton",
-            "Window/ChangeItemsPool");
-
-          var view = obj.AddComponent<AttunementView>();
-          view.Initialize();
-          return view;
+            Logger.LogException("InGameStaticPartPCView_Patch.BindViewImplementation", e);
         }
+      }
+
+      internal static AttunementView Create(ChangeVisualPCView changeVisualView)
+      {
+        var obj = Instantiate(changeVisualView.gameObject);
+        obj.transform.AddTo(changeVisualView.transform.parent);
+        obj.MakeSibling("ServiceWindowsPCView");
+
+        obj.DestroyComponents<ChangeVisualPCView>();
+        // TODO: Add as components!
+        obj.DestroyChildren(
+          "Window/InteractionSlot",
+          "Window/Inventory",
+          "Window/Doll",
+          "Window/BackToStashButton",
+          "Window/ChangeItemsPool");
+
+        var view = obj.AddComponent<AttunementView>();
+        view.Initialize();
+        return view;
+      }
     }
 
     [HarmonyPatch(typeof(FadeCanvas))]

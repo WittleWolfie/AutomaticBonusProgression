@@ -1,77 +1,100 @@
 [
   {
     "Key": "ABP.UI.Weapon",
+    "ProcessTemplates": false,
     "enGB": "Weapon"
   },
   {
     "Key": "ABP.UI.OffHand",
+    "ProcessTemplates": false,
     "enGB": "Off-Hand"
   },
   {
     "Key": "ABP.UI.Armor",
+    "ProcessTemplates": false,
     "enGB": "Armor"
   },
   {
     "Key": "ABP.UI.Shield",
+    "ProcessTemplates": false,
     "enGB": "Shield"
   },
 
   {
     "Key": "ABP.UI.Attunement.Weapon",
+    "ProcessTemplates": false,
     "enGB": "Weapon Attunement"
   },
   {
     "Key": "ABP.UI.Attunement.OffHand",
+    "ProcessTemplates": false,
     "enGB": "Off-Hand Attunement"
   },
   {
     "Key": "ABP.UI.Attunement.Armor",
+    "ProcessTemplates": false,
     "enGB": "Armor Attunement"
   },
   {
     "Key": "ABP.UI.Attunement.Shield",
+    "ProcessTemplates": false,
     "enGB": "Shield Attunement"
   },
   {
     "Key": "ABP.UI.Attunement.Apply",
+    "ProcessTemplates": false,
     "enGB": "Apply"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Enhancement",
+    "ProcessTemplates": false,
+    "enGB": "Enhancement: +{0}/{1}"
   },
 
   {
     "Key": "ABP.UI.Attunement.Unequipped",
+    "ProcessTemplates": false,
     "enGB": "None Equipped"
   },
   {
     "Key": "ABP.UI.Attunement.Armor.None",
+    "ProcessTemplates": false,
     "enGB": "Unarmored"
   },
 
   {
     "Key": "ABP.UI.Attunement.Armor.Light",
+    "ProcessTemplates": false,
     "enGB": "Light Armor"
   },
   {
     "Key": "ABP.UI.Attunement.Armor.Medium",
+    "ProcessTemplates": false,
     "enGB": "Medium Armor"
   },
   {
     "Key": "ABP.UI.Attunement.Armor.Heavy",
+    "ProcessTemplates": false,
     "enGB": "Heavy Armor"
   },
   {
     "Key": "ABP.UI.Attunement.Shield.Buckler",
+    "ProcessTemplates": false,
     "enGB": "Buckler"
   },
   {
     "Key": "ABP.UI.Attunement.Shield.Light",
+    "ProcessTemplates": false,
     "enGB": "Light Shield"
   },
   {
     "Key": "ABP.UI.Attunement.Shield.Heavy",
+    "ProcessTemplates": false,
     "enGB": "Heavy Shield"
   },
   {
     "Key": "ABP.UI.Attunement.Shield.Tower",
+    "ProcessTemplates": false,
     "enGB": "Tower Shield"
   }
 ]

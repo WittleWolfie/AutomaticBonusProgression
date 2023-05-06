@@ -2,6 +2,7 @@
 using AutomaticBonusProgression.Util;
 using Kingmaker.UnitLogic;
 using Newtonsoft.Json;
+using System;
 using UniRx;
 
 namespace AutomaticBonusProgression.UnitParts
@@ -64,11 +65,11 @@ namespace AutomaticBonusProgression.UnitParts
     {
       return type switch
       {
-        EnhancementType.Armor => Armor + enhancement <= 5,
-        EnhancementType.Shield => Shield + enhancement <= 5,
-        EnhancementType.MainHand => MainHand + enhancement <= 5,
-        EnhancementType.OffHand => OffHand + enhancement <= 5,
-        _ => throw new System.NotImplementedException(),
+        EnhancementType.Armor => Armor + enhancement <= GetMax(type),
+        EnhancementType.Shield => Shield + enhancement <= GetMax(type),
+        EnhancementType.MainHand => MainHand + enhancement <= GetMax(type),
+        EnhancementType.OffHand => OffHand + enhancement <= GetMax(type),
+        _ => throw new NotImplementedException(),
       };
     }
 
@@ -79,12 +80,28 @@ namespace AutomaticBonusProgression.UnitParts
     {
       return type switch
       {
-        EnhancementType.Armor => Armor <= 5,
-        EnhancementType.Shield => Shield <= 5,
-        EnhancementType.MainHand => MainHand <= 5,
-        EnhancementType.OffHand => OffHand <= 5,
-        _ => throw new System.NotImplementedException(),
+        EnhancementType.Armor => Armor <= GetMax(type),
+        EnhancementType.Shield => Shield <= GetMax(type),
+        EnhancementType.MainHand => MainHand <= GetMax(type),
+        EnhancementType.OffHand => OffHand <= GetMax(type),
+        _ => throw new NotImplementedException(),
       };
+    }
+
+    /// <summary>
+    /// Max enhancement bonus (aka rank of LegendaryX feature)
+    /// </summary>
+    internal int GetMax(EnhancementType type)
+    {
+      var feature = type switch
+      {
+        EnhancementType.Armor => Owner.GetFeature(Common.LegendaryArmor),
+        EnhancementType.Shield => Owner.GetFeature(Common.LegendaryShield),
+        EnhancementType.MainHand => Owner.GetFeature(Common.LegendaryWeapon),
+        EnhancementType.OffHand => Owner.GetFeature(Common.LegendaryOffHand),
+        _ => throw new NotImplementedException(),
+      };
+      return Math.Min(5, feature?.GetRank() ?? 0);
     }
 
     [JsonIgnore]
@@ -95,9 +112,9 @@ namespace AutomaticBonusProgression.UnitParts
     [JsonIgnore]
     private int BaseTempEnhancement = 0;
 
-    internal void ResetTempEnhancement(EnhancementType type, int max)
+    internal void ResetTempEnhancement(EnhancementType type)
     {
-      MaxTemp = max;
+      MaxTemp = GetMax(type);
       TempEnhancement.Value = 0;
 
       BaseTempEnhancement = type switch
@@ -106,6 +123,7 @@ namespace AutomaticBonusProgression.UnitParts
         EnhancementType.Shield => Shield,
         EnhancementType.MainHand => MainHand,
         EnhancementType.OffHand => OffHand,
+        _ => throw new NotImplementedException(),
       };
     }
 

@@ -1,10 +1,8 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.UnitParts;
 using AutomaticBonusProgression.Util;
-using BlueprintCore.Utils;
 using Kingmaker;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.UI;
 using Kingmaker.UnitLogic;
@@ -106,18 +104,6 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     public override void DisposeImplementation() { }
 
-    private static BlueprintFeature LegendaryWeapon => LegendaryWeaponRef.Reference.Get();
-    private static readonly Blueprint<BlueprintFeatureReference> LegendaryWeaponRef = Guids.LegendaryWeapon;
-
-    private static BlueprintFeature LegendaryOffHand => LegendaryOffHandRef.Reference.Get();
-    private static readonly Blueprint<BlueprintFeatureReference> LegendaryOffHandRef = Guids.LegendaryOffHand;
-
-    private static BlueprintFeature LegendaryArmor => LegendaryArmorRef.Reference.Get();
-    private static readonly Blueprint<BlueprintFeatureReference> LegendaryArmorRef = Guids.LegendaryArmor;
-
-    private static BlueprintFeature LegendaryShield => LegendaryShieldRef.Reference.Get();
-    private static readonly Blueprint<BlueprintFeatureReference> LegendaryShieldRef = Guids.LegendaryShield;
-
     private void Refresh()
     {
       Logger.Verbose(() => $"Refreshing Enchantment Grid: {Unit}, {Type.Value}");
@@ -131,10 +117,10 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       var legendaryFeature = Type.Value switch
         {
-          EnhancementType.Armor => Unit.GetFeature(LegendaryArmor),
-          EnhancementType.Shield => Unit.GetFeature(LegendaryShield),
-          EnhancementType.MainHand => Unit.GetFeature(LegendaryWeapon),
-          EnhancementType.OffHand => Unit.GetFeature(LegendaryOffHand),
+          EnhancementType.Armor => Unit.GetFeature(Common.LegendaryArmor),
+          EnhancementType.Shield => Unit.GetFeature(Common.LegendaryShield),
+          EnhancementType.MainHand => Unit.GetFeature(Common.LegendaryWeapon),
+          EnhancementType.OffHand => Unit.GetFeature(Common.LegendaryOffHand),
           _ => throw new NotImplementedException(),
         };
       if (legendaryFeature is null)
@@ -145,7 +131,7 @@ namespace AutomaticBonusProgression.UI.Attunement
         throw new InvalidOperationException($"Missing AttunementBuffsComponent: {legendaryFeature.Name}");
 
       var unitPart = Unit.Ensure<UnitPartEnhancement>();
-      unitPart.ResetTempEnhancement(Type.Value, legendaryFeature.GetRank());
+      unitPart.ResetTempEnhancement(Type.Value);
 
       Logger.Verbose(() => $"Adding enchantments: {legendaryFeature.Name}");
       foreach (var buff in attunement.Buffs)

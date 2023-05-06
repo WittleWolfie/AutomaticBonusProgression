@@ -1,11 +1,8 @@
 ﻿using AutomaticBonusProgression.Util;
 using Kingmaker.UI.MVVM._PCView.InfoWindow;
-using Kingmaker.UI.MVVM._PCView.ServiceWindows.CharacterInfo.Sections.Abilities;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.Spellbook.KnownSpells;
 using Kingmaker.UI.MVVM._PCView.Tooltip.Bricks;
-using Owlcat.Runtime.Core.Utils;
 using Owlcat.Runtime.UI.Controls.Button;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -24,6 +21,7 @@ namespace AutomaticBonusProgression.UI
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Prefabs));
 
     internal static OwlcatButton Button;
+    internal static TextMeshProUGUI Text;
 
     internal static GameObject EnchantmentContainer;
     internal static SpellbookKnownSpellPCView Enchantment;
@@ -47,6 +45,9 @@ namespace AutomaticBonusProgression.UI
     {
       var button = GameObject.Instantiate(UITool.StaticCanvas.ChildObject("ChangeVisualPCView/Window/BackToStashButton/OwlcatButton"));
       Button = button.GetComponent<OwlcatButton>();
+
+      var text = GameObject.Instantiate(UITool.StaticCanvas.ChildObject("ChangeVisualPCView/Window/Header/Header"));
+      Text = text.GetComponent<TextMeshProUGUI>();
     }
 
     private static void InitEnchantmentPrefabs()
