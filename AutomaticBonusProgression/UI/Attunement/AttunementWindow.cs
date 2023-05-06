@@ -326,7 +326,6 @@ namespace AutomaticBonusProgression.UI.Attunement
         obj.MakeSibling("ServiceWindowsPCView");
 
         obj.DestroyComponents<ChangeVisualPCView>();
-        // TODO: Add as components!
         obj.DestroyChildren(
           "Window/InteractionSlot",
           "Window/Inventory",
