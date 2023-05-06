@@ -5,6 +5,7 @@ using Kingmaker.UI.MVVM._PCView.Tooltip.Bricks;
 using Owlcat.Runtime.UI.Controls.Button;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AutomaticBonusProgression.UI
 {
@@ -22,6 +23,7 @@ namespace AutomaticBonusProgression.UI
 
     internal static OwlcatButton Button;
     internal static TextMeshProUGUI Text;
+    internal static Image Image;
 
     internal static GameObject EnchantmentContainer;
     internal static SpellbookKnownSpellPCView Enchantment;
@@ -31,6 +33,14 @@ namespace AutomaticBonusProgression.UI
       var button = GameObject.Instantiate(Button);
       button.gameObject.ChildObject("Text").GetComponent<TextMeshProUGUI>().SetText(label);
       return button;
+    }
+
+    internal static Image CreateImage(Sprite sprite, int height, int width)
+    {
+      var image = GameObject.Instantiate(Image).GetComponent<Image>();
+      image.gameObject.Rect().sizeDelta = new Vector2(width, height);
+      image.sprite = sprite;
+      return image;
     }
 
     internal static void InitStatic()
@@ -48,6 +58,9 @@ namespace AutomaticBonusProgression.UI
 
       var text = GameObject.Instantiate(UITool.StaticCanvas.ChildObject("ChangeVisualPCView/Window/Header/Header"));
       Text = text.GetComponent<TextMeshProUGUI>();
+
+      var prefab = new GameObject("image-prefab", typeof(RectTransform));
+      Image = prefab.AddComponent<Image>();
     }
 
     private static void InitEnchantmentPrefabs()

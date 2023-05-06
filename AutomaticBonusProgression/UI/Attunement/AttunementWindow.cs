@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AutomaticBonusProgression.UI.Attunement
 {
@@ -64,6 +65,11 @@ namespace AutomaticBonusProgression.UI.Attunement
     private OwlcatButton OffHand;
     private OwlcatButton Armor;
     private OwlcatButton Shield;
+
+    private Image MainHandIcon;
+    private Image OffHandIcon;
+    private Image ArmorIcon;
+    private Image ShieldIcon;
 
     private OwlcatButton Apply;
 
@@ -108,6 +114,11 @@ namespace AutomaticBonusProgression.UI.Attunement
       Armor = CreateAttunementTypeButton(UITool.GetString("Armor"), 2);
       Shield = CreateAttunementTypeButton(UITool.GetString("Shield"), 3);
 
+      MainHandIcon = CreateAttunementTypeIcon(0);
+      OffHandIcon = CreateAttunementTypeIcon(1);
+      ArmorIcon = CreateAttunementTypeIcon(2);
+      ShieldIcon = CreateAttunementTypeIcon(3);
+
       Apply = CreateApplyButton(UITool.GetString("Attunement.Apply"));
     }
 
@@ -131,7 +142,13 @@ namespace AutomaticBonusProgression.UI.Attunement
       OffHand.SetInteractable(ViewModel.Type.Value != EnhancementType.OffHand);
       Armor.SetInteractable(ViewModel.Type.Value != EnhancementType.Armor);
       Shield.SetInteractable(ViewModel.Type.Value != EnhancementType.Shield);
-      Apply.SetInteractable(ViewModel.CanAttune());
+      Apply.SetInteractable(ViewModel.CanAttune(ViewModel.Type.Value));
+
+      // TODO: Enable this
+   //   MainHandIcon.gameObject.SetActive(!ViewModel.CanAttune(EnhancementType.MainHand));
+   //   OffHandIcon.gameObject.SetActive(!ViewModel.CanAttune(EnhancementType.OffHand));
+      ArmorIcon.gameObject.SetActive(!ViewModel.CanAttune(EnhancementType.Armor));
+   //   ShieldIcon.gameObject.SetActive(!ViewModel.CanAttune(EnhancementType.Shield));
 
       switch (ViewModel.Type.Value)
       {
@@ -227,6 +244,20 @@ namespace AutomaticBonusProgression.UI.Attunement
       buttonTransform.localPosition = new(x: -700, y: -260 - offset);
 
       return button;
+    }
+
+    private Image CreateAttunementTypeIcon(int position)
+    {
+      var icon = Prefabs.CreateImage(Assets.OkayIcon, 40, 40);
+
+      var iconTransform = icon.transform;
+      iconTransform.AddTo(transform);
+
+      // each "row" has a height of 50
+      var offset = position * 50;
+      iconTransform.localPosition = new(x: -855, y: -260 - offset);
+
+      return icon;
     }
 
     private OwlcatButton CreateApplyButton(string label)
@@ -412,9 +443,9 @@ namespace AutomaticBonusProgression.UI.Attunement
       Refresh();
     }
 
-    internal bool CanAttune()
+    internal bool CanAttune(EnhancementType type)
     {
-      return Type.Value switch
+      return type switch
       {
         EnhancementType.Armor => Unit.Resources.HasEnoughResource(Common.LegendaryArmorResource, 1),
         EnhancementType.Shield => Unit.Resources.HasEnoughResource(Common.LegendaryShieldResource, 1),
