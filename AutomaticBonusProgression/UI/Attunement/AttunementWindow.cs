@@ -14,6 +14,7 @@ using Kingmaker.UI.MVVM._PCView.ChangeVisual;
 using Kingmaker.UI.MVVM._PCView.InGame;
 using Kingmaker.UI.MVVM._PCView.Tooltip.Bricks;
 using Kingmaker.UI.Tooltip;
+using Kingmaker.UnitLogic;
 using Owlcat.Runtime.UI.Controls.Button;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
@@ -79,6 +80,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       AddDisposable(OffHand.OnLeftClickAsObservable().Subscribe(_ => ViewModel.SetType(EnhancementType.OffHand)));
       AddDisposable(Armor.OnLeftClickAsObservable().Subscribe(_ => ViewModel.SetType(EnhancementType.Armor)));
       AddDisposable(Shield.OnLeftClickAsObservable().Subscribe(_ => ViewModel.SetType(EnhancementType.Shield)));
+      AddDisposable(Apply.OnLeftClickAsObservable().Subscribe(_ => ViewModel.Apply(Enchantments.ViewModel)));
 
       Refresh();
       ViewModel.Subscribe(Refresh);
@@ -129,6 +131,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       OffHand.SetInteractable(ViewModel.Type.Value != EnhancementType.OffHand);
       Armor.SetInteractable(ViewModel.Type.Value != EnhancementType.Armor);
       Shield.SetInteractable(ViewModel.Type.Value != EnhancementType.Shield);
+      Apply.SetInteractable(ViewModel.CanAttune());
 
       switch (ViewModel.Type.Value)
       {
@@ -248,20 +251,6 @@ namespace AutomaticBonusProgression.UI.Attunement
       labelTransform.AddTo(transform);
 
       labelTransform.localPosition = new(x: 0, y: -235);
-
-      return label;
-    }
-
-    private TextMeshProUGUI CreateEnhancementValue()
-    {
-      var label = GameObject.Instantiate(Prefabs.Text);
-      label.fontStyle = FontStyles.Bold;
-      label.fontSize = 36;
-
-      var labelTransform = label.transform;
-      labelTransform.AddTo(transform);
-
-      labelTransform.localPosition = new(x: 750, y: -350);
 
       return label;
     }
@@ -387,6 +376,52 @@ namespace AutomaticBonusProgression.UI.Attunement
     {
       if (Type.Value != type)
         Type.Value = type;
+    }
+
+    internal void Apply(EnchantmentsVM enchantmentsVM)
+    {
+      // Can only apply once a day
+      switch (Type.Value)
+      {
+        case EnhancementType.Armor:
+          Unit.Resources.Spend(Common.LegendaryArmorResource, 1);
+          break;
+        case EnhancementType.Shield:
+          Unit.Resources.Spend(Common.LegendaryShieldResource, 1);
+          break;
+        case EnhancementType.MainHand:
+          Unit.Resources.Spend(Common.LegendaryWeaponResource, 1);
+          break;
+        case EnhancementType.OffHand:
+          Unit.Resources.Spend(Common.LegendaryOffHandResource, 1);
+          break;
+      }
+
+      foreach (var enchant in enchantmentsVM.GetInactiveEnchantments())
+      {
+        Logger.Verbose(() => $"Removing {enchant.Name} from {Unit.CharacterName}");
+        Unit.RemoveFact(enchant);
+      }
+
+      foreach (var enchant in enchantmentsVM.GetActiveEnchantments())
+      {
+        Logger.Verbose(() => $"Applying {enchant.Name} to {Unit.CharacterName}");
+        Unit.AddBuff(enchant, Unit);
+      }
+
+      Refresh();
+    }
+
+    internal bool CanAttune()
+    {
+      return Type.Value switch
+      {
+        EnhancementType.Armor => Unit.Resources.HasEnoughResource(Common.LegendaryArmorResource, 1),
+        EnhancementType.Shield => Unit.Resources.HasEnoughResource(Common.LegendaryShieldResource, 1),
+        EnhancementType.MainHand => Unit.Resources.HasEnoughResource(Common.LegendaryWeaponResource, 1),
+        EnhancementType.OffHand => Unit.Resources.HasEnoughResource(Common.LegendaryOffHandResource, 1),
+        _ => throw new NotImplementedException(),
+      };
     }
 
     private void Refresh()

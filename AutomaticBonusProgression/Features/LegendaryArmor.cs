@@ -2,6 +2,7 @@
 using AutomaticBonusProgression.UI.Attunement;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Actions.Builder;
+using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.Blueprints.Classes;
@@ -15,12 +16,19 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryArmorName = "LegendaryArmor";
     private const string LegendaryArmorDisplayName = "LegendaryArmor.Name";
     private const string LegendaryArmorDescription = "LegendaryArmor.Description";
+
     private const string LegendaryArmorAbility = "LegendaryArmor.Ability";
-    internal const string LegendaryArmorAbilityDescription = "LegendaryArmor.Ability.Description";
+    private const string LegendaryArmorAbilityDescription = "LegendaryArmor.Ability.Description";
+
+    private const string LegendaryArmorResource = "LegendaryArmor.Resource";
 
     internal static BlueprintFeature Configure()
     {
       Logger.Log("Configuring Legendary Armor");
+
+      var resource = AbilityResourceConfigurator.New(LegendaryArmorResource, Guids.LegendaryArmorResource)
+        .SetMaxAmount(ResourceAmountBuilder.New(1))
+        .Configure();
 
       var ability = AbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
@@ -35,6 +43,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryArmorDescription)
         //.SetIcon()
         .SetRanks(5)
+        .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(

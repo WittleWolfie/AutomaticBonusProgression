@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.UnitParts;
+using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Entities;
@@ -25,9 +26,11 @@ namespace AutomaticBonusProgression.UI.Attunement
   /// </summary>
   internal class EnchantmentView : ViewBase<EnchantmentVM>
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnchantmentView));
+
     internal static EnchantmentView Instantiate()
     {
-      var transform = UnityEngine.Object.Instantiate(Prefabs.Enchantment).transform;
+      var transform = GameObject.Instantiate(Prefabs.Enchantment).transform;
 
       var spellView = transform.GetComponent<SpellbookKnownSpellPCView>();
       var view = transform.gameObject.CreateComponent<EnchantmentView>(
@@ -70,7 +73,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     public override void DestroyViewImplementation()
     {
-      gameObject?.SetActive(false);
+      gameObject.SetActive(false);
     }
 
     private void OnClick()
@@ -98,6 +101,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 
   internal class EnchantmentVM : BaseDisposable, IViewModel
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnchantmentVM));
+
     private static readonly Dictionary<string, TooltipBaseTemplate> Tooltips = new();
 
     internal enum State
@@ -111,26 +116,27 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal EnchantmentVM(
       BlueprintBuff enchantment, EnhancementEquivalence cost, UnitEntityData unit)
     {
-      Icon = enchantment.Icon;
-      Name = enchantment.Name;
+      Enchant = enchantment;
+      Icon = Enchant.Icon;
+      Name = Enchant.Name;
       Cost = cost.Enhancement;
       Unit = unit;
 
-      var key = enchantment.AssetGuid.ToString();
+      var key = Enchant.AssetGuid.ToString();
       if (!Tooltips.TryGetValue(key, out Tooltip))
       {
-        Tooltip = new TooltipTemplateEnchantment(enchantment);
+        Tooltip = new TooltipTemplateEnchantment(Enchant);
         Tooltips[key] = Tooltip;
       }
 
-      EffectComponent = enchantment.GetComponent<AttunementEffect>();
+      EffectComponent = Enchant.GetComponent<AttunementEffect>();
       var requirementsList = EffectComponent.GetRequirements();
       if (!string.IsNullOrEmpty(requirementsList))
         Requirements = requirementsList;
 
       if (!EffectComponent.IsAvailable(Unit))
         CurrentState.Value = State.Unavailable;
-      else if (unit.HasFact(enchantment))
+      else if (unit.HasFact(Enchant))
         TempApply(active: true);
       else if (!Unit.Ensure<UnitPartEnhancement>().CanAddTemp(Cost))
         CurrentState.Value = State.Unaffordable;
@@ -189,5 +195,6 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private readonly AttunementEffect EffectComponent;
     private readonly UnitEntityData Unit;
+    internal readonly BlueprintBuff Enchant;
   }
 }

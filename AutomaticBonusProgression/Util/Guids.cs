@@ -103,9 +103,11 @@
     #region Legendary Armor / Shield
     internal const string LegendaryArmor = "171db362-874c-468a-8626-b3e2c9deb1d4";
     internal const string LegendaryArmorAbility = "b1c038e4-f34f-443b-b080-23d44cfba390";
+    internal const string LegendaryArmorResource = "f671f985-52fd-40ef-97c4-542fa485d7a5";
 
     internal const string LegendaryShield = "1b2c33c3-672f-47c3-b4a2-e2a0167ff953";
     internal const string LegendaryShieldAbility = "39db45ad-8f6f-4317-a0e6-6ae78e426d8e";
+    internal const string LegendaryShieldResource = "0c8ee313-ab76-4e48-bdea-041cf7732f44";
 
     internal const string BalancedEffect = "395f73da-d5a6-440c-a018-e9c0b83a92b6";
     internal const string BalancedBuff = "fe735c67-37a2-412e-88cb-032ef9feacb8";
@@ -365,9 +367,11 @@
     #region Legendary Weapon
     internal const string LegendaryWeapon = "d21246ce-21dc-4489-b3d4-746ec56ad4d4";
     internal const string LegendaryWeaponAbility = "f1c418f2-4184-41dd-ae6b-7b099c39fc55";
+    internal const string LegendaryWeaponResource = "e43a806b-55be-42b7-9b31-3dd502d98132";
 
     internal const string LegendaryOffHand = "066851c2-7e02-403e-8180-737f1bb63737";
     internal const string LegendaryOffHandAbility = "d241dda4-6ae1-4d80-954c-d529e0ba8565";
+    internal const string LegendaryOffHandResource = "1cf05e9b-a91e-4227-a3a9-b2e2e78d4c3b";
 
     #region Bane
     internal const string Bane = "72f4ae63-19dc-48b2-9a0f-7deef17783cb";

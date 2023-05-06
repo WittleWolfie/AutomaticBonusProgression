@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
@@ -87,6 +88,43 @@ namespace AutomaticBonusProgression.Util
       {
         _legendaryShield ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryShield);
         return _legendaryShield;
+      }
+    }
+
+    private static BlueprintAbilityResource _legendaryWeaponResource;
+    internal static BlueprintAbilityResource LegendaryWeaponResource
+    {
+      get
+      {
+        _legendaryWeaponResource ??= BlueprintTool.Get<BlueprintAbilityResource>(Guids.LegendaryWeaponResource);
+        return _legendaryWeaponResource;
+      }
+    }
+    private static BlueprintAbilityResource _legendaryOffHandResource;
+    internal static BlueprintAbilityResource LegendaryOffHandResource
+    {
+      get
+      {
+        _legendaryOffHandResource ??= BlueprintTool.Get<BlueprintAbilityResource>(Guids.LegendaryOffHandResource);
+        return _legendaryOffHandResource;
+      }
+    }
+    private static BlueprintAbilityResource _legendaryArmorResource;
+    internal static BlueprintAbilityResource LegendaryArmorResource
+    {
+      get
+      {
+        _legendaryArmorResource ??= BlueprintTool.Get<BlueprintAbilityResource>(Guids.LegendaryArmorResource);
+        return _legendaryArmorResource;
+      }
+    }
+    private static BlueprintAbilityResource _legendaryShieldResource;
+    internal static BlueprintAbilityResource LegendaryShieldResource
+    {
+      get
+      {
+        _legendaryShieldResource ??= BlueprintTool.Get<BlueprintAbilityResource>(Guids.LegendaryShieldResource);
+        return _legendaryShieldResource;
       }
     }
 

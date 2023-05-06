@@ -6,9 +6,11 @@ using Kingmaker.Blueprints;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.UI;
 using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Owlcat.Runtime.UI.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +19,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 {
   internal class EnchantmentGridView : ViewBase<EnchantmentsVM>
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnchantmentGridView));
+
     internal static EnchantmentGridView Instantiate(Transform parent)
     {
       var transform = UnityEngine.Object.Instantiate(Prefabs.EnchantmentContainer).transform;
@@ -46,9 +50,6 @@ namespace AutomaticBonusProgression.UI.Attunement
       return view;
     }
 
-    // Track children so they are not retained when the window is destroyed
-    private readonly List<Transform> Children = new();
-
     public override void BindViewImplementation()
     {
       gameObject.SetActive(true);
@@ -60,26 +61,17 @@ namespace AutomaticBonusProgression.UI.Attunement
     public override void DestroyViewImplementation()
     {
       gameObject.SetActive(false);
-      DisposeChildren();
     }
 
     private void Refresh()
     {
-      DisposeChildren();
       ViewModel.AvailableEnchantments.ForEach(
         feature =>
         {
           var view = EnchantmentView.Instantiate();
           view.Bind(feature);
           view.transform.AddTo(Grid);
-          Children.Add(view.transform);
         });
-    }
-
-    private void DisposeChildren()
-    {
-      Children.ForEach(child => GameObject.DestroyImmediate(child.gameObject));
-      Children.Clear();
     }
 
     internal Transform Grid;
@@ -102,7 +94,21 @@ namespace AutomaticBonusProgression.UI.Attunement
       AddDisposable(Type.Subscribe(_ => Refresh()));
     }
 
-    public override void DisposeImplementation() { }
+    public override void DisposeImplementation()
+    {
+      foreach (var vm in AvailableEnchantments)
+        vm.Dispose();
+    }
+
+    internal List<BlueprintBuff> GetActiveEnchantments()
+    {
+      return AvailableEnchantments.Where(vm => vm.CurrentState.Value == EnchantmentVM.State.Active).Select(vm => vm.Enchant).ToList();
+    }
+
+    internal List<BlueprintBuff> GetInactiveEnchantments()
+    {
+      return AvailableEnchantments.Where(vm => vm.CurrentState.Value != EnchantmentVM.State.Active).Select(vm => vm.Enchant).ToList();
+    }
 
     private void Refresh()
     {
