@@ -1,10 +1,11 @@
-﻿using Kingmaker.Utility;
-using System.Linq;
-using System;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using BlueprintCore.Utils;
 using Kingmaker;
-using BlueprintCore.Utils;
+using Kingmaker.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
 
 namespace AutomaticBonusProgression.UI
 {
@@ -30,6 +31,16 @@ namespace AutomaticBonusProgression.UI
     public static string GetString(string key)
     {
       return LocalizationTool.GetString($"ABP.UI.{key}");
+    }
+
+    private static readonly string TitleDecoration =
+      "<voffset=0em><font=\"Saber_Dist32\"><color=#672B31><size=140%>{0}</size></color></font></voffset>{1}";
+    /// <summary>
+    /// Decorates a title so the first text is red and stylized.
+    /// </summary>
+    public static void DecorateTitle(TextMeshProUGUI title)
+    {
+      title.text = string.Format(TitleDecoration, title.text.First(), title.text.Substring(1));
     }
 
     /// <summary>

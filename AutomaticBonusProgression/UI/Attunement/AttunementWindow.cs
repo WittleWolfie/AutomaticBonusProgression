@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.UI.Attunement
   /// <summary>
   /// TODO:
   ///  - Implement the Apply functionality
-  ///  - Use the fancy header (red first letter)
   /// </summary>
   internal class AttunementView : ViewBase<AttunementVM>
   {
@@ -124,6 +123,7 @@ namespace AutomaticBonusProgression.UI.Attunement
     private void Refresh()
     {
       Header.text = ViewModel.GetHeader();
+      UITool.DecorateTitle(Header);
 
       MainHand.SetInteractable(ViewModel.Type.Value != EnhancementType.MainHand);
       OffHand.SetInteractable(ViewModel.Type.Value != EnhancementType.OffHand);
