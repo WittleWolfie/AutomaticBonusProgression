@@ -28,7 +28,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 {
   /// <summary>
   /// TODO:
-  ///  - Implement the Apply functionality
+  ///  - Close this whenever a full screen UI is opened?
   /// </summary>
   internal class AttunementView : ViewBase<AttunementVM>
   {
