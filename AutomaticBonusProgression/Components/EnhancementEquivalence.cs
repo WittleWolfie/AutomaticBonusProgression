@@ -31,9 +31,9 @@ namespace AutomaticBonusProgression.Components
     internal readonly EnhancementType Type;
     internal readonly int Enhancement;
 
-    internal EnhancementEquivalence(EnchantInfo enchant, EnhancementType? typeOverride = null)
+    internal EnhancementEquivalence(EnchantInfo enchant)
     {
-      Type = typeOverride ?? enchant.Type;
+      Type = enchant.Type;
       Enhancement = enchant.Cost;
     }
 
@@ -48,7 +48,7 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        owner.Ensure<UnitParts.UnitPartEnhancement>().AddEnchantment(Type, Enhancement);
+        owner.Ensure<UnitParts.UnitPartEnhancement>().AddEnchantment(GetEnhancementType(), Enhancement);
       }
       catch (Exception e)
       {
@@ -67,12 +67,23 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        owner.Get<UnitParts.UnitPartEnhancement>()?.RemoveEnchantment(Type, Enhancement);
+        owner.Get<UnitParts.UnitPartEnhancement>()?.RemoveEnchantment(GetEnhancementType(), Enhancement);
       }
       catch (Exception e)
       {
         Logger.LogException("UnitPartEnhancement.OnDeactivate", e);
       }
+    }
+
+    private EnhancementType GetEnhancementType()
+    {
+      if (Owner is ItemEntityShield)
+        return EnhancementType.Shield;
+      if (Owner is ItemEntityArmor)
+        return EnhancementType.Armor;
+      if (Owner is ItemEntityWeapon weapon)
+        return Common.IsPrimaryWeapon(weapon) ? EnhancementType.MainHand : EnhancementType.OffHand;
+      return Type;
     }
 
     private UnitEntityData GetOwner()
