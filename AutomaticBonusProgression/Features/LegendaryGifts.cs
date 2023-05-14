@@ -27,7 +27,9 @@ namespace AutomaticBonusProgression.Features
           LegendaryTwinWeapons.Configure(),
           LegendaryProwess.Configure(),
           LegendaryArmor.Configure(),
-          LegendaryWeapon.Configure())
+          LegendaryArmor.ConfigureShield(),
+          LegendaryWeapon.Configure(),
+          LegendaryWeapon.ConfigureOffHand())
         .Configure();
     }
   }

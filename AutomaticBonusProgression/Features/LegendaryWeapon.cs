@@ -1,27 +1,26 @@
-﻿using AutomaticBonusProgression.Enchantments.Weapon;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.UI.Attunement;
 using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Blueprints.CustomConfigurators;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.UnitLogic.ActivatableAbilities;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Features
 {
-    internal class LegendaryWeapon
+  internal class LegendaryWeapon
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryWeapon));
 
     private const string LegendaryWeaponName = "LegendaryWeapon";
     private const string LegendaryWeaponDisplayName = "LegendaryWeapon.Name";
     private const string LegendaryWeaponDescription = "LegendaryWeapon.Description";
-    private const string LegendaryWeaponAbility = "LegendaryWeapon.Ability";
-    internal const string LegendaryWeaponAbilityDescription = "LegendaryWeapon.Ability.Description";
 
-    private const string LegendaryOffHandName = "LegendaryOffHand";
-    private const string LegendaryOffHandDisplayName = "LegendaryOffHand.Name";
-    internal const string LegendaryOffHandDescription = "LegendaryOffHand.Description";
-    private const string LegendaryOffHandAbility = "LegendaryOffHand.Ability";
+    private const string LegendaryWeaponAbility = "LegendaryWeapon.Ability";
+    private const string LegendaryWeaponAbilityDescription = "LegendaryWeapon.Ability.Description";
+
+    private const string LegendaryWeaponResource = "LegendaryWeapon.Resource";
 
     internal static BlueprintFeature Configure()
     {
@@ -79,44 +78,104 @@ namespace AutomaticBonusProgression.Features
       // - Wounding
       // - Gory
 
-      var ability = ActivatableAbilityConfigurator.New(LegendaryWeaponAbility, Guids.LegendaryWeaponAbility)
+      var resource = AbilityResourceConfigurator.New(LegendaryWeaponResource, Guids.LegendaryWeaponResource)
+        .SetMaxAmount(ResourceAmountBuilder.New(1))
+        .Configure();
+
+      var ability = AbilityConfigurator.New(LegendaryWeaponAbility, Guids.LegendaryWeaponAbility)
         .SetDisplayName(LegendaryWeaponDisplayName)
         .SetDescription(LegendaryWeaponAbilityDescription)
-        //.SetIcon()
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddActivatableAbilityVariants(
-          variants: 
-            new()
-            {
-            })
-        .AddActivationDisable()
+        .AddAbilityCasterInCombat(not: true)
+        .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();
 
-      var offHandAbility = ActivatableAbilityConfigurator.New(LegendaryOffHandAbility, Guids.LegendaryOffHandAbility)
-        .SetDisplayName(LegendaryOffHandDisplayName)
-        .SetDescription(LegendaryOffHandDescription)
-        //.SetIcon()
-        .SetDeactivateImmediately()
-        .SetActivationType(AbilityActivationType.Immediately)
-        .SetActivateWithUnitCommand(CommandType.Free)
-        .AddActivatableAbilityVariants(
-          variants: 
-            new()
-            {
-            })
-        .AddActivationDisable()
-        .Configure();
-
-      return FeatureSelectionConfigurator.New(LegendaryWeaponName, Guids.LegendaryWeapon)
+      return FeatureConfigurator.New(LegendaryWeaponName, Guids.LegendaryWeapon)
         .SetIsClassFeature()
         .SetDisplayName(LegendaryWeaponDisplayName)
         .SetDescription(LegendaryWeaponDescription)
         //.SetIcon()
-        .AddFacts(new() { ability, offHandAbility })
-        //.AddToAllFeatures(
-        //  Bane.Configure())
+        .SetRanks(5)
+        .AddAbilityResources(resource: resource, restoreAmount: true)
+        .AddFacts(new() { ability })
+        .AddComponent(
+          new AttunementBuffsComponent(
+      #region Bane
+            Guids.BaneAberrationsBuff,
+            Guids.BaneAnimalsBuff,
+            Guids.BaneConstructsBuff,
+            Guids.BaneDragonsBuff,
+            Guids.BaneFeyBuff,
+            Guids.BaneHumanoidGiantBuff,
+            Guids.BaneHumanoidMonstrousBuff,
+            Guids.BaneHumanoidReptilianBuff,
+            Guids.BaneMagicalBeastsBuff,
+            Guids.BaneOutsiderChaoticBuff,
+            Guids.BaneOutsiderEvilBuff,
+            Guids.BaneOutsiderGoodBuff,
+            Guids.BaneOutsiderLawfulBuff,
+            Guids.BaneOutsiderNeutralBuff,
+            Guids.BanePlantsBuff,
+            Guids.BaneUndeadBuff,
+            Guids.BaneVerminBuff
+      #endregion
+          ))
+        .Configure();
+    }
+
+    private const string LegendaryOffHandName = "LegendaryOffHand";
+    private const string LegendaryOffHandDisplayName = "LegendaryOffHand.Name";
+    private const string LegendaryOffHandDescription = "LegendaryOffHand.Description";
+
+    private const string LegendaryOffHandAbility = "LegendaryOffHand.Ability";
+    private const string LegendaryOffHandAbilityDescription = "LegendaryOffHand.Ability.Description";
+
+    private const string LegendaryOffHandResource = "LegendaryOffHand.Resource";
+
+    internal static BlueprintFeature ConfigureOffHand()
+    {
+      Logger.Log("Configuring Legendary Off-Hand");
+
+      var resource = AbilityResourceConfigurator.New(LegendaryOffHandResource, Guids.LegendaryOffHandResource)
+        .SetMaxAmount(ResourceAmountBuilder.New(1))
+        .Configure();
+
+      var ability = AbilityConfigurator.New(LegendaryOffHandAbility, Guids.LegendaryOffHandAbility)
+        .SetDisplayName(LegendaryOffHandDisplayName)
+        .SetDescription(LegendaryOffHandAbilityDescription)
+        .AddAbilityCasterInCombat(not: true)
+        .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
+        .Configure();
+
+      return FeatureConfigurator.New(LegendaryOffHandName, Guids.LegendaryOffHand)
+        .SetIsClassFeature()
+        .SetDisplayName(LegendaryOffHandDisplayName)
+        .SetDescription(LegendaryOffHandDescription)
+        //.SetIcon()
+        .SetRanks(5)
+        .AddAbilityResources(resource: resource, restoreAmount: true)
+        .AddFacts(new() { ability })
+        .AddComponent(
+          new AttunementBuffsComponent(
+      #region Bane
+            Guids.BaneAberrationsBuff,
+            Guids.BaneAnimalsBuff,
+            Guids.BaneConstructsBuff,
+            Guids.BaneDragonsBuff,
+            Guids.BaneFeyBuff,
+            Guids.BaneHumanoidGiantBuff,
+            Guids.BaneHumanoidMonstrousBuff,
+            Guids.BaneHumanoidReptilianBuff,
+            Guids.BaneMagicalBeastsBuff,
+            Guids.BaneOutsiderChaoticBuff,
+            Guids.BaneOutsiderEvilBuff,
+            Guids.BaneOutsiderGoodBuff,
+            Guids.BaneOutsiderLawfulBuff,
+            Guids.BaneOutsiderNeutralBuff,
+            Guids.BanePlantsBuff,
+            Guids.BaneUndeadBuff,
+            Guids.BaneVerminBuff
+      #endregion
+          ))
         .Configure();
     }
   }

@@ -24,16 +24,11 @@
   },
 
   {
-    "Key": "LegendaryWeapon.Bane.Name",
-    "ProcessTemplates": false,
-    "enGB": "Bane (+1)"
-  },
-  {
-    "Key": "LegendaryWeapon.Bane.Description",
+    "Key": "LW.Bane.Description",
     "enGB": "A bane weapon excels against certain foes. Against a designated foe, the weapon’s enhancement bonus is +2 better than its actual bonus. It also deals an extra 2d6 points of damage against such foes."
   },
   {
-    "Key": "LegendaryWeapon.Bane.Ability.Name",
+    "Key": "LW.Bane.Ability.Name",
     "ProcessTemplates": false,
     "enGB": "Legendary Weapon (Bane)"
   },
@@ -43,87 +38,87 @@
     "enGB": "Legendary Off-Hand (Bane)"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Aberrations.Name",
+    "Key": "LW.Bane.Aberrations.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Aberrations"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Animals.Name",
+    "Key": "LW.Bane.Animals.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Animals"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Constructs.Name",
+    "Key": "LW.Bane.Constructs.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Constructs"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Dragons.Name",
+    "Key": "LW.Bane.Dragons.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Dragons"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Fey.Name",
+    "Key": "LW.Bane.Fey.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Fey"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Humanoid.Giant.Name",
+    "Key": "LW.Bane.Humanoid.Giant.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Giant Humanoids"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Humanoid.Reptilian.Name",
+    "Key": "LW.Bane.Humanoid.Reptilian.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Reptilian Humanoids"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Humanoid.Monstrous.Name",
+    "Key": "LW.Bane.Humanoid.Monstrous.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Monstrous Humanoids"
   },
   {
-    "Key": "LegendaryWeapon.Bane.MagicalBeasts.Name",
+    "Key": "LW.Bane.MagicalBeasts.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Magical Beasts"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Outsider.Good.Name",
+    "Key": "LW.Bane.Outsider.Good.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Good Outsiders"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Outsider.Evil.Name",
+    "Key": "LW.Bane.Outsider.Evil.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Evil Outsiders"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Outsider.Lawful.Name",
+    "Key": "LW.Bane.Outsider.Lawful.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Lawful Outsiders"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Outsider.Chaotic.Name",
+    "Key": "LW.Bane.Outsider.Chaotic.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Chaotic Outsiders"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Outsider.Neutral.Name",
+    "Key": "LW.Bane.Outsider.Neutral.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Neutral Outsiders"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Plants.Name",
+    "Key": "LW.Bane.Plants.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Plants"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Undead.Name",
+    "Key": "LW.Bane.Undead.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Undead"
   },
   {
-    "Key": "LegendaryWeapon.Bane.Vermin.Name",
+    "Key": "LW.Bane.Vermin.Name",
     "ProcessTemplates": false,
     "enGB": "Bane: Vermin"
   }
