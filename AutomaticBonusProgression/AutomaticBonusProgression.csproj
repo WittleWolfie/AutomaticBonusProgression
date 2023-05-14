@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <None Remove="Strings\LegendaryArmor.json" />
+    <None Remove="Strings\LegendaryWeapon.json" />
     <None Remove="Strings\LocalizedStrings.json" />
     <None Remove="Strings\UI.json" />
   </ItemGroup>
@@ -31,6 +32,7 @@
     <EmbeddedResource Include="Strings\LegendaryArmor.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\LegendaryWeapon.json" />
     <EmbeddedResource Include="Strings\LocalizedStrings.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
