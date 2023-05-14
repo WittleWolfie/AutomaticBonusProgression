@@ -27,7 +27,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // In Game:
-      // - Agile
       // - Bane [Done]
       // - Corrosive / Flaming / Frost / Shock / Thundering (Burst)
       // - Cruel
