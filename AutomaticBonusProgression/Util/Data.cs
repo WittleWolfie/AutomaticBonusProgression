@@ -84,9 +84,12 @@ namespace AutomaticBonusProgression.Util
       : base(displayName, description, icon, EnhancementType.MainHand, cost)
     { }
 
-    internal override AttunementEffect GetAttunementComponent(Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
+    internal override AttunementEffect GetAttunementComponent(
+      Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
     {
-      throw new System.NotImplementedException();
+      if (variant)
+        return new OffHandAttunement(effectBuff.Reference, Cost);
+      return new WeaponAttunement(effectBuff.Reference, Cost);
     }
   }
 }
