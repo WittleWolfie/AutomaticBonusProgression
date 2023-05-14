@@ -32,7 +32,9 @@
     <EmbeddedResource Include="Strings\LegendaryArmor.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings\LegendaryWeapon.json" />
+    <EmbeddedResource Include="Strings\LegendaryWeapon.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings\LocalizedStrings.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
