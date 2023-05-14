@@ -142,13 +142,16 @@ namespace AutomaticBonusProgression.UI.Attunement
       OffHand.SetInteractable(ViewModel.Type.Value != EnhancementType.OffHand);
       Armor.SetInteractable(ViewModel.Type.Value != EnhancementType.Armor);
       Shield.SetInteractable(ViewModel.Type.Value != EnhancementType.Shield);
-      Apply.SetInteractable(ViewModel.CanAttune(ViewModel.Type.Value));
+      Apply.SetInteractable(ViewModel.HasResources(ViewModel.Type.Value));
 
-      // TODO: Enable this
-   //   MainHandIcon.gameObject.SetActive(!ViewModel.CanAttune(EnhancementType.MainHand));
-   //   OffHandIcon.gameObject.SetActive(!ViewModel.CanAttune(EnhancementType.OffHand));
-      ArmorIcon.gameObject.SetActive(!ViewModel.CanAttune(EnhancementType.Armor));
-   //   ShieldIcon.gameObject.SetActive(!ViewModel.CanAttune(EnhancementType.Shield));
+      MainHandIcon.gameObject.SetActive(
+        ViewModel.CanAttune(EnhancementType.MainHand) && !ViewModel.HasResources(EnhancementType.MainHand));
+      OffHandIcon.gameObject.SetActive(
+        ViewModel.CanAttune(EnhancementType.OffHand) && !ViewModel.HasResources(EnhancementType.OffHand));
+      ArmorIcon.gameObject.SetActive(
+        ViewModel.CanAttune(EnhancementType.Armor) && !ViewModel.HasResources(EnhancementType.Armor));
+      ShieldIcon.gameObject.SetActive(
+        ViewModel.CanAttune(EnhancementType.Shield) && !ViewModel.HasResources(EnhancementType.Shield));
 
       switch (ViewModel.Type.Value)
       {
@@ -442,7 +445,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       Refresh();
     }
 
-    internal bool CanAttune(EnhancementType type)
+    internal bool HasResources(EnhancementType type)
     {
       return type switch
       {
@@ -450,6 +453,18 @@ namespace AutomaticBonusProgression.UI.Attunement
         EnhancementType.Shield => Unit.Resources.HasEnoughResource(Common.LegendaryShieldResource, 1),
         EnhancementType.MainHand => Unit.Resources.HasEnoughResource(Common.LegendaryWeaponResource, 1),
         EnhancementType.OffHand => Unit.Resources.HasEnoughResource(Common.LegendaryOffHandResource, 1),
+        _ => throw new NotImplementedException(),
+      };
+    }
+
+    internal bool CanAttune(EnhancementType type)
+    {
+      return type switch
+      {
+        EnhancementType.Armor => Unit.HasFact(Common.LegendaryArmor),
+        EnhancementType.Shield => Unit.HasFact(Common.LegendaryShield),
+        EnhancementType.MainHand => Unit.HasFact(Common.LegendaryWeapon),
+        EnhancementType.OffHand => Unit.HasFact(Common.LegendaryOffHand),
         _ => throw new NotImplementedException(),
       };
     }
