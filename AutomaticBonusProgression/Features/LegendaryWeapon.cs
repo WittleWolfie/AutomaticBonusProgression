@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Features
       // - Vicious
       // - Anarchic / Axiomatic
       // - Disruption
-      // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes]
+      // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes; Do Bane / furious work?]
       // - Holy / Unholy
       // - Nullifying
       // - Speed
