@@ -30,7 +30,7 @@ namespace AutomaticBonusProgression.Features
       // - Bane [Done]
       // - Corrosive / Flaming / Frost / Shock / Thundering (Burst) [Done]
       // - Cruel [Done]
-      // - Furious
+      // - Furious [Done]
       // - Ghost Touch
       // - Heartseeker
       // - Keen
@@ -128,8 +128,9 @@ namespace AutomaticBonusProgression.Features
             Guids.ShockingBuff,
             Guids.ShockingBurstBuff,
             Guids.ThunderingBuff,
-            Guids.ThunderingBurstBuff
-      #endregion
+            Guids.ThunderingBurstBuff,
+      #endregion,
+            Guids.FuriousBuff
           ))
         .Configure();
     }
@@ -198,8 +199,9 @@ namespace AutomaticBonusProgression.Features
             Guids.ShockingOffHandBuff,
             Guids.ShockingBurstOffHandBuff,
             Guids.ThunderingOffHandBuff,
-            Guids.ThunderingBurstOffHandBuff
+            Guids.ThunderingBurstOffHandBuff,
       #endregion
+            Guids.FuriousBuff
           ))
         .Configure();
     }

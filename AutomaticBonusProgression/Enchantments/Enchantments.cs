@@ -51,7 +51,9 @@ namespace AutomaticBonusProgression.Enchantments
 
         // Weapon
         Bane.Configure();
+        Cruel.Configure();
         Elemental.Configure();
+        Furious.Configure();
       }
       catch (Exception e)
       {

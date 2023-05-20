@@ -516,6 +516,11 @@
     internal const string ThunderingBurstOffHandBuff = "98b0d30d-d5e4-41f6-b7ba-e42000204249";
     internal const string ThunderingBurstOffHandEffect = "a74c44d6-e3f8-4d3b-8b62-89ab34ee4d15";
     #endregion
+
+    internal const string FuriousBuff = "d3a5ee89-2229-4363-83e2-c084d465a5b9";
+    internal const string FuriousEffect = "358b988a-c8c0-4c08-bea2-eb13ecbfee3f";
+    internal const string FuriousOffHandBuff = "5528b7f9-aa1e-46fc-91cc-2a56dff3379b";
+    internal const string FuriousOffHandEffect = "34f1c59c-0d40-443d-babf-bee92f99a7d7";
     #endregion
     #endregion
 

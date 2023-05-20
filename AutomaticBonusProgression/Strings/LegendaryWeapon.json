@@ -171,6 +171,12 @@
     "Key": "LW.Elemental.Thundering.Burst.Name",
     "ProcessTemplates": false,
     "enGB": "Thundering Burst (+2)"
-  }
+  },
   //// End Elemental
+
+  {
+    "Key": "LW.Furious.Name",
+    "ProcessTemplates": false,
+    "enGB": "Furious (+1)"
+  }
 ]

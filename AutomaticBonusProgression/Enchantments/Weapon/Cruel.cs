@@ -57,7 +57,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       return new(name, guid, new CruelComponent(toPrimaryWeapon));
     }
 
-    [TypeId("0c13c656-b835-4573-82d7-9a12f27c60df")]
+    [TypeId("e7bb0ba6-e6f4-40b0-aed0-3c17042a763e")]
     private class CruelComponent :
       UnitBuffComponentDelegate,
       IInitiatorRulebookHandler<RuleAttackWithWeapon>

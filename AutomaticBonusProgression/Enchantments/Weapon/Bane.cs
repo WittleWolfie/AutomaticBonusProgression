@@ -1,11 +1,8 @@
-﻿using AutomaticBonusProgression.Features;
-using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
+﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums;
 using Kingmaker.PubSubSystem;
@@ -13,10 +10,8 @@ using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
-using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Components;
 using System;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments.Weapon
 {
@@ -463,6 +458,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         Damage = new DamageDescription
         {
           Dice = new(rollsCount: 2, diceType: DiceType.D6),
+          Bonus = 2,
           TypeDescription = DamageTypes.Force()
         };
         ToPrimaryWeapon = toPrimaryWeapon;
