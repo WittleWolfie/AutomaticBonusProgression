@@ -28,7 +28,7 @@ namespace AutomaticBonusProgression.Features
 
       // In Game:
       // - Bane [Done]
-      // - Corrosive / Flaming / Frost / Shock / Thundering (Burst)
+      // - Corrosive / Flaming / Frost / Shock / Thundering (Burst) [Done]
       // - Cruel
       // - Furious
       // - Ghost Touch
@@ -115,7 +115,19 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneOutsiderNeutralBuff,
             Guids.BanePlantsBuff,
             Guids.BaneUndeadBuff,
-            Guids.BaneVerminBuff
+            Guids.BaneVerminBuff,
+      #endregion
+      #region Elemental
+            Guids.CorrosiveBuff,
+            Guids.CorrosiveBurstBuff,
+            Guids.FlamingBuff,
+            Guids.FlamingBurstBuff,
+            Guids.FrostBuff,
+            Guids.FrostBurstBuff,
+            Guids.ShockingBuff,
+            Guids.ShockingBurstBuff,
+            Guids.ThunderingBuff,
+            Guids.ThunderingBurstBuff
       #endregion
           ))
         .Configure();
@@ -156,23 +168,35 @@ namespace AutomaticBonusProgression.Features
         .AddComponent(
           new AttunementBuffsComponent(
       #region Bane
-            Guids.BaneAberrationsBuff,
-            Guids.BaneAnimalsBuff,
-            Guids.BaneConstructsBuff,
-            Guids.BaneDragonsBuff,
-            Guids.BaneFeyBuff,
-            Guids.BaneHumanoidGiantBuff,
-            Guids.BaneHumanoidMonstrousBuff,
-            Guids.BaneHumanoidReptilianBuff,
-            Guids.BaneMagicalBeastsBuff,
-            Guids.BaneOutsiderChaoticBuff,
-            Guids.BaneOutsiderEvilBuff,
-            Guids.BaneOutsiderGoodBuff,
-            Guids.BaneOutsiderLawfulBuff,
-            Guids.BaneOutsiderNeutralBuff,
-            Guids.BanePlantsBuff,
-            Guids.BaneUndeadBuff,
-            Guids.BaneVerminBuff
+            Guids.BaneAberrationsOffHandBuff,
+            Guids.BaneAnimalsOffHandBuff,
+            Guids.BaneConstructsOffHandBuff,
+            Guids.BaneDragonsOffHandBuff,
+            Guids.BaneFeyOffHandBuff,
+            Guids.BaneHumanoidGiantOffHandBuff,
+            Guids.BaneHumanoidMonstrousOffHandBuff,
+            Guids.BaneHumanoidReptilianOffHandBuff,
+            Guids.BaneMagicalBeastsOffHandBuff,
+            Guids.BaneOutsiderChaoticOffHandBuff,
+            Guids.BaneOutsiderEvilOffHandBuff,
+            Guids.BaneOutsiderGoodOffHandBuff,
+            Guids.BaneOutsiderLawfulOffHandBuff,
+            Guids.BaneOutsiderNeutralOffHandBuff,
+            Guids.BanePlantsOffHandBuff,
+            Guids.BaneUndeadOffHandBuff,
+            Guids.BaneVerminOffHandBuff,
+      #endregion
+      #region Elemental
+            Guids.CorrosiveOffHandBuff,
+            Guids.CorrosiveBurstOffHandBuff,
+            Guids.FlamingOffHandBuff,
+            Guids.FlamingBurstOffHandBuff,
+            Guids.FrostOffHandBuff,
+            Guids.FrostBurstOffHandBuff,
+            Guids.ShockingOffHandBuff,
+            Guids.ShockingBurstOffHandBuff,
+            Guids.ThunderingOffHandBuff,
+            Guids.ThunderingBurstOffHandBuff
       #endregion
           ))
         .Configure();

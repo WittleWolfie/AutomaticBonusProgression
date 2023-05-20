@@ -28,98 +28,141 @@
     "enGB": "A bane weapon excels against certain foes. Against a designated foe, the weapon’s enhancement bonus is +2 better than its actual bonus. It also deals an extra 2d6 points of damage against such foes."
   },
   {
-    "Key": "LW.Bane.Ability.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Weapon (Bane)"
-  },
-  {
-    "Key": "LegendaryOffHand.Bane.Ability.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Off-Hand (Bane)"
-  },
-  {
     "Key": "LW.Bane.Aberrations.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Aberrations"
+    "enGB": "Bane: Aberrations (+1)"
   },
   {
     "Key": "LW.Bane.Animals.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Animals"
+    "enGB": "Bane: Animals (+1)"
   },
   {
     "Key": "LW.Bane.Constructs.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Constructs"
+    "enGB": "Bane: Constructs (+1)"
   },
   {
     "Key": "LW.Bane.Dragons.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Dragons"
+    "enGB": "Bane: Dragons (+1)"
   },
   {
     "Key": "LW.Bane.Fey.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Fey"
+    "enGB": "Bane: Fey (+1)"
   },
   {
     "Key": "LW.Bane.Humanoid.Giant.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Giant Humanoids"
+    "enGB": "Bane: Giant Humanoids (+1)"
   },
   {
     "Key": "LW.Bane.Humanoid.Reptilian.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Reptilian Humanoids"
+    "enGB": "Bane: Reptilian Humanoids (+1)"
   },
   {
     "Key": "LW.Bane.Humanoid.Monstrous.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Monstrous Humanoids"
+    "enGB": "Bane: Monstrous Humanoids (+1)"
   },
   {
     "Key": "LW.Bane.MagicalBeasts.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Magical Beasts"
+    "enGB": "Bane: Magical Beasts (+1)"
   },
   {
     "Key": "LW.Bane.Outsider.Good.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Good Outsiders"
+    "enGB": "Bane: Good Outsiders (+1)"
   },
   {
     "Key": "LW.Bane.Outsider.Evil.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Evil Outsiders"
+    "enGB": "Bane: Evil Outsiders (+1)"
   },
   {
     "Key": "LW.Bane.Outsider.Lawful.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Lawful Outsiders"
+    "enGB": "Bane: Lawful Outsiders (+1)"
   },
   {
     "Key": "LW.Bane.Outsider.Chaotic.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Chaotic Outsiders"
+    "enGB": "Bane: Chaotic Outsiders (+1)"
   },
   {
     "Key": "LW.Bane.Outsider.Neutral.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Neutral Outsiders"
+    "enGB": "Bane: Neutral Outsiders (+1)"
   },
   {
     "Key": "LW.Bane.Plants.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Plants"
+    "enGB": "Bane: Plants (+1)"
   },
   {
     "Key": "LW.Bane.Undead.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Undead"
+    "enGB": "Bane: Undead (+1)"
   },
   {
     "Key": "LW.Bane.Vermin.Name",
     "ProcessTemplates": false,
-    "enGB": "Bane: Vermin"
+    "enGB": "Bane: Vermin (+1)"
+  },
+
+  //// Elemental
+  {
+    "Key": "LW.Elemental.Corrosive.Name",
+    "ProcessTemplates": false,
+    "enGB": "Corrosive (+1)"
+  },
+  {
+    "Key": "LW.Elemental.Corrosive.Burst.Name",
+    "ProcessTemplates": false,
+    "enGB": "Corrosive Burst (+2)"
+  },
+  {
+    "Key": "LW.Elemental.Flaming.Name",
+    "ProcessTemplates": false,
+    "enGB": "Flaming (+1)"
+  },
+  {
+    "Key": "LW.Elemental.Flaming.Burst.Name",
+    "ProcessTemplates": false,
+    "enGB": "Flaming Burst (+2)"
+  },
+  {
+    "Key": "LW.Elemental.Frost.Name",
+    "ProcessTemplates": false,
+    "enGB": "Frost (+1)"
+  },
+  {
+    "Key": "LW.Elemental.Frost.Burst.Name",
+    "ProcessTemplates": false,
+    "enGB": "Frost Burst (+2)"
+  },
+  {
+    "Key": "LW.Elemental.Shocking.Name",
+    "ProcessTemplates": false,
+    "enGB": "Shocking (+1)"
+  },
+  {
+    "Key": "LW.Elemental.Shocking.Burst.Name",
+    "ProcessTemplates": false,
+    "enGB": "Shocking Burst (+2)"
+  },
+  {
+    "Key": "LW.Elemental.Thundering.Name",
+    "ProcessTemplates": false,
+    "enGB": "Thundering (+1)"
+  },
+  {
+    "Key": "LW.Elemental.Thundering.Burst.Name",
+    "ProcessTemplates": false,
+    "enGB": "Thundering Burst (+2)"
   }
+  ////
 ]

@@ -24,14 +24,14 @@ namespace AutomaticBonusProgression.Util
 
   internal abstract class EnchantInfo
   {
-    internal readonly string DisplayName;
-    internal readonly string Description;
+    internal readonly LocalString DisplayName;
+    internal readonly LocalString Description;
     internal readonly string Icon;
     internal readonly EnhancementType Type;
     internal readonly int Cost;
 
     protected EnchantInfo(
-      string displayName, string description, string icon, EnhancementType type, int cost)
+      LocalString displayName, LocalString description, string icon, EnhancementType type, int cost)
     {
       DisplayName = displayName;
       Description = description;
@@ -63,7 +63,7 @@ namespace AutomaticBonusProgression.Util
     internal readonly ArmorProficiencyGroup[] AllowedTypes;
 
     public ArmorEnchantInfo(
-        string displayName, string description, string icon, int cost, params ArmorProficiencyGroup[] allowedTypes)
+        LocalString displayName, LocalString description, string icon, int cost, params ArmorProficiencyGroup[] allowedTypes)
       : base(displayName, description, icon, EnhancementType.Armor, cost)
     {
       AllowedTypes = allowedTypes;
@@ -80,7 +80,7 @@ namespace AutomaticBonusProgression.Util
 
   internal class WeaponEnchantInfo : EnchantInfo
   {
-    public WeaponEnchantInfo(string displayName, string description, string icon, int cost)
+    public WeaponEnchantInfo(LocalString displayName, LocalString description, string icon, int cost)
       : base(displayName, description, icon, EnhancementType.MainHand, cost)
     { }
 

@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Enchantments.Armor;
+using AutomaticBonusProgression.Enchantments.Weapon;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.References;
@@ -10,7 +11,7 @@ using System;
 
 namespace AutomaticBonusProgression.Enchantments
 {
-    internal class Enchantments
+  internal class Enchantments
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Enchantments));
 
@@ -47,6 +48,10 @@ namespace AutomaticBonusProgression.Enchantments
         Shadow.Configure();
         SpellResistance.Configure();
         Wyrmsbreath.Configure();
+
+        // Weapon
+        Bane.Configure();
+        Elemental.Configure();
       }
       catch (Exception e)
       {
