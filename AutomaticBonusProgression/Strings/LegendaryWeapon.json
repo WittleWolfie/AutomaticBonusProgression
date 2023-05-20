@@ -113,6 +113,12 @@
     "enGB": "Bane: Vermin (+1)"
   },
 
+  {
+    "Key": "LW.Cruel.Name",
+    "ProcessTemplates": false,
+    "enGB": "Cruel (+1)"
+  },
+
   //// Elemental
   {
     "Key": "LW.Elemental.Corrosive.Name",
@@ -164,5 +170,5 @@
     "ProcessTemplates": false,
     "enGB": "Thundering Burst (+2)"
   }
-  ////
+  //// End Elemental
 ]

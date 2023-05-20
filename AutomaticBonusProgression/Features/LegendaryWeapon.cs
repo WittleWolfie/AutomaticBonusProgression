@@ -29,7 +29,7 @@ namespace AutomaticBonusProgression.Features
       // In Game:
       // - Bane [Done]
       // - Corrosive / Flaming / Frost / Shock / Thundering (Burst) [Done]
-      // - Cruel
+      // - Cruel [Done]
       // - Furious
       // - Ghost Touch
       // - Heartseeker
@@ -117,6 +117,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneUndeadBuff,
             Guids.BaneVerminBuff,
       #endregion
+            Guids.CruelBuff,
       #region Elemental
             Guids.CorrosiveBuff,
             Guids.CorrosiveBurstBuff,
@@ -186,6 +187,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneUndeadOffHandBuff,
             Guids.BaneVerminOffHandBuff,
       #endregion
+            Guids.CruelOffHandBuff,
       #region Elemental
             Guids.CorrosiveOffHandBuff,
             Guids.CorrosiveBurstOffHandBuff,

@@ -460,6 +460,11 @@
     internal const string BaneVerminOffHandBuff = "ff8f020d-485d-4eb4-9abd-00049c7e0fc8";
     #endregion
 
+    internal const string CruelBuff = "203aa908-fe97-4890-ba65-3431789bc29f";
+    internal const string CruelEffect = "432eef6e-d029-48cc-8eb1-9127fb78adb5";
+    internal const string CruelOffHandBuff = "c57a472b-c7cb-407e-9ed6-bd7f0648f7b9";
+    internal const string CruelOffHandEffect = "c05a21dd-2a8f-4411-abf3-eb1dc4b0431c";
+
     #region Elemental
     internal const string CorrosiveBuff = "59021693-62be-4be5-85cd-6a1598348c90";
     internal const string CorrosiveEffect = "fd68cd77-05c0-4f8b-a34e-047ce37c10df";
