@@ -23,6 +23,7 @@
     "enGB": "Select a special ability you can apply to your shield. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. You cannot apply Spell Resistance (19) to a shield with Rallying, which has an enhancement cost of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor."
   },
 
+  //// Bane
   {
     "Key": "LW.Bane.Description",
     "enGB": "A bane weapon excels against certain foes. Against a designated foe, the weapon’s enhancement bonus is +2 better than its actual bonus. It also deals an extra 2d6 points of damage against such foes."
@@ -112,6 +113,7 @@
     "ProcessTemplates": false,
     "enGB": "Bane: Vermin (+1)"
   },
+  //// End Bane
 
   {
     "Key": "LW.Cruel.Name",
