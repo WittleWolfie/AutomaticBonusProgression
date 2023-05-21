@@ -12,6 +12,8 @@ using System;
 
 namespace AutomaticBonusProgression.Enchantments.Weapon
 {
+  // TODO: Let's rework weapon enchantments to actually apply enchants. This works because unarmed / natural attacks
+  // are still weapons, unlike the case for Armor Enchantments where Unarmored is nothing.
   internal class Bane
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Bane));
