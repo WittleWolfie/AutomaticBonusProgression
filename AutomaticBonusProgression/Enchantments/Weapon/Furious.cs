@@ -1,13 +1,11 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder.ContextEx;
-using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules;
-using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Buffs.Components;
 using System;
@@ -56,10 +54,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     }
 
     [TypeId("7e5adc83-e9fd-48c3-a070-362564d3b109")]
-    private class FuriousComponent :
-      UnitBuffComponentDelegate,
-      IInitiatorRulebookHandler<RuleCalculateAttackBonus>,
-      IInitiatorRulebookHandler<RulePrepareDamage>
+    private class FuriousComponent : UnitBuffComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>
     {
       private static readonly BlueprintBuffReference Rage =
         BuffRefs.StandartRageBuff.Cast<BlueprintBuffReference>().Reference;
@@ -67,22 +62,19 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         BuffRefs.RageSpellBuff.Cast<BlueprintBuffReference>().Reference;
 
       private readonly bool ToPrimaryWeapon;
-      private readonly DamageDescription Damage;
 
       internal FuriousComponent(bool toPrimaryWeapon)
       {
         ToPrimaryWeapon = toPrimaryWeapon;
-        Damage = new DamageDescription
-        {
-          Bonus = 2,
-          TypeDescription = DamageTypes.Force()
-        };
       }
 
-      public void OnEventAboutToTrigger(RuleCalculateAttackBonus evt)
+      public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
       {
         try
         {
+          if (evt.AttackWithWeapon is null)
+            return;
+
           if (!Owner.HasFact(Rage) && !Owner.HasFact(RageSpell))
           {
             Logger.Verbose(() => $"{Owner.CharacterName} is not under the effects of rage");
@@ -96,61 +88,22 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
             return;
           }
 
-          var target = evt.Target;
+          var target = evt.AttackWithWeapon.Target;
           if (target is null)
           {
             Logger.Warning("No target! (attack w/ weapon)");
             return;
           }
 
-          evt.AddModifier(2, Fact, ModifierDescriptor.UntypedStackable);
+          evt.Enhancement.AddExtraModifier(new(2, Fact, ModifierDescriptor.UntypedStackable));
         }
         catch (Exception e)
         {
-          Logger.LogException("FuriousComponent.OnEventAboutToTrigger(RuleAttackWithWeapon)", e);
+          Logger.LogException("FuriousComponent.OnEventAboutToTrigger(RuleCalculateWeaponStats)", e);
         }
       }
 
-      public void OnEventDidTrigger(RuleCalculateAttackBonus evt) { }
-
-      public void OnEventAboutToTrigger(RulePrepareDamage evt)
-      {
-        try
-        {
-
-          var weapon = evt.ParentRule.AttackRoll?.Weapon;
-          if (weapon is null)
-            return;
-
-          if (!Owner.HasFact(Rage) && !Owner.HasFact(RageSpell))
-          {
-            Logger.Verbose(() => $"{Owner.CharacterName} is not under the effects of rage");
-            return;
-          }
-
-          var isPrimaryWeapon = Common.IsPrimaryWeapon(weapon);
-          if (ToPrimaryWeapon && !isPrimaryWeapon || !ToPrimaryWeapon && isPrimaryWeapon)
-          {
-            Logger.Verbose(() => $"Wrong weapon: {ToPrimaryWeapon} - {isPrimaryWeapon} - {weapon.Name}");
-            return;
-          }
-
-          var target = evt.Target;
-          if (target is null)
-          {
-            Logger.Warning("No target! (damage)");
-            return;
-          }
-
-          evt.Add(Damage.CreateDamage());
-        }
-        catch (Exception e)
-        {
-          Logger.LogException("FuriousComponent.OnEventAboutToTrigger(RulePrepareDamage)", e);
-        }
-      }
-
-      public void OnEventDidTrigger(RulePrepareDamage evt) { }
+      public void OnEventDidTrigger(RuleCalculateWeaponStats evt) { }
     }
   }
 }

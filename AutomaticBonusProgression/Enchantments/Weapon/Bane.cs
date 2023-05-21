@@ -1,14 +1,11 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
-using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums;
 using Kingmaker.PubSubSystem;
-using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
-using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Buffs.Components;
 using System;
@@ -440,14 +437,10 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     }
 
     [TypeId("fbfd28cf-37f9-4160-85bc-8e4425d7691e")]
-    private class BaneComponent :
-      UnitBuffComponentDelegate,
-      IInitiatorRulebookHandler<RuleCalculateAttackBonus>,
-      IInitiatorRulebookHandler<RulePrepareDamage>
+    private class BaneComponent : UnitBuffComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>
     {
       private readonly BlueprintFeatureReference RequisiteFeature;
       private readonly AlignmentComponent? Alignment;
-      private readonly DamageDescription Damage;
       private readonly bool ToPrimaryWeapon;
 
       internal BaneComponent(
@@ -455,19 +448,16 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       {
         RequisiteFeature = requisiteFeature;
         Alignment = alignment;
-        Damage = new DamageDescription
-        {
-          Dice = new(rollsCount: 2, diceType: DiceType.D6),
-          Bonus = 2,
-          TypeDescription = DamageTypes.Force()
-        };
         ToPrimaryWeapon = toPrimaryWeapon;
       }
 
-      public void OnEventAboutToTrigger(RuleCalculateAttackBonus evt)
+      public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
       {
         try
         {
+          if (evt.AttackWithWeapon is null)
+            return;
+
           var isPrimaryWeapon = Common.IsPrimaryWeapon(evt.Weapon);
           if (ToPrimaryWeapon && !isPrimaryWeapon || !ToPrimaryWeapon && isPrimaryWeapon)
           {
@@ -475,7 +465,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
             return;
           }
 
-          var target = evt.Target;
+          var target = evt.AttackWithWeapon.Target;
           if (target is null)
           {
             Logger.Warning("No target! (attack w/ weapon)");
@@ -494,59 +484,15 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
             return;
           }
 
-          evt.AddModifier(2, Fact, ModifierDescriptor.UntypedStackable);
+          evt.Enhancement.AddExtraModifier(new(2, Fact, ModifierDescriptor.UntypedStackable));
         }
         catch (Exception e)
         {
-          Logger.LogException("BaneComponent.OnEventAboutToTrigger(RuleAttackWithWeapon)", e);
+          Logger.LogException("BaneComponent.OnEventAboutToTrigger(RuleCalculateWeaponStats)", e);
         }
       }
 
-      public void OnEventDidTrigger(RuleCalculateAttackBonus evt) { }
-
-      public void OnEventAboutToTrigger(RulePrepareDamage evt)
-      {
-        try
-        {
-          var weapon = evt.ParentRule.AttackRoll?.Weapon;
-          if (weapon is null)
-            return;
-
-          var isPrimaryWeapon = Common.IsPrimaryWeapon(weapon);
-          if (ToPrimaryWeapon && !isPrimaryWeapon || !ToPrimaryWeapon && isPrimaryWeapon)
-          {
-            Logger.Verbose(() => $"Wrong weapon: {ToPrimaryWeapon} - {isPrimaryWeapon} - {weapon.Name}");
-            return;
-          }
-
-          var target = evt.Target;
-          if (target is null)
-          {
-            Logger.Warning("No target! (damage)");
-            return;
-          }
-
-          if (Alignment is not null && !target.Alignment.ValueRaw.HasComponent(Alignment.Value))
-          {
-            Logger.Verbose(() => $"Bane does not apply: {target.Alignment}, {Alignment} required");
-            return;
-          }
-
-          if (!target.HasFact(RequisiteFeature))
-          {
-            Logger.Verbose(() => $"Bane does not apply, target does not have {RequisiteFeature}");
-            return;
-          }
-
-          evt.Add(Damage.CreateDamage());
-        }
-        catch (Exception e)
-        {
-          Logger.LogException("BaneComponent.OnEventAboutToTrigger(RulePrepareDamage)", e);
-        }
-      }
-
-      public void OnEventDidTrigger(RulePrepareDamage evt) { }
+      public void OnEventDidTrigger(RuleCalculateWeaponStats evt) { }
     }
   }
 }
