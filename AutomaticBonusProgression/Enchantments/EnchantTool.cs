@@ -44,13 +44,14 @@ namespace AutomaticBonusProgression.Enchantments
       BlueprintInfo parentBuff,
       BlueprintInfo variantBuff = null)
     {
+      BuffConfigurator.For(effectBuff).AddComponent(enchant.GetEnhancementComponent()).Configure();
+
       // Although the parent buff shouldn't show up, it needs a name / description / icon for the attunement UI.
       var parent = BuffConfigurator.New(parentBuff.Name, parentBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
         .SetFlags(BlueprintBuff.Flags.HiddenInUi)
-        .AddComponent(enchant.GetEnhancementComponent())
         .AddComponent(enchant.GetAttunementComponent(effectBuff));
       foreach (var component in parentBuff.Components)
         parent.AddComponent(component);
@@ -61,7 +62,6 @@ namespace AutomaticBonusProgression.Enchantments
 
       var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
         .CopyFrom(parentBuff.Guid)
-        .AddComponent(enchant.GetEnhancementComponent())
         .AddComponent(enchant.GetAttunementComponent(effectBuff, variant: true));
       foreach (var component in variantBuff.Components)
         variant.AddComponent(component);
@@ -87,7 +87,8 @@ namespace AutomaticBonusProgression.Enchantments
     {
       var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
-        .SetDescription(enchant.Description);
+        .SetDescription(enchant.Description)
+        .AddComponent(enchant.GetEnhancementComponent());
         //.SetIcon(enchant.Icon);
       foreach (var component in effectBuff.Components)
         effect.AddComponent(component);
@@ -99,7 +100,6 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
         .SetFlags(BlueprintBuff.Flags.HiddenInUi)
-        .AddComponent(enchant.GetEnhancementComponent())
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid));
       foreach (var component in parentBuff.Components)
         parent.AddComponent(component);
@@ -110,7 +110,6 @@ namespace AutomaticBonusProgression.Enchantments
 
       var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
         .CopyFrom(parentBuff.Guid)
-        .AddComponent(enchant.GetEnhancementComponent())
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid, variant: true));
       foreach (var component in variantBuff.Components)
         variant.AddComponent(component);
@@ -125,7 +124,8 @@ namespace AutomaticBonusProgression.Enchantments
     {
       var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
-        .SetDescription(enchant.Description);
+        .SetDescription(enchant.Description)
+        .AddComponent(enchant.GetEnhancementComponent());
       //.SetIcon(enchant.Icon);
       foreach (var component in effectBuff.Components)
         effect.AddComponent(component);
@@ -136,7 +136,6 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDescription(enchant.Description)
         //.SetIcon(enchant.Icon)
         .SetFlags(BlueprintBuff.Flags.HiddenInUi)
-        .AddComponent(enchant.GetEnhancementComponent())
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid, variant: true));
       foreach (var component in variantBuff.Components)
         variant.AddComponent(component);

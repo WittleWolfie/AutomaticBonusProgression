@@ -160,14 +160,14 @@ namespace AutomaticBonusProgression.UI.Attunement
         {
           var bp = buff.Get();
           Logger.Verbose(() => $"Checking {bp.Name}");
-          var enhancement = bp.GetComponent<EnhancementEquivalence>();
-          if (enhancement is null)
-            throw new InvalidOperationException($"Missing EnhancementEquivalentComponent: {bp.Name}");
+          var effect = bp.GetComponent<AttunementEffect>();
+          if (effect is null)
+            throw new InvalidOperationException($"Missing AttunementEffect: {bp.Name}");
 
-          if (legendaryFeature.GetRank() < enhancement.Enhancement)
+          if (legendaryFeature.GetRank() < effect.Cost)
             continue;
 
-          AvailableEnchantments.Add(new EnchantmentVM(bp, enhancement, Unit));
+          AvailableEnchantments.Add(new EnchantmentVM(bp, effect, Unit));
         }
       }
       finally

@@ -26,7 +26,7 @@ namespace AutomaticBonusProgression.Components
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AttunementEffect));
 
     private readonly BlueprintBuffReference EffectBuff;
-    private readonly int Cost;
+    internal readonly int Cost;
 
     protected AttunementEffect(BlueprintBuffReference effectBuff, int cost)
     {

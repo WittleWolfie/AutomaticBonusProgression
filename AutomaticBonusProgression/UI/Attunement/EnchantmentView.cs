@@ -114,12 +114,12 @@ namespace AutomaticBonusProgression.UI.Attunement
     }
 
     internal EnchantmentVM(
-      BlueprintBuff enchantment, EnhancementEquivalence cost, UnitEntityData unit)
+      BlueprintBuff enchantment, AttunementEffect effect, UnitEntityData unit)
     {
       Enchant = enchantment;
       Icon = Enchant.Icon;
       Name = Enchant.Name;
-      Cost = cost.Enhancement;
+      Cost = effect.Cost;
       Unit = unit;
 
       var key = Enchant.AssetGuid.ToString();
@@ -162,7 +162,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       if (CurrentState.Value == State.Active || CurrentState.Value == State.Unavailable)
         return;
 
-      // Only update the cost, nothing else should change on refresh
+      // Only update the effect, nothing else should change on refresh
       var canAfford = Unit.Ensure<UnitPartEnhancement>().CanAddTemp(Cost);
       if (canAfford && CurrentState.Value == State.Unaffordable)
         CurrentState.Value = State.Available;
