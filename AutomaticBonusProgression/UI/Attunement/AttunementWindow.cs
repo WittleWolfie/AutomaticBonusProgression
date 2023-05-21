@@ -430,8 +430,11 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       foreach (var enchant in enchantmentsVM.GetInactiveEnchantments())
       {
-        Logger.Verbose(() => $"Removing {enchant.Name} from {Unit.CharacterName}");
-        Unit.RemoveFact(enchant);
+        if (Unit.HasFact(enchant))
+        {
+          Logger.Verbose(() => $"Removing {enchant.Name} from {Unit.CharacterName}");
+          Unit.RemoveFact(enchant);
+        }
       }
 
       foreach (var enchant in enchantmentsVM.GetActiveEnchantments())
