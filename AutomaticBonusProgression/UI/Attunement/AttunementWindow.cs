@@ -73,13 +73,14 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private OwlcatButton Apply;
 
-    private readonly List<Transform> Children = new();
-
     public override void BindViewImplementation()
     {
       gameObject.SetActive(true);
 
-      Enchantments.Bind(new(ViewModel.Type));
+      var enchantmentsVM = new EnchantmentsVM(ViewModel.Type);
+      AddDisposable(enchantmentsVM);
+      Enchantments.Bind(enchantmentsVM);
+
       AddDisposable(Game.Instance.UI.EscManager.Subscribe(ViewModel.Close));
       AddDisposable(CloseButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.Close()));
       AddDisposable(MainHand.OnLeftClickAsObservable().Subscribe(_ => ViewModel.SetType(EnhancementType.MainHand)));
@@ -95,9 +96,6 @@ namespace AutomaticBonusProgression.UI.Attunement
     public override void DestroyViewImplementation()
     {
       gameObject.SetActive(false);
-
-      Children.ForEach(child => DestroyImmediate(child.gameObject));
-      Children.Clear();
     }
 
     internal void Initialize()
