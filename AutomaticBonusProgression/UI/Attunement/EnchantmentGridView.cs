@@ -33,8 +33,19 @@ namespace AutomaticBonusProgression.UI.Attunement
       gridLayout.constraintCount = 4;
       gridLayout.cellSize = new(353, 75);
 
+      // Text shown if there are no enchantments available
+      var emptyText = UnityEngine.Object.Instantiate(Prefabs.Text);
+      emptyText.transform.AddTo(scrollView);
+      emptyText.transform.localPosition = Vector3.zero;
+      emptyText.SetText(UITool.GetString("Attunement.Empty"));
+
       // Add the view & make sure viewport scales to fit
-      var view = scrollView.gameObject.CreateComponent<EnchantmentGridView>(view => view.Grid = gridLayout.transform);
+      var view = scrollView.gameObject.CreateComponent<EnchantmentGridView>(
+        view =>
+        {
+          view.Grid = gridLayout.transform;
+          view.EmptyText = emptyText.transform;
+        });
       scrollView.transform.Find("Viewport").Rect().offsetMin = Vector2.zero;
 
       // Add before configuring layout params or else some may be overridden
@@ -65,6 +76,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private void Refresh()
     {
+      EmptyText.gameObject.SetActive(!ViewModel.AvailableEnchantments.Any());
+
       ViewModel.AvailableEnchantments.ForEach(
         feature =>
         {
@@ -75,6 +88,7 @@ namespace AutomaticBonusProgression.UI.Attunement
     }
 
     internal Transform Grid;
+    internal Transform EmptyText;
   }
 
   internal class EnchantmentsVM : BaseDisposable, IViewModel
@@ -113,15 +127,17 @@ namespace AutomaticBonusProgression.UI.Attunement
     private void Refresh()
     {
       Logger.Verbose(() => $"Refreshing Enchantment Grid: {Unit}, {Type.Value}");
-      foreach (var vm in AvailableEnchantments)
-        vm.Dispose();
+      try
+      {
+        foreach (var vm in AvailableEnchantments)
+          vm.Dispose();
 
-      AvailableEnchantments.Clear();
+        AvailableEnchantments.Clear();
 
-      if (Unit is null)
-        return;
+        if (Unit is null)
+          return;
 
-      var legendaryFeature = Type.Value switch
+        var legendaryFeature = Type.Value switch
         {
           EnhancementType.Armor => Unit.GetFeature(Common.LegendaryArmor),
           EnhancementType.Shield => Unit.GetFeature(Common.LegendaryShield),
@@ -129,32 +145,35 @@ namespace AutomaticBonusProgression.UI.Attunement
           EnhancementType.OffHand => Unit.GetFeature(Common.LegendaryOffHand),
           _ => throw new NotImplementedException(),
         };
-      if (legendaryFeature is null)
-        return; // TODO: Show text when character doesn't have attunement
+        if (legendaryFeature is null)
+          return; // TODO: Stop from selecting things when you can't! (i.e. no equipped or already dun it)
 
-      var attunement = legendaryFeature.GetComponent<AttunementBuffsComponent>();
-      if (attunement is null)
-        throw new InvalidOperationException($"Missing AttunementBuffsComponent: {legendaryFeature.Name}");
+        var attunement = legendaryFeature.GetComponent<AttunementBuffsComponent>();
+        if (attunement is null)
+          throw new InvalidOperationException($"Missing AttunementBuffsComponent: {legendaryFeature.Name}");
 
-      var unitPart = Unit.Ensure<UnitPartEnhancement>();
-      unitPart.ResetTempEnhancement(Type.Value);
+        var unitPart = Unit.Ensure<UnitPartEnhancement>();
+        unitPart.ResetTempEnhancement(Type.Value);
 
-      Logger.Verbose(() => $"Adding enchantments: {legendaryFeature.Name}");
-      foreach (var buff in attunement.Buffs)
-      {
-        var bp = buff.Get();
-        Logger.Verbose(() => $"Checking {bp.Name}");
-        var enhancement = bp.GetComponent<EnhancementEquivalence>();
-        if (enhancement is null)
-          throw new InvalidOperationException($"Missing EnhancementEquivalentComponent: {bp.Name}");
+        Logger.Verbose(() => $"Adding enchantments: {legendaryFeature.Name}");
+        foreach (var buff in attunement.Buffs)
+        {
+          var bp = buff.Get();
+          Logger.Verbose(() => $"Checking {bp.Name}");
+          var enhancement = bp.GetComponent<EnhancementEquivalence>();
+          if (enhancement is null)
+            throw new InvalidOperationException($"Missing EnhancementEquivalentComponent: {bp.Name}");
 
-        if (legendaryFeature.GetRank() < enhancement.Enhancement)
-          continue;
+          if (legendaryFeature.GetRank() < enhancement.Enhancement)
+            continue;
 
-        AvailableEnchantments.Add(new EnchantmentVM(bp, enhancement, Unit));
+          AvailableEnchantments.Add(new EnchantmentVM(bp, enhancement, Unit));
+        }
       }
-
-      OnRefresh?.Invoke();
+      finally
+      {
+        OnRefresh?.Invoke();
+      }
     }
 
     internal void Subscribe(Action onRefresh)

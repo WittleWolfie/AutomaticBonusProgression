@@ -50,6 +50,11 @@
     "ProcessTemplates": false,
     "enGB": "Enhancement: +{0}/{1}"
   },
+  {
+    "Key": "ABP.UI.Attunement.Empty",
+    "ProcessTemplates": false,
+    "enGB": "Unavailable"
+  },
 
   {
     "Key": "ABP.UI.Attunement.Unequipped",
