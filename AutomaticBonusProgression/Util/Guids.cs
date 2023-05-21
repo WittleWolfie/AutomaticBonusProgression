@@ -111,7 +111,6 @@
 
     internal const string BalancedEffect = "395f73da-d5a6-440c-a018-e9c0b83a92b6";
     internal const string BalancedBuff = "fe735c67-37a2-412e-88cb-032ef9feacb8";
-    internal const string BalancedShieldBuff = "a7d29359-91af-4b1f-af27-00e30f852d71";
 
     internal const string BashingEffect = "01a0061e-5fe1-40a1-b870-84dbfacf04de";
     internal const string BashingBuff = "d3db2785-81b5-4a9f-aa1e-e91dc8b1bd95";

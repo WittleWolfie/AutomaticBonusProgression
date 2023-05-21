@@ -151,7 +151,6 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(
-            Guids.BalancedShieldBuff,
             Guids.BashingBuff,
             Guids.BolsteringShieldBuff,
       #region Defiant
