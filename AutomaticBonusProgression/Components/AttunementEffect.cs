@@ -9,6 +9,7 @@ using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.Buffs.Components;
+using Newtonsoft.Json;
 using System;
 
 namespace AutomaticBonusProgression.Components
@@ -117,6 +118,7 @@ namespace AutomaticBonusProgression.Components
 
     internal class ComponentData
     {
+      [JsonProperty]
       internal Buff AppliedBuff;
     }
   }
