@@ -1,125 +1,138 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Enums;
-using Kingmaker.PubSubSystem;
-using Kingmaker.RuleSystem.Rules;
-using Kingmaker.UnitLogic;
-using Kingmaker.UnitLogic.Buffs.Components;
-using System;
+using Kingmaker.Blueprints.Items.Ecnchantments;
+using Kingmaker.UI.GenericSlot;
+using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Enchantments.Weapon
 {
-  // TODO: Let's rework weapon enchantments to actually apply enchants. This works because unarmed / natural attacks
-  // are still weapons, unlike the case for Armor Enchantments where Unarmored is nothing.
   internal class Bane
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Bane));
 
     #region Too Many Constants
-    private const string BaneAberrationsName = "LW.Bane.Aberrations.Name";
-    private const string BaneAberrationsEffect = "LW.Bane.Aberrations.Effect";
-    private const string BaneAberrationsOffHandEffect = "LW.Bane.Aberrations.OffHand.Effect";
-    private const string BaneAberrationsBuff = "LW.Bane.Aberrations.Buff";
-    private const string BaneAberrationsOffHandBuff = "LW.Bane.Aberrations.OffHand.Buff";
+    private const string AberrationsEnchantCopy = "LW.Bane.Aberrations.Enchant";
+    private const string AberrationsName = "LW.Bane.Aberrations.Name";
+    private const string AberrationsEffect = "LW.Bane.Aberrations.Effect";
+    private const string AberrationsOffHandEffect = "LW.Bane.Aberrations.OffHand.Effect";
+    private const string AberrationsBuff = "LW.Bane.Aberrations.Buff";
+    private const string AberrationsOffHandBuff = "LW.Bane.Aberrations.OffHand.Buff";
 
-    private const string BaneAnimalsName = "LW.Bane.Animals.Name";
-    private const string BaneAnimalsEffect = "LW.Bane.Animals.Effect";
-    private const string BaneAnimalsOffHandEffect = "LW.Bane.Animals.OffHand.Effect";
-    private const string BaneAnimalsBuff = "LW.Bane.Animals.Buff";
-    private const string BaneAnimalsOffHandBuff = "LW.Bane.Animals.OffHand.Buff";
+    private const string AnimalsEnchantCopy = "LW.Bane.Animals.Enchant";
+    private const string AnimalsName = "LW.Bane.Animals.Name";
+    private const string AnimalsEffect = "LW.Bane.Animals.Effect";
+    private const string AnimalsOffHandEffect = "LW.Bane.Animals.OffHand.Effect";
+    private const string AnimalsBuff = "LW.Bane.Animals.Buff";
+    private const string AnimalsOffHandBuff = "LW.Bane.Animals.OffHand.Buff";
 
-    private const string BaneConstructsName = "LW.Bane.Constructs.Name";
-    private const string BaneConstructsEffect = "LW.Bane.Constructs.Effect";
-    private const string BaneConstructsOffHandEffect = "LW.Bane.Constructs.OffHand.Effect";
-    private const string BaneConstructsBuff = "LW.Bane.Constructs.Buff";
-    private const string BaneConstructsOffHandBuff = "LW.Bane.Constructs.OffHand.Buff";
+    private const string ConstructsEnchantCopy = "LW.Bane.Constructs.Enchant";
+    private const string ConstructsName = "LW.Bane.Constructs.Name";
+    private const string ConstructsEffect = "LW.Bane.Constructs.Effect";
+    private const string ConstructsOffHandEffect = "LW.Bane.Constructs.OffHand.Effect";
+    private const string ConstructsBuff = "LW.Bane.Constructs.Buff";
+    private const string ConstructsOffHandBuff = "LW.Bane.Constructs.OffHand.Buff";
 
-    private const string BaneDragonsName = "LW.Bane.Dragons.Name";
-    private const string BaneDragonsEffect = "LW.Bane.Dragons.Effect";
-    private const string BaneDragonsOffHandEffect = "LW.Bane.Dragons.OffHand.Effect";
-    private const string BaneDragonsBuff = "LW.Bane.Dragons.Buff";
-    private const string BaneDragonsOffHandBuff = "LW.Bane.Dragons.OffHand.Buff";
+    private const string DragonsEnchantCopy = "LW.Bane.Dragons.Enchant";
+    private const string DragonsName = "LW.Bane.Dragons.Name";
+    private const string DragonsEffect = "LW.Bane.Dragons.Effect";
+    private const string DragonsOffHandEffect = "LW.Bane.Dragons.OffHand.Effect";
+    private const string DragonsBuff = "LW.Bane.Dragons.Buff";
+    private const string DragonsOffHandBuff = "LW.Bane.Dragons.OffHand.Buff";
 
-    private const string BaneFeyName = "LW.Bane.Fey.Name";
-    private const string BaneFeyEffect = "LW.Bane.Fey.Effect";
-    private const string BaneFeyOffHandEffect = "LW.Bane.Fey.OffHand.Effect";
-    private const string BaneFeyBuff = "LW.Bane.Fey.Buff";
-    private const string BaneFeyOffHandBuff = "LW.Bane.Fey.OffHand.Buff";
+    private const string FeyEnchantCopy = "LW.Bane.Fey.Enchant";
+    private const string FeyName = "LW.Bane.Fey.Name";
+    private const string FeyEffect = "LW.Bane.Fey.Effect";
+    private const string FeyOffHandEffect = "LW.Bane.Fey.OffHand.Effect";
+    private const string FeyBuff = "LW.Bane.Fey.Buff";
+    private const string FeyOffHandBuff = "LW.Bane.Fey.OffHand.Buff";
 
-    private const string BaneHumanoidGiantName = "LW.Bane.Humanoid.Giant.Name";
-    private const string BaneHumanoidGiantEffect = "LW.Bane.Humanoid.Giant.Effect";
-    private const string BaneHumanoidGiantOffHandEffect = "LW.Bane.Humanoid.Giant.OffHand.Effect";
-    private const string BaneHumanoidGiantBuff = "LW.Bane.Humanoid.Giant.Buff";
-    private const string BaneHumanoidGiantOffHandBuff = "LW.Bane.Humanoid.Giant.OffHand.Buff";
+    private const string HumanoidGiantEnchantCopy = "LW.Bane.HumanoidGiant.Enchant";
+    private const string HumanoidGiantName = "LW.Bane.Humanoid.Giant.Name";
+    private const string HumanoidGiantEffect = "LW.Bane.Humanoid.Giant.Effect";
+    private const string HumanoidGiantOffHandEffect = "LW.Bane.Humanoid.Giant.OffHand.Effect";
+    private const string HumanoidGiantBuff = "LW.Bane.Humanoid.Giant.Buff";
+    private const string HumanoidGiantOffHandBuff = "LW.Bane.Humanoid.Giant.OffHand.Buff";
 
-    private const string BaneHumanoidReptilianName = "LW.Bane.Humanoid.Reptilian.Name";
-    private const string BaneHumanoidReptilianEffect = "LW.Bane.Humanoid.Reptilian.Effect";
-    private const string BaneHumanoidReptilianOffHandEffect = "LW.Bane.Humanoid.Reptilian.OffHand.Effect";
-    private const string BaneHumanoidReptilianBuff = "LW.Bane.Humanoid.Reptilian.Buff";
-    private const string BaneHumanoidReptilianOffHandBuff = "LW.Bane.Humanoid.Reptilian.OffHand.Buff";
+    private const string HumanoidReptilianEnchantCopy = "LW.Bane.Humanoid.Reptilian.Enchant";
+    private const string HumanoidReptilianName = "LW.Bane.Humanoid.Reptilian.Name";
+    private const string HumanoidReptilianEffect = "LW.Bane.Humanoid.Reptilian.Effect";
+    private const string HumanoidReptilianOffHandEffect = "LW.Bane.Humanoid.Reptilian.OffHand.Effect";
+    private const string HumanoidReptilianBuff = "LW.Bane.Humanoid.Reptilian.Buff";
+    private const string HumanoidReptilianOffHandBuff = "LW.Bane.Humanoid.Reptilian.OffHand.Buff";
 
-    private const string BaneHumanoidMonstrousName = "LW.Bane.Humanoid.Monstrous.Name";
-    private const string BaneHumanoidMonstrousEffect = "LW.Bane.Humanoid.Monstrous.Effect";
-    private const string BaneHumanoidMonstrousOffHandEffect = "LW.Bane.Humanoid.Monstrous.OffHand.Effect";
-    private const string BaneHumanoidMonstrousBuff = "LW.Bane.Humanoid.Monstrous.Buff";
-    private const string BaneHumanoidMonstrousOffHandBuff = "LW.Bane.Humanoid.Monstrous.OffHand.Buff";
+    private const string HumanoidMonstrousEnchantCopy = "LW.Bane.Humanoid.Monstrous.Enchant";
+    private const string HumanoidMonstrousName = "LW.Bane.Humanoid.Monstrous.Name";
+    private const string HumanoidMonstrousEffect = "LW.Bane.Humanoid.Monstrous.Effect";
+    private const string HumanoidMonstrousOffHandEffect = "LW.Bane.Humanoid.Monstrous.OffHand.Effect";
+    private const string HumanoidMonstrousBuff = "LW.Bane.Humanoid.Monstrous.Buff";
+    private const string HumanoidMonstrousOffHandBuff = "LW.Bane.Humanoid.Monstrous.OffHand.Buff";
 
-    private const string BaneMagicalBeastsName = "LW.Bane.MagicalBeasts.Name";
-    private const string BaneMagicalBeastsEffect = "LW.Bane.MagicalBeasts.Effect";
-    private const string BaneMagicalBeastsOffHandEffect = "LW.Bane.MagicalBeasts.OffHand.Effect";
-    private const string BaneMagicalBeastsBuff = "LW.Bane.MagicalBeasts.Buff";
-    private const string BaneMagicalBeastsOffHandBuff = "LW.Bane.MagicalBeasts.OffHand.Buff";
+    private const string MagicalBeastsEnchantCopy = "LW.Bane.MagicalBeasts.Enchant";
+    private const string MagicalBeastsName = "LW.Bane.MagicalBeasts.Name";
+    private const string MagicalBeastsEffect = "LW.Bane.MagicalBeasts.Effect";
+    private const string MagicalBeastsOffHandEffect = "LW.Bane.MagicalBeasts.OffHand.Effect";
+    private const string MagicalBeastsBuff = "LW.Bane.MagicalBeasts.Buff";
+    private const string MagicalBeastsOffHandBuff = "LW.Bane.MagicalBeasts.OffHand.Buff";
 
-    private const string BaneOutsiderGoodName = "LW.Bane.Outsider.Good.Name";
-    private const string BaneOutsiderGoodEffect = "LW.Bane.Outsider.Good.Effect";
-    private const string BaneOutsiderGoodOffHandEffect = "LW.Bane.Outsider.Good.OffHand.Effect";
-    private const string BaneOutsiderGoodBuff = "LW.Bane.Outsider.Good.Buff";
-    private const string BaneOutsiderGoodOffHandBuff = "LW.Bane.Outsider.Good.OffHand.Buff";
+    private const string OutsiderGoodEnchantCopy = "LW.Bane.Outsider.Good.Enchant";
+    private const string OutsiderGoodName = "LW.Bane.Outsider.Good.Name";
+    private const string OutsiderGoodEffect = "LW.Bane.Outsider.Good.Effect";
+    private const string OutsiderGoodOffHandEffect = "LW.Bane.Outsider.Good.OffHand.Effect";
+    private const string OutsiderGoodBuff = "LW.Bane.Outsider.Good.Buff";
+    private const string OutsiderGoodOffHandBuff = "LW.Bane.Outsider.Good.OffHand.Buff";
 
-    private const string BaneOutsiderEvilName = "LW.Bane.Outsider.Evil.Name";
-    private const string BaneOutsiderEvilEffect = "LW.Bane.Outsider.Evil.Effect";
-    private const string BaneOutsiderEvilOffHandEffect = "LW.Bane.Outsider.Evil.OffHand.Effect";
-    private const string BaneOutsiderEvilBuff = "LW.Bane.Outsider.Evil.Buff";
-    private const string BaneOutsiderEvilOffHandBuff = "LW.Bane.Outsider.Evil.OffHand.Buff";
+    private const string OutsiderEvilEnchantCopy = "LW.Bane.Outsider.Evil.Enchant";
+    private const string OutsiderEvilName = "LW.Bane.Outsider.Evil.Name";
+    private const string OutsiderEvilEffect = "LW.Bane.Outsider.Evil.Effect";
+    private const string OutsiderEvilOffHandEffect = "LW.Bane.Outsider.Evil.OffHand.Effect";
+    private const string OutsiderEvilBuff = "LW.Bane.Outsider.Evil.Buff";
+    private const string OutsiderEvilOffHandBuff = "LW.Bane.Outsider.Evil.OffHand.Buff";
 
-    private const string BaneOutsiderLawfulName = "LW.Bane.Outsider.Lawful.Name";
-    private const string BaneOutsiderLawfulEffect = "LW.Bane.Outsider.Lawful.Effect";
-    private const string BaneOutsiderLawfulOffHandEffect = "LW.Bane.Outsider.Lawful.OffHand.Effect";
-    private const string BaneOutsiderLawfulBuff = "LW.Bane.Outsider.Lawful.Buff";
-    private const string BaneOutsiderLawfulOffHandBuff = "LW.Bane.Outsider.Lawful.OffHand.Buff";
+    private const string OutsiderLawfulEnchantCopy = "LW.Bane.Outsider.Lawful.Enchant";
+    private const string OutsiderLawfulName = "LW.Bane.Outsider.Lawful.Name";
+    private const string OutsiderLawfulEffect = "LW.Bane.Outsider.Lawful.Effect";
+    private const string OutsiderLawfulOffHandEffect = "LW.Bane.Outsider.Lawful.OffHand.Effect";
+    private const string OutsiderLawfulBuff = "LW.Bane.Outsider.Lawful.Buff";
+    private const string OutsiderLawfulOffHandBuff = "LW.Bane.Outsider.Lawful.OffHand.Buff";
 
-    private const string BaneOutsiderChaoticName = "LW.Bane.Outsider.Chaotic.Name";
-    private const string BaneOutsiderChaoticEffect = "LW.Bane.Outsider.Chaotic.Effect";
-    private const string BaneOutsiderChaoticOffHandEffect = "LW.Bane.Outsider.Chaotic.OffHand.Effect";
-    private const string BaneOutsiderChaoticBuff = "LW.Bane.Outsider.Chaotic.Buff";
-    private const string BaneOutsiderChaoticOffHandBuff = "LW.Bane.Outsider.Chaotic.OffHand.Buff";
+    private const string OutsiderChaoticEnchantCopy = "LW.Bane.Outsider.Chaotic.Enchant";
+    private const string OutsiderChaoticName = "LW.Bane.Outsider.Chaotic.Name";
+    private const string OutsiderChaoticEffect = "LW.Bane.Outsider.Chaotic.Effect";
+    private const string OutsiderChaoticOffHandEffect = "LW.Bane.Outsider.Chaotic.OffHand.Effect";
+    private const string OutsiderChaoticBuff = "LW.Bane.Outsider.Chaotic.Buff";
+    private const string OutsiderChaoticOffHandBuff = "LW.Bane.Outsider.Chaotic.OffHand.Buff";
 
-    private const string BaneOutsiderNeutralName = "LW.Bane.Outsider.Neutral.Name";
-    private const string BaneOutsiderNeutralEffect = "LW.Bane.Outsider.Neutral.Effect";
-    private const string BaneOutsiderNeutralOffHandEffect = "LW.Bane.Outsider.Neutral.OffHand.Effect";
-    private const string BaneOutsiderNeutralBuff = "LW.Bane.Outsider.Neutral.Buff";
-    private const string BaneOutsiderNeutralOffHandBuff = "LW.Bane.Outsider.Neutral.OffHand.Buff";
+    private const string OutsiderNeutralEnchantCopy = "LW.Bane.Outsider.Neutral.Enchant";
+    private const string OutsiderNeutralName = "LW.Bane.Outsider.Neutral.Name";
+    private const string OutsiderNeutralEffect = "LW.Bane.Outsider.Neutral.Effect";
+    private const string OutsiderNeutralOffHandEffect = "LW.Bane.Outsider.Neutral.OffHand.Effect";
+    private const string OutsiderNeutralBuff = "LW.Bane.Outsider.Neutral.Buff";
+    private const string OutsiderNeutralOffHandBuff = "LW.Bane.Outsider.Neutral.OffHand.Buff";
 
-    private const string BanePlantsName = "LW.Bane.Plants.Name";
-    private const string BanePlantsEffect = "LW.Bane.Plants.Effect";
-    private const string BanePlantsOffHandEffect = "LW.Bane.Plants.OffHand.Effect";
-    private const string BanePlantsBuff = "LW.Bane.Plants.Buff";
-    private const string BanePlantsOffHandBuff = "LW.Bane.Plants.OffHand.Buff";
+    private const string PlantsEnchantCopy = "LW.Bane.Plants.Enchant";
+    private const string PlantsName = "LW.Bane.Plants.Name";
+    private const string PlantsEffect = "LW.Bane.Plants.Effect";
+    private const string PlantsOffHandEffect = "LW.Bane.Plants.OffHand.Effect";
+    private const string PlantsBuff = "LW.Bane.Plants.Buff";
+    private const string PlantsOffHandBuff = "LW.Bane.Plants.OffHand.Buff";
 
-    private const string BaneUndeadName = "LW.Bane.Undead.Name";
-    private const string BaneUndeadEffect = "LW.Bane.Undead.Effect";
-    private const string BaneUndeadOffHandEffect = "LW.Bane.Undead.OffHand.Effect";
-    private const string BaneUndeadBuff = "LW.Bane.Undead.Buff";
-    private const string BaneUndeadOffHandBuff = "LW.Bane.Undead.OffHand.Buff";
+    private const string UndeadEnchantCopy = "LW.Bane.Plants.Undead";
+    private const string UndeadName = "LW.Bane.Undead.Name";
+    private const string UndeadEffect = "LW.Bane.Undead.Effect";
+    private const string UndeadOffHandEffect = "LW.Bane.Undead.OffHand.Effect";
+    private const string UndeadBuff = "LW.Bane.Undead.Buff";
+    private const string UndeadOffHandBuff = "LW.Bane.Undead.OffHand.Buff";
 
-    private const string BaneVerminName = "LW.Bane.Vermin.Name";
-    private const string BaneVerminEffect = "LW.Bane.Vermin.Effect";
-    private const string BaneVerminOffHandEffect = "LW.Bane.Vermin.OffHand.Effect";
-    private const string BaneVerminBuff = "LW.Bane.Vermin.Buff";
-    private const string BaneVerminOffHandBuff = "LW.Bane.Vermin.OffHand.Buff";
+    private const string VerminEnchantCopy = "LW.Bane.Vermin.Undead";
+    private const string VerminName = "LW.Bane.Vermin.Name";
+    private const string VerminEffect = "LW.Bane.Vermin.Effect";
+    private const string VerminOffHandEffect = "LW.Bane.Vermin.OffHand.Effect";
+    private const string VerminBuff = "LW.Bane.Vermin.Buff";
+    private const string VerminOffHandBuff = "LW.Bane.Vermin.OffHand.Buff";
     #endregion
 
     private const string Description = "LW.Bane.Description";
@@ -130,371 +143,377 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Bane");
 
       // Aberrations
-      var aberrationsEnchantInfo = new WeaponEnchantInfo(BaneAberrationsName, Description, "", EnhancementCost);
+      var aberrationsEnchantInfo = new WeaponEnchantInfo(AberrationsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         aberrationsEnchantInfo,
-        effectBuff: GetBuffInfo(BaneAberrationsEffect, Guids.BaneAberrationsEffect, FeatureRefs.AberrationType.ToString()),
-        parentBuff: new(BaneAberrationsBuff, Guids.BaneAberrationsBuff));
+        effectBuff: GetEffectInfo(AberrationsEffect, Guids.BaneAberrationsEffect, Guids.BaneAberrationsEnchantCopy),
+        parentBuff: new(AberrationsBuff, Guids.BaneAberrationsBuff));
       EnchantTool.CreateVariantEnchant(
         aberrationsEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneAberrationsOffHandEffect,
+        effectBuff: GetEffectInfo(
+          AberrationsOffHandEffect,
           Guids.BaneAberrationsOffHandEffect,
-          FeatureRefs.AberrationType.ToString(),
+          Guids.BaneAberrationsEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneAberrationsOffHandBuff, Guids.BaneAberrationsOffHandBuff));
+        variantBuff: new(AberrationsOffHandBuff, Guids.BaneAberrationsOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneAberration,
+        new(AberrationsEnchantCopy, Guids.BaneAberrationsEnchantCopy),
+        aberrationsEnchantInfo);
 
       // Animals
-      var animalsEnchantInfo = new WeaponEnchantInfo(BaneAnimalsName, Description, "", EnhancementCost);
+      var animalsEnchantInfo = new WeaponEnchantInfo(AnimalsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         animalsEnchantInfo,
-        effectBuff: GetBuffInfo(BaneAnimalsEffect, Guids.BaneAnimalsEffect, FeatureRefs.AnimalType.ToString()),
-        parentBuff: new(BaneAnimalsBuff, Guids.BaneAnimalsBuff));
+        effectBuff: GetEffectInfo(AnimalsEffect, Guids.BaneAnimalsEffect, Guids.BaneAnimalsEnchantCopy),
+        parentBuff: new(AnimalsBuff, Guids.BaneAnimalsBuff));
       EnchantTool.CreateVariantEnchant(
         animalsEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneAnimalsOffHandEffect,
+        effectBuff: GetEffectInfo(
+          AnimalsOffHandEffect,
           Guids.BaneAnimalsOffHandEffect,
-          FeatureRefs.AnimalType.ToString(),
+          Guids.BaneAnimalsEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneAnimalsOffHandBuff, Guids.BaneAnimalsOffHandBuff));
+        variantBuff: new(AnimalsOffHandBuff, Guids.BaneAnimalsOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneAnimal,
+        new(AnimalsEnchantCopy, Guids.BaneAnimalsEnchantCopy),
+        animalsEnchantInfo);
 
       // Constructs
-      var constructsEnchantInfo = new WeaponEnchantInfo(BaneConstructsName, Description, "", EnhancementCost);
+      var constructsEnchantInfo = new WeaponEnchantInfo(ConstructsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         constructsEnchantInfo,
-        effectBuff: GetBuffInfo(BaneConstructsEffect, Guids.BaneConstructsEffect, FeatureRefs.ConstructType.ToString()),
-        parentBuff: new(BaneConstructsBuff, Guids.BaneConstructsBuff));
+        effectBuff: GetEffectInfo(ConstructsEffect, Guids.BaneConstructsEffect, Guids.BaneConstructsEnchantCopy),
+        parentBuff: new(ConstructsBuff, Guids.BaneConstructsBuff));
       EnchantTool.CreateVariantEnchant(
         constructsEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneConstructsOffHandEffect,
+        effectBuff: GetEffectInfo(
+          ConstructsOffHandEffect,
           Guids.BaneConstructsOffHandEffect,
-          FeatureRefs.ConstructType.ToString(),
+          Guids.BaneConstructsEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneConstructsOffHandBuff, Guids.BaneConstructsOffHandBuff));
+        variantBuff: new(ConstructsOffHandBuff, Guids.BaneConstructsOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneConstruct,
+        new(ConstructsEnchantCopy, Guids.BaneConstructsEnchantCopy),
+        constructsEnchantInfo);
 
       // Dragons
-      var dragonsEnchantInfo = new WeaponEnchantInfo(BaneDragonsName, Description, "", EnhancementCost);
+      var dragonsEnchantInfo = new WeaponEnchantInfo(DragonsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         dragonsEnchantInfo,
-        effectBuff: GetBuffInfo(BaneDragonsEffect, Guids.BaneDragonsEffect, FeatureRefs.DragonType.ToString()),
-        parentBuff: new(BaneDragonsBuff, Guids.BaneDragonsBuff));
+        effectBuff: GetEffectInfo(DragonsEffect, Guids.BaneDragonsEffect, Guids.BaneDragonsEnchantCopy),
+        parentBuff: new(DragonsBuff, Guids.BaneDragonsBuff));
       EnchantTool.CreateVariantEnchant(
         dragonsEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneDragonsOffHandEffect,
+        effectBuff: GetEffectInfo(
+          DragonsOffHandEffect,
           Guids.BaneDragonsOffHandEffect,
-          FeatureRefs.DragonType.ToString(),
+          Guids.BaneDragonsEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneDragonsOffHandBuff, Guids.BaneDragonsOffHandBuff));
+        variantBuff: new(DragonsOffHandBuff, Guids.BaneDragonsOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneDragon,
+        new(DragonsEnchantCopy, Guids.BaneDragonsEnchantCopy),
+        dragonsEnchantInfo);
 
       // Fey
-      var feyEnchantInfo = new WeaponEnchantInfo(BaneFeyName, Description, "", EnhancementCost);
+      var feyEnchantInfo = new WeaponEnchantInfo(FeyName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         feyEnchantInfo,
-        effectBuff: GetBuffInfo(BaneFeyEffect, Guids.BaneFeyEffect, FeatureRefs.FeyType.ToString()),
-        parentBuff: new(BaneFeyBuff, Guids.BaneFeyBuff));
+        effectBuff: GetEffectInfo(FeyEffect, Guids.BaneFeyEffect, Guids.BaneFeyEnchantCopy),
+        parentBuff: new(FeyBuff, Guids.BaneFeyBuff));
       EnchantTool.CreateVariantEnchant(
         feyEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneFeyOffHandEffect,
+        effectBuff: GetEffectInfo(
+          FeyOffHandEffect,
           Guids.BaneFeyOffHandEffect,
-          FeatureRefs.FeyType.ToString(),
+          Guids.BaneFeyEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneFeyOffHandBuff, Guids.BaneFeyOffHandBuff));
+        variantBuff: new(FeyOffHandBuff, Guids.BaneFeyOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneFey,
+        new(FeyEnchantCopy, Guids.BaneFeyEnchantCopy),
+        feyEnchantInfo);
 
       // HumanoidGiant
-      var humanoidGiantEnchantInfo = new WeaponEnchantInfo(BaneHumanoidGiantName, Description, "", EnhancementCost);
+      var humanoidGiantEnchantInfo = new WeaponEnchantInfo(HumanoidGiantName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidGiantEnchantInfo,
-        effectBuff: GetBuffInfo(BaneHumanoidGiantEffect, Guids.BaneHumanoidGiantEffect, FeatureRefs.GiantSubtype.ToString()),
-        parentBuff: new(BaneHumanoidGiantBuff, Guids.BaneHumanoidGiantBuff));
+        effectBuff: GetEffectInfo(
+          HumanoidGiantEffect, Guids.BaneHumanoidGiantEffect, Guids.BaneHumanoidGiantEnchantCopy),
+        parentBuff: new(HumanoidGiantBuff, Guids.BaneHumanoidGiantBuff));
       EnchantTool.CreateVariantEnchant(
         humanoidGiantEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneHumanoidGiantOffHandEffect,
+        effectBuff: GetEffectInfo(
+          HumanoidGiantOffHandEffect,
           Guids.BaneHumanoidGiantOffHandEffect,
-          FeatureRefs.GiantSubtype.ToString(),
+          Guids.BaneHumanoidGiantEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneHumanoidGiantOffHandBuff, Guids.BaneHumanoidGiantOffHandBuff));
+        variantBuff: new(HumanoidGiantOffHandBuff, Guids.BaneHumanoidGiantOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneHumanoidGiant,
+        new(HumanoidGiantEnchantCopy, Guids.BaneHumanoidGiantEnchantCopy),
+        humanoidGiantEnchantInfo);
 
       // HumanoidReptilian
-      var humanoidReptilianEnchantInfo = new WeaponEnchantInfo(BaneHumanoidReptilianName, Description, "", EnhancementCost);
+      var humanoidReptilianEnchantInfo = new WeaponEnchantInfo(HumanoidReptilianName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidReptilianEnchantInfo,
-        effectBuff: GetBuffInfo(BaneHumanoidReptilianEffect, Guids.BaneHumanoidReptilianEffect, FeatureRefs.ReptilianSubtype.ToString()),
-        parentBuff: new(BaneHumanoidReptilianBuff, Guids.BaneHumanoidReptilianBuff));
+        effectBuff: GetEffectInfo(
+          HumanoidReptilianEffect, Guids.BaneHumanoidReptilianEffect, Guids.BaneHumanoidReptilianEnchantCopy),
+        parentBuff: new(HumanoidReptilianBuff, Guids.BaneHumanoidReptilianBuff));
       EnchantTool.CreateVariantEnchant(
         humanoidReptilianEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneHumanoidReptilianOffHandEffect,
+        effectBuff: GetEffectInfo(
+          HumanoidReptilianOffHandEffect,
           Guids.BaneHumanoidReptilianOffHandEffect,
-          FeatureRefs.ReptilianSubtype.ToString(),
+          Guids.BaneHumanoidReptilianEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneHumanoidReptilianOffHandBuff, Guids.BaneHumanoidReptilianOffHandBuff));
+        variantBuff: new(HumanoidReptilianOffHandBuff, Guids.BaneHumanoidReptilianOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneHumanoidReptilian,
+        new(HumanoidReptilianEnchantCopy, Guids.BaneHumanoidReptilianEnchantCopy),
+        humanoidReptilianEnchantInfo);
 
       // HumanoidMonstrous
-      var humanoidMonstrousEnchantInfo = new WeaponEnchantInfo(BaneHumanoidMonstrousName, Description, "", EnhancementCost);
+      var humanoidMonstrousEnchantInfo = new WeaponEnchantInfo(HumanoidMonstrousName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidMonstrousEnchantInfo,
-        effectBuff: GetBuffInfo(BaneHumanoidMonstrousEffect, Guids.BaneHumanoidMonstrousEffect, FeatureRefs.MonstrousHumanoidType.ToString()),
-        parentBuff: new(BaneHumanoidMonstrousBuff, Guids.BaneHumanoidMonstrousBuff));
+        effectBuff: GetEffectInfo(
+          HumanoidMonstrousEffect, Guids.BaneHumanoidMonstrousEffect, Guids.BaneHumanoidMonstrousEnchantCopy),
+        parentBuff: new(HumanoidMonstrousBuff, Guids.BaneHumanoidMonstrousBuff));
       EnchantTool.CreateVariantEnchant(
         humanoidMonstrousEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneHumanoidMonstrousOffHandEffect,
+        effectBuff: GetEffectInfo(
+          HumanoidMonstrousOffHandEffect,
           Guids.BaneHumanoidMonstrousOffHandEffect,
-          FeatureRefs.MonstrousHumanoidType.ToString(),
+          Guids.BaneHumanoidMonstrousEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneHumanoidMonstrousOffHandBuff, Guids.BaneHumanoidMonstrousOffHandBuff));
+        variantBuff: new(HumanoidMonstrousOffHandBuff, Guids.BaneHumanoidMonstrousOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneMonstrousHumanoid,
+        new(HumanoidMonstrousEnchantCopy, Guids.BaneHumanoidMonstrousEnchantCopy),
+        humanoidMonstrousEnchantInfo);
 
       // MagicalBeasts
-      var magicalBeastsEnchantInfo = new WeaponEnchantInfo(BaneMagicalBeastsName, Description, "", EnhancementCost);
+      var magicalBeastsEnchantInfo = new WeaponEnchantInfo(MagicalBeastsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         magicalBeastsEnchantInfo,
-        effectBuff: GetBuffInfo(BaneMagicalBeastsEffect, Guids.BaneMagicalBeastsEffect, FeatureRefs.MagicalBeastType.ToString()),
-        parentBuff: new(BaneMagicalBeastsBuff, Guids.BaneMagicalBeastsBuff));
+        effectBuff: GetEffectInfo(
+          MagicalBeastsEffect, Guids.BaneMagicalBeastsEffect, Guids.BaneMagicalBeastsEnchantCopy),
+        parentBuff: new(MagicalBeastsBuff, Guids.BaneMagicalBeastsBuff));
       EnchantTool.CreateVariantEnchant(
         magicalBeastsEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneMagicalBeastsOffHandEffect,
+        effectBuff: GetEffectInfo(
+          MagicalBeastsOffHandEffect,
           Guids.BaneMagicalBeastsOffHandEffect,
-          FeatureRefs.MagicalBeastType.ToString(),
+          Guids.BaneMagicalBeastsEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneMagicalBeastsOffHandBuff, Guids.BaneMagicalBeastsOffHandBuff));
+        variantBuff: new(MagicalBeastsOffHandBuff, Guids.BaneMagicalBeastsOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneMagicalBeast,
+        new(MagicalBeastsEnchantCopy, Guids.BaneMagicalBeastsEnchantCopy),
+        magicalBeastsEnchantInfo);
 
       // OutsiderGood
-      var outsiderGoodEnchantInfo = new WeaponEnchantInfo(BaneOutsiderGoodName, Description, "", EnhancementCost);
+      var outsiderGoodEnchantInfo = new WeaponEnchantInfo(OutsiderGoodName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderGoodEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderGoodEffect,
-          Guids.BaneOutsiderGoodEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Good),
-        parentBuff: new(BaneOutsiderGoodBuff, Guids.BaneOutsiderGoodBuff));
+        effectBuff: GetEffectInfo(OutsiderGoodEffect, Guids.BaneOutsiderGoodEffect, Guids.BaneOutsiderGoodEnchantCopy),
+        parentBuff: new(OutsiderGoodBuff, Guids.BaneOutsiderGoodBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderGoodEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderGoodOffHandEffect,
+        effectBuff: GetEffectInfo(
+          OutsiderGoodOffHandEffect,
           Guids.BaneOutsiderGoodOffHandEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Good,
+          Guids.BaneOutsiderGoodEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneOutsiderGoodOffHandBuff, Guids.BaneOutsiderGoodOffHandBuff));
+        variantBuff: new(OutsiderGoodOffHandBuff, Guids.BaneOutsiderGoodOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneOutsiderGood,
+        new(OutsiderGoodEnchantCopy, Guids.BaneOutsiderGoodEnchantCopy),
+        outsiderGoodEnchantInfo);
 
       // OutsiderEvil
-      var outsiderEvilEnchantInfo = new WeaponEnchantInfo(BaneOutsiderEvilName, Description, "", EnhancementCost);
+      var outsiderEvilEnchantInfo = new WeaponEnchantInfo(OutsiderEvilName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderEvilEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderEvilEffect,
-          Guids.BaneOutsiderEvilEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Evil),
-        parentBuff: new(BaneOutsiderEvilBuff, Guids.BaneOutsiderEvilBuff));
+        effectBuff: GetEffectInfo(OutsiderEvilEffect, Guids.BaneOutsiderEvilEffect, Guids.BaneOutsiderEvilEnchantCopy),
+        parentBuff: new(OutsiderEvilBuff, Guids.BaneOutsiderEvilBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderEvilEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderEvilOffHandEffect,
+        effectBuff: GetEffectInfo(
+          OutsiderEvilOffHandEffect,
           Guids.BaneOutsiderEvilOffHandEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Evil,
+          Guids.BaneOutsiderEvilEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneOutsiderEvilOffHandBuff, Guids.BaneOutsiderEvilOffHandBuff));
+        variantBuff: new(OutsiderEvilOffHandBuff, Guids.BaneOutsiderEvilOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneOutsiderEvil,
+        new(OutsiderEvilEnchantCopy, Guids.BaneOutsiderEvilEnchantCopy),
+        outsiderEvilEnchantInfo);
 
       // OutsiderLawful
-      var outsiderLawfulEnchantInfo = new WeaponEnchantInfo(BaneOutsiderLawfulName, Description, "", EnhancementCost);
+      var outsiderLawfulEnchantInfo = new WeaponEnchantInfo(OutsiderLawfulName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderLawfulEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderLawfulEffect,
-          Guids.BaneOutsiderLawfulEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Lawful),
-        parentBuff: new(BaneOutsiderLawfulBuff, Guids.BaneOutsiderLawfulBuff));
+        effectBuff: GetEffectInfo(
+          OutsiderLawfulEffect, Guids.BaneOutsiderLawfulEffect, Guids.BaneOutsiderLawfulEnchantCopy),
+        parentBuff: new(OutsiderLawfulBuff, Guids.BaneOutsiderLawfulBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderLawfulEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderLawfulOffHandEffect,
+        effectBuff: GetEffectInfo(
+          OutsiderLawfulOffHandEffect,
           Guids.BaneOutsiderLawfulOffHandEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Lawful,
+          Guids.BaneOutsiderLawfulEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneOutsiderLawfulOffHandBuff, Guids.BaneOutsiderLawfulOffHandBuff));
+        variantBuff: new(OutsiderLawfulOffHandBuff, Guids.BaneOutsiderLawfulOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneOutsiderLawful,
+        new(OutsiderLawfulEnchantCopy, Guids.BaneOutsiderLawfulEnchantCopy),
+        outsiderLawfulEnchantInfo);
 
       // OutsiderChaotic
-      var outsiderChaoticEnchantInfo = new WeaponEnchantInfo(BaneOutsiderChaoticName, Description, "", EnhancementCost);
+      var outsiderChaoticEnchantInfo = new WeaponEnchantInfo(OutsiderChaoticName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderChaoticEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderChaoticEffect,
-          Guids.BaneOutsiderChaoticEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Chaotic),
-        parentBuff: new(BaneOutsiderChaoticBuff, Guids.BaneOutsiderChaoticBuff));
+        effectBuff: GetEffectInfo(
+          OutsiderChaoticEffect, Guids.BaneOutsiderChaoticEffect, Guids.BaneOutsiderChaoticEnchantCopy),
+        parentBuff: new(OutsiderChaoticBuff, Guids.BaneOutsiderChaoticBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderChaoticEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderChaoticOffHandEffect,
+        effectBuff: GetEffectInfo(
+          OutsiderChaoticOffHandEffect,
           Guids.BaneOutsiderChaoticOffHandEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Chaotic,
+          Guids.BaneOutsiderChaoticEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneOutsiderChaoticOffHandBuff, Guids.BaneOutsiderChaoticOffHandBuff));
+        variantBuff: new(OutsiderChaoticOffHandBuff, Guids.BaneOutsiderChaoticOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneOutsiderChaotic,
+        new(OutsiderChaoticEnchantCopy, Guids.BaneOutsiderChaoticEnchantCopy),
+        outsiderChaoticEnchantInfo);
 
       // OutsiderNeutral
-      var outsiderNeutralEnchantInfo = new WeaponEnchantInfo(BaneOutsiderNeutralName, Description, "", EnhancementCost);
+      var outsiderNeutralEnchantInfo = new WeaponEnchantInfo(OutsiderNeutralName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderNeutralEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderNeutralEffect,
-          Guids.BaneOutsiderNeutralEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Neutral),
-        parentBuff: new(BaneOutsiderNeutralBuff, Guids.BaneOutsiderNeutralBuff));
+        effectBuff: GetEffectInfo(
+          OutsiderNeutralEffect, Guids.BaneOutsiderNeutralEffect, Guids.BaneOutsiderNeutralEnchantCopy),
+        parentBuff: new(OutsiderNeutralBuff, Guids.BaneOutsiderNeutralBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderNeutralEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneOutsiderNeutralOffHandEffect,
+        effectBuff: GetEffectInfo(
+          OutsiderNeutralOffHandEffect,
           Guids.BaneOutsiderNeutralOffHandEffect,
-          FeatureRefs.OutsiderType.ToString(),
-          alignment: AlignmentComponent.Neutral,
+          Guids.BaneOutsiderNeutralEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneOutsiderNeutralOffHandBuff, Guids.BaneOutsiderNeutralOffHandBuff));
+        variantBuff: new(OutsiderNeutralOffHandBuff, Guids.BaneOutsiderNeutralOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneOutsiderNeutral,
+        new(OutsiderNeutralEnchantCopy, Guids.BaneOutsiderNeutralEnchantCopy),
+        outsiderNeutralEnchantInfo);
 
       // Plants
-      var plantsEnchantInfo = new WeaponEnchantInfo(BanePlantsName, Description, "", EnhancementCost);
+      var plantsEnchantInfo = new WeaponEnchantInfo(PlantsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         plantsEnchantInfo,
-        effectBuff: GetBuffInfo(BanePlantsEffect, Guids.BanePlantsEffect, FeatureRefs.PlantType.ToString()),
-        parentBuff: new(BanePlantsBuff, Guids.BanePlantsBuff));
+        effectBuff: GetEffectInfo(PlantsEffect, Guids.BanePlantsEffect, Guids.BanePlantsEnchantCopy),
+        parentBuff: new(PlantsBuff, Guids.BanePlantsBuff));
       EnchantTool.CreateVariantEnchant(
         plantsEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BanePlantsOffHandEffect,
+        effectBuff: GetEffectInfo(
+          PlantsOffHandEffect,
           Guids.BanePlantsOffHandEffect,
-          FeatureRefs.PlantType.ToString(),
+          Guids.BanePlantsEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BanePlantsOffHandBuff, Guids.BanePlantsOffHandBuff));
+        variantBuff: new(PlantsOffHandBuff, Guids.BanePlantsOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BanePlant,
+        new(PlantsEnchantCopy, Guids.BanePlantsEnchantCopy),
+        plantsEnchantInfo);
 
       // Undead
-      var undeadEnchantInfo = new WeaponEnchantInfo(BaneUndeadName, Description, "", EnhancementCost);
+      var undeadEnchantInfo = new WeaponEnchantInfo(UndeadName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         undeadEnchantInfo,
-        effectBuff: GetBuffInfo(BaneUndeadEffect, Guids.BaneUndeadEffect, FeatureRefs.UndeadType.ToString()),
-        parentBuff: new(BaneUndeadBuff, Guids.BaneUndeadBuff));
+        effectBuff: GetEffectInfo(UndeadEffect, Guids.BaneUndeadEffect, Guids.BaneUndeadEnchantCopy),
+        parentBuff: new(UndeadBuff, Guids.BaneUndeadBuff));
       EnchantTool.CreateVariantEnchant(
         undeadEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneUndeadOffHandEffect,
+        effectBuff: GetEffectInfo(
+          UndeadOffHandEffect,
           Guids.BaneUndeadOffHandEffect,
-          FeatureRefs.UndeadType.ToString(),
+          Guids.BaneUndeadEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneUndeadOffHandBuff, Guids.BaneUndeadOffHandBuff));
+        variantBuff: new(UndeadOffHandBuff, Guids.BaneUndeadOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneUndead,
+        new(UndeadEnchantCopy, Guids.BaneUndeadEnchantCopy),
+        undeadEnchantInfo);
 
       // Vermin
-      var verminEnchantInfo = new WeaponEnchantInfo(BaneVerminName, Description, "", EnhancementCost);
+      var verminEnchantInfo = new WeaponEnchantInfo(VerminName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         verminEnchantInfo,
-        effectBuff: GetBuffInfo(BaneVerminEffect, Guids.BaneVerminEffect, FeatureRefs.VerminType.ToString()),
-        parentBuff: new(BaneVerminBuff, Guids.BaneVerminBuff));
+        effectBuff: GetEffectInfo(VerminEffect, Guids.BaneVerminEffect, Guids.BaneVerminEnchantCopy),
+        parentBuff: new(VerminBuff, Guids.BaneVerminBuff));
       EnchantTool.CreateVariantEnchant(
         verminEnchantInfo,
-        effectBuff: GetBuffInfo(
-          BaneVerminOffHandEffect,
+        effectBuff: GetEffectInfo(
+          VerminOffHandEffect,
           Guids.BaneVerminOffHandEffect,
-          FeatureRefs.VerminType.ToString(),
+          Guids.BaneVerminEnchantCopy,
           toPrimaryWeapon: false),
-        variantBuff: new(BaneVerminOffHandBuff, Guids.BaneVerminOffHandBuff));
-
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneAberration, aberrationsEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneAnimal, animalsEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneConstruct, constructsEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneDragon, dragonsEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneFey, feyEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneHumanoidGiant, humanoidGiantEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneMonstrousHumanoid, humanoidMonstrousEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneHumanoidReptilian, humanoidReptilianEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneMagicalBeast, magicalBeastsEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderChaotic, outsiderChaoticEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderEvil, outsiderEvilEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderGood, outsiderGoodEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderLawful, outsiderLawfulEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneOutsiderNeutral, outsiderNeutralEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BanePlant, plantsEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneUndead, undeadEnchantInfo);
-      EnchantTool.AddEnhancementEquivalenceWeapon(WeaponEnchantmentRefs.BaneVermin, verminEnchantInfo);
+        variantBuff: new(VerminOffHandBuff, Guids.BaneVerminOffHandBuff));
+      SetUpEnchant(
+        WeaponEnchantmentRefs.BaneVermin,
+        new(VerminEnchantCopy, Guids.BaneVerminEnchantCopy),
+        verminEnchantInfo);
     }
 
-    private static BlueprintInfo GetBuffInfo(
+    private static BlueprintInfo GetEffectInfo(
       string name,
       string guid,
-      Blueprint<BlueprintFeatureReference> typeFeature,
-      AlignmentComponent? alignment = null,
+      Blueprint<BlueprintItemEnchantmentReference> enchantment,
       bool toPrimaryWeapon = true)
     {
-      return new(name, guid, new BaneComponent(typeFeature.Reference, alignment, toPrimaryWeapon));
+      if (toPrimaryWeapon)
+      {
+        return new(
+          name,
+          guid,
+          new BuffEnchantAnyWeapon()
+          {
+            m_EnchantmentBlueprint = enchantment.Reference,
+            Slot = EquipSlotBase.SlotType.SecondaryHand
+          },
+          new BuffEnchantAnyWeapon()
+          {
+            m_EnchantmentBlueprint = enchantment.Reference,
+            Slot = EquipSlotBase.SlotType.AdditionalLimb
+          });
+      }
+      return new(
+        name,
+        guid,
+        new BuffEnchantAnyWeapon()
+        {
+          m_EnchantmentBlueprint = enchantment.Reference,
+          Slot = EquipSlotBase.SlotType.PrimaryHand
+        });
     }
 
-    [TypeId("fbfd28cf-37f9-4160-85bc-8e4425d7691e")]
-    private class BaneComponent : UnitBuffComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>
+    private static void SetUpEnchant(
+      Blueprint<BlueprintReference<BlueprintWeaponEnchantment>> source,
+      BlueprintInfo copy,
+      WeaponEnchantInfo enchant)
     {
-      private readonly BlueprintFeatureReference RequisiteFeature;
-      private readonly AlignmentComponent? Alignment;
-      private readonly bool ToPrimaryWeapon;
-
-      internal BaneComponent(
-        BlueprintFeatureReference requisiteFeature, AlignmentComponent? alignment, bool toPrimaryWeapon)
-      {
-        RequisiteFeature = requisiteFeature;
-        Alignment = alignment;
-        ToPrimaryWeapon = toPrimaryWeapon;
-      }
-
-      public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
-      {
-        try
-        {
-          if (evt.AttackWithWeapon is null)
-            return;
-
-          var isPrimaryWeapon = Common.IsPrimaryWeapon(evt.Weapon);
-          if (ToPrimaryWeapon && !isPrimaryWeapon || !ToPrimaryWeapon && isPrimaryWeapon)
-          {
-            Logger.Verbose(() => $"Wrong weapon: {ToPrimaryWeapon} - {isPrimaryWeapon} - {evt.Weapon.Name}");
-            return;
-          }
-
-          var target = evt.AttackWithWeapon.Target;
-          if (target is null)
-          {
-            Logger.Warning("No target! (attack w/ weapon)");
-            return;
-          }
-
-          if (Alignment is not null && !target.Alignment.ValueRaw.HasComponent(Alignment.Value))
-          {
-            Logger.Verbose(() => $"Bane does not apply: {target.Alignment}, {Alignment} required");
-            return;
-          }
-
-          if (!target.HasFact(RequisiteFeature))
-          {
-            Logger.Verbose(() => $"Bane does not apply, target does not have {RequisiteFeature}");
-            return;
-          }
-
-          evt.Enhancement.AddExtraModifier(new(2, Fact, ModifierDescriptor.UntypedStackable));
-        }
-        catch (Exception e)
-        {
-          Logger.LogException("BaneComponent.OnEventAboutToTrigger(RuleCalculateWeaponStats)", e);
-        }
-      }
-
-      public void OnEventDidTrigger(RuleCalculateWeaponStats evt) { }
+      WeaponEnchantmentConfigurator.New(copy.Name, copy.Guid)
+        .CopyFrom(source, c => c is not EnhancementEquivalence)
+        .Configure(delayed: true);
+      EnchantTool.AddEnhancementEquivalenceWeapon(source, enchant);
     }
   }
 }

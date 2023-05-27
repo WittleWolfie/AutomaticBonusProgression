@@ -373,86 +373,103 @@
     internal const string LegendaryOffHandResource = "1cf05e9b-a91e-4227-a3a9-b2e2e78d4c3b";
 
     #region Bane
+    internal const string BaneAberrationsEnchantCopy = "167198e9-4113-48b5-b512-1512e4fb9530";
     internal const string BaneAberrationsEffect = "26cd7f9c-3918-416d-bb18-76fd6c661473";
     internal const string BaneAberrationsBuff = "86bbf892-b3be-41f6-a4e0-3741dd9f80e6";
     internal const string BaneAberrationsOffHandEffect = "2ffcb62a-0f50-44fa-bea8-ba97e4bc44b0";
     internal const string BaneAberrationsOffHandBuff = "ce6e2ae7-cd8a-44a9-98b7-f57fbc196f78";
 
+    internal const string BaneAnimalsEnchantCopy = "4da5ea16-6441-4100-84eb-eaf266a8c7b3";
     internal const string BaneAnimalsEffect = "20b09219-0b83-4237-9952-144c5716ca2a";
     internal const string BaneAnimalsBuff = "1392ee6e-2656-4ef4-9d70-e5acab76144b";
     internal const string BaneAnimalsOffHandEffect = "2680b317-724b-4622-9ee5-e16fedd5365e";
     internal const string BaneAnimalsOffHandBuff = "05dfac76-360b-47fc-8241-1c0a33da2221";
 
+    internal const string BaneConstructsEnchantCopy = "c29fdd0e-fd5b-4996-a836-af00c25018e0";
     internal const string BaneConstructsEffect = "d578d3ad-a0fa-45dd-84e5-8b413887fe4a";
     internal const string BaneConstructsBuff = "0b3448b2-99c4-497a-b416-4e277d81fe81";
     internal const string BaneConstructsOffHandEffect = "87bf6bfb-a258-48b9-b4cf-eea26521015c";
     internal const string BaneConstructsOffHandBuff = "40e909df-2763-4b55-96cf-7aeee0f8debe";
 
+    internal const string BaneDragonsEnchantCopy = "d9e9084c-4b76-4588-bc81-f2d57cf8b97a";
     internal const string BaneDragonsEffect = "4b9af299-1774-4028-b792-fdbf6af22933";
     internal const string BaneDragonsBuff = "c4137bad-890a-47dc-bfc9-2c31f974beeb";
     internal const string BaneDragonsOffHandEffect = "b62b6ffd-aca5-49ec-835f-69fed541cf7d";
     internal const string BaneDragonsOffHandBuff = "c7ff2350-8a07-4579-82ff-c10daf58e395";
 
+    internal const string BaneFeyEnchantCopy = "506b7dc9-c475-40b8-975d-2c22695ea0a8";
     internal const string BaneFeyEffect = "a1222582-54c4-47ba-8ca9-17dc8267dd48";
     internal const string BaneFeyBuff = "7449b6e3-3e0e-485c-829d-744750356a90";
     internal const string BaneFeyOffHandEffect = "7a7fffe1-fcf7-441b-85e2-c44588687a93";
     internal const string BaneFeyOffHandBuff = "db82d7e1-fec9-4388-afeb-042bddebb12e";
 
+    internal const string BaneHumanoidGiantEnchantCopy = "f39c8cb5-e834-422b-a2be-539f317194c4";
     internal const string BaneHumanoidGiantEffect = "6cd57c75-6406-46ae-a07e-271e134f9599";
     internal const string BaneHumanoidGiantBuff = "1343c94b-e317-4ddb-90d1-ddfaed3f9ec9";
     internal const string BaneHumanoidGiantOffHandEffect = "1ceb03c4-6d52-48d5-8125-2686ea1e68f8";
     internal const string BaneHumanoidGiantOffHandBuff = "4b35fe40-2cec-4926-8bd3-1893318946ef";
 
+    internal const string BaneHumanoidReptilianEnchantCopy = "7d31a08a-091a-4c3e-845b-cac752f00b48";
     internal const string BaneHumanoidReptilianEffect = "c538d0ae-fe14-4675-98aa-7d514decbd27";
     internal const string BaneHumanoidReptilianBuff = "f3c52a04-2288-4981-a62a-40109c984f95";
     internal const string BaneHumanoidReptilianOffHandEffect = "b05e03af-b745-40e1-b201-011790072a47";
     internal const string BaneHumanoidReptilianOffHandBuff = "ffbbef60-cdd6-49df-854a-6ac2211d914d";
 
+    internal const string BaneHumanoidMonstrousEnchantCopy = "d8576737-3c43-4c7e-b84b-91cee134b53a";
     internal const string BaneHumanoidMonstrousEffect = "c5215f24-adf6-4680-9f52-6ab8a8cf53cc";
     internal const string BaneHumanoidMonstrousBuff = "44355137-0834-45d7-8d0c-933c2814dac5";
     internal const string BaneHumanoidMonstrousOffHandEffect = "7e8d4f98-27a3-4357-bfa6-948a7e6985d1";
     internal const string BaneHumanoidMonstrousOffHandBuff = "d95986d4-26fd-421c-bb6b-672d986b9d19";
 
+    internal const string BaneMagicalBeastsEnchantCopy = "aadec2d6-895e-4450-812a-1573ecd22940";
     internal const string BaneMagicalBeastsEffect = "6ab0aa75-d20d-4205-be2e-ea574ed64431";
     internal const string BaneMagicalBeastsBuff = "1f99a96c-c10a-46ca-93b5-ee821e3af99a";
     internal const string BaneMagicalBeastsOffHandEffect = "1984f80d-178b-43e7-b9ba-574cb3d14b8b";
     internal const string BaneMagicalBeastsOffHandBuff = "c9651ae6-b710-415a-b497-976896d588d0";
 
+    internal const string BaneOutsiderGoodEnchantCopy = "f5918c02-70cb-421e-9f44-fbbab7be34aa";
     internal const string BaneOutsiderGoodEffect = "bd73ee6f-6047-4ed7-97dc-77689fad2eea";
     internal const string BaneOutsiderGoodBuff = "c95e24ce-f033-4915-ba46-a29e632ea5a5";
     internal const string BaneOutsiderGoodOffHandEffect = "1b4cbc4a-52d3-4b19-b40c-77fa21a4d9b4";
     internal const string BaneOutsiderGoodOffHandBuff = "3ffbd7d7-c4ee-4624-b44d-0dcae088f59f";
 
+    internal const string BaneOutsiderEvilEnchantCopy = "3b724ddc-748f-41cf-9686-e61e5ae34f78";
     internal const string BaneOutsiderEvilEffect = "633b8ffd-62e9-4378-9396-eef0eb7d6e6b";
     internal const string BaneOutsiderEvilBuff = "2b32f2da-0349-4d2b-886d-c6fb0b9efbc9";
     internal const string BaneOutsiderEvilOffHandEffect = "9dc39a25-c780-4db6-8f8d-9abf33ab3687";
     internal const string BaneOutsiderEvilOffHandBuff = "ab2b5426-5234-4a0d-a6d2-a76b29b79e3f";
 
+    internal const string BaneOutsiderLawfulEnchantCopy = "6d793500-f4e4-4d19-88d8-29a08e0f214e";
     internal const string BaneOutsiderLawfulEffect = "e311444e-8816-4f5d-bbac-9ff159f0f50d";
     internal const string BaneOutsiderLawfulBuff = "c36b0a59-6242-4d07-8601-d637ae411187";
     internal const string BaneOutsiderLawfulOffHandEffect = "cd76446e-ca85-47fa-8f9c-49d71c53eac8";
     internal const string BaneOutsiderLawfulOffHandBuff = "69bdb177-ad92-43d2-a7c6-115b4a433331";
 
+    internal const string BaneOutsiderChaoticEnchantCopy = "14e6b708-4341-4024-9a75-3312703525cc";
     internal const string BaneOutsiderChaoticEffect = "b0f01aca-1db1-4b42-bd56-fe056e750bbb";
     internal const string BaneOutsiderChaoticBuff = "67a7f984-a0a5-47bb-a873-82cf4166c338";
     internal const string BaneOutsiderChaoticOffHandEffect = "ec887bc5-6d85-4cbc-9d2b-99f72eae777c";
     internal const string BaneOutsiderChaoticOffHandBuff = "8771bd44-970c-4d57-8db5-132609a00010";
 
+    internal const string BaneOutsiderNeutralEnchantCopy = "a601b497-e953-4748-8f16-ab588f3d9b44";
     internal const string BaneOutsiderNeutralEffect = "654037f4-7bc0-4e39-8fa9-19dad814793c";
     internal const string BaneOutsiderNeutralBuff = "2fac2652-a5ec-44b7-a718-3dd979c4e2c3";
     internal const string BaneOutsiderNeutralOffHandEffect = "efb08a5e-bad5-43cc-a595-93da107c5d78";
     internal const string BaneOutsiderNeutralOffHandBuff = "1311b4ec-8691-4a18-95a3-875a206dceb4";
 
+    internal const string BanePlantsEnchantCopy = "66bff0ae-0b7b-4dbf-996e-71966343b501";
     internal const string BanePlantsEffect = "195ab6ed-0497-432c-91bd-2b55feca8e89";
     internal const string BanePlantsBuff = "89372337-a298-4cc3-aee0-3b2267ae031b";
     internal const string BanePlantsOffHandEffect = "90171cbe-debe-4086-9716-885bd251c711";
     internal const string BanePlantsOffHandBuff = "6bb662e7-fcc1-48f7-a382-64f8932b56c4";
 
+    internal const string BaneUndeadEnchantCopy = "ff05b89a-2fe0-480e-acb5-d995db466a6b";
     internal const string BaneUndeadEffect = "8d12b391-66e9-4efa-9d20-c2f2ab2881d2";
     internal const string BaneUndeadBuff = "816efdd2-7ed5-40c0-82a7-0f07160ef6f0";
     internal const string BaneUndeadOffHandEffect = "b9627943-d0a4-441e-a8b3-57103332109a";
     internal const string BaneUndeadOffHandBuff = "9eb8eb99-84b9-40fc-80e8-15a3e8cda69f";
 
+    internal const string BaneVerminEnchantCopy = "3f84a4c1-e3ed-4639-be42-6a5832ab4638";
     internal const string BaneVerminEffect = "f40857cf-24bc-4ccc-8f56-511d22276fc6";
     internal const string BaneVerminBuff = "9ac438a7-8a8b-4459-a0dd-a80b951a06a0";
     internal const string BaneVerminOffHandEffect = "2ceecea3-5fee-49a0-94c1-b757475bf9bf";
