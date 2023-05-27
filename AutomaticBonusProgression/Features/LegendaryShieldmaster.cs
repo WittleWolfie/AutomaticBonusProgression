@@ -23,6 +23,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryShieldmasterDescription)
         //.SetIcon()
         .AddPrerequisiteCharacterLevel(level: 17)
+        .AddHideFeatureInInspect()
         .Configure();
     }
   }

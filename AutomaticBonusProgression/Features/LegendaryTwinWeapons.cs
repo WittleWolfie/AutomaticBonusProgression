@@ -22,6 +22,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryTwinWeaponsDescription)
         //.SetIcon()
         .AddPrerequisiteCharacterLevel(level: 17)
+        .AddHideFeatureInInspect()
         .Configure();
     }
   }

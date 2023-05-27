@@ -81,6 +81,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetHideInUI()
         .AddComponent<EnhancementBonusCalculator>()
+        .AddHideFeatureInInspect()
         .Configure();
     }
 

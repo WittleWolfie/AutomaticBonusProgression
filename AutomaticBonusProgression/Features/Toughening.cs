@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
@@ -24,7 +25,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(TougheningDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddStatBonus(stat: StatType.AC, value: 1, descriptor: ModifierDescriptor.NaturalArmorEnhancement)
+        .AddComponent(new AddStatBonusABP(StatType.AC, value: 1, ModifierDescriptor.NaturalArmorEnhancement))
+        .AddHideFeatureInInspect()
         .Configure();
     }
   }

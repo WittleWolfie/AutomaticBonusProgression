@@ -155,6 +155,8 @@ namespace AutomaticBonusProgression.Util
 
     internal static bool IsAffectedByABP(UnitEntityData unit)
     {
+      if (unit is null)
+        return false;
       return unit.IsInCompanionRoster() || (unit.Master is not null && unit.Master.IsInCompanionRoster());
     }
 

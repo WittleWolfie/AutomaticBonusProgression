@@ -1,8 +1,10 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Enums;
+using System;
 
 namespace AutomaticBonusProgression.Features
 {
@@ -24,8 +26,36 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(ResistanceDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddBuffAllSavesBonus(value: 1, descriptor: ModifierDescriptor.Resistance)
+        .AddComponent<ResistanceComponent>()
+        .AddHideFeatureInInspect()
         .Configure();
+    }
+
+    [TypeId("c7c76424-7278-4f32-b679-ed1d6fcffbb4")]
+    private class ResistanceComponent : BuffAllSavesBonus
+    {
+      public ResistanceComponent()
+      {
+        Value = 1;
+        Descriptor = ModifierDescriptor.Resistance;
+      }
+
+      public override void OnTurnOn()
+      {
+        try
+        {
+          if (!Common.IsAffectedByABP(Owner))
+          {
+            Logger.Verbose(() => $"Skipping resistance for unaffected unit: {Owner?.CharacterName}");
+            return;
+          }
+          base.OnTurnOn();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("ResistanceComponent.OnTurnOn", e);
+        }
+      }
     }
   }
 }

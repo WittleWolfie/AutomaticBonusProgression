@@ -32,6 +32,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .SetRanks(5)
         .AddComponent<ArmorAttunementComponent>()
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -50,6 +51,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .SetRanks(4)
         .AddComponent<RecalculateArmorStats>()
+        .AddHideFeatureInInspect()
         .Configure();
     }
 

@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.Blueprints.Classes;
@@ -31,6 +32,7 @@ namespace AutomaticBonusProgression.Features
           ConfigureIntelligence(),
           ConfigureWisdom(),
           ConfigureCharisma())
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -48,7 +50,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryStrengthDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddStatBonus(stat: StatType.Strength, value: 1, descriptor: ModifierDescriptor.Inherent)
+        .AddComponent(new AddStatBonusABP(StatType.Strength, value: 1, ModifierDescriptor.Inherent))
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -66,7 +69,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryDexterityDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddStatBonus(stat: StatType.Dexterity, value: 1, descriptor: ModifierDescriptor.Inherent)
+        .AddComponent(new AddStatBonusABP(StatType.Dexterity, value: 1, ModifierDescriptor.Inherent))
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -84,7 +88,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryConstitutionDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddStatBonus(stat: StatType.Constitution, value: 1, descriptor: ModifierDescriptor.Inherent)
+        .AddComponent(new AddStatBonusABP(StatType.Constitution, value: 1, ModifierDescriptor.Inherent))
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -102,7 +107,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryIntelligenceDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddStatBonus(stat: StatType.Intelligence, value: 1, descriptor: ModifierDescriptor.Inherent)
+        .AddComponent(new AddStatBonusABP(StatType.Intelligence, value: 1, ModifierDescriptor.Inherent))
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -120,7 +126,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryWisdomDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddStatBonus(stat: StatType.Wisdom, value: 1, descriptor: ModifierDescriptor.Inherent)
+        .AddHideFeatureInInspect()
+        .AddComponent(new AddStatBonusABP(StatType.Wisdom, value: 1, ModifierDescriptor.Inherent))
         .Configure();
     }
 
@@ -138,7 +145,8 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryCharismaDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddStatBonus(stat: StatType.Charisma, value: 1, descriptor: ModifierDescriptor.Inherent)
+        .AddComponent(new AddStatBonusABP(StatType.Charisma, value: 1, ModifierDescriptor.Inherent))
+        .AddHideFeatureInInspect()
         .Configure();
     }
   }

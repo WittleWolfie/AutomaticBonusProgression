@@ -32,6 +32,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .SetRanks(5)
         .AddComponent<WeaponEnhancementBonus>()
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -49,6 +50,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(OffHandDescription)
         //.SetIcon()
         .SetRanks(4)
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -122,6 +124,13 @@ namespace AutomaticBonusProgression.Features
           Logger.Verbose(() => "Missing weapon!");
           return true;
         }
+
+        if (!Common.IsAffectedByABP(weapon.Owner))
+        {
+          Logger.Verbose(() => $"Skipping wepaon enhancement for {weapon.Owner?.CharacterName}");
+          return true;
+        }
+
         return false;
       }
 

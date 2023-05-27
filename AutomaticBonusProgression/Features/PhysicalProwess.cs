@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.Blueprints.Classes;
@@ -38,6 +39,7 @@ namespace AutomaticBonusProgression.Features
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
         .AddToAllFeatures(ConfigureStrPrimary(), ConfigureDexPrimary(), ConfigureConPrimary())
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -56,6 +58,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .SetLevelEntry(level: 7, Guids.StrPlus2)
         .SetLevelEntry(level: 12, Guids.StrPlus4)
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -73,6 +76,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .SetLevelEntry(level: 7, Guids.DexPlus2)
         .SetLevelEntry(level: 12, Guids.DexPlus4)
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -90,6 +94,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .SetLevelEntry(level: 7, Guids.ConPlus2)
         .SetLevelEntry(level: 12, Guids.ConPlus4)
+        .AddHideFeatureInInspect()
         .Configure();
     }
     #endregion
@@ -108,6 +113,7 @@ namespace AutomaticBonusProgression.Features
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
         .AddToAllFeatures(ConfigureStrSecondary(), ConfigureDexSecondary(), ConfigureConSecondary())
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -123,6 +129,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .AddPrerequisiteNoFeature(Guids.StrPrimaryProgression)
         .AddFacts(new() { Guids.StrPlus2 })
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -137,6 +144,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .AddPrerequisiteNoFeature(Guids.DexPrimaryProgression)
         .AddFacts(new() { Guids.DexPlus2 })
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -151,6 +159,7 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .AddPrerequisiteNoFeature(Guids.ConPrimaryProgression)
         .AddFacts(new() { Guids.ConPlus2 })
+        .AddHideFeatureInInspect()
         .Configure();
     }
     #endregion
@@ -169,6 +178,7 @@ namespace AutomaticBonusProgression.Features
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
         .AddToAllFeatures(ConfigureStrTertiary(), ConfigureDexTertiary(), ConfigureConTertiary())
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -185,6 +195,7 @@ namespace AutomaticBonusProgression.Features
         .AddPrerequisiteNoFeature(Guids.StrPrimaryProgression)
         .AddPrerequisiteNoFeature(Guids.StrSecondaryProgression)
         .AddFacts(new() { Guids.StrPlus2 })
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -200,6 +211,7 @@ namespace AutomaticBonusProgression.Features
         .AddPrerequisiteNoFeature(Guids.DexPrimaryProgression)
         .AddPrerequisiteNoFeature(Guids.DexSecondaryProgression)
         .AddFacts(new() { Guids.DexPlus2 })
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -215,6 +227,7 @@ namespace AutomaticBonusProgression.Features
         .AddPrerequisiteNoFeature(Guids.ConPrimaryProgression)
         .AddPrerequisiteNoFeature(Guids.ConSecondaryProgression)
         .AddFacts(new() { Guids.ConPlus2 })
+        .AddHideFeatureInInspect()
         .Configure();
     }
     #endregion
@@ -233,6 +246,7 @@ namespace AutomaticBonusProgression.Features
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
         .AddToAllFeatures(Guids.StrPlus4, Guids.StrPlus6, Guids.DexPlus4, Guids.DexPlus6, Guids.ConPlus4, Guids.ConPlus6)
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -248,7 +262,8 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(StrPlus2DisplayName)
         .SetDescription(StrPlus2Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Strength, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Strength, value: 2, ModifierDescriptor.Enhancement))
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -263,9 +278,10 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(StrPlus4DisplayName)
         .SetDescription(StrPlus4Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Strength, value: 4, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Strength, value: 4, ModifierDescriptor.Enhancement))
         .AddPrerequisiteFeature(Guids.StrPlus2)
         .AddRemoveFeatureOnApply(Guids.StrPlus2)
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -280,9 +296,10 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(StrPlus6DisplayName)
         .SetDescription(StrPlus6Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Strength, value: 6, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Strength, value: 6, ModifierDescriptor.Enhancement))
         .AddPrerequisiteFeature(Guids.StrPlus4)
         .AddRemoveFeatureOnApply(Guids.StrPlus4)
+        .AddHideFeatureInInspect()
         .Configure();
     }
     #endregion
@@ -299,7 +316,8 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(DexPlus2DisplayName)
         .SetDescription(DexPlus2Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Dexterity, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Dexterity, value: 2, ModifierDescriptor.Enhancement))
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -314,9 +332,10 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(DexPlus4DisplayName)
         .SetDescription(DexPlus4Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Dexterity, value: 4, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Dexterity, value: 4, ModifierDescriptor.Enhancement))
         .AddPrerequisiteFeature(Guids.DexPlus2)
         .AddRemoveFeatureOnApply(Guids.DexPlus2)
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -331,9 +350,10 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(DexPlus6DisplayName)
         .SetDescription(DexPlus6Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Dexterity, value: 6, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Dexterity, value: 6, ModifierDescriptor.Enhancement))
         .AddPrerequisiteFeature(Guids.DexPlus4)
         .AddRemoveFeatureOnApply(Guids.DexPlus4)
+        .AddHideFeatureInInspect()
         .Configure();
     }
     #endregion
@@ -350,7 +370,8 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(ConPlus2DisplayName)
         .SetDescription(ConPlus2Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Constitution, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Constitution, value: 2, ModifierDescriptor.Enhancement))
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -365,9 +386,10 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(ConPlus4DisplayName)
         .SetDescription(ConPlus4Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Constitution, value: 4, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Constitution, value: 4, ModifierDescriptor.Enhancement))
         .AddPrerequisiteFeature(Guids.ConPlus2)
         .AddRemoveFeatureOnApply(Guids.ConPlus2)
+        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -382,9 +404,10 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(ConPlus6DisplayName)
         .SetDescription(ConPlus6Description)
         //.SetIcon()
-        .AddStatBonus(stat: StatType.Constitution, value: 6, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Constitution, value: 6, ModifierDescriptor.Enhancement))
         .AddPrerequisiteFeature(Guids.ConPlus4)
         .AddRemoveFeatureOnApply(Guids.ConPlus4)
+        .AddHideFeatureInInspect()
         .Configure();
     }
     #endregion

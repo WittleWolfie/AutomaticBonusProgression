@@ -20,6 +20,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryGiftsDisplayName)
         .SetDescription(LegendaryGiftsDescription)
+        .AddHideFeatureInInspect()
         //.SetIcon()
         .AddToAllFeatures(
           LegendaryAbility.Configure(),
