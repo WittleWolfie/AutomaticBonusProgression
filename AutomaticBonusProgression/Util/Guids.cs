@@ -567,6 +567,12 @@
     internal const string KeenEffect = "f89239b5-cd80-4b4d-b1c7-4b9d30fdba27";
     internal const string KeenOffHandBuff = "ddec7c67-e357-4964-9e01-c57310fbca14";
     internal const string KeenOffHandEffect = "48c41966-78f2-44bf-af4b-ab1672a4b5d9";
+
+    internal const string ViciousEnchantCopy = "15156622-869e-4659-9ce5-96af1efadee3";
+    internal const string ViciousBuff = "643d73c3-fc70-4586-bb9e-c61c38965b52";
+    internal const string ViciousEffect = "87ad40c7-b53e-4338-909d-0767e3fbfacd";
+    internal const string ViciousOffHandBuff = "6cf56b5f-3cbe-4b47-b282-ac97a94ec4df";
+    internal const string ViciousOffHandEffect = "b074977a-a62c-40b3-aa2a-1c4260513198";
     #endregion
     #endregion
 

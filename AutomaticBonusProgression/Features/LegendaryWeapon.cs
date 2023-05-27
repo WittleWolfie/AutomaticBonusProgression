@@ -34,7 +34,7 @@ namespace AutomaticBonusProgression.Features
       // - Ghost Touch [Done]
       // - Heartseeker [Done]
       // - Keen [Done]
-      // - Vicious
+      // - Vicious [Done]
       // - Anarchic / Axiomatic
       // - Disruption
       // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes]
@@ -133,7 +133,8 @@ namespace AutomaticBonusProgression.Features
             Guids.FuriousBuff,
             Guids.GhostTouchBuff,
             Guids.HeartseekerBuff,
-            Guids.KeenBuff
+            Guids.KeenBuff,
+            Guids.ViciousBuff
           ))
         .Configure();
     }
@@ -207,7 +208,8 @@ namespace AutomaticBonusProgression.Features
             Guids.FuriousOffHandBuff,
             Guids.GhostTouchOffHandBuff,
             Guids.HeartseekerOffHandBuff,
-            Guids.KeenOffHandBuff
+            Guids.KeenOffHandBuff,
+            Guids.ViciousOffHandBuff
           ))
         .Configure();
     }

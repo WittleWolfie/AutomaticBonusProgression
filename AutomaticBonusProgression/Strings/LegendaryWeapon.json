@@ -196,5 +196,11 @@
     "Key": "LW.Keen.Name",
     "ProcessTemplates": false,
     "enGB": "Keen (+1)"
+  },
+
+  {
+    "Key": "LW.Vicious.Name",
+    "ProcessTemplates": false,
+    "enGB": "Vicious (+1)"
   }
 ]
