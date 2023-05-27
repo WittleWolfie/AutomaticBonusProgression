@@ -623,6 +623,12 @@
     internal const string ViciousEffect = "87ad40c7-b53e-4338-909d-0767e3fbfacd";
     internal const string ViciousOffHandBuff = "6cf56b5f-3cbe-4b47-b282-ac97a94ec4df";
     internal const string ViciousOffHandEffect = "b074977a-a62c-40b3-aa2a-1c4260513198";
+
+    internal const string VorpalEnchantCopy = "a93adad6-3c20-4d6a-a158-6b76c3a45910";
+    internal const string VorpalBuff = "13d7b04c-9bb2-4bfc-9dfb-5abf591c707f";
+    internal const string VorpalEffect = "7e13f050-52b7-493a-add6-7070930df8a1";
+    internal const string VorpalOffHandBuff = "75516c9a-f165-4b56-acba-042ca6f6fb86";
+    internal const string VorpalOffHandEffect = "a6caa93e-6e15-40a2-bc2c-c746b6e12803";
     #endregion
     #endregion
 

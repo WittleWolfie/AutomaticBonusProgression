@@ -42,7 +42,7 @@ namespace AutomaticBonusProgression.Features
       // - Nullifying [Done]
       // - Speed [Done]
       // - Brilliant Energy [Done]
-      // - Vorpal
+      // - Vorpal [Done]
       //
       // New:
       // - Bewildering
@@ -144,7 +144,8 @@ namespace AutomaticBonusProgression.Features
             Guids.KeenBuff,
             Guids.NullifyingBuff,
             Guids.SpeedBuff,
-            Guids.ViciousBuff
+            Guids.ViciousBuff,
+            Guids.VorpalBuff
           ))
         .Configure();
     }
@@ -229,7 +230,8 @@ namespace AutomaticBonusProgression.Features
             Guids.KeenOffHandBuff,
             Guids.NullifyingOffHandBuff,
             Guids.SpeedOffHandBuff,
-            Guids.ViciousOffHandBuff
+            Guids.ViciousOffHandBuff,
+            Guids.VorpalOffHandBuff
           ))
         .Configure();
     }

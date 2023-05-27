@@ -249,5 +249,11 @@
     "Key": "LW.Vicious.Name",
     "ProcessTemplates": false,
     "enGB": "Vicious (+1)"
+  },
+
+  {
+    "Key": "LW.Vorpal.Name",
+    "ProcessTemplates": false,
+    "enGB": "Vorpal (+5)"
   }
 ]

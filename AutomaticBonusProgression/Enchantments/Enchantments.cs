@@ -66,6 +66,7 @@ namespace AutomaticBonusProgression.Enchantments
         Nullifying.Configure();
         Speed.Configure();
         Vicious.Configure();
+        Vorpal.Configure();
       }
       catch (Exception e)
       {
