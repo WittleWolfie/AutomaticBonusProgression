@@ -588,6 +588,12 @@
     internal const string FuriousOffHandBuff = "5528b7f9-aa1e-46fc-91cc-2a56dff3379b";
     internal const string FuriousOffHandEffect = "34f1c59c-0d40-443d-babf-bee92f99a7d7";
 
+    internal const string FurybornEnchantCopy = "79fe08ed-b3de-401d-920e-1f617b9eb14c";
+    internal const string FurybornBuff = "5375df52-a30b-4747-948f-717146b87313";
+    internal const string FurybornEffect = "be71b219-dddc-437f-9506-6ab98bc4ee8a";
+    internal const string FurybornOffHandBuff = "c6c6d634-9855-4965-85cf-b1e866d01c01";
+    internal const string FurybornOffHandEffect = "d3f9ba08-37ef-43bc-894e-1962a1ec5cff";
+
     internal const string GhostTouchEnchantCopy = "2644029e-97bb-40dc-a7cb-ec2e35c58f77";
     internal const string GhostTouchBuff = "44daeabf-f774-4139-9be2-5ea702f3336d";
     internal const string GhostTouchEffect = "8e837ee5-8df1-4503-ab42-f43937104831";

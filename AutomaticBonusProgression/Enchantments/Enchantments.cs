@@ -60,6 +60,7 @@ namespace AutomaticBonusProgression.Enchantments
         Disruption.Configure();
         Elemental.Configure();
         Furious.Configure();
+        Furyborn.Configure();
         GhostTouch.Configure();
         Heartseeker.Configure();
         Keen.Configure();

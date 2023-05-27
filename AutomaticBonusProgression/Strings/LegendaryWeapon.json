@@ -216,6 +216,12 @@
   },
 
   {
+    "Key": "LW.Furyborn.Name",
+    "ProcessTemplates": false,
+    "enGB": "Furyborn (+2)"
+  },
+
+  {
     "Key": "LW.GhostTouch.Name",
     "ProcessTemplates": false,
     "enGB": "Ghost Touch (+1)"

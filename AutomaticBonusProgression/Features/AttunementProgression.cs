@@ -25,6 +25,7 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring bonus progression");
 
       // TODO: Grant to existing characters!
+      // TODO: DO NOT GRANT to enemies xD
       // TODO: Also make sure to grant to recruited homies
       // TODO: Grant to PETS
 

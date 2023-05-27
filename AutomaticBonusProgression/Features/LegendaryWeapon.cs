@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Features
       // - Vicious [Done]
       // - Anarchic / Axiomatic [Done]
       // - Disruption [Done]
-      // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes]
+      // - Furyborn [Done]
       // - Holy / Unholy [Done]
       // - Nullifying [Done]
       // - Speed [Done]
@@ -139,6 +139,7 @@ namespace AutomaticBonusProgression.Features
             Guids.ThunderingBurstBuff,
       #endregion,
             Guids.FuriousBuff,
+            Guids.FurybornBuff,
             Guids.GhostTouchBuff,
             Guids.HeartseekerBuff,
             Guids.KeenBuff,
@@ -225,6 +226,7 @@ namespace AutomaticBonusProgression.Features
             Guids.ThunderingBurstOffHandBuff,
       #endregion
             Guids.FuriousOffHandBuff,
+            Guids.FurybornOffHandBuff,
             Guids.GhostTouchOffHandBuff,
             Guids.HeartseekerOffHandBuff,
             Guids.KeenOffHandBuff,
