@@ -21,19 +21,19 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     {
       Logger.Log($"Configuring Nullifying");
 
-      var Nullifying = WeaponEnchantmentRefs.NullifyingEnchantment.Reference.Get();
-      var NullifyingEnchantInfo = new WeaponEnchantInfo(
+      var nullifying = WeaponEnchantmentRefs.NullifyingEnchantment.Reference.Get();
+      var nullifyingEnchantInfo = new WeaponEnchantInfo(
         NullifyingName,
-        Nullifying.m_Description,
+        nullifying.m_Description,
         "",
         EnhancementCost,
         WeaponRangeType.Melee);
       EnchantTool.CreateEnchant(
-        NullifyingEnchantInfo,
+        nullifyingEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(NullifyingEffect, Guids.NullifyingEffect, Guids.NullifyingEnchantCopy),
         parentBuff: new(NullifyingBuff, Guids.NullifyingBuff));
       EnchantTool.CreateVariantEnchant(
-        NullifyingEnchantInfo,
+        nullifyingEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           NullifyingOffHandEffect,
           Guids.NullifyingOffHandEffect,
@@ -41,7 +41,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
           toPrimaryWeapon: false),
         variantBuff: new(NullifyingOffHandBuff, Guids.NullifyingOffHandBuff));
 
-      EnchantTool.SetUpWeaponEnchant(Nullifying, new(NullifyingEnchantCopy, Guids.NullifyingEnchantCopy), NullifyingEnchantInfo);
+      EnchantTool.SetUpWeaponEnchant(nullifying, new(NullifyingEnchantCopy, Guids.NullifyingEnchantCopy), nullifyingEnchantInfo);
     }
   }
 }
