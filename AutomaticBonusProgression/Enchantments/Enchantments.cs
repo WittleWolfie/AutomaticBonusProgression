@@ -63,6 +63,7 @@ namespace AutomaticBonusProgression.Enchantments
         Heartseeker.Configure();
         Keen.Configure();
         Nullifying.Configure();
+        Speed.Configure();
         Vicious.Configure();
       }
       catch (Exception e)

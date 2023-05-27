@@ -234,6 +234,12 @@
   },
 
   {
+    "Key": "LW.Speed.Name",
+    "ProcessTemplates": false,
+    "enGB": "Speed (+3)"
+  },
+
+  {
     "Key": "LW.Vicious.Name",
     "ProcessTemplates": false,
     "enGB": "Vicious (+1)"
