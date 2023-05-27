@@ -107,7 +107,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var corrosiveBurstEnchantInfo =
         new WeaponEnchantInfo(CorrosiveBurstName, corrosiveBurst.m_Description, "", BurstEnhancementCost);
       EnchantTool.CreateEnchant(
-        corrosiveEnchantInfo,
+        corrosiveBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           CorrosiveBurstEffect,
           Guids.CorrosiveBurstEffect,
@@ -143,7 +143,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var flamingBurstEnchantInfo =
         new WeaponEnchantInfo(FlamingBurstName, flamingBurst.m_Description, "", BurstEnhancementCost);
       EnchantTool.CreateEnchant(
-        flamingEnchantInfo,
+        flamingBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           FlamingBurstEffect,
           Guids.FlamingBurstEffect,
@@ -179,7 +179,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var frostBurstEnchantInfo =
         new WeaponEnchantInfo(FrostBurstName, frostBurst.m_Description, "", BurstEnhancementCost);
       EnchantTool.CreateEnchant(
-        frostEnchantInfo,
+        frostBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           FrostBurstEffect,
           Guids.FrostBurstEffect,
@@ -215,7 +215,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var shockingBurstEnchantInfo =
         new WeaponEnchantInfo(ShockingBurstName, shockingBurst.m_Description, "", BurstEnhancementCost);
       EnchantTool.CreateEnchant(
-        shockingEnchantInfo,
+        shockingBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           ShockingBurstEffect,
           Guids.ShockingBurstEffect,
@@ -251,7 +251,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var thunderingBurstEnchantInfo =
         new WeaponEnchantInfo(ThunderingBurstName, thunderingBurst.m_Description, "", BurstEnhancementCost);
       EnchantTool.CreateEnchant(
-        thunderingEnchantInfo,
+        thunderingBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           ThunderingBurstEffect,
           Guids.ThunderingBurstEffect,
