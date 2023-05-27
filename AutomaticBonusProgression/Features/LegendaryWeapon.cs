@@ -32,7 +32,7 @@ namespace AutomaticBonusProgression.Features
       // - Cruel [Done]
       // - Furious [Done]
       // - Ghost Touch [Done]
-      // - Heartseeker
+      // - Heartseeker [Done]
       // - Keen
       // - Vicious
       // - Anarchic / Axiomatic
@@ -131,7 +131,8 @@ namespace AutomaticBonusProgression.Features
             Guids.ThunderingBurstBuff,
       #endregion,
             Guids.FuriousBuff,
-            Guids.GhostTouchBuff
+            Guids.GhostTouchBuff,
+            Guids.HeartseekerBuff
           ))
         .Configure();
     }
@@ -203,7 +204,8 @@ namespace AutomaticBonusProgression.Features
             Guids.ThunderingBurstOffHandBuff,
       #endregion
             Guids.FuriousOffHandBuff,
-            Guids.GhostTouchOffHandBuff
+            Guids.GhostTouchOffHandBuff,
+            Guids.HeartseekerOffHandBuff
           ))
         .Configure();
     }

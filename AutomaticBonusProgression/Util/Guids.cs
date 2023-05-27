@@ -555,6 +555,12 @@
     internal const string GhostTouchEffect = "8e837ee5-8df1-4503-ab42-f43937104831";
     internal const string GhostTouchOffHandBuff = "8ba2cbdf-72e0-44ed-a2c4-997aff2e75dc";
     internal const string GhostTouchOffHandEffect = "80aba733-2e12-4111-b981-7277f4b340b8";
+
+    internal const string HeartseekerEnchantCopy = "baf17287-e1c4-4d69-a8ef-8708e754df96";
+    internal const string HeartseekerBuff = "3be8c66f-e7da-4f64-8d23-e0b96fb22f2a";
+    internal const string HeartseekerEffect = "5e7e0efc-2921-4128-97c2-c4dd17c4f54b";
+    internal const string HeartseekerOffHandBuff = "bfc38426-fd8c-4f89-8d0a-48b2edb91437";
+    internal const string HeartseekerOffHandEffect = "20b82354-6e97-4127-8587-89a1a82d814c";
     #endregion
     #endregion
 

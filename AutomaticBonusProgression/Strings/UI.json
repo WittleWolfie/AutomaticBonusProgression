@@ -101,5 +101,16 @@
     "Key": "ABP.UI.Attunement.Shield.Tower",
     "ProcessTemplates": false,
     "enGB": "Tower Shield"
+  },
+
+  {
+    "Key": "ABP.UI.Attunement.Weapon.Melee",
+    "ProcessTemplates": false,
+    "enGB": "Melee"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Weapon.Ranged",
+    "ProcessTemplates": false,
+    "enGB": "Ranged"
   }
 ]

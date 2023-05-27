@@ -55,6 +55,7 @@ namespace AutomaticBonusProgression.Enchantments
         Elemental.Configure();
         Furious.Configure();
         GhostTouch.Configure();
+        Heartseeker.Configure();
       }
       catch (Exception e)
       {

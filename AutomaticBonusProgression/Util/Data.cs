@@ -2,6 +2,7 @@
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
+using Kingmaker.Enums;
 
 namespace AutomaticBonusProgression.Util
 {
@@ -80,16 +81,21 @@ namespace AutomaticBonusProgression.Util
 
   internal class WeaponEnchantInfo : EnchantInfo
   {
-    public WeaponEnchantInfo(LocalString displayName, LocalString description, string icon, int cost)
+    internal readonly WeaponRangeType[] AllowedRanges;
+
+    public WeaponEnchantInfo(
+      LocalString displayName, LocalString description, string icon, int cost, params WeaponRangeType[] allowedRanges)
       : base(displayName, description, icon, EnhancementType.MainHand, cost)
-    { }
+    {
+      AllowedRanges = allowedRanges;
+    }
 
     internal override AttunementEffect GetAttunementComponent(
       Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
     {
       if (variant)
         return new OffHandAttunement(effectBuff.Reference, Cost);
-      return new WeaponAttunement(effectBuff.Reference, Cost);
+      return new WeaponAttunement(effectBuff.Reference, Cost, AllowedRanges);
     }
   }
 }

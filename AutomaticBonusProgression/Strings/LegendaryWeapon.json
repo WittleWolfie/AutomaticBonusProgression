@@ -184,5 +184,11 @@
     "Key": "LW.GhostTouch.Name",
     "ProcessTemplates": false,
     "enGB": "Ghost Touch (+1)"
+  },
+
+  {
+    "Key": "LW.Heartseeker.Name",
+    "ProcessTemplates": false,
+    "enGB": "Heartseeker (+1)"
   }
 ]
