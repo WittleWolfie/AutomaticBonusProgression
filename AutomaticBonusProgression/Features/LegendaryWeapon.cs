@@ -39,7 +39,7 @@ namespace AutomaticBonusProgression.Features
       // - Disruption [Done]
       // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes]
       // - Holy / Unholy [Done]
-      // - Nullifying
+      // - Nullifying [Done]
       // - Speed
       // - Brilliant Energy
       // - Vorpal
@@ -141,6 +141,7 @@ namespace AutomaticBonusProgression.Features
             Guids.GhostTouchBuff,
             Guids.HeartseekerBuff,
             Guids.KeenBuff,
+            Guids.NullifyingBuff,
             Guids.ViciousBuff
           ))
         .Configure();
@@ -223,6 +224,7 @@ namespace AutomaticBonusProgression.Features
             Guids.GhostTouchOffHandBuff,
             Guids.HeartseekerOffHandBuff,
             Guids.KeenOffHandBuff,
+            Guids.NullifyingOffHandBuff,
             Guids.ViciousOffHandBuff
           ))
         .Configure();

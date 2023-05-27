@@ -62,6 +62,7 @@ namespace AutomaticBonusProgression.Enchantments
         GhostTouch.Configure();
         Heartseeker.Configure();
         Keen.Configure();
+        Nullifying.Configure();
         Vicious.Configure();
       }
       catch (Exception e)

@@ -228,6 +228,12 @@
   },
 
   {
+    "Key": "LW.Nullifying.Name",
+    "ProcessTemplates": false,
+    "enGB": "Nullifying (+3)"
+  },
+
+  {
     "Key": "LW.Vicious.Name",
     "ProcessTemplates": false,
     "enGB": "Vicious (+1)"

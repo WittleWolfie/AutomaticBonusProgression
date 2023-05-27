@@ -600,6 +600,12 @@
     internal const string KeenOffHandBuff = "ddec7c67-e357-4964-9e01-c57310fbca14";
     internal const string KeenOffHandEffect = "48c41966-78f2-44bf-af4b-ab1672a4b5d9";
 
+    internal const string NullifyingEnchantCopy = "9cda595a-3fcd-4ae8-bffa-94051317fb23";
+    internal const string NullifyingBuff = "53755dd2-a2c6-4315-8161-9ebb95fd70f4";
+    internal const string NullifyingEffect = "6091c9b0-a870-437a-bb19-a35852de58c9";
+    internal const string NullifyingOffHandBuff = "b732f30a-e39a-4a39-8250-442f1523728a";
+    internal const string NullifyingOffHandEffect = "be9003ae-3199-4003-a281-fa9e5fe84a4a";
+
     internal const string ViciousEnchantCopy = "15156622-869e-4659-9ce5-96af1efadee3";
     internal const string ViciousBuff = "643d73c3-fc70-4586-bb9e-c61c38965b52";
     internal const string ViciousEffect = "87ad40c7-b53e-4338-909d-0767e3fbfacd";
