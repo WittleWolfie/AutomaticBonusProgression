@@ -502,6 +502,12 @@
     internal const string BaneVerminOffHandBuff = "ff8f020d-485d-4eb4-9abd-00049c7e0fc8";
     #endregion
 
+    internal const string BrilliantEnergyEnchantCopy = "f23463d7-aee5-4e1c-bcf6-12d5bed8da83";
+    internal const string BrilliantEnergyBuff = "223d8cc8-9589-4b7f-9e70-b059b164ea7c";
+    internal const string BrilliantEnergyEffect = "fea94225-69c9-44a4-94dd-711c9f2e9dcf";
+    internal const string BrilliantEnergyOffHandBuff = "297b6629-07ae-4a14-a1d5-182e61a0c962";
+    internal const string BrilliantEnergyOffHandEffect = "7eebfbd6-2978-4406-aa49-395473a3d4e2";
+
     internal const string CruelEnchantCopy = "6f646c1f-bf9d-4722-98f1-215b7b9a2ac4";
     internal const string CruelBuff = "203aa908-fe97-4890-ba65-3431789bc29f";
     internal const string CruelEffect = "432eef6e-d029-48cc-8eb1-9127fb78adb5";

@@ -41,7 +41,7 @@ namespace AutomaticBonusProgression.Features
       // - Holy / Unholy [Done]
       // - Nullifying [Done]
       // - Speed [Done]
-      // - Brilliant Energy
+      // - Brilliant Energy [Done]
       // - Vorpal
       //
       // New:
@@ -123,6 +123,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneUndeadBuff,
             Guids.BaneVerminBuff,
       #endregion
+            Guids.BrilliantEnergyBuff,
             Guids.CruelBuff,
             Guids.DisruptionBuff,
       #region Elemental
@@ -207,6 +208,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneUndeadOffHandBuff,
             Guids.BaneVerminOffHandBuff,
       #endregion
+            Guids.BrilliantEnergyOffHandBuff,
             Guids.CruelOffHandBuff,
             Guids.DisruptionOffHandBuff,
       #region Elemental

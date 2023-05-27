@@ -139,6 +139,12 @@
   //// End Bane
 
   {
+    "Key": "LW.BrilliantEnergy.Name",
+    "ProcessTemplates": false,
+    "enGB": "BrilliantEnergy (+4)"
+  },
+
+  {
     "Key": "LW.Cruel.Name",
     "ProcessTemplates": false,
     "enGB": "Cruel (+1)"
