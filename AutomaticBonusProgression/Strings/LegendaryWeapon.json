@@ -190,5 +190,11 @@
     "Key": "LW.Heartseeker.Name",
     "ProcessTemplates": false,
     "enGB": "Heartseeker (+1)"
+  },
+
+  {
+    "Key": "LW.Keen.Name",
+    "ProcessTemplates": false,
+    "enGB": "Keen (+1)"
   }
 ]

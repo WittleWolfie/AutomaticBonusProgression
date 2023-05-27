@@ -33,7 +33,7 @@ namespace AutomaticBonusProgression.Features
       // - Furious [Done]
       // - Ghost Touch [Done]
       // - Heartseeker [Done]
-      // - Keen
+      // - Keen [Done]
       // - Vicious
       // - Anarchic / Axiomatic
       // - Disruption
@@ -132,7 +132,8 @@ namespace AutomaticBonusProgression.Features
       #endregion,
             Guids.FuriousBuff,
             Guids.GhostTouchBuff,
-            Guids.HeartseekerBuff
+            Guids.HeartseekerBuff,
+            Guids.KeenBuff
           ))
         .Configure();
     }
@@ -205,7 +206,8 @@ namespace AutomaticBonusProgression.Features
       #endregion
             Guids.FuriousOffHandBuff,
             Guids.GhostTouchOffHandBuff,
-            Guids.HeartseekerOffHandBuff
+            Guids.HeartseekerOffHandBuff,
+            Guids.KeenOffHandBuff
           ))
         .Configure();
     }

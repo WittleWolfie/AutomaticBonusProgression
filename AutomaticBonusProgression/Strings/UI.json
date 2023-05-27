@@ -112,5 +112,20 @@
     "Key": "ABP.UI.Attunement.Weapon.Ranged",
     "ProcessTemplates": false,
     "enGB": "Ranged"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Weapon.Bludgeoning",
+    "ProcessTemplates": false,
+    "enGB": "Bludgeoning"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Weapon.Piercing",
+    "ProcessTemplates": false,
+    "enGB": "Piercing"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Weapon.Slashing",
+    "ProcessTemplates": false,
+    "enGB": "Slashing"
   }
 ]

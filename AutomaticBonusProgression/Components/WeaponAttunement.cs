@@ -3,6 +3,7 @@ using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums;
+using Kingmaker.Enums.Damage;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic;
 using System.Collections.Generic;
@@ -15,12 +16,15 @@ namespace AutomaticBonusProgression.Components
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(WeaponAttunement));
 
-    protected readonly List<WeaponRangeType> AllowedRanges = new();
+    private readonly List<WeaponRangeType> AllowedRanges = new();
+    private readonly List<PhysicalDamageForm> AllowedForms = new();
 
-    internal WeaponAttunement(BlueprintBuffReference effectBuff, int cost, params WeaponRangeType[] allowedRanges)
+    internal WeaponAttunement(
+      BlueprintBuffReference effectBuff, int cost, WeaponRangeType[] allowedRanges, PhysicalDamageForm[] allowedForms)
       : base(effectBuff, cost)
     {
       AllowedRanges.AddRange(allowedRanges);
+      AllowedForms.AddRange(allowedForms);
     }
 
     public override EnhancementType Type => EnhancementType.MainHand;
@@ -32,11 +36,38 @@ namespace AutomaticBonusProgression.Components
 
     public override string GetRequirements()
     {
-      var requirements = string.Join(", ", AllowedRanges.Select(GetLocalizedText).Where(str => !string.IsNullOrEmpty(str)));
-      return requirements.Truncate(35);
+      if (AllowedRanges.Any())
+      {
+        var ranges = string.Join(", ", AllowedRanges.Select(GetLocalizedText).Where(str => !string.IsNullOrEmpty(str)));
+        return ranges.Truncate(35);
+      }
+      var forms = string.Join(", ", AllowedForms.Select(GetLocalizedText).Where(str => !string.IsNullOrEmpty(str)));
+      return forms.Truncate(35);
     }
 
     protected bool IsSuitableWeapon(ItemEntityWeapon weapon)
+    {
+      return IsAllowedForm(weapon) && IsAllowedRange(weapon);
+    }
+
+    private bool IsAllowedForm(ItemEntityWeapon weapon)
+    {
+      if (!AllowedForms.Any())
+        return true;
+
+      var damageType = weapon.Blueprint.DamageType;
+      if (!damageType.IsPhysical)
+        return false;
+
+      foreach (var form in AllowedForms)
+      {
+        if (damageType.Physical.Form.HasFlag(form))
+          return true;
+      }
+      return false;
+    }
+
+    private bool IsAllowedRange(ItemEntityWeapon weapon)
     {
       if (!AllowedRanges.Any())
         return true;
@@ -55,6 +86,16 @@ namespace AutomaticBonusProgression.Components
       {
         WeaponRangeType.Melee => UITool.GetString("Attunement.Weapon.Melee"),
         WeaponRangeType.Ranged => UITool.GetString("Attunement.Weapon.Ranged"),
+      };
+    }
+
+    private string GetLocalizedText(PhysicalDamageForm form)
+    {
+      return form switch
+      {
+        PhysicalDamageForm.Piercing => UITool.GetString("Attunement.Weapon.Piercing"),
+        PhysicalDamageForm.Bludgeoning => UITool.GetString("Attunement.Weapon.Bludgeoning"),
+        PhysicalDamageForm.Slashing => UITool.GetString("Attunement.Weapon.Slashing"),
       };
     }
   }

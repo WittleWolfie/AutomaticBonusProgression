@@ -56,6 +56,7 @@ namespace AutomaticBonusProgression.Enchantments
         Furious.Configure();
         GhostTouch.Configure();
         Heartseeker.Configure();
+        Keen.Configure();
       }
       catch (Exception e)
       {

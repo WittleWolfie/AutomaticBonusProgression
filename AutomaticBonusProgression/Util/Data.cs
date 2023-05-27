@@ -3,6 +3,8 @@ using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Enums;
+using Kingmaker.Enums.Damage;
+using System;
 
 namespace AutomaticBonusProgression.Util
 {
@@ -81,7 +83,12 @@ namespace AutomaticBonusProgression.Util
 
   internal class WeaponEnchantInfo : EnchantInfo
   {
-    internal readonly WeaponRangeType[] AllowedRanges;
+    internal readonly WeaponRangeType[] AllowedRanges = Array.Empty<WeaponRangeType>();
+    internal readonly PhysicalDamageForm[] AllowedForms = Array.Empty<PhysicalDamageForm>();
+
+
+    public WeaponEnchantInfo(LocalString displayName, LocalString description, string icon, int cost)
+      : base(displayName, description, icon, EnhancementType.MainHand, cost) { }
 
     public WeaponEnchantInfo(
       LocalString displayName, LocalString description, string icon, int cost, params WeaponRangeType[] allowedRanges)
@@ -90,12 +97,19 @@ namespace AutomaticBonusProgression.Util
       AllowedRanges = allowedRanges;
     }
 
+    public WeaponEnchantInfo(
+      LocalString displayName, LocalString description, string icon, int cost, params PhysicalDamageForm[] allowedForms)
+      : base(displayName, description, icon, EnhancementType.MainHand, cost)
+    {
+      AllowedForms = allowedForms;
+    }
+
     internal override AttunementEffect GetAttunementComponent(
       Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
     {
       if (variant)
-        return new OffHandAttunement(effectBuff.Reference, Cost);
-      return new WeaponAttunement(effectBuff.Reference, Cost, AllowedRanges);
+        return new OffHandAttunement(effectBuff.Reference, Cost, AllowedRanges, AllowedForms);
+      return new WeaponAttunement(effectBuff.Reference, Cost, AllowedRanges, AllowedForms);
     }
   }
 }
