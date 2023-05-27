@@ -5,6 +5,7 @@ using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using System;
+using System.Collections.Generic;
 
 namespace AutomaticBonusProgression.Util
 {
@@ -86,7 +87,6 @@ namespace AutomaticBonusProgression.Util
     internal readonly WeaponRangeType[] AllowedRanges = Array.Empty<WeaponRangeType>();
     internal readonly PhysicalDamageForm[] AllowedForms = Array.Empty<PhysicalDamageForm>();
 
-
     public WeaponEnchantInfo(LocalString displayName, LocalString description, string icon, int cost)
       : base(displayName, description, icon, EnhancementType.MainHand, cost) { }
 
@@ -102,6 +102,19 @@ namespace AutomaticBonusProgression.Util
       : base(displayName, description, icon, EnhancementType.MainHand, cost)
     {
       AllowedForms = allowedForms;
+    }
+
+    public WeaponEnchantInfo(
+      LocalString displayName,
+      LocalString description,
+      string icon,
+      int cost,
+      List<WeaponRangeType> allowedRanges,
+      List<PhysicalDamageForm> allowedForms)
+      : base(displayName, description, icon, EnhancementType.MainHand, cost)
+    {
+      AllowedRanges = allowedRanges.ToArray();
+      AllowedForms = allowedForms.ToArray();
     }
 
     internal override AttunementEffect GetAttunementComponent(

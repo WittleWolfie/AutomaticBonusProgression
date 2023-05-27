@@ -144,6 +144,12 @@
     "enGB": "Cruel (+1)"
   },
 
+  {
+    "Key": "LW.Disruption.Name",
+    "ProcessTemplates": false,
+    "enGB": "Disruption (+2)"
+  },
+
   //// Elemental
   {
     "Key": "LW.Elemental.Corrosive.Name",

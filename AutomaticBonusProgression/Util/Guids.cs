@@ -508,6 +508,12 @@
     internal const string CruelOffHandBuff = "c57a472b-c7cb-407e-9ed6-bd7f0648f7b9";
     internal const string CruelOffHandEffect = "c05a21dd-2a8f-4411-abf3-eb1dc4b0431c";
 
+    internal const string DisruptionEnchantCopy = "ac53ee64-9b31-461f-b07c-85976b5f22c2";
+    internal const string DisruptionBuff = "870b65ba-9340-4251-bb36-c0394d4fd707";
+    internal const string DisruptionEffect = "620fc9ef-b25d-4f81-a582-10ebad78037c";
+    internal const string DisruptionOffHandBuff = "92215b67-2232-4828-b240-08a0d10c90fe";
+    internal const string DisruptionOffHandEffect = "2f6d54ed-a3e7-404d-89c6-d26f684fd37e";
+
     #region Elemental
     internal const string CorrosiveEnchantCopy = "414a1d7d-8bff-45f0-9ed9-1fe05b379532";
     internal const string CorrosiveBuff = "59021693-62be-4be5-85cd-6a1598348c90";

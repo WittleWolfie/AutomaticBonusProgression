@@ -36,7 +36,7 @@ namespace AutomaticBonusProgression.Features
       // - Keen [Done]
       // - Vicious [Done]
       // - Anarchic / Axiomatic [Done]
-      // - Disruption
+      // - Disruption [Done]
       // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes]
       // - Holy / Unholy [Done]
       // - Nullifying
@@ -124,6 +124,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneVerminBuff,
       #endregion
             Guids.CruelBuff,
+            Guids.DisruptionBuff,
       #region Elemental
             Guids.CorrosiveBuff,
             Guids.CorrosiveBurstBuff,
@@ -205,6 +206,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneVerminOffHandBuff,
       #endregion
             Guids.CruelOffHandBuff,
+            Guids.DisruptionOffHandBuff,
       #region Elemental
             Guids.CorrosiveOffHandBuff,
             Guids.CorrosiveBurstOffHandBuff,

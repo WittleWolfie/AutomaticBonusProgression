@@ -36,13 +36,12 @@ namespace AutomaticBonusProgression.Components
 
     public override string GetRequirements()
     {
-      if (AllowedRanges.Any())
-      {
-        var ranges = string.Join(", ", AllowedRanges.Select(GetLocalizedText).Where(str => !string.IsNullOrEmpty(str)));
-        return ranges.Truncate(35);
-      }
+      var ranges =
+        string.Join(", ", AllowedRanges.Select(GetLocalizedText).Where(str => !string.IsNullOrEmpty(str)));
       var forms = string.Join(", ", AllowedForms.Select(GetLocalizedText).Where(str => !string.IsNullOrEmpty(str)));
-      return forms.Truncate(35);
+
+      var requirements = string.Join("; ", new List<string>() { ranges, forms }.Where(str => !string.IsNullOrEmpty(str)));
+      return requirements.Truncate(35);
     }
 
     protected bool IsSuitableWeapon(ItemEntityWeapon weapon)

@@ -56,6 +56,7 @@ namespace AutomaticBonusProgression.Enchantments
         Unholy.Configure();
         Bane.Configure();
         Cruel.Configure();
+        Disruption.Configure();
         Elemental.Configure();
         Furious.Configure();
         GhostTouch.Configure();
