@@ -24,6 +24,7 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log("Configuring bonus progression");
 
+      // TODO: Try to create a new progression, then grant that progression to only PC characters?
       // TODO: Grant to existing characters!
       // TODO: Also make sure to grant to recruited homies
       // TODO: Grant to PETS
