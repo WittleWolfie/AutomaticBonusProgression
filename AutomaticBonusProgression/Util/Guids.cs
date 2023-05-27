@@ -483,51 +483,61 @@
     internal const string CruelOffHandEffect = "c05a21dd-2a8f-4411-abf3-eb1dc4b0431c";
 
     #region Elemental
+    internal const string CorrosiveEnchantCopy = "414a1d7d-8bff-45f0-9ed9-1fe05b379532";
     internal const string CorrosiveBuff = "59021693-62be-4be5-85cd-6a1598348c90";
     internal const string CorrosiveEffect = "fd68cd77-05c0-4f8b-a34e-047ce37c10df";
     internal const string CorrosiveOffHandBuff = "9bd11c5b-e7c9-4369-87db-88cabb6283da";
     internal const string CorrosiveOffHandEffect = "1613c489-1c26-4f36-b55e-30bfad52c327";
 
+    internal const string CorrosiveBurstEnchantCopy = "0e1d954e-2404-422d-85a6-464445642be6";
     internal const string CorrosiveBurstBuff = "bdfb34a0-fa61-4943-a372-f873a89ccbd4";
     internal const string CorrosiveBurstEffect = "bc00ab1d-9db8-4a14-87a2-69ba1a62583e";
     internal const string CorrosiveBurstOffHandBuff = "58afa2ce-149b-40e2-883a-00a260b83b30";
     internal const string CorrosiveBurstOffHandEffect = "c0712ed6-a5dc-4a13-ab6d-5e50a811e58d";
 
+    internal const string FlamingEnchantCopy = "d5175ff6-fd78-4d0a-a473-6983e0f7df23";
     internal const string FlamingBuff = "f442738a-81a1-436d-b465-f9ffdaaac2c8";
     internal const string FlamingEffect = "413ee8a3-e4a2-4c25-b95f-34a15e90f1a1";
     internal const string FlamingOffHandBuff = "67ca3c41-5f3a-4f9a-b877-b32d8f53cf5a";
     internal const string FlamingOffHandEffect = "df3a9d56-7118-41dc-9986-94b53738ea75";
 
+    internal const string FlamingBurstEnchantCopy = "86de020f-5255-44ee-ae15-d6133aef8868";
     internal const string FlamingBurstBuff = "bf5309f0-6fd5-4e4b-bad4-41bdb2f5fa98";
     internal const string FlamingBurstEffect = "695c0008-692d-4b4e-9d2c-f54fc13e381d";
     internal const string FlamingBurstOffHandBuff = "bca7d0ab-8398-4d52-8eb4-ca5437a81231";
     internal const string FlamingBurstOffHandEffect = "dd8a63d8-24e9-4685-a97d-93ee98312c28";
 
+    internal const string FrostEnchantCopy = "b0cec783-e300-436a-818a-6df5b3343928";
     internal const string FrostBuff = "9660ec9d-0154-41d5-9d6e-934842956c1d";
     internal const string FrostEffect = "d130c546-f304-47eb-9e0e-aa59c3bfcd63";
     internal const string FrostOffHandBuff = "f6a6e6e9-0157-4521-9a40-a7a4f2bd6e74";
     internal const string FrostOffHandEffect = "18a52b28-0a66-4635-b101-16fc65eed553";
 
+    internal const string FrostBurstEnchantCopy = "492cc3f4-bc49-48be-89e1-dd15ac5ea92b";
     internal const string FrostBurstBuff = "18edc29f-1875-47b3-be96-fafffe7d26b1";
     internal const string FrostBurstEffect = "55990a44-19f7-4f51-a497-e05dbd022517";
     internal const string FrostBurstOffHandBuff = "095b455c-3e5a-4267-8811-f7c452e0912a";
     internal const string FrostBurstOffHandEffect = "2931f47d-dce0-432c-a495-04ed646b6182";
 
+    internal const string ShockingEnchantCopy = "f7bf56b6-7362-45fc-baf3-f1d9ca03d73a";
     internal const string ShockingBuff = "c08b4487-2ae4-4fdf-b005-09a333f93240";
     internal const string ShockingEffect = "3b701980-2283-4422-b3c0-bab8a600e4e0";
     internal const string ShockingOffHandBuff = "adc49834-2bce-457e-a940-12b2a5c9add3";
     internal const string ShockingOffHandEffect = "a47ac76a-2c93-49fa-a5e0-d30ec41391ab";
 
+    internal const string ShockingBurstEnchantCopy = "2b0ccc0c-307c-4eca-be37-9a1fdd218117";
     internal const string ShockingBurstBuff = "463f118d-272c-4b79-8791-26ef1834c803";
     internal const string ShockingBurstEffect = "e9903bae-a045-446c-b74a-5bbb7ab30cb2";
     internal const string ShockingBurstOffHandBuff = "d9b70c17-fb3b-4577-8fe1-9a8868fa80f6";
     internal const string ShockingBurstOffHandEffect = "225ac6d6-05c5-4907-8150-046139770b33";
 
+    internal const string ThunderingEnchantCopy = "31dbf01c-b045-49c5-838f-5b7efc5cc285";
     internal const string ThunderingBuff = "1b6e7c76-a3e2-48cd-835a-968a12aeeb85";
     internal const string ThunderingEffect = "88a91a89-a2fe-4c1e-9220-c9c5ac8ba4c1";
     internal const string ThunderingOffHandBuff = "59bf1e95-abd5-418e-ad0a-b2fdaf679791";
     internal const string ThunderingOffHandEffect = "7ff2f114-f972-4753-aac0-3634a248b683";
 
+    internal const string ThunderingBurstEnchantCopy = "20d17c46-38f6-4099-be44-61f13a24c5c3";
     internal const string ThunderingBurstBuff = "125a95f1-fd5d-495b-b5ee-c59f254a20c7";
     internal const string ThunderingBurstEffect = "4ef1c726-aca8-41cf-a190-a7262394e76f";
     internal const string ThunderingBurstOffHandBuff = "98b0d30d-d5e4-41f6-b7ba-e42000204249";

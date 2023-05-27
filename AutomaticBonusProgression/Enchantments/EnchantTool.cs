@@ -10,6 +10,7 @@ using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.UI.GenericSlot;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
+using System.Collections.Generic;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -48,30 +49,47 @@ namespace AutomaticBonusProgression.Enchantments
       Blueprint<BlueprintItemEnchantmentReference> enchantment,
       bool toPrimaryWeapon = true)
     {
-      if (toPrimaryWeapon)
+      return GetWeaponEffectInfo(name, guid, enchantments: new() { enchantment }, toPrimaryWeapon);
+    }
+
+    /// <summary>
+    /// Returns blueprint info which applies the specified enchantment to primary weapons or all secondary weapons.
+    /// </summary>
+    internal static BlueprintInfo GetWeaponEffectInfo(
+      string name,
+      string guid,
+      List<Blueprint<BlueprintItemEnchantmentReference>> enchantments,
+      bool toPrimaryWeapon = true)
+    {
+      List<BuffEnchantAnyWeapon> components = new();
+      foreach (var enchantment in enchantments)
       {
-        return new(
-          name,
-          guid,
-          new BuffEnchantAnyWeapon()
-          {
-            m_EnchantmentBlueprint = enchantment.Reference,
-            Slot = EquipSlotBase.SlotType.PrimaryHand
-          });
+        if (toPrimaryWeapon)
+        {
+          components.Add(
+            new BuffEnchantAnyWeapon()
+            {
+              m_EnchantmentBlueprint = enchantment.Reference,
+              Slot = EquipSlotBase.SlotType.PrimaryHand
+            });
+        }
+        else
+        {
+          components.Add(
+            new BuffEnchantAnyWeapon()
+            {
+              m_EnchantmentBlueprint = enchantment.Reference,
+              Slot = EquipSlotBase.SlotType.SecondaryHand
+            });
+          components.Add(
+            new BuffEnchantAnyWeapon()
+            {
+              m_EnchantmentBlueprint = enchantment.Reference,
+              Slot = EquipSlotBase.SlotType.AdditionalLimb
+            });
+        }
       }
-      return new(
-        name,
-        guid,
-        new BuffEnchantAnyWeapon()
-        {
-          m_EnchantmentBlueprint = enchantment.Reference,
-          Slot = EquipSlotBase.SlotType.SecondaryHand
-        },
-        new BuffEnchantAnyWeapon()
-        {
-          m_EnchantmentBlueprint = enchantment.Reference,
-          Slot = EquipSlotBase.SlotType.AdditionalLimb
-        });
+      return new(name, guid, components.ToArray());
     }
 
     /// <summary>
