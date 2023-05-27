@@ -476,6 +476,7 @@
     internal const string BaneVerminOffHandBuff = "ff8f020d-485d-4eb4-9abd-00049c7e0fc8";
     #endregion
 
+    internal const string CruelEnchantCopy = "6f646c1f-bf9d-4722-98f1-215b7b9a2ac4";
     internal const string CruelBuff = "203aa908-fe97-4890-ba65-3431789bc29f";
     internal const string CruelEffect = "432eef6e-d029-48cc-8eb1-9127fb78adb5";
     internal const string CruelOffHandBuff = "c57a472b-c7cb-407e-9ed6-bd7f0648f7b9";

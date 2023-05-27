@@ -1,12 +1,5 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
+﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.References;
-using BlueprintCore.Utils;
-using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Items.Ecnchantments;
-using Kingmaker.UI.GenericSlot;
-using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Enchantments.Weapon
 {
@@ -146,17 +139,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var aberrationsEnchantInfo = new WeaponEnchantInfo(AberrationsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         aberrationsEnchantInfo,
-        effectBuff: GetEffectInfo(AberrationsEffect, Guids.BaneAberrationsEffect, Guids.BaneAberrationsEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(AberrationsEffect, Guids.BaneAberrationsEffect, Guids.BaneAberrationsEnchantCopy),
         parentBuff: new(AberrationsBuff, Guids.BaneAberrationsBuff));
       EnchantTool.CreateVariantEnchant(
         aberrationsEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           AberrationsOffHandEffect,
           Guids.BaneAberrationsOffHandEffect,
           Guids.BaneAberrationsEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(AberrationsOffHandBuff, Guids.BaneAberrationsOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneAberration,
         new(AberrationsEnchantCopy, Guids.BaneAberrationsEnchantCopy),
         aberrationsEnchantInfo);
@@ -165,17 +158,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var animalsEnchantInfo = new WeaponEnchantInfo(AnimalsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         animalsEnchantInfo,
-        effectBuff: GetEffectInfo(AnimalsEffect, Guids.BaneAnimalsEffect, Guids.BaneAnimalsEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(AnimalsEffect, Guids.BaneAnimalsEffect, Guids.BaneAnimalsEnchantCopy),
         parentBuff: new(AnimalsBuff, Guids.BaneAnimalsBuff));
       EnchantTool.CreateVariantEnchant(
         animalsEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           AnimalsOffHandEffect,
           Guids.BaneAnimalsOffHandEffect,
           Guids.BaneAnimalsEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(AnimalsOffHandBuff, Guids.BaneAnimalsOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneAnimal,
         new(AnimalsEnchantCopy, Guids.BaneAnimalsEnchantCopy),
         animalsEnchantInfo);
@@ -184,17 +177,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var constructsEnchantInfo = new WeaponEnchantInfo(ConstructsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         constructsEnchantInfo,
-        effectBuff: GetEffectInfo(ConstructsEffect, Guids.BaneConstructsEffect, Guids.BaneConstructsEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(ConstructsEffect, Guids.BaneConstructsEffect, Guids.BaneConstructsEnchantCopy),
         parentBuff: new(ConstructsBuff, Guids.BaneConstructsBuff));
       EnchantTool.CreateVariantEnchant(
         constructsEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           ConstructsOffHandEffect,
           Guids.BaneConstructsOffHandEffect,
           Guids.BaneConstructsEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(ConstructsOffHandBuff, Guids.BaneConstructsOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneConstruct,
         new(ConstructsEnchantCopy, Guids.BaneConstructsEnchantCopy),
         constructsEnchantInfo);
@@ -203,17 +196,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var dragonsEnchantInfo = new WeaponEnchantInfo(DragonsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         dragonsEnchantInfo,
-        effectBuff: GetEffectInfo(DragonsEffect, Guids.BaneDragonsEffect, Guids.BaneDragonsEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(DragonsEffect, Guids.BaneDragonsEffect, Guids.BaneDragonsEnchantCopy),
         parentBuff: new(DragonsBuff, Guids.BaneDragonsBuff));
       EnchantTool.CreateVariantEnchant(
         dragonsEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           DragonsOffHandEffect,
           Guids.BaneDragonsOffHandEffect,
           Guids.BaneDragonsEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(DragonsOffHandBuff, Guids.BaneDragonsOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneDragon,
         new(DragonsEnchantCopy, Guids.BaneDragonsEnchantCopy),
         dragonsEnchantInfo);
@@ -222,17 +215,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var feyEnchantInfo = new WeaponEnchantInfo(FeyName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         feyEnchantInfo,
-        effectBuff: GetEffectInfo(FeyEffect, Guids.BaneFeyEffect, Guids.BaneFeyEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(FeyEffect, Guids.BaneFeyEffect, Guids.BaneFeyEnchantCopy),
         parentBuff: new(FeyBuff, Guids.BaneFeyBuff));
       EnchantTool.CreateVariantEnchant(
         feyEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           FeyOffHandEffect,
           Guids.BaneFeyOffHandEffect,
           Guids.BaneFeyEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(FeyOffHandBuff, Guids.BaneFeyOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneFey,
         new(FeyEnchantCopy, Guids.BaneFeyEnchantCopy),
         feyEnchantInfo);
@@ -241,18 +234,18 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var humanoidGiantEnchantInfo = new WeaponEnchantInfo(HumanoidGiantName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidGiantEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           HumanoidGiantEffect, Guids.BaneHumanoidGiantEffect, Guids.BaneHumanoidGiantEnchantCopy),
         parentBuff: new(HumanoidGiantBuff, Guids.BaneHumanoidGiantBuff));
       EnchantTool.CreateVariantEnchant(
         humanoidGiantEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           HumanoidGiantOffHandEffect,
           Guids.BaneHumanoidGiantOffHandEffect,
           Guids.BaneHumanoidGiantEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(HumanoidGiantOffHandBuff, Guids.BaneHumanoidGiantOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneHumanoidGiant,
         new(HumanoidGiantEnchantCopy, Guids.BaneHumanoidGiantEnchantCopy),
         humanoidGiantEnchantInfo);
@@ -261,18 +254,18 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var humanoidReptilianEnchantInfo = new WeaponEnchantInfo(HumanoidReptilianName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidReptilianEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           HumanoidReptilianEffect, Guids.BaneHumanoidReptilianEffect, Guids.BaneHumanoidReptilianEnchantCopy),
         parentBuff: new(HumanoidReptilianBuff, Guids.BaneHumanoidReptilianBuff));
       EnchantTool.CreateVariantEnchant(
         humanoidReptilianEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           HumanoidReptilianOffHandEffect,
           Guids.BaneHumanoidReptilianOffHandEffect,
           Guids.BaneHumanoidReptilianEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(HumanoidReptilianOffHandBuff, Guids.BaneHumanoidReptilianOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneHumanoidReptilian,
         new(HumanoidReptilianEnchantCopy, Guids.BaneHumanoidReptilianEnchantCopy),
         humanoidReptilianEnchantInfo);
@@ -281,18 +274,18 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var humanoidMonstrousEnchantInfo = new WeaponEnchantInfo(HumanoidMonstrousName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidMonstrousEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           HumanoidMonstrousEffect, Guids.BaneHumanoidMonstrousEffect, Guids.BaneHumanoidMonstrousEnchantCopy),
         parentBuff: new(HumanoidMonstrousBuff, Guids.BaneHumanoidMonstrousBuff));
       EnchantTool.CreateVariantEnchant(
         humanoidMonstrousEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           HumanoidMonstrousOffHandEffect,
           Guids.BaneHumanoidMonstrousOffHandEffect,
           Guids.BaneHumanoidMonstrousEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(HumanoidMonstrousOffHandBuff, Guids.BaneHumanoidMonstrousOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneMonstrousHumanoid,
         new(HumanoidMonstrousEnchantCopy, Guids.BaneHumanoidMonstrousEnchantCopy),
         humanoidMonstrousEnchantInfo);
@@ -301,18 +294,18 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var magicalBeastsEnchantInfo = new WeaponEnchantInfo(MagicalBeastsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         magicalBeastsEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           MagicalBeastsEffect, Guids.BaneMagicalBeastsEffect, Guids.BaneMagicalBeastsEnchantCopy),
         parentBuff: new(MagicalBeastsBuff, Guids.BaneMagicalBeastsBuff));
       EnchantTool.CreateVariantEnchant(
         magicalBeastsEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           MagicalBeastsOffHandEffect,
           Guids.BaneMagicalBeastsOffHandEffect,
           Guids.BaneMagicalBeastsEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(MagicalBeastsOffHandBuff, Guids.BaneMagicalBeastsOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneMagicalBeast,
         new(MagicalBeastsEnchantCopy, Guids.BaneMagicalBeastsEnchantCopy),
         magicalBeastsEnchantInfo);
@@ -321,17 +314,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var outsiderGoodEnchantInfo = new WeaponEnchantInfo(OutsiderGoodName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderGoodEnchantInfo,
-        effectBuff: GetEffectInfo(OutsiderGoodEffect, Guids.BaneOutsiderGoodEffect, Guids.BaneOutsiderGoodEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(OutsiderGoodEffect, Guids.BaneOutsiderGoodEffect, Guids.BaneOutsiderGoodEnchantCopy),
         parentBuff: new(OutsiderGoodBuff, Guids.BaneOutsiderGoodBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderGoodEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           OutsiderGoodOffHandEffect,
           Guids.BaneOutsiderGoodOffHandEffect,
           Guids.BaneOutsiderGoodEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(OutsiderGoodOffHandBuff, Guids.BaneOutsiderGoodOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneOutsiderGood,
         new(OutsiderGoodEnchantCopy, Guids.BaneOutsiderGoodEnchantCopy),
         outsiderGoodEnchantInfo);
@@ -340,17 +333,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var outsiderEvilEnchantInfo = new WeaponEnchantInfo(OutsiderEvilName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderEvilEnchantInfo,
-        effectBuff: GetEffectInfo(OutsiderEvilEffect, Guids.BaneOutsiderEvilEffect, Guids.BaneOutsiderEvilEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(OutsiderEvilEffect, Guids.BaneOutsiderEvilEffect, Guids.BaneOutsiderEvilEnchantCopy),
         parentBuff: new(OutsiderEvilBuff, Guids.BaneOutsiderEvilBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderEvilEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           OutsiderEvilOffHandEffect,
           Guids.BaneOutsiderEvilOffHandEffect,
           Guids.BaneOutsiderEvilEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(OutsiderEvilOffHandBuff, Guids.BaneOutsiderEvilOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneOutsiderEvil,
         new(OutsiderEvilEnchantCopy, Guids.BaneOutsiderEvilEnchantCopy),
         outsiderEvilEnchantInfo);
@@ -359,18 +352,18 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var outsiderLawfulEnchantInfo = new WeaponEnchantInfo(OutsiderLawfulName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderLawfulEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           OutsiderLawfulEffect, Guids.BaneOutsiderLawfulEffect, Guids.BaneOutsiderLawfulEnchantCopy),
         parentBuff: new(OutsiderLawfulBuff, Guids.BaneOutsiderLawfulBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderLawfulEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           OutsiderLawfulOffHandEffect,
           Guids.BaneOutsiderLawfulOffHandEffect,
           Guids.BaneOutsiderLawfulEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(OutsiderLawfulOffHandBuff, Guids.BaneOutsiderLawfulOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneOutsiderLawful,
         new(OutsiderLawfulEnchantCopy, Guids.BaneOutsiderLawfulEnchantCopy),
         outsiderLawfulEnchantInfo);
@@ -379,18 +372,18 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var outsiderChaoticEnchantInfo = new WeaponEnchantInfo(OutsiderChaoticName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderChaoticEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           OutsiderChaoticEffect, Guids.BaneOutsiderChaoticEffect, Guids.BaneOutsiderChaoticEnchantCopy),
         parentBuff: new(OutsiderChaoticBuff, Guids.BaneOutsiderChaoticBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderChaoticEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           OutsiderChaoticOffHandEffect,
           Guids.BaneOutsiderChaoticOffHandEffect,
           Guids.BaneOutsiderChaoticEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(OutsiderChaoticOffHandBuff, Guids.BaneOutsiderChaoticOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneOutsiderChaotic,
         new(OutsiderChaoticEnchantCopy, Guids.BaneOutsiderChaoticEnchantCopy),
         outsiderChaoticEnchantInfo);
@@ -399,18 +392,18 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var outsiderNeutralEnchantInfo = new WeaponEnchantInfo(OutsiderNeutralName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderNeutralEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           OutsiderNeutralEffect, Guids.BaneOutsiderNeutralEffect, Guids.BaneOutsiderNeutralEnchantCopy),
         parentBuff: new(OutsiderNeutralBuff, Guids.BaneOutsiderNeutralBuff));
       EnchantTool.CreateVariantEnchant(
         outsiderNeutralEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           OutsiderNeutralOffHandEffect,
           Guids.BaneOutsiderNeutralOffHandEffect,
           Guids.BaneOutsiderNeutralEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(OutsiderNeutralOffHandBuff, Guids.BaneOutsiderNeutralOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneOutsiderNeutral,
         new(OutsiderNeutralEnchantCopy, Guids.BaneOutsiderNeutralEnchantCopy),
         outsiderNeutralEnchantInfo);
@@ -419,17 +412,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var plantsEnchantInfo = new WeaponEnchantInfo(PlantsName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         plantsEnchantInfo,
-        effectBuff: GetEffectInfo(PlantsEffect, Guids.BanePlantsEffect, Guids.BanePlantsEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(PlantsEffect, Guids.BanePlantsEffect, Guids.BanePlantsEnchantCopy),
         parentBuff: new(PlantsBuff, Guids.BanePlantsBuff));
       EnchantTool.CreateVariantEnchant(
         plantsEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           PlantsOffHandEffect,
           Guids.BanePlantsOffHandEffect,
           Guids.BanePlantsEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(PlantsOffHandBuff, Guids.BanePlantsOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BanePlant,
         new(PlantsEnchantCopy, Guids.BanePlantsEnchantCopy),
         plantsEnchantInfo);
@@ -438,17 +431,17 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var undeadEnchantInfo = new WeaponEnchantInfo(UndeadName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         undeadEnchantInfo,
-        effectBuff: GetEffectInfo(UndeadEffect, Guids.BaneUndeadEffect, Guids.BaneUndeadEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(UndeadEffect, Guids.BaneUndeadEffect, Guids.BaneUndeadEnchantCopy),
         parentBuff: new(UndeadBuff, Guids.BaneUndeadBuff));
       EnchantTool.CreateVariantEnchant(
         undeadEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           UndeadOffHandEffect,
           Guids.BaneUndeadOffHandEffect,
           Guids.BaneUndeadEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(UndeadOffHandBuff, Guids.BaneUndeadOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneUndead,
         new(UndeadEnchantCopy, Guids.BaneUndeadEnchantCopy),
         undeadEnchantInfo);
@@ -457,63 +450,20 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       var verminEnchantInfo = new WeaponEnchantInfo(VerminName, Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
         verminEnchantInfo,
-        effectBuff: GetEffectInfo(VerminEffect, Guids.BaneVerminEffect, Guids.BaneVerminEnchantCopy),
+        effectBuff: EnchantTool.GetWeaponEffectInfo(VerminEffect, Guids.BaneVerminEffect, Guids.BaneVerminEnchantCopy),
         parentBuff: new(VerminBuff, Guids.BaneVerminBuff));
       EnchantTool.CreateVariantEnchant(
         verminEnchantInfo,
-        effectBuff: GetEffectInfo(
+        effectBuff: EnchantTool.GetWeaponEffectInfo(
           VerminOffHandEffect,
           Guids.BaneVerminOffHandEffect,
           Guids.BaneVerminEnchantCopy,
           toPrimaryWeapon: false),
         variantBuff: new(VerminOffHandBuff, Guids.BaneVerminOffHandBuff));
-      SetUpEnchant(
+      EnchantTool.SetUpWeaponEnchant(
         WeaponEnchantmentRefs.BaneVermin,
         new(VerminEnchantCopy, Guids.BaneVerminEnchantCopy),
         verminEnchantInfo);
-    }
-
-    private static BlueprintInfo GetEffectInfo(
-      string name,
-      string guid,
-      Blueprint<BlueprintItemEnchantmentReference> enchantment,
-      bool toPrimaryWeapon = true)
-    {
-      if (toPrimaryWeapon)
-      {
-        return new(
-          name,
-          guid,
-          new BuffEnchantAnyWeapon()
-          {
-            m_EnchantmentBlueprint = enchantment.Reference,
-            Slot = EquipSlotBase.SlotType.SecondaryHand
-          },
-          new BuffEnchantAnyWeapon()
-          {
-            m_EnchantmentBlueprint = enchantment.Reference,
-            Slot = EquipSlotBase.SlotType.AdditionalLimb
-          });
-      }
-      return new(
-        name,
-        guid,
-        new BuffEnchantAnyWeapon()
-        {
-          m_EnchantmentBlueprint = enchantment.Reference,
-          Slot = EquipSlotBase.SlotType.PrimaryHand
-        });
-    }
-
-    private static void SetUpEnchant(
-      Blueprint<BlueprintReference<BlueprintWeaponEnchantment>> source,
-      BlueprintInfo copy,
-      WeaponEnchantInfo enchant)
-    {
-      WeaponEnchantmentConfigurator.New(copy.Name, copy.Guid)
-        .CopyFrom(source, c => c is not EnhancementEquivalence)
-        .Configure(delayed: true);
-      EnchantTool.AddEnhancementEquivalenceWeapon(source, enchant);
     }
   }
 }

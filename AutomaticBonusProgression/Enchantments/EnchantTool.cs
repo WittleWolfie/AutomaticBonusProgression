@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -6,7 +7,9 @@ using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
+using Kingmaker.UI.GenericSlot;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -35,6 +38,56 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent(enchant.GetEnhancementComponent())
         .Configure();
     }
+
+    /// <summary>
+    /// Returns blueprint info which applies the specified enchantment to primary weapons or all secondary weapons.
+    /// </summary>
+    internal static BlueprintInfo GetWeaponEffectInfo(
+      string name,
+      string guid,
+      Blueprint<BlueprintItemEnchantmentReference> enchantment,
+      bool toPrimaryWeapon = true)
+    {
+      if (toPrimaryWeapon)
+      {
+        return new(
+          name,
+          guid,
+          new BuffEnchantAnyWeapon()
+          {
+            m_EnchantmentBlueprint = enchantment.Reference,
+            Slot = EquipSlotBase.SlotType.PrimaryHand
+          });
+      }
+      return new(
+        name,
+        guid,
+        new BuffEnchantAnyWeapon()
+        {
+          m_EnchantmentBlueprint = enchantment.Reference,
+          Slot = EquipSlotBase.SlotType.SecondaryHand
+        },
+        new BuffEnchantAnyWeapon()
+        {
+          m_EnchantmentBlueprint = enchantment.Reference,
+          Slot = EquipSlotBase.SlotType.AdditionalLimb
+        });
+    }
+
+    /// <summary>
+    /// Creates a copy of the source enchantment and sets up the appropriate enhancement equivalence.
+    /// </summary>
+    internal static void SetUpWeaponEnchant(
+      Blueprint<BlueprintReference<BlueprintWeaponEnchantment>> source,
+      BlueprintInfo copy,
+      WeaponEnchantInfo enchant)
+    {
+      WeaponEnchantmentConfigurator.New(copy.Name, copy.Guid)
+        .CopyFrom(source, c => c is not EnhancementEquivalence)
+        .Configure(delayed: true);
+      AddEnhancementEquivalenceWeapon(source, enchant);
+    }
+
     /// <summary>
     /// Creates an enchantment's parent buff, plus an optional variant. See also <see cref="CreateEnchant(EnchantInfo, BlueprintInfo, BlueprintInfo, BlueprintInfo)"/>
     /// </summary>
