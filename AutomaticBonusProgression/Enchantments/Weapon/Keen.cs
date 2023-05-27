@@ -21,15 +21,15 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     {
       Logger.Log($"Configuring Keen");
 
-      var Keen = WeaponEnchantmentRefs.Keen.Reference.Get();
-      var KeenEnchantInfo = new WeaponEnchantInfo(
-        KeenName, Keen.m_Description, "", EnhancementCost, PhysicalDamageForm.Piercing, PhysicalDamageForm.Slashing);
+      var keen = WeaponEnchantmentRefs.Keen.Reference.Get();
+      var keenEnchantInfo = new WeaponEnchantInfo(
+        KeenName, keen.m_Description, "", EnhancementCost, PhysicalDamageForm.Piercing, PhysicalDamageForm.Slashing);
       EnchantTool.CreateEnchant(
-        KeenEnchantInfo,
+        keenEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(KeenEffect, Guids.KeenEffect, Guids.KeenEnchantCopy),
         parentBuff: new(KeenBuff, Guids.KeenBuff));
       EnchantTool.CreateVariantEnchant(
-        KeenEnchantInfo,
+        keenEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           KeenOffHandEffect,
           Guids.KeenOffHandEffect,
@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
           toPrimaryWeapon: false),
         variantBuff: new(KeenOffHandBuff, Guids.KeenOffHandBuff));
 
-      EnchantTool.SetUpWeaponEnchant(Keen, new(KeenEnchantCopy, Guids.KeenEnchantCopy), KeenEnchantInfo);
+      EnchantTool.SetUpWeaponEnchant(keen, new(KeenEnchantCopy, Guids.KeenEnchantCopy), keenEnchantInfo);
     }
   }
 }

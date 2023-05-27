@@ -35,10 +35,10 @@ namespace AutomaticBonusProgression.Features
       // - Heartseeker [Done]
       // - Keen [Done]
       // - Vicious [Done]
-      // - Anarchic / Axiomatic
+      // - Anarchic / Axiomatic [Done]
       // - Disruption
       // - Furyborn [TODO: Fix base game implementation since it doesn't work w/ changes]
-      // - Holy / Unholy
+      // - Holy / Unholy [Done]
       // - Nullifying
       // - Speed
       // - Brilliant Energy
@@ -98,6 +98,12 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(
+      #region Aligned
+            Guids.AnarchicBuff,
+            Guids.AxiomaticBuff,
+            Guids.HolyBuff,
+            Guids.UnholyBuff,
+      #endregion
       #region Bane
             Guids.BaneAberrationsBuff,
             Guids.BaneAnimalsBuff,
@@ -173,6 +179,12 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(
+      #region Aligned
+            Guids.AnarchicOffHandBuff,
+            Guids.AxiomaticOffHandBuff,
+            Guids.HolyOffHandBuff,
+            Guids.UnholyOffHandBuff,
+      #endregion
       #region Bane
             Guids.BaneAberrationsOffHandBuff,
             Guids.BaneAnimalsOffHandBuff,

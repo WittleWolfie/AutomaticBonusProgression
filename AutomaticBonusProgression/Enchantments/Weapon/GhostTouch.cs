@@ -20,14 +20,14 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     {
       Logger.Log($"Configuring Ghost Touch");
 
-      var GhostTouch = WeaponEnchantmentRefs.GhostTouch.Reference.Get();
-      var GhostTouchEnchantInfo = new WeaponEnchantInfo(GhostTouchName, GhostTouch.m_Description, "", EnhancementCost);
+      var ghostTouch = WeaponEnchantmentRefs.GhostTouch.Reference.Get();
+      var ghostTouchEnchantInfo = new WeaponEnchantInfo(GhostTouchName, ghostTouch.m_Description, "", EnhancementCost);
       EnchantTool.CreateEnchant(
-        GhostTouchEnchantInfo,
+        ghostTouchEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(GhostTouchEffect, Guids.GhostTouchEffect, Guids.GhostTouchEnchantCopy),
         parentBuff: new(GhostTouchBuff, Guids.GhostTouchBuff));
       EnchantTool.CreateVariantEnchant(
-        GhostTouchEnchantInfo,
+        ghostTouchEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           GhostTouchOffHandEffect,
           Guids.GhostTouchOffHandEffect,
@@ -35,7 +35,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
           toPrimaryWeapon: false),
         variantBuff: new(GhostTouchOffHandBuff, Guids.GhostTouchOffHandBuff));
 
-      EnchantTool.SetUpWeaponEnchant(GhostTouch, new(GhostTouchEnchantCopy, Guids.GhostTouchEnchantCopy), GhostTouchEnchantInfo);
+      EnchantTool.SetUpWeaponEnchant(ghostTouch, new(GhostTouchEnchantCopy, Guids.GhostTouchEnchantCopy), ghostTouchEnchantInfo);
     }
   }
 }

@@ -23,6 +23,29 @@
     "enGB": "Select a special ability you can apply to your shield. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. You cannot apply Spell Resistance (19) to a shield with Rallying, which has an enhancement cost of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor."
   },
 
+  //// Aligned
+  {
+    "Key": "LW.Anarchic.Name",
+    "ProcessTemplates": false,
+    "enGB": "Anarchic (+2)"
+  },
+  {
+    "Key": "LW.Axiomatic.Name",
+    "ProcessTemplates": false,
+    "enGB": "Axiomatic (+2)"
+  },
+  {
+    "Key": "LW.Holy.Name",
+    "ProcessTemplates": false,
+    "enGB": "Holy (+2)"
+  },
+  {
+    "Key": "LW.Unholy.Name",
+    "ProcessTemplates": false,
+    "enGB": "Unholy (+2)"
+  },
+  //// End Aligned
+
   //// Bane
   {
     "Key": "LW.Bane.Description",

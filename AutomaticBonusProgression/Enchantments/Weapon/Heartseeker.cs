@@ -21,15 +21,15 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     {
       Logger.Log($"Configuring Heartseeker");
 
-      var Heartseeker = WeaponEnchantmentRefs.Heartseeker.Reference.Get();
-      var HeartseekerEnchantInfo = new WeaponEnchantInfo(
-        HeartseekerName, Heartseeker.m_Description, "", EnhancementCost, WeaponRangeType.Ranged);
+      var heartseeker = WeaponEnchantmentRefs.Heartseeker.Reference.Get();
+      var heartseekerEnchantInfo = new WeaponEnchantInfo(
+        HeartseekerName, heartseeker.m_Description, "", EnhancementCost, WeaponRangeType.Ranged);
       EnchantTool.CreateEnchant(
-        HeartseekerEnchantInfo,
+        heartseekerEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(HeartseekerEffect, Guids.HeartseekerEffect, Guids.HeartseekerEnchantCopy),
         parentBuff: new(HeartseekerBuff, Guids.HeartseekerBuff));
       EnchantTool.CreateVariantEnchant(
-        HeartseekerEnchantInfo,
+        heartseekerEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           HeartseekerOffHandEffect,
           Guids.HeartseekerOffHandEffect,
@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
           toPrimaryWeapon: false),
         variantBuff: new(HeartseekerOffHandBuff, Guids.HeartseekerOffHandBuff));
 
-      EnchantTool.SetUpWeaponEnchant(Heartseeker, new(HeartseekerEnchantCopy, Guids.HeartseekerEnchantCopy), HeartseekerEnchantInfo);
+      EnchantTool.SetUpWeaponEnchant(heartseeker, new(HeartseekerEnchantCopy, Guids.HeartseekerEnchantCopy), heartseekerEnchantInfo);
     }
   }
 }

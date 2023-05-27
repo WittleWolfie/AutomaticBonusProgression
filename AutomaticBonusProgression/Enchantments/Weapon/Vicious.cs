@@ -21,15 +21,15 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     {
       Logger.Log($"Configuring Vicious");
 
-      var Vicious = WeaponEnchantmentRefs.ViciousEnchantment.Reference.Get();
-      var ViciousEnchantInfo = new WeaponEnchantInfo(
-        ViciousName, Vicious.m_Description, "", EnhancementCost, WeaponRangeType.Melee);
+      var vicious = WeaponEnchantmentRefs.ViciousEnchantment.Reference.Get();
+      var viciousEnchantInfo = new WeaponEnchantInfo(
+        ViciousName, vicious.m_Description, "", EnhancementCost, WeaponRangeType.Melee);
       EnchantTool.CreateEnchant(
-        ViciousEnchantInfo,
+        viciousEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(ViciousEffect, Guids.ViciousEffect, Guids.ViciousEnchantCopy),
         parentBuff: new(ViciousBuff, Guids.ViciousBuff));
       EnchantTool.CreateVariantEnchant(
-        ViciousEnchantInfo,
+        viciousEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
           ViciousOffHandEffect,
           Guids.ViciousOffHandEffect,
@@ -37,7 +37,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
           toPrimaryWeapon: false),
         variantBuff: new(ViciousOffHandBuff, Guids.ViciousOffHandBuff));
 
-      EnchantTool.SetUpWeaponEnchant(Vicious, new(ViciousEnchantCopy, Guids.ViciousEnchantCopy), ViciousEnchantInfo);
+      EnchantTool.SetUpWeaponEnchant(vicious, new(ViciousEnchantCopy, Guids.ViciousEnchantCopy), viciousEnchantInfo);
     }
   }
 }

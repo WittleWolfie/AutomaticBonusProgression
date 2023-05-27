@@ -50,6 +50,10 @@ namespace AutomaticBonusProgression.Enchantments
         Wyrmsbreath.Configure();
 
         // Weapon
+        Anarchic.Configure();
+        Axiomatic.Configure();
+        Holy.Configure();
+        Unholy.Configure();
         Bane.Configure();
         Cruel.Configure();
         Elemental.Configure();

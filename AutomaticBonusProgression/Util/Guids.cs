@@ -372,6 +372,32 @@
     internal const string LegendaryOffHandAbility = "d241dda4-6ae1-4d80-954c-d529e0ba8565";
     internal const string LegendaryOffHandResource = "1cf05e9b-a91e-4227-a3a9-b2e2e78d4c3b";
 
+    #region Aligned
+    internal const string AnarchicEnchantCopy = "ce30e25a-c486-4bcf-86a7-aebb49a4d5fd";
+    internal const string AnarchicBuff = "7fb69f0d-d42c-4ed5-834f-55c370e24a5b";
+    internal const string AnarchicEffect = "2db78f54-8ca3-4f6d-932a-4af1333c8b33";
+    internal const string AnarchicOffHandBuff = "3983cf73-b0c9-4312-b7a6-fcd9465cab13";
+    internal const string AnarchicOffHandEffect = "6cda7695-3744-4066-8106-5d6ab893ae0a";
+
+    internal const string AxiomaticEnchantCopy = "ef8d7f5c-b602-4c2e-9171-d59148adf7a2";
+    internal const string AxiomaticBuff = "739364fd-e9b4-4443-922b-d76644c04fd4";
+    internal const string AxiomaticEffect = "4a3f6871-9524-4bc1-8924-76125c5dbb2c";
+    internal const string AxiomaticOffHandBuff = "c7e82684-7db6-488d-bea5-3aaa703be1ef";
+    internal const string AxiomaticOffHandEffect = "de65125c-d25c-405e-81c3-147a214ae76f";
+
+    internal const string HolyEnchantCopy = "2f11ec34-baee-40f6-9ce8-98e1e16cef0c";
+    internal const string HolyBuff = "cb4879ca-ebd6-41bb-bb37-0cdc01f75279";
+    internal const string HolyEffect = "0fa7d3e8-c4d3-4ab1-ad75-c651016f93b8";
+    internal const string HolyOffHandBuff = "1ac96982-430d-4813-9c59-4767701e79cb";
+    internal const string HolyOffHandEffect = "5f066698-2c6e-49a5-8257-1f5fc99e4644";
+
+    internal const string UnholyEnchantCopy = "4557af10-6fff-4ea1-9597-13d643038002";
+    internal const string UnholyBuff = "491bdb14-96f7-4df8-a514-490535173793";
+    internal const string UnholyEffect = "4eb299b0-ebb5-4411-a176-b1f86c490757";
+    internal const string UnholyOffHandBuff = "d6ac35f8-67d0-428c-843d-51e9c12ac524";
+    internal const string UnholyOffHandEffect = "8cfa8aee-d292-457f-9a24-d4087db80b57";
+    #endregion
+
     #region Bane
     internal const string BaneAberrationsEnchantCopy = "167198e9-4113-48b5-b512-1512e4fb9530";
     internal const string BaneAberrationsEffect = "26cd7f9c-3918-416d-bb18-76fd6c661473";
