@@ -178,5 +178,11 @@
     "Key": "LW.Furious.Name",
     "ProcessTemplates": false,
     "enGB": "Furious (+1)"
+  },
+
+  {
+    "Key": "LW.GhostTouch.Name",
+    "ProcessTemplates": false,
+    "enGB": "Ghost Touch (+1)"
   }
 ]

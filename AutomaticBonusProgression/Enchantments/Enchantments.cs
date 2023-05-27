@@ -54,6 +54,7 @@ namespace AutomaticBonusProgression.Enchantments
         Cruel.Configure();
         Elemental.Configure();
         Furious.Configure();
+        GhostTouch.Configure();
       }
       catch (Exception e)
       {
