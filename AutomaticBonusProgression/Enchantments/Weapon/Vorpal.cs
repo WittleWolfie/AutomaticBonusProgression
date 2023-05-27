@@ -15,7 +15,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     private const string VorpalOffHandBuff = "LW.Vorpal.OffHand.Buff";
     private const string VorpalOffHandEffect = "LW.Vorpal.OffHand.Effect";
 
-    private const int EnhancementCost = 1;
+    private const int EnhancementCost = 5;
 
     internal static void Configure()
     {
