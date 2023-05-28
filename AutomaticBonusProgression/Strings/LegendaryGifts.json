@@ -26,7 +26,7 @@
   },
   {
     "Key": "LegendaryShieldmaster.Description",
-    "enGB": "Gain a +5 enhancement bonus from armor attunement for both your armor and your shield."
+    "enGB": "Your enhancement bonus is not split when using a shield. Instead, the maximum enhancement bonus is applied to both your armor and your shield. At level 4 it is +1, at level 9 it is +2, and so on."
   },
 
   {
@@ -36,7 +36,7 @@
   },
   {
     "Key": "LegendaryTwinWeapons.Description",
-    "enGB": "Gain a +5 enhancement bonus for all weapons while dual wielding or using secondary natural attacks."
+    "enGB": "Your enhancement bonus is not split when using multiple weapons. Instead, the maximum enhancement bonus is applied to all your weapons. At level 4 it is +1, at level 9 it is +2, and so on."
   },
 
   // Start Legendary Ability

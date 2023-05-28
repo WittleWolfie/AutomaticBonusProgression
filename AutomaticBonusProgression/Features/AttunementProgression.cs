@@ -87,6 +87,7 @@ namespace AutomaticBonusProgression.Features
     [TypeId("55b09ee7-cb57-4a50-847d-85c32dea4b29")]
     internal class EnhancementBonusCalculator : UnitFactComponentDelegate
     {
+      #region Armor/Shield
       private static BlueprintFeature _legendaryShieldmaster;
       private static BlueprintFeature LegendaryShieldmaster
       {
@@ -99,14 +100,11 @@ namespace AutomaticBonusProgression.Features
 
       internal int GetEnhancementBonus(ItemEntityShield shield)
       {
-        if (shield.Wielder.HasFact(LegendaryShieldmaster))
-          return 5;
-
         var tempBonus = GetTempArmorBonus(shield);
         var attunement = GetShieldAttunement(shield.Wielder);
 
         Logger.Verbose(() => $"Shield Enhancement bonus for {shield.Blueprint.Type.DefaultName}: {attunement} + {tempBonus}");
-        return attunement + tempBonus;
+        return Math.Min(5, attunement + tempBonus);
       }
 
       internal int GetEnhancementBonus(ItemEntityArmor armor)
@@ -118,7 +116,7 @@ namespace AutomaticBonusProgression.Features
         var attunement = GetArmorAttunement(armor.Wielder);
 
         Logger.Verbose(() => $"Armor Enhancement bonus for {armor.Blueprint.Type.DefaultName}: {attunement} + {tempBonus}");
-        return attunement + tempBonus;
+        return Math.Min(5, attunement + tempBonus);
       }
 
       private int GetTempArmorBonus(ItemEntity armor)
@@ -139,37 +137,45 @@ namespace AutomaticBonusProgression.Features
 
       private int GetShieldAttunement(UnitDescriptor unit)
       {
+        // If they have legendary shieldmaster then armor attunement == shield attunement
         if (unit.HasFact(LegendaryShieldmaster))
-          return 5;
+          return GetArmorAttunement(unit);
 
         var attunement = unit.GetFact(Common.ShieldAttunement);
         if (attunement is not null)
           return attunement.GetRank();
-
-        if (unit.Body.Armor.MaybeArmor is null)
-          return GetArmorAttunement(unit);
         return 0;
       }
 
       private int GetArmorAttunement(UnitDescriptor unit)
       {
-        if (unit.HasFact(LegendaryShieldmaster))
-          return 5;
-
         var attunement = unit.GetFact(Common.ArmorAttunement);
         if (attunement is null)
           return 0;
 
         var rank = attunement.GetRank();
-        if (unit.Body.SecondaryHand.MaybeShield is null)
+        if (unit.Body.SecondaryHand.MaybeShield is null || unit.HasFact(LegendaryShieldmaster))
           return rank;
 
         return Math.Max(1, rank - 1); // If you have a shield the armor bonus is 1 lower (min 1)
+      }
+      #endregion
+
+      #region Weapons
+      private static BlueprintFeature _legendaryTwinWeapons;
+      private static BlueprintFeature LegendaryTwinWeapons
+      {
+        get
+        {
+          _legendaryTwinWeapons ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryTwinWeapons);
+          return _legendaryTwinWeapons;
+        }
       }
 
       internal int GetEnhancementBonus(ItemEntityWeapon weapon)
       {
         int tempBonus = 0;
+        int stackingBonus = 0;
         foreach (var enchantment in weapon.Enchantments)
         {
           if (enchantment.GetComponent<MagicItem>() is not null)
@@ -177,8 +183,14 @@ namespace AutomaticBonusProgression.Features
 
           var bonus = enchantment.GetComponent<WeaponEnhancementBonus>();
           if (bonus is not null && bonus.Stack)
-            tempBonus += bonus.EnhancementBonus;
+          {
+            if (bonus.Stack)
+              stackingBonus += bonus.EnhancementBonus;
+            else if (bonus.EnhancementBonus > tempBonus)
+              tempBonus = bonus.EnhancementBonus;
+          }
         }
+        tempBonus += stackingBonus;
 
         var wielder = weapon.Wielder;
         var attunement =
@@ -187,7 +199,7 @@ namespace AutomaticBonusProgression.Features
             : GetOffHandAttunement(wielder);
 
         Logger.Verbose(() => $"Weapon Enhancement bonus for {weapon.Blueprint.Type.DefaultName}: {attunement} + {tempBonus}");
-        return attunement + tempBonus;
+        return Math.Min(5, attunement + tempBonus);
       }
 
       private int GetWeaponAttunement(UnitDescriptor unit)
@@ -198,10 +210,7 @@ namespace AutomaticBonusProgression.Features
 
         var rank = attunement.GetRank();
         var offHandWeapon = unit.Body.SecondaryHand.MaybeWeapon;
-        if (offHandWeapon is null
-            || offHandWeapon.Blueprint.IsNatural
-            || offHandWeapon.Blueprint.IsUnarmed
-            || offHandWeapon.IsSecondPartOfDoubleWeapon)
+        if (offHandWeapon is null || Common.IsPrimaryWeapon(offHandWeapon) || unit.HasFact(LegendaryTwinWeapons))
           return rank;
 
         return Math.Max(1, rank - 1); // If you have an off-hand weapon the armor bonus is 1 lower (min 1)
@@ -209,11 +218,16 @@ namespace AutomaticBonusProgression.Features
 
       private int GetOffHandAttunement(UnitDescriptor unit)
       {
+        // If they have legendary twin weapons then weapon attunement == off-hand attunement
+        if (unit.HasFact(LegendaryTwinWeapons))
+          return GetWeaponAttunement(unit);
+
         var attunement = unit.GetFact(Common.OffHandAttunement);
         if (attunement is not null)
           return attunement.GetRank();
         return 0;
       }
+      #endregion
     }
   }
 }
