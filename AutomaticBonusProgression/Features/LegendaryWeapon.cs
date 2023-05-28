@@ -86,7 +86,6 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryWeaponAbilityDescription)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
-        .AddHideFeatureInInspect()
         .Configure();
 
       return FeatureConfigurator.New(LegendaryWeaponName, Guids.LegendaryWeapon)
@@ -95,7 +94,6 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryWeaponDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddHideFeatureInInspect()
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
         .AddComponent(
@@ -175,7 +173,6 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryOffHandAbilityDescription)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
-        .AddHideFeatureInInspect()
         .Configure();
 
       return FeatureConfigurator.New(LegendaryOffHandName, Guids.LegendaryOffHand)
@@ -184,7 +181,6 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryOffHandDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddHideFeatureInInspect()
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
         .AddComponent(

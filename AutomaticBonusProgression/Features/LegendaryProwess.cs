@@ -23,7 +23,6 @@ namespace AutomaticBonusProgression.Features
         //.SetIcon()
         .AddPrerequisiteCharacterLevel(18)
         .AddToAllFeatures(Guids.MentalProwessAnySelection, Guids.PhysicalProwessAnySelection)
-        .AddHideFeatureInInspect()
         .Configure();
     }
   }

@@ -35,7 +35,6 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryArmorAbilityDescription)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Armor))
-        .AddHideFeatureInInspect()
         .Configure();
 
       return FeatureConfigurator.New(LegendaryArmorName, Guids.LegendaryArmor)
@@ -44,7 +43,6 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryArmorDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddHideFeatureInInspect()
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
         .AddComponent(
@@ -141,7 +139,6 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryShieldAbilityDescription)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Shield))
-        .AddHideFeatureInInspect()
         .Configure();
 
       return FeatureConfigurator.New(LegendaryShieldName, Guids.LegendaryShield)
@@ -152,7 +149,6 @@ namespace AutomaticBonusProgression.Features
         .SetRanks(5)
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
-        .AddHideFeatureInInspect()
         .AddComponent(
           new AttunementBuffsComponent(
             Guids.BashingBuff,

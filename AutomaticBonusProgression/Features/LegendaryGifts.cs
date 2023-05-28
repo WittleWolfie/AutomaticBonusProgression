@@ -23,6 +23,10 @@ namespace AutomaticBonusProgression.Features
         .AddHideFeatureInInspect()
         //.SetIcon()
         .AddToAllFeatures(
+          // Since the first selection is the only one used when applying to spawned units, only this needs to deal
+          // with AddFeatureABP nonsense. The exception is if something had so many legendary gifts granted that they
+          // maxed out Legendary Ability (> 30, not expected). Everything else can ignore it since it will never be
+          // selected automatically.
           LegendaryAbility.Configure(),
           LegendaryShieldmaster.Configure(),
           LegendaryTwinWeapons.Configure(),
