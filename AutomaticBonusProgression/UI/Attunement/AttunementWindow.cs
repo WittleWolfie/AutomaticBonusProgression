@@ -27,8 +27,7 @@ using UnityEngine.UI;
 namespace AutomaticBonusProgression.UI.Attunement
 {
   /// <summary>
-  /// TODO:
-  ///  - Close this whenever a full screen UI is opened?
+  /// Main window view which hosts all the UI. Relies on the IFullScreenUIHandler interface to display.
   /// </summary>
   internal class AttunementView : ViewBase<AttunementVM>
   {
@@ -359,7 +358,7 @@ namespace AutomaticBonusProgression.UI.Attunement
     #endregion
   }
 
-  internal class AttunementVM : BaseDisposable, IViewModel
+  internal class AttunementVM : BaseDisposable, IViewModel, IFullScreenUIHandler
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AttunementVM));
 
@@ -374,6 +373,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       DisposeAction = disposeAction;
       Type.Value = type;
       EventBus.RaiseEvent<IFullScreenUIHandler>(h => h.HandleFullScreenUiChanged(state: true, FullScreenUIType.Unknown));
+      EventBus.Subscribe(this);
 
       AddDisposable(Game.Instance.SelectionCharacter.SelectedUnit.Subscribe(unit => Refresh()));
       AddDisposable(Type.Subscribe(type => Refresh()));
@@ -381,8 +381,18 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     public override void DisposeImplementation()
     {
+      EventBus.Unsubscribe(this);
       DisposeAction();
       EventBus.RaiseEvent<IFullScreenUIHandler>(h => h.HandleFullScreenUiChanged(state: false, FullScreenUIType.Unknown));
+    }
+
+    public void HandleFullScreenUiChanged(bool state, FullScreenUIType fullScreenUIType)
+    {
+      if (state)
+      {
+        Logger.Verbose(() => $"Closing window since another full screen window was displayed: {fullScreenUIType}");
+        Close();
+      }
     }
 
     internal void Close()
