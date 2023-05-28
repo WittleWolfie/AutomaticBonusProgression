@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
@@ -18,6 +19,7 @@ namespace AutomaticBonusProgression.Features
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(WeaponAttunement));
 
     private const string WeaponName = "WeaponAttunement";
+    private const string WeaponBaseName = "WeaponAttunement.Base";
     private const string WeaponDisplayName = "WeaponAttunement.Name";
     private const string WeaponDescription = "WeaponAttunement.Description";
 
@@ -25,18 +27,25 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log($"Configuring Weapon Attunement");
 
-      return FeatureConfigurator.New(WeaponName, Guids.WeaponAttunement)
+      var effect = FeatureConfigurator.New(WeaponName, Guids.WeaponAttunement)
+        .SetIsClassFeature()
+        .SetRanks(5)
+        .SetHideInUI()
+        .AddComponent<WeaponEnhancementBonus>()
+        .Configure();
+      return FeatureConfigurator.New(WeaponBaseName, Guids.WeaponAttunementBase)
         .SetIsClassFeature()
         .SetDisplayName(WeaponDisplayName)
         .SetDescription(WeaponDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddComponent<WeaponEnhancementBonus>()
+        .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect()
         .Configure();
     }
 
     private const string OffHandName = "OffHandAttunement";
+    private const string OffHandBaseName = "OffHandAttunement.Base";
     private const string OffHandDisplayName = "OffHandAttunement.Name";
     private const string OffHandDescription = "OffHandAttunement.Description";
 
@@ -44,12 +53,19 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log($"Configuring OffHand Attunement");
 
+      var effect = FeatureConfigurator.New(OffHandName, Guids.OffHandAttunement)
+        .SetIsClassFeature()
+        .SetRanks(4)
+        .SetHideInUI()
+        .AddHideFeatureInInspect()
+        .Configure();
       return FeatureConfigurator.New(OffHandName, Guids.OffHandAttunement)
         .SetIsClassFeature()
         .SetDisplayName(OffHandDisplayName)
         .SetDescription(OffHandDescription)
         //.SetIcon()
         .SetRanks(4)
+        .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect()
         .Configure();
     }
@@ -122,12 +138,6 @@ namespace AutomaticBonusProgression.Features
         if (weapon is null)
         {
           Logger.Verbose(() => "Missing weapon!");
-          return true;
-        }
-
-        if (!Common.IsAffectedByABP(weapon.Owner))
-        {
-          Logger.Verbose(() => $"Skipping wepaon enhancement for {weapon.Owner?.CharacterName}");
           return true;
         }
 
