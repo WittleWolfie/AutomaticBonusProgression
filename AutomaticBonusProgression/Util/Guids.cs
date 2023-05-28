@@ -11,15 +11,22 @@
     // Enchantment used to calculate armor / weapon / shield enhancement bonuses
     internal const string EnhancementCalculator = "945f05cf-ffb5-489d-b4d8-2687d1f1b835";
 
-    internal const string ArmorAttunement = "24af67c6-bc58-4dba-a9bf-d7d00925e7c7";
+    internal const string ArmorAttunement = "32fca48a-12dd-4b1c-a678-ada1bdbbde4a";
+    internal const string ArmorAttunementBase = "24af67c6-bc58-4dba-a9bf-d7d00925e7c7";
     internal const string ShieldAttunement = "58b87d99-125c-4300-9c87-ba0d90168ca2";
+    internal const string ShieldAttunementBase = "c31f69e1-73cd-4137-96ac-f5420ab9fa70";
 
     internal const string WeaponAttunement = "137eeed7-8487-411c-b861-15ded694bd08";
+    internal const string WeaponAttunementBase = "f98a2678-3840-4604-9ebc-45b46ea9aff9";
     internal const string OffHandAttunement = "84fedf0f-50fa-4b26-8e61-5c2e280bfc8e";
+    internal const string OffHandAttunementBase = "6aadde0f-4dbd-433a-969d-cc75a1f01004";
 
     internal const string Deflection = "b9af42db-c718-42c5-89e1-5376619e2460";
+    internal const string DeflectionBase = "793ff28d-f24a-405e-90f6-b6e87cde1070";
     internal const string Toughening = "0de33c56-4913-4b69-b1d0-619cd663beff";
+    internal const string TougheningBase = "593afbcf-6641-4ea0-ae95-122b3c36cf56";
     internal const string Resistance = "a5011356-2852-40ee-9841-d8bbf58d6336";
+    internal const string ResistanceBase = "b67b1c21-55b1-4a2c-a5d1-49b8bff86b2d";
 
     #region Mental Prowess
     internal const string IntPlus2 = "ea260889-0874-45aa-9e79-4351dfc626e8";

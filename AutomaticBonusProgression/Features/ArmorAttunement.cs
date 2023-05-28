@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
@@ -18,6 +19,7 @@ namespace AutomaticBonusProgression.Features
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ArmorAttunement));
 
     private const string ArmorName = "ArmorAttunement";
+    private const string ArmorBaseName = "ArmorAttunement.Base";
     private const string ArmorDisplayName = "ArmorAttunement.Name";
     private const string ArmorDescription = "ArmorAttunement.Description";
 
@@ -25,18 +27,25 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log($"Configuring Armor Attunement");
 
-      return FeatureConfigurator.New(ArmorName, Guids.ArmorAttunement)
+      var effect = FeatureConfigurator.New(ArmorName, Guids.ArmorAttunement)
+        .SetIsClassFeature()
+        .SetRanks(5)
+        .SetHideInUI() // Since the parent will be shown, no need to show both
+        .AddComponent<ArmorAttunementComponent>()
+        .Configure();
+      return FeatureConfigurator.New(ArmorBaseName, Guids.ArmorAttunementBase)
         .SetIsClassFeature()
         .SetDisplayName(ArmorDisplayName)
         .SetDescription(ArmorDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddComponent<ArmorAttunementComponent>()
-        .AddHideFeatureInInspect()
+        .AddComponent(new AddFeatureABP(effect))
+        .AddHideFeatureInInspect() // Hides it from enemy inspect dialog
         .Configure();
     }
 
     private const string ShieldName = "ShieldAttunement";
+    private const string ShieldBaseName = "ShieldAttunement.Base";
     private const string ShieldDisplayName = "ShieldAttunement.Name";
     private const string ShieldDescription = "ShieldAttunement.Description";
 
@@ -44,14 +53,20 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log($"Configuring Shield Attunement");
 
-      return FeatureConfigurator.New(ShieldName, Guids.ShieldAttunement)
+      var effect = FeatureConfigurator.New(ShieldName, Guids.ShieldAttunement)
+        .SetIsClassFeature()
+        .SetRanks(4)
+        .SetHideInUI()
+        .AddComponent<RecalculateArmorStats>()
+        .Configure();
+      return FeatureConfigurator.New(ShieldBaseName, Guids.ShieldAttunementBase)
         .SetIsClassFeature()
         .SetDisplayName(ShieldDisplayName)
         .SetDescription(ShieldDescription)
         //.SetIcon()
         .SetRanks(4)
-        .AddComponent<RecalculateArmorStats>()
-        .AddHideFeatureInInspect()
+        .AddComponent(new AddFeatureABP(effect)) 
+        .AddHideFeatureInInspect() // Hide in enemy inspect dialog
         .Configure();
     }
 
@@ -147,9 +162,6 @@ namespace AutomaticBonusProgression.Features
 
       private void UpdateUnarmoredBonus()
       {
-        if (!Common.IsAffectedByABP(Owner))
-          return;
-
         if (Owner.Body.SecondaryHand.HasShield || Owner.Body.Armor.HasArmor)
         {
           RemoveBonus();
