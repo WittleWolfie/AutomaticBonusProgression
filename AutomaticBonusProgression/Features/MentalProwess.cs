@@ -8,6 +8,8 @@ using Kingmaker.Enums;
 
 namespace AutomaticBonusProgression.Features
 {
+  // TODO: Rather than do some of the AddFeatureABP nonsense here, let's rework this entirely w/ custom UI to simplify
+  // things.
   internal class MentalProwess
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(MentalProwess));
