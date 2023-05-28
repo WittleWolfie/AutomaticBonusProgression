@@ -1,6 +1,7 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem;
 using Kingmaker.UnitLogic;
 using Newtonsoft.Json;
@@ -12,6 +13,7 @@ namespace AutomaticBonusProgression.Components
   /// This is used to make sure only PCs receive ABP features. It requires each to be wrapped in an adder blueprint but
   /// is probably better than the alternative which means it applies to literally every unit. 
   /// </summary>
+  [TypeId("8d011154-8225-4a40-bdc4-d3c9735884b1")]
   internal class AddFeatureABP : UnitFactComponentDelegate<AddFeatureABP.AddFeatureABPData>
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddFeatureABP));

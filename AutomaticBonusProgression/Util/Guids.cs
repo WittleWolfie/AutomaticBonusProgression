@@ -96,11 +96,17 @@
 
     internal const string LegendaryAbility = "0e44687f-ba76-4a2b-9ebd-1fee30ca06db";
     internal const string LegendaryStrength = "b8c3a13e-ba3e-47a5-a1fa-f2016d0fb682";
+    internal const string LegendaryStrengthBase = "6a89653d-fcae-40b8-ade1-a7b7c8fe980a";
     internal const string LegendaryDexterity = "64cd8ffd-134a-4e63-8e7e-1a6ba328a6b0";
+    internal const string LegendaryDexterityBase = "f251c6e7-20f8-4be1-9c0d-776d14056e83";
     internal const string LegendaryConstitution = "a8aab8e0-e601-4b71-82db-ecd5dfdb5953";
+    internal const string LegendaryConstitutionBase = "435223ad-f9ff-4ac4-9424-27ac7b084262";
     internal const string LegendaryIntelligence = "49fc30e1-bd73-413d-948c-c47493d310db";
+    internal const string LegendaryIntelligenceBase = "de84482d-1aa2-4dce-ae7f-3ef64449a0d6";
     internal const string LegendaryWisdom = "e2411919-40ff-4acf-bb75-0f5a27ad6c88";
+    internal const string LegendaryWisdomBase = "e1286bb1-4ead-4ae1-a2c2-095b0a68d909";
     internal const string LegendaryCharisma = "95483f02-93c5-4301-99e5-38e8ea2ca3bb";
+    internal const string LegendaryCharismaBase = "eb6ffe52-f10a-4b31-803c-ea7b91e7bdab";
 
     internal const string LegendaryShieldmaster = "baef229b-a7fa-4618-88ed-23f9e6875d18";
     internal const string LegendaryTwinWeapons = "d910642b-7719-4607-b6e0-0d614f1a30e0";
