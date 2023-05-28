@@ -19,7 +19,6 @@ using Owlcat.Runtime.UI.Controls.Button;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
 using System;
-using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
