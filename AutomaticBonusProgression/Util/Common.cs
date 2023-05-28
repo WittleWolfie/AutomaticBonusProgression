@@ -16,6 +16,7 @@ namespace AutomaticBonusProgression.Util
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Common));
 
+    #region Blueprints
     private static BlueprintFeature _armorAttunement;
     internal static BlueprintFeature ArmorAttunement
     {
@@ -25,6 +26,16 @@ namespace AutomaticBonusProgression.Util
         return _armorAttunement;
       }
     }
+    private static BlueprintFeature _armorAttunementBase;
+    internal static BlueprintFeature ArmorAttunementBase
+    {
+      get
+      {
+        _armorAttunementBase ??= BlueprintTool.Get<BlueprintFeature>(Guids.ArmorAttunementBase);
+        return _armorAttunementBase;
+      }
+    }
+
     private static BlueprintFeature _shieldAttunement;
     internal static BlueprintFeature ShieldAttunement
     {
@@ -32,6 +43,15 @@ namespace AutomaticBonusProgression.Util
       {
         _shieldAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.ShieldAttunement);
         return _shieldAttunement;
+      }
+    }
+    private static BlueprintFeature _shieldAttunementBase;
+    internal static BlueprintFeature ShieldAttunementBase
+    {
+      get
+      {
+        _shieldAttunementBase ??= BlueprintTool.Get<BlueprintFeature>(Guids.ShieldAttunementBase);
+        return _shieldAttunementBase;
       }
     }
 
@@ -44,6 +64,16 @@ namespace AutomaticBonusProgression.Util
         return _weaponAttunement;
       }
     }
+    private static BlueprintFeature _weaponAttunementBase;
+    internal static BlueprintFeature WeaponAttunementBase
+    {
+      get
+      {
+        _weaponAttunementBase ??= BlueprintTool.Get<BlueprintFeature>(Guids.WeaponAttunementBase);
+        return _weaponAttunementBase;
+      }
+    }
+
     private static BlueprintFeature _offHandAttunement;
     internal static BlueprintFeature OffHandAttunement
     {
@@ -51,6 +81,82 @@ namespace AutomaticBonusProgression.Util
       {
         _offHandAttunement ??= BlueprintTool.Get<BlueprintFeature>(Guids.OffHandAttunement);
         return _offHandAttunement;
+      }
+    }
+    private static BlueprintFeature _offHandAttunementBase;
+    internal static BlueprintFeature OffHandAttunementBase
+    {
+      get
+      {
+        _offHandAttunementBase ??= BlueprintTool.Get<BlueprintFeature>(Guids.OffHandAttunementBase);
+        return _offHandAttunementBase;
+      }
+    }
+
+    private static BlueprintFeature _resistance;
+    internal static BlueprintFeature Resistance
+    {
+      get
+      {
+        _resistance ??= BlueprintTool.Get<BlueprintFeature>(Guids.Resistance);
+        return _resistance;
+      }
+    }
+    private static BlueprintFeature _resistanceBase;
+    internal static BlueprintFeature ResistanceBase
+    {
+      get
+      {
+        _resistanceBase ??= BlueprintTool.Get<BlueprintFeature>(Guids.ResistanceBase);
+        return _resistanceBase;
+      }
+    }
+
+    private static BlueprintFeature _deflection;
+    internal static BlueprintFeature Deflection
+    {
+      get
+      {
+        _deflection ??= BlueprintTool.Get<BlueprintFeature>(Guids.Deflection);
+        return _deflection;
+      }
+    }
+    private static BlueprintFeature _deflectionBase;
+    internal static BlueprintFeature DeflectionBase
+    {
+      get
+      {
+        _deflectionBase ??= BlueprintTool.Get<BlueprintFeature>(Guids.DeflectionBase);
+        return _deflectionBase;
+      }
+    }
+
+    private static BlueprintFeature _toughening;
+    internal static BlueprintFeature Toughening
+    {
+      get
+      {
+        _toughening ??= BlueprintTool.Get<BlueprintFeature>(Guids.Toughening);
+        return _toughening;
+      }
+    }
+    private static BlueprintFeature _tougheningBase;
+    internal static BlueprintFeature TougheningBase
+    {
+      get
+      {
+        _tougheningBase ??= BlueprintTool.Get<BlueprintFeature>(Guids.TougheningBase);
+        return _tougheningBase;
+      }
+    }
+
+    private static BlueprintFeature _legendaryGifts;
+    internal static BlueprintFeature LegendaryGifts
+    {
+      get
+      {
+        _legendaryGifts ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryGifts);
+        return _legendaryGifts;
       }
     }
 
@@ -127,6 +233,7 @@ namespace AutomaticBonusProgression.Util
         return _legendaryShieldResource;
       }
     }
+    #endregion
 
     internal static bool IsReplacedByABP(StatType stat, ModifierDescriptor descriptor)
     {
