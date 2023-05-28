@@ -12,6 +12,7 @@ namespace AutomaticBonusProgression.Features
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Deflection));
 
     private const string DeflectionName = "Deflection";
+    private const string DeflectionBaseName = "Deflection.Base";
     private const string DeflectionDisplayName = "Deflection.Name";
     private const string DeflectionDescription = "Deflection.Description";
 
@@ -19,13 +20,19 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log($"Configuring Deflection");
 
-      return FeatureConfigurator.New(DeflectionName, Guids.Deflection)
+      var effect = FeatureConfigurator.New(DeflectionName, Guids.Deflection)
+        .SetIsClassFeature()
+        .SetRanks(5)
+        .SetHideInUI()
+        .AddStatBonus(stat: StatType.AC, value: 1, descriptor: ModifierDescriptor.Deflection)
+        .Configure();
+      return FeatureConfigurator.New(DeflectionBaseName, Guids.DeflectionBase)
         .SetIsClassFeature()
         .SetDisplayName(DeflectionDisplayName)
         .SetDescription(DeflectionDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddComponent(new AddStatBonusABP(StatType.AC, value: 1, ModifierDescriptor.Deflection))
+        .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect()
         .Configure();
     }

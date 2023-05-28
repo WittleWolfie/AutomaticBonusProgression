@@ -12,6 +12,7 @@ namespace AutomaticBonusProgression.Features
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Toughening));
 
     private const string TougheningName = "Toughening";
+    private const string TougheningBaseName = "Toughening.Base";
     private const string TougheningDisplayName = "Toughening.Name";
     private const string TougheningDescription = "Toughening.Description";
 
@@ -19,13 +20,19 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log($"Configuring Toughening");
 
-      return FeatureConfigurator.New(TougheningName, Guids.Toughening)
+      var effect = FeatureConfigurator.New(TougheningName, Guids.Toughening)
+        .SetIsClassFeature()
+        .SetRanks(5)
+        .SetHideInUI()
+        .AddStatBonus(stat: StatType.AC, value: 1, descriptor: ModifierDescriptor.NaturalArmorEnhancement)
+        .Configure();
+      return FeatureConfigurator.New(TougheningBaseName, Guids.TougheningBase)
         .SetIsClassFeature()
         .SetDisplayName(TougheningDisplayName)
         .SetDescription(TougheningDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddComponent(new AddStatBonusABP(StatType.AC, value: 1, ModifierDescriptor.NaturalArmorEnhancement))
+        .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect()
         .Configure();
     }

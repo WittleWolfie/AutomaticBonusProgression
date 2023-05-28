@@ -1,10 +1,8 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Enums;
-using System;
 
 namespace AutomaticBonusProgression.Features
 {
@@ -13,6 +11,7 @@ namespace AutomaticBonusProgression.Features
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Resistance));
 
     private const string ResistanceName = "Resistance";
+    private const string ResistanceBaseName = "Resistance.Base";
     private const string ResistanceDisplayName = "Resistance.Name";
     private const string ResistanceDescription = "Resistance.Description";
 
@@ -20,42 +19,21 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log($"Configuring Resistance");
 
-      return FeatureConfigurator.New(ResistanceName, Guids.Resistance)
+      var effect = FeatureConfigurator.New(ResistanceName, Guids.Resistance)
+        .SetIsClassFeature()
+        .SetRanks(5)
+        .SetHideInUI()
+        .AddBuffAllSavesBonus(value: 1, descriptor: ModifierDescriptor.Resistance)
+        .Configure();
+      return FeatureConfigurator.New(ResistanceBaseName, Guids.ResistanceBase)
         .SetIsClassFeature()
         .SetDisplayName(ResistanceDisplayName)
         .SetDescription(ResistanceDescription)
         //.SetIcon()
         .SetRanks(5)
-        .AddComponent<ResistanceComponent>()
+        .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect()
         .Configure();
-    }
-
-    [TypeId("c7c76424-7278-4f32-b679-ed1d6fcffbb4")]
-    private class ResistanceComponent : BuffAllSavesBonus
-    {
-      public ResistanceComponent()
-      {
-        Value = 1;
-        Descriptor = ModifierDescriptor.Resistance;
-      }
-
-      public override void OnTurnOn()
-      {
-        try
-        {
-          if (!Common.IsAffectedByABP(Owner))
-          {
-            Logger.Verbose(() => $"Skipping resistance for unaffected unit: {Owner?.CharacterName}");
-            return;
-          }
-          base.OnTurnOn();
-        }
-        catch (Exception e)
-        {
-          Logger.LogException("ResistanceComponent.OnTurnOn", e);
-        }
-      }
     }
   }
 }

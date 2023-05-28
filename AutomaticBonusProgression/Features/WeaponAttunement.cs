@@ -59,7 +59,7 @@ namespace AutomaticBonusProgression.Features
         .SetHideInUI()
         .AddHideFeatureInInspect()
         .Configure();
-      return FeatureConfigurator.New(OffHandName, Guids.OffHandAttunement)
+      return FeatureConfigurator.New(OffHandBaseName, Guids.OffHandAttunementBase)
         .SetIsClassFeature()
         .SetDisplayName(OffHandDisplayName)
         .SetDescription(OffHandDescription)
