@@ -58,9 +58,10 @@ namespace AutomaticBonusProgression
 
           // First strings
           LocalizationTool.LoadEmbeddedLocalizationPacks(
+            "AutomaticBonusProgression.Strings.Attunement.json",
             "AutomaticBonusProgression.Strings.LegendaryArmor.json",
+            "AutomaticBonusProgression.Strings.LegendaryGifts.json",
             "AutomaticBonusProgression.Strings.LegendaryWeapon.json",
-            "AutomaticBonusProgression.Strings.LocalizedStrings.json",
             "AutomaticBonusProgression.Strings.UI.json");
 
           Enchantments.Enchantments.Configure();

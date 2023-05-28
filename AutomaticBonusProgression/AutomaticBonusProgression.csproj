@@ -22,10 +22,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Strings\Attunement.json" />
     <None Remove="Strings\LegendaryArmor.json" />
+    <None Remove="Strings\LegendaryGifts.json" />
     <None Remove="Strings\LegendaryWeapon.json" />
-    <None Remove="Strings\LocalizedStrings.json" />
     <None Remove="Strings\UI.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Strings\LegendaryGifts.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +40,7 @@
     <EmbeddedResource Include="Strings\LegendaryWeapon.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings\LocalizedStrings.json">
+    <EmbeddedResource Include="Strings\Attunement.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\UI.json">

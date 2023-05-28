@@ -69,118 +69,6 @@
     "enGB": "Increases your resistance bonus on saving throws by 1."
   },
 
-  {
-    "Key": "LegendaryGifts.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Gift"
-  },
-  {
-    "Key": "LegendaryGifts.Description",
-    "enGB": "Select a legendary gift, increasing the bonuses you get from attunement."
-  },
-
-  {
-    "Key": "LegendaryProwess.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Prowess"
-  },
-  {
-    "Key": "LegendaryProwess.Description",
-    "enGB": "Increase your enhancement bonuses to any ability score by 2 (max 6)."
-  },
-
-  {
-    "Key": "LegendaryShieldmaster.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Shieldmaster"
-  },
-  {
-    "Key": "LegendaryShieldmaster.Description",
-    "enGB": "Gain a +5 enhancement bonus from armor attunement for both your armor and your shield."
-  },
-
-  {
-    "Key": "LegendaryTwinWeapons.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary TwinWeapons"
-  },
-  {
-    "Key": "LegendaryTwinWeapons.Description",
-    "enGB": "Gain a +5 enhancement bonus for all weapons while dual wielding or using secondary natural attacks."
-  },
-
-  // Start Legendary Ability
-  {
-    "Key": "LegendaryAbility.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Ability"
-  },
-  {
-    "Key": "LegendaryAbility.Description",
-    "enGB": "Gain a +1 inherent bonus to any ability score. You can select this up to 5 times for each ability score."
-  },
-
-  {
-    "Key": "LegendaryAbility.Strength.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Strength"
-  },
-  {
-    "Key": "LegendaryAbility.Strength.Description",
-    "enGB": "Gain a +1 inherent bonus to strength. This stacks up to a +5 bonus."
-  },
-
-  {
-    "Key": "LegendaryAbility.Dexterity.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Dexterity"
-  },
-  {
-    "Key": "LegendaryAbility.Dexterity.Description",
-    "enGB": "Gain a +1 inherent bonus to dexterity. This stacks up to a +5 bonus."
-  },
-
-  {
-    "Key": "LegendaryAbility.Constitution.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Constitution"
-  },
-  {
-    "Key": "LegendaryAbility.Constitution.Description",
-    "enGB": "Gain a +1 inherent bonus to constitution. This stacks up to a +5 bonus."
-  },
-
-  {
-    "Key": "LegendaryAbility.Intelligence.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Intelligence"
-  },
-  {
-    "Key": "LegendaryAbility.Intelligence.Description",
-    "enGB": "Gain a +1 inherent bonus to Intelligence. This stacks up to a +5 bonus."
-  },
-
-  {
-    "Key": "LegendaryAbility.Wisdom.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Wisdom"
-  },
-  {
-    "Key": "LegendaryAbility.Wisdom.Description",
-    "enGB": "Gain a +1 inherent bonus to Wisdom. This stacks up to a +5 bonus."
-  },
-
-  {
-    "Key": "LegendaryAbility.Charisma.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Charisma"
-  },
-  {
-    "Key": "LegendaryAbility.Charisma.Description",
-    "enGB": "Gain a +1 inherent bonus to Charisma. This stacks up to a +5 bonus."
-  },
-  // End Legendary Ability
-
   // Start Mental Prowess
   {
     "Key": "MentalProwess.Primary.Name",
@@ -418,6 +306,6 @@
   {
     "Key": "PhysicalProwess.Con.Primary.Description",
     "enGB": "You receive a +2 enhancement bonus to Constitution. At level 12 the bonus increases to +4."
-  },
+  }
   // End Physical Prowess
 ]
