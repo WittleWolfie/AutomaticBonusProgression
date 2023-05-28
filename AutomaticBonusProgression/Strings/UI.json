@@ -127,5 +127,11 @@
     "Key": "ABP.UI.Attunement.Weapon.Slashing",
     "ProcessTemplates": false,
     "enGB": "Slashing"
+  },
+
+  {
+    "Key": "ABP.UI.Leveling.Prowess",
+    "ProcessTemplates": false,
+    "enGB": "Select Prowess"
   }
 ]
