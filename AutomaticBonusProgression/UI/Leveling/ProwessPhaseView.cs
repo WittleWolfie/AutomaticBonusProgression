@@ -180,7 +180,7 @@ namespace AutomaticBonusProgression.UI.Leveling
           __instance.DownCost.Value = string.Empty;
 
           // Add Prowess bonuses to the displayed value
-          var prowessBonus = GetProwessBonus(__instance.Stat.Value);
+          var prowessBonus = ProwessPhaseVM.GetProwessBonus(__instance.Stat.Value);
           if (prowessBonus > 0)
           {
             int modBonus = prowessBonus / 2;
@@ -193,30 +193,6 @@ namespace AutomaticBonusProgression.UI.Leveling
         {
           Logger.LogException("CharGenAbilityScoreAllocatorVM_Patch.UpdateStatDistribution", e);
         }
-      }
-
-      private static int GetProwessBonus(ModifiableValue stat)
-      {
-        var enhancement = stat.GetModifiers(ModifierDescriptor.Enhancement);
-        if (enhancement is null)
-          return 0;
-
-        switch (stat.Type)
-        {
-          case StatType.Strength:
-            return enhancement.Where(mod => mod.Source.Blueprint == Common.StrProwess).Sum(mod => mod.ModValue);
-          case StatType.Dexterity:
-            return enhancement.Where(mod => mod.Source.Blueprint == Common.DexProwess).Sum(mod => mod.ModValue);
-          case StatType.Constitution:
-            return enhancement.Where(mod => mod.Source.Blueprint == Common.ConProwess).Sum(mod => mod.ModValue);
-          case StatType.Intelligence:
-            return enhancement.Where(mod => mod.Source.Blueprint == Common.IntProwess).Sum(mod => mod.ModValue);
-          case StatType.Wisdom:
-            return enhancement.Where(mod => mod.Source.Blueprint == Common.WisProwess).Sum(mod => mod.ModValue);
-          case StatType.Charisma:
-            return enhancement.Where(mod => mod.Source.Blueprint == Common.ChaProwess).Sum(mod => mod.ModValue);
-        }
-        return 0;
       }
     }
 
@@ -273,10 +249,16 @@ namespace AutomaticBonusProgression.UI.Leveling
       MentalProwessVM?.Dispose();
     }
 
-    private StringSequentialSelectorVM GetSelectorVM(List<StatType> stats, Action<StatType> onSelect)
+    private StringSequentialSelectorVM GetSelectorVM(
+      List<StatType> stats,
+      Action<StatType> onSelect)
     {
+      var eligibleStats =
+        LevelUpController.State.NextCharacterLevel >= 15
+          ? stats.Where(type => GetProwessBonus(LevelUpController.Preview.Stats.GetStat(type)) <= 4)
+          : stats.Where(type => GetProwessBonus(LevelUpController.Preview.Stats.GetStat(type)) <= 2);
       var selections =
-        stats.Select(
+        eligibleStats.Select(
           type =>
           new StringSequentialEntity()
           {
@@ -297,6 +279,30 @@ namespace AutomaticBonusProgression.UI.Leveling
     {
       LevelUpController.RemoveAction<SelectMentalProwess>();
       LevelUpController.AddAction(new SelectMentalProwess(stat));
+    }
+
+    internal static int GetProwessBonus(ModifiableValue stat)
+    {
+      var enhancement = stat.GetModifiers(ModifierDescriptor.Enhancement);
+      if (enhancement is null)
+        return 0;
+
+      switch (stat.Type)
+      {
+        case StatType.Strength:
+          return enhancement.Where(mod => mod.Source.Blueprint == Common.StrProwess).Sum(mod => mod.ModValue);
+        case StatType.Dexterity:
+          return enhancement.Where(mod => mod.Source.Blueprint == Common.DexProwess).Sum(mod => mod.ModValue);
+        case StatType.Constitution:
+          return enhancement.Where(mod => mod.Source.Blueprint == Common.ConProwess).Sum(mod => mod.ModValue);
+        case StatType.Intelligence:
+          return enhancement.Where(mod => mod.Source.Blueprint == Common.IntProwess).Sum(mod => mod.ModValue);
+        case StatType.Wisdom:
+          return enhancement.Where(mod => mod.Source.Blueprint == Common.WisProwess).Sum(mod => mod.ModValue);
+        case StatType.Charisma:
+          return enhancement.Where(mod => mod.Source.Blueprint == Common.ChaProwess).Sum(mod => mod.ModValue);
+      }
+      return 0;
     }
 
     private static readonly List<StatType> PhysicalProwess =
