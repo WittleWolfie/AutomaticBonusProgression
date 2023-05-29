@@ -4,6 +4,7 @@ using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Common;
+using Kingmaker.UI.MVVM._VM.CharGen;
 using Kingmaker.UI.MVVM._VM.CharGen.Phases.Common;
 using Kingmaker.UnitLogic.Class.LevelUp;
 using Owlcat.Runtime.UI.MVVM;
@@ -83,14 +84,10 @@ namespace AutomaticBonusProgression.UI.Leveling
       {
         try
         {
-          var nextLevel = __instance.ViewModel.LevelUpController.State.NextCharacterLevel;
-          var isPhysicalProwessAvailable = SelectProwess.PhysicalProwessLevels.Contains(nextLevel);
-          var isMentalProwessAvailable = SelectProwess.MentalProwessLevels.Contains(nextLevel);
+          var isPhysicalProwessAvailable = IsPhysicalProwessAvailable(__instance.ViewModel.LevelUpController);
+          var isMentalProwessAvailable = IsMentalProwessAvailable(__instance.ViewModel.LevelUpController);
           if (!isPhysicalProwessAvailable && !isMentalProwessAvailable)
-          {
-            Logger.Verbose(() => $"Prowess phase does not apply at level {nextLevel}");
             return;
-          }
 
           Logger.Log($"Binding ProwessPhaseVM");
           BaseView.Bind(
@@ -100,7 +97,6 @@ namespace AutomaticBonusProgression.UI.Leveling
           // - Hook up data / VM to the selector
           // - Handle binding, make sure it's all being disposed
           // - Tweak view to get the right size & position and all that
-          // - Patch CharGenVM.NeedAbilityScoresPhase() when Prowess is needed
         }
         catch (Exception e)
         {
@@ -131,6 +127,42 @@ namespace AutomaticBonusProgression.UI.Leveling
           mentalSelector.GetComponent<SequentialSelectorPCView>());
         return view;
       }
+    }
+
+    [HarmonyPatch(typeof(CharGenVM))]
+    static class CharGenVM_Patch
+    {
+      [HarmonyPatch(nameof(CharGenVM.NeedAbilityScoresPhase)), HarmonyPostfix]
+      static void NeedAbilityScoresPhase(CharGenVM __instance, ref bool __result)
+      {
+        try
+        {
+          var needPhysicalProwess = IsPhysicalProwessAvailable(__instance.m_LevelUpController);
+          var needMentalProwess = IsMentalProwessAvailable(__instance.m_LevelUpController);
+          var needAbilityScores = __result;
+
+          // Prowess is an extension of Ability Scores Phase, so make sure it shows when needed
+          Logger.Verbose(
+            () => $"NeedAbilityScoresPhase: base::{needAbilityScores} || physical::{needPhysicalProwess} || mental::{needMentalProwess}");
+          __result = needAbilityScores || needPhysicalProwess || needMentalProwess;
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CharGenVM_Patch.NeedAbilityScoresPhase", e);
+        }
+      }
+    }
+
+    private static bool IsPhysicalProwessAvailable(LevelUpController levelUpController)
+    {
+      var level = levelUpController.State.NextCharacterLevel;
+      return SelectProwess.PhysicalProwessLevels.Contains(level);
+    }
+
+    private static bool IsMentalProwessAvailable(LevelUpController levelUpController)
+    {
+      var level = levelUpController.State.NextCharacterLevel;
+      return SelectProwess.MentalProwessLevels.Contains(level);
     }
     #endregion
   }
