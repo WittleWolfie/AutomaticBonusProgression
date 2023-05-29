@@ -2,10 +2,12 @@
 using HarmonyLib;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
 using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Common;
 using Kingmaker.UI.MVVM._VM.CharGen;
+using Kingmaker.UI.MVVM._VM.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._VM.CharGen.Phases.Common;
 using Kingmaker.UnitLogic.Class.LevelUp;
 using Owlcat.Runtime.UI.MVVM;
@@ -68,6 +70,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     #region Setup
     private static ProwessPhaseView BaseView;
 
+    // Instantiation & binding
     [HarmonyPatch(typeof(CharGenAbilityScoresDetailedPCView))]
     internal class CharGenAbilityScoresDetailedPCView_Patch
     {
@@ -96,8 +99,7 @@ namespace AutomaticBonusProgression.UI.Leveling
             return;
 
           Logger.Log($"Binding ProwessPhaseVM");
-          BaseView.Bind(
-            new(__instance.ViewModel.LevelUpController, isPhysicalProwessAvailable, isMentalProwessAvailable));
+          BaseView.Bind(new(__instance.ViewModel, isPhysicalProwessAvailable, isMentalProwessAvailable));
 
           // TODO:
           // - Handle binding, make sure it's all being disposed
@@ -134,6 +136,7 @@ namespace AutomaticBonusProgression.UI.Leveling
       }
     }
 
+    // Patch to ensure the ability scores phase is shown for levels where Prowess applies
     [HarmonyPatch(typeof(CharGenVM))]
     static class CharGenVM_Patch
     {
@@ -158,6 +161,63 @@ namespace AutomaticBonusProgression.UI.Leveling
       }
     }
 
+    // Ensures the ability score UI reflects Prowess
+    [HarmonyPatch(typeof(CharGenAbilityScoreAllocatorVM))]
+    static class CharGenAbilityScoreAllocatorVM_Patch
+    {
+      [HarmonyPatch(nameof(CharGenAbilityScoreAllocatorVM.UpdateStatDistribution)), HarmonyPostfix]
+      static void UpdateStatDistribution(CharGenAbilityScoreAllocatorVM __instance)
+      {
+        try
+        {
+          if (__instance.StatsDistribution.Available)
+            return;
+
+          // Override these so the cost text doesn't display since there are no points to spend
+          __instance.UpCost.Value = string.Empty;
+          __instance.DownCost.Value = string.Empty;
+
+          // Add Prowess bonuses to the displayed value
+          var prowessBonus = GetProwessBonus(__instance.Stat.Value);
+          if (prowessBonus > 0)
+          {
+            int modBonus = prowessBonus / 2;
+            Logger.Verbose(() => $"Applying Prowess to {__instance.Stat.Value.Type}: {prowessBonus} / +{modBonus}");
+            __instance.StatValue.Value += prowessBonus;
+            __instance.Bonus.Value += modBonus;
+          }
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CharGenAbilityScoreAllocatorVM_Patch.UpdateStatDistribution", e);
+        }
+      }
+
+      private static int GetProwessBonus(ModifiableValue stat)
+      {
+        var enhancement = stat.GetModifiers(ModifierDescriptor.Enhancement);
+        if (enhancement is null)
+          return 0;
+
+        switch (stat.Type)
+        {
+          case StatType.Strength:
+            return enhancement.Where(mod => mod.Source.Blueprint == Common.StrProwess).Sum(mod => mod.ModValue);
+          case StatType.Dexterity:
+            return enhancement.Where(mod => mod.Source.Blueprint == Common.DexProwess).Sum(mod => mod.ModValue);
+          case StatType.Constitution:
+            return enhancement.Where(mod => mod.Source.Blueprint == Common.ConProwess).Sum(mod => mod.ModValue);
+          case StatType.Intelligence:
+            return enhancement.Where(mod => mod.Source.Blueprint == Common.IntProwess).Sum(mod => mod.ModValue);
+          case StatType.Wisdom:
+            return enhancement.Where(mod => mod.Source.Blueprint == Common.WisProwess).Sum(mod => mod.ModValue);
+          case StatType.Charisma:
+            return enhancement.Where(mod => mod.Source.Blueprint == Common.ChaProwess).Sum(mod => mod.ModValue);
+        }
+        return 0;
+      }
+    }
+
     private static bool IsPhysicalProwessAvailable(LevelUpController levelUpController)
     {
       var level = levelUpController.State.NextCharacterLevel;
@@ -174,6 +234,9 @@ namespace AutomaticBonusProgression.UI.Leveling
 
   internal class ProwessPhaseVM : BaseDisposable, IViewModel
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ProwessPhaseVM));
+
+    private readonly CharGenAbilityScoresVM AbilityScoresVM;
     private readonly LevelUpController LevelUpController;
 
     internal readonly StringSequentialSelectorVM PhysicalProwessVM;
@@ -182,11 +245,12 @@ namespace AutomaticBonusProgression.UI.Leveling
     internal readonly bool IsMentalProwessAvailable;
 
     internal ProwessPhaseVM(
-      LevelUpController levelUpController,
+      CharGenAbilityScoresVM abilityScoresVM,
       bool isPhysicalProwessAvailable,
       bool isMentalProwessAvailable)
     {
-      LevelUpController = levelUpController;
+      AbilityScoresVM = abilityScoresVM;
+      LevelUpController = AbilityScoresVM.m_LevelUpController;
 
       if (isPhysicalProwessAvailable)
       {
