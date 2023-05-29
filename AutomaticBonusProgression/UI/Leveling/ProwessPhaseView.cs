@@ -94,7 +94,6 @@ namespace AutomaticBonusProgression.UI.Leveling
             new(__instance.ViewModel.LevelUpController, isPhysicalProwessAvailable, isMentalProwessAvailable));
 
           // TODO:
-          // - Hook up data / VM to the selector
           // - Handle binding, make sure it's all being disposed
           // - Tweak view to get the right size & position and all that
         }
