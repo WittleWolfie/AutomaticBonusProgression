@@ -2,6 +2,7 @@
 using HarmonyLib;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Common;
 using Kingmaker.UI.MVVM._VM.CharGen;
@@ -32,10 +33,12 @@ namespace AutomaticBonusProgression.UI.Leveling
     {
       PhysicalProwessSelector = physicalProwessSelector;
       MentalProwessSelector = mentalProwessSelector;
+      gameObject.SetActive(false);
     }
 
     public override void BindViewImplementation()
     {
+      gameObject.SetActive(true);
       if (ViewModel.IsPhysicalProwessAvailable)
       {
         PhysicalProwessSelector.Bind(ViewModel.PhysicalProwessVM);
@@ -57,7 +60,10 @@ namespace AutomaticBonusProgression.UI.Leveling
       }
     }
 
-    public override void DestroyViewImplementation() { }
+    public override void DestroyViewImplementation()
+    {
+      gameObject.SetActive(false);
+    }
 
     #region Setup
     private static ProwessPhaseView BaseView;
@@ -113,7 +119,7 @@ namespace AutomaticBonusProgression.UI.Leveling
 
         // Set up the label
         var label = obj.gameObject.ChildObject("RedLabel (1)/LabelText").GetComponent<TextMeshProUGUI>();
-        label.SetText(UITool.GetString("Leveling.Prowess"));
+        label.SetText(UIUtility.GetSaberBookFormat(UITool.GetString("Leveling.Prowess")));
 
         // Create a second selector
         var physicalSelector = obj.gameObject.ChildObject("SqeuntionalSelector");
