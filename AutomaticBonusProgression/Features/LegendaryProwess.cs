@@ -22,7 +22,13 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(LegendaryProwessDescription)
         //.SetIcon()
         .AddPrerequisiteCharacterLevel(18)
-        .AddToAllFeatures(Guids.MentalProwessAnySelection, Guids.PhysicalProwessAnySelection)
+        .AddToAllFeatures(
+          Guids.StrProwess,
+          Guids.DexProwess,
+          Guids.ConProwess,
+          Guids.IntProwess,
+          Guids.WisProwess,
+          Guids.ChaProwess)
         .Configure();
     }
   }

@@ -1,7 +1,5 @@
-﻿using AutomaticBonusProgression.Components;
-using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
@@ -12,404 +10,74 @@ namespace AutomaticBonusProgression.Features
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(PhysicalProwess));
 
-    private const string PrimaryName = "PhysicalProwess.Primary";
-    private const string PrimaryDisplayName = "PhysicalProwess.Primary.Name";
-    private const string PrimaryDescription = "PhysicalProwess.Primary.Description";
+    private const string ProwessName = "PhysicalProwess";
+    private const string ProwessDisplayName = "PhysicalProwess.Name";
+    private const string ProwessDescription = "PhysicalProwess.Description";
 
-    internal static BlueprintFeature ConfigurePrimary()
+    internal static BlueprintFeature Configure()
     {
-      Logger.Log($"Configuring PhysicalProwess (Primary)");
+      Logger.Log($"Configuring PhysicalProwess");
 
-      ConfigureStrPlus2();
-      ConfigureStrPlus4();
-      ConfigureStrPlus6();
+      ConfigureStrProwess();
+      ConfigureDexProwess();
+      ConfigureConProwess();
 
-      ConfigureDexPlus2();
-      ConfigureDexPlus4();
-      ConfigureDexPlus6();
-
-      ConfigureConPlus2();
-      ConfigureConPlus4();
-      ConfigureConPlus6();
-
-      return FeatureSelectionConfigurator.New(PrimaryName, Guids.PhysicalProwessPrimarySelection)
+      // Feature is for the UI only
+      return FeatureConfigurator.New(ProwessName, Guids.PhysicalProwess)
         .SetIsClassFeature()
-        .SetDisplayName(PrimaryDisplayName)
-        .SetDescription(PrimaryDescription)
+        .SetDisplayName(ProwessDisplayName)
+        .SetDescription(ProwessDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
-        .AddToAllFeatures(ConfigureStrPrimary(), ConfigureDexPrimary(), ConfigureConPrimary())
-        .AddHideFeatureInInspect()
         .Configure();
     }
 
-    #region Primary
-    private const string StrPrimaryName = "PhysicalProwess.Str.Primary";
-    private const string StrPrimaryDisplayName = "PhysicalProwess.Str.Primary.Name";
-    private const string StrPrimaryDescription = "PhysicalProwess.Str.Primary.Description";
+    private const string StrProwessName = "PhysicalProwess.Str";
+    private const string StrProwessDisplayName = "PhysicalProwess.Str.Name";
+    private const string StrProwessDescription = "PhysicalProwess.Str.Description";
 
-    private static BlueprintFeature ConfigureStrPrimary()
+    private static void ConfigureStrProwess()
     {
-      return ProgressionConfigurator.New(StrPrimaryName, Guids.StrPrimaryProgression)
+      FeatureConfigurator.New(StrProwessName, Guids.StrProwess)
         .SetIsClassFeature()
-        .SetDisplayName(StrPlus2DisplayName)
-        .SetDescription(StrPrimaryDescription)
-        .SetHideInCharacterSheetAndLevelUp()
+        .SetDisplayName(StrProwessDisplayName)
+        .SetDescription(StrProwessDescription)
         //.SetIcon()
-        .SetLevelEntry(level: 7, Guids.StrPlus2)
-        .SetLevelEntry(level: 12, Guids.StrPlus4)
-        .AddHideFeatureInInspect()
+        .SetRanks(3)
+        .AddStatBonus(stat: StatType.Strength, value: 2, descriptor: ModifierDescriptor.Enhancement)
         .Configure();
     }
 
-    private const string DexPrimaryName = "PhysicalProwess.Dex.Primary";
-    private const string DexPrimaryDisplayName = "PhysicalProwess.Dex.Primary.Name";
-    private const string DexPrimaryDescription = "PhysicalProwess.Dex.Primary.Description";
+    private const string DexProwessName = "PhysicalProwess.Dex";
+    private const string DexProwessDisplayName = "PhysicalProwess.Dex.Name";
+    private const string DexProwessDescription = "PhysicalProwess.Dex.Description";
 
-    private static BlueprintFeature ConfigureDexPrimary()
+    private static void ConfigureDexProwess()
     {
-      return ProgressionConfigurator.New(DexPrimaryName, Guids.DexPrimaryProgression)
+      FeatureConfigurator.New(DexProwessName, Guids.DexProwess)
         .SetIsClassFeature()
-        .SetDisplayName(DexPlus2DisplayName)
-        .SetDescription(DexPrimaryDescription)
-        .SetHideInCharacterSheetAndLevelUp()
+        .SetDisplayName(DexProwessDisplayName)
+        .SetDescription(DexProwessDescription)
         //.SetIcon()
-        .SetLevelEntry(level: 7, Guids.DexPlus2)
-        .SetLevelEntry(level: 12, Guids.DexPlus4)
-        .AddHideFeatureInInspect()
+        .SetRanks(3)
+        .AddStatBonus(stat: StatType.Dexterity, value: 2, descriptor: ModifierDescriptor.Enhancement)
         .Configure();
     }
 
-    private const string ConPrimaryName = "PhysicalProwess.Con.Primary";
-    private const string ConPrimaryDisplayName = "PhysicalProwess.Con.Primary.Name";
-    private const string ConPrimaryDescription = "PhysicalProwess.Con.Primary.Description";
+    private const string ConProwessName = "PhysicalProwess.Con";
+    private const string ConProwessDisplayName = "PhysicalProwess.Con.Name";
+    private const string ConProwessDescription = "PhysicalProwess.Con.Description";
 
-    private static BlueprintFeature ConfigureConPrimary()
+    private static void ConfigureConProwess()
     {
-      return ProgressionConfigurator.New(ConPrimaryName, Guids.ConPrimaryProgression)
+      FeatureConfigurator.New(ConProwessName, Guids.ConProwess)
         .SetIsClassFeature()
-        .SetDisplayName(ConPlus2DisplayName)
-        .SetDescription(ConPrimaryDescription)
-        .SetHideInCharacterSheetAndLevelUp()
+        .SetDisplayName(ConProwessDisplayName)
+        .SetDescription(ConProwessDescription)
         //.SetIcon()
-        .SetLevelEntry(level: 7, Guids.ConPlus2)
-        .SetLevelEntry(level: 12, Guids.ConPlus4)
-        .AddHideFeatureInInspect()
+        .SetRanks(3)
+        .AddStatBonus(stat: StatType.Constitution, value: 2, descriptor: ModifierDescriptor.Enhancement)
         .Configure();
     }
-    #endregion
-
-    private const string SecondaryName = "PhysicalProwess.Secondary";
-    private const string SecondaryDescription = "PhysicalProwess.Secondary.Description";
-
-    internal static BlueprintFeature ConfigureSecondary()
-    {
-      Logger.Log($"Configuring PhysicalProwess (Secondary)");
-
-      return FeatureSelectionConfigurator.New(SecondaryName, Guids.PhysicalProwessSecondarySelection)
-        .SetIsClassFeature()
-        .SetDisplayName(PrimaryDisplayName)
-        .SetDescription(SecondaryDescription)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddToAllFeatures(ConfigureStrSecondary(), ConfigureDexSecondary(), ConfigureConSecondary())
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    #region Secondary
-    private const string StrSecondaryName = "PhysicalProwess.Str.Secondary";
-    private static BlueprintFeature ConfigureStrSecondary()
-    {
-      return FeatureConfigurator.New(StrSecondaryName, Guids.StrSecondaryProgression)
-        .SetIsClassFeature()
-        .SetDisplayName(StrPlus2DisplayName)
-        .SetDescription(StrPlus2Description)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddPrerequisiteNoFeature(Guids.StrPrimaryProgression)
-        .AddFacts(new() { Guids.StrPlus2 })
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string DexSecondaryName = "PhysicalProwess.Dex.Secondary";
-    private static BlueprintFeature ConfigureDexSecondary()
-    {
-      return FeatureConfigurator.New(DexSecondaryName, Guids.DexSecondaryProgression)
-        .SetIsClassFeature()
-        .SetDisplayName(DexPlus2DisplayName)
-        .SetDescription(DexPlus2Description)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddPrerequisiteNoFeature(Guids.DexPrimaryProgression)
-        .AddFacts(new() { Guids.DexPlus2 })
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string ConSecondaryName = "PhysicalProwess.Con.Secondary";
-    private static BlueprintFeature ConfigureConSecondary()
-    {
-      return FeatureConfigurator.New(ConSecondaryName, Guids.ConSecondaryProgression)
-        .SetIsClassFeature()
-        .SetDisplayName(ConPlus2DisplayName)
-        .SetDescription(ConPlus2Description)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddPrerequisiteNoFeature(Guids.ConPrimaryProgression)
-        .AddFacts(new() { Guids.ConPlus2 })
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-    #endregion
-
-    private const string TertiaryName = "PhysicalProwess.Tertiary";
-    private const string TertiaryDescription = "PhysicalProwess.Tertiary.Description";
-
-    internal static BlueprintFeature ConfigureTertiary()
-    {
-      Logger.Log($"Configuring PhysicalProwess (Tertiary)");
-
-      return FeatureSelectionConfigurator.New(TertiaryName, Guids.PhysicalProwessTertiarySelection)
-        .SetIsClassFeature()
-        .SetDisplayName(PrimaryDisplayName)
-        .SetDescription(TertiaryDescription)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddToAllFeatures(ConfigureStrTertiary(), ConfigureDexTertiary(), ConfigureConTertiary())
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    #region Tertiary
-    private const string StrTertiaryName = "PhysicalProwess.Str.Tertiary";
-    private static BlueprintFeature ConfigureStrTertiary()
-    {
-      return FeatureConfigurator.New(StrTertiaryName, Guids.StrTertiaryProgression)
-        .SetIsClassFeature()
-        .SetDisplayName(StrPlus2DisplayName)
-        .SetDescription(StrPlus2Description)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddPrerequisiteNoFeature(Guids.StrPrimaryProgression)
-        .AddPrerequisiteNoFeature(Guids.StrSecondaryProgression)
-        .AddFacts(new() { Guids.StrPlus2 })
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string DexTertiaryName = "PhysicalProwess.Dex.Tertiary";
-    private static BlueprintFeature ConfigureDexTertiary()
-    {
-      return FeatureConfigurator.New(DexTertiaryName, Guids.DexTertiaryProgression)
-        .SetIsClassFeature()
-        .SetDisplayName(DexPlus2DisplayName)
-        .SetDescription(DexPlus2Description)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddPrerequisiteNoFeature(Guids.DexPrimaryProgression)
-        .AddPrerequisiteNoFeature(Guids.DexSecondaryProgression)
-        .AddFacts(new() { Guids.DexPlus2 })
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string ConTertiaryName = "PhysicalProwess.Con.Tertiary";
-    private static BlueprintFeature ConfigureConTertiary()
-    {
-      return FeatureConfigurator.New(ConTertiaryName, Guids.ConTertiaryProgression)
-        .SetIsClassFeature()
-        .SetDisplayName(ConPlus2DisplayName)
-        .SetDescription(ConPlus2Description)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddPrerequisiteNoFeature(Guids.ConPrimaryProgression)
-        .AddPrerequisiteNoFeature(Guids.ConSecondaryProgression)
-        .AddFacts(new() { Guids.ConPlus2 })
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-    #endregion
-
-    private const string AnyName = "PhysicalProwess.Any";
-    private const string AnyDescription = "PhysicalProwess.Any.Description";
-
-    internal static BlueprintFeature ConfigureAny()
-    {
-      Logger.Log($"Configuring PhysicalProwess (Select Any)");
-
-      return FeatureSelectionConfigurator.New(AnyName, Guids.PhysicalProwessAnySelection)
-        .SetIsClassFeature()
-        .SetDisplayName(PrimaryDisplayName)
-        .SetDescription(AnyDescription)
-        .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
-        .AddToAllFeatures(Guids.StrPlus4, Guids.StrPlus6, Guids.DexPlus4, Guids.DexPlus6, Guids.ConPlus4, Guids.ConPlus6)
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    #region Str Bonuses
-    private const string StrPlus2Name = "PhysicalProwess.Str.Plus2";
-    private const string StrPlus2DisplayName = "PhysicalProwess.Str.Plus2.Name";
-    private const string StrPlus2Description = "PhysicalProwess.Str.Plus2.Description";
-
-    private static void ConfigureStrPlus2()
-    {
-      FeatureConfigurator.New(StrPlus2Name, Guids.StrPlus2)
-        .SetIsClassFeature()
-        .SetDisplayName(StrPlus2DisplayName)
-        .SetDescription(StrPlus2Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Strength, value: 2, ModifierDescriptor.Enhancement))
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string StrPlus4Name = "PhysicalProwess.Str.Plus4";
-    private const string StrPlus4DisplayName = "PhysicalProwess.Str.Plus4.Name";
-    private const string StrPlus4Description = "PhysicalProwess.Str.Plus4.Description";
-
-    private static void ConfigureStrPlus4()
-    {
-      FeatureConfigurator.New(StrPlus4Name, Guids.StrPlus4)
-        .SetIsClassFeature()
-        .SetDisplayName(StrPlus4DisplayName)
-        .SetDescription(StrPlus4Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Strength, value: 4, ModifierDescriptor.Enhancement))
-        .AddPrerequisiteFeature(Guids.StrPlus2)
-        .AddRemoveFeatureOnApply(Guids.StrPlus2)
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string StrPlus6Name = "PhysicalProwess.Str.Plus6";
-    private const string StrPlus6DisplayName = "PhysicalProwess.Str.Plus6.Name";
-    private const string StrPlus6Description = "PhysicalProwess.Str.Plus6.Description";
-
-    private static void ConfigureStrPlus6()
-    {
-      FeatureConfigurator.New(StrPlus6Name, Guids.StrPlus6)
-        .SetIsClassFeature()
-        .SetDisplayName(StrPlus6DisplayName)
-        .SetDescription(StrPlus6Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Strength, value: 6, ModifierDescriptor.Enhancement))
-        .AddPrerequisiteFeature(Guids.StrPlus4)
-        .AddRemoveFeatureOnApply(Guids.StrPlus4)
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-    #endregion
-
-    #region Dex Bonuses
-    private const string DexPlus2Name = "PhysicalProwess.Dex.Plus2";
-    private const string DexPlus2DisplayName = "PhysicalProwess.Dex.Plus2.Name";
-    private const string DexPlus2Description = "PhysicalProwess.Dex.Plus2.Description";
-
-    private static void ConfigureDexPlus2()
-    {
-      FeatureConfigurator.New(DexPlus2Name, Guids.DexPlus2)
-        .SetIsClassFeature()
-        .SetDisplayName(DexPlus2DisplayName)
-        .SetDescription(DexPlus2Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Dexterity, value: 2, ModifierDescriptor.Enhancement))
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string DexPlus4Name = "PhysicalProwess.Dex.Plus4";
-    private const string DexPlus4DisplayName = "PhysicalProwess.Dex.Plus4.Name";
-    private const string DexPlus4Description = "PhysicalProwess.Dex.Plus4.Description";
-
-    private static void ConfigureDexPlus4()
-    {
-      FeatureConfigurator.New(DexPlus4Name, Guids.DexPlus4)
-        .SetIsClassFeature()
-        .SetDisplayName(DexPlus4DisplayName)
-        .SetDescription(DexPlus4Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Dexterity, value: 4, ModifierDescriptor.Enhancement))
-        .AddPrerequisiteFeature(Guids.DexPlus2)
-        .AddRemoveFeatureOnApply(Guids.DexPlus2)
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string DexPlus6Name = "PhysicalProwess.Dex.Plus6";
-    private const string DexPlus6DisplayName = "PhysicalProwess.Dex.Plus6.Name";
-    private const string DexPlus6Description = "PhysicalProwess.Dex.Plus6.Description";
-
-    private static void ConfigureDexPlus6()
-    {
-      FeatureConfigurator.New(DexPlus6Name, Guids.DexPlus6)
-        .SetIsClassFeature()
-        .SetDisplayName(DexPlus6DisplayName)
-        .SetDescription(DexPlus6Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Dexterity, value: 6, ModifierDescriptor.Enhancement))
-        .AddPrerequisiteFeature(Guids.DexPlus4)
-        .AddRemoveFeatureOnApply(Guids.DexPlus4)
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-    #endregion
-
-    #region Con Bonuses
-    private const string ConPlus2Name = "PhysicalProwess.Con.Plus2";
-    private const string ConPlus2DisplayName = "PhysicalProwess.Con.Plus2.Name";
-    private const string ConPlus2Description = "PhysicalProwess.Con.Plus2.Description";
-
-    private static void ConfigureConPlus2()
-    {
-      FeatureConfigurator.New(ConPlus2Name, Guids.ConPlus2)
-        .SetIsClassFeature()
-        .SetDisplayName(ConPlus2DisplayName)
-        .SetDescription(ConPlus2Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Constitution, value: 2, ModifierDescriptor.Enhancement))
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string ConPlus4Name = "PhysicalProwess.Con.Plus4";
-    private const string ConPlus4DisplayName = "PhysicalProwess.Con.Plus4.Name";
-    private const string ConPlus4Description = "PhysicalProwess.Con.Plus4.Description";
-
-    private static void ConfigureConPlus4()
-    {
-      FeatureConfigurator.New(ConPlus4Name, Guids.ConPlus4)
-        .SetIsClassFeature()
-        .SetDisplayName(ConPlus4DisplayName)
-        .SetDescription(ConPlus4Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Constitution, value: 4, ModifierDescriptor.Enhancement))
-        .AddPrerequisiteFeature(Guids.ConPlus2)
-        .AddRemoveFeatureOnApply(Guids.ConPlus2)
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-
-    private const string ConPlus6Name = "PhysicalProwess.Con.Plus6";
-    private const string ConPlus6DisplayName = "PhysicalProwess.Con.Plus6.Name";
-    private const string ConPlus6Description = "PhysicalProwess.Con.Plus6.Description";
-
-    private static void ConfigureConPlus6()
-    {
-      FeatureConfigurator.New(ConPlus6Name, Guids.ConPlus6)
-        .SetIsClassFeature()
-        .SetDisplayName(ConPlus6DisplayName)
-        .SetDescription(ConPlus6Description)
-        //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Constitution, value: 6, ModifierDescriptor.Enhancement))
-        .AddPrerequisiteFeature(Guids.ConPlus4)
-        .AddRemoveFeatureOnApply(Guids.ConPlus4)
-        .AddHideFeatureInInspect()
-        .Configure();
-    }
-    #endregion
   }
 }

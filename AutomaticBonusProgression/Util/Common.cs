@@ -156,7 +156,7 @@ namespace AutomaticBonusProgression.Util
     {
       get
       {
-        _strProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.StrPlus2);
+        _strProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.StrProwess);
         return _strProwess;
       }
     }
@@ -165,7 +165,7 @@ namespace AutomaticBonusProgression.Util
     {
       get
       {
-        _dexProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.DexPlus2);
+        _dexProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.DexProwess);
         return _dexProwess;
       }
     }
@@ -174,7 +174,7 @@ namespace AutomaticBonusProgression.Util
     {
       get
       {
-        _conProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.ConPlus2);
+        _conProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.ConProwess);
         return _conProwess;
       }
     }
@@ -193,7 +193,7 @@ namespace AutomaticBonusProgression.Util
     {
       get
       {
-        _wisProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.WisPlus2);
+        _wisProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.WisProwess);
         return _wisProwess;
       }
     }
@@ -202,7 +202,7 @@ namespace AutomaticBonusProgression.Util
     {
       get
       {
-        _chaProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.ChaPlus2);
+        _chaProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.ChaProwess);
         return _chaProwess;
       }
     }
