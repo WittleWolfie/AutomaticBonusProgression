@@ -184,7 +184,7 @@ namespace AutomaticBonusProgression.Util
     {
       get
       {
-        _intProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.IntPlus2);
+        _intProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.IntProwess);
         return _intProwess;
       }
     }

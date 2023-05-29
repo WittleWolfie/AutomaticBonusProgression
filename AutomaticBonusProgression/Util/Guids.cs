@@ -29,7 +29,7 @@
     internal const string ResistanceBase = "b67b1c21-55b1-4a2c-a5d1-49b8bff86b2d";
 
     #region Mental Prowess
-    internal const string IntPlus2 = "ea260889-0874-45aa-9e79-4351dfc626e8";
+    internal const string IntProwess = "ea260889-0874-45aa-9e79-4351dfc626e8";
     internal const string IntPlus4 = "2319a7bb-7c7b-4f50-8693-4124a7bc50cb";
     internal const string IntPlus6 = "f4da9b75-b1c8-4f70-9f28-e3b70d58927f";
 
@@ -41,7 +41,7 @@
     internal const string ChaPlus4 = "cfed1413-c108-4b79-9aea-23202f2e18f2";
     internal const string ChaPlus6 = "e5e9e4dc-c772-46b2-9473-3786b92d837f";
 
-    internal const string MentalProwessPrimarySelection = "e7df3b10-578f-439d-8976-657af9b68965";
+    internal const string MentalProwess = "e7df3b10-578f-439d-8976-657af9b68965";
     internal const string IntPrimaryProgression = "42918774-3271-48be-82d4-feb61fd6ae71";
     internal const string WisPrimaryProgression = "23f442fa-6dd6-43d9-84d3-3892122c19a3";
     internal const string ChaPrimaryProgression = "2554fcf0-4fda-438d-9e1d-020d8f083f86";

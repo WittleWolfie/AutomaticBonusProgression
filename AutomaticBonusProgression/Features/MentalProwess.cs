@@ -14,15 +14,15 @@ namespace AutomaticBonusProgression.Features
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(MentalProwess));
 
-    private const string PrimaryName = "MentalProwess.Primary";
-    private const string PrimaryDisplayName = "MentalProwess.Primary.Name";
-    private const string PrimaryDescription = "MentalProwess.Primary.Description";
+    private const string ProwessName = "MentalProwess";
+    private const string ProwessDisplayName = "MentalProwess.Name";
+    private const string ProwessDescription = "MentalProwess.Description";
 
-    internal static BlueprintFeature ConfigurePrimary()
+    internal static BlueprintFeature Configure()
     {
-      Logger.Log($"Configuring MentalProwess (Primary)");
+      Logger.Log($"Configuring MentalProwess");
 
-      ConfigureIntPlus2();
+      ConfigureIntProwess();
       ConfigureIntPlus4();
       ConfigureIntPlus6();
 
@@ -34,14 +34,13 @@ namespace AutomaticBonusProgression.Features
       ConfigureChaPlus4();
       ConfigureChaPlus6();
 
-      return FeatureSelectionConfigurator.New(PrimaryName, Guids.MentalProwessPrimarySelection)
+      // TODO: Make a feature.. but right now it breaks all muh saves :(
+      return FeatureSelectionConfigurator.New(ProwessName, Guids.MentalProwess)
         .SetIsClassFeature()
-        .SetDisplayName(PrimaryDisplayName)
-        .SetDescription(PrimaryDescription)
+        .SetDisplayName(ProwessDisplayName)
+        .SetDescription(ProwessDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
-        .AddToAllFeatures(ConfigureIntPrimary(), ConfigureWisPrimary(), ConfigureChaPrimary())
-        .AddHideFeatureInInspect()
         .Configure();
     }
 
@@ -54,11 +53,11 @@ namespace AutomaticBonusProgression.Features
     {
       return ProgressionConfigurator.New(IntPrimaryName, Guids.IntPrimaryProgression)
         .SetIsClassFeature()
-        .SetDisplayName(IntPlus2DisplayName)
+        .SetDisplayName(IntProwessDisplayName)
         .SetDescription(IntPrimaryDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
-        .SetLevelEntry(level: 6, Guids.IntPlus2)
+        .SetLevelEntry(level: 6, Guids.IntProwess)
         .SetLevelEntry(level: 11, Guids.IntPlus4)
         .AddHideFeatureInInspect()
         .Configure();
@@ -110,7 +109,7 @@ namespace AutomaticBonusProgression.Features
 
       return FeatureSelectionConfigurator.New(SecondaryName, Guids.MentalProwessSecondarySelection)
         .SetIsClassFeature()
-        .SetDisplayName(PrimaryDisplayName)
+        .SetDisplayName(ProwessDisplayName)
         .SetDescription(SecondaryDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
@@ -126,12 +125,12 @@ namespace AutomaticBonusProgression.Features
     {
       return FeatureConfigurator.New(IntSecondaryName, Guids.IntSecondaryProgression)
         .SetIsClassFeature()
-        .SetDisplayName(IntPlus2DisplayName)
-        .SetDescription(IntPlus2Description)
+        .SetDisplayName(IntProwessDisplayName)
+        .SetDescription(IntProwessDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
         .AddPrerequisiteNoFeature(Guids.IntPrimaryProgression)
-        .AddFacts(new() { Guids.IntPlus2 })
+        .AddFacts(new() { Guids.IntProwess })
         .Configure();
     }
 
@@ -175,7 +174,7 @@ namespace AutomaticBonusProgression.Features
 
       return FeatureSelectionConfigurator.New(TertiaryName, Guids.MentalProwessTertiarySelection)
         .SetIsClassFeature()
-        .SetDisplayName(PrimaryDisplayName)
+        .SetDisplayName(ProwessDisplayName)
         .SetDescription(TertiaryDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
@@ -190,13 +189,13 @@ namespace AutomaticBonusProgression.Features
     {
       return FeatureConfigurator.New(IntTertiaryName, Guids.IntTertiaryProgression)
         .SetIsClassFeature()
-        .SetDisplayName(IntPlus2DisplayName)
-        .SetDescription(IntPlus2Description)
+        .SetDisplayName(IntProwessDisplayName)
+        .SetDescription(IntProwessDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
         .AddPrerequisiteNoFeature(Guids.IntPrimaryProgression)
         .AddPrerequisiteNoFeature(Guids.IntSecondaryProgression)
-        .AddFacts(new() { Guids.IntPlus2 })
+        .AddFacts(new() { Guids.IntProwess })
         .AddHideFeatureInInspect()
         .Configure();
     }
@@ -243,7 +242,7 @@ namespace AutomaticBonusProgression.Features
 
       return FeatureSelectionConfigurator.New(AnyName, Guids.MentalProwessAnySelection)
         .SetIsClassFeature()
-        .SetDisplayName(PrimaryDisplayName)
+        .SetDisplayName(ProwessDisplayName)
         .SetDescription(AnyDescription)
         .SetHideInCharacterSheetAndLevelUp()
         //.SetIcon()
@@ -253,26 +252,24 @@ namespace AutomaticBonusProgression.Features
     }
 
     #region Int Bonuses
-    private const string IntPlus2Name = "MentalProwess.Int.Plus2";
-    private const string IntPlus2DisplayName = "MentalProwess.Int.Plus2.Name";
-    private const string IntPlus2Description = "MentalProwess.Int.Plus2.Description";
+    private const string IntProwess = "MentalProwess.Int";
+    private const string IntProwessDisplayName = "MentalProwess.Int.Name";
+    private const string IntProwessDescription = "MentalProwess.Int.Description";
 
-    private static void ConfigureIntPlus2()
+    private static void ConfigureIntProwess()
     {
-      FeatureConfigurator.New(IntPlus2Name, Guids.IntPlus2)
+      FeatureConfigurator.New(IntProwess, Guids.IntProwess)
         .SetIsClassFeature()
-        .SetDisplayName(IntPlus2DisplayName)
-        .SetDescription(IntPlus2Description)
+        .SetDisplayName(IntProwessDisplayName)
+        .SetDescription(IntProwessDescription)
         //.SetIcon()
-        .AddComponent(new AddStatBonusABP(StatType.Intelligence, value: 2, ModifierDescriptor.Enhancement))
-        .AddHideFeatureInInspect()
+        .SetRanks(3)
+        .AddStatBonus(stat: StatType.Intelligence, value: 2, descriptor: ModifierDescriptor.Enhancement)
         .Configure();
     }
-
     private const string IntPlus4Name = "MentalProwess.Int.Plus4";
     private const string IntPlus4DisplayName = "MentalProwess.Int.Plus4.Name";
     private const string IntPlus4Description = "MentalProwess.Int.Plus4.Description";
-
     private static void ConfigureIntPlus4()
     {
       FeatureConfigurator.New(IntPlus4Name, Guids.IntPlus4)
@@ -281,16 +278,14 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(IntPlus4Description)
         //.SetIcon()
         .AddComponent(new AddStatBonusABP(StatType.Intelligence, value: 4, ModifierDescriptor.Enhancement))
-        .AddPrerequisiteFeature(Guids.IntPlus2)
-        .AddRemoveFeatureOnApply(Guids.IntPlus2)
+        //.AddPrerequisiteFeature(Guids.IntPlus2)
+        //.AddRemoveFeatureOnApply(Guids.IntPlus2)
         .AddHideFeatureInInspect()
         .Configure();
     }
-
     private const string IntPlus6Name = "MentalProwess.Int.Plus6";
     private const string IntPlus6DisplayName = "MentalProwess.Int.Plus6.Name";
     private const string IntPlus6Description = "MentalProwess.Int.Plus6.Description";
-
     private static void ConfigureIntPlus6()
     {
       FeatureConfigurator.New(IntPlus6Name, Guids.IntPlus6)

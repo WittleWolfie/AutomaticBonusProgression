@@ -71,13 +71,13 @@
 
   // Start Mental Prowess
   {
-    "Key": "MentalProwess.Primary.Name",
+    "Key": "MentalProwess.Name",
     "ProcessTemplates": false,
     "enGB": "Mental Prowess"
   },
   {
-    "Key": "MentalProwess.Primary.Description",
-    "enGB": "Select Intelligence, Wisdom, or Charisma. You receive a +2 enhancement bonus to the selected stat. At level 11 the bonus increases to +4."
+    "Key": "MentalProwess.Description",
+    "enGB": "Select Intelligence, Wisdom, or Charisma. You receive a +2 enhancement bonus to the selected stat, to a maximum of +4. At level 15 the maximum increases to +6."
   },
   {
     "Key": "MentalProwess.Secondary.Description",
@@ -111,12 +111,12 @@
     "enGB": "You receive a +4 enhancement bonus to Intelligence."
   },
   {
-    "Key": "MentalProwess.Int.Plus2.Name",
+    "Key": "MentalProwess.Int.Name",
     "ProcessTemplates": false,
-    "enGB": "Enhanced Intellect"
+    "enGB": "Intellectual Prowess"
   },
   {
-    "Key": "MentalProwess.Int.Plus2.Description",
+    "Key": "MentalProwess.Int.Description",
     "enGB": "You receive a +2 enhancement bonus to Intelligence."
   },
   {

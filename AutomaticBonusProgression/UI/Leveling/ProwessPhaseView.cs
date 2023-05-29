@@ -96,13 +96,15 @@ namespace AutomaticBonusProgression.UI.Leveling
           var isPhysicalProwessAvailable = IsPhysicalProwessAvailable(__instance.ViewModel.LevelUpController);
           var isMentalProwessAvailable = IsMentalProwessAvailable(__instance.ViewModel.LevelUpController);
           if (!isPhysicalProwessAvailable && !isMentalProwessAvailable)
+          {
+            BaseView?.gameObject?.SetActive(false);
             return;
+          }
 
           Logger.Log($"Binding ProwessPhaseVM");
           BaseView.Bind(new(__instance.ViewModel, isPhysicalProwessAvailable, isMentalProwessAvailable));
 
           // TODO:
-          // - Handle binding, make sure it's all being disposed
           // - Tweak view to get the right size & position and all that
         }
         catch (Exception e)
