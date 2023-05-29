@@ -150,6 +150,65 @@ namespace AutomaticBonusProgression.Util
       }
     }
 
+    #region Prowess
+    private static BlueprintFeature _strProwess;
+    internal static BlueprintFeature StrProwess
+    {
+      get
+      {
+        _strProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.StrPlus2);
+        return _strProwess;
+      }
+    }
+    private static BlueprintFeature _dexProwess;
+    internal static BlueprintFeature DexProwess
+    {
+      get
+      {
+        _dexProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.DexPlus2);
+        return _dexProwess;
+      }
+    }
+    private static BlueprintFeature _conProwess;
+    internal static BlueprintFeature ConProwess
+    {
+      get
+      {
+        _conProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.ConPlus2);
+        return _conProwess;
+      }
+    }
+
+    private static BlueprintFeature _intProwess;
+    internal static BlueprintFeature IntProwess
+    {
+      get
+      {
+        _intProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.IntPlus2);
+        return _intProwess;
+      }
+    }
+    private static BlueprintFeature _wisProwess;
+    internal static BlueprintFeature WisProwess
+    {
+      get
+      {
+        _wisProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.WisPlus2);
+        return _wisProwess;
+      }
+    }
+    private static BlueprintFeature _chaProwess;
+    internal static BlueprintFeature ChaProwess
+    {
+      get
+      {
+        _chaProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.ChaPlus2);
+        return _chaProwess;
+      }
+    }
+    #endregion
+
+    #region Legendary
     private static BlueprintFeature _legendaryGifts;
     internal static BlueprintFeature LegendaryGifts
     {
@@ -233,6 +292,7 @@ namespace AutomaticBonusProgression.Util
         return _legendaryShieldResource;
       }
     }
+    #endregion
     #endregion
 
     internal static bool IsReplacedByABP(StatType stat, ModifierDescriptor descriptor)

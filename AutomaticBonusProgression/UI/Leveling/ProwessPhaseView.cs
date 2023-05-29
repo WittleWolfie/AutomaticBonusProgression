@@ -1,16 +1,17 @@
-﻿using AutomaticBonusProgression.Features;
-using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Util;
 using HarmonyLib;
-using Kingmaker.UI.MVVM._PCView.CharGen.Phases;
+using Kingmaker.Blueprints.Root;
+using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
-using Kingmaker.UI.MVVM._VM.CharGen.Phases.AbilityScores;
+using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Common;
+using Kingmaker.UI.MVVM._VM.CharGen.Phases.Common;
+using Kingmaker.UnitLogic.Class.LevelUp;
 using Owlcat.Runtime.UI.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMPro;
+using UniRx;
 using UnityEngine;
 
 namespace AutomaticBonusProgression.UI.Leveling
@@ -22,20 +23,40 @@ namespace AutomaticBonusProgression.UI.Leveling
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ProwessPhaseView));
 
-    internal void Initialize()
-    {
+    private SequentialSelectorPCView PhysicalProwessSelector;
+    private SequentialSelectorPCView MentalProwessSelector;
 
+    internal void Initialize(
+      SequentialSelectorPCView physicalProwessSelector, SequentialSelectorPCView mentalProwessSelector)
+    {
+      PhysicalProwessSelector = physicalProwessSelector;
+      MentalProwessSelector = mentalProwessSelector;
     }
 
     public override void BindViewImplementation()
     {
-      throw new NotImplementedException();
+      if (ViewModel.IsPhysicalProwessAvailable)
+      {
+        PhysicalProwessSelector.Bind(ViewModel.PhysicalProwessVM);
+        PhysicalProwessSelector.gameObject.SetActive(true);
+      }
+      else
+      {
+        PhysicalProwessSelector.gameObject.SetActive(false);
+      }
+
+      if (ViewModel.IsMentalProwessAvailable)
+      {
+        MentalProwessSelector.Bind(ViewModel.MentalProwessVM);
+        MentalProwessSelector.gameObject.SetActive(true);
+      }
+      else
+      {
+        MentalProwessSelector.gameObject.SetActive(false);
+      }
     }
 
-    public override void DestroyViewImplementation()
-    {
-      throw new NotImplementedException();
-    }
+    public override void DestroyViewImplementation() { }
 
     #region Setup
     private static ProwessPhaseView BaseView;
@@ -62,7 +83,19 @@ namespace AutomaticBonusProgression.UI.Leveling
       {
         try
         {
+          var nextLevel = __instance.ViewModel.LevelUpController.State.NextCharacterLevel;
+          var isPhysicalProwessAvailable = SelectProwess.PhysicalProwessLevels.Contains(nextLevel);
+          var isMentalProwessAvailable = SelectProwess.MentalProwessLevels.Contains(nextLevel);
+          if (!isPhysicalProwessAvailable && !isMentalProwessAvailable)
+          {
+            Logger.Verbose(() => $"Prowess phase does not apply at level {nextLevel}");
+            return;
+          }
+
           Logger.Log($"Binding ProwessPhaseVM");
+          BaseView.Bind(
+            new(__instance.ViewModel.LevelUpController, isPhysicalProwessAvailable, isMentalProwessAvailable));
+
           // TODO:
           // - Hook up data / VM to the selector
           // - Handle binding, make sure it's all being disposed
@@ -88,11 +121,14 @@ namespace AutomaticBonusProgression.UI.Leveling
         label.SetText(UITool.GetString("Leveling.Prowess"));
 
         // Create a second selector
-        var additionalSelector = GameObject.Instantiate(obj.gameObject.ChildObject("SqeuntionalSelector"));
-        additionalSelector.transform.AddTo(obj.transform);
+        var physicalSelector = obj.gameObject.ChildObject("SqeuntionalSelector");
+        var mentalSelector = GameObject.Instantiate(physicalSelector);
+        mentalSelector.transform.AddTo(obj.transform);
 
         var view = obj.AddComponent<ProwessPhaseView>();
-        view.Initialize();
+        view.Initialize(
+          physicalSelector.GetComponent<SequentialSelectorPCView>(),
+          mentalSelector.GetComponent<SequentialSelectorPCView>());
         return view;
       }
     }
@@ -101,9 +137,78 @@ namespace AutomaticBonusProgression.UI.Leveling
 
   internal class ProwessPhaseVM : BaseDisposable, IViewModel
   {
+    private readonly LevelUpController LevelUpController;
+
+    internal readonly StringSequentialSelectorVM PhysicalProwessVM;
+    internal readonly StringSequentialSelectorVM MentalProwessVM;
+    internal readonly bool IsPhysicalProwessAvailable;
+    internal readonly bool IsMentalProwessAvailable;
+
+    internal ProwessPhaseVM(
+      LevelUpController levelUpController,
+      bool isPhysicalProwessAvailable,
+      bool isMentalProwessAvailable)
+    {
+      LevelUpController = levelUpController;
+
+      if (isPhysicalProwessAvailable)
+      {
+        IsPhysicalProwessAvailable = true;
+        PhysicalProwessVM = GetSelectorVM(PhysicalProwess, SelectPhysicalProwess);
+      }
+
+      if (isMentalProwessAvailable)
+      {
+        IsMentalProwessAvailable = true;
+        MentalProwessVM = GetSelectorVM(MentalProwess, SelectMentalProwess);
+      }
+    }
+
     public override void DisposeImplementation()
     {
-      throw new NotImplementedException();
+      PhysicalProwessVM?.Dispose();
+      MentalProwessVM?.Dispose();
     }
+
+    private StringSequentialSelectorVM GetSelectorVM(List<StatType> stats, Action<StatType> onSelect)
+    {
+      var selections =
+        stats.Select(
+          type =>
+          new StringSequentialEntity()
+          {
+            Title = LocalizedTexts.Instance.Stats.GetText(type),
+            Setter = new(() => onSelect(type)),
+            Tooltip = LevelUpController.Preview.Stats.GetStat(type)
+          });
+      return new(selections.ToList());
+    }
+
+    private void SelectPhysicalProwess(StatType stat)
+    {
+      LevelUpController.RemoveAction<SelectPhysicalProwess>();
+      LevelUpController.AddAction(new SelectPhysicalProwess(stat));
+    }
+
+    private void SelectMentalProwess(StatType stat)
+    {
+      LevelUpController.RemoveAction<SelectMentalProwess>();
+      LevelUpController.AddAction(new SelectMentalProwess(stat));
+    }
+
+    private static readonly List<StatType> PhysicalProwess =
+      new()
+      {
+        StatType.Strength,
+        StatType.Dexterity,
+        StatType.Constitution
+      };
+    private static readonly List<StatType> MentalProwess =
+      new()
+      {
+        StatType.Intelligence,
+        StatType.Wisdom,
+        StatType.Charisma
+      };
   }
 }
