@@ -133,5 +133,11 @@
     "Key": "ABP.UI.Leveling.Prowess",
     "ProcessTemplates": false,
     "enGB": "Select Prowess"
+  },
+
+  {
+    "Key": "ABP.UI.Leveling.Gifts",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Gifts"
   }
 ]
