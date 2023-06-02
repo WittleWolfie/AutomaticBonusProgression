@@ -103,9 +103,6 @@ namespace AutomaticBonusProgression.UI.Leveling
 
           Logger.Log($"Binding ProwessPhaseVM");
           BaseView.Bind(new(__instance.ViewModel, isPhysicalProwessAvailable, isMentalProwessAvailable));
-
-          // TODO:
-          // - Tweak view to get the right size & position and all that
         }
         catch (Exception e)
         {
@@ -129,6 +126,10 @@ namespace AutomaticBonusProgression.UI.Leveling
         var physicalSelector = obj.gameObject.ChildObject("SqeuntionalSelector");
         var mentalSelector = GameObject.Instantiate(physicalSelector);
         mentalSelector.transform.AddTo(obj.transform);
+
+        // Get rid of the counters which cause issues with size when both are displayed
+        physicalSelector.DestroyChildren("MainContainer/Counter");
+        mentalSelector.DestroyChildren("MainContainer/Counter");
 
         var view = obj.AddComponent<ProwessPhaseView>();
         view.Initialize(
