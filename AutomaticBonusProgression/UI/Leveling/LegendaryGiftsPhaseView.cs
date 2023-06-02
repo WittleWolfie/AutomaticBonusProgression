@@ -75,7 +75,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     [HarmonyPatch(typeof(CharGenVM))]
     static class CharGenVM_Patch
     {
-      [HarmonyPatch(nameof(CharGenVM.UpdateAllPhases)), HarmonyPostfix]
+      [HarmonyPatch(nameof(CharGenVM.UpdateAllPhases)), HarmonyPrefix]
       static void UpdateAllPhases(CharGenVM __instance)
       {
         try
@@ -151,7 +151,7 @@ namespace AutomaticBonusProgression.UI.Leveling
 
   internal class LegendaryGiftsPhaseVM : CharGenPhaseBaseVM
   {
-    public override int OrderPriority => ((int)ChargenPhasePriority.Skills);
+    public override int OrderPriority => GetBaseOrderPriority(ChargenPhasePriority.Skills);
 
     internal ReactiveProperty<int> AvailablePoints = new();
 
