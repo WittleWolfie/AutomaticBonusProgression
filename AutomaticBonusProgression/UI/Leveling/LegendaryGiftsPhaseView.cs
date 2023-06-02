@@ -172,6 +172,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     {
       // Copy the ability scores view to start since it has the ability points section.
       var abilityScoresView = GameObject.Instantiate(source);
+      abilityScoresView.Initialize();
       var obj = abilityScoresView.gameObject;
 
       // Don't need the racial bonus UI
@@ -184,8 +185,10 @@ namespace AutomaticBonusProgression.UI.Leveling
       // TODO: Add second section for Armor / Shield / Weapon / Off-Hand
       // - Need to figure out how to make it all compact enough. Notably, skill rows are smaller so we can probably
       //   just use those numbers.
-      
+
       // TODO: Add Tooltips (see CharGenAbilityScoreAllocatorPCView.OnPointerEnter)
+
+      // TODO: Maybe we hide the progression view entirely and try shifting everything to the right?
 
       var view = obj.AddComponent<LegendaryGiftsPhaseView>();
       view.Init(abilityScoresView);
