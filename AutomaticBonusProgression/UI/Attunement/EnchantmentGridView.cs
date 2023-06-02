@@ -146,7 +146,7 @@ namespace AutomaticBonusProgression.UI.Attunement
           _ => throw new NotImplementedException(),
         };
         if (legendaryFeature is null)
-          return; // TODO: Stop from selecting things when you can't! (i.e. no equipped or already dun it)
+          return;
 
         var attunement = legendaryFeature.GetComponent<AttunementBuffsComponent>();
         if (attunement is null)
