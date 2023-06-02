@@ -2,11 +2,11 @@
 using HarmonyLib;
 using Kingmaker.UI.MVVM._PCView.CharGen;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases;
+using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Skills;
 using Kingmaker.UI.MVVM._VM.CharGen;
 using Kingmaker.UI.MVVM._VM.CharGen.Phases;
 using Kingmaker.UnitLogic.Class.LevelUp;
-using Owlcat.Runtime.UI.MVVM;
 using System;
 using TMPro;
 using UniRx;
@@ -14,9 +14,15 @@ using UnityEngine;
 
 namespace AutomaticBonusProgression.UI.Leveling
 {
-  internal class LegendaryGiftsPhaseView : ViewBase<LegendaryGiftsPhaseVM>
+  internal class LegendaryGiftsPhaseView : CharGenPhaseDetailedBaseView<LegendaryGiftsPhaseVM>
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsPhaseView));
+
+    internal void Init(CharGenAbilityScoresDetailedPCView source)
+    {
+      // Re-use this column to select Legendary Prowess
+      source.m_RaceBonusLabel.SetText(UITool.GetString("Legendary.Prowess"));
+    }
 
     public override void BindViewImplementation() { }
 
@@ -26,6 +32,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     private static LegendaryGiftsPhaseView PhaseView;
     private static LegendaryGiftsRoadmapView RoadmapView;
 
+    // Handle RoadmapView
     [HarmonyPatch(typeof(CharGenRoadmapMenuView))]
     static class CharGenRoadmapMenuView_Patch
     {
@@ -71,6 +78,48 @@ namespace AutomaticBonusProgression.UI.Leveling
       }
     }
 
+    // Handle PhaseView
+    [HarmonyPatch(typeof(CharGenPhaseDetailedPCViewsFactory))]
+    static class CharGenPhaseDetailedPCViewsFactory_Patch
+    {
+      [HarmonyPatch(nameof(CharGenPhaseDetailedPCViewsFactory.Initialize)), HarmonyPostfix]
+      static void Initialize(CharGenPhaseDetailedPCViewsFactory __instance)
+      {
+        try
+        {
+          Logger.Log($"Initializing LegendaryGiftsPhaseView");
+          PhaseView = CreatePhase(__instance.AbilityScoresPhaseDetailedPcView);
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CharGenPhaseDetailedPCViewsFactory_Patch.Initialize", e);
+        }
+      }
+
+      [HarmonyPatch(nameof(CharGenPhaseDetailedPCViewsFactory.GetDetailedPhaseView)), HarmonyPrefix]
+      static bool GetDetailedPhaseView(
+        CharGenPhaseDetailedPCViewsFactory __instance,
+        CharGenPhaseBaseVM phaseVM,
+        ref ICharGenPhaseDetailedView __result)
+      {
+        try
+        {
+          if (phaseVM is LegendaryGiftsPhaseVM vm)
+          {
+            Logger.Log($"Returning PhaseView");
+            PhaseView.Bind(vm);
+            __result = PhaseView;
+            return false;
+          }
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("CharGenPhaseDetailedPCViewsFactory_Patch.Initialize", e);
+        }
+        return true;
+      }
+    }
+
     // Patch which adds the Legendary Gifts phase
     [HarmonyPatch(typeof(CharGenVM))]
     static class CharGenVM_Patch
@@ -106,16 +155,40 @@ namespace AutomaticBonusProgression.UI.Leveling
       }
     }
 
-    private static LegendaryGiftsRoadmapView CreateRoadmap(CharGenRoadmapMenuView __instance)
+    private static LegendaryGiftsRoadmapView CreateRoadmap(CharGenRoadmapMenuView source)
     {
       // Copy the skills phase view since it's basically the same UI.
-      var skillsView = GameObject.Instantiate(__instance.SkillsPhaseRoadmapPcView);
+      var skillsView = GameObject.Instantiate(source.SkillsPhaseRoadmapPcView);
       var obj = skillsView.gameObject;
 
       obj.DestroyChildren("Console_RoadMapItemBackground/Content/Stats");
 
       var view = obj.AddComponent<LegendaryGiftsRoadmapView>();
       view.Init(skillsView);
+      return view;
+    }
+
+    private static LegendaryGiftsPhaseView CreatePhase(CharGenAbilityScoresDetailedPCView source)
+    {
+      // Copy the ability scores view to start since it has the ability points section.
+      var abilityScoresView = GameObject.Instantiate(source);
+      var obj = abilityScoresView.gameObject;
+
+      // Don't need the racial bonus UI
+      obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector");
+      foreach (var allocator in abilityScoresView.m_StatAllocators)
+        allocator.gameObject.DestroyChildren("Bonus/RaceBonus");
+
+      // TODO: Add check mark selectors for Legendary Prowess (note that you can select up to two times)
+
+      // TODO: Add second section for Armor / Shield / Weapon / Off-Hand
+      // - Need to figure out how to make it all compact enough. Notably, skill rows are smaller so we can probably
+      //   just use those numbers.
+      
+      // TODO: Add Tooltips (see CharGenAbilityScoreAllocatorPCView.OnPointerEnter)
+
+      var view = obj.AddComponent<LegendaryGiftsPhaseView>();
+      view.Init(abilityScoresView);
       return view;
     }
     #endregion
@@ -158,7 +231,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int points) : base(levelUpController)
     {
       AvailablePoints.Value = points;
-      m_PhaseName.Value = UITool.GetString("Leveling.Gifts");
+      m_PhaseName.Value = UITool.GetString("Legendary.Gifts");
     }
 
     public override bool CheckIsCompleted()

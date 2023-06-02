@@ -136,8 +136,13 @@
   },
 
   {
-    "Key": "ABP.UI.Leveling.Gifts",
+    "Key": "ABP.UI.Legendary.Gifts",
     "ProcessTemplates": false,
     "enGB": "Legendary Gifts"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Prowess",
+    "ProcessTemplates": false,
+    "enGB": "Prowess"
   }
 ]
