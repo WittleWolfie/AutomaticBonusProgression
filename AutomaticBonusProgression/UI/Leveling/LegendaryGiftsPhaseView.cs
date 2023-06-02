@@ -151,7 +151,7 @@ namespace AutomaticBonusProgression.UI.Leveling
 
   internal class LegendaryGiftsPhaseVM : CharGenPhaseBaseVM
   {
-    public override int OrderPriority => GetBaseOrderPriority(ChargenPhasePriority.Skills);
+    public override int OrderPriority => GetBaseOrderPriority(ChargenPhasePriority.AbilityScores);
 
     internal ReactiveProperty<int> AvailablePoints = new();
 
