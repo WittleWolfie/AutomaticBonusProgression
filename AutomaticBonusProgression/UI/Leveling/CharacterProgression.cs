@@ -1,10 +1,13 @@
 ﻿using AutomaticBonusProgression.Util;
 using HarmonyLib;
+using Kingmaker.Blueprints;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Progression.ChupaChupses;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Progression.Feats;
 using Kingmaker.UI.MVVM._VM.ServiceWindows.CharacterInfo.Sections.Progression.Main;
+using Kingmaker.Utility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AutomaticBonusProgression.UI.Leveling
 {
@@ -21,9 +24,9 @@ namespace AutomaticBonusProgression.UI.Leveling
       {
         try
         {
-          // TODO: Mental / Physical Prowess, Legendary Gifts
-          // Tracks entries to remove from the additional chupa chupa
-          List<ProgressionVM.FeatureEntry> entriesToRemove = new();
+          // Remove everything we're managing
+          __instance.MainChupaChupsLines.FirstOrDefault().RemoveAll(IsABPFeature);
+          __instance.AdditionalChupaChupsList.RemoveAll(IsABPFeature);
 
           // Each of these represents one line on the progression
           List<FeatureProgressionChupaChupsVM> armorAttunement = new();
@@ -31,6 +34,10 @@ namespace AutomaticBonusProgression.UI.Leveling
           List<FeatureProgressionChupaChupsVM> resistance = new();
           List<FeatureProgressionChupaChupsVM> deflection = new();
           List<FeatureProgressionChupaChupsVM> toughening = new();
+          List<FeatureProgressionChupaChupsVM> physicalProwess = new();
+          List<FeatureProgressionChupaChupsVM> mentalProwess = new();
+
+          var mainLine = __instance.MainChupaChupsLines.FirstOrDefault();
           foreach (var levelEntry in __instance.BlueprintProgression.LevelEntries)
           {
             foreach (var feature in levelEntry.Features)
@@ -45,21 +52,17 @@ namespace AutomaticBonusProgression.UI.Leveling
                 armorAttunement.Add(__instance.GetChupaChups(featureEntry));
               else if (featureEntry.Feature == Common.ShieldAttunementBase)
               {
-                // Since every toher level corresponds to armor attunement, only show level 8
+                // Since every other level corresponds to armor attunement, only show level 8
                 if (featureEntry.Level == 8)
                   armorAttunement.Add(__instance.GetChupaChups(featureEntry));
-                else
-                  entriesToRemove.Add(featureEntry);
               }
               else if (featureEntry.Feature == Common.WeaponAttunementBase)
                 weaponAttunement.Add(__instance.GetChupaChups(featureEntry));
               else if (featureEntry.Feature == Common.OffHandAttunementBase)
               {
-                // Since every toher level corresponds to weapon attunement, only show level 8
+                // Since every other level corresponds to weapon attunement, only show level 8
                 if (featureEntry.Level == 8)
                   weaponAttunement.Add(__instance.GetChupaChups(featureEntry));
-                else
-                  entriesToRemove.Add(featureEntry);
               }
               else if (featureEntry.Feature == Common.ResistanceBase)
                 resistance.Add(__instance.GetChupaChups(featureEntry));
@@ -67,29 +70,50 @@ namespace AutomaticBonusProgression.UI.Leveling
                 deflection.Add(__instance.GetChupaChups(featureEntry));
               else if (featureEntry.Feature == Common.TougheningBase)
                 toughening.Add(__instance.GetChupaChups(featureEntry));
-              else if (featureEntry.Feature == Common.LegendaryGifts)
-                entriesToRemove.Add(featureEntry); // TODO: Fix this when we're done testing gifts
-              else
-                continue; // Not an ABP feature
-              // TODO: Fix it showing legendary attributes?? Don't even know why
-              entriesToRemove.Add(featureEntry);
+              else if (featureEntry.Feature == Common.PhysicalProwess)
+                physicalProwess.Add(__instance.GetChupaChups(featureEntry));
+              else if (featureEntry.Feature == Common.MentalProwess)
+                mentalProwess.Add(__instance.GetChupaChups(featureEntry));
             }
           }
-          // Remove everything we're managing from the extra chupa chups
-          __instance.AdditionalChupaChupsList.RemoveAll(
-            vm => entriesToRemove.Exists(entry => vm.Feature.Feature == entry.Feature));
 
           __instance.MainChupaChupsLines.Add(armorAttunement);
           __instance.MainChupaChupsLines.Add(weaponAttunement);
           __instance.MainChupaChupsLines.Add(resistance);
           __instance.MainChupaChupsLines.Add(deflection);
           __instance.MainChupaChupsLines.Add(toughening);
+          __instance.MainChupaChupsLines.Add(physicalProwess);
+          __instance.MainChupaChupsLines.Add(mentalProwess);
         }
         catch (Exception e)
         {
           Logger.LogException("FeatProgressionVM_Patch.BuildFeats", e);
         }
       }
+
+      private static bool IsABPFeature(FeatureProgressionChupaChupsVM vm)
+      {
+        var guid = vm.Feature.Feature.AssetGuid;
+        var sourceGuid = vm.Feature?.Source?.AssetGuid;
+        if (ABPFeatures.Contains(guid) || (sourceGuid is not null && ABPFeatures.Contains(sourceGuid.Value)))
+          return true;
+        return false;
+      }
+
+      private static readonly List<BlueprintGuid> ABPFeatures =
+        new()
+        {
+          new(new Guid(Guids.ArmorAttunementBase)),
+          new(new Guid(Guids.ShieldAttunementBase)),
+          new(new Guid(Guids.WeaponAttunementBase)),
+          new(new Guid(Guids.OffHandAttunementBase)),
+          new(new Guid(Guids.LegendaryGifts)),
+          new(new Guid(Guids.ResistanceBase)),
+          new(new Guid(Guids.TougheningBase)),
+          new(new Guid(Guids.DeflectionBase)),
+          new(new Guid(Guids.PhysicalProwess)),
+          new(new Guid(Guids.MentalProwess)),
+        };
     }
   }
 }

@@ -151,6 +151,25 @@ namespace AutomaticBonusProgression.Util
     }
 
     #region Prowess
+    private static BlueprintFeature _physicalProwess;
+    internal static BlueprintFeature PhysicalProwess
+    {
+      get
+      {
+        _physicalProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.PhysicalProwess);
+        return _physicalProwess;
+      }
+    }
+    private static BlueprintFeature _mentalProwess;
+    internal static BlueprintFeature MentalProwess
+    {
+      get
+      {
+        _mentalProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.MentalProwess);
+        return _mentalProwess;
+      }
+    }
+
     private static BlueprintFeature _strProwess;
     internal static BlueprintFeature StrProwess
     {
