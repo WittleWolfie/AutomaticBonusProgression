@@ -190,6 +190,9 @@ namespace AutomaticBonusProgression.UI.Leveling
 
       // TODO: Maybe we hide the progression view entirely and try shifting everything to the right?
 
+      // TODO: If we do the shift everything right plan, why not re-use the Racial Selector again for Prowess?
+      // - What about when you can get more than 2 at a time tho?
+
       var view = obj.AddComponent<LegendaryGiftsPhaseView>();
       view.Init(abilityScoresView);
       return view;
