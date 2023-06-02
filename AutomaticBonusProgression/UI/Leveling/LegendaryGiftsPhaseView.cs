@@ -2,13 +2,12 @@
 using HarmonyLib;
 using Kingmaker.UI.MVVM._PCView.CharGen;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases;
+using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Skills;
 using Kingmaker.UI.MVVM._VM.CharGen;
 using Kingmaker.UI.MVVM._VM.CharGen.Phases;
 using Kingmaker.UnitLogic.Class.LevelUp;
 using Owlcat.Runtime.UI.MVVM;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -38,6 +37,7 @@ namespace AutomaticBonusProgression.UI.Leveling
         {
           Logger.Log($"Initializing LegendaryGiftsRoadmapView");
           RoadmapView = CreateRoadmap(__instance);
+          __instance.RetrieveRoadmapView(RoadmapView);
         }
         catch (Exception e)
         {
@@ -45,25 +45,9 @@ namespace AutomaticBonusProgression.UI.Leveling
         }
       }
 
-      // Adds the roadmap view to list of all roadmap views
-      [HarmonyPatch(nameof(CharGenRoadmapMenuView.GetPermanentRoadmaps)), HarmonyPrefix]
-      static void GetPermanentRoadmaps(
-        CharGenRoadmapMenuView __instance, ref IEnumerable<ICharGenPhaseRoadmapView> __result)
-      {
-        try
-        {
-          Logger.Log($"Adding to permanent roadmap");
-          __result = __instance.GetPermanentRoadmaps().Append(RoadmapView);
-        }
-        catch (Exception e)
-        {
-          Logger.LogException("CharGenRoadmapMenuView_Patch.GetPermanentRoadmaps", e);
-        }
-      }
-
       // Patch that shows the roadmap button when the phase is present
-      [HarmonyPatch(nameof(CharGenRoadmapMenuView.GetRoadmapPhaseView)), HarmonyPostfix]
-      static void GetRoadmapPhaseView(
+      [HarmonyPatch(nameof(CharGenRoadmapMenuView.GetRoadmapPhaseView)), HarmonyPrefix]
+      static bool GetRoadmapPhaseView(
         CharGenRoadmapMenuView __instance,
         CharGenPhaseBaseVM phaseVM,
         ref ICharGenPhaseRoadmapView __result)
@@ -76,15 +60,18 @@ namespace AutomaticBonusProgression.UI.Leveling
             RoadmapView.Bind(vm);
             vm.OnDispose += new(() => __instance.RetrieveRoadmapView(RoadmapView));
             __result = RoadmapView;
+            return false;
           }
         }
         catch (Exception e)
         {
           Logger.LogException("CharGenRoadmapMenuView_Patch.GetRoadmapPhaseView", e);
         }
+        return true;
       }
     }
 
+    // Patch which adds the Legendary Gifts phase
     [HarmonyPatch(typeof(CharGenVM))]
     static class CharGenVM_Patch
     {
@@ -122,15 +109,13 @@ namespace AutomaticBonusProgression.UI.Leveling
     private static LegendaryGiftsRoadmapView CreateRoadmap(CharGenRoadmapMenuView __instance)
     {
       // Copy the skills phase view since it's basically the same UI.
-      var obj = GameObject.Instantiate(__instance.SkillsPhaseRoadmapPcView).gameObject;
+      var skillsView = GameObject.Instantiate(__instance.SkillsPhaseRoadmapPcView);
+      var obj = skillsView.gameObject;
 
-      // Set up the label
-      var label = obj.ChildObject(
-        "Console_RoadMapItemBackground/RoadmapButtonLabelView/LabelPlace/PhaseName").GetComponent<TextMeshProUGUI>();
-      label.SetText(UITool.GetString("Leveling.Gifts"));
+      obj.DestroyChildren("Console_RoadMapItemBackground/Content/Stats");
 
       var view = obj.AddComponent<LegendaryGiftsRoadmapView>();
-      view.Init();
+      view.Init(skillsView);
       return view;
     }
     #endregion
@@ -140,10 +125,15 @@ namespace AutomaticBonusProgression.UI.Leveling
   {
     private TextMeshProUGUI PointsLabel;
 
-    internal void Init()
+    internal void Init(CharGenSkillsPhaseRoadmapPCView skillsView)
     {
-      PointsLabel = gameObject.ChildObject(
-        "Console_RoadMapItemBackground/Content/Points/Icon/Points").GetComponent<TextMeshProUGUI>();
+      Initialize(); // Make sure the parent classes are set up
+      PointsLabel = skillsView.m_Points;
+      // Copy values that should exist from the existing component
+      m_ButtonBackground = skillsView.m_Button;
+      m_Label = skillsView.m_Label;
+      m_ButtonLabel = skillsView.m_ButtonLabel;
+      m_Button = skillsView.m_Button;
     }
 
     public override void BindViewImplementation()
@@ -161,13 +151,14 @@ namespace AutomaticBonusProgression.UI.Leveling
 
   internal class LegendaryGiftsPhaseVM : CharGenPhaseBaseVM
   {
-    public override int OrderPriority => ((int)ChargenPhasePriority.AbilityScores);
+    public override int OrderPriority => ((int)ChargenPhasePriority.Skills);
 
     internal ReactiveProperty<int> AvailablePoints = new();
 
     internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int points) : base(levelUpController)
     {
       AvailablePoints.Value = points;
+      m_PhaseName.Value = UITool.GetString("Leveling.Gifts");
     }
 
     public override bool CheckIsCompleted()
@@ -177,7 +168,7 @@ namespace AutomaticBonusProgression.UI.Leveling
 
     public override void OnBeginDetailedView()
     {
-      throw new NotImplementedException();
+      //throw new NotImplementedException();
     }
   }
 }
