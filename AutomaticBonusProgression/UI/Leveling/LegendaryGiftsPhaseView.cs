@@ -27,12 +27,12 @@ namespace AutomaticBonusProgression.UI.Leveling
     private static LegendaryGiftsPhaseView PhaseView;
     private static LegendaryGiftsRoadmapView RoadmapView;
 
-    [HarmonyPatch(typeof(CharGenRoadmapMenuPCView))]
-    static class CharGenRoadmapMenuPCView_Patch
+    [HarmonyPatch(typeof(CharGenRoadmapMenuView))]
+    static class CharGenRoadmapMenuView_Patch
     {
       // Instantiates the roadmap view
-      [HarmonyPatch(nameof(CharGenRoadmapMenuPCView.Initialize)), HarmonyPrefix]
-      static void Initialize(CharGenRoadmapMenuPCView __instance)
+      [HarmonyPatch(nameof(CharGenRoadmapMenuView.Initialize)), HarmonyPrefix]
+      static void Initialize(CharGenRoadmapMenuView __instance)
       {
         try
         {
@@ -41,29 +41,30 @@ namespace AutomaticBonusProgression.UI.Leveling
         }
         catch (Exception e)
         {
-          Logger.LogException("CharGenRoadmapMenuPCView_Patch.Initialize", e);
+          Logger.LogException("CharGenRoadmapMenuView_Patch.Initialize", e);
         }
       }
 
       // Adds the roadmap view to list of all roadmap views
-      [HarmonyPatch(nameof(CharGenRoadmapMenuPCView.GetPermanentRoadmaps)), HarmonyPrefix]
+      [HarmonyPatch(nameof(CharGenRoadmapMenuView.GetPermanentRoadmaps)), HarmonyPrefix]
       static void GetPermanentRoadmaps(
-        CharGenRoadmapMenuPCView __instance, ref IEnumerable<ICharGenPhaseRoadmapView> __result)
+        CharGenRoadmapMenuView __instance, ref IEnumerable<ICharGenPhaseRoadmapView> __result)
       {
         try
         {
+          Logger.Log($"Adding to permanent roadmap");
           __result = __instance.GetPermanentRoadmaps().Append(RoadmapView);
         }
         catch (Exception e)
         {
-          Logger.LogException("CharGenRoadmapMenuPCView_Patch.GetPermanentRoadmaps", e);
+          Logger.LogException("CharGenRoadmapMenuView_Patch.GetPermanentRoadmaps", e);
         }
       }
 
       // Patch that shows the roadmap button when the phase is present
-      [HarmonyPatch(nameof(CharGenRoadmapMenuPCView.GetRoadmapPhaseView)), HarmonyPostfix]
+      [HarmonyPatch(nameof(CharGenRoadmapMenuView.GetRoadmapPhaseView)), HarmonyPostfix]
       static void GetRoadmapPhaseView(
-        CharGenRoadmapMenuPCView __instance,
+        CharGenRoadmapMenuView __instance,
         CharGenPhaseBaseVM phaseVM,
         ref ICharGenPhaseRoadmapView __result)
       {
@@ -71,6 +72,7 @@ namespace AutomaticBonusProgression.UI.Leveling
         {
           if (phaseVM is LegendaryGiftsPhaseVM vm)
           {
+            Logger.Log($"Returning roadmap");
             RoadmapView.Bind(vm);
             vm.OnDispose += new(() => __instance.RetrieveRoadmapView(RoadmapView));
             __result = RoadmapView;
@@ -78,7 +80,7 @@ namespace AutomaticBonusProgression.UI.Leveling
         }
         catch (Exception e)
         {
-          Logger.LogException("CharGenRoadmapMenuPCView_Patch.GetRoadmapPhaseView", e);
+          Logger.LogException("CharGenRoadmapMenuView_Patch.GetRoadmapPhaseView", e);
         }
       }
     }
@@ -98,6 +100,8 @@ namespace AutomaticBonusProgression.UI.Leveling
             vm = new(__instance.m_LevelUpController, 3);
           else if (__instance.m_LevelUpController.State.NextCharacterLevel == 20)
             vm = new(__instance.m_LevelUpController, 5);
+          else
+            vm = new(__instance.m_LevelUpController, 1); // TODO: Delete once testing is done
 
           if (vm is null)
           {
@@ -105,6 +109,7 @@ namespace AutomaticBonusProgression.UI.Leveling
             return;
           }
 
+          Logger.Log($"Adding legendary gifts phase");
           __instance.AddPhase(__instance.m_PhasesList, vm);
         }
         catch (Exception e)
@@ -114,7 +119,7 @@ namespace AutomaticBonusProgression.UI.Leveling
       }
     }
 
-    private static LegendaryGiftsRoadmapView CreateRoadmap(CharGenRoadmapMenuPCView __instance)
+    private static LegendaryGiftsRoadmapView CreateRoadmap(CharGenRoadmapMenuView __instance)
     {
       // Copy the skills phase view since it's basically the same UI.
       var obj = GameObject.Instantiate(__instance.SkillsPhaseRoadmapPcView).gameObject;
