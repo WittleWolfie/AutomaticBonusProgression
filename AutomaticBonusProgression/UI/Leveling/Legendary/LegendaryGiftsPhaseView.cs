@@ -266,8 +266,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     #endregion
   }
 
-  // TODO: Why does it move around the roadmap?
-  // TODO: Why does it show up as "next phase" even though it's not in ordering?
   /// <summary>
   /// Roadmap view is shown at the top bar and is used to indicate the legendary gifts phase applies.
   /// </summary>

@@ -39,6 +39,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         return;
 
       Controller.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == type);
+      Controller.UpdatePreview();
       AvailableGifts.Value++;
     }
 
