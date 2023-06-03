@@ -174,24 +174,23 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       {
         try
         {
-          LegendaryGiftsPhaseVM vm = null;
+          int availableGifts = 0;
           if (__instance.IsMythic)
-            vm = new(__instance.m_LevelUpController, 2);
+            availableGifts = 2;
           else if (__instance.m_LevelUpController.State.NextCharacterLevel == 19)
-            vm = new(__instance.m_LevelUpController, 3);
+            availableGifts = 3;
           else if (__instance.m_LevelUpController.State.NextCharacterLevel == 20)
-            vm = new(__instance.m_LevelUpController, 5);
+            availableGifts = 5;
           else
-            vm = new(__instance.m_LevelUpController, 1); // TODO: Delete once testing is done
+            availableGifts = 2; // TODO: Delete once testing is done
 
-          if (vm is null)
+          if (__instance.TryClearPhaseFromList<LegendaryGiftsPhaseVM>(availableGifts > 0, __instance.m_PhasesList))
           {
-            Logger.Log($"Skipping Legendary Gifts Phase: {__instance.IsMythic} - {__instance.m_LevelUpController.State.NextCharacterLevel}");
-            return;
+            Logger.Log($"Adding legendary gifts phase");
+            __instance.AddPhase(
+              __instance.m_PhasesList,
+              new LegendaryGiftsPhaseVM(__instance.m_LevelUpController, availableGifts));
           }
-
-          Logger.Log($"Adding legendary gifts phase");
-          __instance.AddPhase(__instance.m_PhasesList, vm);
         }
         catch (Exception e)
         {

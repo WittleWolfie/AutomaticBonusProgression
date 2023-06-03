@@ -157,7 +157,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       CanAdd.Value = State.CanAddLegendaryAbility(Type);
       CanRemove.Value = State.CanRemoveLegendaryAbility(Type);
-      Logger.Log($"We're addremoving take 3");
     }
 
     internal static int GetLegendaryBonus(ModifiableValue stat)
