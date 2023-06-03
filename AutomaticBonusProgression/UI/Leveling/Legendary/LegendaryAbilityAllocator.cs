@@ -87,7 +87,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       InfoVM = infoVM;
       LevelUpController = levelUpController;
       Stat.ToSequentialReadOnlyReactiveProperty();
-      Stat.Value = LevelUpController.Unit.Stats.GetStat(type);
+      Stat.Value = LevelUpController.Preview.Stats.GetStat(type);
 
       AddDisposable(Stat.Subscribe(_ => UpdateStats()));
       AddDisposable(AvailableGifts.Subscribe(_ => UpdateStats()));
