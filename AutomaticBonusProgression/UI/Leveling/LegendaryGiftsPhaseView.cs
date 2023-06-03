@@ -50,7 +50,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     {
       gameObject.SetActive(true);
 
-      AddDisposable(ViewModel.AvailablePoints.Subscribe(SetAvailablePoints));
+      AddDisposable(ViewModel.AvailableGifts.Subscribe(SetAvailablePoints));
 
       // There always should be 6 of each. We need to manually bind because we're being lazy and not rewriting the view
       // and VM classes.
@@ -83,6 +83,7 @@ namespace AutomaticBonusProgression.UI.Leveling
 
     private void UpdateAllocator(CharGenAbilityScoreAllocatorPCView view, LegendaryAbilityScoreAllocatorVM vm)
     {
+      Logger.Log($"Updating allocator: {vm.Name}");
       view.m_Value.SetText(vm.Value.Value.ToString());
       view.m_Modifier.SetText(UIUtility.AddSign(vm.Modifier.Value));
       vm.TryShowTooltip();
@@ -290,7 +291,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     {
       base.BindViewImplementation();
 
-      AddDisposable(ViewModel.AvailablePoints.Subscribe(UpdatePoints));
+      AddDisposable(ViewModel.AvailableGifts.Subscribe(UpdatePoints));
     }
 
     private void UpdatePoints(int points)
@@ -303,16 +304,16 @@ namespace AutomaticBonusProgression.UI.Leveling
   {
     public override int OrderPriority => GetBaseOrderPriority(ChargenPhasePriority.AbilityScores);
 
-    internal readonly IntReactiveProperty AvailablePoints = new();
+    internal readonly IntReactiveProperty AvailableGifts = new();
     internal readonly List<LegendaryAbilityScoreAllocatorVM> AbilityScoreVMs = new();
 
     internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int points) : base(levelUpController)
     {
-      AvailablePoints.Value = points;
+      AvailableGifts.Value = points;
       SetPhaseName(UITool.GetString("Legendary.Gifts"));
 
       foreach (var stat in Attributes)
-        AbilityScoreVMs.Add(new(stat, AvailablePoints, new(), LevelUpController));
+        AbilityScoreVMs.Add(new(stat, AvailableGifts, new(), LevelUpController));
     }
 
     private static readonly List<StatType> Attributes =
@@ -328,7 +329,7 @@ namespace AutomaticBonusProgression.UI.Leveling
 
     public override bool CheckIsCompleted()
     {
-      return AvailablePoints.Value == 0;
+      return AvailableGifts.Value == 0;
     }
 
     public override void OnBeginDetailedView()
@@ -349,7 +350,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     private readonly IntReactiveProperty AvailableGifts;
     private readonly InfoSectionVM InfoVM;
     private readonly LevelUpController LevelUpController;
-    private readonly ReactiveProperty<ModifiableValue> Stat;
+    private readonly ReactiveProperty<ModifiableValue> Stat = new();
     private StatType Type => Stat.Value.Type;
 
     private int SpentGifts = 0;
@@ -363,7 +364,8 @@ namespace AutomaticBonusProgression.UI.Leveling
       AvailableGifts = availableGifts;
       InfoVM = infoVM;
       LevelUpController = levelUpController;
-      Stat.ToSequentialReadOnlyReactiveProperty(LevelUpController.Unit.Stats.GetStat(type));
+      Stat.ToSequentialReadOnlyReactiveProperty();
+      Stat.Value = LevelUpController.Unit.Stats.GetStat(type);
 
       AddDisposable(Stat.Subscribe(_ => UpdateStats()));
       AddDisposable(AvailableGifts.Subscribe(_ => UpdateStats()));
@@ -410,7 +412,9 @@ namespace AutomaticBonusProgression.UI.Leveling
       if (!CanAdd.Value)
         return;
 
+      // TODO: This way of tracking doesn't work, I do need to maintain some steady State.
       SpentGifts++;
+      AvailableGifts.Value--;
       LevelUpController.AddAction(new SelectLegendaryAbility(Type));
     }
 
@@ -420,6 +424,7 @@ namespace AutomaticBonusProgression.UI.Leveling
         return;
 
       SpentGifts--;
+      AvailableGifts.Value++;
       LevelUpController.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == Type);
     }
 
