@@ -1,5 +1,4 @@
 ﻿using AutomaticBonusProgression.Util;
-using JetBrains.Annotations;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Class.LevelUp;
@@ -52,7 +51,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       }
     }
 
-    public bool Check(LevelUpState state, [NotNull] UnitDescriptor unit)
+    public bool Check(LevelUpState state, UnitDescriptor unit)
     {
       Feature feature = null;
       switch (Attribute)

@@ -52,7 +52,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       gameObject.SetActive(true);
 
-      AddDisposable(ViewModel.AvailableGifts.Subscribe(SetAvailableGifts));
+      AddDisposable(ViewModel.State.AvailableGifts.Subscribe(SetAvailableGifts));
 
       for (int i = 0; i < Allocators.Count; i++)
       {
@@ -279,12 +279,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       base.BindViewImplementation();
 
-      AddDisposable(ViewModel.AvailableGifts.Subscribe(UpdatePoints));
+      AddDisposable(ViewModel.State.AvailableGifts.Subscribe(UpdateGifts));
     }
 
-    private void UpdatePoints(int points)
+    private void UpdateGifts(int gifts)
     {
-      PointsLabel.SetText(points.ToString());
+      PointsLabel.SetText(gifts.ToString());
     }
   }
 
@@ -292,16 +292,16 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   {
     public override int OrderPriority => GetBaseOrderPriority(ChargenPhasePriority.AbilityScores);
 
-    internal readonly IntReactiveProperty AvailableGifts = new();
+    internal readonly LegendaryGiftState State;
     internal readonly List<LegendaryAbilityScoreAllocatorVM> AbilityScoreVMs = new();
 
-    internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int points) : base(levelUpController)
+    internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int gifts) : base(levelUpController)
     {
-      AvailableGifts.Value = points;
+      State = new(levelUpController, gifts);
       SetPhaseName(UITool.GetString("Legendary.Gifts"));
 
       foreach (var stat in Attributes)
-        AbilityScoreVMs.Add(new(stat, AvailableGifts, new(), LevelUpController));
+        AbilityScoreVMs.Add(new(stat, State, new()));
     }
 
     private static readonly List<StatType> Attributes =
@@ -317,7 +317,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public override bool CheckIsCompleted()
     {
-      return AvailableGifts.Value == 0;
+      return State.AvailableGifts.Value == 0;
     }
 
     public override void OnBeginDetailedView()

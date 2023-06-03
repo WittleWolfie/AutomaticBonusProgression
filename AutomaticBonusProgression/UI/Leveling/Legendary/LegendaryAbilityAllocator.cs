@@ -10,11 +10,10 @@ using Kingmaker.UI.MVVM._VM.Other;
 using Kingmaker.UI.MVVM._VM.Tooltip.Templates;
 using Kingmaker.UI.Tooltip;
 using Kingmaker.UnitLogic;
-using Kingmaker.UnitLogic.Class.LevelUp;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
 using Owlcat.Runtime.UI.Tooltips;
-using System.Linq; 
+using System.Linq;
 using UniRx;
 
 namespace AutomaticBonusProgression.UI.Leveling.Legendary
@@ -38,7 +37,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Allocator.m_LongName.SetText(ViewModel.Name);
       Allocator.m_ShortName.SetText(ViewModel.ShortName);
 
-      Allocator.AddDisposable(ViewModel.Value.Subscribe(_ => UpdateAllocator()));
+      Allocator.AddDisposable(ViewModel.StatValue.Subscribe(_ => UpdateAllocator()));
       Allocator.AddDisposable(ViewModel.CanAdd.Subscribe(UpdateCanAdd));
       Allocator.AddDisposable(ViewModel.CanRemove.Subscribe(UpdateCanRemove));
       Allocator.AddDisposable(ViewModel.Recommendation.Subscribe(Allocator.m_RecommendationMark.Bind));
@@ -56,7 +55,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     private void UpdateAllocator()
     {
       Logger.Verbose(() => $"Updating allocator: {ViewModel.Name}");
-      Allocator.m_Value.SetText(ViewModel.Value.Value.ToString());
+      Allocator.m_Value.SetText(ViewModel.StatValue.Value.ToString());
       Allocator.m_Modifier.SetText(UIUtility.AddSign(ViewModel.Modifier.Value));
       ViewModel.TryShowTooltip();
     }
@@ -80,28 +79,25 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   /// </summary>
   internal class LegendaryAbilityScoreAllocatorVM : BaseDisposable, IViewModel, IHasTooltipTemplate
   {
-    private readonly IntReactiveProperty AvailableGifts;
-    private readonly InfoSectionVM InfoVM;
-    private readonly LevelUpController LevelUpController;
     private readonly ReactiveProperty<ModifiableValue> Stat = new();
     private StatType Type => Stat.Value.Type;
 
-    private int SpentGifts = 0;
+    private readonly LegendaryGiftState State;
+    private readonly InfoSectionVM InfoVM;
 
     public LegendaryAbilityScoreAllocatorVM(
       StatType type,
-      IntReactiveProperty availableGifts,
-      InfoSectionVM infoVM,
-      LevelUpController levelUpController)
+      LegendaryGiftState state,
+      InfoSectionVM infoVM)
     {
-      AvailableGifts = availableGifts;
-      InfoVM = infoVM;
-      LevelUpController = levelUpController;
       Stat.ToSequentialReadOnlyReactiveProperty();
-      Stat.Value = LevelUpController.Preview.Stats.GetStat(type);
+      Stat.Value = State.Controller.Preview.Stats.GetStat(type);
 
-      AddDisposable(Stat.Subscribe(_ => UpdateStats()));
-      AddDisposable(AvailableGifts.Subscribe(_ => UpdateStats()));
+      State = state;
+      InfoVM = infoVM;
+
+      AddDisposable(Stat.Subscribe(_ => UpdateValues()));
+      AddDisposable(State.AvailableGifts.Subscribe(_ => UpdateCanAddRemove()));
 
       Name = LocalizedTexts.Instance.Stats.GetText(Type);
       ShortName = UIUtilityTexts.GetStatShortName(Type);
@@ -127,14 +123,14 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     public TooltipBaseTemplate TooltipTemplate()
     {
       BlueprintArchetype archetype = null;
-      if (LevelUpController.State.SelectedClass != null)
+      if (State.Controller.State.SelectedClass != null)
       {
-        var classData = LevelUpController.Preview.Progression.GetClassData(LevelUpController.State.SelectedClass);
+        var classData = State.Controller.Preview.Progression.GetClassData(State.Controller.State.SelectedClass);
         archetype = classData?.Archetypes.FirstOrDefault();
       }
       Kingmaker.UI.MVVM._VM.Tooltip.Templates.ClassInformation classInformation = new();
-      classInformation.Class = LevelUpController.State.SelectedClass;
-      classInformation.Unit = LevelUpController.Preview.Descriptor;
+      classInformation.Class = State.Controller.State.SelectedClass;
+      classInformation.Unit = State.Controller.Preview.Descriptor;
       classInformation.Archetype = archetype;
       StatTooltipData statData = new StatTooltipData(Stat.Value);
       return new TooltipTemplateAbilityScoreAllocator(classInformation, statData);
@@ -144,31 +140,27 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       if (!CanAdd.Value)
         return;
-
-      // TODO: This way of tracking doesn't work, I do need to maintain some steady State.
-      SpentGifts++;
-      AvailableGifts.Value--;
-      LevelUpController.AddAction(new SelectLegendaryAbility(Type));
+      State.Controller.AddAction(new SelectLegendaryAbility(Type));
     }
 
     internal void TryDecreaseValue()
     {
       if (!CanRemove.Value)
         return;
-
-      SpentGifts--;
-      AvailableGifts.Value++;
-      LevelUpController.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == Type);
+      State.Controller.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == Type);
     }
 
-    private void UpdateStats()
+    private void UpdateValues()
     {
-      CanAdd.Value = AvailableGifts.Value > 0;
-      CanRemove.Value = SpentGifts > 0;
-
-      Value.Value =
+      StatValue.Value =
         Stat.Value.PermanentValue + ProwessPhaseVM.GetProwessBonus(Stat.Value) + GetLegendaryBonus(Stat.Value);
-      Modifier.Value = (Value.Value - 10) / 2;
+      Modifier.Value = (StatValue.Value - 10) / 2;
+    }
+
+    private void UpdateCanAddRemove()
+    {
+      CanAdd.Value = State.CanAddLegendaryAbility(Type);
+      CanRemove.Value = State.CanRemoveLegendaryAbility(Type);
     }
 
     internal static int GetLegendaryBonus(ModifiableValue stat)
@@ -197,7 +189,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     internal readonly string Name;
     internal readonly string ShortName;
-    internal readonly IntReactiveProperty Value = new();
+    internal readonly IntReactiveProperty StatValue = new();
     internal readonly IntReactiveProperty Modifier = new();
     internal readonly BoolReactiveProperty CanAdd = new();
     internal readonly BoolReactiveProperty CanRemove = new();
