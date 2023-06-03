@@ -64,6 +64,8 @@ namespace AutomaticBonusProgression.UI.Leveling
 
     public override void DestroyViewImplementation()
     {
+      PhysicalProwessSelector.gameObject.SetActive(false);
+      MentalProwessSelector.gameObject.SetActive(false);
       gameObject.SetActive(false);
     }
 
