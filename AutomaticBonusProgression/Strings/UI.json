@@ -141,6 +141,11 @@
     "enGB": "Legendary Gifts"
   },
   {
+    "Key": "ABP.UI.Legendary.Gifts.Selection",
+    "ProcessTemplates": false,
+    "enGB": "Select Legendary Gifts"
+  },
+  {
     "Key": "ABP.UI.Legendary.Prowess",
     "ProcessTemplates": false,
     "enGB": "Prowess"

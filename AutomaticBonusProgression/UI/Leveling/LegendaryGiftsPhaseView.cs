@@ -1,13 +1,29 @@
 ﻿using AutomaticBonusProgression.Util;
 using HarmonyLib;
+using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Root;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
+using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.CharGen;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Skills;
 using Kingmaker.UI.MVVM._VM.CharGen;
 using Kingmaker.UI.MVVM._VM.CharGen.Phases;
+using Kingmaker.UI.MVVM._VM.InfoWindow;
+using Kingmaker.UI.MVVM._VM.Other;
+using Kingmaker.UI.MVVM._VM.Tooltip.Templates;
+using Kingmaker.UI.Tooltip;
+using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Class.LevelUp;
+using Kingmaker.Utility;
+using Owlcat.Runtime.UI.Controls.Other;
+using Owlcat.Runtime.UI.MVVM;
+using Owlcat.Runtime.UI.Tooltips;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -18,15 +34,59 @@ namespace AutomaticBonusProgression.UI.Leveling
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsPhaseView));
 
+    private CharGenAbilityScoresDetailedPCView AbilityScoresView;
+
     internal void Init(CharGenAbilityScoresDetailedPCView source)
     {
-      // Re-use this column to select Legendary Prowess
-      source.m_RaceBonusLabel.SetText(UITool.GetString("Legendary.Prowess"));
+      AbilityScoresView = source;
+
+      // Update labels
+      AbilityScoresView.m_RaceBonus.SetText(UITool.GetString("Legendary.Prowess"));
+      AbilityScoresView.m_PhaseLabel.SetText(
+        UIUtility.GetSaberBookFormat(UITool.GetString("Legendary.Gifts.Selection")));
     }
 
-    public override void BindViewImplementation() { }
+    public override void BindViewImplementation()
+    {
+      gameObject.SetActive(true);
 
-    public override void DestroyViewImplementation() { }
+      AddDisposable(ViewModel.AvailablePoints.Subscribe(SetAvailablePoints));
+
+      // There always should be 6 of each. We need to manually bind because we're being lazy and not rewriting the view
+      // and VM classes.
+      for (int i = 0; i < AbilityScoresView.m_StatAllocators.Count; i++)
+      {
+        var allocator = AbilityScoresView.m_StatAllocators[i];
+        var vm = ViewModel.AbilityScoreVMs[i];
+
+        allocator.m_LongName.SetText(vm.Name);
+        allocator.m_ShortName.SetText(vm.ShortName);
+
+        allocator.AddDisposable(vm.Value.Subscribe(_ => UpdateAllocator(allocator, vm)));
+        allocator.AddDisposable(vm.CanAdd.Subscribe(allocator.UpButton.SetInteractable));
+        allocator.AddDisposable(vm.CanRemove.Subscribe(allocator.DownButton.SetInteractable));
+        allocator.AddDisposable(vm.Recommendation.Subscribe(allocator.m_RecommendationMark.Bind));
+        allocator.AddDisposable(allocator.UpButton.OnLeftClickAsObservable().Subscribe(_ => vm.TryIncreaseValue()));
+        allocator.AddDisposable(allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => vm.TryDecreaseValue()));
+      }
+    }
+
+    public override void DestroyViewImplementation()
+    {
+      gameObject.SetActive(false);
+    }
+
+    private void SetAvailablePoints(int points)
+    {
+      AbilityScoresView.m_AvailiblePoints.SetText(points.ToString());
+    }
+
+    private void UpdateAllocator(CharGenAbilityScoreAllocatorPCView view, LegendaryAbilityScoreAllocatorVM vm)
+    {
+      view.m_Value.SetText(vm.Value.Value.ToString());
+      view.m_Modifier.SetText(UIUtility.AddSign(vm.Modifier.Value));
+      vm.TryShowTooltip();
+    }
 
     #region Setup
     private static LegendaryGiftsPhaseView PhaseView;
@@ -174,11 +234,21 @@ namespace AutomaticBonusProgression.UI.Leveling
       var abilityScoresView = GameObject.Instantiate(source);
       abilityScoresView.Initialize();
       var obj = abilityScoresView.gameObject;
+      obj.transform.AddTo(source.transform.parent);
 
-      // Don't need the racial bonus UI
+      // Update the ability selectors and remove additional selections
       obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector");
+      obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector(Clone)");
       foreach (var allocator in abilityScoresView.m_StatAllocators)
+      {
         allocator.gameObject.DestroyChildren("Bonus/RaceBonus");
+        allocator.gameObject.ChildObject("Score/Selected/CostArrowDown/Cost")
+          .GetComponent<TextMeshProUGUI>()
+          .SetText("-1");
+        allocator.gameObject.ChildObject("Score/Selected/CostArrowUp/Cost")
+          .GetComponent<TextMeshProUGUI>()
+          .SetText("+1");
+      }
 
       // TODO: Add check mark selectors for Legendary Prowess (note that you can select up to two times)
 
@@ -200,6 +270,7 @@ namespace AutomaticBonusProgression.UI.Leveling
     #endregion
   }
 
+  // Section shown on the top bar of leveling screen
   internal class LegendaryGiftsRoadmapView : CharGenPhaseRoadmapBaseView<LegendaryGiftsPhaseVM>
   {
     private TextMeshProUGUI PointsLabel;
@@ -232,13 +303,28 @@ namespace AutomaticBonusProgression.UI.Leveling
   {
     public override int OrderPriority => GetBaseOrderPriority(ChargenPhasePriority.AbilityScores);
 
-    internal ReactiveProperty<int> AvailablePoints = new();
+    internal readonly IntReactiveProperty AvailablePoints = new();
+    internal readonly List<LegendaryAbilityScoreAllocatorVM> AbilityScoreVMs = new();
 
     internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int points) : base(levelUpController)
     {
       AvailablePoints.Value = points;
-      m_PhaseName.Value = UITool.GetString("Legendary.Gifts");
+      SetPhaseName(UITool.GetString("Legendary.Gifts"));
+
+      foreach (var stat in Attributes)
+        AbilityScoreVMs.Add(new(stat, AvailablePoints, new(), LevelUpController));
     }
+
+    private static readonly List<StatType> Attributes =
+      new()
+      {
+        StatType.Strength,
+        StatType.Dexterity,
+        StatType.Constitution,
+        StatType.Intelligence,
+        StatType.Wisdom,
+        StatType.Charisma
+      };
 
     public override bool CheckIsCompleted()
     {
@@ -249,5 +335,134 @@ namespace AutomaticBonusProgression.UI.Leveling
     {
       //throw new NotImplementedException();
     }
+
+    public override void DisposeImplementation()
+    {
+      foreach (var vm in  AbilityScoreVMs)
+        vm.DisposeImplementation();
+    }
+  }
+
+  // Need to use our own VM for the allocators otherwise it conflicts w/ the patches in ProwessPhaseView
+  internal class LegendaryAbilityScoreAllocatorVM : BaseDisposable, IViewModel, IHasTooltipTemplate
+  {
+    private readonly IntReactiveProperty AvailableGifts;
+    private readonly InfoSectionVM InfoVM;
+    private readonly LevelUpController LevelUpController;
+    private readonly ReactiveProperty<ModifiableValue> Stat;
+    private StatType Type => Stat.Value.Type;
+
+    private int SpentGifts = 0;
+
+    public LegendaryAbilityScoreAllocatorVM(
+      StatType type,
+      IntReactiveProperty availableGifts,
+      InfoSectionVM infoVM,
+      LevelUpController levelUpController)
+    {
+      AvailableGifts = availableGifts;
+      InfoVM = infoVM;
+      LevelUpController = levelUpController;
+      Stat.ToSequentialReadOnlyReactiveProperty(LevelUpController.Unit.Stats.GetStat(type));
+
+      AddDisposable(Stat.Subscribe(_ => UpdateStats()));
+      AddDisposable(AvailableGifts.Subscribe(_ => UpdateStats()));
+
+      Name = LocalizedTexts.Instance.Stats.GetText(Type);
+      ShortName = UIUtilityTexts.GetStatShortName(Type);
+    }
+
+    public override void DisposeImplementation() { }
+
+    internal void SetRecommendationsForClass(ClassData classData)
+    {
+      var recommend = classData is not null && classData.RecommendedAttributes.Contains(Stat.Value.Type);
+      if (Recommendation.Value is null)
+        AddDisposable(Recommendation.Value = new(recommend));
+      else
+        Recommendation.Value.ChangeRecommendation(recommend);
+    }
+
+    internal void TryShowTooltip()
+    {
+      InfoVM.SetTemplate(TooltipTemplate());
+    }
+
+    // At least for now, copied from CharGenAbilityScoreAllocatorVM
+    public TooltipBaseTemplate TooltipTemplate()
+    {
+      BlueprintArchetype archetype = null;
+      if (LevelUpController.State.SelectedClass != null)
+      {
+        var classData = LevelUpController.Preview.Progression.GetClassData(LevelUpController.State.SelectedClass);
+        archetype = classData?.Archetypes.FirstOrDefault();
+      }
+      Kingmaker.UI.MVVM._VM.Tooltip.Templates.ClassInformation classInformation = new();
+      classInformation.Class = LevelUpController.State.SelectedClass;
+      classInformation.Unit = LevelUpController.Preview.Descriptor;
+      classInformation.Archetype = archetype;
+      StatTooltipData statData = new StatTooltipData(Stat.Value);
+      return new TooltipTemplateAbilityScoreAllocator(classInformation, statData);
+    }
+
+    internal void TryIncreaseValue()
+    {
+      if (!CanAdd.Value)
+        return;
+
+      SpentGifts++;
+      LevelUpController.AddAction(new SelectLegendaryAbility(Type));
+    }
+
+    internal void TryDecreaseValue()
+    {
+      if (!CanRemove.Value)
+        return;
+
+      SpentGifts--;
+      LevelUpController.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == Type);
+    }
+
+    private void UpdateStats()
+    {
+      CanAdd.Value = AvailableGifts.Value > 0;
+      CanRemove.Value = SpentGifts > 0;
+
+      Value.Value =
+        Stat.Value.PermanentValue + ProwessPhaseVM.GetProwessBonus(Stat.Value) + GetLegendaryBonus(Stat.Value);
+      Modifier.Value = (Value.Value - 10) / 2;
+    }
+
+    internal static int GetLegendaryBonus(ModifiableValue stat)
+    {
+      var inherent = stat.GetModifiers(ModifierDescriptor.Inherent);
+      if (inherent is null)
+        return 0;
+
+      switch (stat.Type)
+      {
+        case StatType.Strength:
+          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryStr).Sum(mod => mod.ModValue);
+        case StatType.Dexterity:
+          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryDex).Sum(mod => mod.ModValue);
+        case StatType.Constitution:
+          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryCon).Sum(mod => mod.ModValue);
+        case StatType.Intelligence:
+          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryInt).Sum(mod => mod.ModValue);
+        case StatType.Wisdom:
+          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryWis).Sum(mod => mod.ModValue);
+        case StatType.Charisma:
+          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryCha).Sum(mod => mod.ModValue);
+      }
+      return 0;
+    }
+
+    internal readonly string Name;
+    internal readonly string ShortName;
+    internal readonly IntReactiveProperty Value = new();
+    internal readonly IntReactiveProperty Modifier = new();
+    internal readonly BoolReactiveProperty CanAdd = new();
+    internal readonly BoolReactiveProperty CanRemove = new();
+    internal readonly ReactiveProperty<RecommendationMarkerVM> Recommendation = new();
   }
 }

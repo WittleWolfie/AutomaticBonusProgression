@@ -15,6 +15,8 @@ namespace AutomaticBonusProgression.UI.Leveling
   internal abstract class SelectProwess : ILevelUpAction
   {
     internal readonly StatType Attribute;
+    // If true it means this is granted by Legendary Gifts so the usual check logic doesn't apply
+    private readonly bool IsGift;
 
     [JsonConstructor]
     public SelectProwess() { }
@@ -55,19 +57,53 @@ namespace AutomaticBonusProgression.UI.Leveling
 
     public bool Check(LevelUpState state, UnitDescriptor unit)
     {
+      if (!IsGift)
+      {
+        // Make sure this is a valid level
+        switch (Attribute)
+        {
+          case StatType.Strength:
+          case StatType.Dexterity:
+          case StatType.Constitution:
+            if (!PhysicalProwessLevels.Contains(state.NextCharacterLevel))
+              return false;
+            break;
+          case StatType.Intelligence:
+          case StatType.Wisdom:
+          case StatType.Charisma:
+            if (!MentalProwessLevels.Contains(state.NextCharacterLevel))
+              return false;
+            break;
+        }
+      }
+
+      Feature feature = null;
       switch (Attribute)
       {
         case StatType.Strength:
+          feature = unit.GetFeature(Common.StrProwess);
+          break;
         case StatType.Dexterity:
+          feature = unit.GetFeature(Common.DexProwess);
+          break;
         case StatType.Constitution:
-          return PhysicalProwessLevels.Contains(state.NextCharacterLevel);
+          feature = unit.GetFeature(Common.ConProwess);
+          break;
         case StatType.Intelligence:
+          feature = unit.GetFeature(Common.IntProwess);
+          break;
         case StatType.Wisdom:
+          feature = unit.GetFeature(Common.WisProwess);
+          break;
         case StatType.Charisma:
-          return MentalProwessLevels.Contains(state.NextCharacterLevel);
+          feature = unit.GetFeature(Common.ChaProwess);
+          break;
       }
 
-      return false;
+      if (feature is null)
+        return true;
+
+      return feature.Rank < feature.Blueprint.Ranks;
     }
 
     public void PostLoad() { }
@@ -78,10 +114,10 @@ namespace AutomaticBonusProgression.UI.Leveling
 
   internal class SelectPhysicalProwess : SelectProwess
   {
-    public SelectPhysicalProwess(StatType type) : base(type) { }
+    public SelectPhysicalProwess(StatType type, bool isGift = false) : base(type) { }
   }
   internal class SelectMentalProwess : SelectProwess
   {
-    public SelectMentalProwess(StatType type) : base(type) { }
+    public SelectMentalProwess(StatType type, bool isGift = false) : base(type) { }
   }
 }

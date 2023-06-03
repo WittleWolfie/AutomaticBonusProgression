@@ -311,6 +311,61 @@ namespace AutomaticBonusProgression.Util
         return _legendaryShieldResource;
       }
     }
+
+    private static BlueprintFeature _legendaryStr;
+    internal static BlueprintFeature LegendaryStr
+    {
+      get
+      {
+        _legendaryStr ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryStrength);
+        return _legendaryStr;
+      }
+    }
+    private static BlueprintFeature _legendaryDex;
+    internal static BlueprintFeature LegendaryDex
+    {
+      get
+      {
+        _legendaryDex ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryDexterity);
+        return LegendaryDex;
+      }
+    }
+    private static BlueprintFeature _legendaryCon;
+    internal static BlueprintFeature LegendaryCon
+    {
+      get
+      {
+        _legendaryCon ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryConstitution);
+        return _legendaryCon;
+      }
+    }
+    private static BlueprintFeature _legendaryInt;
+    internal static BlueprintFeature LegendaryInt
+    {
+      get
+      {
+        _legendaryInt ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryIntelligence);
+        return _legendaryInt;
+      }
+    }
+    private static BlueprintFeature _legendaryWis;
+    internal static BlueprintFeature LegendaryWis
+    {
+      get
+      {
+        _legendaryWis ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryWisdom);
+        return _legendaryWis;
+      }
+    }
+    private static BlueprintFeature _legendaryCha;
+    internal static BlueprintFeature LegendaryCha
+    {
+      get
+      {
+        _legendaryCha ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryCharisma);
+        return _legendaryCha;
+      }
+    }
     #endregion
     #endregion
 
