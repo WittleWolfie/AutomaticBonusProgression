@@ -38,12 +38,17 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Allocator.m_LongName.SetText(ViewModel.Name);
       Allocator.m_ShortName.SetText(ViewModel.ShortName);
 
-      Allocator.AddDisposable(ViewModel.StatValue.Subscribe(_ => UpdateAllocator()));
+      Allocator.AddDisposable(
+        ViewModel.StatValue.Subscribe(value => Allocator.m_Value.SetText(value.ToString())));
+      Allocator.AddDisposable(
+        ViewModel.Modifier.Subscribe(value => Allocator.m_Modifier.SetText(UIUtility.AddSign(value))));
       Allocator.AddDisposable(ViewModel.CanAdd.Subscribe(UpdateCanAdd));
       Allocator.AddDisposable(ViewModel.CanRemove.Subscribe(UpdateCanRemove));
       Allocator.AddDisposable(ViewModel.Recommendation.Subscribe(Allocator.m_RecommendationMark.Bind));
-      Allocator.AddDisposable(Allocator.UpButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryIncreaseValue()));
-      Allocator.AddDisposable(Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseValue()));
+      Allocator.AddDisposable(
+        Allocator.UpButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryIncreaseValue()));
+      Allocator.AddDisposable(
+        Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseValue()));
     }
 
     public override void DestroyViewImplementation() { }
@@ -51,14 +56,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     public TooltipBaseTemplate TooltipTemplate()
     {
       return ViewModel.TooltipTemplate();
-    }
-
-    private void UpdateAllocator()
-    {
-      Logger.Verbose(() => $"Updating allocator: {ViewModel.Name}");
-      Allocator.m_Value.SetText(ViewModel.StatValue.Value.ToString());
-      Allocator.m_Modifier.SetText(UIUtility.AddSign(ViewModel.Modifier.Value));
-      ViewModel.TryShowTooltip();
     }
 
     private void UpdateCanAdd(bool canAdd)
@@ -82,7 +79,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryAbilityScoreAllocatorVM));
 
-    private ModifiableValue Stat => State.Controller.Preview.Stats.GetStat(Type);
+    private readonly ReactiveProperty<ModifiableValue> Stat = new();
     private readonly StatType Type;
 
     private readonly LegendaryGiftState State;
@@ -94,7 +91,10 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       State = state;
       InfoVM = infoVM;
 
-      AddDisposable(State.UpdateStats.Subscribe(_ => UpdateValues()));
+      Stat.ToSequentialReadOnlyReactiveProperty();
+      Stat.Value = State.Controller.Preview.Stats.GetStat(Type);
+
+      AddDisposable(Stat.Subscribe(_ => UpdateValues()));
       AddDisposable(State.AvailableGifts.Subscribe(_ => UpdateCanAddRemove()));
 
       Name = LocalizedTexts.Instance.Stats.GetText(Type);
@@ -102,6 +102,11 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     }
 
     public override void DisposeImplementation() { }
+
+    internal void UpdateStat()
+    {
+      Stat.SetValueAndForceNotify(State.Controller.Preview.Stats.GetStat(Type));
+    }
 
     internal void SetRecommendationsForClass(ClassData classData)
     {
@@ -146,7 +151,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private void UpdateValues()
     {
-      StatValue.Value = Stat.PermanentValue + ProwessPhaseVM.GetProwessBonus(Stat) + GetLegendaryBonus(Stat);
+      StatValue.Value = Stat.Value.PermanentValue + ProwessPhaseVM.GetProwessBonus(Stat.Value) + GetLegendaryBonus(Stat.Value);
       Modifier.Value = (StatValue.Value - 10) / 2;
     }
 

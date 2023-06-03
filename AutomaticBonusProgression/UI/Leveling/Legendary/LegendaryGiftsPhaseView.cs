@@ -301,6 +301,14 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       foreach (var stat in Attributes)
         AbilityScoreVMs.Add(new(stat, State, new()));
+
+      AddDisposable(State.Controller.UpdateCommand.Subscribe(_ => UpdateStats()));
+    }
+
+    private void UpdateStats()
+    {
+      foreach (var vm in AbilityScoreVMs)
+        vm.UpdateStat();
     }
 
     private static readonly List<StatType> Attributes =

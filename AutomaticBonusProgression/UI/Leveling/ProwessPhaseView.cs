@@ -81,6 +81,7 @@ namespace AutomaticBonusProgression.UI.Leveling
       {
         try
         {
+          // TODO: This is being instantiated for Prowess AND Legendary phase. gotta fix it
           Logger.Log($"Initializing ProwessPhaseView");
           BaseView = Create(__instance);
         }
@@ -155,8 +156,6 @@ namespace AutomaticBonusProgression.UI.Leveling
           var needAbilityScores = __result;
 
           // Prowess is an extension of Ability Scores Phase, so make sure it shows when needed
-          Logger.Verbose(
-            () => $"NeedAbilityScoresPhase: base::{needAbilityScores} || physical::{needPhysicalProwess} || mental::{needMentalProwess}");
           __result = needAbilityScores || needPhysicalProwess || needMentalProwess;
         }
         catch (Exception e)
