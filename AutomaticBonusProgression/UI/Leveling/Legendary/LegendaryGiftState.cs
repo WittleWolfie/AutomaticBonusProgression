@@ -23,6 +23,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Controller = controller;
     }
 
+    #region Legendary Ability
     internal void TryAddLegendaryAbility(StatType type)
     {
       if (!CanAddLegendaryAbility(type))
@@ -62,6 +63,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       return Controller.LevelUpActions.OfType<SelectLegendaryAbility>().Any(a => a.Attribute == type);
     }
+    #endregion
 
     private bool IsMaxRank(BlueprintFeature blueprint)
     {
