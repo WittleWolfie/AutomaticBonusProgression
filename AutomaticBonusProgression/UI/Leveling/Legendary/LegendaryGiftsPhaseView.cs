@@ -1,6 +1,7 @@
 ﻿using AutomaticBonusProgression.Util;
 using HarmonyLib;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Root.Strings;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.CharGen;
@@ -13,6 +14,7 @@ using Kingmaker.UnitLogic.Class.LevelUp;
 using Kingmaker.UnitLogic.Class.LevelUp.Actions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -216,9 +218,19 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       // Copy the ability scores view to start since it has the ability gifts section.
       var abilityScoresView = Instantiate(source);
-      abilityScoresView.Initialize();
       var obj = abilityScoresView.gameObject;
       obj.transform.AddTo(source.transform.parent);
+
+      // Init the base view w/o Initialize() so it doesn't interfere w/ Prowess patch
+      var charGen = UIStrings.Instance.CharGen;
+      abilityScoresView.m_StatAllocators =
+        abilityScoresView.m_StatAllocatorsContainer
+          .GetComponentsInChildren<CharGenAbilityScoreAllocatorPCView>()
+          .ToList();
+      abilityScoresView.m_AvailiblePointsLabel.SetText(charGen.Points);
+      abilityScoresView.m_StatLabel.SetText(charGen.StatName);
+      abilityScoresView.m_ScoresLabel.SetText(charGen.Scores);
+      abilityScoresView.m_ModifierLabel.SetText(charGen.Modifier);
 
       // Update the ability selectors and remove additional selections
       obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector");

@@ -81,7 +81,6 @@ namespace AutomaticBonusProgression.UI.Leveling
       {
         try
         {
-          // TODO: This is being instantiated for Prowess AND Legendary phase. gotta fix it
           Logger.Log($"Initializing ProwessPhaseView");
           BaseView = Create(__instance);
         }
