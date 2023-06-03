@@ -23,6 +23,24 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Controller = controller;
     }
 
+    internal void TryAddLegendaryAbility(StatType type)
+    {
+      if (!CanAddLegendaryAbility(type))
+        return;
+
+      Controller.AddAction(new SelectLegendaryAbility(type, this));
+      AvailableGifts.Value--;
+    }
+
+    internal void TryRemoveLegendaryAbility(StatType type)
+    {
+      if (!CanRemoveLegendaryAbility(type))
+        return;
+
+      Controller.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == type);
+      AvailableGifts.Value++;
+    }
+
     internal bool CanAddLegendaryAbility(StatType type)
     {
       if (AvailableGifts.Value == 0)

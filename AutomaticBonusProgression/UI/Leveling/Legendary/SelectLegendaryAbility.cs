@@ -13,13 +13,15 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   internal class SelectLegendaryAbility : ILevelUpAction
   {
     internal readonly StatType Attribute;
+    private readonly LegendaryGiftState State;
 
     [JsonConstructor]
     public SelectLegendaryAbility() { }
 
-    internal SelectLegendaryAbility(StatType type)
+    internal SelectLegendaryAbility(StatType type, LegendaryGiftState state)
     {
       Attribute = type;
+      State = state;
     }
 
     public LevelUpActionPriority Priority => LevelUpActionPriority.AddAttribute;
@@ -53,33 +55,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public bool Check(LevelUpState state, UnitDescriptor unit)
     {
-      Feature feature = null;
-      switch (Attribute)
-      {
-        case StatType.Strength:
-          feature = unit.GetFeature(Common.LegendaryStr);
-          break;
-        case StatType.Dexterity:
-          feature = unit.GetFeature(Common.LegendaryDex);
-          break;
-        case StatType.Constitution:
-          feature = unit.GetFeature(Common.LegendaryCon);
-          break;
-        case StatType.Intelligence:
-          feature = unit.GetFeature(Common.LegendaryInt);
-          break;
-        case StatType.Wisdom:
-          feature = unit.GetFeature(Common.LegendaryWis);
-          break;
-        case StatType.Charisma:
-          feature = unit.GetFeature(Common.LegendaryCha);
-          break;
-      }
-
-      if (feature is null)
-        return true;
-
-      return feature.Rank < feature.Blueprint.Ranks;
+      return State.CanAddLegendaryAbility(Attribute);
     }
 
     public void PostLoad() { }

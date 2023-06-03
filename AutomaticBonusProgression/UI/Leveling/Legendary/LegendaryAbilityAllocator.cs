@@ -138,16 +138,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     internal void TryIncreaseValue()
     {
-      if (!CanAdd.Value)
-        return;
-      State.Controller.AddAction(new SelectLegendaryAbility(Type));
+      State.TryAddLegendaryAbility(Type);
     }
 
     internal void TryDecreaseValue()
     {
-      if (!CanRemove.Value)
-        return;
-      State.Controller.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == Type);
+      State.TryRemoveLegendaryAbility(Type);
     }
 
     private void UpdateValues()
@@ -161,6 +157,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       CanAdd.Value = State.CanAddLegendaryAbility(Type);
       CanRemove.Value = State.CanRemoveLegendaryAbility(Type);
+      Logger.Log($"We're addremoving take 3");
     }
 
     internal static int GetLegendaryBonus(ModifiableValue stat)
