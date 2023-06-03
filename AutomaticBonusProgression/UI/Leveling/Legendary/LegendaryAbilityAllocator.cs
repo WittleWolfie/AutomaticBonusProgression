@@ -34,6 +34,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public override void BindViewImplementation()
     {
+      Logger.Log($"Binding {ViewModel.Name}");
       Allocator.m_LongName.SetText(ViewModel.Name);
       Allocator.m_ShortName.SetText(ViewModel.ShortName);
 
@@ -79,22 +80,21 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   /// </summary>
   internal class LegendaryAbilityScoreAllocatorVM : BaseDisposable, IViewModel, IHasTooltipTemplate
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryAbilityScoreAllocatorVM));
+
     private readonly ReactiveProperty<ModifiableValue> Stat = new();
     private StatType Type => Stat.Value.Type;
 
     private readonly LegendaryGiftState State;
     private readonly InfoSectionVM InfoVM;
 
-    public LegendaryAbilityScoreAllocatorVM(
-      StatType type,
-      LegendaryGiftState state,
-      InfoSectionVM infoVM)
+    public LegendaryAbilityScoreAllocatorVM(StatType type, LegendaryGiftState state, InfoSectionVM infoVM)
     {
-      Stat.ToSequentialReadOnlyReactiveProperty();
-      Stat.Value = State.Controller.Preview.Stats.GetStat(type);
-
       State = state;
       InfoVM = infoVM;
+
+      Stat.ToSequentialReadOnlyReactiveProperty();
+      Stat.Value = State.Controller.Preview.Stats.GetStat(type);
 
       AddDisposable(Stat.Subscribe(_ => UpdateValues()));
       AddDisposable(State.AvailableGifts.Subscribe(_ => UpdateCanAddRemove()));

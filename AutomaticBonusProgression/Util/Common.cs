@@ -327,7 +327,7 @@ namespace AutomaticBonusProgression.Util
       get
       {
         _legendaryDex ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryDexterity);
-        return LegendaryDex;
+        return _legendaryDex;
       }
     }
     private static BlueprintFeature _legendaryCon;

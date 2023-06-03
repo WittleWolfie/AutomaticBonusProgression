@@ -30,12 +30,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       return type switch
       {
-        StatType.Strength => IsMaxRank(Common.LegendaryStr),
-        StatType.Dexterity => IsMaxRank(Common.LegendaryDex),
-        StatType.Constitution => IsMaxRank(Common.LegendaryCon),
-        StatType.Intelligence => IsMaxRank(Common.LegendaryInt),
-        StatType.Wisdom => IsMaxRank(Common.LegendaryWis),
-        StatType.Charisma => IsMaxRank(Common.LegendaryCha),
+        StatType.Strength => !IsMaxRank(Common.LegendaryStr),
+        StatType.Dexterity => !IsMaxRank(Common.LegendaryDex),
+        StatType.Constitution => !IsMaxRank(Common.LegendaryCon),
+        StatType.Intelligence => !IsMaxRank(Common.LegendaryInt),
+        StatType.Wisdom => !IsMaxRank(Common.LegendaryWis),
+        StatType.Charisma => !IsMaxRank(Common.LegendaryCha),
         _ => throw new System.NotImplementedException(),
       };
     }
