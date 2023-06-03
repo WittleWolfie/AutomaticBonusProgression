@@ -42,6 +42,7 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryStrengthDisplayName = "LegendaryAbility.Strength.Name";
     private const string LegendaryStrengthDescription = "LegendaryAbility.Strength.Description";
 
+    // TODO: Remove the base blueprint bullshit once we don't need the selection
     private static BlueprintFeature ConfigureStrength()
     {
       Logger.Log($"Configuring Legendary Strength");
