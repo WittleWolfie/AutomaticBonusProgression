@@ -29,7 +29,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsPhaseView));
 
     private CharGenAbilityScoresDetailedPCView AbilityScoresView;
-    private readonly List<LegendaryAbilityAllocatorView> Allocators;
+    private readonly List<LegendaryAbilityAllocatorView> Allocators = new();
 
     internal void Init(CharGenAbilityScoresDetailedPCView source)
     {
