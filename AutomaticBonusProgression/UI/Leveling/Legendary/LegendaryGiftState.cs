@@ -15,6 +15,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   internal class LegendaryGiftState
   {
     internal readonly IntReactiveProperty AvailableGifts = new();
+    internal readonly ReactiveCommand UpdateStats = new();
+
     internal readonly LevelUpController Controller;
 
     internal LegendaryGiftState(LevelUpController controller, int gifts)
@@ -31,6 +33,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       Controller.AddAction(new SelectLegendaryAbility(type, this));
       AvailableGifts.Value--;
+      UpdateStats.Execute();
     }
 
     internal void TryRemoveLegendaryAbility(StatType type)
@@ -40,6 +43,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       Controller.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == type);
       AvailableGifts.Value++;
+      UpdateStats.Execute();
     }
 
     internal bool CanAddLegendaryAbility(StatType type)

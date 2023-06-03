@@ -82,21 +82,19 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryAbilityScoreAllocatorVM));
 
-    private readonly ReactiveProperty<ModifiableValue> Stat = new();
-    private StatType Type => Stat.Value.Type;
+    private ModifiableValue Stat => State.Controller.Preview.Stats.GetStat(Type);
+    private readonly StatType Type;
 
     private readonly LegendaryGiftState State;
     private readonly InfoSectionVM InfoVM;
 
     public LegendaryAbilityScoreAllocatorVM(StatType type, LegendaryGiftState state, InfoSectionVM infoVM)
     {
+      Type = type;
       State = state;
       InfoVM = infoVM;
 
-      Stat.ToSequentialReadOnlyReactiveProperty();
-      Stat.Value = State.Controller.Preview.Stats.GetStat(type);
-
-      AddDisposable(Stat.Subscribe(_ => UpdateValues()));
+      AddDisposable(State.UpdateStats.Subscribe(_ => UpdateValues()));
       AddDisposable(State.AvailableGifts.Subscribe(_ => UpdateCanAddRemove()));
 
       Name = LocalizedTexts.Instance.Stats.GetText(Type);
@@ -107,7 +105,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     internal void SetRecommendationsForClass(ClassData classData)
     {
-      var recommend = classData is not null && classData.RecommendedAttributes.Contains(Stat.Value.Type);
+      var recommend = classData is not null && classData.RecommendedAttributes.Contains(Type);
       if (Recommendation.Value is null)
         AddDisposable(Recommendation.Value = new(recommend));
       else
@@ -132,7 +130,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       classInformation.Class = State.Controller.State.SelectedClass;
       classInformation.Unit = State.Controller.Preview.Descriptor;
       classInformation.Archetype = archetype;
-      StatTooltipData statData = new StatTooltipData(Stat.Value);
+      StatTooltipData statData = new StatTooltipData(State.Controller.Preview.Stats.GetStat(Type));
       return new TooltipTemplateAbilityScoreAllocator(classInformation, statData);
     }
 
@@ -148,8 +146,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private void UpdateValues()
     {
-      StatValue.Value =
-        Stat.Value.PermanentValue + ProwessPhaseVM.GetProwessBonus(Stat.Value) + GetLegendaryBonus(Stat.Value);
+      StatValue.Value = Stat.PermanentValue + ProwessPhaseVM.GetProwessBonus(Stat) + GetLegendaryBonus(Stat);
       Modifier.Value = (StatValue.Value - 10) / 2;
     }
 
