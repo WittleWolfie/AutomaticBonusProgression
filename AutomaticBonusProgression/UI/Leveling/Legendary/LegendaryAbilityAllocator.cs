@@ -14,8 +14,7 @@ using Kingmaker.UnitLogic.Class.LevelUp;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
 using Owlcat.Runtime.UI.Tooltips;
-using System;
-using System.Linq;
+using System.Linq; 
 using UniRx;
 
 namespace AutomaticBonusProgression.UI.Leveling.Legendary
@@ -40,8 +39,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Allocator.m_ShortName.SetText(ViewModel.ShortName);
 
       Allocator.AddDisposable(ViewModel.Value.Subscribe(_ => UpdateAllocator()));
-      Allocator.AddDisposable(ViewModel.CanAdd.Subscribe(Allocator.UpButton.SetInteractable));
-      Allocator.AddDisposable(ViewModel.CanRemove.Subscribe(Allocator.DownButton.SetInteractable));
+      Allocator.AddDisposable(ViewModel.CanAdd.Subscribe(UpdateCanAdd));
+      Allocator.AddDisposable(ViewModel.CanRemove.Subscribe(UpdateCanRemove));
       Allocator.AddDisposable(ViewModel.Recommendation.Subscribe(Allocator.m_RecommendationMark.Bind));
       Allocator.AddDisposable(Allocator.UpButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryIncreaseValue()));
       Allocator.AddDisposable(Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseValue()));
@@ -60,6 +59,18 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Allocator.m_Value.SetText(ViewModel.Value.Value.ToString());
       Allocator.m_Modifier.SetText(UIUtility.AddSign(ViewModel.Modifier.Value));
       ViewModel.TryShowTooltip();
+    }
+
+    private void UpdateCanAdd(bool canAdd)
+    {
+      Allocator.UpButton.SetInteractable(canAdd);
+      Allocator.m_AddCost.SetText(canAdd ? "-1" : string.Empty, syncTextInputBox: true);
+    }
+
+    private void UpdateCanRemove(bool canRemove)
+    {
+      Allocator.DownButton.SetInteractable(canRemove);
+      Allocator.m_RemoveCost.SetText(canRemove ? "+1" : string.Empty, syncTextInputBox: true);
     }
   }
 
