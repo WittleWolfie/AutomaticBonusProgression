@@ -45,9 +45,11 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Controller.UpdatePreview();
     }
 
-    internal bool CanAddLegendaryAbility(StatType type)
+    internal bool CanAddLegendaryAbility(StatType type, bool checkGifts = true)
     {
-      if (AvailableGifts.Value == 0)
+      // CheckGifts is used so that `SelectLegendaryAbility` returns correctly. Without this, selecting a later option
+      // will clear any legendary ability selections since it will be checked after gifts are spent.
+      if (checkGifts && AvailableGifts.Value == 0)
         return false;
 
       return type switch

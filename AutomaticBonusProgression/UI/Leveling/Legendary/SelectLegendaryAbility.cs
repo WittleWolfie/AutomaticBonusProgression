@@ -57,7 +57,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public bool Check(LevelUpState state, UnitDescriptor unit)
     {
-      return State.CanAddLegendaryAbility(Attribute);
+      return State.CanAddLegendaryAbility(Attribute, checkGifts: false);
     }
 
     public void PostLoad() { }
