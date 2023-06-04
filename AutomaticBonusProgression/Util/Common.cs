@@ -451,17 +451,17 @@ namespace AutomaticBonusProgression.Util
       switch (stat.Type)
       {
         case StatType.Strength:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.StrProwess).Sum(mod => mod.ModValue);
+          return enhancement.Where(mod => mod.Source.Blueprint == StrProwess).Sum(mod => mod.ModValue);
         case StatType.Dexterity:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.DexProwess).Sum(mod => mod.ModValue);
+          return enhancement.Where(mod => mod.Source.Blueprint == DexProwess).Sum(mod => mod.ModValue);
         case StatType.Constitution:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.ConProwess).Sum(mod => mod.ModValue);
+          return enhancement.Where(mod => mod.Source.Blueprint == ConProwess).Sum(mod => mod.ModValue);
         case StatType.Intelligence:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.IntProwess).Sum(mod => mod.ModValue);
+          return enhancement.Where(mod => mod.Source.Blueprint == IntProwess).Sum(mod => mod.ModValue);
         case StatType.Wisdom:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.WisProwess).Sum(mod => mod.ModValue);
+          return enhancement.Where(mod => mod.Source.Blueprint == WisProwess).Sum(mod => mod.ModValue);
         case StatType.Charisma:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.ChaProwess).Sum(mod => mod.ModValue);
+          return enhancement.Where(mod => mod.Source.Blueprint == ChaProwess).Sum(mod => mod.ModValue);
       }
       return 0;
     }
@@ -478,17 +478,17 @@ namespace AutomaticBonusProgression.Util
       switch (stat.Type)
       {
         case StatType.Strength:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryStr).Sum(mod => mod.ModValue);
+          return inherent.Where(mod => mod.Source.Blueprint == LegendaryStr).Sum(mod => mod.ModValue);
         case StatType.Dexterity:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryDex).Sum(mod => mod.ModValue);
+          return inherent.Where(mod => mod.Source.Blueprint == LegendaryDex).Sum(mod => mod.ModValue);
         case StatType.Constitution:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryCon).Sum(mod => mod.ModValue);
+          return inherent.Where(mod => mod.Source.Blueprint == LegendaryCon).Sum(mod => mod.ModValue);
         case StatType.Intelligence:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryInt).Sum(mod => mod.ModValue);
+          return inherent.Where(mod => mod.Source.Blueprint == LegendaryInt).Sum(mod => mod.ModValue);
         case StatType.Wisdom:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryWis).Sum(mod => mod.ModValue);
+          return inherent.Where(mod => mod.Source.Blueprint == LegendaryWis).Sum(mod => mod.ModValue);
         case StatType.Charisma:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryCha).Sum(mod => mod.ModValue);
+          return inherent.Where(mod => mod.Source.Blueprint == LegendaryCha).Sum(mod => mod.ModValue);
       }
       return 0;
     }
