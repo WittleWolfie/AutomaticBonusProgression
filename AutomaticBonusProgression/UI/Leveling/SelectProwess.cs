@@ -21,9 +21,10 @@ namespace AutomaticBonusProgression.UI.Leveling
     [JsonConstructor]
     public SelectProwess() { }
 
-    internal SelectProwess(StatType type)
+    internal SelectProwess(StatType type, bool isGift)
     {
       Attribute = type;
+      IsGift = isGift;
     }
 
     public LevelUpActionPriority Priority => LevelUpActionPriority.AddAttribute;
@@ -114,10 +115,10 @@ namespace AutomaticBonusProgression.UI.Leveling
 
   internal class SelectPhysicalProwess : SelectProwess
   {
-    public SelectPhysicalProwess(StatType type, bool isGift = false) : base(type) { }
+    public SelectPhysicalProwess(StatType type, bool isGift = false) : base(type, isGift) { }
   }
   internal class SelectMentalProwess : SelectProwess
   {
-    public SelectMentalProwess(StatType type, bool isGift = false) : base(type) { }
+    public SelectMentalProwess(StatType type, bool isGift = false) : base(type, isGift) { }
   }
 }

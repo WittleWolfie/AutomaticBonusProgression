@@ -287,13 +287,13 @@ namespace AutomaticBonusProgression.UI.Leveling
 
     private void SelectPhysicalProwess(StatType stat)
     {
-      LevelUpController.RemoveAction<SelectPhysicalProwess>();
+      LevelUpController.RemoveAction<SelectPhysicalProwess>(a => !a.IsGift);
       LevelUpController.AddAction(new SelectPhysicalProwess(stat));
     }
 
     private void SelectMentalProwess(StatType stat)
     {
-      LevelUpController.RemoveAction<SelectMentalProwess>();
+      LevelUpController.RemoveAction<SelectMentalProwess>(a => !a.IsGift);
       LevelUpController.AddAction(new SelectMentalProwess(stat));
     }
 
