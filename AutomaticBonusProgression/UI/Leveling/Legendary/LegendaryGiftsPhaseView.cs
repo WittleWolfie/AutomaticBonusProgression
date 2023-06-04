@@ -10,8 +10,10 @@ using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Skills;
 using Kingmaker.UI.MVVM._VM.CharGen;
 using Kingmaker.UI.MVVM._VM.CharGen.Phases;
+using Kingmaker.UI.MVVM._VM.Tooltip.Templates;
 using Kingmaker.UnitLogic.Class.LevelUp;
 using Kingmaker.UnitLogic.Class.LevelUp.Actions;
+using Owlcat.Runtime.UI.Tooltips;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -265,15 +267,19 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   /// </summary>
   internal class LegendaryGiftsRoadmapView : CharGenPhaseRoadmapBaseView<LegendaryGiftsPhaseVM>
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsRoadmapView));
+
     private TextMeshProUGUI PointsLabel;
 
     internal void Init(CharGenSkillsPhaseRoadmapPCView skillsView)
     {
       Initialize(); // Make sure the parent classes are set up
       PointsLabel = skillsView.m_Points;
+
       // Copy values that should exist from the existing component
       m_ButtonBackground = skillsView.m_Button;
       m_Label = skillsView.m_Label;
+      m_LabelLayoutElement = skillsView.m_LabelLayoutElement;
       m_ButtonLabel = skillsView.m_ButtonLabel;
       m_Button = skillsView.m_Button;
     }
@@ -287,7 +293,9 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private void UpdateGifts(int gifts)
     {
+      Logger.Log($"Updating!");
       PointsLabel.SetText(gifts.ToString());
+      UpdateSelectableState();
     }
   }
 
@@ -348,6 +356,17 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       var classData = LevelUpController.Preview.Progression.GetClassData(clazz);
       foreach (var vm in AbilityScoreVMs)
         vm.SetRecommendationsForClass(classData);
+    }
+
+    // Shows a tooltip telling the user to spend their gifts to move to the next phase
+    public override TooltipBaseTemplate NotCompletedReasonTooltip
+    {
+      get
+      {
+        if (!CheckIsCompleted())
+          return new TooltipTemplateSimple(UITool.GetString("Legendary.Gifts.Incomplete"));
+        return null;
+      }
     }
   }
 }

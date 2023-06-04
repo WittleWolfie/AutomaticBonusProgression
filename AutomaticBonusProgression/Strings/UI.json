@@ -146,6 +146,11 @@
     "enGB": "Select Legendary Gifts"
   },
   {
+    "Key": "ABP.UI.Legendary.Gifts.Incomplete",
+    "ProcessTemplates": false,
+    "enGB": "Character has unspent Legendary Gifts."
+  },
+  {
     "Key": "ABP.UI.Legendary.Prowess",
     "ProcessTemplates": false,
     "enGB": "Prowess"
