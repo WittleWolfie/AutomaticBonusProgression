@@ -61,19 +61,14 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         var allocator = Allocators[i];
         var vm = ViewModel.AbilityScoreVMs[i];
         allocator.Bind(vm);
+        AddDisposable(vm);
       }
-    }
-
-    public override void DestroyViewImplementation()
-    {
-      gameObject.SetActive(false);
     }
 
     private void SetAvailableGifts(int gifts)
     {
       AbilityScoresView.m_AvailiblePoints.SetText(gifts.ToString());
     }
-
 
     #region Setup
     private static LegendaryGiftsPhaseView PhaseView;
@@ -297,8 +292,11 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     }
   }
 
+  // TODO: Provide string for spending the gifts
   internal class LegendaryGiftsPhaseVM : CharGenPhaseBaseVM
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsPhaseVM));
+
     public override int OrderPriority => GetBaseOrderPriority(ChargenPhasePriority.AbilityScores);
 
     internal readonly LegendaryGiftState State;
@@ -310,7 +308,11 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       SetPhaseName(UITool.GetString("Legendary.Gifts"));
 
       foreach (var stat in Attributes)
-        AbilityScoreVMs.Add(new(stat, State, new()));
+      {
+        var vm = new LegendaryAbilityScoreAllocatorVM(stat, State, new());
+        AbilityScoreVMs.Add(vm);
+        AddDisposable(vm);
+      }
 
       AddDisposable(State.Controller.UpdateCommand.Subscribe(_ => UpdateStats()));
     }
@@ -351,12 +353,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       var classData = LevelUpController.Preview.Progression.GetClassData(clazz);
       foreach (var vm in AbilityScoreVMs)
         vm.SetRecommendationsForClass(classData);
-    }
-
-    public override void DisposeImplementation()
-    {
-      foreach (var vm in AbilityScoreVMs)
-        vm.DisposeImplementation();
     }
   }
 }

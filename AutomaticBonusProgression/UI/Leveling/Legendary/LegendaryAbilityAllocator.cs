@@ -34,20 +34,19 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public override void BindViewImplementation()
     {
-      Logger.Log($"Binding {ViewModel.Name}");
       Allocator.m_LongName.SetText(ViewModel.Name);
       Allocator.m_ShortName.SetText(ViewModel.ShortName);
 
-      Allocator.AddDisposable(
+      AddDisposable(
         ViewModel.StatValue.Subscribe(value => Allocator.m_Value.SetText(value.ToString())));
-      Allocator.AddDisposable(
+      AddDisposable(
         ViewModel.Modifier.Subscribe(value => Allocator.m_Modifier.SetText(UIUtility.AddSign(value))));
-      Allocator.AddDisposable(ViewModel.CanAdd.Subscribe(UpdateCanAdd));
-      Allocator.AddDisposable(ViewModel.CanRemove.Subscribe(UpdateCanRemove));
-      Allocator.AddDisposable(ViewModel.Recommendation.Subscribe(Allocator.m_RecommendationMark.Bind));
-      Allocator.AddDisposable(
+      AddDisposable(ViewModel.CanAdd.Subscribe(UpdateCanAdd));
+      AddDisposable(ViewModel.CanRemove.Subscribe(UpdateCanRemove));
+      AddDisposable(ViewModel.Recommendation.Subscribe(Allocator.m_RecommendationMark.Bind));
+      AddDisposable(
         Allocator.UpButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryIncreaseValue()));
-      Allocator.AddDisposable(
+      AddDisposable(
         Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseValue()));
     }
 
@@ -105,7 +104,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     internal void UpdateStat()
     {
-      var stat = State.Controller.Preview.Stats.GetStat(Type);
       Stat.SetValueAndForceNotify(State.Controller.Preview.Stats.GetStat(Type));
     }
 
