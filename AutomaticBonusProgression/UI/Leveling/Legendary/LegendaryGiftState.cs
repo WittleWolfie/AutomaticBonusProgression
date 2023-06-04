@@ -14,6 +14,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   /// </summary>
   internal class LegendaryGiftState
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftState));
+
     internal readonly IntReactiveProperty AvailableGifts = new();
     internal readonly LevelUpController Controller;
 

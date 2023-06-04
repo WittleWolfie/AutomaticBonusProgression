@@ -103,8 +103,15 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public override void DisposeImplementation() { }
 
+    // TODO: Somehow when you add two stats at once, then remove one it doesn't remove the actions but it _does_
+    // remove the fact from the character. Maybe I need to refactor to a single action that applies X.
     internal void UpdateStat()
     {
+      var stat = State.Controller.Preview.Stats.GetStat(Type);
+      string log = $"Updating {Type}: ";
+      foreach (var mod in stat.Modifiers)
+        log += $"[{mod.ModValue}:{mod.ModDescriptor}]";
+      Logger.Log(log);
       Stat.SetValueAndForceNotify(State.Controller.Preview.Stats.GetStat(Type));
     }
 
@@ -164,6 +171,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     internal static int GetLegendaryBonus(ModifiableValue stat)
     {
       var inherent = stat.GetModifiers(ModifierDescriptor.Inherent);
+      Logger.Log($"Legendary Bonus {stat.Type}: {inherent?.Count() ?? 0}");
       if (inherent is null)
         return 0;
 
