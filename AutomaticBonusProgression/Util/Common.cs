@@ -441,10 +441,6 @@ namespace AutomaticBonusProgression.Util
     internal static int GetProwessBonus(ModifiableValue stat)
     {
       var enhancement = stat.GetModifiers(ModifierDescriptor.Enhancement);
-      string log = $"Checking {stat.Type}: ";
-      foreach (var mod in stat.Modifiers)
-        log += $"[{mod.ModValue}:{mod.ModDescriptor}]";
-      Logger.Log(log);
       if (enhancement is null)
         return 0;
 
