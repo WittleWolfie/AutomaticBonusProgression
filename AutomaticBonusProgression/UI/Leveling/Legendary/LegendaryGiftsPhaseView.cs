@@ -277,7 +277,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       PointsLabel = skillsView.m_Points;
 
       // Copy values that should exist from the existing component
-      m_ButtonBackground = skillsView.m_Button;
+      m_ButtonBackground = skillsView.m_ButtonBackground;
       m_Label = skillsView.m_Label;
       m_LabelLayoutElement = skillsView.m_LabelLayoutElement;
       m_ButtonLabel = skillsView.m_ButtonLabel;
@@ -293,7 +293,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private void UpdateGifts(int gifts)
     {
-      Logger.Log($"Updating!");
       PointsLabel.SetText(gifts.ToString());
       UpdateSelectableState();
     }
