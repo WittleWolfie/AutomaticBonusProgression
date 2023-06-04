@@ -12,6 +12,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   /// </summary>
   internal class SelectLegendaryAbility : ILevelUpAction
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(SelectLegendaryAbility));
+
     internal readonly StatType Attribute;
     private readonly LegendaryGiftState State;
 

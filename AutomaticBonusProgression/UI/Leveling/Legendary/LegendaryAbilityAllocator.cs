@@ -103,8 +103,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public override void DisposeImplementation() { }
 
-    // TODO: Somehow when you add two stats at once, then remove one it doesn't remove the actions but it _does_
-    // remove the fact from the character. Maybe I need to refactor to a single action that applies X.
     internal void UpdateStat()
     {
       var stat = State.Controller.Preview.Stats.GetStat(Type);
