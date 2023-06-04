@@ -2,7 +2,6 @@
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.Enums;
 using Kingmaker.UI;
 using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
@@ -28,33 +27,41 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryAbilityAllocatorView));
 
     private CharGenAbilityScoreAllocatorPCView Allocator;
-    private ToggleWorkaround FirstProwessSelector;
-    private ToggleWorkaround SecondProwessSelector;
+    private ToggleWorkaround FirstProwessToggle;
+    private ToggleWorkaround SecondProwessToggle;
 
     internal void Init(CharGenAbilityScoreAllocatorPCView source)
     {
       Allocator = source;
 
-      FirstProwessSelector = CreateToggle();
-      SecondProwessSelector = CreateToggle(first: false);
+      FirstProwessToggle = CreateToggle();
+      SecondProwessToggle = CreateToggle(first: false);
     }
 
     public override void BindViewImplementation()
     {
       Allocator.m_LongName.SetText(ViewModel.Name);
       Allocator.m_ShortName.SetText(ViewModel.ShortName);
+      
 
       AddDisposable(
         ViewModel.StatValue.Subscribe(value => Allocator.m_Value.SetText(value.ToString())));
       AddDisposable(
         ViewModel.Modifier.Subscribe(value => Allocator.m_Modifier.SetText(UIUtility.AddSign(value))));
-      AddDisposable(ViewModel.CanAdd.Subscribe(UpdateCanAdd));
-      AddDisposable(ViewModel.CanRemove.Subscribe(UpdateCanRemove));
+
+      AddDisposable(ViewModel.CanAddAbility.Subscribe(UpdateCanAdd));
+      AddDisposable(ViewModel.CanRemoveAbility.Subscribe(UpdateCanRemove));
+      AddDisposable(ViewModel.CanSelectProwess.Subscribe(UpdateAvailableProwess));
+
       AddDisposable(ViewModel.Recommendation.Subscribe(Allocator.m_RecommendationMark.Bind));
+
       AddDisposable(
-        Allocator.UpButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryIncreaseValue()));
+        Allocator.UpButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryIncreaseAbility()));
       AddDisposable(
-        Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseValue()));
+        Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseAbility()));
+
+      FirstProwessToggle.onValueChanged.AddListener(new(ViewModel.ToggleProwess));
+      SecondProwessToggle.onValueChanged.AddListener(new(ViewModel.ToggleProwess));
     }
 
     public override void DestroyViewImplementation() { }
@@ -74,6 +81,20 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       Allocator.DownButton.SetInteractable(canRemove);
       Allocator.m_RemoveCost.SetText(canRemove ? "+1" : string.Empty, syncTextInputBox: true);
+    }
+
+    private void UpdateAvailableProwess(bool canSelect)
+    {
+      FirstProwessToggle.interactable = FirstProwessToggle.isOn || canSelect;
+      SecondProwessToggle.interactable = SecondProwessToggle.isOn || (FirstProwessToggle.isOn && canSelect);
+    }
+
+    private void DisableToggles(params ToggleWorkaround[] toggles)
+    {
+      // Don't disable toggles that are on so it can be unselected
+      foreach (var toggle in toggles)
+        if (!toggle.isOn)
+          toggle.interactable = false;
     }
 
     private ToggleWorkaround CreateToggle(bool first = true)
@@ -115,7 +136,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Stat.Value = State.Controller.Preview.Stats.GetStat(Type);
 
       AddDisposable(Stat.Subscribe(_ => UpdateValues()));
-      AddDisposable(State.AvailableGifts.Subscribe(_ => UpdateCanAddRemove()));
+      AddDisposable(State.AvailableGifts.Subscribe(_ => UpdateEligibility()));
 
       Name = LocalizedTexts.Instance.Stats.GetText(Type);
       ShortName = UIUtilityTexts.GetStatShortName(Type);
@@ -159,14 +180,22 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       return new TooltipTemplateAbilityScoreAllocator(classInformation, statData);
     }
 
-    internal void TryIncreaseValue()
+    internal void TryIncreaseAbility()
     {
       State.TryAddLegendaryAbility(Type);
     }
 
-    internal void TryDecreaseValue()
+    internal void TryDecreaseAbility()
     {
       State.TryRemoveLegendaryAbility(Type);
+    }
+
+    internal void ToggleProwess(bool selected)
+    {
+      if (selected)
+        State.TrySelectProwess(Type);
+      else
+        State.TryUnselectProwess(Type);
     }
 
     private void UpdateValues()
@@ -176,18 +205,27 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Modifier.Value = (StatValue.Value - 10) / 2;
     }
 
-    private void UpdateCanAddRemove()
+    private void UpdateEligibility()
     {
-      CanAdd.Value = State.CanAddLegendaryAbility(Type);
-      CanRemove.Value = State.CanRemoveLegendaryAbility(Type);
+      CanAddAbility.Value = State.CanAddLegendaryAbility(Type);
+      CanRemoveAbility.Value = State.CanRemoveLegendaryAbility(Type);
+      // Force notify or it only notifies on change
+      CanSelectProwess.SetValueAndForceNotify(State.CanSelectProwess(Type));
     }
 
     internal readonly string Name;
     internal readonly string ShortName;
+
+    // Stat UI
     internal readonly IntReactiveProperty StatValue = new();
     internal readonly IntReactiveProperty Modifier = new();
-    internal readonly BoolReactiveProperty CanAdd = new();
-    internal readonly BoolReactiveProperty CanRemove = new();
     internal readonly ReactiveProperty<RecommendationMarkerVM> Recommendation = new();
+
+    // Legendary Ability
+    internal readonly BoolReactiveProperty CanAddAbility = new();
+    internal readonly BoolReactiveProperty CanRemoveAbility = new();
+
+    // Legendary Prowess
+    internal readonly BoolReactiveProperty CanSelectProwess = new();
   }
 }
