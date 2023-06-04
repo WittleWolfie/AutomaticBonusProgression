@@ -250,20 +250,39 @@ namespace AutomaticBonusProgression.UI.Leveling
       List<StatType> stats,
       Action<StatType> onSelect)
     {
-      var eligibleStats =
-        LevelUpController.State.NextCharacterLevel >= 15
-          ? stats.Where(type => Common.GetProwessBonus(LevelUpController.Preview.Stats.GetStat(type)) <= 4)
-          : stats.Where(type => Common.GetProwessBonus(LevelUpController.Preview.Stats.GetStat(type)) <= 2);
-      var selections =
-        eligibleStats.Select(
-          type =>
-          new StringSequentialEntity()
-          {
-            Title = LocalizedTexts.Instance.Stats.GetText(type),
-            Setter = new(() => onSelect(type)),
-            Tooltip = LevelUpController.Preview.Stats.GetStat(type)
-          });
-      return new(selections.ToList());
+      StringSequentialEntity selected = null;
+      List<StringSequentialEntity> selections = new();
+      foreach (var type in stats)
+      {
+        var stat = LevelUpController.Preview.Stats.GetStat(type);
+        if (LevelUpController.LevelUpActions.OfType<SelectProwess>().Any(a => a.Attribute == type))
+        {
+          selected = GetSelection(stat, onSelect);
+          selections.Add(selected);
+        }
+        else if (IsEligible(stat))
+        {
+          selections.Add(GetSelection(stat, onSelect));
+        }
+      }
+      return new(selections.ToList(), current: selected);
+    }
+
+    private StringSequentialEntity GetSelection(ModifiableValue stat, Action<StatType> onSelect)
+    {
+      return
+        new StringSequentialEntity()
+        {
+          Title = LocalizedTexts.Instance.Stats.GetText(stat.Type),
+          Setter = new(() => onSelect(stat.Type)),
+          Tooltip = stat
+        };
+    }
+
+    private bool IsEligible(ModifiableValue stat)
+    {
+      var bonusLimit = LevelUpController.State.NextCharacterLevel >= 15 ? 4 : 2;
+      return Common.GetProwessBonus(stat) <= bonusLimit;
     }
 
     private void SelectPhysicalProwess(StatType stat)

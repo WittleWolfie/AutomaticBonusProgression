@@ -106,10 +106,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     internal void UpdateStat()
     {
       var stat = State.Controller.Preview.Stats.GetStat(Type);
-      string log = $"Updating {Type}: ";
-      foreach (var mod in stat.Modifiers)
-        log += $"[{mod.ModValue}:{mod.ModDescriptor}]";
-      Logger.Log(log);
       Stat.SetValueAndForceNotify(State.Controller.Preview.Stats.GetStat(Type));
     }
 
