@@ -61,7 +61,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         var allocator = Allocators[i];
         var vm = ViewModel.AbilityScoreVMs[i];
         allocator.Bind(vm);
-        AddDisposable(vm);
       }
     }
 
@@ -308,11 +307,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       SetPhaseName(UITool.GetString("Legendary.Gifts"));
 
       foreach (var stat in Attributes)
-      {
-        var vm = new LegendaryAbilityScoreAllocatorVM(stat, State, new());
-        AbilityScoreVMs.Add(vm);
-        AddDisposable(vm);
-      }
+        AbilityScoreVMs.Add(new(stat, State, new()));
 
       AddDisposable(State.Controller.UpdateCommand.Subscribe(_ => UpdateStats()));
     }
