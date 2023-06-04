@@ -3,6 +3,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.UI;
 using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._VM.InfoWindow;
@@ -15,6 +16,7 @@ using Owlcat.Runtime.UI.MVVM;
 using Owlcat.Runtime.UI.Tooltips;
 using System.Linq;
 using UniRx;
+using UnityEngine;
 
 namespace AutomaticBonusProgression.UI.Leveling.Legendary
 {
@@ -26,10 +28,15 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryAbilityAllocatorView));
 
     private CharGenAbilityScoreAllocatorPCView Allocator;
+    private ToggleWorkaround FirstProwessSelector;
+    private ToggleWorkaround SecondProwessSelector;
 
     internal void Init(CharGenAbilityScoreAllocatorPCView source)
     {
       Allocator = source;
+
+      FirstProwessSelector = CreateToggle();
+      SecondProwessSelector = CreateToggle(first: false);
     }
 
     public override void BindViewImplementation()
@@ -67,6 +74,20 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       Allocator.DownButton.SetInteractable(canRemove);
       Allocator.m_RemoveCost.SetText(canRemove ? "+1" : string.Empty, syncTextInputBox: true);
+    }
+
+    private ToggleWorkaround CreateToggle(bool first = true)
+    {
+      var toggle = GameObject.Instantiate(Prefabs.Checkbox);
+      toggle.transform.AddTo(gameObject.ChildObject("Bonus").transform);
+
+      // Destroy unneeded children and components
+      toggle.gameObject.DestroyChildren("Label");
+      toggle.gameObject.DestroyComponents<HorizontalLayoutGroupWorkaround>();
+
+      toggle.gameObject.Rect().localPosition = new(x: first ? -40 : 0, y: -25);
+
+      return toggle;
     }
   }
 

@@ -21,6 +21,11 @@ namespace AutomaticBonusProgression.UI
     public static GameObject StaticCanvas => Game.Instance.UI.Canvas.gameObject;
 
     /// <summary>
+    /// Root game object for the main menu UI elements.
+    /// </summary>
+    public static GameObject MainMenu => Game.Instance.UI.MainMenu.gameObject;
+
+    /// <summary>
     /// Root game object for FadeCanvas UI elements, e.g. Tooltips.
     /// </summary>
     public static GameObject FadeCanvas => Kingmaker.UI.FadeCanvas.Instance.gameObject;

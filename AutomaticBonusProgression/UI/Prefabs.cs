@@ -1,8 +1,13 @@
 ﻿using AutomaticBonusProgression.Util;
+using HarmonyLib;
+using Kingmaker;
+using Kingmaker.UI;
 using Kingmaker.UI.MVVM._PCView.InfoWindow;
 using Kingmaker.UI.MVVM._PCView.ServiceWindows.Spellbook.KnownSpells;
 using Kingmaker.UI.MVVM._PCView.Tooltip.Bricks;
+using Owlcat.Runtime.Core.Utils;
 using Owlcat.Runtime.UI.Controls.Button;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +19,8 @@ namespace AutomaticBonusProgression.UI
   /// </summary>
   /// 
   /// <remarks>
-  /// Each Prefab is a copy of some original prefab. This allows edit any components on the object once to create
-  /// a prefab, rather than using a base game prefab and editing components each time it is used. 
+  /// Each Prefab is a copy of some original object. This allows edit any components on the object once to create
+  /// a prefab, rather than using a base game object and editing components each time it is used. 
   /// </remarks>
   internal static class Prefabs
   {
@@ -24,6 +29,7 @@ namespace AutomaticBonusProgression.UI
     internal static OwlcatButton Button;
     internal static TextMeshProUGUI Text;
     internal static Image Image;
+    internal static ToggleWorkaround Checkbox;
 
     internal static GameObject EnchantmentContainer;
     internal static SpellbookKnownSpellPCView Enchantment;
@@ -51,6 +57,19 @@ namespace AutomaticBonusProgression.UI
       InitEnchantmentPrefabs();
     }
 
+    internal static void InitMainMenu()
+    {
+      Logger.Log("Initializing prefabs for MainMenu");
+
+      if (Checkbox is null)
+      {
+        var checkbox = GameObject.Instantiate(
+          UITool.MainMenu.ChildObject("ChargenPCView/ContentWrapper/SpellbookView/EdgeWindow/KnownSpells/Toggle"));
+        GameObject.DontDestroyOnLoad(checkbox);
+        Checkbox = checkbox.GetComponent<ToggleWorkaround>();
+      }
+    }
+
     private static void InitStaticBasics()
     {
       var button = GameObject.Instantiate(UITool.StaticCanvas.ChildObject("ChangeVisualPCView/Window/BackToStashButton/OwlcatButton"));
@@ -59,8 +78,8 @@ namespace AutomaticBonusProgression.UI
       var text = GameObject.Instantiate(UITool.StaticCanvas.ChildObject("ChangeVisualPCView/Window/Header/Header"));
       Text = text.GetComponent<TextMeshProUGUI>();
 
-      var prefab = new GameObject("image-prefab", typeof(RectTransform));
-      Image = prefab.AddComponent<Image>();
+      var image = new GameObject("image-prefab", typeof(RectTransform));
+      Image = image.AddComponent<Image>();
     }
 
     private static void InitEnchantmentPrefabs()
@@ -91,6 +110,23 @@ namespace AutomaticBonusProgression.UI
       ItemInfoBlock = GameObject.Instantiate(infoWindow.m_BricksConfig.BrickEntityHeaderView);
       ItemInfoBlock.gameObject.DestroyChildren(
         "IconBlock/IconArrow", "TextBlock/SideBySideText (1)", "IconBlock/Icon/DecorationIcon (2)", "IconBlock/Icon/Icon (1)");
+    }
+
+    [HarmonyPatch(typeof(MainMenu))]
+    static class MainMenu_Patch
+    {
+      [HarmonyPatch(nameof(MainMenu.Awake)), HarmonyPostfix]
+      static void Awake()
+      {
+        try
+        {
+          InitMainMenu();
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("MainMenu_Patch.Awake", e);
+        }
+      }
     }
   }
 }
