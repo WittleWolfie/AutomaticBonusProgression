@@ -16,7 +16,7 @@ namespace AutomaticBonusProgression.UI.Leveling
   {
     internal readonly StatType Attribute;
     // If true it means this is granted by Legendary Gifts so the usual check logic doesn't apply
-    private readonly bool IsGift;
+    internal readonly bool IsGift;
 
     [JsonConstructor]
     public SelectProwess() { }

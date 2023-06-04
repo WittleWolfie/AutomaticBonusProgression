@@ -105,12 +105,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         case StatType.Strength:
         case StatType.Dexterity:
         case StatType.Constitution:
-          removedAction = Controller.RemoveAction<SelectPhysicalProwess>(a => a.Attribute == type);
+          removedAction = Controller.RemoveAction<SelectPhysicalProwess>(a => a.Attribute == type && a.IsGift);
           break;
         case StatType.Intelligence:
         case StatType.Wisdom:
         case StatType.Charisma:
-          removedAction = Controller.RemoveAction<SelectMentalProwess>(a => a.Attribute == type);
+          removedAction = Controller.RemoveAction<SelectMentalProwess>(a => a.Attribute == type && a.IsGift);
           break;
         default:
           throw new InvalidEnumArgumentException($"Prowess isn't supported for {type}");
@@ -122,6 +122,11 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         AvailableGifts.Value++;
         Controller.UpdatePreview();
       }
+    }
+
+    internal bool IsProwessSelected(StatType type)
+    {
+      return Controller.LevelUpActions.OfType<SelectProwess>().Any(a => a.Attribute == type && a.IsGift);
     }
 
     internal bool CanSelectProwess(StatType type, bool checkGifts = true)

@@ -27,15 +27,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryAbilityAllocatorView));
 
     private CharGenAbilityScoreAllocatorPCView Allocator;
-    private ToggleWorkaround FirstProwessToggle;
-    private ToggleWorkaround SecondProwessToggle;
+    private ToggleWorkaround ProwessToggle;
 
     internal void Init(CharGenAbilityScoreAllocatorPCView source)
     {
       Allocator = source;
-
-      FirstProwessToggle = CreateToggle();
-      SecondProwessToggle = CreateToggle(first: false);
+      ProwessToggle = CreateToggle();
     }
 
     public override void BindViewImplementation()
@@ -43,7 +40,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Allocator.m_LongName.SetText(ViewModel.Name);
       Allocator.m_ShortName.SetText(ViewModel.ShortName);
       
-
       AddDisposable(
         ViewModel.StatValue.Subscribe(value => Allocator.m_Value.SetText(value.ToString())));
       AddDisposable(
@@ -60,11 +56,14 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       AddDisposable(
         Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseAbility()));
 
-      FirstProwessToggle.onValueChanged.AddListener(new(ViewModel.ToggleProwess));
-      SecondProwessToggle.onValueChanged.AddListener(new(ViewModel.ToggleProwess));
+      ProwessToggle.SetIsOnWithoutNotify(ViewModel.IsProwessSelected);
+      ProwessToggle.onValueChanged.AddListener(new(ViewModel.ToggleProwess));
     }
 
-    public override void DestroyViewImplementation() { }
+    public override void DestroyViewImplementation()
+    {
+      ProwessToggle.onValueChanged.RemoveAllListeners();
+    }
 
     public TooltipBaseTemplate TooltipTemplate()
     {
@@ -85,19 +84,10 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private void UpdateAvailableProwess(bool canSelect)
     {
-      FirstProwessToggle.interactable = FirstProwessToggle.isOn || canSelect;
-      SecondProwessToggle.interactable = SecondProwessToggle.isOn || (FirstProwessToggle.isOn && canSelect);
+      ProwessToggle.interactable = ProwessToggle.isOn || canSelect;
     }
 
-    private void DisableToggles(params ToggleWorkaround[] toggles)
-    {
-      // Don't disable toggles that are on so it can be unselected
-      foreach (var toggle in toggles)
-        if (!toggle.isOn)
-          toggle.interactable = false;
-    }
-
-    private ToggleWorkaround CreateToggle(bool first = true)
+    private ToggleWorkaround CreateToggle()
     {
       var toggle = GameObject.Instantiate(Prefabs.Checkbox);
       toggle.transform.AddTo(gameObject.ChildObject("Bonus").transform);
@@ -106,7 +96,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       toggle.gameObject.DestroyChildren("Label");
       toggle.gameObject.DestroyComponents<HorizontalLayoutGroupWorkaround>();
 
-      toggle.gameObject.Rect().localPosition = new(x: first ? -40 : 0, y: -25);
+      toggle.gameObject.Rect().localPosition = new(x: -20, y: -25);
 
       return toggle;
     }
@@ -220,6 +210,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     internal readonly IntReactiveProperty StatValue = new();
     internal readonly IntReactiveProperty Modifier = new();
     internal readonly ReactiveProperty<RecommendationMarkerVM> Recommendation = new();
+    internal bool IsProwessSelected => State.IsProwessSelected(Type);
 
     // Legendary Ability
     internal readonly BoolReactiveProperty CanAddAbility = new();
