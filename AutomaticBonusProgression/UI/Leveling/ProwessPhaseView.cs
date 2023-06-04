@@ -180,15 +180,11 @@ namespace AutomaticBonusProgression.UI.Leveling
           __instance.UpCost.Value = string.Empty;
           __instance.DownCost.Value = string.Empty;
 
-          // Add Prowess bonuses to the displayed value
-          var prowessBonus = ProwessPhaseVM.GetProwessBonus(__instance.Stat.Value);
-          if (prowessBonus > 0)
-          {
-            int modBonus = prowessBonus / 2;
-            Logger.Verbose(() => $"Applying Prowess to {__instance.Stat.Value.Type}: {prowessBonus} / +{modBonus}");
-            __instance.StatValue.Value += prowessBonus;
-            __instance.Bonus.Value += modBonus;
-          }
+          // Add Prowess and Legendary Ability bonuses to the displayed value
+          var prowessBonus = Common.GetProwessBonus(__instance.Stat.Value);
+          var legendaryBonus = Common.GetLegendaryBonus(__instance.Stat.Value);
+          __instance.StatValue.Value += prowessBonus + legendaryBonus;
+          __instance.Bonus.Value = (__instance.StatValue.Value - 10) / 2;
         }
         catch (Exception e)
         {
@@ -256,8 +252,8 @@ namespace AutomaticBonusProgression.UI.Leveling
     {
       var eligibleStats =
         LevelUpController.State.NextCharacterLevel >= 15
-          ? stats.Where(type => GetProwessBonus(LevelUpController.Preview.Stats.GetStat(type)) <= 4)
-          : stats.Where(type => GetProwessBonus(LevelUpController.Preview.Stats.GetStat(type)) <= 2);
+          ? stats.Where(type => Common.GetProwessBonus(LevelUpController.Preview.Stats.GetStat(type)) <= 4)
+          : stats.Where(type => Common.GetProwessBonus(LevelUpController.Preview.Stats.GetStat(type)) <= 2);
       var selections =
         eligibleStats.Select(
           type =>
@@ -280,30 +276,6 @@ namespace AutomaticBonusProgression.UI.Leveling
     {
       LevelUpController.RemoveAction<SelectMentalProwess>();
       LevelUpController.AddAction(new SelectMentalProwess(stat));
-    }
-
-    internal static int GetProwessBonus(ModifiableValue stat)
-    {
-      var enhancement = stat.GetModifiers(ModifierDescriptor.Enhancement);
-      if (enhancement is null)
-        return 0;
-
-      switch (stat.Type)
-      {
-        case StatType.Strength:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.StrProwess).Sum(mod => mod.ModValue);
-        case StatType.Dexterity:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.DexProwess).Sum(mod => mod.ModValue);
-        case StatType.Constitution:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.ConProwess).Sum(mod => mod.ModValue);
-        case StatType.Intelligence:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.IntProwess).Sum(mod => mod.ModValue);
-        case StatType.Wisdom:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.WisProwess).Sum(mod => mod.ModValue);
-        case StatType.Charisma:
-          return enhancement.Where(mod => mod.Source.Blueprint == Common.ChaProwess).Sum(mod => mod.ModValue);
-      }
-      return 0;
     }
 
     private static readonly List<StatType> PhysicalProwess =

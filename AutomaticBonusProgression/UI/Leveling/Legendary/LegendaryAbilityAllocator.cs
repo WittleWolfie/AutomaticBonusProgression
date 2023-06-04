@@ -156,7 +156,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private void UpdateValues()
     {
-      StatValue.Value = Stat.Value.PermanentValue + ProwessPhaseVM.GetProwessBonus(Stat.Value) + GetLegendaryBonus(Stat.Value);
+      StatValue.Value =
+        Stat.Value.PermanentValue + Common.GetProwessBonus(Stat.Value) + Common.GetLegendaryBonus(Stat.Value);
       Modifier.Value = (StatValue.Value - 10) / 2;
     }
 
@@ -164,31 +165,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       CanAdd.Value = State.CanAddLegendaryAbility(Type);
       CanRemove.Value = State.CanRemoveLegendaryAbility(Type);
-    }
-
-    internal static int GetLegendaryBonus(ModifiableValue stat)
-    {
-      var inherent = stat.GetModifiers(ModifierDescriptor.Inherent);
-      Logger.Log($"Legendary Bonus {stat.Type}: {inherent?.Count() ?? 0}");
-      if (inherent is null)
-        return 0;
-
-      switch (stat.Type)
-      {
-        case StatType.Strength:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryStr).Sum(mod => mod.ModValue);
-        case StatType.Dexterity:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryDex).Sum(mod => mod.ModValue);
-        case StatType.Constitution:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryCon).Sum(mod => mod.ModValue);
-        case StatType.Intelligence:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryInt).Sum(mod => mod.ModValue);
-        case StatType.Wisdom:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryWis).Sum(mod => mod.ModValue);
-        case StatType.Charisma:
-          return inherent.Where(mod => mod.Source.Blueprint == Common.LegendaryCha).Sum(mod => mod.ModValue);
-      }
-      return 0;
     }
 
     internal readonly string Name;
