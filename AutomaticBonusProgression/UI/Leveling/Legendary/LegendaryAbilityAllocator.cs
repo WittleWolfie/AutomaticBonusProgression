@@ -111,6 +111,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       CostLabel = GameObject.Instantiate(
         gameObject.ChildObject("Score/Selected/CostArrowDown/Cost")).GetComponent<TextMeshProUGUI>();
+      CostLabel.SetText(UIUtility.AddSign(-1));
       var cost = CostLabel.gameObject;
 
       // Testing suggests this is the best way to set it up.. no clue why
