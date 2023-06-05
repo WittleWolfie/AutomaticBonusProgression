@@ -14,8 +14,10 @@ using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
 using Owlcat.Runtime.UI.Tooltips;
 using System.Linq;
+using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace AutomaticBonusProgression.UI.Leveling.Legendary
 {
@@ -28,11 +30,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private CharGenAbilityScoreAllocatorPCView Allocator;
     private ToggleWorkaround ProwessToggle;
+    private TextMeshProUGUI CostLabel;
 
     internal void Init(CharGenAbilityScoreAllocatorPCView source)
     {
       Allocator = source;
-      ProwessToggle = CreateToggle();
+      CreateToggle();
     }
 
     public override void BindViewImplementation()
@@ -57,7 +60,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseAbility()));
 
       ProwessToggle.SetIsOnWithoutNotify(ViewModel.IsProwessSelected);
-      ProwessToggle.onValueChanged.AddListener(new(ViewModel.ToggleProwess));
+      ProwessToggle.onValueChanged.AddListener(new(ToggleProwess));
     }
 
     public override void DestroyViewImplementation()
@@ -87,18 +90,51 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       ProwessToggle.interactable = ProwessToggle.isOn || canSelect;
     }
 
-    private ToggleWorkaround CreateToggle()
+    private void ToggleProwess(bool selected)
     {
-      var toggle = GameObject.Instantiate(Prefabs.Checkbox);
-      toggle.transform.AddTo(gameObject.ChildObject("Bonus").transform);
+      CostLabel.SetText(UIUtility.AddSign(selected ? 1 : -1));
+      ViewModel.ToggleProwess(selected);
+    }
+
+    private void CreateToggle()
+    {
+      ProwessToggle = GameObject.Instantiate(Prefabs.Checkbox);
+      var parent = gameObject.ChildObject("Bonus").transform;
+      var toggle = ProwessToggle.gameObject;
+      toggle.transform.AddTo(parent);
 
       // Destroy unneeded children and components
-      toggle.gameObject.DestroyChildren("Label");
-      toggle.gameObject.DestroyComponents<HorizontalLayoutGroupWorkaround>();
+      toggle.DestroyChildren("Label");
+      toggle.DestroyComponents<HorizontalLayoutGroupWorkaround>();
 
-      toggle.gameObject.Rect().localPosition = new(x: -20, y: -25);
+      toggle.Rect().localPosition = new(x: -20, y: -25);
 
-      return toggle;
+      CostLabel = GameObject.Instantiate(
+        gameObject.ChildObject("Score/Selected/CostArrowDown/Cost")).GetComponent<TextMeshProUGUI>();
+      var cost = CostLabel.gameObject;
+
+      // Testing suggests this is the best way to set it up.. no clue why
+      cost.transform.AddTo(toggle.ChildObject("Background").transform);
+      cost.Rect().offsetMax = new(x: 35, y: 25);
+      cost.Rect().offsetMin = new(x: 25, y: 15);
+
+      var costToggle = toggle.AddComponent<CostToggle>();
+      costToggle.Cost = cost;
+    }
+
+    private class CostToggle : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    {
+      internal GameObject Cost;
+
+      public void OnPointerEnter(PointerEventData eventData)
+      {
+        Cost?.SetActive(true);
+      }
+
+      public void OnPointerExit(PointerEventData eventData)
+      {
+        Cost?.SetActive(false);
+      }
     }
   }
 
