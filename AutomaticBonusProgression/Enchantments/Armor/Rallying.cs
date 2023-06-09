@@ -31,7 +31,6 @@ namespace AutomaticBonusProgression.Enchantments.Armor
     private const string Description = "LA.Rallying.Description";
     private const int EnhancementCost = 2;
 
-    // TODO: Aura FX?
     internal static void Configure()
     {
       Logger.Log($"Configuring Rallying Armor");
