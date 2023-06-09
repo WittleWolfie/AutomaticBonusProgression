@@ -103,8 +103,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
           .SetText("+1");
 
         var hover = allocator.gameObject.ChildObject("Hover").Rect();
-        hover.offsetMin = new(x: 0.15f, y: 0);
-        hover.offsetMax = new(x: 0.87f, y: 1);
+        hover.anchorMin = new(x: 0.15f, y: 0);
+        hover.anchorMax = new(x: 0.87f, y: 1);
 
         var view = allocator.gameObject.AddComponent<LegendaryEnchantmentAllocatorView>();
         view.Init(allocator);
