@@ -32,23 +32,83 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsPhaseView));
 
-    private CharGenAbilityScoresDetailedPCView AbilityScoresView;
-    private readonly List<LegendaryAbilityAllocatorView> Allocators = new();
+    private TextMeshProUGUI AvailablePoints;
+    private readonly List<LegendaryAbilityAllocatorView> AbilityAllocators = new();
+    private readonly List<LegendaryEnchantmentAllocatorView> EnchantmentAllocators = new();
 
-    internal void Init(CharGenAbilityScoresDetailedPCView source)
+    internal void InitAbilityScores(CharGenAbilityScoresDetailedPCView source)
     {
-      AbilityScoresView = source;
+      // Init the base view w/o Initialize() so it doesn't interfere w/ Prowess patch
+      var charGen = UIStrings.Instance.CharGen;
+      source.m_StatAllocators =
+        source.m_StatAllocatorsContainer
+          .GetComponentsInChildren<CharGenAbilityScoreAllocatorPCView>()
+          .ToList();
+      source.m_AvailiblePointsLabel.SetText(UITool.GetString("Legendary.Gifts.Points"));
+      source.m_StatLabel.SetText(charGen.StatName);
+      source.m_ScoresLabel.SetText(charGen.Scores);
+      source.m_ModifierLabel.SetText(charGen.Modifier);
 
-      // Update labels
-      AbilityScoresView.m_RaceBonus.SetText(UITool.GetString("Legendary.Prowess"));
-      AbilityScoresView.m_PhaseLabel.SetText(
-        UIUtility.GetSaberBookFormat(UITool.GetString("Legendary.Gifts.Selection")));
-
-      foreach (var allocator in AbilityScoresView.m_StatAllocators)
+      // Update the ability selectors and remove additional selections
+      var obj = source.gameObject;
+      obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector");
+      obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector(Clone)");
+      foreach (var allocator in source.m_StatAllocators)
       {
+        allocator.gameObject.DestroyChildren("Bonus/RaceBonus");
+        allocator.gameObject.ChildObject("Score/Selected/CostArrowDown/Cost")
+          .GetComponent<TextMeshProUGUI>()
+          .SetText("-1");
+        allocator.gameObject.ChildObject("Score/Selected/CostArrowUp/Cost")
+          .GetComponent<TextMeshProUGUI>()
+          .SetText("+1");
+
         var view = allocator.gameObject.AddComponent<LegendaryAbilityAllocatorView>();
         view.Init(allocator);
-        Allocators.Add(view);
+        AbilityAllocators.Add(view);
+      }
+
+      // Update labels
+      source.m_RaceBonus.SetText(UITool.GetString("Legendary.Prowess"));
+      source.m_PhaseLabel.SetText(
+        UIUtility.GetSaberBookFormat(UITool.GetString("Legendary.Gifts.Selection")));
+
+      AvailablePoints = source.m_AvailiblePoints;
+    }
+
+    internal void InitEnchantments(CharGenAbilityScoresDetailedPCView source)
+    {
+      // Init the base view w/o Initialize() so it doesn't interfere w/ Prowess patch
+      source.m_StatAllocators =
+        source.m_StatAllocatorsContainer
+          .GetComponentsInChildren<CharGenAbilityScoreAllocatorPCView>()
+          .ToList();
+      source.m_StatLabel.SetText(UITool.GetString("Legendary.EnchantmentType"));
+      source.m_ScoresLabel.SetText(UITool.GetString("Legendary.MaxEnhancement"));
+
+      // Update the ability selectors and remove additional selections
+      for (int i = 0; i < 4; i++) // Only use the first 4
+      {
+        var allocator = source.m_StatAllocators[i];
+
+        allocator.gameObject.DestroyChildren("Bonus");
+        allocator.gameObject.DestroyChildren("Modifier");
+        allocator.gameObject.DestroyChildren("Labels/RecommendationPlace");
+
+        allocator.gameObject.ChildObject("Score/Selected/CostArrowDown/Cost")
+          .GetComponent<TextMeshProUGUI>()
+          .SetText("-1");
+        allocator.gameObject.ChildObject("Score/Selected/CostArrowUp/Cost")
+          .GetComponent<TextMeshProUGUI>()
+          .SetText("+1");
+
+        var hover = allocator.gameObject.ChildObject("Hover").Rect();
+        hover.offsetMin = new(x: 0.15f, y: 0);
+        hover.offsetMax = new(x: 0.87f, y: 1);
+
+        var view = allocator.gameObject.AddComponent<LegendaryEnchantmentAllocatorView>();
+        view.Init(allocator);
+        EnchantmentAllocators.Add(view);
       }
     }
 
@@ -58,17 +118,24 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       AddDisposable(ViewModel.State.AvailableGifts.Subscribe(SetAvailableGifts));
 
-      for (int i = 0; i < Allocators.Count; i++)
+      for (int i = 0; i < AbilityAllocators.Count; i++)
       {
-        var allocator = Allocators[i];
+        var allocator = AbilityAllocators[i];
         var vm = ViewModel.AbilityScoreVMs[i];
+        allocator.Bind(vm);
+      }
+
+      for (int i = 0; i < EnchantmentAllocators.Count; i++)
+      {
+        var allocator = EnchantmentAllocators[i];
+        var vm = ViewModel.EnchantmentVMs[i];
         allocator.Bind(vm);
       }
     }
 
     private void SetAvailableGifts(int gifts)
     {
-      AbilityScoresView.m_AvailiblePoints.SetText(gifts.ToString());
+      AvailablePoints.SetText(gifts.ToString());
     }
 
     #region Setup
@@ -217,46 +284,22 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       var obj = abilityScoresView.gameObject;
       obj.transform.AddTo(source.transform.parent);
 
-      // Init the base view w/o Initialize() so it doesn't interfere w/ Prowess patch
-      var charGen = UIStrings.Instance.CharGen;
-      abilityScoresView.m_StatAllocators =
-        abilityScoresView.m_StatAllocatorsContainer
-          .GetComponentsInChildren<CharGenAbilityScoreAllocatorPCView>()
-          .ToList();
-      abilityScoresView.m_AvailiblePointsLabel.SetText(charGen.Points);
-      abilityScoresView.m_StatLabel.SetText(charGen.StatName);
-      abilityScoresView.m_ScoresLabel.SetText(charGen.Scores);
-      abilityScoresView.m_ModifierLabel.SetText(charGen.Modifier);
-
-      // Update the ability selectors and remove additional selections
-      obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector");
-      obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector(Clone)");
-      foreach (var allocator in abilityScoresView.m_StatAllocators)
-      {
-        allocator.gameObject.DestroyChildren("Bonus/RaceBonus");
-        allocator.gameObject.ChildObject("Score/Selected/CostArrowDown/Cost")
-          .GetComponent<TextMeshProUGUI>()
-          .SetText("-1");
-        allocator.gameObject.ChildObject("Score/Selected/CostArrowUp/Cost")
-          .GetComponent<TextMeshProUGUI>()
-          .SetText("+1");
-      }
-
-      // TODO: Add check mark selectors for Legendary Prowess (note that you can select up to two times)
-
-      // TODO: Add second section for Armor / Shield / Weapon / Off-Hand
-      // - Need to figure out how to make it all compact enough. Notably, skill rows are smaller so we can probably
-      //   just use those numbers.
-
       // TODO: Add Tooltips (see CharGenAbilityScoreAllocatorPCView.OnPointerEnter)
 
-      // TODO: Maybe we hide the progression view entirely and try shifting everything to the right?
-
-      // TODO: If we do the shift everything right plan, why not re-use the Racial Selector again for Prowess?
-      // - What about when you can get more than 2 at a time tho?
-
       var view = obj.AddComponent<LegendaryGiftsPhaseView>();
-      view.Init(abilityScoresView);
+      view.InitAbilityScores(abilityScoresView);
+
+      // Copy again for enchantments
+      var enchantmentsView = Instantiate(source);
+      obj = enchantmentsView.gameObject.ChildObject("AllocatorPlace/Selector/AbilityScoresAllocator");
+      obj.DestroyChildren("Content/Labels/RaceBonusBox");
+      obj.DestroyChildren("Content/Labels/TotalBox");
+      obj.DestroyChildren("Content/Console_StatAllocator (4)");
+      obj.DestroyChildren("Content/Console_StatAllocator (5)");
+
+      obj.transform.AddTo(view.transform);
+      obj.transform.localPosition = new(x: -30, y: 135);
+      view.InitEnchantments(enchantmentsView);
       return view;
     }
     #endregion
@@ -298,7 +341,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     }
   }
 
-  // TODO: Provide string for spending the gifts
   internal class LegendaryGiftsPhaseVM : CharGenPhaseBaseVM
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsPhaseVM));
@@ -307,6 +349,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     internal readonly LegendaryGiftState State;
     internal readonly List<LegendaryAbilityScoreAllocatorVM> AbilityScoreVMs = new();
+    internal readonly List<LegendaryEnchantmentScoreAllocatorVM> EnchantmentVMs = new();
 
     internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int gifts) : base(levelUpController)
     {
@@ -315,6 +358,9 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       foreach (var stat in Attributes)
         AbilityScoreVMs.Add(new(stat, State, new()));
+
+      foreach (EnchantmentType type in Enum.GetValues(typeof(EnchantmentType)))
+        EnchantmentVMs.Add(new(type, State, new()));
 
       AddDisposable(State.Controller.UpdateCommand.Subscribe(_ => UpdateStats()));
     }

@@ -147,6 +147,61 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     }
     #endregion
 
+    #region Legendary Enchantment
+    internal int GetMaxEnchantment(EnchantmentType type)
+    {
+      return type switch
+      {
+        EnchantmentType.Armor => GetRank(Common.LegendaryArmor),
+        EnchantmentType.Shield => GetRank(Common.LegendaryShield),
+        EnchantmentType.Weapon => GetRank(Common.LegendaryWeapon),
+        EnchantmentType.OffHand => GetRank(Common.LegendaryOffHand),
+        _ => throw new NotImplementedException(),
+      };
+    }
+
+    internal void TryAddLegendaryEnchantment(EnchantmentType type)
+    {
+      if (!CanAddLegendaryEnchantment(type))
+        return;
+
+      Controller.AddAction(new SelectLegendaryEnchantment(type, this));
+      AvailableGifts.Value--;
+    }
+
+    internal void TryRemoveLegendaryEnchantment(EnchantmentType type)
+    {
+      if (!CanRemoveLegendaryEnchantment(type))
+        return;
+
+      Controller.RemoveAction<SelectLegendaryEnchantment>(a => a.Type == type);
+      AvailableGifts.Value++;
+      Controller.UpdatePreview();
+    }
+
+    internal bool CanAddLegendaryEnchantment(EnchantmentType type, bool checkGifts = true)
+    {
+      // CheckGifts is used so that `SelectLegendaryEnchantment` returns correctly. Without this, selecting a later
+      // option will clear any legendary ability selections since it will be checked after gifts are spent.
+      if (checkGifts && AvailableGifts.Value == 0)
+        return false;
+
+      return type switch
+      {
+        EnchantmentType.Armor => !IsMaxRank(Common.LegendaryArmor),
+        EnchantmentType.Shield => !IsMaxRank(Common.LegendaryShield),
+        EnchantmentType.Weapon => !IsMaxRank(Common.LegendaryWeapon),
+        EnchantmentType.OffHand => !IsMaxRank(Common.LegendaryOffHand),
+        _ => throw new NotImplementedException(),
+      };
+    }
+
+    internal bool CanRemoveLegendaryEnchantment(EnchantmentType type)
+    {
+      return Controller.LevelUpActions.OfType<SelectLegendaryEnchantment>().Any(a => a.Type == type);
+    }
+    #endregion
+
     private bool IsMaxRank(BlueprintFeature blueprint)
     {
       return GetRank(blueprint) >= blueprint.Ranks;
@@ -159,5 +214,13 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         return 0;
       return feature.Rank;
     }
+  }
+
+  internal enum EnchantmentType
+  {
+    Armor,
+    Shield,
+    Weapon,
+    OffHand
   }
 }

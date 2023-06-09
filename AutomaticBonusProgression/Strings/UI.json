@@ -141,6 +141,11 @@
     "enGB": "Legendary Gifts"
   },
   {
+    "Key": "ABP.UI.Legendary.Gifts.Points",
+    "ProcessTemplates": false,
+    "enGB": "Gifts"
+  },
+  {
     "Key": "ABP.UI.Legendary.Gifts.Selection",
     "ProcessTemplates": false,
     "enGB": "Select Legendary Gifts"
@@ -150,9 +155,71 @@
     "ProcessTemplates": false,
     "enGB": "Character has unspent Legendary Gifts."
   },
+
   {
     "Key": "ABP.UI.Legendary.Prowess",
     "ProcessTemplates": false,
     "enGB": "Prowess"
+  },
+
+  {
+    "Key": "ABP.UI.Legendary.EnchantmentType",
+    "ProcessTemplates": false,
+    "enGB": "Enchantment Type"
+  },
+  {
+    "Key": "ABP.UI.Legendary.MaxEnhancement",
+    "ProcessTemplates": false,
+    "enGB": "Max Enhancement"
+  },
+  {
+    "Key": "ABP.UI.Legendary.TwinWeapons",
+    "ProcessTemplates": false,
+    "enGB": "Twin Weapons"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Shieldmaster",
+    "ProcessTemplates": false,
+    "enGB": "Shieldmaster"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Armor",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Armor"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Armor.Short",
+    "ProcessTemplates": false,
+    "enGB": "Armor"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Shield",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Shield"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Shield.Short",
+    "ProcessTemplates": false,
+    "enGB": "Shield"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Weapon",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Weapon"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Weapon.Short",
+    "ProcessTemplates": false,
+    "enGB": "Weapon"
+  },
+  {
+    "Key": "ABP.UI.Legendary.OffHand",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Off-Hand"
+  },
+  {
+    "Key": "ABP.UI.Legendary.OffHand.Short",
+    "ProcessTemplates": false,
+    "enGB": "Off-Hand"
   }
 ]
