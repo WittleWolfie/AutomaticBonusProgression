@@ -16,6 +16,7 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log("Configuring Legendary Gifts");
 
+      // TODO: KILL THE SELECTION WE DO NOT NEED YOUR SHIIIIT
       return FeatureSelectionConfigurator.New(LegendaryGiftsName, Guids.LegendaryGifts)
         .SetIsClassFeature()
         .SetDisplayName(LegendaryGiftsDisplayName)
