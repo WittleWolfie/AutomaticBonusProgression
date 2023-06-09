@@ -101,7 +101,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         source.m_StatAllocatorsContainer
           .GetComponentsInChildren<CharGenAbilityScoreAllocatorPCView>()
           .ToList();
-      source.m_StatLabel.SetText(UITool.GetString("Enchantments.Type"));
+      source.m_StatLabel.SetText(UITool.GetString("Enchantments"));
       source.m_ScoresLabel.SetText(UITool.GetString("Enchantments.Max"));
 
       // Update the ability selectors and remove additional selections

@@ -164,11 +164,6 @@
     "enGB": "Enchantments"
   },
   {
-    "Key": "ABP.UI.Enchantments.Type",
-    "ProcessTemplates": false,
-    "enGB": "Enchantment Type"
-  },
-  {
     "Key": "ABP.UI.Enchantments.Max",
     "ProcessTemplates": false,
     "enGB": "Rank"
