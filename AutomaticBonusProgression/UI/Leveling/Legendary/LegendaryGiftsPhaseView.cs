@@ -136,7 +136,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Destroy(source);
     }
 
-    // TODO: Add tooltips for enchantments
     // TODO: Add Twin Weapons & Shieldmaster
     public override void BindViewImplementation()
     {
