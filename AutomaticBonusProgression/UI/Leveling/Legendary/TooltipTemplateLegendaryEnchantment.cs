@@ -77,7 +77,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private TooltipBrickTitle GetEnchantmentsTitle()
     {
-      return new(UITool.GetString("Legendary.Enchantments"), TooltipTitleType.H2);
+      return new(UITool.GetString("Enchantments"), TooltipTitleType.H2);
     }
 
     private TooltipBrickFeature GetEnchantment(IUIDataProvider enchantment)
