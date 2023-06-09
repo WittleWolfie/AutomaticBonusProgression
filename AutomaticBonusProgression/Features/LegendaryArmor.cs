@@ -121,7 +121,6 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryShieldDescription = "LegendaryShield.Description";
 
     private const string LegendaryShieldAbility = "LegendaryShield.Ability";
-    private const string LegendaryShieldAbilityDescription = "LegendaryShield.Ability.Description";
 
     private const string LegendaryShieldResource = "LegendaryShield.Resource";
 
@@ -135,7 +134,7 @@ namespace AutomaticBonusProgression.Features
 
       var ability = AbilityConfigurator.New(LegendaryShieldAbility, Guids.LegendaryShieldAbility)
         .SetDisplayName(LegendaryShieldDisplayName)
-        .SetDescription(LegendaryShieldAbilityDescription)
+        .SetDescription(LegendaryShieldDescription)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Shield))
         .Configure();

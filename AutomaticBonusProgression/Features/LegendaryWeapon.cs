@@ -18,7 +18,6 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryWeaponDescription = "LegendaryWeapon.Description";
 
     private const string LegendaryWeaponAbility = "LegendaryWeapon.Ability";
-    private const string LegendaryWeaponAbilityDescription = "LegendaryWeapon.Ability.Description";
 
     private const string LegendaryWeaponResource = "LegendaryWeapon.Resource";
 
@@ -26,24 +25,6 @@ namespace AutomaticBonusProgression.Features
     {
       Logger.Log("Configuring Legendary Weapon");
 
-      // In Game:
-      // - Bane [Done]
-      // - Corrosive / Flaming / Frost / Shock / Thundering (Burst) [Done]
-      // - Cruel [Done]
-      // - Furious [Done]
-      // - Ghost Touch [Done]
-      // - Heartseeker [Done]
-      // - Keen [Done]
-      // - Vicious [Done]
-      // - Anarchic / Axiomatic [Done]
-      // - Disruption [Done]
-      // - Furyborn [Done]
-      // - Holy / Unholy [Done]
-      // - Nullifying [Done]
-      // - Speed [Done]
-      // - Brilliant Energy [Done]
-      // - Vorpal [Done]
-      //
       // New:
       // - Bewildering
       // - BrawlingEffect
@@ -83,7 +64,7 @@ namespace AutomaticBonusProgression.Features
 
       var ability = AbilityConfigurator.New(LegendaryWeaponAbility, Guids.LegendaryWeaponAbility)
         .SetDisplayName(LegendaryWeaponDisplayName)
-        .SetDescription(LegendaryWeaponAbilityDescription)
+        .SetDescription(LegendaryWeaponDescription)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();
@@ -156,7 +137,6 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryOffHandDescription = "LegendaryOffHand.Description";
 
     private const string LegendaryOffHandAbility = "LegendaryOffHand.Ability";
-    private const string LegendaryOffHandAbilityDescription = "LegendaryOffHand.Ability.Description";
 
     private const string LegendaryOffHandResource = "LegendaryOffHand.Resource";
 
@@ -170,7 +150,7 @@ namespace AutomaticBonusProgression.Features
 
       var ability = AbilityConfigurator.New(LegendaryOffHandAbility, Guids.LegendaryOffHandAbility)
         .SetDisplayName(LegendaryOffHandDisplayName)
-        .SetDescription(LegendaryOffHandAbilityDescription)
+        .SetDescription(LegendaryOffHandDescription)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();

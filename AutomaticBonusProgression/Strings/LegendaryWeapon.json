@@ -6,11 +6,7 @@
   },
   {
     "Key": "LegendaryWeapon.Description",
-    "enGB": "Select a special ability you can apply to your weapons. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Brilliant Energy has an enhancement cost of +4. To acquire Brilliant Energy you must select it as a Legendary Gift 4 times. You cannot apply Brilliant Energy to a weapon with Impact, which has an enhancement of +2. This applies to enchants present on the weapon already or applied through special abilities such as a Magus's Arcane Weapon."
-  },
-  {
-    "Key": "LegendaryWeapon.Ability.Description",
-    "enGB": "Select a special ability you can apply to your weapons. To acquire one you must spend as many Legendary Gifts as its enhancement cost. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Brilliant Energy has an enhancement cost of +4. You cannot apply Brilliant Energy to a weapon with Impact, which has an enhancement of +2. This applies to enchants present on the weapon already or applied through special abilities such as a Magus's Arcane Weapon."
+    "enGB": "Once per day you may attune your weapon to enchant it with special abilities. These apply to your main hand and all primary natural attacks.\nThe total Enhancement Cost of all enchantments on your weapon cannot exceed your rank in Legendary Weapon (max 5). This includes base weapon enchantments and any applied through abilities like Arcane Weapon.\nFor example, Brilliant Energy has an Enhancement Cost of +4 preventing you from applying it to weapons with the Impact enchantment which costs +2."
   },
 
   {
@@ -20,7 +16,7 @@
   },
   {
     "Key": "LegendaryOffHand.Description",
-    "enGB": "Select a special ability you can apply to your shield. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. You cannot apply Spell Resistance (19) to a shield with Rallying, which has an enhancement cost of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor."
+    "enGB": "Once per day you may attune your off-hand weapons to enchant them with special abilities. These apply to your off-hand and all secondary natural attacks.\nThe total Enhancement Cost of all enchantments on your off-hand cannot exceed your rank in Legendary Off-Hand (max 5). This includes base weapon enchantments and any applied through abilities like Arcane Weapon.\nFor example, Brilliant Energy has an Enhancement Cost of +4 preventing you from applying it to weapons with the Disruption enchantment which costs +2."
   },
 
   //// Aligned
@@ -141,7 +137,7 @@
   {
     "Key": "LW.BrilliantEnergy.Name",
     "ProcessTemplates": false,
-    "enGB": "BrilliantEnergy (+4)"
+    "enGB": "Brilliant Energy (+4)"
   },
 
   {

@@ -6,7 +6,7 @@
   },
   {
     "Key": "LegendaryArmor.Description",
-    "enGB": "Once per day you may attune your armor to enchant it with special abilities.\nThe total Enhancement Cost of all enchantments on your armor cannot exceed your rank in Legendary Armor (max +5). This includeds includes base armor enchantments and any applied through abilities like Arcane Armor.\nFor example, Spell Resistance (19) has an Enhancement Cost of +4 preventing you from applying it to armor with the Shadow enchantment which costs +2."
+    "enGB": "Once per day you may attune your armor to enchant it with special abilities.\nThe total Enhancement Cost of all enchantments on your armor cannot exceed your rank in Legendary Armor (max 5). This includes base armor enchantments and any applied through abilities like Arcane Armor.\nFor example, Spell Resistance (19) has an Enhancement Cost of +4 preventing you from applying it to armor with the Shadow enchantment which costs +2."
   },
 
   {
@@ -16,7 +16,7 @@
   },
   {
     "Key": "LegendaryShield.Description",
-    "enGB": "Select a special ability you can apply to your shield. You cannot apply enhancements to armor with a total cost of more than 5.\nFor example, Spell Resistance (19) has an enhancement cost of +4. You cannot apply Spell Resistance (19) to a shield with Rallying, which has an enhancement cost of +2. This applies to enchants present on the armor already or applied through special abilities such as an Armored Battlemage's Arcane Armor."
+    "enGB": "Once per day you may attune your shield to enchant it with special abilities.\nThe total Enhancement Cost of all enchantments on your shield cannot exceed your rank in Legendary Armor (max 5). This includes base armor enchantments and any applied through abilities like Arcane Armor.\nFor example, Spell Resistance (19) has an Enhancement Cost of +4 preventing you from applying it to armor with the Rallying enchantment which costs +2."
   },
 
   {
