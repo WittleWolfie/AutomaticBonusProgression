@@ -154,6 +154,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         var vm = ViewModel.AbilityScoreVMs[i];
         allocator.Bind(vm);
       }
+      ViewModel.AbilityScoreVMs[0].TryShowTooltip();
 
       for (int i = 0; i < EnchantmentAllocators.Count; i++)
       {
