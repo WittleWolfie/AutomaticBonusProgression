@@ -319,8 +319,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       var obj = abilityScoresView.gameObject;
       obj.transform.AddTo(source.transform.parent);
 
-      // TODO: Add Tooltips (see CharGenAbilityScoreAllocatorPCView.OnPointerEnter)
-
       var view = obj.AddComponent<LegendaryGiftsPhaseView>();
       view.InitAbilityScores(abilityScoresView);
 
