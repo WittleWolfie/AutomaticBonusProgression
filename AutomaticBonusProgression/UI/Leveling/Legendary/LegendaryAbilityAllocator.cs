@@ -210,11 +210,13 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     internal void TryIncreaseAbility()
     {
       State.TryAddLegendaryAbility(Type);
+      TryShowTooltip();
     }
 
     internal void TryDecreaseAbility()
     {
       State.TryRemoveLegendaryAbility(Type);
+      TryShowTooltip();
     }
 
     internal void ToggleProwess(bool selected)
@@ -223,6 +225,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         State.TrySelectProwess(Type);
       else
         State.TryUnselectProwess(Type);
+      TryShowTooltip();
     }
 
     private void UpdateValues()
