@@ -18,7 +18,6 @@ namespace AutomaticBonusProgression.Features
     private const string LegendaryArmorDescription = "LegendaryArmor.Description";
 
     private const string LegendaryArmorAbility = "LegendaryArmor.Ability";
-    private const string LegendaryArmorAbilityDescription = "LegendaryArmor.Ability.Description";
 
     private const string LegendaryArmorResource = "LegendaryArmor.Resource";
 
@@ -32,7 +31,7 @@ namespace AutomaticBonusProgression.Features
 
       var ability = AbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
-        .SetDescription(LegendaryArmorAbilityDescription)
+        .SetDescription(LegendaryArmorDescription)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Armor))
         .Configure();

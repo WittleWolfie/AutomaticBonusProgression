@@ -85,7 +85,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       AddDisposable(State.AvailableGifts.Subscribe(_ => UpdateEligibility()));
 
       Name = UITool.GetString($"Legendary.{type}");
-      ShortName = UITool.GetString($"Legendary.{type}.Short");
+      ShortName = UITool.GetString($"{type}");
     }
 
     public override void DisposeImplementation() { }
@@ -97,7 +97,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public TooltipBaseTemplate TooltipTemplate()
     {
-      return null;
+      return new TooltipTemplateLegendaryEnchantment(Type);
     }
 
     internal void TryIncreaseEnchantment()

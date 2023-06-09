@@ -83,8 +83,8 @@ namespace AutomaticBonusProgression.Components
     {
       return rangeType switch
       {
-        WeaponRangeType.Melee => UITool.GetString("Attunement.Weapon.Melee"),
-        WeaponRangeType.Ranged => UITool.GetString("Attunement.Weapon.Ranged"),
+        WeaponRangeType.Melee => UITool.GetString("Weapon.Melee"),
+        WeaponRangeType.Ranged => UITool.GetString("Weapon.Ranged"),
       };
     }
 
@@ -92,9 +92,9 @@ namespace AutomaticBonusProgression.Components
     {
       return form switch
       {
-        PhysicalDamageForm.Piercing => UITool.GetString("Attunement.Weapon.Piercing"),
-        PhysicalDamageForm.Bludgeoning => UITool.GetString("Attunement.Weapon.Bludgeoning"),
-        PhysicalDamageForm.Slashing => UITool.GetString("Attunement.Weapon.Slashing"),
+        PhysicalDamageForm.Piercing => UITool.GetString("Weapon.Piercing"),
+        PhysicalDamageForm.Bludgeoning => UITool.GetString("Weapon.Bludgeoning"),
+        PhysicalDamageForm.Slashing => UITool.GetString("Weapon.Slashing"),
       };
     }
   }

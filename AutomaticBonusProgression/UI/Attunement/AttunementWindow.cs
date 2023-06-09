@@ -115,7 +115,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       ArmorIcon = CreateAttunementTypeIcon(2);
       ShieldIcon = CreateAttunementTypeIcon(3);
 
-      Apply = CreateApplyButton(UITool.GetString("Attunement.Apply"));
+      Apply = CreateApplyButton(UITool.GetString("Apply"));
     }
 
     // Use for prefabs that don't exist during first init
@@ -215,8 +215,8 @@ namespace AutomaticBonusProgression.UI.Attunement
       Equipment.m_OtherContainer.SetActive(false);
       Equipment.m_ImageContainer.SetActive(false);
 
-      Equipment.m_MainTitle.text = UITool.GetString("Attunement.Armor.None");
-      Equipment.m_Title.text = UITool.GetString("Attunement.Armor.Light");
+      Equipment.m_MainTitle.text = UITool.GetString("Armor.None");
+      Equipment.m_Title.text = UITool.GetString("Armor.Light");
     }
 
     private void BindUnequipped()

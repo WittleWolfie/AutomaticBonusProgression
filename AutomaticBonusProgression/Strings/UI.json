@@ -1,25 +1,12 @@
 [
+  // Basic terms
   {
-    "Key": "ABP.UI.Weapon",
+    "Key": "ABP.UI.Apply",
     "ProcessTemplates": false,
-    "enGB": "Weapon"
-  },
-  {
-    "Key": "ABP.UI.OffHand",
-    "ProcessTemplates": false,
-    "enGB": "Off-Hand"
-  },
-  {
-    "Key": "ABP.UI.Armor",
-    "ProcessTemplates": false,
-    "enGB": "Armor"
-  },
-  {
-    "Key": "ABP.UI.Shield",
-    "ProcessTemplates": false,
-    "enGB": "Shield"
+    "enGB": "Apply"
   },
 
+  // Attunement Terms
   {
     "Key": "ABP.UI.Attunement.Weapon",
     "ProcessTemplates": false,
@@ -41,14 +28,14 @@
     "enGB": "Shield Attunement"
   },
   {
-    "Key": "ABP.UI.Attunement.Apply",
-    "ProcessTemplates": false,
-    "enGB": "Apply"
-  },
-  {
     "Key": "ABP.UI.Attunement.Enhancement",
     "ProcessTemplates": false,
     "enGB": "Enhancement: +{0}/{1}"
+  },
+  {
+    "Key": "ABP.UI.Attunement.Unequipped",
+    "ProcessTemplates": false,
+    "enGB": "None Equipped"
   },
   {
     "Key": "ABP.UI.Attunement.Empty",
@@ -56,121 +43,167 @@
     "enGB": "Unavailable"
   },
 
+
+  // Armor Terms
   {
-    "Key": "ABP.UI.Attunement.Unequipped",
+    "Key": "ABP.UI.Armor",
     "ProcessTemplates": false,
-    "enGB": "None Equipped"
+    "enGB": "Armor"
   },
   {
-    "Key": "ABP.UI.Attunement.Armor.None",
+    "Key": "ABP.UI.Armor.None",
     "ProcessTemplates": false,
     "enGB": "Unarmored"
   },
-
   {
-    "Key": "ABP.UI.Attunement.Armor.Light",
+    "Key": "ABP.UI.Armor.Light",
     "ProcessTemplates": false,
     "enGB": "Light Armor"
   },
   {
-    "Key": "ABP.UI.Attunement.Armor.Medium",
+    "Key": "ABP.UI.Armor.Medium",
     "ProcessTemplates": false,
     "enGB": "Medium Armor"
   },
   {
-    "Key": "ABP.UI.Attunement.Armor.Heavy",
+    "Key": "ABP.UI.Armor.Heavy",
     "ProcessTemplates": false,
     "enGB": "Heavy Armor"
   },
+
+  // Shield terms
   {
-    "Key": "ABP.UI.Attunement.Shield.Buckler",
+    "Key": "ABP.UI.Shield",
+    "ProcessTemplates": false,
+    "enGB": "Shield"
+  },
+  {
+    "Key": "ABP.UI.Shield.Buckler",
     "ProcessTemplates": false,
     "enGB": "Buckler"
   },
   {
-    "Key": "ABP.UI.Attunement.Shield.Light",
+    "Key": "ABP.UI.Shield.Light",
     "ProcessTemplates": false,
     "enGB": "Light Shield"
   },
   {
-    "Key": "ABP.UI.Attunement.Shield.Heavy",
+    "Key": "ABP.UI.Shield.Heavy",
     "ProcessTemplates": false,
     "enGB": "Heavy Shield"
   },
   {
-    "Key": "ABP.UI.Attunement.Shield.Tower",
+    "Key": "ABP.UI.Shield.Tower",
     "ProcessTemplates": false,
     "enGB": "Tower Shield"
   },
 
+  // Weapon terms
   {
-    "Key": "ABP.UI.Attunement.Weapon.Melee",
+    "Key": "ABP.UI.Weapon",
+    "ProcessTemplates": false,
+    "enGB": "Weapon"
+  },
+  {
+    "Key": "ABP.UI.OffHand",
+    "ProcessTemplates": false,
+    "enGB": "Off-Hand"
+  },
+  {
+    "Key": "ABP.UI.Weapon.Melee",
     "ProcessTemplates": false,
     "enGB": "Melee"
   },
   {
-    "Key": "ABP.UI.Attunement.Weapon.Ranged",
+    "Key": "ABP.UI.Weapon.Ranged",
     "ProcessTemplates": false,
     "enGB": "Ranged"
   },
   {
-    "Key": "ABP.UI.Attunement.Weapon.Bludgeoning",
+    "Key": "ABP.UI.Weapon.Bludgeoning",
     "ProcessTemplates": false,
     "enGB": "Bludgeoning"
   },
   {
-    "Key": "ABP.UI.Attunement.Weapon.Piercing",
+    "Key": "ABP.UI.Weapon.Piercing",
     "ProcessTemplates": false,
     "enGB": "Piercing"
   },
   {
-    "Key": "ABP.UI.Attunement.Weapon.Slashing",
+    "Key": "ABP.UI.Weapon.Slashing",
     "ProcessTemplates": false,
     "enGB": "Slashing"
   },
 
+  // Legendary Gifts
   {
-    "Key": "ABP.UI.Leveling.Prowess",
-    "ProcessTemplates": false,
-    "enGB": "Select Prowess"
-  },
-
-  {
-    "Key": "ABP.UI.Legendary.Gifts",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Gifts"
-  },
-  {
-    "Key": "ABP.UI.Legendary.Gifts.Points",
+    "Key": "ABP.UI.Gifts",
     "ProcessTemplates": false,
     "enGB": "Gifts"
   },
   {
-    "Key": "ABP.UI.Legendary.Gifts.Selection",
+    "Key": "ABP.UI.Gifts.Phase",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Gifts"
+  },
+  {
+    "Key": "ABP.UI.Gifts.Selection",
     "ProcessTemplates": false,
     "enGB": "Select Legendary Gifts"
   },
   {
-    "Key": "ABP.UI.Legendary.Gifts.Incomplete",
+    "Key": "ABP.UI.Gifts.Incomplete",
     "ProcessTemplates": false,
     "enGB": "Character has unspent Legendary Gifts."
   },
 
+  // Legendary Enchantments
   {
-    "Key": "ABP.UI.Legendary.Prowess",
+    "Key": "ABP.UI.Enchantments",
     "ProcessTemplates": false,
-    "enGB": "Prowess"
+    "enGB": "Enchantments"
   },
-
   {
-    "Key": "ABP.UI.Legendary.EnchantmentType",
+    "Key": "ABP.UI.Enchantments.Type",
     "ProcessTemplates": false,
     "enGB": "Enchantment Type"
   },
   {
-    "Key": "ABP.UI.Legendary.MaxEnhancement",
+    "Key": "ABP.UI.Enchantments.Max",
     "ProcessTemplates": false,
-    "enGB": "Max Enhancement"
+    "enGB": "Rank"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Armor",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Armor"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Shield",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Shield"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Weapon",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Weapon"
+  },
+  {
+    "Key": "ABP.UI.Legendary.OffHand",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Off-Hand"
+  },
+
+  // Misc. Abilities
+  {
+    "Key": "ABP.UI.Prowess",
+    "ProcessTemplates": false,
+    "enGB": "Select Prowess"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Prowess",
+    "ProcessTemplates": false,
+    "enGB": "Prowess"
   },
   {
     "Key": "ABP.UI.Legendary.TwinWeapons",
@@ -181,45 +214,5 @@
     "Key": "ABP.UI.Legendary.Shieldmaster",
     "ProcessTemplates": false,
     "enGB": "Shieldmaster"
-  },
-  {
-    "Key": "ABP.UI.Legendary.Armor",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Armor"
-  },
-  {
-    "Key": "ABP.UI.Legendary.Armor.Short",
-    "ProcessTemplates": false,
-    "enGB": "Armor"
-  },
-  {
-    "Key": "ABP.UI.Legendary.Shield",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Shield"
-  },
-  {
-    "Key": "ABP.UI.Legendary.Shield.Short",
-    "ProcessTemplates": false,
-    "enGB": "Shield"
-  },
-  {
-    "Key": "ABP.UI.Legendary.Weapon",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Weapon"
-  },
-  {
-    "Key": "ABP.UI.Legendary.Weapon.Short",
-    "ProcessTemplates": false,
-    "enGB": "Weapon"
-  },
-  {
-    "Key": "ABP.UI.Legendary.OffHand",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Off-Hand"
-  },
-  {
-    "Key": "ABP.UI.Legendary.OffHand.Short",
-    "ProcessTemplates": false,
-    "enGB": "Off-Hand"
   }
 ]

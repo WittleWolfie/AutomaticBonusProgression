@@ -122,7 +122,7 @@ namespace AutomaticBonusProgression.UI.Leveling
 
         // Set up the label
         var label = obj.gameObject.ChildObject("RedLabel (1)/LabelText").GetComponent<TextMeshProUGUI>();
-        label.SetText(UIUtility.GetSaberBookFormat(UITool.GetString("Leveling.Prowess")));
+        label.SetText(UIUtility.GetSaberBookFormat(UITool.GetString("Prowess")));
 
         // Create a second selector
         var physicalSelector = obj.gameObject.ChildObject("SqeuntionalSelector");

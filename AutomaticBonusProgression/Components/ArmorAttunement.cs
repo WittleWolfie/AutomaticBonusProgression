@@ -44,9 +44,9 @@ namespace AutomaticBonusProgression.Components
     {
       return type switch
       {
-        ArmorProficiencyGroup.Light => UITool.GetString("Attunement.Armor.Light"),
-        ArmorProficiencyGroup.Medium => UITool.GetString("Attunement.Armor.Medium"),
-        ArmorProficiencyGroup.Heavy => UITool.GetString("Attunement.Armor.Heavy"),
+        ArmorProficiencyGroup.Light => UITool.GetString("Armor.Light"),
+        ArmorProficiencyGroup.Medium => UITool.GetString("Armor.Medium"),
+        ArmorProficiencyGroup.Heavy => UITool.GetString("Armor.Heavy"),
         ArmorProficiencyGroup.Buckler => "",
         ArmorProficiencyGroup.LightShield => "",
         ArmorProficiencyGroup.HeavyShield => "",

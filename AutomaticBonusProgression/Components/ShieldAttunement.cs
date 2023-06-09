@@ -38,10 +38,10 @@ namespace AutomaticBonusProgression.Components
         ArmorProficiencyGroup.Light => "",
         ArmorProficiencyGroup.Medium => "",
         ArmorProficiencyGroup.Heavy => "",
-        ArmorProficiencyGroup.Buckler => UITool.GetString("Attunement.Shield.Buckler"),
-        ArmorProficiencyGroup.LightShield => UITool.GetString("Attunement.Shield.Light"),
-        ArmorProficiencyGroup.HeavyShield => UITool.GetString("Attunement.Shield.Heavy"),
-        ArmorProficiencyGroup.TowerShield => UITool.GetString("Attunement.Shield.Tower"),
+        ArmorProficiencyGroup.Buckler => UITool.GetString("Shield.Buckler"),
+        ArmorProficiencyGroup.LightShield => UITool.GetString("Shield.Light"),
+        ArmorProficiencyGroup.HeavyShield => UITool.GetString("Shield.Heavy"),
+        ArmorProficiencyGroup.TowerShield => UITool.GetString("Shield.Tower"),
         _ => throw new InvalidOperationException($"Unsupported armor proficiency type: {type}")
       };
     }

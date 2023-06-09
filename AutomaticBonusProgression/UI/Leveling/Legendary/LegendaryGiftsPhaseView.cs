@@ -47,7 +47,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         source.m_StatAllocatorsContainer
           .GetComponentsInChildren<CharGenAbilityScoreAllocatorPCView>()
           .ToList();
-      source.m_AvailiblePointsLabel.SetText(UITool.GetString("Legendary.Gifts.Points"));
+      source.m_AvailiblePointsLabel.SetText(UITool.GetString("Gifts"));
       source.m_StatLabel.SetText(charGen.StatName);
       source.m_ScoresLabel.SetText(charGen.Scores);
       source.m_ModifierLabel.SetText(charGen.Modifier);
@@ -78,7 +78,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       // Update labels
       source.m_RaceBonus.SetText(UITool.GetString("Legendary.Prowess"));
       source.m_PhaseLabel.SetText(
-        UIUtility.GetSaberBookFormat(UITool.GetString("Legendary.Gifts.Selection")));
+        UIUtility.GetSaberBookFormat(UITool.GetString("Gifts.Selection")));
 
       AvailablePoints = source.m_AvailiblePoints;
       InfoView = source.InfoView;
@@ -101,8 +101,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         source.m_StatAllocatorsContainer
           .GetComponentsInChildren<CharGenAbilityScoreAllocatorPCView>()
           .ToList();
-      source.m_StatLabel.SetText(UITool.GetString("Legendary.EnchantmentType"));
-      source.m_ScoresLabel.SetText(UITool.GetString("Legendary.MaxEnhancement"));
+      source.m_StatLabel.SetText(UITool.GetString("Enchantments.Type"));
+      source.m_ScoresLabel.SetText(UITool.GetString("Enchantments.Max"));
 
       // Update the ability selectors and remove additional selections
       for (int i = 0; i < 4; i++) // Only use the first 4
@@ -390,7 +390,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int gifts) : base(levelUpController)
     {
       State = new(levelUpController, gifts);
-      SetPhaseName(UITool.GetString("Legendary.Gifts"));
+      SetPhaseName(UITool.GetString("Gifts.Phase"));
 
       AddDisposable(InfoVM = new());
       AddDisposable(State.Controller.UpdateCommand.Subscribe(_ => UpdateStats()));
@@ -446,7 +446,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       get
       {
         if (!CheckIsCompleted())
-          return new TooltipTemplateSimple(UITool.GetString("Legendary.Gifts.Incomplete"));
+          return new TooltipTemplateSimple(UITool.GetString("Gifts.Incomplete"));
         return null;
       }
     }
