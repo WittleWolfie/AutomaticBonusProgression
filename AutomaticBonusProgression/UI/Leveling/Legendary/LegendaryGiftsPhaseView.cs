@@ -8,6 +8,7 @@ using Kingmaker.UI.MVVM._PCView.CharGen;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.Skills;
+using Kingmaker.UI.MVVM._PCView.InfoWindow;
 using Kingmaker.UI.MVVM._VM.CharGen;
 using Kingmaker.UI.MVVM._VM.CharGen.Phases;
 using Kingmaker.UI.MVVM._VM.Tooltip.Templates;
@@ -32,6 +33,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsPhaseView));
 
+    private InfoSectionView InfoView;
+    private Transform InfoViewTransform;
     private TextMeshProUGUI AvailablePoints;
     private readonly List<LegendaryAbilityAllocatorView> AbilityAllocators = new();
     private readonly List<LegendaryEnchantmentAllocatorView> EnchantmentAllocators = new();
@@ -51,6 +54,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       // Update the ability selectors and remove additional selections
       var obj = source.gameObject;
+      obj.DestroyChildren("ArtDollRoom");
       obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector");
       obj.DestroyChildren("AllocatorPlace/Selector/RaceBonusSelector(Clone)");
       foreach (var allocator in source.m_StatAllocators)
@@ -66,6 +70,9 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         var view = allocator.gameObject.AddComponent<LegendaryAbilityAllocatorView>();
         view.Init(allocator);
         AbilityAllocators.Add(view);
+
+        // Remove the base component so no logic runs
+        Destroy(allocator);
       }
 
       // Update labels
@@ -74,6 +81,17 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         UIUtility.GetSaberBookFormat(UITool.GetString("Legendary.Gifts.Selection")));
 
       AvailablePoints = source.m_AvailiblePoints;
+      InfoView = source.InfoView;
+      m_PageAnimator = source.m_PageAnimator;
+
+      // This determines the position of tooltips
+      InfoViewTransform = source.TargetSizeTransform;
+      // For some reason the y size doesn't apply directly... trying to go from ~893 -> 840
+      InfoViewTransform.Rect().sizeDelta = new(x: 600, y: -95);
+      InfoViewTransform.localPosition = new(x: 512, y: 15);
+
+      // Remove the component so no logic runs
+      Destroy(source);
     }
 
     internal void InitEnchantments(CharGenAbilityScoresDetailedPCView source)
@@ -109,13 +127,23 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         var view = allocator.gameObject.AddComponent<LegendaryEnchantmentAllocatorView>();
         view.Init(allocator);
         EnchantmentAllocators.Add(view);
+
+        // Remove the base component so no logic runs
+        Destroy(allocator);
       }
+
+      // Remove the base component so no logic runs
+      Destroy(source);
     }
 
     public override void BindViewImplementation()
     {
+      base.BindViewImplementation();
+
       gameObject.SetActive(true);
 
+      InfoView.SetTransform(InfoViewTransform);
+      InfoView.Bind(ViewModel.InfoVM);
       AddDisposable(ViewModel.State.AvailableGifts.Subscribe(SetAvailableGifts));
 
       for (int i = 0; i < AbilityAllocators.Count; i++)
@@ -131,6 +159,13 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         var vm = ViewModel.EnchantmentVMs[i];
         allocator.Bind(vm);
       }
+    }
+
+    public override void DestroyViewImplementation()
+    {
+      base.DestroyViewImplementation();
+
+      InfoView.Unbind();
     }
 
     private void SetAvailableGifts(int gifts)
@@ -356,13 +391,14 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       State = new(levelUpController, gifts);
       SetPhaseName(UITool.GetString("Legendary.Gifts"));
 
+      AddDisposable(InfoVM = new());
+      AddDisposable(State.Controller.UpdateCommand.Subscribe(_ => UpdateStats()));
+
       foreach (var stat in Attributes)
-        AbilityScoreVMs.Add(new(stat, State, new()));
+        AbilityScoreVMs.Add(new(stat, State, InfoVM));
 
       foreach (EnchantmentType type in Enum.GetValues(typeof(EnchantmentType)))
-        EnchantmentVMs.Add(new(type, State, new()));
-
-      AddDisposable(State.Controller.UpdateCommand.Subscribe(_ => UpdateStats()));
+        EnchantmentVMs.Add(new(type, State, InfoVM));
     }
 
     private void UpdateStats()

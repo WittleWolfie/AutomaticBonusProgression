@@ -24,7 +24,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   /// <summary>
   /// Wrapper view around CharGenAbilityScoreAllocatorPCView
   /// </summary>
-  internal class LegendaryAbilityAllocatorView : ViewBase<LegendaryAbilityScoreAllocatorVM>, IHasTooltipTemplate
+  internal class LegendaryAbilityAllocatorView : ViewBase<LegendaryAbilityScoreAllocatorVM>, IPointerEnterHandler
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryAbilityAllocatorView));
 
@@ -68,9 +68,9 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       ProwessToggle.onValueChanged.RemoveAllListeners();
     }
 
-    public TooltipBaseTemplate TooltipTemplate()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-      return ViewModel.TooltipTemplate();
+      ViewModel.TryShowTooltip();
     }
 
     private void UpdateCanAdd(bool canAdd)
@@ -143,7 +143,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   /// Replacement for the in-game CharGenAbilityScoreAllocatorVM, since that one is patched to work w/ Prowess which
   /// conflicts with the logic for Legendary Ability.
   /// </summary>
-  internal class LegendaryAbilityScoreAllocatorVM : BaseDisposable, IViewModel, IHasTooltipTemplate
+  internal class LegendaryAbilityScoreAllocatorVM : BaseDisposable, IViewModel
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryAbilityScoreAllocatorVM));
 

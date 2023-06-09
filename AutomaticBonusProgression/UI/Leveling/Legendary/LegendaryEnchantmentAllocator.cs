@@ -6,13 +6,14 @@ using Owlcat.Runtime.UI.MVVM;
 using Owlcat.Runtime.UI.Tooltips;
 using TMPro;
 using UniRx;
+using UnityEngine.EventSystems;
 
 namespace AutomaticBonusProgression.UI.Leveling.Legendary
 {
   /// <summary>
   /// Wrapper view around CharGenAbilityScoreAllocatorPCView for legendary armor / weapon gifts.
   /// </summary>
-  internal class LegendaryEnchantmentAllocatorView : ViewBase<LegendaryEnchantmentScoreAllocatorVM>, IHasTooltipTemplate
+  internal class LegendaryEnchantmentAllocatorView : ViewBase<LegendaryEnchantmentScoreAllocatorVM>, IPointerEnterHandler
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryEnchantmentAllocatorView));
 
@@ -45,7 +46,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public TooltipBaseTemplate TooltipTemplate()
     {
-      return ViewModel.TooltipTemplate();
+      return null;
     }
 
     private void UpdateCanAdd(bool canAdd)
@@ -59,9 +60,14 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Allocator.DownButton.SetInteractable(canRemove);
       Allocator.m_RemoveCost.SetText(canRemove ? "+1" : string.Empty, syncTextInputBox: true);
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+      ViewModel.TryShowTooltip();
+    }
   }
 
-  internal class LegendaryEnchantmentScoreAllocatorVM : BaseDisposable, IViewModel, IHasTooltipTemplate
+  internal class LegendaryEnchantmentScoreAllocatorVM : BaseDisposable, IViewModel
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryEnchantmentScoreAllocatorVM));
 
