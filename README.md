@@ -19,15 +19,13 @@ I also recommend installing [TabletopTweaks-Base](https://github.com/Vek17/Table
 
 If you do not want to use ModFinder, download [AutomaticBonusProgression.*.zip](https://github.com/WittleWolfie/AutomaticBonusProgression/releases/latest) and install it using Unity Mod Manager. Make sure to install [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core) and [ModMenu](https://github.com/WittleWolfie/ModMenu) as well.
 
-### [Troubleshooting and Feedback](#problems-or-suggestions)
-
 ### [Settings are NOT in UMM, they use Mod Menu](#mod-options) 
 
 ## How it works
 
-Automatic Bonus Progression automatically grants stat bonuses usually provided by items. These stat bonuses are no longer granted by any items, freeing you to equip items based on their special abilities and effects.
+Automatic Bonus Progression automatically grants stat bonuses usually provided by items which no longer provide them. As a result you are free to equip items based on their special abilities and effects.
 
-*Note: Items in game still list these bonuses, but they do not apply.*
+*Note: Items in game still list these bonuses in the UI, but they do not apply.*
 
 * **Armor Attunement**: *+X Enhancement to Armor*
     * +1 Chainmail
@@ -58,8 +56,8 @@ Automatic Bonus Progression automatically grants stat bonuses usually provided b
 | 8      | +2 Resistance<br>+1 Shield<br>+1 Off-Hand<br>+1 Toughness |
 | 9      | +2 Armor<br>+2 Weapon |
 | 10     | +3 Resistance<br>+2 Deflection |
-| 11     | +4 Mental Prowess |
-| 12     | +4 Physical Prowess |
+| 11     | +4 or +2/+2 Mental Prowess |
+| 12     | +4 or +2/+2 Physical Prowess |
 | 13     | +4 Resistance<br>+2 Toughness<br>+4/+2 Mental Prowess<br>+4/+2 Physical Prowess |
 | 14     | +5 Resistance<br>+3 Armor, +2 Shield<br>+3 Weapon, +3 Off-Hand |
 | 15     | +4 Armor, +3 Shield<br>+4 Weapon, +3 Off-Hand<br>+6/+2 or +4/+4 Mental Prowess |
@@ -71,63 +69,35 @@ Automatic Bonus Progression automatically grants stat bonuses usually provided b
 
 Mental Prowess and Physical Prowess allow you to select which ability scores to boost. The bonuses you receive are further customizable using Legendary Gifts, detailed below.
 
-### Legendary Gifts
+Each Legendary Gift allows you to select a different special bonus. In addition to the Legendary Gifts you receive at level 19 and 20, you receive 2 Legendary Gifts at every Mythic Level for a total of 28.
 
-Each Legendary Gift allows you to select a different special bonus. In addition to the Legendary Gifts you receive at level 19 and 20, you receive 2 Legendary Gifts at every odd Mythic Level and 1 Legendary Gift at every even Mythic Level. In total you receive 23 Legendary Gifts at level 20 with Mythic 10.
-
-#### Legendary Ability
+### Legendary Ability
 
 Gain a +1 inherent bonus to any ability score. You can select this legendary gift multiple times, and it stacks up to +5 in any one ability score.
 
-#### Legendary Armor
+### Legendary Enchantments
 
-Select from a set of armor and shield enchantments. Each enchantment has an enhancement value. To acquire an enchantment you must spend Legendary Gifts equal to its enhancement value.
+Allows you to apply enchantments to your equipment (Armor, Shield, Weapon, Off-Hand). Each enchantment has an Enhancement Cost and you can apply enchantments with a total cost equal to your rank in the corresponding feature (max 5).
 
-Once you acquire an enchantment you can activate it (outside of combat) to receive the bonus. The combined enhancement value of your active enchantments cannot exceed +5. This is applied separately to your shield, meaning you can have +10 enhancement value of enchantments active in total: +5 for armor and +5 for your shield. This includes enchantments innately present on your equipped armor and shield.
+#### Armor Enchantments
 
-Note that some enchantments can only be applied to some armor and shield types.
+TODO: Add list
 
-Available Enchantments:
+#### Weapon Enchantments
 
-* Balanced
-* Bashing
-* Blinding
-* Bolstering
-* Brawling
-* Champion
-* Creeping
-* Dastard
-* Deathless
-* Defiant
-* Determination
-* Energy Resistance
-* Expeditious
-* Fortification
-* Ghost Touch
-* Invulnerability
-* Marytring
-* Reallying
-* Reflecting
-* Righteous
-* Shadow
-* Spell Resistance
-* Wyrmsbreath
+TODO: Add list
 
-#### Legendary Prowess
+### Legendary Prowess
 
 This allows you to increase the bonuses granted by Physical Prowess or Mental Prowess. You cannot increase the bonus to any single ability score above +6.
 
-#### Legendary Shieldmaster
+### Legendary Shieldmaster
 
-Increases your Armor and Shield Attunement bonuses to +5. Normally your Armor Attunement is capped at +4 with a shield equipped.
+Removes the armor enhancement bonus penalty applied when using a shield.
 
-#### Legendary Twin Weapons
+### Legendary Twin Weapons
 
-Increases your Weapon and Off-Hand Attunement bonuses to +5. Normally your Weapon Attunement is capped at +4 with an off-hand weapon equipped or secondary natural attacks.
-
-#### Legendary Weapon
-
-TODO
+Removes the weapon enhancement bonus penalty applied when using off-hand or secondary weapons.
 
 ## Base Game Changes
 
@@ -161,7 +131,6 @@ This mod uses [Mod Menu](https://github.com/WittleWolfie/ModMenu), settings are 
 ## Acknowledgements
 
 * Bubbles (factsubio) for [BubblePrints](https://github.com/factubsio/BubblePrints), saving me from going mad.
-* Vek17 for [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core), so I don't have to distribute my transpilers.
 * The modding community on [Discord](https://discord.com/invite/owlcat), an invaluable and supportive resource for help modding.
 * All the Owlcat modders who came before me, wrote documents, and open sourced their code.
 
