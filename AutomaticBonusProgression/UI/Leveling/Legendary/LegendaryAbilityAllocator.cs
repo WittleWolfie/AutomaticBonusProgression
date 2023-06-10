@@ -122,21 +122,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       var costToggle = toggle.AddComponent<CostToggle>();
       costToggle.Cost = cost;
     }
-
-    private class CostToggle : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-    {
-      internal GameObject Cost;
-
-      public void OnPointerEnter(PointerEventData eventData)
-      {
-        Cost?.SetActive(true);
-      }
-
-      public void OnPointerExit(PointerEventData eventData)
-      {
-        Cost?.SetActive(false);
-      }
-    }
   }
 
   /// <summary>

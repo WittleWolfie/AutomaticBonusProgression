@@ -152,6 +152,9 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       {
         var selector = source.m_StatAllocators[i];
 
+        var costLabel =
+          GameObject.Instantiate(selector.gameObject.ChildObject("Score/Selected/CostArrowDown/Cost"))
+            .GetComponent<TextMeshProUGUI>();
         selector.gameObject.DestroyChildren("Score");
         selector.gameObject.DestroyChildren("Modifier");
         selector.gameObject.DestroyChildren("Bonus/RaceBonus");
@@ -164,7 +167,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         hover.anchorMax = new(x: 0.76f, y: 1);
 
         var view = selector.gameObject.AddComponent<LegendaryFeatureSelectorView>();
-        view.Init(selector);
+        view.Init(selector, costLabel);
         FeatureSelectors.Add(view);
 
         // Remove the base component so no logic runs

@@ -1,6 +1,7 @@
 ﻿using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.UI;
+using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
 using Kingmaker.UI.MVVM._VM.InfoWindow;
 using Kingmaker.UI.MVVM._VM.Tooltip.Templates;
@@ -24,10 +25,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     private CharGenAbilityScoreAllocatorPCView Allocator;
     private ToggleWorkaround Toggle;
     private TextMeshProUGUI Label;
+    private TextMeshProUGUI CostLabel;
 
-    internal void Init(CharGenAbilityScoreAllocatorPCView source)
+    internal void Init(CharGenAbilityScoreAllocatorPCView source, TextMeshProUGUI costLabel)
     {
       Allocator = source;
+      CostLabel = costLabel;
       CreateToggle();
       CreateLabel();
     }
@@ -61,6 +64,16 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       toggle.DestroyComponents<HorizontalLayoutGroupWorkaround>();
 
       toggle.Rect().localPosition = new(x: -20, y: -25);
+
+      CostLabel.SetText(UIUtility.AddSign(-1));
+      var cost = CostLabel.gameObject;
+
+      cost.transform.AddTo(toggle.ChildObject("Background").transform);
+      cost.Rect().offsetMax = new(x: 35, y: 25);
+      cost.Rect().offsetMin = new(x: 25, y: 15);
+
+      var costToggle = toggle.AddComponent<CostToggle>();
+      costToggle.Cost = cost;
     }
 
     private void CreateLabel()
@@ -78,6 +91,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     private void ToggleFeature(bool selected)
     {
+      CostLabel.SetText(UIUtility.AddSign(selected ? 1 : -1));
       ViewModel.ToggleFeature(selected);
     }
 
