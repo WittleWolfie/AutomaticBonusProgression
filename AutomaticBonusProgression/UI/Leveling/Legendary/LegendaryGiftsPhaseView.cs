@@ -38,6 +38,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     private TextMeshProUGUI AvailablePoints;
     private readonly List<LegendaryAbilityAllocatorView> AbilityAllocators = new();
     private readonly List<LegendaryEnchantmentAllocatorView> EnchantmentAllocators = new();
+    private readonly List<LegendaryFeatureSelectorView> FeatureSelectors = new();
 
     internal void InitAbilityScores(CharGenAbilityScoresDetailedPCView source)
     {
@@ -136,6 +137,44 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       Destroy(source);
     }
 
+    internal void InitFeatures(CharGenAbilityScoresDetailedPCView source)
+    {
+      // Init the base view w/o Initialize() so it doesn't interfere w/ Prowess patch
+      source.m_StatAllocators =
+        source.m_StatAllocatorsContainer
+          .GetComponentsInChildren<CharGenAbilityScoreAllocatorPCView>()
+          .ToList();
+      source.m_StatLabel.SetText(UITool.GetString("Legendary.Features"));
+      source.m_RaceBonus.SetText(string.Empty);
+
+      // Update the ability selectors and remove additional selections
+      for (int i = 0; i < 2; i++) // Only use the first 2
+      {
+        var selector = source.m_StatAllocators[i];
+
+        selector.gameObject.DestroyChildren("Score");
+        selector.gameObject.DestroyChildren("Modifier");
+        selector.gameObject.DestroyChildren("Bonus/RaceBonus");
+        selector.gameObject.DestroyChildren("Labels/Long");
+        selector.gameObject.DestroyChildren("Labels/SHORT");
+        selector.gameObject.DestroyChildren("Labels/RecommendationPlace");
+
+        var hover = selector.gameObject.ChildObject("Hover").Rect();
+        hover.anchorMin = new(x: 0.25f, y: 0);
+        hover.anchorMax = new(x: 0.76f, y: 1);
+
+        var view = selector.gameObject.AddComponent<LegendaryFeatureSelectorView>();
+        view.Init(selector);
+        FeatureSelectors.Add(view);
+
+        // Remove the base component so no logic runs
+        Destroy(selector);
+      }
+
+      // Remove the base component so no logic runs
+      Destroy(source);
+    }
+
     // TODO: Add Twin Weapons & Shieldmaster
     public override void BindViewImplementation()
     {
@@ -160,6 +199,13 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         var allocator = EnchantmentAllocators[i];
         var vm = ViewModel.EnchantmentVMs[i];
         allocator.Bind(vm);
+      }
+
+      for (int i = 0; i < FeatureSelectors.Count; i++)
+      {
+        var selector = FeatureSelectors[i];
+        var vm = ViewModel.FeatureVMs[i];
+        selector.Bind(vm);
       }
     }
 
@@ -335,6 +381,20 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       obj.transform.AddTo(view.transform);
       obj.transform.localPosition = new(x: -30, y: 135);
       view.InitEnchantments(enchantmentsView);
+
+      // And again for features
+      var featuresView = Instantiate(source);
+      obj = featuresView.gameObject.ChildObject("AllocatorPlace/Selector/AbilityScoresAllocator");
+      obj.DestroyChildren("Content/Labels/TotalBox");
+      obj.DestroyChildren("Content/Labels/RankLabelBox");
+      obj.DestroyChildren("Content/Console_StatAllocator (2)");
+      obj.DestroyChildren("Content/Console_StatAllocator (3)");
+      obj.DestroyChildren("Content/Console_StatAllocator (4)");
+      obj.DestroyChildren("Content/Console_StatAllocator (5)");
+
+      obj.transform.AddTo(view.transform);
+      obj.transform.localPosition = new(x: -95, y: -250);
+      view.InitFeatures(featuresView);
       return view;
     }
     #endregion
@@ -385,6 +445,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     internal readonly LegendaryGiftState State;
     internal readonly List<LegendaryAbilityScoreAllocatorVM> AbilityScoreVMs = new();
     internal readonly List<LegendaryEnchantmentScoreAllocatorVM> EnchantmentVMs = new();
+    internal readonly List<LegendaryFeatureSelectorVM> FeatureVMs = new();
 
     internal LegendaryGiftsPhaseVM(LevelUpController levelUpController, int gifts) : base(levelUpController)
     {
@@ -399,6 +460,9 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       foreach (EnchantmentType type in Enum.GetValues(typeof(EnchantmentType)))
         EnchantmentVMs.Add(new(type, State, InfoVM));
+
+      FeatureVMs.Add(new(Common.TwinWeapons, State, InfoVM));
+      FeatureVMs.Add(new(Common.Shieldmaster, State, InfoVM));
     }
 
     private void UpdateStats()

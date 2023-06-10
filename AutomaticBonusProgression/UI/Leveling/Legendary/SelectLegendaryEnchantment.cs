@@ -25,7 +25,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       State = state;
     }
 
-    public LevelUpActionPriority Priority => LevelUpActionPriority.AddAttribute;
+    public LevelUpActionPriority Priority => LevelUpActionPriority.Features;
 
     public bool NeedUpdateUnitView => false;
 

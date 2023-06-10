@@ -209,5 +209,10 @@
     "Key": "ABP.UI.Legendary.Shieldmaster",
     "ProcessTemplates": false,
     "enGB": "Shieldmaster"
+  },
+  {
+    "Key": "ABP.UI.Legendary.Features",
+    "ProcessTemplates": false,
+    "enGB": "Feature Name"
   }
 ]

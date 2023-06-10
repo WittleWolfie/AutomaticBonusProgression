@@ -22,7 +22,7 @@
   {
     "Key": "LegendaryShieldmaster.Name",
     "ProcessTemplates": false,
-    "enGB": "Legendary Shieldmaster"
+    "enGB": "Shieldmaster"
   },
   {
     "Key": "LegendaryShieldmaster.Description",
@@ -32,7 +32,7 @@
   {
     "Key": "LegendaryTwinWeapons.Name",
     "ProcessTemplates": false,
-    "enGB": "Legendary Twin Weapons"
+    "enGB": "Twin Weapons"
   },
   {
     "Key": "LegendaryTwinWeapons.Description",

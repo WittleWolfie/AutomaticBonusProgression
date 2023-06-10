@@ -28,6 +28,10 @@ namespace AutomaticBonusProgression.UI
 
     internal static OwlcatButton Button;
     internal static TextMeshProUGUI Text;
+    /// <summary>
+    /// Text isn't available early enough. I don't want to replace it because I might have to restyle so eh.
+    /// </summary>
+    internal static TextMeshProUGUI EarlyText;
     internal static Image Image;
     internal static ToggleWorkaround Checkbox;
 
@@ -67,6 +71,13 @@ namespace AutomaticBonusProgression.UI
           UITool.MainMenu.ChildObject("ChargenPCView/ContentWrapper/SpellbookView/EdgeWindow/KnownSpells/Toggle"));
         GameObject.DontDestroyOnLoad(checkbox);
         Checkbox = checkbox.GetComponent<ToggleWorkaround>();
+      }
+      if (EarlyText is null)
+      {
+        var text = GameObject.Instantiate(
+          UITool.MainMenu.ChildObject("ChargenPCView/ContentWrapper/SpellbookView/EdgeWindow/Information/ClassNameLabel"));
+        GameObject.DontDestroyOnLoad(text);
+        EarlyText = text.GetComponent<TextMeshProUGUI>();
       }
     }
 

@@ -367,6 +367,25 @@ namespace AutomaticBonusProgression.Util
         return _legendaryCha;
       }
     }
+
+    private static BlueprintFeature _twinWeapons;
+    internal static BlueprintFeature TwinWeapons
+    {
+      get
+      {
+        _twinWeapons ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryTwinWeapons);
+        return _twinWeapons;
+      }
+    }
+    private static BlueprintFeature _shieldmaster;
+    internal static BlueprintFeature Shieldmaster
+    {
+      get
+      {
+        _shieldmaster ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryShieldmaster);
+        return _shieldmaster;
+      }
+    }
     #endregion
     #endregion
 

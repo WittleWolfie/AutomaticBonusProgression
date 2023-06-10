@@ -3,6 +3,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Class.LevelUp;
+using Kingmaker.UnitLogic.Class.LevelUp.Actions;
 using Kingmaker.Utility;
 using System;
 using System.ComponentModel;
@@ -199,6 +200,41 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     internal bool CanRemoveLegendaryEnchantment(EnchantmentType type)
     {
       return Controller.LevelUpActions.OfType<SelectLegendaryEnchantment>().Any(a => a.Type == type);
+    }
+    #endregion
+
+    #region Legendary Features
+    internal void TrySelectFeature(BlueprintFeature feature)
+    {
+      if (!CanSelectFeature(feature))
+        return;
+
+      Logger.Log($"Adding Feature {feature.Name}");
+      Controller.AddAction(new SelectLegendaryFeature(feature, this));
+      AvailableGifts.Value--;
+    }
+
+    internal void TryUnselectFeature(BlueprintFeature feature)
+    {
+      if (Controller.RemoveAction<SelectLegendaryFeature>(a => a.Feature == feature))
+      {
+        Logger.Log($"Removed Feature {feature.Name}");
+        AvailableGifts.Value++;
+        Controller.UpdatePreview();
+      }
+    }
+
+    internal bool IsFeatureSelected(BlueprintFeature feature)
+    {
+      return Controller.LevelUpActions.OfType<SelectLegendaryFeature>().Any(a => a.Feature == feature);
+    }
+
+    internal bool CanSelectFeature(BlueprintFeature feature, bool checkGifts = true)
+    {
+      if (checkGifts && AvailableGifts.Value == 0)
+        return false;
+
+      return !Controller.Preview.HasFact(feature);
     }
     #endregion
 
