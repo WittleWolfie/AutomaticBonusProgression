@@ -98,7 +98,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     private void UpdateToggle()
     {
       Toggle.interactable = ViewModel.CanSelectFeature.Value;
-      Logger.Log($"Toggle is interactable? {Toggle.interactable}");
     }
 
     public void OnPointerEnter(PointerEventData eventData)

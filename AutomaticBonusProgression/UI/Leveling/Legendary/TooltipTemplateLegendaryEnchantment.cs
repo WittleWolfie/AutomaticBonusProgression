@@ -38,20 +38,13 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public override void Prepare(TooltipTemplateType type)
     {
-      try
-      {
-        var sortedEnchantments =
-          Feature.GetComponent<AttunementBuffsComponent>().Buffs
-            .Select(bp => bp.Get())
-            .OrderBy(buff => buff.GetComponent<AttunementEffect>().Cost);
+      var sortedEnchantments =
+        Feature.GetComponent<AttunementBuffsComponent>().Buffs
+          .Select(bp => bp.Get())
+          .OrderBy(buff => buff.GetComponent<AttunementEffect>().Cost);
 
-        Enchantments.Clear();
-        Enchantments.AddRange(sortedEnchantments);
-      }
-      catch (Exception e)
-      {
-        Logger.LogException("Fucking christ", e);
-      }
+      Enchantments.Clear();
+      Enchantments.AddRange(sortedEnchantments);
     }
 
     public override IEnumerable<ITooltipBrick> GetHeader(TooltipTemplateType type)
