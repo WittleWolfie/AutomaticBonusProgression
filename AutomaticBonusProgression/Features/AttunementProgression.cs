@@ -44,27 +44,73 @@ namespace AutomaticBonusProgression.Features
       var mentalProwess = MentalProwess.Configure();
       var physicalProwess = PhysicalProwess.Configure();
 
-      // Here for testing only, eventually should be mythic (though probably level 19/20)
-      var legendaryGifts = LegendaryGifts.Configure();
-
       ProgressionConfigurator.For(basicFeats)
         .AddToLevelEntry(level: 1, ConfigureEnhancementCalculator())
         .AddToLevelEntry(level: 3, resistance)
-        .AddToLevelEntry(level: 4, armorAttunement, weaponAttunement)
-        .AddToLevelEntry(level: 5, deflection, legendaryGifts, legendaryGifts, legendaryGifts, legendaryGifts, legendaryGifts)
-        .AddToLevelEntry(level: 6, mentalProwess, legendaryGifts, legendaryGifts)
-        .AddToLevelEntry(level: 7, physicalProwess, legendaryGifts, legendaryGifts)
-        .AddToLevelEntry(level: 8, shieldAttunement, offHandAttunement, toughening, resistance)
-        .AddToLevelEntry(level: 9, armorAttunement, weaponAttunement)
-        .AddToLevelEntry(level: 10, deflection, resistance)
+        .AddToLevelEntry(
+          level: 4,
+          armorAttunement,
+          weaponAttunement)
+        .AddToLevelEntry(level: 5, deflection)
+        .AddToLevelEntry(level: 6, mentalProwess)
+        .AddToLevelEntry(level: 7, physicalProwess)
+        .AddToLevelEntry(
+          level: 8,
+          offHandAttunement,
+          resistance,
+          shieldAttunement,
+          toughening)
+        .AddToLevelEntry(
+          level: 9,
+          armorAttunement,
+          weaponAttunement)
+        .AddToLevelEntry(
+          level: 10,
+          deflection,
+          resistance)
         .AddToLevelEntry(level: 11, mentalProwess)
         .AddToLevelEntry(level: 12, physicalProwess)
-        .AddToLevelEntry(level: 13, toughening, resistance, mentalProwess, physicalProwess)
-        .AddToLevelEntry(level: 14, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement, resistance)
-        .AddToLevelEntry(level: 15, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement, mentalProwess)
-        .AddToLevelEntry(level: 16, deflection, toughening, physicalProwess)
-        .AddToLevelEntry(level: 17, armorAttunement, shieldAttunement, weaponAttunement, offHandAttunement, deflection, toughening, mentalProwess, physicalProwess)
-        .AddToLevelEntry(level: 18, deflection, toughening, mentalProwess, physicalProwess)
+        .AddToLevelEntry(
+          level: 13,
+          mentalProwess,
+          physicalProwess,
+          resistance,
+          toughening)
+        .AddToLevelEntry(
+          level: 14,
+          armorAttunement,
+          offHandAttunement,
+          resistance,
+          shieldAttunement,
+          weaponAttunement)
+        .AddToLevelEntry(
+          level: 15,
+          armorAttunement,
+          mentalProwess,
+          offHandAttunement,
+          shieldAttunement,
+          weaponAttunement)
+        .AddToLevelEntry(
+          level: 16,
+          deflection,
+          physicalProwess,
+          toughening)
+        .AddToLevelEntry(
+          level: 17,
+          armorAttunement,
+          shieldAttunement,
+          weaponAttunement,
+          offHandAttunement,
+          deflection,
+          toughening,
+          mentalProwess,
+          physicalProwess)
+        .AddToLevelEntry(
+          level: 18,
+          deflection,
+          toughening,
+          mentalProwess,
+          physicalProwess)
         .Configure();
     }
 
