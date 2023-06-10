@@ -1,6 +1,5 @@
 ﻿using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Class.LevelUp;
 using Kingmaker.UnitLogic.Class.LevelUp.Actions;
