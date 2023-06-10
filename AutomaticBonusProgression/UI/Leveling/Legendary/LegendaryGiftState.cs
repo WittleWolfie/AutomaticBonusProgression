@@ -3,7 +3,6 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Class.LevelUp;
-using Kingmaker.UnitLogic.Class.LevelUp.Actions;
 using Kingmaker.Utility;
 using System;
 using System.ComponentModel;
@@ -34,6 +33,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (!CanAddLegendaryAbility(type))
         return;
 
+      Logger.Verbose(() => $"Applying Legendary Ability {type}");
       Controller.AddAction(new SelectLegendaryAbility(type, this));
       AvailableGifts.Value--;
     }
@@ -43,9 +43,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (!CanRemoveLegendaryAbility(type))
         return;
 
-      Controller.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == type);
-      AvailableGifts.Value++;
-      Controller.UpdatePreview();
+      if (Controller.RemoveAction<SelectLegendaryAbility>(a => a.Attribute == type))
+      {
+        Logger.Verbose(() => $"Removed Legendary Ability {type}");
+        AvailableGifts.Value++;
+        Controller.UpdatePreview();
+      }
     }
 
     internal bool CanAddLegendaryAbility(StatType type, bool checkGifts = true)
@@ -79,7 +82,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (!CanSelectProwess(type))
         return;
 
-      Logger.Log($"Applying Prowess {type}");
+      Logger.Verbose(() => $"Applying Prowess {type}");
       switch (type)
       {
         case StatType.Strength:
@@ -119,7 +122,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       if (removedAction)
       {
-        Logger.Log($"Removed Prowess {type}");
+        Logger.Verbose(() => $"Removed Prowess {type}");
         AvailableGifts.Value++;
         Controller.UpdatePreview();
       }
@@ -166,6 +169,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (!CanAddLegendaryEnchantment(type))
         return;
 
+      Logger.Verbose(() => $"Adding Legendary Enchantment {type}");
       Controller.AddAction(new SelectLegendaryEnchantment(type, this));
       AvailableGifts.Value--;
     }
@@ -175,9 +179,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (!CanRemoveLegendaryEnchantment(type))
         return;
 
-      Controller.RemoveAction<SelectLegendaryEnchantment>(a => a.Type == type);
-      AvailableGifts.Value++;
-      Controller.UpdatePreview();
+      if (Controller.RemoveAction<SelectLegendaryEnchantment>(a => a.Type == type))
+      {
+        Logger.Verbose(() => $"Removed Legenary Enchantment {type}");
+        AvailableGifts.Value++;
+        Controller.UpdatePreview();
+      }
     }
 
     internal bool CanAddLegendaryEnchantment(EnchantmentType type, bool checkGifts = true)
@@ -209,7 +216,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (!CanSelectFeature(feature))
         return;
 
-      Logger.Log($"Adding Feature {feature.Name}");
+      Logger.Verbose(() => $"Adding Feature {feature.Name}");
       Controller.AddAction(new SelectLegendaryFeature(feature, this));
       AvailableGifts.Value--;
     }
@@ -218,7 +225,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       if (Controller.RemoveAction<SelectLegendaryFeature>(a => a.Feature == feature))
       {
-        Logger.Log($"Removed Feature {feature.Name}");
+        Logger.Verbose(() => $"Removed Feature {feature.Name}");
         AvailableGifts.Value++;
         Controller.UpdatePreview();
       }
@@ -234,7 +241,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (checkGifts && AvailableGifts.Value == 0)
         return false;
 
-      return !Controller.Preview.HasFact(feature);
+      return IsFeatureSelected(feature) || !Controller.Unit.HasFact(feature);
     }
     #endregion
 

@@ -36,8 +36,10 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     {
       Label.SetText(ViewModel.Name);
 
-      AddDisposable(ViewModel.HasFeature.Subscribe(value => UpdateToggleIsOn()));
       AddDisposable(ViewModel.CanSelectFeature.Subscribe(value => UpdateToggle()));
+
+      Toggle.SetIsOnWithoutNotify(ViewModel.IsSelected);
+      Toggle.onValueChanged.AddListener(new(ToggleFeature));
     }
 
     public override void DestroyViewImplementation() { }
@@ -74,14 +76,15 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       label.Rect().localPosition = new(x: -65, y: 0);
     }
 
-    private void UpdateToggleIsOn()
+    private void ToggleFeature(bool selected)
     {
-      Toggle.isOn = ViewModel.HasFeature.Value;
+      ViewModel.ToggleFeature(selected);
     }
 
     private void UpdateToggle()
     {
       Toggle.interactable = ViewModel.CanSelectFeature.Value;
+      Logger.Log($"Toggle is interactable? {Toggle.interactable}");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -126,18 +129,18 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (selected)
         State.TrySelectFeature(Feature);
       else
-        State.TrySelectFeature(Feature);
+        State.TryUnselectFeature(Feature);
     }
 
     private void UpdateEligibility()
     {
-      HasFeature.Value = State.IsFeatureSelected(Feature) || State.Controller.Preview.HasFact(Feature);
       CanSelectFeature.Value = State.IsFeatureSelected(Feature) || State.CanSelectFeature(Feature);
     }
 
     internal readonly string Name;
 
-    internal readonly BoolReactiveProperty HasFeature = new();
+    // Check Unit not Preview
+    internal bool IsSelected => State.IsFeatureSelected(Feature) || State.Controller.Unit.HasFact(Feature);
     internal readonly BoolReactiveProperty CanSelectFeature = new();
   }
 }
