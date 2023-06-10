@@ -1,15 +1,5 @@
 ﻿[
   {
-    "Key": "LegendaryGifts.Name",
-    "ProcessTemplates": false,
-    "enGB": "Legendary Gift"
-  },
-  {
-    "Key": "LegendaryGifts.Description",
-    "enGB": "Select a legendary gift, increasing the bonuses you get from attunement."
-  },
-
-  {
     "Key": "LegendaryProwess.Name",
     "ProcessTemplates": false,
     "enGB": "Legendary Prowess"

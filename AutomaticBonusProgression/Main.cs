@@ -65,8 +65,8 @@ namespace AutomaticBonusProgression
             "AutomaticBonusProgression.Strings.UI.json");
 
           Enchantments.Enchantments.Configure();
-
           AttunementProgression.Configure();
+          LegendaryGifts.Configure();
         }
         catch (Exception e)
         {

@@ -107,7 +107,6 @@ namespace AutomaticBonusProgression.UI.Leveling
           new(new Guid(Guids.ShieldAttunementBase)),
           new(new Guid(Guids.WeaponAttunementBase)),
           new(new Guid(Guids.OffHandAttunementBase)),
-          new(new Guid(Guids.LegendaryGifts)),
           new(new Guid(Guids.ResistanceBase)),
           new(new Guid(Guids.TougheningBase)),
           new(new Guid(Guids.DeflectionBase)),

@@ -229,16 +229,6 @@ namespace AutomaticBonusProgression.Util
     #endregion
 
     #region Legendary
-    private static BlueprintFeature _legendaryGifts;
-    internal static BlueprintFeature LegendaryGifts
-    {
-      get
-      {
-        _legendaryGifts ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryGifts);
-        return _legendaryGifts;
-      }
-    }
-
     private static BlueprintFeature _legendaryWeapon;
     internal static BlueprintFeature LegendaryWeapon
     {
