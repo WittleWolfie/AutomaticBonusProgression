@@ -1,6 +1,7 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
@@ -30,7 +31,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(TougheningDisplayName)
         .SetDescription(TougheningDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.BarkskinBuff.Reference.Get().Icon)
         .SetRanks(5)
         .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect()

@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 
 namespace AutomaticBonusProgression.Features
@@ -20,7 +21,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryTwinWeaponsDisplayName)
         .SetDescription(LegendaryTwinWeaponsDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.DivineFavorBuff.Reference.Get().Icon)
         .Configure();
     }
   }

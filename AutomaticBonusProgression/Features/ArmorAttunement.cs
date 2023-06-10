@@ -1,6 +1,7 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem.Stats;
@@ -37,7 +38,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(ArmorDisplayName)
         .SetDescription(ArmorDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.MageArmorBuff.Reference.Get().Icon)
         .SetRanks(5)
         .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect() // Hides it from enemy inspect dialog
@@ -63,7 +64,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(ShieldDisplayName)
         .SetDescription(ShieldDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.MageShieldBuff.Reference.Get().Icon)
         .SetRanks(4)
         .AddComponent(new AddFeatureABP(effect)) 
         .AddHideFeatureInInspect() // Hide in enemy inspect dialog

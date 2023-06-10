@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 
 namespace AutomaticBonusProgression.Features
@@ -20,7 +21,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryShieldmasterDisplayName)
         .SetDescription(LegendaryShieldmasterDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.ShieldOfDawnBuff.Reference.Get().Icon)
         .Configure();
     }
   }

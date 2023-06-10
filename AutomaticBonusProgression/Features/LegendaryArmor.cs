@@ -5,6 +5,7 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 
 namespace AutomaticBonusProgression.Features
@@ -32,6 +33,7 @@ namespace AutomaticBonusProgression.Features
       var ability = AbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
+        .SetIcon(AbilityRefs.SacredArmorEnchantSwitchAbility.Reference.Get().Icon)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Armor))
         .Configure();
@@ -40,7 +42,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.SacredArmorEnchantSwitchAbility.Reference.Get().Icon)
         .SetRanks(5)
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
@@ -135,6 +137,7 @@ namespace AutomaticBonusProgression.Features
       var ability = AbilityConfigurator.New(LegendaryShieldAbility, Guids.LegendaryShieldAbility)
         .SetDisplayName(LegendaryShieldDisplayName)
         .SetDescription(LegendaryShieldDescription)
+        .SetIcon(AbilityRefs.SacredArmorShieldEnchantSwitchAbility.Reference.Get().Icon)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Shield))
         .Configure();
@@ -143,7 +146,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryShieldDisplayName)
         .SetDescription(LegendaryShieldDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.SacredArmorShieldEnchantSwitchAbility.Reference.Get().Icon)
         .SetRanks(5)
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })

@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
@@ -34,7 +35,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryStrengthDisplayName)
         .SetDescription(LegendaryStrengthDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.BelieveInYourselfStrength.Reference.Get().Icon)
         .SetRanks(5)
         .AddStatBonus(stat: StatType.Strength, value: 1, descriptor: ModifierDescriptor.Inherent)
         .Configure();
@@ -52,7 +53,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryDexterityDisplayName)
         .SetDescription(LegendaryDexterityDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.BelieveInYourselfDexterity.Reference.Get().Icon)
         .SetRanks(5)
         .AddStatBonus(stat: StatType.Dexterity, value: 1, descriptor: ModifierDescriptor.Inherent)
         .Configure();
@@ -70,7 +71,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryConstitutionDisplayName)
         .SetDescription(LegendaryConstitutionDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.BelieveInYourselfConstitution.Reference.Get().Icon)
         .SetRanks(5)
         .AddStatBonus(stat: StatType.Constitution, value: 1, descriptor: ModifierDescriptor.Inherent)
         .Configure();
@@ -88,7 +89,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryIntelligenceDisplayName)
         .SetDescription(LegendaryIntelligenceDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.BelieveInYourselfIntelligence.Reference.Get().Icon)
         .SetRanks(5)
         .AddStatBonus(stat: StatType.Intelligence, value: 1, descriptor: ModifierDescriptor.Inherent)
         .Configure();
@@ -106,7 +107,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryWisdomDisplayName)
         .SetDescription(LegendaryWisdomDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.BelieveInYourselfWisdom.Reference.Get().Icon)
         .SetRanks(5)
         .AddStatBonus(stat: StatType.Wisdom, value: 1, descriptor: ModifierDescriptor.Inherent)
         .Configure();
@@ -124,7 +125,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryCharismaDisplayName)
         .SetDescription(LegendaryCharismaDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.BelieveInYourselfCharisma.Reference.Get().Icon)
         .SetRanks(5)
         .AddStatBonus(stat: StatType.Charisma, value: 1, descriptor: ModifierDescriptor.Inherent)
         .Configure();

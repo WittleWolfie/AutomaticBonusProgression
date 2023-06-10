@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
@@ -28,7 +29,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(ProwessDisplayName)
         .SetDescription(ProwessDescription)
         .SetHideInCharacterSheetAndLevelUp()
-        //.SetIcon()
+        .SetIcon(BuffRefs.ThoughtsenseBuff.Reference.Get().Icon)
         .Configure();
     }
 
@@ -42,7 +43,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(IntProwessDisplayName)
         .SetDescription(IntProwessDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.FoxsCunningBuff.Reference.Get().Icon)
         .SetRanks(3)
         .AddStatBonus(stat: StatType.Intelligence, value: 2, descriptor: ModifierDescriptor.Enhancement)
         .Configure();
@@ -58,7 +59,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(WisProwessDisplayName)
         .SetDescription(WisProwessDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.OwlsWisdomBuff.Reference.Get().Icon)
         .SetRanks(3)
         .AddStatBonus(stat: StatType.Wisdom, value: 2, descriptor: ModifierDescriptor.Enhancement)
         .Configure();
@@ -74,7 +75,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(ChaProwessDisplayName)
         .SetDescription(ChaProwessDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.EaglesSplendorBuff.Reference.Get().Icon)
         .SetRanks(3)
         .AddStatBonus(stat: StatType.Charisma, value: 2, descriptor: ModifierDescriptor.Enhancement)
         .Configure();

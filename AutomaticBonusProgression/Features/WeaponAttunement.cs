@@ -1,6 +1,7 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers;
@@ -37,7 +38,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(WeaponDisplayName)
         .SetDescription(WeaponDescription)
-        //.SetIcon()
+        .SetIcon(AbilityRefs.HolySword.Reference.Get().Icon)
         .SetRanks(5)
         .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect()
@@ -63,7 +64,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(OffHandDisplayName)
         .SetDescription(OffHandDescription)
-        //.SetIcon()
+        .SetIcon(BuffRefs.ArcaneAccuracyBuff.Reference.Get().Icon)
         .SetRanks(4)
         .AddComponent(new AddFeatureABP(effect))
         .AddHideFeatureInInspect()
