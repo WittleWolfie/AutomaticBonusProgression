@@ -5,7 +5,6 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 
 namespace AutomaticBonusProgression.Features
@@ -39,7 +38,6 @@ namespace AutomaticBonusProgression.Features
       // - Fortuitous
       // - Grounding
       // - Growing
-      // - Ki Focus (This might be too complicated)
       // - Leveraging
       // - Limning
       // - Menacing
