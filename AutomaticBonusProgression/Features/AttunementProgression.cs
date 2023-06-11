@@ -26,7 +26,6 @@ namespace AutomaticBonusProgression.Features
 
       // TODO: Grant to existing characters! Do this by adjusting their *_FeatureList selections
       // TODO: Also make sure to grant to recruited homies
-      // TODO: Grant to PETS
 
       var basicFeats = ProgressionRefs.BasicFeatsProgression.Reference.Get();
 

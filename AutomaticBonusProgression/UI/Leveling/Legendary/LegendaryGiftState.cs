@@ -241,6 +241,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (checkGifts && AvailableGifts.Value == 0)
         return false;
 
+      if (!feature.MeetsPrerequisites(
+          selectionState: null, unit: Controller.Preview, state: Controller.State, fromProgression: false))
+      {
+        return false;
+      }
+
       return IsFeatureSelected(feature) || !Controller.Unit.HasFact(feature);
     }
     #endregion

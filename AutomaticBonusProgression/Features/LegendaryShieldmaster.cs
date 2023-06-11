@@ -22,6 +22,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryShieldmasterDisplayName)
         .SetDescription(LegendaryShieldmasterDescription)
         .SetIcon(BuffRefs.ShieldOfDawnBuff.Reference.Get().Icon)
+        .AddPrerequisiteCharacterLevel(9)
         .Configure();
     }
   }
