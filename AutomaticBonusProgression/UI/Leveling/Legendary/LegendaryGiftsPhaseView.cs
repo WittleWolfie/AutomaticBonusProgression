@@ -324,6 +324,9 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       {
         try
         {
+          if (__instance.m_LevelUpController.Unit.IsPet)
+            return;
+
           int availableGifts = 0;
           if (__instance.IsMythic)
             availableGifts = 2;
