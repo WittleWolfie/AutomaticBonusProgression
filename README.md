@@ -4,6 +4,45 @@ An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder
 
 ### This mod creates a save dependency. Once you save with this mod enabled it must remain enabled or you will lose access to the save.
 
+### Currently in BETA
+
+Planned items before release:
+
+* Item Adjustments
+    * There are several items granting bonuses above the typical, e.g. +8 Belt of Perfection where Automatic Bonus Progression is capped at +6. These items should grant stacking bonuses instead, e.g. +8 Belt of Perfection would grant +2 to all physical stats.
+* Money Adjustment
+    * Since money is no longer needed to buy stat equipment, the amount of money you receive is scaled down.
+* Weapon Enchants
+    * [Bewildering](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Bewildering/)
+    * [Countering](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Countering/)
+    * [Courageous](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Courageous/)
+    * [Culling](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Culling/)
+    * [Cunning](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Cunning/)
+    * [Dazzling Radiance](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Dazzling-Radiance/)
+    * [Debilitating](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Debilitating/)
+    * [Defiant](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Defiant/)
+    * [Distracting](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Distracting/)
+    * [Dueling](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Dueling/)
+    * [Fortuitous](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Fortuitous/)
+    * [Gory](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Gory/)
+    * [Grounding](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Grounding/)
+    * [Growing](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Growing/)
+    * [Impact](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Impact/)
+    * [Invigorating](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Invigorating/)
+    * [Legbreaker](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Legbreaker/)
+    * [Leveraging](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Leveraging/)
+    * [Lifesurge](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Lifesurge/)
+    * [Limning](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Limning/)
+    * [Menacing](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Menacing/)
+    * [Ominous](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Ominous/)
+    * [Phase Locking](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Phase-Locking/)
+    * [Quaking](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Quaking/)
+    * [Quenching](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Quenching/)
+    * [Sneaky](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Sneaky/)
+    * [Thawing](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Thawing/)
+    * [Valiant](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Valiant/)
+    * [Wounding](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Wounding/)
+
 ## Problems or Suggestions
 
 File a [bug](https://github.com/WittleWolfie/AutomaticBonusProgression/issues/new?template=bug_report.md&title=%5BBUG%5D) or [feature request](https://github.com/WittleWolfie/AutomaticBonusProgression/issues/new?template=feature_request.md&title=%5BFeature%5D). You can also reach me (@WittleWolfie) on [Discord](https://discord.com/invite/owlcat) in the #mod-user-general channel.
@@ -81,11 +120,50 @@ Allows you to apply enchantments to your equipment (Armor, Shield, Weapon, Off-H
 
 #### Armor Enchantments
 
-TODO: Add list
+* [Balanced](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/balanced/)
+* [Bashing](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Bashing/)
+* [Blinding](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Blinding/)
+* [Bolstering](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Bolstering/)
+* [Brawling](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Brawling/)
+* [Champion](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Champion/)
+* [Creeping](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Creeping/)
+* [Dastard](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Dastard/)
+* [Deathless](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Deathless/)
+* [Defiant](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Defiant/)
+* [Determination](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Determination/)
+* [Energy Resistance](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/energy-resistance/)
+* [Expeditious](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Expeditious/)
+* [Fortification](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Fortification/)
+* [Ghost Armor](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Ghost-Armor/)
+* [Invulernability](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Invulernability/)
+* [Martyring](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Martyring/)
+* [Rallying](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Rallying/)
+* [Reflecting](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Reflecting/)
+* [Righteous](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Righteous/)
+* [Shadow](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Shadow/)
+* [Spell Resistance](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Spell-Resistance/)
+* [Wyrmsbreath](https://www.d20pfsrd.com/magic-items/magic-armor/magic-armor-and-shield-special-abilities/Wyrmsbreath/)
 
 #### Weapon Enchantments
 
-TODO: Add list
+* [Anarchic](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Anarchic/)
+* [Axiomatic](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Axiomatic/)
+* [Bane](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Bane/)
+* [Brilliant Energy](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Brilliant-Energy/)
+* [Cruel](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Cruel/)
+* [Disruption](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Disruption/)
+* [Elemental](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Elemental/)
+* [Furious](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Furious/)
+* [Furyborn](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Furyborn/)
+* [Ghost Touch](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Ghost-Touch/)
+* [Heartseeker](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Heartseeker/)
+* [Holy](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Holy/)
+* [Keen](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Keen/)
+* [Nullifying](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Nullifying/)
+* [Speed](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Speed/)
+* [Unholy](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Unholy/)
+* [Vicious](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Vicious/)
+* [Vorpal](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Vorpal/)
 
 ### Legendary Prowess
 
