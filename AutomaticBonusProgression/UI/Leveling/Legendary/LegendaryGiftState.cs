@@ -77,6 +77,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     #endregion
 
     #region Legendary Prowess
+    // TODO: Undead are ineligible for Legendary Prowess (Physical)
     internal void TrySelectProwess(StatType type)
     {
       if (!CanSelectProwess(type))

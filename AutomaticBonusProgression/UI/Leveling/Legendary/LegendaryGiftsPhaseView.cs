@@ -25,9 +25,7 @@ using UnityEngine;
 namespace AutomaticBonusProgression.UI.Leveling.Legendary
 {
   /// <summary>
-  /// The book view class for legendary gifts phase. Currently is just a modified copy of CharGenAbilityScoresDetailedPCView.
-  /// 
-  /// Eventually should have stuff for all Legendary Gifts & Tooltip support.
+  /// The book view class for legendary gifts phase.
   /// </summary>
   internal class LegendaryGiftsPhaseView : CharGenPhaseDetailedBaseView<LegendaryGiftsPhaseVM>
   {
@@ -335,7 +333,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
           else if (__instance.m_LevelUpController.State.NextCharacterLevel == 20)
             availableGifts = 5;
           else
-            availableGifts = 2; // TODO: Delete once testing is done
+            availableGifts = 2; // TODO: Delete once testing is done -- Actually for Legend let's grant +1 every other level after 20
 
           if (__instance.TryClearPhaseFromList<LegendaryGiftsPhaseVM>(availableGifts > 0, __instance.m_PhasesList))
           {

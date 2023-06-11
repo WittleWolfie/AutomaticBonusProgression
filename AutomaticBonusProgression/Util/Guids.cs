@@ -590,6 +590,10 @@
     #endregion
     #endregion
 
+    #region DLC
+    internal const string Rekarth_FeatureList = "53593192-0946-4482-8959-3db1c1f10e80";
+    #endregion
+
     #region From Mods
     // Expanded Content - Anti-Paladin Smite
     internal const string SinfulAbsolutionBuff = "B13960D1-559A-414D-819B-FA53CF8526D4";
