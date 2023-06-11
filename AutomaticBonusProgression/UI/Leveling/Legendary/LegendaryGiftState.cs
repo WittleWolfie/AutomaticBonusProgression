@@ -77,7 +77,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
     #endregion
 
     #region Legendary Prowess
-    // TODO: Undead are ineligible for Legendary Prowess (Physical)
     internal void TrySelectProwess(StatType type)
     {
       if (!CanSelectProwess(type))
@@ -139,6 +138,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (checkGifts && AvailableGifts.Value == 0)
         return false;
 
+      // TODO: Need to re-think this logic. Prevent characters from picking Legendary Prowess if it would result in
+      // an unused regular Prowess selection.
       return type switch
       {
         StatType.Strength => !IsMaxRank(Common.StrProwess),
