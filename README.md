@@ -2,6 +2,8 @@
 
 An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder's [Automatic Bonus Progression](https://www.d20pfsrd.com/gamemastering/other-rules/unchained-rules/automatic-bonus-progression/) ruleset.
 
+TODO: Add screenshots
+
 ### This mod creates a save dependency. Once you save with this mod enabled it must remain enabled or you will lose access to the save.
 
 ### Currently in BETA
