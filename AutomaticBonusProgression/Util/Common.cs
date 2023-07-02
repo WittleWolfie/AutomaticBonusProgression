@@ -229,6 +229,25 @@ namespace AutomaticBonusProgression.Util
     #endregion
 
     #region Legendary
+    private static BlueprintFeature _legendaryPhysicalProwess;
+    internal static BlueprintFeature LegendaryPhysicalProwess
+    {
+      get
+      {
+        _legendaryPhysicalProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryPhysicalProwess);
+        return _legendaryPhysicalProwess;
+      }
+    }
+    private static BlueprintFeature _legendaryMentalProwess;
+    internal static BlueprintFeature LegendaryMentalProwess
+    {
+      get
+      {
+        _legendaryMentalProwess ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryMentalProwess);
+        return _legendaryMentalProwess;
+      }
+    }
+
     private static BlueprintFeature _legendaryWeapon;
     internal static BlueprintFeature LegendaryWeapon
     {

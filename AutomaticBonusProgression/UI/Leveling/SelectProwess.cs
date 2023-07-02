@@ -54,6 +54,24 @@ namespace AutomaticBonusProgression.UI.Leveling
           unit.AddFact(Common.ChaProwess);
           break;
       }
+
+      if (!IsGift)
+        return;
+
+      // Count legendary prowess
+      switch (Attribute)
+      {
+        case StatType.Strength:
+        case StatType.Dexterity:
+        case StatType.Constitution:
+          unit.AddFact(Common.LegendaryPhysicalProwess);
+          break;
+        case StatType.Intelligence:
+        case StatType.Wisdom:
+        case StatType.Charisma:
+          unit.AddFact(Common.LegendaryMentalProwess);
+          break;
+      }
     }
 
     public bool Check(LevelUpState state, UnitDescriptor unit)
@@ -76,6 +94,26 @@ namespace AutomaticBonusProgression.UI.Leveling
               return false;
             break;
         }
+      }
+      else
+      {
+        Feature legendaryFeature = null;
+        switch (Attribute)
+        {
+          case StatType.Strength:
+          case StatType.Dexterity:
+          case StatType.Constitution:
+            legendaryFeature = unit.GetFeature(Common.LegendaryPhysicalProwess);
+            break;
+          case StatType.Intelligence:
+          case StatType.Wisdom:
+          case StatType.Charisma:
+            legendaryFeature = unit.GetFeature(Common.LegendaryMentalProwess);
+            break;
+        }
+
+        if (legendaryFeature is not null && legendaryFeature.Rank >= legendaryFeature.Blueprint.Ranks)
+          return false;
       }
 
       Feature feature = null;

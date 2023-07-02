@@ -50,7 +50,8 @@
     internal const string LegendaryShieldmaster = "baef229b-a7fa-4618-88ed-23f9e6875d18";
     internal const string LegendaryTwinWeapons = "d910642b-7719-4607-b6e0-0d614f1a30e0";
 
-    internal const string LegendaryProwess = "4af6f190-145c-473e-a584-bcc0143e838d";
+    internal const string LegendaryPhysicalProwess = "4af6f190-145c-473e-a584-bcc0143e838d";
+    internal const string LegendaryMentalProwess = "4494c7c0-bb7f-468c-ba2a-26b866ea459d";
 
     #region Legendary Armor / Shield
     internal const string LegendaryArmor = "171db362-874c-468a-8626-b3e2c9deb1d4";

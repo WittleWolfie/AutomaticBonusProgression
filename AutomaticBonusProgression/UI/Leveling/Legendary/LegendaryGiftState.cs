@@ -138,18 +138,65 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       if (checkGifts && AvailableGifts.Value == 0)
         return false;
 
-      // TODO: Need to re-think this logic. Prevent characters from picking Legendary Prowess if it would result in
-      // an unused regular Prowess selection.
-      return type switch
+      var isMaxLegendaryRank = type switch
       {
-        StatType.Strength => !IsMaxRank(Common.StrProwess),
-        StatType.Dexterity => !IsMaxRank(Common.DexProwess),
-        StatType.Constitution => !IsMaxRank(Common.ConProwess),
-        StatType.Intelligence => !IsMaxRank(Common.IntProwess),
-        StatType.Wisdom => !IsMaxRank(Common.WisProwess),
-        StatType.Charisma => !IsMaxRank(Common.ChaProwess),
+        StatType.Strength => IsMaxRank(Common.LegendaryPhysicalProwess),
+        StatType.Dexterity => IsMaxRank(Common.LegendaryPhysicalProwess),
+        StatType.Constitution => IsMaxRank(Common.LegendaryPhysicalProwess),
+        StatType.Intelligence => IsMaxRank(Common.LegendaryMentalProwess),
+        StatType.Wisdom => IsMaxRank(Common.LegendaryMentalProwess),
+        StatType.Charisma => IsMaxRank(Common.LegendaryMentalProwess),
         _ => throw new NotImplementedException(),
       };
+      if (isMaxLegendaryRank)
+        return false;
+
+      var prowessRanks = type switch
+      {
+        StatType.Strength => GetRank(Common.StrProwess),
+        StatType.Dexterity => GetRank(Common.DexProwess),
+        StatType.Constitution => GetRank(Common.ConProwess),
+        StatType.Intelligence => GetRank(Common.IntProwess),
+        StatType.Wisdom => GetRank(Common.WisProwess),
+        StatType.Charisma => GetRank(Common.ChaProwess),
+        _ => throw new NotImplementedException(),
+      };
+      // Not using IsMaxRank since the logic is custom for handling +4 / +6 limits.
+      if (prowessRanks >= 3)
+        return false;
+
+      var isPhysical = type switch
+      {
+        StatType.Strength => true,
+        StatType.Dexterity => true,
+        StatType.Constitution => true,
+        StatType.Intelligence => false,
+        StatType.Wisdom => false,
+        StatType.Charisma => false,
+        _ => throw new NotImplementedException(),
+      };
+
+      var characterLevel = Controller.Preview.Progression.CharacterLevel;
+      if (isPhysical)
+      {
+        if (characterLevel < 7)
+          return false;
+        if (characterLevel < 12)
+          return prowessRanks < 1;
+        if (characterLevel < 16)
+          return prowessRanks < 2;
+      }
+      else
+      {
+        if (characterLevel < 6)
+          return false;
+        if (characterLevel < 11)
+          return prowessRanks < 1;
+        if (characterLevel < 15)
+          return prowessRanks < 2;
+      }
+
+      return true;
     }
     #endregion
 
