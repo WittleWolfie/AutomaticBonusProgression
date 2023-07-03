@@ -290,7 +290,6 @@ namespace AutomaticBonusProgression.UI.Leveling
         bonusLimit = 2;
       else if (characterLevel < 15)
         bonusLimit = 4;
-      Logger.Warning($"Is Prowess Eligible {stat.Type}: {Common.GetProwessBonus(stat)} < {bonusLimit}");
       return Common.GetProwessBonus(stat) < bonusLimit;
     }
 
