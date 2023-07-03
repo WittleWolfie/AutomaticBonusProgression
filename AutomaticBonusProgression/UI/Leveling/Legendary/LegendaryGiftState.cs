@@ -182,7 +182,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         _ => throw new NotImplementedException(),
       };
 
-      // TODO: Whelp. This broken. Looks like an issue w/ character level
       var characterLevel = Controller.State.NextCharacterLevel;
       if (Controller.State.Mode == LevelUpState.CharBuildMode.Mythic)
         characterLevel = Controller.Unit.Progression.CharacterLevel;
