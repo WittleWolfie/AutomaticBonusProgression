@@ -124,9 +124,6 @@ namespace AutomaticBonusProgression.Features
         .Configure();
     }
 
-    // TODO: Test
-    // - Make sure recruited companions have it
-    // - Test whether respec applies it correctly (in-game respec, not Barley)
     private static void ApplyToCompanions()
     {
       // Arueshalae
