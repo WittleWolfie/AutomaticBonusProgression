@@ -255,7 +255,7 @@ namespace AutomaticBonusProgression.UI.Leveling
       foreach (var type in stats)
       {
         var stat = LevelUpController.Preview.Stats.GetStat(type);
-        if (LevelUpController.LevelUpActions.OfType<SelectProwess>().Any(a => a.Attribute == type))
+        if (LevelUpController.LevelUpActions.OfType<SelectProwess>().Any(a => a.Attribute == type && !a.IsGift))
         {
           selected = GetSelection(stat, onSelect);
           selections.Add(selected);
@@ -265,6 +265,9 @@ namespace AutomaticBonusProgression.UI.Leveling
           selections.Add(GetSelection(stat, onSelect));
         }
       }
+      // This is a weird workaround because the selector doesn't work if there's only one value
+      if (selections.Count == 1)
+        selections.Add(selections.First());
       return new(selections.ToList(), current: selected);
     }
 
@@ -281,8 +284,14 @@ namespace AutomaticBonusProgression.UI.Leveling
 
     private bool IsEligible(ModifiableValue stat)
     {
-      var bonusLimit = LevelUpController.State.NextCharacterLevel >= 15 ? 4 : 2;
-      return Common.GetProwessBonus(stat) <= bonusLimit;
+      int bonusLimit = 6;
+      int characterLevel = LevelUpController.State.NextCharacterLevel;
+      if (characterLevel < 11)
+        bonusLimit = 2;
+      else if (characterLevel < 15)
+        bonusLimit = 4;
+      Logger.Warning($"Is Prowess Eligible {stat.Type}: {Common.GetProwessBonus(stat)} < {bonusLimit}");
+      return Common.GetProwessBonus(stat) < bonusLimit;
     }
 
     private void SelectPhysicalProwess(StatType stat)
