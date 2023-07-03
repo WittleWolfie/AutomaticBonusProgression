@@ -122,7 +122,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       if (removedAction)
       {
-        Logger.Verbose(() => $"Removed Prowess {type}");
+        Logger.Verbose(() => $"Removed Legendary Prowess {type}");
         AvailableGifts.Value++;
         Controller.UpdatePreview();
       }
@@ -149,7 +149,10 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         _ => throw new NotImplementedException(),
       };
       if (isMaxLegendaryRank)
+      {
+        Logger.Verbose(() => $"Legendary Prowess is max rank: {type}");
         return false;
+      }
 
       var prowessRanks = type switch
       {
@@ -163,7 +166,10 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       };
       // Not using IsMaxRank since the logic is custom for handling +4 / +6 limits.
       if (prowessRanks >= 3)
+      {
+        Logger.Verbose(() => $"Legendary Prowess selected three times already: {type}");
         return false;
+      }
 
       var isPhysical = type switch
       {
@@ -176,7 +182,11 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         _ => throw new NotImplementedException(),
       };
 
-      var characterLevel = Controller.Preview.Progression.CharacterLevel;
+      // TODO: Whelp. This broken. Looks like an issue w/ character level
+      var characterLevel = Controller.State.NextCharacterLevel;
+      if (Controller.State.Mode == LevelUpState.CharBuildMode.Mythic)
+        characterLevel = Controller.Unit.Progression.CharacterLevel;
+      Logger.Verbose(() => $"Legendary Prowess Eligibility: {characterLevel} - {type} - {prowessRanks}");
       if (isPhysical)
       {
         if (characterLevel < 7)
@@ -230,7 +240,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       if (Controller.RemoveAction<SelectLegendaryEnchantment>(a => a.Type == type))
       {
-        Logger.Verbose(() => $"Removed Legenary Enchantment {type}");
+        Logger.Verbose(() => $"Removed Legendary Enchantment {type}");
         AvailableGifts.Value++;
         Controller.UpdatePreview();
       }

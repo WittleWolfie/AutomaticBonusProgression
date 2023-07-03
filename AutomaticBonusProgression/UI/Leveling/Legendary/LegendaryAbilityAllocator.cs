@@ -48,6 +48,10 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       AddDisposable(
         ViewModel.Modifier.Subscribe(value => Allocator.m_Modifier.SetText(UIUtility.AddSign(value))));
 
+      // Check this before subscribe to make sure the selection value is correct
+      ProwessToggle.SetIsOnWithoutNotify(ViewModel.IsProwessSelected);
+      ProwessToggle.onValueChanged.AddListener(new(ToggleProwess));
+
       AddDisposable(ViewModel.CanAddAbility.Subscribe(UpdateCanAdd));
       AddDisposable(ViewModel.CanRemoveAbility.Subscribe(UpdateCanRemove));
       AddDisposable(ViewModel.CanSelectProwess.Subscribe(UpdateAvailableProwess));
@@ -59,8 +63,6 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       AddDisposable(
         Allocator.DownButton.OnLeftClickAsObservable().Subscribe(_ => ViewModel.TryDecreaseAbility()));
 
-      ProwessToggle.SetIsOnWithoutNotify(ViewModel.IsProwessSelected);
-      ProwessToggle.onValueChanged.AddListener(new(ToggleProwess));
     }
 
     public override void DestroyViewImplementation()
@@ -218,6 +220,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       StatValue.Value =
         Stat.Value.PermanentValue + Common.GetProwessBonus(Stat.Value) + Common.GetLegendaryBonus(Stat.Value);
       Modifier.Value = (StatValue.Value - 10) / 2;
+      UpdateEligibility();
     }
 
     private void UpdateEligibility()
