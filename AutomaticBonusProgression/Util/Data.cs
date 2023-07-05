@@ -1,11 +1,13 @@
 ﻿using AutomaticBonusProgression.Components;
 using BlueprintCore.Utils;
+using BlueprintCore.Utils.Assets;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace AutomaticBonusProgression.Util
 {
@@ -30,12 +32,12 @@ namespace AutomaticBonusProgression.Util
   {
     internal readonly LocalString DisplayName;
     internal readonly LocalString Description;
-    internal readonly string Icon;
+    internal readonly Asset<Sprite> Icon;
     internal readonly EnhancementType Type;
     internal readonly int Cost;
 
     protected EnchantInfo(
-      LocalString displayName, LocalString description, string icon, EnhancementType type, int cost)
+      LocalString displayName, LocalString description, Asset<Sprite> icon, EnhancementType type, int cost)
     {
       DisplayName = displayName;
       Description = description;
@@ -67,7 +69,7 @@ namespace AutomaticBonusProgression.Util
     internal readonly ArmorProficiencyGroup[] AllowedTypes;
 
     public ArmorEnchantInfo(
-        LocalString displayName, LocalString description, string icon, int cost, params ArmorProficiencyGroup[] allowedTypes)
+        LocalString displayName, LocalString description, Asset<Sprite> icon, int cost, params ArmorProficiencyGroup[] allowedTypes)
       : base(displayName, description, icon, EnhancementType.Armor, cost)
     {
       AllowedTypes = allowedTypes;
@@ -87,18 +89,18 @@ namespace AutomaticBonusProgression.Util
     internal readonly WeaponRangeType[] AllowedRanges = Array.Empty<WeaponRangeType>();
     internal readonly PhysicalDamageForm[] AllowedForms = Array.Empty<PhysicalDamageForm>();
 
-    public WeaponEnchantInfo(LocalString displayName, LocalString description, string icon, int cost)
+    public WeaponEnchantInfo(LocalString displayName, LocalString description, Asset<Sprite> icon, int cost)
       : base(displayName, description, icon, EnhancementType.MainHand, cost) { }
 
     public WeaponEnchantInfo(
-      LocalString displayName, LocalString description, string icon, int cost, params WeaponRangeType[] allowedRanges)
+      LocalString displayName, LocalString description, Asset<Sprite> icon, int cost, params WeaponRangeType[] allowedRanges)
       : base(displayName, description, icon, EnhancementType.MainHand, cost)
     {
       AllowedRanges = allowedRanges;
     }
 
     public WeaponEnchantInfo(
-      LocalString displayName, LocalString description, string icon, int cost, params PhysicalDamageForm[] allowedForms)
+      LocalString displayName, LocalString description, Asset<Sprite> icon, int cost, params PhysicalDamageForm[] allowedForms)
       : base(displayName, description, icon, EnhancementType.MainHand, cost)
     {
       AllowedForms = allowedForms;
@@ -107,7 +109,7 @@ namespace AutomaticBonusProgression.Util
     public WeaponEnchantInfo(
       LocalString displayName,
       LocalString description,
-      string icon,
+      Asset<Sprite> icon,
       int cost,
       List<WeaponRangeType> allowedRanges,
       List<PhysicalDamageForm> allowedForms)

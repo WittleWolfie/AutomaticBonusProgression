@@ -33,7 +33,7 @@ namespace AutomaticBonusProgression.Features
       var ability = AbilityConfigurator.New(LegendaryArmorAbility, Guids.LegendaryArmorAbility)
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
-        //.SetIcon(AbilityRefs.SacredArmorEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(AbilityRefs.SacredArmorEnchantSwitchAbility.Reference.Get().Icon)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Armor))
         .Configure();
@@ -42,7 +42,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
-        //.SetIcon(AbilityRefs.SacredArmorEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(AbilityRefs.SacredArmorEnchantSwitchAbility.Reference.Get().Icon)
         .SetRanks(5)
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })

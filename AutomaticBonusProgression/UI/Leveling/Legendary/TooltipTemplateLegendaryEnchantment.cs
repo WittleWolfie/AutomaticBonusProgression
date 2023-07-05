@@ -32,7 +32,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
         EnchantmentType.Shield => Common.LegendaryShield,
         EnchantmentType.Weapon => Common.LegendaryWeapon,
         EnchantmentType.OffHand => Common.LegendaryOffHand,
-        _ => throw new System.NotImplementedException(),
+        _ => throw new NotImplementedException(),
       };
     }
 

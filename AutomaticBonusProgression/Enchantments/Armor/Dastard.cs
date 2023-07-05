@@ -17,6 +17,8 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Dastard.Name";
     private const string Description = "LA.Dastard.Description";
+    // Shield of Law
+    private const string Icon = "368bad0c9561ec14ea07707254c1f234";
     private const int EnhancementCost = 1;
 
     internal static void Configure()
@@ -29,12 +31,12 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var smiteGoodMod = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.SmiteGoodBuff);
       var challenge = BuffRefs.CavalierChallengeBuffTarget.Cast<BlueprintBuffReference>().Reference;
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, Icon, EnhancementCost);
 
       var effectBuff = BuffConfigurator.New(EffectName, Guids.DastardEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon(icon)
+        .SetIcon(Icon)
         .AddComponent(BonusAgainstTarget.AC(smiteGood, 2, ModifierDescriptor.Profane))
         .AddComponent(BonusAgainstTarget.AC(smiteGoodAlt, 2, ModifierDescriptor.Profane))
         .AddComponent(BonusAgainstTarget.AC(sinfulAbsolution, 2, ModifierDescriptor.Profane))

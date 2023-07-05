@@ -34,6 +34,8 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Creeping.Name";
     private const string Description = "LA.Creeping.Description";
+    // Vanish
+    private const string Icon = "0c882be0b4c3ee448998cad0191e9b8f";
     private const int EnhancementCost = 2;
 
     internal static void Configure()
@@ -47,7 +49,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var castBuff = BuffConfigurator.New(CastBuffName, Guids.CreepingCastBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(Icon)
         .AddContextRankConfig(ContextRankConfigs.FeatureRank(Guids.ArmorAttunement))
         .AddStatBonusAbilityValue(
           stat: StatType.SkillStealth, value: ContextValues.Rank(), descriptor: ModifierDescriptor.UntypedStackable)
@@ -56,7 +58,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var castAbility = AbilityConfigurator.New(AbilityName, Guids.CreepingAbility)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(Icon)
         .SetType(AbilityType.SpellLike)
         .SetRange(AbilityRange.Personal)
         .SetActionType(CommandType.Swift)
@@ -66,7 +68,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
           ActionsBuilder.New().ApplyBuff(castBuff, ContextDuration.Fixed(1, rate: DurationRate.Minutes)))
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, Icon, EnhancementCost);
 
       var addFacts = new AddFacts() { m_Facts = new[] { castAbility.ToReference<BlueprintUnitFactReference>() } };
       var addResources =

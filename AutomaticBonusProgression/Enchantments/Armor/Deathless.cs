@@ -18,18 +18,20 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Deathless.Name";
     private const string Description = "LA.Deathless.Description";
+    // Soulreaver
+    private const string Icon = "0d2c99456e7521f4d8002162b445ee86";
     private const int EnhancementCost = 1;
 
     internal static void Configure()
     {
       Logger.Log($"Configuring Deathless");
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, Icon, EnhancementCost);
 
       var effectBuff = BuffConfigurator.New(EffectName, Guids.DeathlessEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon(icon)
+        .SetIcon(Icon)
         .AddComponent<DeathlessComponent>()
         .AddDamageResistanceEnergy(type: DamageEnergyType.NegativeEnergy, value: 10)
         .AddDamageResistanceEnergy(type: DamageEnergyType.PositiveEnergy, value: 10)

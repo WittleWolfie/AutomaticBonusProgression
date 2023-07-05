@@ -121,7 +121,7 @@ namespace AutomaticBonusProgression.Enchantments
       var parent = BuffConfigurator.New(parentBuff.Name, parentBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
-        //.SetIcon(enchant.Icon)
+        .SetIcon(enchant.Icon)
         .SetFlags(BlueprintBuff.Flags.HiddenInUi)
         .AddComponent(enchant.GetAttunementComponent(effectBuff));
       foreach (var component in parentBuff.Components)
@@ -159,8 +159,8 @@ namespace AutomaticBonusProgression.Enchantments
       var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
+        .SetIcon(enchant.Icon)
         .AddComponent(enchant.GetEnhancementComponent());
-        //.SetIcon(enchant.Icon);
       foreach (var component in effectBuff.Components)
         effect.AddComponent(component);
       effect.Configure();
@@ -169,7 +169,7 @@ namespace AutomaticBonusProgression.Enchantments
       var parent = BuffConfigurator.New(parentBuff.Name, parentBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
-        //.SetIcon(enchant.Icon)
+        .SetIcon(enchant.Icon)
         .SetFlags(BlueprintBuff.Flags.HiddenInUi)
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid));
       foreach (var component in parentBuff.Components)
@@ -196,8 +196,8 @@ namespace AutomaticBonusProgression.Enchantments
       var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
+        .SetIcon(enchant.Icon)
         .AddComponent(enchant.GetEnhancementComponent());
-      //.SetIcon(enchant.Icon);
       foreach (var component in effectBuff.Components)
         effect.AddComponent(component);
       effect.Configure();
@@ -205,7 +205,7 @@ namespace AutomaticBonusProgression.Enchantments
       var variant = BuffConfigurator.New(variantBuff.Name, variantBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
-        //.SetIcon(enchant.Icon)
+        .SetIcon(enchant.Icon)
         .SetFlags(BlueprintBuff.Flags.HiddenInUi)
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid, variant: true));
       foreach (var component in variantBuff.Components)

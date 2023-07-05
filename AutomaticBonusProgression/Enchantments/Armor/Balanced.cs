@@ -22,9 +22,10 @@ namespace AutomaticBonusProgression.Enchantments.Armor
     {
       Logger.Log($"Configuring Balanced Armor");
 
+      var icon = BuffRefs.DefensiveSpinBuff.Reference.Get().Icon;
       var enchantInfo =
         new ArmorEnchantInfo(
-          DisplayName, Description, "", EnhancementCost, ArmorProficiencyGroup.Light, ArmorProficiencyGroup.Medium);
+          DisplayName, Description, icon, EnhancementCost, ArmorProficiencyGroup.Light, ArmorProficiencyGroup.Medium);
       var balancedFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
 
       EnchantTool.CreateEnchant(

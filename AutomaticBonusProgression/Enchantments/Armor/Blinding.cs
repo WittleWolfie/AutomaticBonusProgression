@@ -31,6 +31,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Blinding.Name";
     private const string Description = "LA.Blinding.Description";
+    private const string Icon = "bb1a8328072a6a540be239b3426a5934";
     private const int EnhancementCost = 1;
 
     internal static void Configure()
@@ -44,7 +45,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var castAbility = AbilityConfigurator.New(AbilityName, Guids.BlindingAbility)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(Icon)
         .SetType(AbilityType.SpellLike)
         .SetRange(AbilityRange.Personal)
         .SetActionType(CommandType.Swift)
@@ -69,7 +70,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var enchantInfo = new ArmorEnchantInfo(
         DisplayName,
         Description,
-        "",
+        Icon,
         EnhancementCost,
         ArmorProficiencyGroup.LightShield,
         ArmorProficiencyGroup.HeavyShield,

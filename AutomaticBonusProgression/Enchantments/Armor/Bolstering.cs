@@ -22,6 +22,8 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Bolstering.Name";
     private const string Description = "LA.Bolstering.Description";
+    // Shield of Law
+    private const string Icon = "368bad0c9561ec14ea07707254c1f234";
     private const int EnhancementCost = 1;
 
     internal static void Configure()
@@ -31,13 +33,13 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var targetBuff = BuffConfigurator.New(TargetBuffName, Guids.BolsteringTargetBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon(icon)
+        .SetIcon(Icon)
         .Configure();
 
       var enchantInfo = new ArmorEnchantInfo(
         DisplayName,
         Description,
-        "",
+        Icon,
         EnhancementCost,
         ArmorProficiencyGroup.Medium,
         ArmorProficiencyGroup.Heavy,
@@ -48,7 +50,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var effectBuff = BuffConfigurator.New(EffectName, Guids.BolsteringEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon(icon)
+        .SetIcon(Icon)
         .AddInitiatorAttackWithWeaponTrigger(
           onlyHit: true,
           action: ActionsBuilder.New().ApplyBuff(targetBuff, ContextDuration.Fixed(1)))

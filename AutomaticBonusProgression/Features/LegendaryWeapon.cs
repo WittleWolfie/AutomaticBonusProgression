@@ -5,6 +5,7 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 
 namespace AutomaticBonusProgression.Features
@@ -64,7 +65,7 @@ namespace AutomaticBonusProgression.Features
       var ability = AbilityConfigurator.New(LegendaryWeaponAbility, Guids.LegendaryWeaponAbility)
         .SetDisplayName(LegendaryWeaponDisplayName)
         .SetDescription(LegendaryWeaponDescription)
-        //.SetIcon(AbilityRefs.SacredWeaponEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(AbilityRefs.SacredWeaponEnchantSwitchAbility.Reference.Get().Icon)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();
@@ -73,7 +74,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryWeaponDisplayName)
         .SetDescription(LegendaryWeaponDescription)
-        //.SetIcon(AbilityRefs.SacredWeaponEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(AbilityRefs.SacredWeaponEnchantSwitchAbility.Reference.Get().Icon)
         .SetRanks(5)
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
@@ -151,7 +152,7 @@ namespace AutomaticBonusProgression.Features
       var ability = AbilityConfigurator.New(LegendaryOffHandAbility, Guids.LegendaryOffHandAbility)
         .SetDisplayName(LegendaryOffHandDisplayName)
         .SetDescription(LegendaryOffHandDescription)
-        //.SetIcon(AbilityRefs.SacredWeaponShieldEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(AbilityRefs.SacredWeaponShieldEnchantSwitchAbility.Reference.Get().Icon)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();
@@ -160,7 +161,7 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryOffHandDisplayName)
         .SetDescription(LegendaryOffHandDescription)
-        //.SetIcon(AbilityRefs.SacredWeaponShieldEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(AbilityRefs.SacredWeaponShieldEnchantSwitchAbility.Reference.Get().Icon)
         .SetRanks(5)
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })

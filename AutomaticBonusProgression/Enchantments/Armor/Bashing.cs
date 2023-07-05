@@ -17,6 +17,8 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Bashing.Name";
     private const string Description = "LA.Bashing.Description";
+    // Shield Bash
+    private const string Icon = "c75756737d1cb0a40a1d1e5a4c741735";
 
     private const int EnhancementCost = 1;
 
@@ -27,7 +29,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var enchantInfo = new ArmorEnchantInfo(
         DisplayName,
         Description,
-        "",
+        Icon,
         EnhancementCost,
         ArmorProficiencyGroup.LightShield,
         ArmorProficiencyGroup.HeavyShield);
