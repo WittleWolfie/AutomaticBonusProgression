@@ -62,10 +62,11 @@ namespace AutomaticBonusProgression.Features
         .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
+      var icon = BuffRefs.ArcaneAccuracyBuff.Reference.Get().Icon;
       var ability = AbilityConfigurator.New(LegendaryWeaponAbility, Guids.LegendaryWeaponAbility)
         .SetDisplayName(LegendaryWeaponDisplayName)
         .SetDescription(LegendaryWeaponDescription)
-        .SetIcon(AbilityRefs.SacredWeaponEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(icon)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();
@@ -74,61 +75,61 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryWeaponDisplayName)
         .SetDescription(LegendaryWeaponDescription)
-        .SetIcon(AbilityRefs.SacredWeaponEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(icon)
         .SetRanks(5)
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(
-      #region Aligned
-            Guids.AnarchicBuff,
-            Guids.AxiomaticBuff,
-            Guids.HolyBuff,
-            Guids.UnholyBuff,
-      #endregion
-      #region Bane
-            Guids.BaneAberrationsBuff,
-            Guids.BaneAnimalsBuff,
-            Guids.BaneConstructsBuff,
-            Guids.BaneDragonsBuff,
-            Guids.BaneFeyBuff,
-            Guids.BaneHumanoidGiantBuff,
-            Guids.BaneHumanoidMonstrousBuff,
-            Guids.BaneHumanoidReptilianBuff,
-            Guids.BaneMagicalBeastsBuff,
-            Guids.BaneOutsiderChaoticBuff,
-            Guids.BaneOutsiderEvilBuff,
-            Guids.BaneOutsiderGoodBuff,
-            Guids.BaneOutsiderLawfulBuff,
-            Guids.BaneOutsiderNeutralBuff,
-            Guids.BanePlantsBuff,
-            Guids.BaneUndeadBuff,
-            Guids.BaneVerminBuff,
-      #endregion
-            Guids.BrilliantEnergyBuff,
-            Guids.CruelBuff,
-            Guids.DisruptionBuff,
-      #region Elemental
-            Guids.CorrosiveBuff,
-            Guids.CorrosiveBurstBuff,
-            Guids.FlamingBuff,
-            Guids.FlamingBurstBuff,
-            Guids.FrostBuff,
-            Guids.FrostBurstBuff,
-            Guids.ShockingBuff,
-            Guids.ShockingBurstBuff,
-            Guids.ThunderingBuff,
-            Guids.ThunderingBurstBuff,
-      #endregion,
-            Guids.FuriousBuff,
-            Guids.FurybornBuff,
-            Guids.GhostTouchBuff,
-            Guids.HeartseekerBuff,
-            Guids.KeenBuff,
-            Guids.NullifyingBuff,
-            Guids.SpeedBuff,
-            Guids.ViciousBuff,
-            Guids.VorpalBuff
+      //#region Aligned
+      //      Guids.AnarchicBuff,
+      //      Guids.AxiomaticBuff,
+      //      Guids.HolyBuff,
+      //      Guids.UnholyBuff,
+      //#endregion
+      //#region Bane
+      //      Guids.BaneAberrationsBuff,
+      //      Guids.BaneAnimalsBuff,
+      //      Guids.BaneConstructsBuff,
+      //      Guids.BaneDragonsBuff,
+      //      Guids.BaneFeyBuff,
+      //      Guids.BaneHumanoidGiantBuff,
+      //      Guids.BaneHumanoidMonstrousBuff,
+      //      Guids.BaneHumanoidReptilianBuff,
+      //      Guids.BaneMagicalBeastsBuff,
+      //      Guids.BaneOutsiderChaoticBuff,
+      //      Guids.BaneOutsiderEvilBuff,
+      //      Guids.BaneOutsiderGoodBuff,
+      //      Guids.BaneOutsiderLawfulBuff,
+      //      Guids.BaneOutsiderNeutralBuff,
+      //      Guids.BanePlantsBuff,
+      //      Guids.BaneUndeadBuff,
+      //      Guids.BaneVerminBuff,
+      //#endregion
+      //      Guids.BrilliantEnergyBuff,
+      //      Guids.CruelBuff,
+      //      Guids.DisruptionBuff,
+      //#region Elemental
+      //      Guids.CorrosiveBuff,
+      //      Guids.CorrosiveBurstBuff,
+      //      Guids.FlamingBuff,
+      //      Guids.FlamingBurstBuff,
+      //      Guids.FrostBuff,
+      //      Guids.FrostBurstBuff,
+      //      Guids.ShockingBuff,
+      //      Guids.ShockingBurstBuff,
+      //      Guids.ThunderingBuff,
+      //      Guids.ThunderingBurstBuff,
+      //#endregion,
+      //      Guids.FuriousBuff,
+      //      Guids.FurybornBuff,
+      //      Guids.GhostTouchBuff,
+      //      Guids.HeartseekerBuff,
+      //      Guids.KeenBuff,
+      //      Guids.NullifyingBuff,
+      //      Guids.SpeedBuff,
+      //      Guids.ViciousBuff,
+      //      Guids.VorpalBuff
           ))
         .Configure();
     }
@@ -149,10 +150,11 @@ namespace AutomaticBonusProgression.Features
         .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
+      var icon = AbilityRefs.SacredWeaponEnchantSwitchAbility.Reference.Get().Icon;
       var ability = AbilityConfigurator.New(LegendaryOffHandAbility, Guids.LegendaryOffHandAbility)
         .SetDisplayName(LegendaryOffHandDisplayName)
         .SetDescription(LegendaryOffHandDescription)
-        .SetIcon(AbilityRefs.SacredWeaponShieldEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(icon)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();
@@ -161,61 +163,61 @@ namespace AutomaticBonusProgression.Features
         .SetIsClassFeature()
         .SetDisplayName(LegendaryOffHandDisplayName)
         .SetDescription(LegendaryOffHandDescription)
-        .SetIcon(AbilityRefs.SacredWeaponShieldEnchantSwitchAbility.Reference.Get().Icon)
+        .SetIcon(icon)
         .SetRanks(5)
         .AddAbilityResources(resource: resource, restoreAmount: true)
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(
-      #region Aligned
-            Guids.AnarchicOffHandBuff,
-            Guids.AxiomaticOffHandBuff,
-            Guids.HolyOffHandBuff,
-            Guids.UnholyOffHandBuff,
-      #endregion
-      #region Bane
-            Guids.BaneAberrationsOffHandBuff,
-            Guids.BaneAnimalsOffHandBuff,
-            Guids.BaneConstructsOffHandBuff,
-            Guids.BaneDragonsOffHandBuff,
-            Guids.BaneFeyOffHandBuff,
-            Guids.BaneHumanoidGiantOffHandBuff,
-            Guids.BaneHumanoidMonstrousOffHandBuff,
-            Guids.BaneHumanoidReptilianOffHandBuff,
-            Guids.BaneMagicalBeastsOffHandBuff,
-            Guids.BaneOutsiderChaoticOffHandBuff,
-            Guids.BaneOutsiderEvilOffHandBuff,
-            Guids.BaneOutsiderGoodOffHandBuff,
-            Guids.BaneOutsiderLawfulOffHandBuff,
-            Guids.BaneOutsiderNeutralOffHandBuff,
-            Guids.BanePlantsOffHandBuff,
-            Guids.BaneUndeadOffHandBuff,
-            Guids.BaneVerminOffHandBuff,
-      #endregion
-            Guids.BrilliantEnergyOffHandBuff,
-            Guids.CruelOffHandBuff,
-            Guids.DisruptionOffHandBuff,
-      #region Elemental
-            Guids.CorrosiveOffHandBuff,
-            Guids.CorrosiveBurstOffHandBuff,
-            Guids.FlamingOffHandBuff,
-            Guids.FlamingBurstOffHandBuff,
-            Guids.FrostOffHandBuff,
-            Guids.FrostBurstOffHandBuff,
-            Guids.ShockingOffHandBuff,
-            Guids.ShockingBurstOffHandBuff,
-            Guids.ThunderingOffHandBuff,
-            Guids.ThunderingBurstOffHandBuff,
-      #endregion
-            Guids.FuriousOffHandBuff,
-            Guids.FurybornOffHandBuff,
-            Guids.GhostTouchOffHandBuff,
-            Guids.HeartseekerOffHandBuff,
-            Guids.KeenOffHandBuff,
-            Guids.NullifyingOffHandBuff,
-            Guids.SpeedOffHandBuff,
-            Guids.ViciousOffHandBuff,
-            Guids.VorpalOffHandBuff
+      //#region Aligned
+      //      Guids.AnarchicOffHandBuff,
+      //      Guids.AxiomaticOffHandBuff,
+      //      Guids.HolyOffHandBuff,
+      //      Guids.UnholyOffHandBuff,
+      //#endregion
+      //#region Bane
+      //      Guids.BaneAberrationsOffHandBuff,
+      //      Guids.BaneAnimalsOffHandBuff,
+      //      Guids.BaneConstructsOffHandBuff,
+      //      Guids.BaneDragonsOffHandBuff,
+      //      Guids.BaneFeyOffHandBuff,
+      //      Guids.BaneHumanoidGiantOffHandBuff,
+      //      Guids.BaneHumanoidMonstrousOffHandBuff,
+      //      Guids.BaneHumanoidReptilianOffHandBuff,
+      //      Guids.BaneMagicalBeastsOffHandBuff,
+      //      Guids.BaneOutsiderChaoticOffHandBuff,
+      //      Guids.BaneOutsiderEvilOffHandBuff,
+      //      Guids.BaneOutsiderGoodOffHandBuff,
+      //      Guids.BaneOutsiderLawfulOffHandBuff,
+      //      Guids.BaneOutsiderNeutralOffHandBuff,
+      //      Guids.BanePlantsOffHandBuff,
+      //      Guids.BaneUndeadOffHandBuff,
+      //      Guids.BaneVerminOffHandBuff,
+      //#endregion
+      //      Guids.BrilliantEnergyOffHandBuff,
+      //      Guids.CruelOffHandBuff,
+      //      Guids.DisruptionOffHandBuff,
+      //#region Elemental
+      //      Guids.CorrosiveOffHandBuff,
+      //      Guids.CorrosiveBurstOffHandBuff,
+      //      Guids.FlamingOffHandBuff,
+      //      Guids.FlamingBurstOffHandBuff,
+      //      Guids.FrostOffHandBuff,
+      //      Guids.FrostBurstOffHandBuff,
+      //      Guids.ShockingOffHandBuff,
+      //      Guids.ShockingBurstOffHandBuff,
+      //      Guids.ThunderingOffHandBuff,
+      //      Guids.ThunderingBurstOffHandBuff,
+      //#endregion
+      //      Guids.FuriousOffHandBuff,
+      //      Guids.FurybornOffHandBuff,
+      //      Guids.GhostTouchOffHandBuff,
+      //      Guids.HeartseekerOffHandBuff,
+      //      Guids.KeenOffHandBuff,
+      //      Guids.NullifyingOffHandBuff,
+      //      Guids.SpeedOffHandBuff,
+      //      Guids.ViciousOffHandBuff,
+      //      Guids.VorpalOffHandBuff
           ))
         .Configure();
     }

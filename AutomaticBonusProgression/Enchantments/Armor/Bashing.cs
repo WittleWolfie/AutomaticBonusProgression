@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Util;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.PubSubSystem;
@@ -17,8 +18,6 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Bashing.Name";
     private const string Description = "LA.Bashing.Description";
-    // Shield Bash
-    private const string Icon = "c75756737d1cb0a40a1d1e5a4c741735";
 
     private const int EnhancementCost = 1;
 
@@ -26,10 +25,11 @@ namespace AutomaticBonusProgression.Enchantments.Armor
     {
       Logger.Log($"Configuring BashingEffect");
 
+      var icon = BuffRefs.ShieldBashBuff.Reference.Get().Icon;
       var enchantInfo = new ArmorEnchantInfo(
         DisplayName,
         Description,
-        Icon,
+        icon,
         EnhancementCost,
         ArmorProficiencyGroup.LightShield,
         ArmorProficiencyGroup.HeavyShield);

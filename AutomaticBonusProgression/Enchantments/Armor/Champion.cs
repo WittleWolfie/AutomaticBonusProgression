@@ -16,8 +16,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Champion.Name";
     private const string Description = "LA.Champion.Description";
-    // Shield of Faith
-    private const string Icon = "11e18dc33de41764e879365344869f8f";
+
     private const int EnhancementCost = 1;
 
     internal static void Configure()
@@ -28,12 +27,13 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var smiteEvilAura = BuffRefs.AuraOfJusticeSmiteEvilBuff.Cast<BlueprintBuffReference>().Reference;
       var challenge = BuffRefs.CavalierChallengeBuffTarget.Cast<BlueprintBuffReference>().Reference;
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, Icon, EnhancementCost);
+      var icon = BuffRefs.ShieldOfFaithBuff.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       var effectBuff = BuffConfigurator.New(EffectName, Guids.ChampionEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        .SetIcon(Icon)
+        .SetIcon(icon)
         .AddComponent(BonusAgainstTarget.AC(smiteEvil, 2, ModifierDescriptor.Sacred))
         .AddComponent(BonusAgainstTarget.AC(smiteEvilAura, 2, ModifierDescriptor.Sacred))
         .AddComponent(BonusAgainstTarget.AC(challenge, 2, ModifierDescriptor.Sacred))

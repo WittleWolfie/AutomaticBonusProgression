@@ -14,20 +14,20 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Brawling.Name";
     private const string Description = "LA.Brawling.Description";
-    // Flurry of Blows
-    private const string Icon = "4ee67cde629a9d14cb40a3560510d06b";
+
     private const int EnhancementCost = 3;
 
     internal static void Configure()
     {
       Logger.Log($"Configuring Brawling");
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, Icon, EnhancementCost);
+      var icon = FeatureRefs.FlurryOfBlows.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       var effectBuff = BuffConfigurator.New(EffectBuff, Guids.BrawlingEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        .SetIcon(Icon)
+        .SetIcon(icon)
         .AddWeaponTypeDamageBonus(weaponType: WeaponTypeRefs.Unarmed.ToString(), damageBonus: 2)
         .AddWeaponCategoryAttackBonus(category: WeaponCategory.UnarmedStrike, attackBonus: 2)
         .Configure();

@@ -26,15 +26,15 @@ namespace AutomaticBonusProgression.Enchantments
 
         // Armor
         Balanced.Configure();
-        //Bashing.Configure();
-        //Blinding.Configure();
-        //Bolstering.Configure();
-        //Brawling.Configure();
-        //Champion.Configure();
-        //Creeping.Configure();
-        //Dastard.Configure();
-        //Deathless.Configure();
-        //Defiant.Configure();
+        Bashing.Configure();
+        Blinding.Configure();
+        Bolstering.Configure();
+        Brawling.Configure();
+        Champion.Configure();
+        Creeping.Configure();
+        Dastard.Configure();
+        Deathless.Configure();
+        Defiant.Configure();
         //Determination.Configure();
         //EnergyResistance.Configure();
         //Expeditious.Configure();

@@ -110,16 +110,17 @@ namespace AutomaticBonusProgression.Enchantments.Armor
     #endregion
 
     private const string Description = "LA.Defiant.Description";
-    // In Harm's Way
-    private const string Icon = "30931e02400864f46bb8340323bca111";
+
     private const int EnhancementCost = 1;
 
     internal static void Configure()
     {
       Logger.Log($"Configuring Defiant");
 
+      var icon = BuffRefs.DivineGuardianInHarmsWayBuff.Reference.Get().Icon;
+
       // Aberrations
-      var aberrationsEnchantInfo = new ArmorEnchantInfo(DefiantAberrationsName, Description, Icon, EnhancementCost);
+      var aberrationsEnchantInfo = new ArmorEnchantInfo(DefiantAberrationsName, Description, icon, EnhancementCost);
       var aberrationsEffectBuff = ConfigureEffect(
         aberrationsEnchantInfo,
         new(DefiantAberrationsEffect, Guids.DefiantAberrationsEffect),
@@ -132,7 +133,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantAberrationsShieldBuff, Guids.DefiantAberrationsShieldBuff));
 
       // Animals
-      var animalsEnchantInfo = new ArmorEnchantInfo(DefiantAnimalsName, Description, Icon, EnhancementCost);
+      var animalsEnchantInfo = new ArmorEnchantInfo(DefiantAnimalsName, Description, icon, EnhancementCost);
       var animalsEffectBuff = ConfigureEffect(
         animalsEnchantInfo,
         new(DefiantAnimalsEffect, Guids.DefiantAnimalsEffect),
@@ -145,7 +146,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantAnimalsShieldBuff, Guids.DefiantAnimalsShieldBuff));
 
       // Constructs
-      var constructsEnchantInfo = new ArmorEnchantInfo(DefiantConstructsName, Description, Icon, EnhancementCost);
+      var constructsEnchantInfo = new ArmorEnchantInfo(DefiantConstructsName, Description, icon, EnhancementCost);
       var constructsEffectBuff = ConfigureEffect(
         constructsEnchantInfo,
         new(DefiantConstructsEffect, Guids.DefiantConstructsEffect),
@@ -158,7 +159,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantConstructsShieldBuff, Guids.DefiantConstructsShieldBuff));
 
       // Dragons
-      var dragonsEnchantInfo = new ArmorEnchantInfo(DefiantDragonsName, Description, Icon, EnhancementCost);
+      var dragonsEnchantInfo = new ArmorEnchantInfo(DefiantDragonsName, Description, icon, EnhancementCost);
       var dragonsEffectBuff = ConfigureEffect(
         dragonsEnchantInfo,
         new(DefiantDragonsEffect, Guids.DefiantDragonsEffect),
@@ -171,7 +172,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantDragonsShieldBuff, Guids.DefiantDragonsShieldBuff));
 
       // Fey
-      var feyEnchantInfo = new ArmorEnchantInfo(DefiantFeyName, Description, Icon, EnhancementCost);
+      var feyEnchantInfo = new ArmorEnchantInfo(DefiantFeyName, Description, icon, EnhancementCost);
       var feyEffectBuff = ConfigureEffect(
         feyEnchantInfo,
         new(DefiantFeyEffect, Guids.DefiantFeyEffect),
@@ -184,7 +185,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantFeyShieldBuff, Guids.DefiantFeyShieldBuff));
 
       // HumanoidGiant
-      var humanoidGiantEnchantInfo = new ArmorEnchantInfo(DefiantHumanoidGiantName, Description, Icon, EnhancementCost);
+      var humanoidGiantEnchantInfo = new ArmorEnchantInfo(DefiantHumanoidGiantName, Description, icon, EnhancementCost);
       var humanoidGiantEffectBuff = ConfigureEffect(
         humanoidGiantEnchantInfo,
         new(DefiantHumanoidGiantEffect, Guids.DefiantHumanoidGiantEffect),
@@ -197,7 +198,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantHumanoidGiantShieldBuff, Guids.DefiantHumanoidGiantShieldBuff));
 
       // HumanoidReptilian
-      var humanoidReptilianEnchantInfo = new ArmorEnchantInfo(DefiantHumanoidReptilianName, Description, Icon, EnhancementCost);
+      var humanoidReptilianEnchantInfo = new ArmorEnchantInfo(DefiantHumanoidReptilianName, Description, icon, EnhancementCost);
       var humanoidReptilianEffectBuff = ConfigureEffect(
         humanoidReptilianEnchantInfo,
         new(DefiantHumanoidReptilianEffect, Guids.DefiantHumanoidReptilianEffect),
@@ -210,7 +211,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantHumanoidReptilianShieldBuff, Guids.DefiantHumanoidReptilianShieldBuff));
 
       // HumanoidMonstrous
-      var humanoidMonstrousEnchantInfo = new ArmorEnchantInfo(DefiantHumanoidMonstrousName, Description, Icon, EnhancementCost);
+      var humanoidMonstrousEnchantInfo = new ArmorEnchantInfo(DefiantHumanoidMonstrousName, Description, icon, EnhancementCost);
       var humanoidMonstrousEffectBuff = ConfigureEffect(
         humanoidMonstrousEnchantInfo,
         new(DefiantHumanoidMonstrousEffect, Guids.DefiantHumanoidMonstrousEffect),
@@ -223,7 +224,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantHumanoidMonstrousShieldBuff, Guids.DefiantHumanoidMonstrousShieldBuff));
 
       // MagicalBeasts
-      var magicalBeastsEnchantInfo = new ArmorEnchantInfo(DefiantMagicalBeastsName, Description, Icon, EnhancementCost);
+      var magicalBeastsEnchantInfo = new ArmorEnchantInfo(DefiantMagicalBeastsName, Description, icon, EnhancementCost);
       var magicalBeastsEffectBuff = ConfigureEffect(
         magicalBeastsEnchantInfo,
         new(DefiantMagicalBeastsEffect, Guids.DefiantMagicalBeastsEffect),
@@ -236,7 +237,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantMagicalBeastsShieldBuff, Guids.DefiantMagicalBeastsShieldBuff));
 
       // OutsiderGood
-      var outsiderGoodEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderGoodName, Description, Icon, EnhancementCost);
+      var outsiderGoodEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderGoodName, Description, icon, EnhancementCost);
       var outsiderGoodEffectBuff = ConfigureEffect(
         outsiderGoodEnchantInfo,
         new(DefiantOutsiderGoodEffect, Guids.DefiantOutsiderGoodEffect),
@@ -250,7 +251,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantOutsiderGoodShieldBuff, Guids.DefiantOutsiderGoodShieldBuff));
 
       // OutsiderEvil
-      var outsiderEvilEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderEvilName, Description, Icon, EnhancementCost);
+      var outsiderEvilEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderEvilName, Description, icon, EnhancementCost);
       var outsiderEvilEffectBuff = ConfigureEffect(
         outsiderEvilEnchantInfo,
         new(DefiantOutsiderEvilEffect, Guids.DefiantOutsiderEvilEffect),
@@ -264,7 +265,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantOutsiderEvilShieldBuff, Guids.DefiantOutsiderEvilShieldBuff));
 
       // OutsiderLawful
-      var outsiderLawfulEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderLawfulName, Description, Icon, EnhancementCost);
+      var outsiderLawfulEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderLawfulName, Description, icon, EnhancementCost);
       var outsiderLawfulEffectBuff = ConfigureEffect(
         outsiderLawfulEnchantInfo,
         new(DefiantOutsiderLawfulEffect, Guids.DefiantOutsiderLawfulEffect),
@@ -278,7 +279,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantOutsiderLawfulShieldBuff, Guids.DefiantOutsiderLawfulShieldBuff));
 
       // OutsiderChaotic
-      var outsiderChaoticEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderChaoticName, Description, Icon, EnhancementCost);
+      var outsiderChaoticEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderChaoticName, Description, icon, EnhancementCost);
       var outsiderChaoticEffectBuff = ConfigureEffect(
         outsiderChaoticEnchantInfo,
         new(DefiantOutsiderChaoticEffect, Guids.DefiantOutsiderChaoticEffect),
@@ -292,7 +293,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantOutsiderChaoticShieldBuff, Guids.DefiantOutsiderChaoticShieldBuff));
 
       // OutsiderNeutral
-      var outsiderNeutralEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderNeutralName, Description, Icon, EnhancementCost);
+      var outsiderNeutralEnchantInfo = new ArmorEnchantInfo(DefiantOutsiderNeutralName, Description, icon, EnhancementCost);
       var outsiderNeutralEffectBuff = ConfigureEffect(
         outsiderNeutralEnchantInfo,
         new(DefiantOutsiderNeutralEffect, Guids.DefiantOutsiderNeutralEffect),
@@ -306,7 +307,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantOutsiderNeutralShieldBuff, Guids.DefiantOutsiderNeutralShieldBuff));
 
       // Plants
-      var plantsEnchantInfo = new ArmorEnchantInfo(DefiantPlantsName, Description, Icon, EnhancementCost);
+      var plantsEnchantInfo = new ArmorEnchantInfo(DefiantPlantsName, Description, icon, EnhancementCost);
       var plantsEffectBuff = ConfigureEffect(
         plantsEnchantInfo,
         new(DefiantPlantsEffect, Guids.DefiantPlantsEffect),
@@ -319,7 +320,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantPlantsShieldBuff, Guids.DefiantPlantsShieldBuff));
 
       // Undead
-      var undeadEnchantInfo = new ArmorEnchantInfo(DefiantUndeadName, Description, Icon, EnhancementCost);
+      var undeadEnchantInfo = new ArmorEnchantInfo(DefiantUndeadName, Description, icon, EnhancementCost);
       var undeadEffectBuff = ConfigureEffect(
         undeadEnchantInfo,
         new(DefiantUndeadEffect, Guids.DefiantUndeadEffect),
@@ -332,7 +333,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         variantBuff: new(DefiantUndeadShieldBuff, Guids.DefiantUndeadShieldBuff));
 
       // Vermin
-      var verminEnchantInfo = new ArmorEnchantInfo(DefiantVerminName, Description, Icon, EnhancementCost);
+      var verminEnchantInfo = new ArmorEnchantInfo(DefiantVerminName, Description, icon, EnhancementCost);
       var verminEffectBuff = ConfigureEffect(
         verminEnchantInfo,
         new(DefiantVerminEffect, Guids.DefiantVerminEffect),

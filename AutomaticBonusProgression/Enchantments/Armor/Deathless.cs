@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Enums.Damage;
 using Kingmaker.PubSubSystem;
@@ -18,20 +19,20 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
     private const string DisplayName = "LA.Deathless.Name";
     private const string Description = "LA.Deathless.Description";
-    // Soulreaver
-    private const string Icon = "0d2c99456e7521f4d8002162b445ee86";
+
     private const int EnhancementCost = 1;
 
     internal static void Configure()
     {
       Logger.Log($"Configuring Deathless");
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, Icon, EnhancementCost);
+      var icon = AbilityRefs.Soulreaver.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       var effectBuff = BuffConfigurator.New(EffectName, Guids.DeathlessEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        .SetIcon(Icon)
+        .SetIcon(icon)
         .AddComponent<DeathlessComponent>()
         .AddDamageResistanceEnergy(type: DamageEnergyType.NegativeEnergy, value: 10)
         .AddDamageResistanceEnergy(type: DamageEnergyType.PositiveEnergy, value: 10)
