@@ -35,10 +35,10 @@ namespace AutomaticBonusProgression.Enchantments
         Dastard.Configure();
         Deathless.Configure();
         Defiant.Configure();
-        //Determination.Configure();
-        //EnergyResistance.Configure();
+        Determination.Configure();
+        EnergyResistance.Configure();
         //Expeditious.Configure();
-        //Fortification.Configure();
+        Fortification.Configure();
         //GhostArmor.Configure();
         //Invulnerability.Configure();
         //Martyring.Configure();
@@ -46,7 +46,7 @@ namespace AutomaticBonusProgression.Enchantments
         //Reflecting.Configure();
         //Righteous.Configure();
         //Shadow.Configure();
-        //SpellResistance.Configure();
+        SpellResistance.Configure();
         //Wyrmsbreath.Configure();
 
         // Weapon

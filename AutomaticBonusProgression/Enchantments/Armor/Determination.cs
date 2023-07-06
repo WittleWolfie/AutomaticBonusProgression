@@ -38,12 +38,13 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var icon = BuffRefs.DefensiveStanceBuff.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       var effectBuff = BuffConfigurator.New(EffectName, Guids.DeterminationEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(icon)
         .AddIncomingDamageTrigger(
           reduceBelowZero: true,
           actions: ActionsBuilder.New()

@@ -35,7 +35,12 @@ namespace AutomaticBonusProgression.Enchantments
 
     private static void Configure13()
     {
-      var enchantInfo = new ArmorEnchantInfo(DisplayName13, Description13, "", EnhancementCost13);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName13,
+          Description13,
+          BuffRefs.SacredArmorEnchantSpellResistance13Buff.Reference.Get().Icon,
+          EnhancementCost13);
       var spellResistFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance13Feature, enchantInfo);
 
@@ -52,11 +57,13 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string DisplayName16 = "LA.SpellResistance.16.Name";
     private const string Description16 = "LA.SpellResistance.16.Name";
+    private const string Icon16 = "assets/icons/spellresistance16.png";
+
     private const int EnhancementCost16 = 3;
 
     private static void Configure16()
     {
-      var enchantInfo = new ArmorEnchantInfo(DisplayName16, Description16, "", EnhancementCost16);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName16, Description16, Icon16, EnhancementCost16);
       var spellResistFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance15Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance15Feature, 16);
@@ -78,7 +85,12 @@ namespace AutomaticBonusProgression.Enchantments
 
     private static void Configure19()
     {
-      var enchantInfo = new ArmorEnchantInfo(DisplayName19, Description19, "", EnhancementCost19);
+      var enchantInfo = 
+        new ArmorEnchantInfo(
+          DisplayName19,
+          Description19,
+          BuffRefs.SacredArmorEnchantSpellResistance19Buff.Reference.Get().Icon,
+          EnhancementCost19);
       var spellResistFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance17Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance17Feature, 19);
@@ -96,11 +108,13 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string DisplayName22 = "LA.SpellResistance.22.Name";
     private const string Description22 = "LA.SpellResistance.22.Name";
+    private const string Icon22 = "assets/icons/spellresistance22.png";
+
     private const int EnhancementCost22 = 5;
 
     private static void Configure22()
     {
-      var enchantInfo = new ArmorEnchantInfo(DisplayName22, Description22, "", EnhancementCost22);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName22, Description22, Icon22, EnhancementCost22);
       var spellResistFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance19Feature, enchantInfo);
       UpdateSpellResistance(FeatureRefs.SpellResistance19Feature, 22);

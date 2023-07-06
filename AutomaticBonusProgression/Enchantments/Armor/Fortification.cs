@@ -28,7 +28,12 @@ namespace AutomaticBonusProgression.Enchantments.Armor
     private static void ConfigureBasic()
     {
       var enchant = ArmorEnchantmentRefs.Fortification25Enchant.Reference.Get();
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, enchant.m_Description.m_Key, "", BasicCost);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          enchant.m_Description.m_Key,
+          BuffRefs.SacredArmorEnchantFortification25Buff.Reference.Get().Icon,
+          BasicCost);
 
       var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification25Feature, enchantInfo);
       EnchantTool.CreateEnchant(
@@ -48,7 +53,12 @@ namespace AutomaticBonusProgression.Enchantments.Armor
     internal static void ConfigureImproved()
     {
       var enchant = ArmorEnchantmentRefs.Fortification50Enchant.Reference.Get();
-      var enchantInfo = new ArmorEnchantInfo(ImprovedDisplayName, enchant.m_Description.m_Key, "", ImprovedCost);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          ImprovedDisplayName,
+          enchant.m_Description.m_Key,
+          BuffRefs.SacredArmorEnchantFortification50Buff.Reference.Get().Icon,
+          ImprovedCost);
 
       var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification50Feature, enchantInfo);
       EnchantTool.CreateEnchant(
@@ -71,7 +81,12 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       Logger.Log($"Configuring Fortification Armor (Greater)");
 
       var enchant = ArmorEnchantmentRefs.Fortification75Enchant.Reference.Get();
-      var enchantInfo = new ArmorEnchantInfo(GreaterDisplayName, enchant.m_Description.m_Key, "", GreaterCost);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          GreaterDisplayName,
+          enchant.m_Description.m_Key,
+          BuffRefs.SacredArmorEnchantFortification75Buff.Reference.Get().Icon,
+          GreaterCost);
 
       var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification75Feature, enchantInfo);
       EnchantTool.CreateEnchant(

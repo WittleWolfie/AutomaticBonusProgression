@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3415969427
+CRC: 3035527377
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 98c3fdd9714b0be45aa68fee0d1be45a
+    Hash: 37a6abdac9c9033a3e3d35e678510437
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4df8c69f2c8a6ad9e3cbf82bb83e4dc3
@@ -15,5 +15,9 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Icons/quillen.jpg
+- Assets/Icons/ResistSonic20.png
+- Assets/Icons/ResistSonic30.png
+- Assets/Icons/SpellResistance22.png
+- Assets/Icons/ResistSonic10.png
+- Assets/Icons/SpellResistance16.png
 Dependencies: []

@@ -46,6 +46,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string Sonic10ShieldBuffName = "LA.EnergyResistance.10.Sonic.Buff.Shield";
     private const string Sonic10DisplayName = "LA.EnergyResistance.10.Sonic.Name";
     private const string Sonic10Description = "LA.EnergyResistance.10.Sonic.Description";
+    private const string Sonic10Icon = "assets/icons/resistsonic10.png";
 
     private const int Resist10Cost = 2;
     #endregion
@@ -54,7 +55,12 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Energy Resistance 10");
 
-      var acidInfo = new ArmorEnchantInfo(Acid10DisplayName, Acid10Description, "", Resist10Cost);
+      var acidInfo =
+        new ArmorEnchantInfo(
+          Acid10DisplayName,
+          Acid10Description,
+          BuffRefs.SacredArmorEnchantAcidResist10Buff.Reference.Get().Icon,
+          Resist10Cost);
       var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance10Feature, acidInfo);
 
       EnchantTool.CreateEnchant(
@@ -66,7 +72,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Acid10BuffName, Guids.AcidResist10Buff),
         variantBuff: new(Acid10ShieldBuffName, Guids.AcidResist10ShieldBuff));
 
-      var coldInfo = new ArmorEnchantInfo(Cold10DisplayName, Cold10Description, "", Resist10Cost);
+      var coldInfo =
+        new ArmorEnchantInfo(
+          Cold10DisplayName,
+          Cold10Description,
+          BuffRefs.SacredArmorEnchantColdResist10Buff.Reference.Get().Icon,
+          Resist10Cost);
       var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance10Feature, coldInfo);
 
       EnchantTool.CreateEnchant(
@@ -78,7 +89,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Cold10BuffName, Guids.ColdResist10Buff),
         variantBuff: new(Cold10ShieldBuffName, Guids.ColdResist10ShieldBuff));
 
-      var electricityInfo = new ArmorEnchantInfo(Electricity10DisplayName, Electricity10Description, "", Resist10Cost);
+      var electricityInfo =
+        new ArmorEnchantInfo(
+          Electricity10DisplayName,
+          Electricity10Description,
+          BuffRefs.SacredArmorEnchantElectricityResist10Buff.Reference.Get().Icon,
+          Resist10Cost);
       var resistElectricityFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance10Feature, electricityInfo);
 
@@ -91,7 +107,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Electricity10BuffName, Guids.ElectricityResist10Buff),
         variantBuff: new(Electricity10ShieldBuffName, Guids.ElectricityResist10ShieldBuff));
 
-      var fireInfo = new ArmorEnchantInfo(Fire10DisplayName, Fire10Description, "", Resist10Cost);
+      var fireInfo =
+        new ArmorEnchantInfo(
+          Fire10DisplayName,
+          Fire10Description,
+          BuffRefs.SacredArmorEnchantFireResist10Buff.Reference.Get().Icon,
+          Resist10Cost);
       var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance10Feature, fireInfo);
 
       EnchantTool.CreateEnchant(
@@ -103,7 +124,7 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Fire10BuffName, Guids.FireResist10Buff),
         variantBuff: new(Fire10ShieldBuffName, Guids.FireResist10ShieldBuff));
 
-      var sonicInfo = new ArmorEnchantInfo(Sonic10DisplayName, Sonic10Description, "", Resist10Cost);
+      var sonicInfo = new ArmorEnchantInfo(Sonic10DisplayName, Sonic10Description, Sonic10Icon, Resist10Cost);
       var resistSonicFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance10Feature, sonicInfo);
 
       EnchantTool.CreateEnchant(
@@ -146,6 +167,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string Sonic20ShieldBuffName = "LA.EnergyResistance.20.Sonic.Buff.Shield";
     private const string Sonic20DisplayName = "LA.EnergyResistance.20.Sonic.Name";
     private const string Sonic20Description = "LA.EnergyResistance.20.Sonic.Description";
+    private const string Sonic20Icon = "assets/icons/resistsonic20.png";
 
     private const int Resist20Cost = 3;
     #endregion
@@ -154,7 +176,12 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Energy Resistance 20");
 
-      var acidInfo = new ArmorEnchantInfo(Acid20DisplayName, Acid20Description, "", Resist20Cost);
+      var acidInfo =
+        new ArmorEnchantInfo(
+          Acid20DisplayName,
+          Acid20Description,
+          BuffRefs.SacredArmorEnchantAcidResist20Buff.Reference.Get().Icon,
+          Resist20Cost);
       var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance20Feature, acidInfo);
 
       EnchantTool.CreateEnchant(
@@ -166,7 +193,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Acid20BuffName, Guids.AcidResist20Buff),
         variantBuff: new(Acid20ShieldBuffName, Guids.AcidResist20ShieldBuff));
 
-      var coldInfo = new ArmorEnchantInfo(Cold20DisplayName, Cold20Description, "", Resist20Cost);
+      var coldInfo =
+        new ArmorEnchantInfo(
+          Cold20DisplayName,
+          Cold20Description,
+          BuffRefs.SacredArmorEnchantColdResist20Buff.Reference.Get().Icon,
+          Resist20Cost);
       var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance20Feature, coldInfo);
 
       EnchantTool.CreateEnchant(
@@ -178,7 +210,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Cold20BuffName, Guids.ColdResist20Buff),
         variantBuff: new(Cold20ShieldBuffName, Guids.ColdResist20ShieldBuff));
 
-      var electricityInfo = new ArmorEnchantInfo(Electricity20DisplayName, Electricity20Description, "", Resist20Cost);
+      var electricityInfo =
+        new ArmorEnchantInfo(
+          Electricity20DisplayName,
+          Electricity20Description,
+          BuffRefs.SacredArmorEnchantElectricityResist20Buff.Reference.Get().Icon,
+          Resist20Cost);
       var resistElectricityFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance20Feature, electricityInfo);
 
@@ -191,7 +228,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Electricity20BuffName, Guids.ElectricityResist20Buff),
         variantBuff: new(Electricity20ShieldBuffName, Guids.ElectricityResist20ShieldBuff));
 
-      var fireInfo = new ArmorEnchantInfo(Fire20DisplayName, Fire20Description, "", Resist20Cost);
+      var fireInfo =
+        new ArmorEnchantInfo(
+          Fire20DisplayName,
+          Fire20Description,
+          BuffRefs.SacredArmorEnchantFireResist20Buff.Reference.Get().Icon,
+          Resist20Cost);
       var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance20Feature, fireInfo);
 
       EnchantTool.CreateEnchant(
@@ -203,7 +245,7 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Fire20BuffName, Guids.FireResist20Buff),
         variantBuff: new(Fire20ShieldBuffName, Guids.FireResist20ShieldBuff));
 
-      var sonicInfo = new ArmorEnchantInfo(Sonic20DisplayName, Sonic20Description, "", Resist20Cost);
+      var sonicInfo = new ArmorEnchantInfo(Sonic20DisplayName, Sonic20Description, Sonic20Icon, Resist20Cost);
       // Sonic doesn't have a +20 enhcant for some reason
       var resistSonicFeature = FeatureRefs.SonicResistance20.Reference.Get();
 
@@ -247,6 +289,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string Sonic30ShieldBuffName = "LA.EnergyResistance.30.Sonic.Buff.Shield";
     private const string Sonic30DisplayName = "LA.EnergyResistance.30.Sonic.Name";
     private const string Sonic30Description = "LA.EnergyResistance.30.Sonic.Description";
+    private const string Sonic30Icon = "assets/icons/resistsonic30.png";
 
     private const int Resist30Cost = 4;
     #endregion
@@ -255,7 +298,12 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Energy Resistance 30");
 
-      var acidInfo = new ArmorEnchantInfo(Acid30DisplayName, Acid30Description, "", Resist30Cost);
+      var acidInfo =
+        new ArmorEnchantInfo(
+          Acid30DisplayName,
+          Acid30Description,
+          BuffRefs.SacredArmorEnchantAcidResist30Buff.Reference.Get().Icon,
+          Resist30Cost);
       var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance30Feature, acidInfo);
 
       EnchantTool.CreateEnchant(
@@ -267,7 +315,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Acid30BuffName, Guids.AcidResist30Buff),
         variantBuff: new(Acid30ShieldBuffName, Guids.AcidResist30ShieldBuff));
 
-      var coldInfo = new ArmorEnchantInfo(Cold30DisplayName, Cold30Description, "", Resist30Cost);
+      var coldInfo =
+        new ArmorEnchantInfo(
+          Cold30DisplayName,
+          Cold30Description,
+          BuffRefs.SacredArmorEnchantColdResist30Buff.Reference.Get().Icon,
+          Resist30Cost);
       var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance30Feature, coldInfo);
 
       EnchantTool.CreateEnchant(
@@ -279,7 +332,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Cold30BuffName, Guids.ColdResist30Buff),
         variantBuff: new(Cold30ShieldBuffName, Guids.ColdResist30ShieldBuff));
 
-      var electricityInfo = new ArmorEnchantInfo(Electricity30DisplayName, Electricity30Description, "", Resist30Cost);
+      var electricityInfo =
+        new ArmorEnchantInfo(
+          Electricity30DisplayName,
+          Electricity30Description,
+          BuffRefs.SacredArmorEnchantElectricityResist30Buff.Reference.Get().Icon,
+          Resist30Cost);
       var resistElectricityFeature =
         EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance30Feature, electricityInfo);
 
@@ -292,7 +350,12 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Electricity30BuffName, Guids.ElectricityResist30Buff),
         variantBuff: new(Electricity30ShieldBuffName, Guids.ElectricityResist30ShieldBuff));
 
-      var fireInfo = new ArmorEnchantInfo(Fire30DisplayName, Fire30Description, "", Resist30Cost);
+      var fireInfo =
+        new ArmorEnchantInfo(
+          Fire30DisplayName,
+          Fire30Description,
+          BuffRefs.SacredArmorEnchantFireResist30Buff.Reference.Get().Icon,
+          Resist30Cost);
       var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance30Feature, fireInfo);
 
       EnchantTool.CreateEnchant(
@@ -304,7 +367,7 @@ namespace AutomaticBonusProgression.Enchantments
         parentBuff: new(Fire30BuffName, Guids.FireResist30Buff),
         variantBuff: new(Fire30ShieldBuffName, Guids.FireResist30ShieldBuff));
 
-      var sonicInfo = new ArmorEnchantInfo(Sonic30DisplayName, Sonic30Description, "", Resist30Cost);
+      var sonicInfo = new ArmorEnchantInfo(Sonic30DisplayName, Sonic30Description, Sonic30Icon, Resist30Cost);
       var resistSonicFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance30Feature, sonicInfo);
 
       EnchantTool.CreateEnchant(
