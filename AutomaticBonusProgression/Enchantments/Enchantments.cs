@@ -37,17 +37,17 @@ namespace AutomaticBonusProgression.Enchantments
         Defiant.Configure();
         Determination.Configure();
         EnergyResistance.Configure();
-        //Expeditious.Configure();
+        Expeditious.Configure();
         Fortification.Configure();
-        //GhostArmor.Configure();
-        //Invulnerability.Configure();
-        //Martyring.Configure();
-        //Rallying.Configure();
-        //Reflecting.Configure();
-        //Righteous.Configure();
-        //Shadow.Configure();
+        GhostArmor.Configure();
+        Invulnerability.Configure();
+        Martyring.Configure();
+        Rallying.Configure();
+        Reflecting.Configure();
+        Righteous.Configure();
+        Shadow.Configure();
         SpellResistance.Configure();
-        //Wyrmsbreath.Configure();
+        Wyrmsbreath.Configure();
 
         // Weapon
         //Anarchic.Configure();

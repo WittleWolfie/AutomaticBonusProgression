@@ -35,10 +35,11 @@ namespace AutomaticBonusProgression.Enchantments.Armor
     {
       Logger.Log($"Configuring Rallying Armor");
 
+      var icon = BuffRefs.CavalierChargeBuff.Reference.Get().Icon;
       var auraBuff = BuffConfigurator.New(AuraBuffName, Guids.RallyingAuraBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(icon)
         .AddComponent<RallyingComponent>()
         .Configure();
 
@@ -49,12 +50,12 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .AddAbilityAreaEffectBuff(buff: auraBuff)
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       var effectBuff = BuffConfigurator.New(EffectName, Guids.RallyingEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(icon)
         .AddAreaEffect(areaEffect: aura)
         .Configure();
 

@@ -31,12 +31,13 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var icon = AbilityRefs.InspiringRecovery.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       var effectBuff = BuffConfigurator.New(EffectName, Guids.MartyringEffect)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(icon)
         .AddTargetAttackRollTrigger(
           criticalHit: true,
           actionOnSelf: ActionsBuilder.New()

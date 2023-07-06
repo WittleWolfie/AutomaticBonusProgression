@@ -28,7 +28,8 @@ namespace AutomaticBonusProgression.Enchantments.Armor
     {
       Logger.Log($"Configuring GhostArmor Armor");
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var icon = AbilityRefs.ArcanistExploitArmoredMaskAbility.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       EnchantTool.CreateEnchant(
         enchantInfo,

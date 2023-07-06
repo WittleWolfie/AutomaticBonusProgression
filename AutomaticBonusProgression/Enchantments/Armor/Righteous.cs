@@ -47,7 +47,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddAbilityCasterHasFacts(new() { Guids.RighteousEffect })
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, righteousMight.Icon, EnhancementCost);
 
       var addFacts = new AddFacts() { m_Facts = new[] { castAbility.ToReference<BlueprintUnitFactReference>() } };
       var addResources =

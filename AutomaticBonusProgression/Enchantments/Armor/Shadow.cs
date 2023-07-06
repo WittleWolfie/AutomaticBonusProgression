@@ -30,7 +30,8 @@ namespace AutomaticBonusProgression.Enchantments
     private static void ConfigureBasic()
     {
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowEnchant.Reference.Get();
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, enchant.m_Description.m_Key, "", BasicCost);
+      var icon = AbilityRefs.ShadowConjuration.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, enchant.m_Description.m_Key, icon, BasicCost);
 
       var shadowFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowFeature, enchantInfo);
       EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ShadowArmor, enchantInfo);
@@ -52,7 +53,8 @@ namespace AutomaticBonusProgression.Enchantments
       Logger.Log($"Configuring Shadow Armor (Improved)");
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowGreaterEnchant.Reference.Get();
-      var enchantInfo = new ArmorEnchantInfo(ImprovedDisplayName, enchant.m_Description.m_Key, "", ImprovedCost);
+      var icon = AbilityRefs.ShadowConjuration.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(ImprovedDisplayName, enchant.m_Description.m_Key, icon, ImprovedCost);
 
       var shadowFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowGreaterFeature, enchantInfo);
       EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.GreaterShadow, enchantInfo);
@@ -74,12 +76,13 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Shadow Armor (Greater)");
 
-      var enchantInfo = new ArmorEnchantInfo(GreaterDisplayName, GreaterDescription, "", GreaterCost);
+      var icon = AbilityRefs.ShadowConjurationGreater.Reference.Get().Icon;
+      var enchantInfo = new ArmorEnchantInfo(GreaterDisplayName, GreaterDescription, icon, GreaterCost);
 
       var effectBuff = BuffConfigurator.New(GreaterEffectName, Guids.GreaterShadowEffect)
         .SetDisplayName(GreaterDisplayName)
         .SetDescription(GreaterDescription)
-        //.SetIcon()
+        .SetIcon(icon)
         .AddStatBonus(stat: StatType.SkillStealth, value: 15, descriptor: ModifierDescriptor.Competence)
         .Configure();
 

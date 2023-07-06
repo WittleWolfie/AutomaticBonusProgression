@@ -4,6 +4,7 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Designers.Mechanics.Facts;
@@ -37,17 +38,18 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetMaxAmount(ResourceAmountBuilder.New(3))
         .Configure();
 
+      var icon = FeatureRefs.FastMovement.Reference.Get().Icon;
       var castBuff = BuffConfigurator.New(CastBuffName, Guids.ExpeditiousCastBuff)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(icon)
         .AddBuffMovementSpeed(value: 10, descriptor: ModifierDescriptor.Enhancement)
         .Configure();
 
       var castAbility = AbilityConfigurator.New(AbilityName, Guids.ExpeditiousAbility)
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
-        //.SetIcon()
+        .SetIcon(icon)
         .SetType(AbilityType.SpellLike)
         .SetRange(AbilityRange.Personal)
         .SetActionType(CommandType.Swift)
@@ -56,7 +58,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuff(castBuff, ContextDuration.Fixed(1)))
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       var addFacts = new AddFacts() { m_Facts = new[] { castAbility.ToReference<BlueprintUnitFactReference>() } };
       var addResources =

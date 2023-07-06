@@ -4,6 +4,7 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.References;
 using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
@@ -44,10 +45,11 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetMaxAmount(ResourceAmountBuilder.New(1))
         .Configure();
 
+      var icon = BuffRefs.ResistanceJudgmentBuff.Reference.Get().Icon;
       var castBuff = BuffConfigurator.New(CastBuffName, Guids.ReflectingCastBuff)
         .SetDisplayName(CastDisplayName)
         .SetDescription(CastDescription)
-        //.SetIcon()
+        .SetIcon(icon)
         .AddComponent<ReflectingComponent>()
         .AddNotDispelable()
         .Configure();
@@ -55,7 +57,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var castAbility = AbilityConfigurator.New(CastAbilityName, Guids.ReflectingCastAbility)
         .SetDisplayName(CastDisplayName)
         .SetDescription(CastDescription)
-        //.SetIcon(icon)
+        .SetIcon(icon)
         .SetType(AbilityType.SpellLike)
         .SetRange(AbilityRange.Personal)
         .SetActionType(CommandType.Free)
@@ -64,7 +66,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(castBuff))
         .Configure();
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, icon, EnhancementCost);
 
       var addFacts = new AddFacts() { m_Facts = new[] { castAbility.ToReference<BlueprintUnitFactReference>() } };
       var addResources =

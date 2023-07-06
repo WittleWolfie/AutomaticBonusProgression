@@ -4,6 +4,7 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils.Assets;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes.Spells;
@@ -16,6 +17,7 @@ using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Utility;
 using System;
+using UnityEngine;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -56,24 +58,33 @@ namespace AutomaticBonusProgression.Enchantments
         new(AcidAbilityName, Guids.WyrmsbreathAcidAbility),
         AcidDisplayName,
         Description,
+        AbilityRefs.DragonsBreathGreen.Reference.Get().Icon,
         DamageEnergyType.Acid);
       var coldAbility = CreateBreathAbility(
         new(ColdAbilityName, Guids.WyrmsbreathColdAbility),
         ColdDisplayName,
         Description,
+        AbilityRefs.DragonsBreathSilver.Reference.Get().Icon,
         DamageEnergyType.Cold);
       var electricityAbility = CreateBreathAbility(
         new(ElectricityAbilityName, Guids.WyrmsbreathElectricityAbility),
         ElectricityDisplayName,
         Description,
+        AbilityRefs.DragonsBreathBlue.Reference.Get().Icon,
         DamageEnergyType.Electricity);
       var fireAbility = CreateBreathAbility(
         new(FireAbilityName, Guids.WyrmsbreathFireAbility),
         FireDisplayName,
         Description,
+        AbilityRefs.DragonsBreathBrass.Reference.Get().Icon,
         DamageEnergyType.Fire);
 
-      var enchantInfo = new ArmorEnchantInfo(DisplayName, Description, "", EnhancementCost);
+      var enchantInfo =
+        new ArmorEnchantInfo(
+          DisplayName,
+          Description,
+          AbilityRefs.DragonsBreath.Reference.Get().Icon,
+          EnhancementCost);
 
       var addFacts =
         new AddFacts()
@@ -103,7 +114,7 @@ namespace AutomaticBonusProgression.Enchantments
       BlueprintInfo abilityInfo,
       string displayName,
       string description,
-      //string icon,
+      Asset<Sprite> icon,
       DamageEnergyType energyType)
     {
       string projectile;
