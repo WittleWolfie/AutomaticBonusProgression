@@ -21,7 +21,8 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Ghost Touch");
 
       var ghostTouch = WeaponEnchantmentRefs.GhostTouch.Reference.Get();
-      var ghostTouchEnchantInfo = new WeaponEnchantInfo(GhostTouchName, ghostTouch.m_Description, "", EnhancementCost);
+      var icon = BuffRefs.ArcaneWeaponGhostTouchBuff.Reference.Get().Icon;
+      var ghostTouchEnchantInfo = new WeaponEnchantInfo(GhostTouchName, ghostTouch.m_Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         ghostTouchEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(GhostTouchEffect, Guids.GhostTouchEffect, Guids.GhostTouchEnchantCopy),

@@ -22,8 +22,9 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Furyborn");
 
       var Furyborn = WeaponEnchantmentRefs.Furyborn.Reference.Get();
+      var icon = BuffRefs.ShifterFuryBuff.Reference.Get().Icon;
       var FurybornEnchantInfo = new WeaponEnchantInfo(
-        FurybornName, Furyborn.m_Description, "", EnhancementCost, WeaponRangeType.Melee);
+        FurybornName, Furyborn.m_Description, icon, EnhancementCost, WeaponRangeType.Melee);
       EnchantTool.CreateEnchant(
         FurybornEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(FurybornEffect, Guids.FurybornEffect, Guids.FurybornEnchantCopy),

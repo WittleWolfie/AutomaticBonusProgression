@@ -23,10 +23,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Disruption");
 
       var disruption = WeaponEnchantmentRefs.Disruption.Reference.Get();
+      var icon = BuffRefs.WeaponBondDisruptionBuff.Reference.Get().Icon;
       var disruptionEnchantInfo = new WeaponEnchantInfo(
         DisruptionName,
         disruption.m_Description,
-        "",
+        icon,
         EnhancementCost,
         allowedRanges: new() { WeaponRangeType.Melee },
         allowedForms: new() { PhysicalDamageForm.Bludgeoning });

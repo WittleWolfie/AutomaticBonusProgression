@@ -53,7 +53,7 @@ namespace AutomaticBonusProgression.Enchantments
       Logger.Log($"Configuring Shadow Armor (Improved)");
 
       var enchant = ArmorEnchantmentRefs.ArcaneArmorShadowGreaterEnchant.Reference.Get();
-      var icon = AbilityRefs.ShadowConjuration.Reference.Get().Icon;
+      var icon = AbilityRefs.ShadowConjurationGreater.Reference.Get().Icon;
       var enchantInfo = new ArmorEnchantInfo(ImprovedDisplayName, enchant.m_Description.m_Key, icon, ImprovedCost);
 
       var shadowFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowGreaterFeature, enchantInfo);
@@ -76,7 +76,7 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Shadow Armor (Greater)");
 
-      var icon = AbilityRefs.ShadowConjurationGreater.Reference.Get().Icon;
+      var icon = AbilityRefs.Shades.Reference.Get().Icon;
       var enchantInfo = new ArmorEnchantInfo(GreaterDisplayName, GreaterDescription, icon, GreaterCost);
 
       var effectBuff = BuffConfigurator.New(GreaterEffectName, Guids.GreaterShadowEffect)

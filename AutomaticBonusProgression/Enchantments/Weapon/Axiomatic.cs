@@ -21,7 +21,8 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Axiomatic");
 
       var axiomatic = WeaponEnchantmentRefs.Axiomatic.Reference.Get();
-      var axiomaticEnchantInfo = new WeaponEnchantInfo(AxiomaticName, axiomatic.m_Description, "", EnhancementCost);
+      var icon = BuffRefs.ArcaneWeaponAxiomaticBuff.Reference.Get().Icon;
+      var axiomaticEnchantInfo = new WeaponEnchantInfo(AxiomaticName, axiomatic.m_Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         axiomaticEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(AxiomaticEffect, Guids.AxiomaticEffect, Guids.AxiomaticEnchantCopy),

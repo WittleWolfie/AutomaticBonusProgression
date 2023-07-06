@@ -21,7 +21,8 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Furious");
 
       var furious = WeaponEnchantmentRefs.Furious.Reference.Get();
-      var furiousEnchantInfo = new WeaponEnchantInfo(FuriousName, furious.m_Description, "", EnhancementCost);
+      var icon = BuffRefs.RageSpellBuff.Reference.Get().Icon;
+      var furiousEnchantInfo = new WeaponEnchantInfo(FuriousName, furious.m_Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         furiousEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(FuriousEffect, Guids.FuriousEffect, Guids.FuriousEnchantCopy),

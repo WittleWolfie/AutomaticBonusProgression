@@ -135,8 +135,10 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     {
       Logger.Log($"Configuring Bane");
 
+      var icon = BuffRefs.BaneBuff.Reference.Get().Icon;
+
       // Aberrations
-      var aberrationsEnchantInfo = new WeaponEnchantInfo(AberrationsName, Description, "", EnhancementCost);
+      var aberrationsEnchantInfo = new WeaponEnchantInfo(AberrationsName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         aberrationsEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(AberrationsEffect, Guids.BaneAberrationsEffect, Guids.BaneAberrationsEnchantCopy),
@@ -155,7 +157,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         aberrationsEnchantInfo);
 
       // Animals
-      var animalsEnchantInfo = new WeaponEnchantInfo(AnimalsName, Description, "", EnhancementCost);
+      var animalsEnchantInfo = new WeaponEnchantInfo(AnimalsName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         animalsEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(AnimalsEffect, Guids.BaneAnimalsEffect, Guids.BaneAnimalsEnchantCopy),
@@ -174,7 +176,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         animalsEnchantInfo);
 
       // Constructs
-      var constructsEnchantInfo = new WeaponEnchantInfo(ConstructsName, Description, "", EnhancementCost);
+      var constructsEnchantInfo = new WeaponEnchantInfo(ConstructsName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         constructsEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(ConstructsEffect, Guids.BaneConstructsEffect, Guids.BaneConstructsEnchantCopy),
@@ -193,7 +195,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         constructsEnchantInfo);
 
       // Dragons
-      var dragonsEnchantInfo = new WeaponEnchantInfo(DragonsName, Description, "", EnhancementCost);
+      var dragonsEnchantInfo = new WeaponEnchantInfo(DragonsName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         dragonsEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(DragonsEffect, Guids.BaneDragonsEffect, Guids.BaneDragonsEnchantCopy),
@@ -212,7 +214,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         dragonsEnchantInfo);
 
       // Fey
-      var feyEnchantInfo = new WeaponEnchantInfo(FeyName, Description, "", EnhancementCost);
+      var feyEnchantInfo = new WeaponEnchantInfo(FeyName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         feyEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(FeyEffect, Guids.BaneFeyEffect, Guids.BaneFeyEnchantCopy),
@@ -231,7 +233,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         feyEnchantInfo);
 
       // HumanoidGiant
-      var humanoidGiantEnchantInfo = new WeaponEnchantInfo(HumanoidGiantName, Description, "", EnhancementCost);
+      var humanoidGiantEnchantInfo = new WeaponEnchantInfo(HumanoidGiantName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidGiantEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -251,7 +253,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         humanoidGiantEnchantInfo);
 
       // HumanoidReptilian
-      var humanoidReptilianEnchantInfo = new WeaponEnchantInfo(HumanoidReptilianName, Description, "", EnhancementCost);
+      var humanoidReptilianEnchantInfo = new WeaponEnchantInfo(HumanoidReptilianName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidReptilianEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -271,7 +273,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         humanoidReptilianEnchantInfo);
 
       // HumanoidMonstrous
-      var humanoidMonstrousEnchantInfo = new WeaponEnchantInfo(HumanoidMonstrousName, Description, "", EnhancementCost);
+      var humanoidMonstrousEnchantInfo = new WeaponEnchantInfo(HumanoidMonstrousName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         humanoidMonstrousEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -291,7 +293,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         humanoidMonstrousEnchantInfo);
 
       // MagicalBeasts
-      var magicalBeastsEnchantInfo = new WeaponEnchantInfo(MagicalBeastsName, Description, "", EnhancementCost);
+      var magicalBeastsEnchantInfo = new WeaponEnchantInfo(MagicalBeastsName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         magicalBeastsEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -311,7 +313,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         magicalBeastsEnchantInfo);
 
       // OutsiderGood
-      var outsiderGoodEnchantInfo = new WeaponEnchantInfo(OutsiderGoodName, Description, "", EnhancementCost);
+      var outsiderGoodEnchantInfo = new WeaponEnchantInfo(OutsiderGoodName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderGoodEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(OutsiderGoodEffect, Guids.BaneOutsiderGoodEffect, Guids.BaneOutsiderGoodEnchantCopy),
@@ -330,7 +332,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         outsiderGoodEnchantInfo);
 
       // OutsiderEvil
-      var outsiderEvilEnchantInfo = new WeaponEnchantInfo(OutsiderEvilName, Description, "", EnhancementCost);
+      var outsiderEvilEnchantInfo = new WeaponEnchantInfo(OutsiderEvilName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderEvilEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(OutsiderEvilEffect, Guids.BaneOutsiderEvilEffect, Guids.BaneOutsiderEvilEnchantCopy),
@@ -349,7 +351,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         outsiderEvilEnchantInfo);
 
       // OutsiderLawful
-      var outsiderLawfulEnchantInfo = new WeaponEnchantInfo(OutsiderLawfulName, Description, "", EnhancementCost);
+      var outsiderLawfulEnchantInfo = new WeaponEnchantInfo(OutsiderLawfulName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderLawfulEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -369,7 +371,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         outsiderLawfulEnchantInfo);
 
       // OutsiderChaotic
-      var outsiderChaoticEnchantInfo = new WeaponEnchantInfo(OutsiderChaoticName, Description, "", EnhancementCost);
+      var outsiderChaoticEnchantInfo = new WeaponEnchantInfo(OutsiderChaoticName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderChaoticEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -389,7 +391,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         outsiderChaoticEnchantInfo);
 
       // OutsiderNeutral
-      var outsiderNeutralEnchantInfo = new WeaponEnchantInfo(OutsiderNeutralName, Description, "", EnhancementCost);
+      var outsiderNeutralEnchantInfo = new WeaponEnchantInfo(OutsiderNeutralName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         outsiderNeutralEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -409,7 +411,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         outsiderNeutralEnchantInfo);
 
       // Plants
-      var plantsEnchantInfo = new WeaponEnchantInfo(PlantsName, Description, "", EnhancementCost);
+      var plantsEnchantInfo = new WeaponEnchantInfo(PlantsName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         plantsEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(PlantsEffect, Guids.BanePlantsEffect, Guids.BanePlantsEnchantCopy),
@@ -428,7 +430,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         plantsEnchantInfo);
 
       // Undead
-      var undeadEnchantInfo = new WeaponEnchantInfo(UndeadName, Description, "", EnhancementCost);
+      var undeadEnchantInfo = new WeaponEnchantInfo(UndeadName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         undeadEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(UndeadEffect, Guids.BaneUndeadEffect, Guids.BaneUndeadEnchantCopy),
@@ -447,7 +449,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
         undeadEnchantInfo);
 
       // Vermin
-      var verminEnchantInfo = new WeaponEnchantInfo(VerminName, Description, "", EnhancementCost);
+      var verminEnchantInfo = new WeaponEnchantInfo(VerminName, Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         verminEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(VerminEffect, Guids.BaneVerminEffect, Guids.BaneVerminEnchantCopy),

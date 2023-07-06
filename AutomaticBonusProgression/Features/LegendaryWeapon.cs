@@ -81,34 +81,34 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(
-      //#region Aligned
-      //      Guids.AnarchicBuff,
-      //      Guids.AxiomaticBuff,
-      //      Guids.HolyBuff,
-      //      Guids.UnholyBuff,
-      //#endregion
-      //#region Bane
-      //      Guids.BaneAberrationsBuff,
-      //      Guids.BaneAnimalsBuff,
-      //      Guids.BaneConstructsBuff,
-      //      Guids.BaneDragonsBuff,
-      //      Guids.BaneFeyBuff,
-      //      Guids.BaneHumanoidGiantBuff,
-      //      Guids.BaneHumanoidMonstrousBuff,
-      //      Guids.BaneHumanoidReptilianBuff,
-      //      Guids.BaneMagicalBeastsBuff,
-      //      Guids.BaneOutsiderChaoticBuff,
-      //      Guids.BaneOutsiderEvilBuff,
-      //      Guids.BaneOutsiderGoodBuff,
-      //      Guids.BaneOutsiderLawfulBuff,
-      //      Guids.BaneOutsiderNeutralBuff,
-      //      Guids.BanePlantsBuff,
-      //      Guids.BaneUndeadBuff,
-      //      Guids.BaneVerminBuff,
-      //#endregion
-      //      Guids.BrilliantEnergyBuff,
-      //      Guids.CruelBuff,
-      //      Guids.DisruptionBuff,
+      #region Aligned
+            Guids.AnarchicBuff,
+            Guids.AxiomaticBuff,
+            Guids.HolyBuff,
+            Guids.UnholyBuff,
+      #endregion
+      #region Bane
+            Guids.BaneAberrationsBuff,
+            Guids.BaneAnimalsBuff,
+            Guids.BaneConstructsBuff,
+            Guids.BaneDragonsBuff,
+            Guids.BaneFeyBuff,
+            Guids.BaneHumanoidGiantBuff,
+            Guids.BaneHumanoidMonstrousBuff,
+            Guids.BaneHumanoidReptilianBuff,
+            Guids.BaneMagicalBeastsBuff,
+            Guids.BaneOutsiderChaoticBuff,
+            Guids.BaneOutsiderEvilBuff,
+            Guids.BaneOutsiderGoodBuff,
+            Guids.BaneOutsiderLawfulBuff,
+            Guids.BaneOutsiderNeutralBuff,
+            Guids.BanePlantsBuff,
+            Guids.BaneUndeadBuff,
+            Guids.BaneVerminBuff,
+      #endregion
+            Guids.BrilliantEnergyBuff,
+            Guids.CruelBuff,
+            Guids.DisruptionBuff,
       //#region Elemental
       //      Guids.CorrosiveBuff,
       //      Guids.CorrosiveBurstBuff,
@@ -121,15 +121,15 @@ namespace AutomaticBonusProgression.Features
       //      Guids.ThunderingBuff,
       //      Guids.ThunderingBurstBuff,
       //#endregion,
-      //      Guids.FuriousBuff,
-      //      Guids.FurybornBuff,
-      //      Guids.GhostTouchBuff,
-      //      Guids.HeartseekerBuff,
-      //      Guids.KeenBuff,
-      //      Guids.NullifyingBuff,
-      //      Guids.SpeedBuff,
-      //      Guids.ViciousBuff,
-      //      Guids.VorpalBuff
+            Guids.FuriousBuff,
+            Guids.FurybornBuff,
+            Guids.GhostTouchBuff,
+            Guids.HeartseekerBuff,
+            Guids.KeenBuff,
+            Guids.NullifyingBuff,
+            Guids.SpeedBuff,
+            Guids.ViciousBuff,
+            Guids.VorpalBuff
           ))
         .Configure();
     }
@@ -169,34 +169,34 @@ namespace AutomaticBonusProgression.Features
         .AddFacts(new() { ability })
         .AddComponent(
           new AttunementBuffsComponent(
-      //#region Aligned
-      //      Guids.AnarchicOffHandBuff,
-      //      Guids.AxiomaticOffHandBuff,
-      //      Guids.HolyOffHandBuff,
-      //      Guids.UnholyOffHandBuff,
-      //#endregion
-      //#region Bane
-      //      Guids.BaneAberrationsOffHandBuff,
-      //      Guids.BaneAnimalsOffHandBuff,
-      //      Guids.BaneConstructsOffHandBuff,
-      //      Guids.BaneDragonsOffHandBuff,
-      //      Guids.BaneFeyOffHandBuff,
-      //      Guids.BaneHumanoidGiantOffHandBuff,
-      //      Guids.BaneHumanoidMonstrousOffHandBuff,
-      //      Guids.BaneHumanoidReptilianOffHandBuff,
-      //      Guids.BaneMagicalBeastsOffHandBuff,
-      //      Guids.BaneOutsiderChaoticOffHandBuff,
-      //      Guids.BaneOutsiderEvilOffHandBuff,
-      //      Guids.BaneOutsiderGoodOffHandBuff,
-      //      Guids.BaneOutsiderLawfulOffHandBuff,
-      //      Guids.BaneOutsiderNeutralOffHandBuff,
-      //      Guids.BanePlantsOffHandBuff,
-      //      Guids.BaneUndeadOffHandBuff,
-      //      Guids.BaneVerminOffHandBuff,
-      //#endregion
-      //      Guids.BrilliantEnergyOffHandBuff,
-      //      Guids.CruelOffHandBuff,
-      //      Guids.DisruptionOffHandBuff,
+      #region Aligned
+            Guids.AnarchicOffHandBuff,
+            Guids.AxiomaticOffHandBuff,
+            Guids.HolyOffHandBuff,
+            Guids.UnholyOffHandBuff,
+      #endregion
+      #region Bane
+            Guids.BaneAberrationsOffHandBuff,
+            Guids.BaneAnimalsOffHandBuff,
+            Guids.BaneConstructsOffHandBuff,
+            Guids.BaneDragonsOffHandBuff,
+            Guids.BaneFeyOffHandBuff,
+            Guids.BaneHumanoidGiantOffHandBuff,
+            Guids.BaneHumanoidMonstrousOffHandBuff,
+            Guids.BaneHumanoidReptilianOffHandBuff,
+            Guids.BaneMagicalBeastsOffHandBuff,
+            Guids.BaneOutsiderChaoticOffHandBuff,
+            Guids.BaneOutsiderEvilOffHandBuff,
+            Guids.BaneOutsiderGoodOffHandBuff,
+            Guids.BaneOutsiderLawfulOffHandBuff,
+            Guids.BaneOutsiderNeutralOffHandBuff,
+            Guids.BanePlantsOffHandBuff,
+            Guids.BaneUndeadOffHandBuff,
+            Guids.BaneVerminOffHandBuff,
+      #endregion
+            Guids.BrilliantEnergyOffHandBuff,
+            Guids.CruelOffHandBuff,
+            Guids.DisruptionOffHandBuff,
       //#region Elemental
       //      Guids.CorrosiveOffHandBuff,
       //      Guids.CorrosiveBurstOffHandBuff,
@@ -209,15 +209,15 @@ namespace AutomaticBonusProgression.Features
       //      Guids.ThunderingOffHandBuff,
       //      Guids.ThunderingBurstOffHandBuff,
       //#endregion
-      //      Guids.FuriousOffHandBuff,
-      //      Guids.FurybornOffHandBuff,
-      //      Guids.GhostTouchOffHandBuff,
-      //      Guids.HeartseekerOffHandBuff,
-      //      Guids.KeenOffHandBuff,
-      //      Guids.NullifyingOffHandBuff,
-      //      Guids.SpeedOffHandBuff,
-      //      Guids.ViciousOffHandBuff,
-      //      Guids.VorpalOffHandBuff
+            Guids.FuriousOffHandBuff,
+            Guids.FurybornOffHandBuff,
+            Guids.GhostTouchOffHandBuff,
+            Guids.HeartseekerOffHandBuff,
+            Guids.KeenOffHandBuff,
+            Guids.NullifyingOffHandBuff,
+            Guids.SpeedOffHandBuff,
+            Guids.ViciousOffHandBuff,
+            Guids.VorpalOffHandBuff
           ))
         .Configure();
     }

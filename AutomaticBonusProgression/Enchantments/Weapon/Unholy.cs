@@ -21,7 +21,8 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Unholy");
 
       var unholy = WeaponEnchantmentRefs.Unholy.Reference.Get();
-      var unholyEnchantInfo = new WeaponEnchantInfo(UnholyName, unholy.m_Description, "", EnhancementCost);
+      var icon = BuffRefs.ArcaneWeaponUnholyBuff.Reference.Get().Icon;
+      var unholyEnchantInfo = new WeaponEnchantInfo(UnholyName, unholy.m_Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         unholyEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(UnholyEffect, Guids.UnholyEffect, Guids.UnholyEnchantCopy),

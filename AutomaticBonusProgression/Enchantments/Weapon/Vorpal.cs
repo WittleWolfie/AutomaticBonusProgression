@@ -22,8 +22,9 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Vorpal");
 
       var vorpal = WeaponEnchantmentRefs.Vorpal.Reference.Get();
+      var icon = AbilityRefs.EyesOfTheBodak.Reference.Get().Icon;
       var vorpalEnchantInfo = new WeaponEnchantInfo(
-        VorpalName, vorpal.m_Description, "", EnhancementCost, PhysicalDamageForm.Slashing);
+        VorpalName, vorpal.m_Description, icon, EnhancementCost, PhysicalDamageForm.Slashing);
       EnchantTool.CreateEnchant(
         vorpalEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(VorpalEffect, Guids.VorpalEffect, Guids.VorpalEnchantCopy),

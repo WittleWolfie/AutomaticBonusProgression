@@ -22,8 +22,9 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Vicious");
 
       var vicious = WeaponEnchantmentRefs.ViciousEnchantment.Reference.Get();
+      var icon = BuffRefs.BloodHazeBuff.Reference.Get().Icon;
       var viciousEnchantInfo = new WeaponEnchantInfo(
-        ViciousName, vicious.m_Description, "", EnhancementCost, WeaponRangeType.Melee);
+        ViciousName, vicious.m_Description, icon, EnhancementCost, WeaponRangeType.Melee);
       EnchantTool.CreateEnchant(
         viciousEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(ViciousEffect, Guids.ViciousEffect, Guids.ViciousEnchantCopy),

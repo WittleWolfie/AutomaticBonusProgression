@@ -22,10 +22,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Nullifying");
 
       var nullifying = WeaponEnchantmentRefs.NullifyingEnchantment.Reference.Get();
+      var icon = AbilityRefs.RemoveFear.Reference.Get().Icon;
       var nullifyingEnchantInfo = new WeaponEnchantInfo(
         NullifyingName,
         nullifying.m_Description,
-        "",
+        icon,
         EnhancementCost,
         WeaponRangeType.Melee);
       EnchantTool.CreateEnchant(

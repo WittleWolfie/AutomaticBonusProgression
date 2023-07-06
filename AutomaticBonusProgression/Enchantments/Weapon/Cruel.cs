@@ -21,7 +21,8 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Cruel");
 
       var cruel = WeaponEnchantmentRefs.CruelEnchantment.Reference.Get();
-      var cruelEnchantInfo = new WeaponEnchantInfo(CruelName, cruel.m_Description, "", EnhancementCost);
+      var icon = BuffRefs.CruelBuff.Reference.Get().Icon;
+      var cruelEnchantInfo = new WeaponEnchantInfo(CruelName, cruel.m_Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         cruelEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(CruelEffect, Guids.CruelEffect, Guids.CruelEnchantCopy),

@@ -21,7 +21,8 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Anarchic");
 
       var anarchic = WeaponEnchantmentRefs.Anarchic.Reference.Get();
-      var anarchicEnchantInfo = new WeaponEnchantInfo(AnarchicName, anarchic.m_Description, "", EnhancementCost);
+      var icon = BuffRefs.ArcaneWeaponAnarchicBuff.Reference.Get().Icon;
+      var anarchicEnchantInfo = new WeaponEnchantInfo(AnarchicName, anarchic.m_Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         anarchicEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(AnarchicEffect, Guids.AnarchicEffect, Guids.AnarchicEnchantCopy),

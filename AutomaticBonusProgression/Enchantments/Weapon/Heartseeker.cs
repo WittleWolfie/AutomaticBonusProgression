@@ -22,8 +22,9 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Heartseeker");
 
       var heartseeker = WeaponEnchantmentRefs.Heartseeker.Reference.Get();
+      var icon = BuffRefs.UnbreakableHeartBuff.Reference.Get().Icon;
       var heartseekerEnchantInfo = new WeaponEnchantInfo(
-        HeartseekerName, heartseeker.m_Description, "", EnhancementCost, WeaponRangeType.Ranged);
+        HeartseekerName, heartseeker.m_Description, icon, EnhancementCost, WeaponRangeType.Ranged);
       EnchantTool.CreateEnchant(
         heartseekerEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(HeartseekerEffect, Guids.HeartseekerEffect, Guids.HeartseekerEnchantCopy),

@@ -21,10 +21,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Speed");
 
       var speed = WeaponEnchantmentRefs.Speed.Reference.Get();
+      var icon = BuffRefs.HasteBuff.Reference.Get().Icon;
       var speedEnchantInfo = new WeaponEnchantInfo(
         SpeedName,
         speed.m_Description,
-        "",
+        icon,
         EnhancementCost);
       EnchantTool.CreateEnchant(
         speedEnchantInfo,

@@ -50,24 +50,24 @@ namespace AutomaticBonusProgression.Enchantments
         Wyrmsbreath.Configure();
 
         // Weapon
-        //Anarchic.Configure();
-        //Axiomatic.Configure();
-        //Holy.Configure();
-        //Unholy.Configure();
-        //Bane.Configure();
-        //BrilliantEnergy.Configure();
-        //Cruel.Configure();
-        //Disruption.Configure();
+        Anarchic.Configure();
+        Axiomatic.Configure();
+        Holy.Configure();
+        Unholy.Configure();
+        Bane.Configure();
+        BrilliantEnergy.Configure();
+        Cruel.Configure();
+        Disruption.Configure();
         //Elemental.Configure();
-        //Furious.Configure();
-        //Furyborn.Configure();
-        //GhostTouch.Configure();
-        //Heartseeker.Configure();
-        //Keen.Configure();
-        //Nullifying.Configure();
-        //Speed.Configure();
-        //Vicious.Configure();
-        //Vorpal.Configure();
+        Furious.Configure();
+        Furyborn.Configure();
+        GhostTouch.Configure();
+        Heartseeker.Configure();
+        Keen.Configure();
+        Nullifying.Configure();
+        Speed.Configure();
+        Vicious.Configure();
+        Vorpal.Configure();
       }
       catch (Exception e)
       {

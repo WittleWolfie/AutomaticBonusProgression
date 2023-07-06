@@ -22,8 +22,9 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Keen");
 
       var keen = WeaponEnchantmentRefs.Keen.Reference.Get();
+      var icon = BuffRefs.ArcaneWeaponKeenBuff.Reference.Get().Icon;
       var keenEnchantInfo = new WeaponEnchantInfo(
-        KeenName, keen.m_Description, "", EnhancementCost, PhysicalDamageForm.Piercing, PhysicalDamageForm.Slashing);
+        KeenName, keen.m_Description, icon, EnhancementCost, PhysicalDamageForm.Piercing, PhysicalDamageForm.Slashing);
       EnchantTool.CreateEnchant(
         keenEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(KeenEffect, Guids.KeenEffect, Guids.KeenEnchantCopy),

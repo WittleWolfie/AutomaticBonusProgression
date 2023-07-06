@@ -21,7 +21,8 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring Holy");
 
       var holy = WeaponEnchantmentRefs.Holy.Reference.Get();
-      var holyEnchantInfo = new WeaponEnchantInfo(HolyName, holy.m_Description, "", EnhancementCost);
+      var icon = BuffRefs.ArcaneWeaponHolyBuff.Reference.Get().Icon;
+      var holyEnchantInfo = new WeaponEnchantInfo(HolyName, holy.m_Description, icon, EnhancementCost);
       EnchantTool.CreateEnchant(
         holyEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(HolyEffect, Guids.HolyEffect, Guids.HolyEnchantCopy),

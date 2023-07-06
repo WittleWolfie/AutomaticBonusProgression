@@ -21,10 +21,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       Logger.Log($"Configuring BrilliantEnergy");
 
       var brilliantEnergy = WeaponEnchantmentRefs.BrilliantEnergy.Reference.Get();
+      var icon = BuffRefs.ArcaneWeaponBrilliantEnergyBuff.Reference.Get().Icon;
       var brilliantEnergyEnchantInfo = new WeaponEnchantInfo(
         BrilliantEnergyName,
         brilliantEnergy.m_Description,
-        "",
+        icon,
         EnhancementCost);
       EnchantTool.CreateEnchant(
         brilliantEnergyEnchantInfo,
