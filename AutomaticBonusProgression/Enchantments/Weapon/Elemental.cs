@@ -88,7 +88,12 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
 
       // Corrosive
       var corrosive = WeaponEnchantmentRefs.Corrosive.Reference.Get();
-      var corrosiveEnchantInfo = new WeaponEnchantInfo(CorrosiveName, corrosive.m_Description, "", EnhancementCost);
+      var corrosiveEnchantInfo =
+        new WeaponEnchantInfo(
+          CorrosiveName,
+          corrosive.m_Description,
+          BuffRefs.AcidArrowBuff.Reference.Get().Icon,
+          EnhancementCost);
       EnchantTool.CreateEnchant(
         corrosiveEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(CorrosiveEffect, Guids.CorrosiveEffect, Guids.CorrosiveEnchantCopy),
@@ -105,7 +110,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       // Corrosive Burst
       var corrosiveBurst = WeaponEnchantmentRefs.CorrosiveBurst.Reference.Get();
       var corrosiveBurstEnchantInfo =
-        new WeaponEnchantInfo(CorrosiveBurstName, corrosiveBurst.m_Description, "", BurstEnhancementCost);
+        new WeaponEnchantInfo(
+          CorrosiveBurstName,
+          corrosiveBurst.m_Description,
+          BuffRefs.AcidicSprayBuff.Reference.Get().Icon,
+          BurstEnhancementCost);
       EnchantTool.CreateEnchant(
         corrosiveBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -124,7 +133,12 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
 
       // Flaming
       var flaming = WeaponEnchantmentRefs.Flaming.Reference.Get();
-      var flamingEnchantInfo = new WeaponEnchantInfo(FlamingName, flaming.m_Description, "", EnhancementCost);
+      var flamingEnchantInfo =
+        new WeaponEnchantInfo(
+          FlamingName,
+          flaming.m_Description,
+          BuffRefs.ArcaneWeaponFlamingBuff.Reference.Get().Icon,
+          EnhancementCost);
       EnchantTool.CreateEnchant(
         flamingEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(FlamingEffect, Guids.FlamingEffect, Guids.FlamingEnchantCopy),
@@ -141,7 +155,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       // Flaming Burst
       var flamingBurst = WeaponEnchantmentRefs.FlamingBurst.Reference.Get();
       var flamingBurstEnchantInfo =
-        new WeaponEnchantInfo(FlamingBurstName, flamingBurst.m_Description, "", BurstEnhancementCost);
+        new WeaponEnchantInfo(
+          FlamingBurstName,
+          flamingBurst.m_Description,
+          BuffRefs.EnduringBladeMountBuff.Reference.Get().Icon,
+          BurstEnhancementCost);
       EnchantTool.CreateEnchant(
         flamingBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -160,7 +178,12 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
 
       // Frost
       var frost = WeaponEnchantmentRefs.Frost.Reference.Get();
-      var frostEnchantInfo = new WeaponEnchantInfo(FrostName, frost.m_Description, "", EnhancementCost);
+      var frostEnchantInfo =
+        new WeaponEnchantInfo(
+          FrostName,
+          frost.m_Description,
+          BuffRefs.ArcaneWeaponFrostBuff.Reference.Get().Icon,
+          EnhancementCost);
       EnchantTool.CreateEnchant(
         frostEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(FrostEffect, Guids.FrostEffect, Guids.FrostEnchantCopy),
@@ -177,7 +200,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       // Frost Burst
       var frostBurst = WeaponEnchantmentRefs.IcyBurst.Reference.Get();
       var frostBurstEnchantInfo =
-        new WeaponEnchantInfo(FrostBurstName, frostBurst.m_Description, "", BurstEnhancementCost);
+        new WeaponEnchantInfo(
+          FrostBurstName,
+          frostBurst.m_Description,
+          BuffRefs.EnduringBladeBuff.Reference.Get().Icon,
+          BurstEnhancementCost);
       EnchantTool.CreateEnchant(
         frostBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -196,7 +223,12 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
 
       // Shocking
       var shocking = WeaponEnchantmentRefs.Shock.Reference.Get();
-      var shockingEnchantInfo = new WeaponEnchantInfo(ShockingName, shocking.m_Description, "", EnhancementCost);
+      var shockingEnchantInfo =
+        new WeaponEnchantInfo(
+          ShockingName,
+          shocking.m_Description,
+          BuffRefs.ArcaneWeaponShockBuff.Reference.Get().Icon,
+          EnhancementCost);
       EnchantTool.CreateEnchant(
         shockingEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(ShockingEffect, Guids.ShockingEffect, Guids.ShockingEnchantCopy),
@@ -213,7 +245,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       // Shocking Burst
       var shockingBurst = WeaponEnchantmentRefs.ShockingBurst.Reference.Get();
       var shockingBurstEnchantInfo =
-        new WeaponEnchantInfo(ShockingBurstName, shockingBurst.m_Description, "", BurstEnhancementCost);
+        new WeaponEnchantInfo(
+          ShockingBurstName,
+          shockingBurst.m_Description,
+          ActivatableAbilityRefs.KineticBladeBloodBlastAbility.Reference.Get().Icon,
+          BurstEnhancementCost);
       EnchantTool.CreateEnchant(
         shockingBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(
@@ -232,7 +268,12 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
 
       // Thundering
       var thundering = WeaponEnchantmentRefs.Thundering.Reference.Get();
-      var thunderingEnchantInfo = new WeaponEnchantInfo(ThunderingName, thundering.m_Description, "", EnhancementCost);
+      var thunderingEnchantInfo =
+        new WeaponEnchantInfo(
+          ThunderingName,
+          thundering.m_Description,
+          BuffRefs.DuelistParryLessAttacks.Reference.Get().Icon,
+          EnhancementCost);
       EnchantTool.CreateEnchant(
         thunderingEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(ThunderingEffect, Guids.ThunderingEffect, Guids.ThunderingEnchantCopy),
@@ -249,7 +290,11 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       // Thundering Burst
       var thunderingBurst = WeaponEnchantmentRefs.ThunderingBurst.Reference.Get();
       var thunderingBurstEnchantInfo =
-        new WeaponEnchantInfo(ThunderingBurstName, thunderingBurst.m_Description, "", BurstEnhancementCost);
+        new WeaponEnchantInfo(
+          ThunderingBurstName,
+          thunderingBurst.m_Description,
+          FeatureRefs.CavalierKnightsChallenge.Reference.Get().Icon,
+          BurstEnhancementCost);
       EnchantTool.CreateEnchant(
         thunderingBurstEnchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(

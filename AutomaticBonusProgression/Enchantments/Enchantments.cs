@@ -58,7 +58,7 @@ namespace AutomaticBonusProgression.Enchantments
         BrilliantEnergy.Configure();
         Cruel.Configure();
         Disruption.Configure();
-        //Elemental.Configure();
+        Elemental.Configure();
         Furious.Configure();
         Furyborn.Configure();
         GhostTouch.Configure();
