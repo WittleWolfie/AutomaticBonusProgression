@@ -22,5 +22,10 @@
   {
     "Key": "ABP.Item.PerfectTiara",
     "enGB": "This tiara grants its wearer a +2 bonus to all mental ability scores (Intelligence, Wisdom, and Charisma). In addition, If the wearer of this headband has the ability Channel Positive Energy, it increases the amount of damage this ability does to undead creatures or heals to living creatures by +2d6. And if the wearer of this headband has the ability Channel Negative Energy, it increases the amount of damage this ability does to living creatures or heals to undead creatures by +2d6."
+  },
+
+  {
+    "Key": "ABP.Item.PrimalForce",
+    "enGB": "This belt once worn by a notorious Gorilla King. To unlock its true powers, one needs to become one with their true nature. When worn by a shifter who has a final aspect (or any other 20 level capstone class ability), the belt grants its wearer a +2 bonus to Strength, Dexterity, and Constitution, as well as the ability to once per day emit a devastating cry. It deals 10d12 sonic damage to every enemy in a 30 feet range, stunning them for 1d4 rounds (a successful Fortitude saving throw halves the damage and negates the stunned condition). Every ally in the same range instead receives a +4 morale bonus on all attack and damage rolls for one minute."
   }
 ]

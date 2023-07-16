@@ -1,7 +1,11 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Equipment;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
 using Kingmaker;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
+using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Mechanics
 {
@@ -24,6 +28,7 @@ namespace AutomaticBonusProgression.Mechanics
       ConfigureDarknessCaress();
       ConfigureLegendaryBracers();
       ConfigurePerfectTiara();
+      ConfigurePrimalForce();
     }
 
     private static void ConfigureDeathBelt()
@@ -80,6 +85,20 @@ namespace AutomaticBonusProgression.Mechanics
           Common.Int2,
           Common.Wis2,
           Common.Cha2)
+        .Configure();
+    }
+
+    private static void ConfigurePrimalForce()
+    {
+      FeatureConfigurator.For(FeatureRefs.BeltOfPrimalForceFeatureFinal)
+        .RemoveComponents(c => c is AddContextStatBonus)
+        .AddStatBonus(stat: StatType.Strength, value: 2, descriptor: ModifierDescriptor.UntypedStackable)
+        .AddStatBonus(stat: StatType.Dexterity, value: 2, descriptor: ModifierDescriptor.UntypedStackable)
+        .AddStatBonus(stat: StatType.Constitution, value: 2, descriptor: ModifierDescriptor.UntypedStackable)
+        .Configure();
+
+      ItemEquipmentBeltConfigurator.For(ItemEquipmentBeltRefs.BeltOfPrimalForceItem)
+        .SetDescriptionText(Text("PrimalForce"))
         .Configure();
     }
 
