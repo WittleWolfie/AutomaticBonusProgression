@@ -332,8 +332,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
             availableGifts = 3;
           else if (__instance.m_LevelUpController.State.NextCharacterLevel == 20)
             availableGifts = 5;
-          else
-            availableGifts = 2; // TODO: Delete once testing is done -- Actually for Legend let's grant +1 every other level after 20
+          else if (__instance.m_LevelUpController.State.NextCharacterLevel > 20) // Legend path
+            availableGifts = (__instance.m_LevelUpController.State.NextCharacterLevel - 20) / 2;
 
           if (__instance.TryClearPhaseFromList<LegendaryGiftsPhaseVM>(availableGifts > 0, __instance.m_PhasesList))
           {
