@@ -1,10 +1,7 @@
 ﻿using AutomaticBonusProgression.Util;
-using BlueprintCore.Blueprints.Configurators.Items;
 using BlueprintCore.Blueprints.Configurators.Items.Equipment;
 using BlueprintCore.Blueprints.References;
-using HarmonyLib;
 using Kingmaker;
-using Kingmaker.Items;
 
 namespace AutomaticBonusProgression.Mechanics
 {
@@ -25,6 +22,7 @@ namespace AutomaticBonusProgression.Mechanics
       ConfigureDeathBelt();
       ConfigureDeathRobe();
       ConfigureDarknessCaress();
+      ConfigureLegendaryBracers();
     }
 
     private static void ConfigureDeathBelt()
@@ -51,6 +49,23 @@ namespace AutomaticBonusProgression.Mechanics
         .SetDescriptionText(Text("DarknessCaress"))
         .SetEnchantments(
           EquipmentEnchantmentRefs.DarknessCaressEnchantment.ToString(), Common.Int2, Common.Wis2, Common.Cha2)
+        .Configure();
+    }
+
+    private static void ConfigureLegendaryBracers()
+    {
+      ItemEquipmentWristConfigurator.For(ItemEquipmentWristRefs.LegendaryBracersItem)
+        .SetDescriptionText(Text("LegendaryBracers"))
+        .SetEnchantments(
+          Common.IncreaseStr2,
+          Common.IncreaseDex2,
+          Common.IncreaseCon2,
+          Common.IncreaseInt2,
+          Common.IncreaseWis2,
+          Common.IncreaseCha2,
+          Common.IncreaseDeflection1,
+          Common.IncreaseNaturalArmor1,
+          Common.IncreaseResist1)
         .Configure();
     }
 

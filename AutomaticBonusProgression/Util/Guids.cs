@@ -46,6 +46,17 @@
     internal const string Int2 = "ab2488ac-4f43-436f-8d4c-4c6ddc0a64de";
     internal const string Wis2 = "ee8bb9bb-be97-4fc9-a48d-7cc84dd5473d";
     internal const string Cha2 = "e08b8724-d021-4610-9901-63672b011c4c";
+
+    internal const string IncreaseStr2 = "d41fee24-5478-492e-aa83-8ddbc06b19ea";
+    internal const string IncreaseDex2 = "e4c7ba3c-7b45-4423-b525-b4e245139f92";
+    internal const string IncreaseCon2 = "242306f7-9ed9-4a0f-8070-6b6f71fb2f2f";
+    internal const string IncreaseInt2 = "092561d6-e313-4c2a-adb9-08858a993065";
+    internal const string IncreaseCha2 = "b0861737-b836-42e5-9762-f4a65caf0fe8";
+    internal const string IncreaseWis2 = "a5c449bb-6c29-4d0b-8f82-90a950abac4f";
+
+    internal const string IncreaseResist1 = "7c9d64c3-8569-40af-b3c7-e8a0fa0cf375";
+    internal const string IncreaseDeflection1 = "cbc9cab4-aaa4-47c8-9182-41322b0dc160";
+    internal const string IncreaseNaturalArmor1 = "f2a8ae72-baab-4604-879b-7b181025bad6";
     #endregion
 
     #region Legendary Gifts

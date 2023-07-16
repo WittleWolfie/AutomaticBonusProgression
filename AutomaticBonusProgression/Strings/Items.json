@@ -12,5 +12,10 @@
   {
     "Key": "ABP.Item.DarknessCaress",
     "enGB": "This headband grants a +2 bonus to all mental ability scores (Intelligence, Wisdom, and Charisma) and allows its wearer to add their Charisma bonus to all damage dealt by ranged weapons."
+  },
+
+  {
+    "Key": "ABP.Item.LegendaryBracers",
+    "enGB": "These bracers increase their wearer's deflection bonus to AC, natural armor enhancement bonus to AC, and resistance bonus on saving throws by +1. It also increases their enhancement bonuses to ability scores by 2. It can only be equipped by the player character."
   }
 ]

@@ -19,6 +19,7 @@ namespace AutomaticBonusProgression.Util
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Common));
 
     #region Blueprints
+    #region Basic
     private static BlueprintFeature _armorAttunement;
     internal static BlueprintFeature ArmorAttunement
     {
@@ -151,6 +152,7 @@ namespace AutomaticBonusProgression.Util
         return _tougheningBase;
       }
     }
+    #endregion
 
     #region Prowess
     private static BlueprintFeature _physicalProwess;
@@ -456,6 +458,96 @@ namespace AutomaticBonusProgression.Util
       {
         _cha2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Cha2);
         return _cha2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseStr2;
+    internal static BlueprintEquipmentEnchantment IncreaseStr2
+    {
+      get
+      {
+        _increaseStr2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseStr2);
+        return _increaseStr2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseDex2;
+    internal static BlueprintEquipmentEnchantment IncreaseDex2
+    {
+      get
+      {
+        _increaseDex2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseDex2);
+        return _increaseDex2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseCon2;
+    internal static BlueprintEquipmentEnchantment IncreaseCon2
+    {
+      get
+      {
+        _increaseCon2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseCon2);
+        return _increaseCon2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseInt2;
+    internal static BlueprintEquipmentEnchantment IncreaseInt2
+    {
+      get
+      {
+        _increaseInt2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseInt2);
+        return _increaseInt2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseWis2;
+    internal static BlueprintEquipmentEnchantment IncreaseWis2
+    {
+      get
+      {
+        _increaseWis2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseWis2);
+        return _increaseWis2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseCha2;
+    internal static BlueprintEquipmentEnchantment IncreaseCha2
+    {
+      get
+      {
+        _increaseCha2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseCha2);
+        return _increaseCha2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseDeflection1;
+    internal static BlueprintEquipmentEnchantment IncreaseDeflection1
+    {
+      get
+      {
+        _increaseDeflection1 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseDeflection1);
+        return _increaseDeflection1;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseNaturalArmor1;
+    internal static BlueprintEquipmentEnchantment IncreaseNaturalArmor1
+    {
+      get
+      {
+        _increaseNaturalArmor1 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseNaturalArmor1);
+        return _increaseNaturalArmor1;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _increaseResist1;
+    internal static BlueprintEquipmentEnchantment IncreaseResist1
+    {
+      get
+      {
+        _increaseResist1 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseResist1);
+        return _increaseResist1;
       }
     }
     #endregion

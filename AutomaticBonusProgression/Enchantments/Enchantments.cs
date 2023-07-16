@@ -71,6 +71,7 @@ namespace AutomaticBonusProgression.Enchantments
         Vorpal.Configure();
 
         // Replacements
+        IncreasedStatBonus.Configure();
         StatBonus.Configure();
       }
       catch (Exception e)
