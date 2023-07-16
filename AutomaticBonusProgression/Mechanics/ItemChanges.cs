@@ -23,6 +23,7 @@ namespace AutomaticBonusProgression.Mechanics
       ConfigureDeathRobe();
       ConfigureDarknessCaress();
       ConfigureLegendaryBracers();
+      ConfigurePerfectTiara();
     }
 
     private static void ConfigureDeathBelt()
@@ -74,7 +75,11 @@ namespace AutomaticBonusProgression.Mechanics
       ItemEquipmentHeadConfigurator.For(ItemEquipmentHeadRefs.PerfectTiaraOfChannelingItem)
         .SetDescriptionText(Text("PerfectTiara"))
         .SetEnchantments(
-          )
+          EquipmentEnchantmentRefs.PositiveChanneling2.ToString(),
+          EquipmentEnchantmentRefs.NegativeChanneling2.ToString(),
+          Common.Int2,
+          Common.Wis2,
+          Common.Cha2)
         .Configure();
     }
 
