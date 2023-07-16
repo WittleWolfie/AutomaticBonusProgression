@@ -211,7 +211,7 @@ Allows you to apply enchantments to your equipment (Armor, Shield, Weapon, Off-H
     
 ### Mod Options
 
-#### TODO: Add screenshot
+![Settings screenshot](https://github.com/WittleWolfie/AutomaticBonusProgression/blob/main/screenshots/settings.png)
 
 This mod uses [Mod Menu](https://github.com/WittleWolfie/ModMenu), settings are in the game settings: Settings > Mods > Automatic Bonus Progression. They are not available in UMM.
 
