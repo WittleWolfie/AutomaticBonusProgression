@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Enchantments.Armor;
+using AutomaticBonusProgression.Enchantments.Replacements;
 using AutomaticBonusProgression.Enchantments.Weapon;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
@@ -68,6 +69,9 @@ namespace AutomaticBonusProgression.Enchantments
         Speed.Configure();
         Vicious.Configure();
         Vorpal.Configure();
+
+        // Replacements
+        StatBonus.Configure();
       }
       catch (Exception e)
       {
