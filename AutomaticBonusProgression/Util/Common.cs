@@ -461,66 +461,6 @@ namespace AutomaticBonusProgression.Util
       }
     }
 
-    private static BlueprintEquipmentEnchantment _increaseStr2;
-    internal static BlueprintEquipmentEnchantment IncreaseStr2
-    {
-      get
-      {
-        _increaseStr2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseStr2);
-        return _increaseStr2;
-      }
-    }
-
-    private static BlueprintEquipmentEnchantment _increaseDex2;
-    internal static BlueprintEquipmentEnchantment IncreaseDex2
-    {
-      get
-      {
-        _increaseDex2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseDex2);
-        return _increaseDex2;
-      }
-    }
-
-    private static BlueprintEquipmentEnchantment _increaseCon2;
-    internal static BlueprintEquipmentEnchantment IncreaseCon2
-    {
-      get
-      {
-        _increaseCon2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseCon2);
-        return _increaseCon2;
-      }
-    }
-
-    private static BlueprintEquipmentEnchantment _increaseInt2;
-    internal static BlueprintEquipmentEnchantment IncreaseInt2
-    {
-      get
-      {
-        _increaseInt2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseInt2);
-        return _increaseInt2;
-      }
-    }
-
-    private static BlueprintEquipmentEnchantment _increaseWis2;
-    internal static BlueprintEquipmentEnchantment IncreaseWis2
-    {
-      get
-      {
-        _increaseWis2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseWis2);
-        return _increaseWis2;
-      }
-    }
-
-    private static BlueprintEquipmentEnchantment _increaseCha2;
-    internal static BlueprintEquipmentEnchantment IncreaseCha2
-    {
-      get
-      {
-        _increaseCha2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.IncreaseCha2);
-        return _increaseCha2;
-      }
-    }
-
     private static BlueprintEquipmentEnchantment _increaseDeflection1;
     internal static BlueprintEquipmentEnchantment IncreaseDeflection1
     {

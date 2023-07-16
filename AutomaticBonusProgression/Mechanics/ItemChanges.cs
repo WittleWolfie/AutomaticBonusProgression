@@ -57,15 +57,24 @@ namespace AutomaticBonusProgression.Mechanics
       ItemEquipmentWristConfigurator.For(ItemEquipmentWristRefs.LegendaryBracersItem)
         .SetDescriptionText(Text("LegendaryBracers"))
         .SetEnchantments(
-          Common.IncreaseStr2,
-          Common.IncreaseDex2,
-          Common.IncreaseCon2,
-          Common.IncreaseInt2,
-          Common.IncreaseWis2,
-          Common.IncreaseCha2,
+          Common.Str2,
+          Common.Dex2,
+          Common.Con2,
+          Common.Int2,
+          Common.Wis2,
+          Common.Cha2,
           Common.IncreaseDeflection1,
           Common.IncreaseNaturalArmor1,
           Common.IncreaseResist1)
+        .Configure();
+    }
+
+    private static void ConfigurePerfectTiara()
+    {
+      ItemEquipmentHeadConfigurator.For(ItemEquipmentHeadRefs.PerfectTiaraOfChannelingItem)
+        .SetDescriptionText(Text("PerfectTiara"))
+        .SetEnchantments(
+          )
         .Configure();
     }
 
