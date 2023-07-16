@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.UnitParts;
+using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.Items.Ecnchantments;
@@ -48,7 +49,7 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        owner.Ensure<UnitParts.UnitPartEnhancement>().AddEnchantment(GetEnhancementType(), Enhancement);
+        owner.Ensure<UnitPartEnhancement>().AddEnchantment(GetEnhancementType(), Enhancement);
       }
       catch (Exception e)
       {
@@ -67,7 +68,7 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        owner.Get<UnitParts.UnitPartEnhancement>()?.RemoveEnchantment(GetEnhancementType(), Enhancement);
+        owner.Get<UnitPartEnhancement>()?.RemoveEnchantment(GetEnhancementType(), Enhancement);
       }
       catch (Exception e)
       {

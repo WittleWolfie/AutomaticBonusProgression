@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using static AutomaticBonusProgression.Features.AttunementProgression;
 
-namespace AutomaticBonusProgression.Patches
+namespace AutomaticBonusProgression.Mechanics
 {
   /// <summary>
   /// Collection of patches removing enhancement bonuses from items.
@@ -64,14 +64,14 @@ namespace AutomaticBonusProgression.Patches
         try
         {
           if (!Common.IsReplacedByABP(StatType.SaveFortitude, __instance.Descriptor))
-        {
+          {
             Logger.Verbose(() => $"All Saves - {__instance.Descriptor} is not affected by ABP");
             return true;
           }
 
           var unit = __instance.Owner.Wielder.Unit;
           if (Common.IsAffectedByABP(unit))
-        {
+          {
             Logger.Verbose(() => $"Skipping All Saves - {__instance.Descriptor} for {unit.CharacterName}");
             return false;
           }

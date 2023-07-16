@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using UniRx;
 
+// Note: Namespace doesn't match for test save compatibility
 namespace AutomaticBonusProgression.UnitParts
 {
   internal class UnitPartEnhancement : UnitPart
