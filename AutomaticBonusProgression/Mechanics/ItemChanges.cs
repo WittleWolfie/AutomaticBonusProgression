@@ -24,12 +24,13 @@ namespace AutomaticBonusProgression.Mechanics
 
       ConfigureDeathBelt();
       ConfigureDeathRobe();
+      ConfigureDarknessCaress();
     }
 
     private static void ConfigureDeathBelt()
     {
       ItemEquipmentBeltConfigurator.For(ItemEquipmentBeltRefs.ClaspOfDeathItem)
-        .SetDescriptionText("ABP.Item.DeathBelt")
+        .SetDescriptionText(Text("DeathBelt"))
         .SetEnchantments(
           EquipmentEnchantmentRefs.NegativeChanneling2.ToString(), Common.Int2, Common.Wis2, Common.Cha2)
         .Configure();
@@ -38,10 +39,24 @@ namespace AutomaticBonusProgression.Mechanics
     private static void ConfigureDeathRobe()
     {
       ItemEquipmentShirtConfigurator.For(ItemEquipmentShirtRefs.ClaspOfDeathRobeItem)
-        .SetDescriptionText("ABP.Item.DeathRobe")
+        .SetDescriptionText(Text("DeathRobe"))
         .SetEnchantments(
           EquipmentEnchantmentRefs.NegativeChanneling2.ToString(), Common.Int2, Common.Wis2, Common.Cha2)
         .Configure();
+    }
+
+    private static void ConfigureDarknessCaress()
+    {
+      ItemEquipmentHeadConfigurator.For(ItemEquipmentHeadRefs.DarknessCaressItem)
+        .SetDescriptionText(Text("DarknessCaress"))
+        .SetEnchantments(
+          EquipmentEnchantmentRefs.DarknessCaressEnchantment.ToString(), Common.Int2, Common.Wis2, Common.Cha2)
+        .Configure();
+    }
+
+    private static string Text(string itemName)
+    {
+      return $"ABP.Item.{itemName}";
     }
   }
 }

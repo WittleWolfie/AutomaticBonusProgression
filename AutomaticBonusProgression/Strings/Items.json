@@ -7,5 +7,10 @@
   {
     "Key": "ABP.Item.DeathRobe",
     "enGB": "This robe grants its wearer a +2 bonus to all mental ability scores (Intelligence, Wisdom, and Charisma). In addition, if the wearer of this robe has the ability Channel Negative Energy, it increases the amount of damage this ability does to living creatures or heals to undead creatures by +2d6."
+  },
+
+  {
+    "Key": "ABP.Item.DarknessCaress",
+    "enGB": "This headband grants a +2 bonus to all mental ability scores (Intelligence, Wisdom, and Charisma) and allows its wearer to add their Charisma bonus to all damage dealt by ranged weapons."
   }
 ]
