@@ -102,7 +102,9 @@ namespace AutomaticBonusProgression.UnitParts
         EnhancementType.OffHand => Owner.GetFeature(Common.LegendaryOffHand),
         _ => throw new NotImplementedException(),
       };
-      return Math.Min(5, feature?.GetRank() ?? 0);
+
+      int maxIncrease = Owner.GetFeature(Common.TricksterArcanaBuff)?.GetRank() ?? 0;
+      return maxIncrease + Math.Min(5, feature?.GetRank() ?? 0);
     }
 
     [JsonIgnore]
@@ -130,10 +132,7 @@ namespace AutomaticBonusProgression.UnitParts
 
     internal bool CanAddTemp(int enhancement)
     {
-      if (TempEnhancement.Value + enhancement > MaxTemp)
-        return false;
-
-      return TempEnhancement.Value + BaseTempEnhancement + enhancement <= 5;
+      return TempEnhancement.Value + BaseTempEnhancement + enhancement <= MaxTemp;
     }
 
     internal void AddTemp(int enhancement, bool active)

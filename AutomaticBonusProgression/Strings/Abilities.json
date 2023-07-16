@@ -1,0 +1,10 @@
+[
+  {
+    "Key": "ABP.Abilities.TricksterArcanaTier1",
+    "enGB": "You can now understand how to use magical items even better. The total Enhancement Cost of enchantments you can apply to your armor and weapons is increased by 1."
+  },
+  {
+    "Key": "ABP.Abilities.TricksterArcanaTier3",
+    "enGB": "You can reveal item properties that aren't even there and couldn't possibly be there. Every item you identify gets an additional random major effect. The total Enhancement Cost of enchantments you can apply to your armor and weapons is now increased by 2."
+  }
+]

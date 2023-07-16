@@ -56,6 +56,8 @@
     internal const string Persuasion2 = "43ea6c62-adac-4afb-95e3-ed1eeb874404";
 
     internal const string WizardBuff = "8483953a-2a86-44d6-97d3-6d00a0e9a904";
+
+    internal const string TricksterArcanaBuff = "925974a2-3a4f-4123-9112-1e16796ecfc6";
     #endregion
 
     #region Legendary Gifts

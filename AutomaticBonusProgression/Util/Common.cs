@@ -520,6 +520,16 @@ namespace AutomaticBonusProgression.Util
         return _persuasion2;
       }
     }
+
+    private static BlueprintFeature _tricksterArcanaBuff;
+    internal static BlueprintFeature TricksterArcanaBuff
+    {
+      get
+      {
+        _tricksterArcanaBuff ??= BlueprintTool.Get<BlueprintFeature>(Guids.TricksterArcanaBuff);
+        return _tricksterArcanaBuff;
+      }
+    }
     #endregion
     #endregion
 

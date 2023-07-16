@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Strings\Abilities.json" />
     <None Remove="Strings\Attunement.json" />
     <None Remove="Strings\Items.json" />
     <None Remove="Strings\LegendaryArmor.json" />
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Strings\Abilities.json" />
     <EmbeddedResource Include="Strings\Items.json" />
     <EmbeddedResource Include="Strings\LegendaryGifts.json" />
   </ItemGroup>

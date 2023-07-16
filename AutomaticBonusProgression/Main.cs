@@ -59,6 +59,7 @@ namespace AutomaticBonusProgression
 
           // First strings
           LocalizationTool.LoadEmbeddedLocalizationPacks(
+            "AutomaticBonusProgression.Strings.Abilities.json",
             "AutomaticBonusProgression.Strings.Attunement.json",
             "AutomaticBonusProgression.Strings.Items.json",
             "AutomaticBonusProgression.Strings.LegendaryArmor.json",
@@ -70,6 +71,7 @@ namespace AutomaticBonusProgression
           AttunementProgression.Configure();
           LegendaryGifts.Configure();
           ItemChanges.Configure();
+          TricksterArcana.Configure();
         }
         catch (Exception e)
         {
