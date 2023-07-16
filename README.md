@@ -6,6 +6,8 @@ TODO: Add screenshots
 
 ### This mod creates a save dependency. Once you save with this mod enabled it must remain enabled or you will lose access to the save.
 
+### [Settings are NOT in UMM, they use Mod Menu](#mod-options) 
+
 ### Currently in BETA
 
 Additional items planned for release:
