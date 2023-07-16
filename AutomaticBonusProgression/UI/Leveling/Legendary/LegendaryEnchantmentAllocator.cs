@@ -82,6 +82,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       InfoVM = infoVM;
 
       AddDisposable(State.Controller.UpdateCommand.Subscribe(_ => UpdateValues()));
+      // Unclear why this is needed but it is
+      UpdateValues();
       AddDisposable(State.AvailableGifts.Subscribe(_ => UpdateEligibility()));
 
       Name = UITool.GetString($"Legendary.{type}");
