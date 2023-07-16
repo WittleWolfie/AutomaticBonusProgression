@@ -50,7 +50,27 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public bool Check(LevelUpState state, UnitDescriptor unit)
     {
-      return State.CanAddLegendaryEnchantment(Type, checkGifts: false);
+      Feature feature = null;
+      switch (Type)
+      {
+        case EnchantmentType.Armor:
+          feature = unit.GetFeature(Common.LegendaryArmor);
+          break;
+        case EnchantmentType.Shield:
+          feature = unit.GetFeature(Common.LegendaryShield);
+          break;
+        case EnchantmentType.Weapon:
+          feature = unit.GetFeature(Common.LegendaryWeapon);
+          break;
+        case EnchantmentType.OffHand:
+          feature = unit.GetFeature(Common.LegendaryOffHand);
+          break;
+      }
+
+      if (feature is null)
+        return true;
+
+      return feature.Rank < feature.Blueprint.Ranks;
     }
 
     public void PostLoad() { }
