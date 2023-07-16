@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Configurators.Items.Equipment;
@@ -182,6 +183,129 @@ namespace AutomaticBonusProgression.Mechanics
       spawnMonsters.AfterSpawn =
         ActionsBuilder.New().AddAll(spawnMonsters.AfterSpawn).ApplyBuffPermanent(Guids.WizardBuff).Build();
     }
+
+    #region Disable
+    // Makes items replaced by ABP unequippable
+    private static void DisableStatItems()
+    {
+      #region Headbands
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfIntelligence2);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfIntelligence4);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfIntelligence6);
+
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfWisdom2);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfWisdom4);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfWisdom6);
+
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfCharisma2);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfCharisma4);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfCharisma6);
+
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfPerfection2);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfPerfection4);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfPerfection6);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfPerfection8);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfPerfection8Extra);
+
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfCharismaIntelligence2);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfCharismaWisdom2);
+      DisableHead(ItemEquipmentHeadRefs.HeadbandOfWisdomIntelligence2);
+      #endregion
+
+      #region Belts
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrength2);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrength4);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrength6);
+
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfDexterity2);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfDexterity4);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfDexterity6);
+
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfConstitution2);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfConstitution4);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfConstitution6);
+
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection2);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection4);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection6);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection8);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection8Extra);
+
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrengthConstitution2);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrengthConstitution4);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrengthConstitution6);
+
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrengthDexterity2);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrengthDexterity4);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfStrengthDexterity6);
+
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfDexterityConstitution2);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfDexterityConstitution4);
+      DisableBelt(ItemEquipmentBeltRefs.BeltOfDexterityConstitution6);
+      #endregion
+
+      #region Amulets / Cloaks / Rings
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor1);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor2);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor3);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor4);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor5);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor6);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor7);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor7Extra);
+
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfMightyFists1);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfMightyFists2);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfMightyFists3);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfMightyFists4);
+      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfMightyFists5);
+
+      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance1);
+      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance2);
+      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance3);
+      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance4);
+      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance5);
+      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance6);
+      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance7);
+      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance7Extra);
+
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection1);
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection1_Prologue);
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection2);
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection3);
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection4);
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection5);
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection6);
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection7);
+      DisableRing(ItemEquipmentRingRefs.RingOfProtection7Extra);
+      #endregion
+    }
+
+    private static void DisableHead(Blueprint<BlueprintReference<BlueprintItemEquipmentHead>> head)
+    {
+      ItemEquipmentHeadConfigurator.For(head).AddComponent<EquipmentRestrictionNoEquip>().Configure();
+    }
+
+    private static void DisableBelt(Blueprint<BlueprintReference<BlueprintItemEquipmentBelt>> belt)
+    {
+      ItemEquipmentBeltConfigurator.For(belt).AddComponent<EquipmentRestrictionNoEquip>().Configure();
+    }
+
+    private static void DisableAmulet(Blueprint<BlueprintReference<BlueprintItemEquipmentNeck>> amulet)
+    {
+      ItemEquipmentNeckConfigurator.For(amulet).AddComponent<EquipmentRestrictionNoEquip>().Configure();
+    }
+
+    private static void DisableCloak(Blueprint<BlueprintReference<BlueprintItemEquipmentShoulders>> cloak)
+    {
+      ItemEquipmentShouldersConfigurator.For(cloak).AddComponent<EquipmentRestrictionNoEquip>().Configure();
+    }
+
+    private static void DisableRing(Blueprint<BlueprintReference<BlueprintItemEquipmentRing>> ring)
+    {
+      ItemEquipmentRingConfigurator.For(ring).AddComponent<EquipmentRestrictionNoEquip>().Configure();
+    }
+    #endregion
 
     private static string Text(string itemName)
     {
