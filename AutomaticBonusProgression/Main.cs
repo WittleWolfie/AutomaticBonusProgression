@@ -65,7 +65,10 @@ namespace AutomaticBonusProgression
             "AutomaticBonusProgression.Strings.LegendaryArmor.json",
             "AutomaticBonusProgression.Strings.LegendaryGifts.json",
             "AutomaticBonusProgression.Strings.LegendaryWeapon.json",
+            "AutomaticBonusProgression.Strings.Settings.json",
             "AutomaticBonusProgression.Strings.UI.json");
+
+          Settings.Init();
 
           Enchantments.Enchantments.Configure();
           AttunementProgression.Configure();

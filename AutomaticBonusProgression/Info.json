@@ -2,9 +2,9 @@
   "Id": "AutomaticBonusProgression",
   "DisplayName": "AutomaticBonusProgression",
   "Author": "WittleWolfie",
-  "Version": "0.1",
+  "Version": "0.8",
   "ManagerVersion": "0.21.3",
-  "Requirements": [ "TabletopTweaks-Core" ],
+  "Requirements": [ "TabletopTweaks-Core", "ModMenu" ],
   "AssemblyName": "AutomaticBonusProgression.dll",
   "EntryMethod": "AutomaticBonusProgression.Main.Load",
   "LoadAfter": ["MewsiferConsole.Mod"] 

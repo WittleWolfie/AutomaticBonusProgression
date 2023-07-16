@@ -28,6 +28,7 @@
     <None Remove="Strings\LegendaryArmor.json" />
     <None Remove="Strings\LegendaryGifts.json" />
     <None Remove="Strings\LegendaryWeapon.json" />
+    <None Remove="Strings\Settings.json" />
     <None Remove="Strings\UI.json" />
   </ItemGroup>
 
@@ -47,6 +48,7 @@
     <EmbeddedResource Include="Strings\Attunement.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Settings.json" />
     <EmbeddedResource Include="Strings\UI.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>

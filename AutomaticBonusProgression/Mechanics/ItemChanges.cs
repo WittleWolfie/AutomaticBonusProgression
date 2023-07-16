@@ -18,6 +18,7 @@ using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Actions;
+using Menu = ModMenu.ModMenu;
 
 namespace AutomaticBonusProgression.Mechanics
 {
@@ -28,12 +29,14 @@ namespace AutomaticBonusProgression.Mechanics
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ItemChanges));
 
+    private static double BaseSellModifier;
+
     internal static void Configure()
     {
       Logger.Log($"Configuring {nameof(ItemChanges)}");
 
-      // TODO: Replace w/ setting to control the modifier
-      Game.Instance.BlueprintRoot.Vendors.SellModifier *= 0.3f;
+      BaseSellModifier = Game.Instance.BlueprintRoot.Vendors.SellModifier;
+      AdjustSellModifier(Settings.GetSellValue());
 
       ConfigureDeathBelt();
       ConfigureDeathRobe();
@@ -45,6 +48,11 @@ namespace AutomaticBonusProgression.Mechanics
       ConfigureHandsomeHats();
       ConfigureDoublingAnnoyance();
       DisableStatItems();
+    }
+
+    internal static void AdjustSellModifier(float modifier)
+    {
+      Game.Instance.BlueprintRoot.Vendors.SellModifier = BaseSellModifier * modifier;
     }
 
     private static void ConfigureDeathBelt()
