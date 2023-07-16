@@ -8,12 +8,8 @@ TODO: Add screenshots
 
 ### Currently in BETA
 
-Planned items before release:
+Additional items planned for release:
 
-* Item Adjustments
-    * There are several items granting bonuses above the typical, e.g. +8 Belt of Perfection where Automatic Bonus Progression is capped at +6. These items should grant stacking bonuses instead, e.g. +8 Belt of Perfection would grant +2 to all physical stats.
-* Money Adjustment
-    * Since money is no longer needed to buy stat equipment, the amount of money you receive is scaled down.
 * Weapon Enchants
     * [Bewildering](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Bewildering/)
     * [Countering](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Countering/)
@@ -60,13 +56,11 @@ I also recommend installing [TabletopTweaks-Base](https://github.com/Vek17/Table
 
 If you do not want to use ModFinder, download [AutomaticBonusProgression.*.zip](https://github.com/WittleWolfie/AutomaticBonusProgression/releases/latest) and install it using Unity Mod Manager. Make sure to install [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core) and [ModMenu](https://github.com/WittleWolfie/ModMenu) as well.
 
-### [Settings are NOT in UMM, they use Mod Menu](#mod-options) 
-
 ## How it works
 
 Automatic Bonus Progression automatically grants stat bonuses usually provided by items which no longer provide them. As a result you are free to equip items based on their special abilities and effects.
 
-*Note: Items in game still list these bonuses in the UI, but they do not apply.*
+*Note: Items in game still list these bonuses in the UI, but they do not apply. I will likely never address this, as it is a huge effort to fix.*
 
 * **Armor Attunement**: *+X Enhancement to Armor*
     * +1 Chainmail
@@ -110,7 +104,7 @@ Automatic Bonus Progression automatically grants stat bonuses usually provided b
 
 Mental Prowess and Physical Prowess allow you to select which ability scores to boost. The bonuses you receive are further customizable using Legendary Gifts, detailed below.
 
-Each Legendary Gift allows you to select a different special bonus. In addition to the Legendary Gifts you receive at level 19 and 20, you receive 2 Legendary Gifts at every Mythic Level for a total of 28.
+Each Legendary Gift allows you to select a different special bonus. In addition to the Legendary Gifts you receive at level 19 and 20, you receive 2 Legendary Gifts at every Mythic Level for a total of 28. If you are on the Legend path, you receive an additional Legendary Gift at level 22 and every two levels after.
 
 ### Legendary Ability
 
@@ -187,6 +181,21 @@ Removes the weapon enhancement bonus penalty applied when using off-hand or seco
     * Increased from `5/magic` to `10/magic`
 * Gold Acquisition Reduced
     * Reduced by 30% since buying magic items is less relevant
+* Trickster's Mythic Trick: Arcana
+    * Rank 1 - Increases the max enhancement cost you can apply to your weapons and armor by 1. This replaces the base game effect.
+    * Rank 3 - Increases the max enhancement cost you can apply to your weapons and armor by 2, including the bonus from Rank 1. This is in addition to the base game effect.
+* Items
+    * Sell prices are reduced by 30% (adjustable)
+    * Items that are replaced by ABP are unequippable
+    * Gloves of Dexterity now grants its enhancement bonus to Trickery and Mobility instead of Dexterity
+    * Hat of Handsomeness (in any color) now grants its enhancement bonus to Persuasion instead of Charisma
+    * Clasp of Death Belt now grants an untyped +2 to Intelligence, Wisdom, and Charisma instead of a +6 enhancement bonus
+    * Clasp of Death Robe now grants an untyped +2 to Intelligence, Wisdom, and Charisma instead of a +6 enhancement bonus
+    * Darkness Caress now grants an untyped +2 to Intelligence, Wisdom, and Charisma instead of a +8 enhancement bonus
+    * Doubling Annoyance now grants an untyped +6 to the summoned wizards' ability scores
+    * Legendary Bracers now increase your deflection bonus to AC, natural armor enhancement bonus to AC, and resistance bonus on saving throws by 1. It also grants a +2 bonus to all ability scores.
+    * Perfect Tiara of Channeling now grants an untyped +2 to Intelligence, Wisdom, and Charisma instead of a +8 enhancement bonus
+    * Belt of Primal Force now grants its wearer an untyped +2 to Strength, Dexterity, and Constitution instead of a +8 enhancement bonus 
 
 ## Reporting Problems
 
