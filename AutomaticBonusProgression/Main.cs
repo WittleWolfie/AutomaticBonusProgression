@@ -1,5 +1,6 @@
 using AutomaticBonusProgression.Enchantments;
 using AutomaticBonusProgression.Features;
+using AutomaticBonusProgression.Mechanics;
 using AutomaticBonusProgression.UI;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Root;
@@ -59,6 +60,7 @@ namespace AutomaticBonusProgression
           // First strings
           LocalizationTool.LoadEmbeddedLocalizationPacks(
             "AutomaticBonusProgression.Strings.Attunement.json",
+            "AutomaticBonusProgression.Strings.Items.json",
             "AutomaticBonusProgression.Strings.LegendaryArmor.json",
             "AutomaticBonusProgression.Strings.LegendaryGifts.json",
             "AutomaticBonusProgression.Strings.LegendaryWeapon.json",
@@ -67,6 +69,7 @@ namespace AutomaticBonusProgression
           Enchantments.Enchantments.Configure();
           AttunementProgression.Configure();
           LegendaryGifts.Configure();
+          ItemChanges.Configure();
         }
         catch (Exception e)
         {
