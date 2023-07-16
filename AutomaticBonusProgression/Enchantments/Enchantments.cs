@@ -72,6 +72,7 @@ namespace AutomaticBonusProgression.Enchantments
 
         // Replacements
         IncreasedStatBonus.Configure();
+        SkillBonus.Configure();
         StatBonus.Configure();
       }
       catch (Exception e)

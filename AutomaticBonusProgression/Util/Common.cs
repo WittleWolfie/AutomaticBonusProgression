@@ -490,6 +490,36 @@ namespace AutomaticBonusProgression.Util
         return _increaseResist1;
       }
     }
+
+    private static BlueprintEquipmentEnchantment _trickery2;
+    internal static BlueprintEquipmentEnchantment Trickery2
+    {
+      get
+      {
+        _trickery2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Trickery2);
+        return _trickery2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _mobility2;
+    internal static BlueprintEquipmentEnchantment Mobility2
+    {
+      get
+      {
+        _mobility2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Mobility2);
+        return _mobility2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _persuasion2;
+    internal static BlueprintEquipmentEnchantment Persuasion2
+    {
+      get
+      {
+        _persuasion2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Persuasion2);
+        return _persuasion2;
+      }
+    }
     #endregion
     #endregion
 

@@ -27,5 +27,15 @@
   {
     "Key": "ABP.Item.PrimalForce",
     "enGB": "This belt once worn by a notorious Gorilla King. To unlock its true powers, one needs to become one with their true nature. When worn by a shifter who has a final aspect (or any other 20 level capstone class ability), the belt grants its wearer a +2 bonus to Strength, Dexterity, and Constitution, as well as the ability to once per day emit a devastating cry. It deals 10d12 sonic damage to every enemy in a 30 feet range, stunning them for 1d4 rounds (a successful Fortitude saving throw halves the damage and negates the stunned condition). Every ally in the same range instead receives a +4 morale bonus on all attack and damage rolls for one minute."
+  },
+
+  {
+    "Key": "ABP.Item.GlovesOfDex",
+    "enGB": "These gloves grant its wearer a +2 enhancement bonus to Trickery and Mobility. Bonuses of the same type usually don't stack."
+  },
+
+  {
+    "Key": "ABP.Item.HandsomeHat",
+    "enGB": "The wearer of this hat becomes too handsome for her own benefit. The hat grants its wearer a +2 enhancement bonus to Persuasion. Bonuses of the same type usually don't stack."
   }
 ]

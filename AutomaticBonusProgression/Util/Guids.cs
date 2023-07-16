@@ -50,6 +50,10 @@
     internal const string IncreaseResist1 = "7c9d64c3-8569-40af-b3c7-e8a0fa0cf375";
     internal const string IncreaseDeflection1 = "cbc9cab4-aaa4-47c8-9182-41322b0dc160";
     internal const string IncreaseNaturalArmor1 = "f2a8ae72-baab-4604-879b-7b181025bad6";
+
+    internal const string Trickery2 = "a4737149-4b0e-4030-afe5-e4d89abea53e";
+    internal const string Mobility2 = "a4dad0a8-b298-4642-b2dd-199a02294967";
+    internal const string Persuasion2 = "43ea6c62-adac-4afb-95e3-ed1eeb874404";
     #endregion
 
     #region Legendary Gifts

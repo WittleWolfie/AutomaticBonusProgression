@@ -2,7 +2,10 @@
 using BlueprintCore.Blueprints.Configurators.Items.Equipment;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils;
 using Kingmaker;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.FactLogic;
@@ -29,6 +32,8 @@ namespace AutomaticBonusProgression.Mechanics
       ConfigureLegendaryBracers();
       ConfigurePerfectTiara();
       ConfigurePrimalForce();
+      ConfigureGlovesOfDex();
+      ConfigureHandsomeHats();
     }
 
     private static void ConfigureDeathBelt()
@@ -99,6 +104,31 @@ namespace AutomaticBonusProgression.Mechanics
 
       ItemEquipmentBeltConfigurator.For(ItemEquipmentBeltRefs.BeltOfPrimalForceItem)
         .SetDescriptionText(Text("PrimalForce"))
+        .Configure();
+    }
+
+    private static void ConfigureGlovesOfDex()
+    {
+      ItemEquipmentGlovesConfigurator.For(ItemEquipmentGlovesRefs.GlovesOfDexterityItem)
+        .SetDescriptionText(Text("GlovesOfDex"))
+        .SetEnchantments(Common.Trickery2, Common.Mobility2)
+        .Configure();
+    }
+
+    private static void ConfigureHandsomeHats()
+    {
+      ConfigureHat(ItemEquipmentHeadRefs.HatOfHandsomenessItem);
+      ConfigureHat(ItemEquipmentHeadRefs.RedHatOfHandsomenessItem);
+      ConfigureHat(ItemEquipmentHeadRefs.BlueHatOfHandsomenessItem);
+      ConfigureHat(ItemEquipmentHeadRefs.GreenHatOfHandsomenessItem);
+      ConfigureHat(ItemEquipmentHeadRefs.BlackHatOfHandsomenessItem);
+    }
+
+    private static void ConfigureHat(Blueprint<BlueprintReference<BlueprintItemEquipmentHead>> hat)
+    {
+      ItemEquipmentHeadConfigurator.For(hat)
+        .SetDescriptionText(Text("HandsomeHat"))
+        .SetEnchantments(Common.Persuasion2)
         .Configure();
     }
 
