@@ -2,7 +2,7 @@
 
 An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder's [Automatic Bonus Progression](https://www.d20pfsrd.com/gamemastering/other-rules/unchained-rules/automatic-bonus-progression/) ruleset.
 
-TODO: Add screenshots
+![Progression screenshot](https://github.com/WittleWolfie/AutomaticBonusProgression/blob/main/screenshots/progression.png)
 
 ### This mod creates a save dependency. Once you save with this mod enabled it must remain enabled or you will lose access to the save.
 
@@ -106,13 +106,29 @@ Automatic Bonus Progression automatically grants stat bonuses usually provided b
 
 Mental Prowess and Physical Prowess allow you to select which ability scores to boost. The bonuses you receive are further customizable using Legendary Gifts, detailed below.
 
+![Legendary gifts screenshot](https://github.com/WittleWolfie/AutomaticBonusProgression/blob/main/screenshots/legendary_gifts.png)
+
 Each Legendary Gift allows you to select a different special bonus. In addition to the Legendary Gifts you receive at level 19 and 20, you receive 2 Legendary Gifts at every Mythic Level for a total of 28. If you are on the Legend path, you receive an additional Legendary Gift at level 22 and every two levels after.
 
 ### Legendary Ability
 
 Gain a +1 inherent bonus to any ability score. You can select this legendary gift multiple times, and it stacks up to +5 in any one ability score.
 
+### Legendary Prowess
+
+This allows you to increase the bonuses granted by Physical Prowess or Mental Prowess. You cannot increase the bonus to any single ability score above +6.
+
+### Legendary Shieldmaster
+
+Removes the armor enhancement bonus penalty applied when using a shield.
+
+### Legendary Twin Weapons
+
+Removes the weapon enhancement bonus penalty applied when using off-hand or secondary weapons.
+
 ### Legendary Enchantments
+
+![Attunement screenshot](https://github.com/WittleWolfie/AutomaticBonusProgression/blob/main/screenshots/attunement.png)
 
 Allows you to apply enchantments to your equipment (Armor, Shield, Weapon, Off-Hand). Each enchantment has an Enhancement Cost and you can apply enchantments with a total cost equal to your rank in the corresponding feature (max 5).
 
@@ -163,18 +179,6 @@ Allows you to apply enchantments to your equipment (Armor, Shield, Weapon, Off-H
 * [Vicious](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Vicious/)
 * [Vorpal](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Vorpal/)
 
-### Legendary Prowess
-
-This allows you to increase the bonuses granted by Physical Prowess or Mental Prowess. You cannot increase the bonus to any single ability score above +6.
-
-### Legendary Shieldmaster
-
-Removes the armor enhancement bonus penalty applied when using a shield.
-
-### Legendary Twin Weapons
-
-Removes the weapon enhancement bonus penalty applied when using off-hand or secondary weapons.
-
 ## Base Game Changes
 
 * Spell Resistance Enchantment
@@ -203,15 +207,7 @@ Removes the weapon enhancement bonus penalty applied when using off-hand or seco
 
 ### First, go to Settings > Mods > Automatic Bonus Progression and turn on "Enable Detailed Logs"
 
-**Follow this guide: [So you want to report a WotR mod bug?](https://github.com/Pathfinder-WOTR-Modding-Community/MewsiferConsole/blob/main/ModBugReports.md)** Ideally include a save file.
-
-1. Use [ModFinder](https://github.com/Pathfinder-WOTR-Modding-Community/ModFinder) to install [Mewsifer Console](https://github.com/Pathfinder-WOTR-Modding-Community/MewsiferConsole) and Mewsifer Console Menu
-2. Reproduce the issue in-game
-3. Open Settings > Mods > Mewsifer Console and select "Mod Bug Report"
-    * ![Mewsifer Console Menu screenshot](https://github.com/WittleWolfie/CharacterOptionsPlus/blob/main/screenshots/bug_report.png)
-4. File an [issue on GitHub](https://github.com/WittleWolfie/CharacterOptionsPlus/issues/new?template=bug_report.md&title=%5BBUG%5D) and attach the generated bug report
-5. Include your save file in the bug report
-    * Saves are stored in `%UserProfile%\AppData\LocalLow\Owlcat Games\Pathfinder Wrath Of The Righteous\Saved Games`
+**Follow this guide: [So you want to report a WotR mod bug?](https://github.com/Pathfinder-WOTR-Modding-Community/MewsiferConsole/blob/main/ModBugReports.md)** Include a save file demonstrating the problem, if possible.
     
 ### Mod Options
 
