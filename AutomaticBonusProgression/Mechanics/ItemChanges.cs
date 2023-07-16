@@ -44,6 +44,7 @@ namespace AutomaticBonusProgression.Mechanics
       ConfigureGlovesOfDex();
       ConfigureHandsomeHats();
       ConfigureDoublingAnnoyance();
+      DisableStatItems();
     }
 
     private static void ConfigureDeathBelt()
