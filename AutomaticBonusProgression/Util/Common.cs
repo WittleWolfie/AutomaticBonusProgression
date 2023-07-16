@@ -1,6 +1,7 @@
 ﻿using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
@@ -393,6 +394,68 @@ namespace AutomaticBonusProgression.Util
       {
         _shieldmaster ??= BlueprintTool.Get<BlueprintFeature>(Guids.LegendaryShieldmaster);
         return _shieldmaster;
+      }
+    }
+    #endregion
+
+    #region Enchantment Replacements
+    private static BlueprintEquipmentEnchantment _str2;
+    internal static BlueprintEquipmentEnchantment Str2
+    {
+      get
+      {
+        _str2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Str2);
+        return _str2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _dex2;
+    internal static BlueprintEquipmentEnchantment Dex2
+    {
+      get
+      {
+        _dex2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Dex2);
+        return _dex2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _con2;
+    internal static BlueprintEquipmentEnchantment Con2
+    {
+      get
+      {
+        _con2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Con2);
+        return _con2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _int2;
+    internal static BlueprintEquipmentEnchantment Int2
+    {
+      get
+      {
+        _int2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Int2);
+        return _int2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _wis2;
+    internal static BlueprintEquipmentEnchantment Wis2
+    {
+      get
+      {
+        _wis2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Wis2);
+        return _wis2;
+      }
+    }
+
+    private static BlueprintEquipmentEnchantment _cha2;
+    internal static BlueprintEquipmentEnchantment Cha2
+    {
+      get
+      {
+        _cha2 ??= BlueprintTool.Get<BlueprintEquipmentEnchantment>(Guids.Cha2);
+        return _cha2;
       }
     }
     #endregion

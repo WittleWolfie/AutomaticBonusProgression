@@ -39,6 +39,15 @@
     internal const string ConProwess = "2ca04f63-07ef-4ed5-9796-3ad1e4b04b55";
     #endregion
 
+    #region Item Changes
+    internal const string Str2 = "2516a223-396e-4ee7-b5bf-a8dfafe4c020";
+    internal const string Dex2 = "ff6596ab-3f23-44cf-87e7-ae40ff936e48";
+    internal const string Con2 = "d6a4aadd-2e68-464b-93be-5a5e7d9a1713";
+    internal const string Int2 = "ab2488ac-4f43-436f-8d4c-4c6ddc0a64de";
+    internal const string Wis2 = "ee8bb9bb-be97-4fc9-a48d-7cc84dd5473d";
+    internal const string Cha2 = "e08b8724-d021-4610-9901-63672b011c4c";
+    #endregion
+
     #region Legendary Gifts
     internal const string LegendaryStrength = "b8c3a13e-ba3e-47a5-a1fa-f2016d0fb682";
     internal const string LegendaryDexterity = "64cd8ffd-134a-4e63-8e7e-1a6ba328a6b0";

@@ -21,16 +21,27 @@ namespace AutomaticBonusProgression.Mechanics
 
       // TODO: Replace w/ setting to control the modifier
       Game.Instance.BlueprintRoot.Vendors.SellModifier *= 0.3f;
+
+      ConfigureDeathBelt();
+      ConfigureDeathRobe();
     }
 
     private static void ConfigureDeathBelt()
     {
-      ItemEquipmentShirtConfigurator.For(ItemEquipmentShirtRefs.ClaspOfDeathRobeItem);
+      ItemEquipmentBeltConfigurator.For(ItemEquipmentBeltRefs.ClaspOfDeathItem)
+        .SetDescriptionText("ABP.Item.DeathBelt")
+        .SetEnchantments(
+          EquipmentEnchantmentRefs.NegativeChanneling2.ToString(), Common.Int2, Common.Wis2, Common.Cha2)
+        .Configure();
     }
 
     private static void ConfigureDeathRobe()
     {
-
+      ItemEquipmentShirtConfigurator.For(ItemEquipmentShirtRefs.ClaspOfDeathRobeItem)
+        .SetDescriptionText("ABP.Item.DeathRobe")
+        .SetEnchantments(
+          EquipmentEnchantmentRefs.NegativeChanneling2.ToString(), Common.Int2, Common.Wis2, Common.Cha2)
+        .Configure();
     }
   }
 }
