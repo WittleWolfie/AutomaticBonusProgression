@@ -54,6 +54,8 @@
     internal const string Trickery2 = "a4737149-4b0e-4030-afe5-e4d89abea53e";
     internal const string Mobility2 = "a4dad0a8-b298-4642-b2dd-199a02294967";
     internal const string Persuasion2 = "43ea6c62-adac-4afb-95e3-ed1eeb874404";
+
+    internal const string WizardBuff = "8483953a-2a86-44d6-97d3-6d00a0e9a904";
     #endregion
 
     #region Legendary Gifts

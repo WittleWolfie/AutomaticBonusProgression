@@ -1,14 +1,22 @@
 ﻿using AutomaticBonusProgression.Util;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Configurators.Items.Equipment;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Equipment;
+using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics.Actions;
 
 namespace AutomaticBonusProgression.Mechanics
 {
@@ -34,6 +42,7 @@ namespace AutomaticBonusProgression.Mechanics
       ConfigurePrimalForce();
       ConfigureGlovesOfDex();
       ConfigureHandsomeHats();
+      ConfigureDoublingAnnoyance();
     }
 
     private static void ConfigureDeathBelt()
@@ -130,6 +139,48 @@ namespace AutomaticBonusProgression.Mechanics
         .SetDescriptionText(Text("HandsomeHat"))
         .SetEnchantments(Common.Persuasion2)
         .Configure();
+    }
+
+    private const string WizardBuff = "ItemChanges.WizardBuff";
+    private static void ConfigureDoublingAnnoyance()
+    {
+      BuffConfigurator.New(WizardBuff, Guids.WizardBuff)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .AddStatBonus(stat: StatType.Strength, value: 6, descriptor: ModifierDescriptor.UntypedStackable)
+        .AddStatBonus(stat: StatType.Dexterity, value: 6, descriptor: ModifierDescriptor.UntypedStackable)
+        .AddStatBonus(stat: StatType.Constitution, value: 6, descriptor: ModifierDescriptor.UntypedStackable)
+        .AddStatBonus(stat: StatType.Intelligence, value: 6, descriptor: ModifierDescriptor.UntypedStackable)
+        .AddStatBonus(stat: StatType.Wisdom, value: 6, descriptor: ModifierDescriptor.UntypedStackable)
+        .AddStatBonus(stat: StatType.Charisma, value: 6, descriptor: ModifierDescriptor.UntypedStackable)
+        .Configure();
+
+      AbilityConfigurator.For(AbilityRefs.TricksterSummonPerpetuallyAnnoyedWizard)
+        .EditComponent<AbilityEffectRunAction>(ApplyWizardBuff)
+        .Configure();
+
+      ItemEquipmentHeadConfigurator.For(ItemEquipmentHeadRefs.DoublingAnnoyanceItem)
+        .SetDescriptionText(Text("DoublingAnnoyance"))
+        .Configure();
+    }
+
+    private static void ApplyWizardBuff(AbilityEffectRunAction runAction)
+    {
+      var conditional = runAction.Actions.Actions[0] as Conditional;
+      if (conditional is null)
+      {
+        Logger.Warning($"Missing spawn conditional for Perpetually Annoyed Wizard: {runAction.Actions.Actions[0]}");
+        return;
+      }
+
+      var spawnMonsters = conditional.IfTrue.Actions[0] as ContextActionSpawnMonster;
+      if (spawnMonsters is null)
+      {
+        Logger.Warning($"Missing spawn action for Perpetually Annoyed Wizard: {conditional.IfTrue.Actions[0]}");
+        return;
+      }
+
+      spawnMonsters.AfterSpawn =
+        ActionsBuilder.New().AddAll(spawnMonsters.AfterSpawn).ApplyBuffPermanent(Guids.WizardBuff).Build();
     }
 
     private static string Text(string itemName)

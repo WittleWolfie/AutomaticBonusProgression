@@ -37,5 +37,10 @@
   {
     "Key": "ABP.Item.HandsomeHat",
     "enGB": "The wearer of this hat becomes too handsome for her own benefit. The hat grants its wearer a +2 enhancement bonus to Persuasion. Bonuses of the same type usually don't stack."
+  },
+
+  {
+    "Key": "ABP.Item.DoublingAnnoyance",
+    "enGB": "Whenever the wearer of this headband summons a Perpetually Annoyed Wizard, they actually summon two wizards instead of one. Additionally, the wizards receive a +6 bonus to all ability scores. Can only be equipped by a player character."
   }
 ]
