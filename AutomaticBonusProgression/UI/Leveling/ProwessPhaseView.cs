@@ -195,12 +195,18 @@ namespace AutomaticBonusProgression.UI.Leveling
 
     private static bool IsPhysicalProwessAvailable(LevelUpController levelUpController)
     {
+      if (levelUpController.State.Mode == LevelUpState.CharBuildMode.Mythic)
+        return false;
+
       var level = levelUpController.State.NextCharacterLevel;
       return SelectProwess.PhysicalProwessLevels.Contains(level);
     }
 
     private static bool IsMentalProwessAvailable(LevelUpController levelUpController)
     {
+      if (levelUpController.State.Mode == LevelUpState.CharBuildMode.Mythic)
+        return false;
+
       var level = levelUpController.State.NextCharacterLevel;
       return SelectProwess.MentalProwessLevels.Contains(level);
     }
