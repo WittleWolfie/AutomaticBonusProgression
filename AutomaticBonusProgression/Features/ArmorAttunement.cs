@@ -163,7 +163,7 @@ namespace AutomaticBonusProgression.Features
 
       private void UpdateUnarmoredBonus()
       {
-        if (Owner.Body.SecondaryHand.HasShield || Owner.Body.Armor.HasArmor)
+        if (Owner.Body.Armor.HasArmor)
         {
           RemoveBonus();
           return;
