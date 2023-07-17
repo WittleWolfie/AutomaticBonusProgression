@@ -31,12 +31,14 @@ namespace AutomaticBonusProgression.Components
       {
         if (!Common.IsAffectedByABP(Owner))
         {
-          Logger.Verbose(() => $"Not applying {Feature.Get().name} to {Owner}");
+          Logger.Verbose(() => $"Not applying {Feature.Get().name} to {Owner.CharacterName}");
           return;
         }
 
-        Logger.Verbose(() => $"Applying {Feature.Get().name} to {Owner}");
-        Data.AppliedFact = Owner.AddFact(Feature);
+        var rank = Fact.GetRank();
+        Logger.Verbose(() => $"Applying {Feature.Get().name} [{rank}] to {Owner.CharacterName}");
+        for (int i = 0; i < rank; i++)
+          Data.AppliedFact = Owner.AddFact(Feature);
       }
       catch (Exception e)
       {
@@ -50,7 +52,7 @@ namespace AutomaticBonusProgression.Components
       {
         if (Data.AppliedFact is not null)
         {
-          Logger.Verbose(() => $"Removing {Feature.Get().name} from {Owner}");
+          Logger.Verbose(() => $"Removing {Feature.Get().name} from {Owner.CharacterName}");
           Owner.RemoveFact(Data.AppliedFact);
           Data.AppliedFact = null;
         }

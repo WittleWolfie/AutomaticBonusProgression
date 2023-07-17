@@ -172,9 +172,10 @@ namespace AutomaticBonusProgression.Features
         if (Data.AppliedModifier is not null)
           return;
 
-        Logger.Verbose(() => $"Granting {Owner} attunement while unarmored.");
+        var acBonus = Fact.GetRank();
+        Logger.Verbose(() => $"Granting {Owner.CharacterName} attunement while unarmored: +{acBonus}");
         Data.AppliedModifier =
-          Owner.Stats.AC.AddModifier(Fact.GetRank(), source: Runtime, desc: ModifierDescriptor.ArmorEnhancement);
+          Owner.Stats.AC.AddModifier(acBonus, source: Runtime, desc: ModifierDescriptor.ArmorEnhancement);
       }
 
       private void RemoveBonus()
@@ -182,7 +183,7 @@ namespace AutomaticBonusProgression.Features
         if (Data.AppliedModifier is null)
           return;
 
-        Logger.Verbose(() => $"Removing {Owner} unarmored bonus");
+        Logger.Verbose(() => $"Removing {Owner.CharacterName} unarmored bonus");
         Owner.Stats.AC.RemoveModifier(Data.AppliedModifier);
         Data.AppliedModifier = null;
       }
