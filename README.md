@@ -58,6 +58,8 @@ I also recommend installing [TabletopTweaks-Base](https://github.com/Vek17/Table
 
 If you do not want to use ModFinder, download [AutomaticBonusProgression.*.zip](https://github.com/WittleWolfie/AutomaticBonusProgression/releases/latest) and install it using Unity Mod Manager. Make sure to install [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core) and [ModMenu](https://github.com/WittleWolfie/ModMenu) as well.
 
+### If you use this on an existing save, you'll need to respec both regular and mythic paths to get full functionality.
+
 ## How it works
 
 Automatic Bonus Progression automatically grants stat bonuses usually provided by items which no longer provide them. As a result you are free to equip items based on their special abilities and effects.
