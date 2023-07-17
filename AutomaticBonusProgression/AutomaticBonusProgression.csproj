@@ -187,13 +187,11 @@
     <ItemGroup>
       <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
       <ModConfig Include="$(OutputPath)\Info.json" />
-      <Strings Include="$(OutputPath)\LocalizedStrings.json" />
       <Assets Include="$(OutputPath)\*_assets" />
     </ItemGroup>
 
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
-    <Copy SourceFiles="@(Strings)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
     <Copy SourceFiles="@(Assets)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
     <ZipDirectory SourceDirectory="$(OutputPath)\$(AssemblyName)" DestinationFile="$(OutputPath)\$(AssemblyName).zip" Overwrite="true" />
   </Target>
