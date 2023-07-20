@@ -110,6 +110,8 @@ namespace AutomaticBonusProgression.Features
           mentalProwess,
           physicalProwess)
         .Configure();
+
+      ApplyToCompanions();
     }
 
     private static BlueprintFeature ConfigureEnhancementCalculator()
