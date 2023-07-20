@@ -1,6 +1,6 @@
 # Automatic Bonus Progression
 
-An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder's [Automatic Bonus Progression](https://www.d20pfsrd.com/gamemastering/other-rules/unchained-rules/automatic-bonus-progression/) ruleset.
+An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder's [Automatic Bonus Progression](https://www.d20pfsrd.com/gamemastering/other-rules/unchained-rules/automatic-bonus-progression/) ruleset. **This is not compatible with controllers.**
 
 ![Progression screenshot](https://github.com/WittleWolfie/AutomaticBonusProgression/blob/main/screenshots/progression.png)
 
@@ -52,6 +52,8 @@ File a [bug](https://github.com/WittleWolfie/AutomaticBonusProgression/issues/ne
 Download [AutomaticBonusProgression.zip](https://github.com/WittleWolfie/AutomaticBonusProgression/releases/latest) and install it using ModFinder or Unity Mod Manager. Make sure to install [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core) and [ModMenu](https://github.com/WittleWolfie/ModMenu) as well.
 
 ### If you use this on an existing save, you'll need to respec both regular and mythic paths to get full functionality.
+
+### This doesn't work with controllers. You have to use mouse and keyboard.
 
 ## How it works
 
