@@ -1,6 +1,6 @@
 # Automatic Bonus Progression
 
-An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder's [Automatic Bonus Progression](https://www.d20pfsrd.com/gamemastering/other-rules/unchained-rules/automatic-bonus-progression/) ruleset.
+An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder's [Automatic Bonus Progression](https://www.d20pfsrd.com/gamemastering/other-rules/unchained-rules/automatic-bonus-progression/) ruleset. **This is not compatible with controllers.**
 
 ![Progression screenshot](https://github.com/WittleWolfie/AutomaticBonusProgression/blob/main/screenshots/progression.png)
 
@@ -49,16 +49,11 @@ File a [bug](https://github.com/WittleWolfie/AutomaticBonusProgression/issues/ne
 
 ## Installation
 
-1. Download and install [Unity Mod Manager](https://github.com/newman55/unity-mod-manager) (min v0.23)
-2. Install [ModFinder](https://github.com/Pathfinder-WOTR-Modding-Community/ModFinder) and use it to search for Character Options+
-3. Click "Install"
-    * If you don't have [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core) and [ModMenu](https://github.com/WittleWolfie/ModMenu) already, install them using ModFinder
-
-I also recommend installing [TabletopTweaks-Base](https://github.com/Vek17/TabletopTweaks-Base) and [TabletopTweaks-Reworks](https://github.com/Vek17/TabletopTweaks-Reworks). They are not required but I developed the mod using them and there may bugs if you use it without them.
-
-If you do not want to use ModFinder, download [AutomaticBonusProgression.*.zip](https://github.com/WittleWolfie/AutomaticBonusProgression/releases/latest) and install it using Unity Mod Manager. Make sure to install [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core) and [ModMenu](https://github.com/WittleWolfie/ModMenu) as well.
+Download [AutomaticBonusProgression.zip](https://github.com/WittleWolfie/AutomaticBonusProgression/releases/latest) and install it using ModFinder or Unity Mod Manager. Make sure to install [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core) and [ModMenu](https://github.com/WittleWolfie/ModMenu) as well.
 
 ### If you use this on an existing save, you'll need to respec both regular and mythic paths to get full functionality.
+
+### This doesn't work with controllers. You have to use mouse and keyboard.
 
 ## How it works
 
