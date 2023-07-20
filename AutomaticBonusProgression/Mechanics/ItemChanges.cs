@@ -8,6 +8,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
+using BlueprintCore.Utils.Types;
 using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Equipment;
@@ -17,6 +18,7 @@ using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Menu = ModMenu.ModMenu;
 
@@ -190,7 +192,10 @@ namespace AutomaticBonusProgression.Mechanics
       }
 
       spawnMonsters.AfterSpawn =
-        ActionsBuilder.New().AddAll(spawnMonsters.AfterSpawn).ApplyBuffPermanent(Guids.WizardBuff).Build();
+        ActionsBuilder.New()
+          .AddAll(spawnMonsters.AfterSpawn)
+          .ApplyBuff(Guids.WizardBuff, durationValue: ContextDuration.Fixed(24, DurationRate.Hours))
+          .Build();
     }
 
     #region Disable

@@ -1,3 +1,8 @@
+## v0.8.2
+
+* New Bugfixes
+    * Patches a compatibility issue w/ TabletopTweaks-Base
+
 ## v0.8.1
 
 ### You will need to respec for the bonus value fix to work.
