@@ -2,6 +2,7 @@
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Root;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
 using Kingmaker.UI;
 using Kingmaker.UI.Common;
 using Kingmaker.UI.MVVM._PCView.CharGen.Phases.AbilityScores;
@@ -13,6 +14,7 @@ using Kingmaker.UnitLogic;
 using Owlcat.Runtime.UI.Controls.Other;
 using Owlcat.Runtime.UI.MVVM;
 using Owlcat.Runtime.UI.Tooltips;
+using System;
 using System.Linq;
 using TMPro;
 using UniRx;
@@ -215,10 +217,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       TryShowTooltip();
     }
 
+    private static readonly Func<ModifiableValue.Modifier, bool> FilterIsPermanent =
+      (m) => m.ModDescriptor == ModifierDescriptor.Inherent || m.ModDescriptor == ModifierDescriptor.Racial;
     private void UpdateValues()
     {
-      StatValue.Value =
-        Stat.Value.PermanentValue + Common.GetProwessBonus(Stat.Value) + Common.GetLegendaryBonus(Stat.Value);
+      var permanentValue = Stat.Value.ApplyModifiersFiltered(Stat.Value.BaseValue, FilterIsPermanent); ;
+      StatValue.Value = permanentValue + Common.GetProwessBonus(Stat.Value);
       Modifier.Value = (StatValue.Value - 10) / 2;
       UpdateEligibility();
     }
