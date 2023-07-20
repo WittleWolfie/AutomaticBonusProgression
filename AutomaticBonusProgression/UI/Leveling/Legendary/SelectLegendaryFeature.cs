@@ -37,7 +37,10 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public bool Check(LevelUpState state, UnitDescriptor unit)
     {
-      return State.CanSelectFeature(Feature, checkGifts: false);
+      if (!Feature.MeetsPrerequisites(selectionState: null, unit: unit, state: state, fromProgression: false))
+        return false;
+
+      return !unit.HasFact(Feature);
     }
 
     public void PostLoad() { }
