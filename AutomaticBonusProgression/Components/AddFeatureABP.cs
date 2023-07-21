@@ -3,6 +3,8 @@ using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem;
+using Kingmaker.EntitySystem.Entities;
+using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
 using Newtonsoft.Json;
 using System;
@@ -14,7 +16,7 @@ namespace AutomaticBonusProgression.Components
   /// is probably better than the alternative which means it applies to literally every unit. 
   /// </summary>
   [TypeId("8d011154-8225-4a40-bdc4-d3c9735884b1")]
-  internal class AddFeatureABP : UnitFactComponentDelegate<AddFeatureABP.AddFeatureABPData>
+  internal class AddFeatureABP : UnitFactComponentDelegate<AddFeatureABP.AddFeatureABPData>, IPartyHandler
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddFeatureABP));
 
@@ -23,6 +25,26 @@ namespace AutomaticBonusProgression.Components
     internal AddFeatureABP(Blueprint<BlueprintFeatureReference> feature)
     {
       Feature = feature.Reference;
+    }
+
+    public void HandleAddCompanion(UnitEntityData unit)
+    {
+      if (unit == Owner)
+        OnActivate();
+    }
+
+    public void HandleCapitalModeChanged() {}
+
+    public void HandleCompanionActivated(UnitEntityData unit)
+    {
+      if (unit == Owner)
+        OnActivate();
+    }
+
+    public void HandleCompanionRemoved(UnitEntityData unit, bool stayInGame)
+    {
+      if (unit == Owner)
+        OnDeactivate();
     }
 
     public override void OnActivate()
