@@ -615,16 +615,12 @@ namespace AutomaticBonusProgression.Features
         Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom,
         Guids.LegendaryConstitution, Guids.LegendaryConstitution);
 
-      // TODO: Need to use entirely new feature list entirely for the AddABPSelections implementation to work
       // Rekarth - DLC
       // Rekarth uses the same feature list shared by NPCs, so create a new one
       var rekarthList = FeatureConfigurator.New("Rekarth.ABP.FeatureList", Guids.Rekarth_FeatureList)
-        .CopyFrom(FeatureRefs.Scout_FeatureList)
+        .CopyFrom(FeatureRefs.Scout_FeatureList, c => true)
         .Configure();
-      UnitConfigurator.For(UnitRefs.Rekarth_companion)
-        .EditComponent<AddFacts>(
-          c => c.m_Facts = CommonTool.Append(c.m_Facts, rekarthList.ToReference<BlueprintUnitFactReference>()))
-        .Configure();
+      UnitConfigurator.For(UnitRefs.Rekarth_companion).SetAddFacts(rekarthList).Configure();
       ApplyToCompanion(rekarthList,
         physical7: StatType.Dexterity,
         physical12: StatType.Dexterity,
@@ -637,7 +633,22 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Intelligence,
         mental17: StatType.Charisma,
-        mental18: StatType.Wisdom);
+        mental18: StatType.Wisdom,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.StrProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryMentalProwess, Guids.ConProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (15)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution, Guids.LegendaryConstitution,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom);
 
       // Trever - DLC
       ApplyToCompanion(FeatureRefs.Trever_FeatureList,
@@ -652,7 +663,23 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Charisma,
         mental17: StatType.Wisdom,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.DexProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        // Shieldmaster (1)
+        Guids.LegendaryShieldmaster,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        // Ability Scores (9)
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution);
     }
 
     private static void ApplyToCompanion(
