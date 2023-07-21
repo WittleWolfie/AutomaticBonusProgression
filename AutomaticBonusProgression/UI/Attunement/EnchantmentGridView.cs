@@ -76,6 +76,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
     private void Refresh()
     {
+      EmptyText.localPosition = Vector3.zero;
       EmptyText.gameObject.SetActive(!ViewModel.AvailableEnchantments.Any());
 
       ViewModel.AvailableEnchantments.ForEach(
