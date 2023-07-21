@@ -37,7 +37,23 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Intelligence,
         mental15: StatType.Wisdom,
         mental17: StatType.Charisma,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (4)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryMentalProwess, Guids.IntProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (14)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryIntelligence, Guids.LegendaryIntelligence,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom);
 
       // Arueshalae Evil
       ApplyToCompanion(FeatureRefs.ArueshalaeEvil_FeatureList,
@@ -52,7 +68,23 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Intelligence,
         mental15: StatType.Wisdom,
         mental17: StatType.Charisma,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (4)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryMentalProwess, Guids.IntProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (14)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryIntelligence, Guids.LegendaryIntelligence,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom);
 
       // Camellia
       ApplyToCompanion(FeatureRefs.Camelia_FeatureList,
@@ -67,7 +99,23 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Intelligence,
         mental15: StatType.Wisdom,
         mental17: StatType.Charisma,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (2)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryMentalProwess, Guids.IntProwess,
+        // Shieldmaster (1)
+        Guids.LegendaryShieldmaster,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        // Ability Scores (10)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom,
+        Guids.LegendaryCharisma,
+        Guids.LegendaryStrength);
 
       // Ciar
       ApplyToCompanion(FeatureRefs.Ciar_FeatureList,
@@ -82,7 +130,20 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Charisma,
         mental17: StatType.Wisdom,
-        mental18: StatType.Wisdom);
+        mental18: StatType.Wisdom,
+        // Shieldmaster (1)
+        Guids.LegendaryShieldmaster,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        // Ability Scores (12)
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryIntelligence);
       ApplyToCompanion(FeatureRefs.Ciar_FeatureList_DLC1,
         physical7: StatType.Strength,
         physical12: StatType.Strength,
@@ -95,7 +156,20 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Charisma,
         mental17: StatType.Wisdom,
-        mental18: StatType.Wisdom);
+        mental18: StatType.Wisdom,
+        // Shieldmaster (1)
+        Guids.LegendaryShieldmaster,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        // Ability Scores (12)
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryIntelligence);
 
       // Daeran
       ApplyToCompanion(FeatureRefs.DaeranPregenTestFeature,
@@ -110,7 +184,21 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Charisma,
         mental17: StatType.Intelligence,
-        mental18: StatType.Wisdom);
+        mental18: StatType.Wisdom,
+        // Prowess (2)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (16)
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution, Guids.LegendaryConstitution,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom);
 
       // Delamere
       ApplyToCompanion(FeatureRefs.Delamere_FeatureList,
@@ -125,7 +213,21 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Charisma,
         mental15: StatType.Wisdom,
         mental17: StatType.Intelligence,
-        mental18: StatType.Charisma);
+        mental18: StatType.Charisma,
+        // Prowess (1)
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (17)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom,
+        Guids.LegendaryIntelligence);
 
       // Ember
       ApplyToCompanion(FeatureRefs.Ember_FeatureList,
@@ -140,7 +242,22 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Charisma,
         mental17: StatType.Intelligence,
-        mental18: StatType.Wisdom);
+        mental18: StatType.Wisdom,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.StrProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        Guids.LegendaryMentalProwess, Guids.IntProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (15)
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution, Guids.LegendaryConstitution, Guids.LegendaryConstitution,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom);
 
       // Greybor
       ApplyToCompanion(FeatureRefs.GreyborPregenTestFeatureList,
@@ -155,7 +272,22 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Intelligence,
         mental15: StatType.Wisdom,
         mental17: StatType.Charisma,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.DexProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        // Twin weapons (1)
+        Guids.LegendaryTwinWeapons,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        // Ability Scores (9)
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity);
 
       // Kestoglyr
       ApplyToCompanion(FeatureRefs.Kestoglyr_FeatureList,
@@ -170,7 +302,22 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Charisma,
         mental15: StatType.Wisdom,
         mental17: StatType.Intelligence,
-        mental18: StatType.Charisma);
+        mental18: StatType.Charisma,
+        // Prowess (2)
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Twin weapons (1)
+        Guids.LegendaryTwinWeapons,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        // Ability Scores (10)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma);
 
       // Lann
       ApplyToCompanion(FeatureRefs.Lann_FeatureList,
@@ -185,7 +332,22 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Intelligence,
         mental15: StatType.Wisdom,
         mental17: StatType.Intelligence,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.StrProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (15)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom,
+        Guids.LegendaryIntelligence);
 
       // Nenio
       ApplyToCompanion(FeatureRefs.Nenio_FeatureList,
@@ -200,7 +362,21 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Intelligence,
         mental17: StatType.Charisma,
-        mental18: StatType.Wisdom);
+        mental18: StatType.Wisdom,
+        // Prowess (1)
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (17)
+        Guids.LegendaryIntelligence, Guids.LegendaryIntelligence, Guids.LegendaryIntelligence, Guids.LegendaryIntelligence, Guids.LegendaryIntelligence,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution, Guids.LegendaryConstitution, Guids.LegendaryConstitution,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom,
+        Guids.LegendaryStrength);
 
       // Queen Galfrey
       ApplyToCompanion(FeatureRefs.Galfrey_FeatureList_0,
@@ -215,7 +391,21 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Intelligence,
         mental15: StatType.Charisma,
         mental17: StatType.Wisdom,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (2)
+        Guids.LegendaryMentalProwess, Guids.IntProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (16)
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryIntelligence, Guids.LegendaryIntelligence, Guids.LegendaryIntelligence);
 
       // Regill
       ApplyToCompanion(FeatureRefs.Regill_FeatureList,
@@ -230,7 +420,23 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Charisma,
         mental15: StatType.Wisdom,
         mental17: StatType.Charisma,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (2)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Twin Weapons (1)
+        Guids.LegendaryTwinWeapons,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        // Ability Scores (10)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution, Guids.LegendaryConstitution, Guids.LegendaryConstitution,
+        Guids.LegendaryWisdom,
+        Guids.LegendaryStrength);
 
       // Seelah
       ApplyToCompanion(FeatureRefs.Seelah_FeatureList,
@@ -245,7 +451,23 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Charisma,
         mental17: StatType.Wisdom,
-        mental18: StatType.Wisdom);
+        mental18: StatType.Wisdom,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryPhysicalProwess, Guids.DexProwess,
+        Guids.LegendaryPhysicalProwess, Guids.DexProwess,
+        // Shieldmaster (1)
+        Guids.LegendaryShieldmaster,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        // Ability Scores (9)
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryWisdom);
 
       // Sosiel
       ApplyToCompanion(FeatureRefs.SosielVaenic_FeatureList,
@@ -260,7 +482,22 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Charisma,
         mental17: StatType.Wisdom,
-        mental18: StatType.Charisma);
+        mental18: StatType.Charisma,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryPhysicalProwess, Guids.DexProwess,
+        Guids.LegendaryPhysicalProwess, Guids.DexProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (15)
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution);
 
       // Staunton Vhane
       ApplyToCompanion(FeatureRefs.Staunton_FeatureList,
@@ -275,7 +512,18 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Charisma,
         mental17: StatType.Wisdom,
-        mental18: StatType.Charisma);
+        mental18: StatType.Charisma,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (18)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma, Guids.LegendaryCharisma,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom);
 
       // Wenduag
       ApplyToCompanion(FeatureRefs.Wenduag_FeatureList,
@@ -290,7 +538,22 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Wisdom,
         mental15: StatType.Intelligence,
         mental17: StatType.Wisdom,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (15)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution);
 
       // Woljif
       ApplyToCompanion(FeatureRefs.WoljifPregenTestFeatureList,
@@ -305,8 +568,54 @@ namespace AutomaticBonusProgression.Features
         mental13: StatType.Intelligence,
         mental15: StatType.Wisdom,
         mental17: StatType.Charisma,
-        mental18: StatType.Intelligence);
+        mental18: StatType.Intelligence,
+        // Prowess (2)
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryMentalProwess, Guids.WisProwess,
+        // Twin Weapons (1)
+        Guids.LegendaryTwinWeapons,
+        // Armor / Weapons (15)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        // Ability Scores (10)
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryIntelligence, Guids.LegendaryIntelligence, Guids.LegendaryIntelligence, Guids.LegendaryIntelligence,
+        Guids.LegendaryConstitution);
 
+      // Ulbrig
+      ApplyToCompanion(FeatureRefs.Shifter_FeatureList,
+        physical7: StatType.Strength,
+        physical12: StatType.Strength,
+        physical13: StatType.Dexterity,
+        physical16: StatType.Strength,
+        physical17: StatType.Constitution,
+        physical18: StatType.Dexterity,
+        mental6: StatType.Wisdom,
+        mental11: StatType.Wisdom,
+        mental13: StatType.Intelligence,
+        mental15: StatType.Wisdom,
+        mental17: StatType.Intelligence,
+        mental18: StatType.Charisma,
+        // Prowess (3)
+        Guids.LegendaryPhysicalProwess, Guids.DexProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        Guids.LegendaryPhysicalProwess, Guids.ConProwess,
+        // Armor / Weapons (10)
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon,
+        // Ability Scores (15)
+        Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
+        Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity,
+        Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom, Guids.LegendaryWisdom,
+        Guids.LegendaryConstitution, Guids.LegendaryConstitution);
+
+      // TODO: Need to use entirely new feature list entirely for the AddABPSelections implementation to work
       // Rekarth - DLC
       // Rekarth uses the same feature list shared by NPCs, so create a new one
       var rekarthList = FeatureConfigurator.New("Rekarth.ABP.FeatureList", Guids.Rekarth_FeatureList)
