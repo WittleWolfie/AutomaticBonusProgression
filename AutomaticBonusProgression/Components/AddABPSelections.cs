@@ -1,14 +1,11 @@
 ﻿using AutomaticBonusProgression.Util;
-using BlueprintCore.Utils;
+using HarmonyLib;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.RuleSystem;
-using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +15,9 @@ namespace AutomaticBonusProgression.Components
   /// <summary>
   /// Handles the default selections applied to companions. Add to the companion's *_FeatureList.
   /// </summary>
-  /// 
-  /// <remarks>
-  /// There's no need to handle legendary gifts since companions never come in with Mythic levels or at level 19+
-  /// </remarks>
   [AllowedOn(typeof(BlueprintUnitFact))]
   [TypeId("1dea124f-1eb2-430c-ae9f-c2b453fad3c1")]
-  internal class AddABPSelections : UnitFactComponentDelegate<AddABPSelections.AddABPSelectionsData>
+  internal class AddABPSelections : UnitFactComponentDelegate
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddABPSelections));
 
@@ -42,56 +35,63 @@ namespace AutomaticBonusProgression.Components
       LegendaryGifts = legendaryGifts;
     }
 
-    public override void OnActivate()
+    private void Apply(UnitDescriptor unit)
     {
       try
       {
-        if (Data.Applied)
-          return;
+        Logger.Verbose(() => $"Applying ABP Selections to {unit.CharacterName} {unit.Progression.CharacterLevel}");
 
-        var level = GetLevels();
-        Logger.Log($"Applying ABP Selections to {Owner.CharacterName} {level}");
-        Data.Applied = true;
-
-        ApplyPhysicalProwess(level);
-        ApplyMentalProwess(level);
+        ApplyPhysicalProwess(unit);
+        ApplyMentalProwess(unit);
       }
       catch (Exception e)
       {
-        Logger.LogException("AddABPSelections.OnActivate", e);
+        Logger.LogException("AddABPSelections.Apply", e);
       }
     }
 
-    private int GetLevels()
+    private void ApplyMythic(UnitDescriptor unit)
     {
-      var summon = Rulebook.CurrentContext.LastEvent<RuleSummonUnit>();
-      if (summon is null)
+      try
       {
-        Logger.Warning("NO SUMMON BITCH");
+        Logger.Verbose(() => $"Applying ABP Selections to {unit.CharacterName} {unit.Progression.MythicLevel}");
+        ApplyLegendaryGifts(unit);
       }
-      return Rulebook.CurrentContext.LastEvent<RuleSummonUnit>()?.Level ?? 20;
+      catch (Exception e)
+      {
+        Logger.LogException("AddABPSelections.ApplyMythic", e);
+      }
     }
 
-    private void ApplyPhysicalProwess(int level)
+    private void ApplyPhysicalProwess(UnitDescriptor unit)
     {
-      var count = GetPhysicalProwessCount(level);
+      var count = GetPhysicalProwessCount(unit.Progression.CharacterLevel);
       for (int i = 0; i < count && i < PhysicalProwess.Count; i++)
       {
         var prowess = GetProwess(PhysicalProwess[i]);
-        Logger.Verbose(() => $"Applying {prowess.Name} to {Owner.CharacterName}");
-        Owner.AddFact(prowess);
+        Logger.Verbose(() => $"Applying {prowess.Name} to {unit.CharacterName}");
+        unit.AddFact(prowess);
       }
     }
 
-    private void ApplyMentalProwess(int level)
+    private void ApplyMentalProwess(UnitDescriptor unit)
     {
-      var count = GetMentalProwessCount(level);
+      var count = GetMentalProwessCount(unit.Progression.CharacterLevel);
       for (int i = 0; i < count && i < MentalProwess.Count; i++)
       {
         var prowess = GetProwess(MentalProwess[i]);
-        Logger.Verbose(() => $"Applying {prowess.Name} to {Owner.CharacterName}");
-        Owner.AddFact(prowess);
+        Logger.Verbose(() => $"Applying {prowess.Name} to {unit.CharacterName}");
+        unit.AddFact(prowess);
       }
+    }
+
+    private void ApplyLegendaryGifts(UnitDescriptor unit)
+    {
+      foreach (var gift in LegendaryGifts.Select(bp => bp.Get()))
+      {
+        Logger.Verbose(() => $"Applying {gift.Name} to {unit.CharacterName}");
+        unit.AddFact(gift);
+      }  
     }
 
     private static BlueprintFeature GetProwess(StatType type)
@@ -142,10 +142,34 @@ namespace AutomaticBonusProgression.Components
       return 6;
     }
 
-    public class AddABPSelectionsData
+    [HarmonyPatch(typeof(AddClassLevels))]
+    static class AddClassLevels_Patch
     {
-      [JsonProperty]
-      public bool Applied;
+      [HarmonyPatch(
+          nameof(AddClassLevels.LevelUp),
+          typeof(AddClassLevels),
+          typeof(UnitDescriptor),
+          typeof(int),
+          typeof(UnitFact)),
+        HarmonyPostfix]
+      static void LevelUp(AddClassLevels c, UnitDescriptor unit)
+      {
+        try
+        {
+          var abpSelection = c.Fact.GetComponent<AddABPSelections>();
+          if (abpSelection is null)
+            return;
+
+          if (c.CharacterClass.IsMythic)
+            abpSelection.ApplyMythic(unit);
+          else
+            abpSelection.Apply(unit);
+        }
+        catch (Exception e)
+        {
+          Logger.LogException("AddClassLevels_Patch.LevelUp", e);
+        }
+      }
     }
   }
 }
