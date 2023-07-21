@@ -73,6 +73,7 @@ namespace AutomaticBonusProgression
           Enchantments.Enchantments.Configure();
           AttunementProgression.Configure();
           LegendaryGifts.Configure();
+          CompanionSelections.Configure();
           ItemChanges.Configure();
           TricksterArcana.Configure();
         }

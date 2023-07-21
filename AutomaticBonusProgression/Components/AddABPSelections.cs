@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Util;
+using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Facts;
@@ -10,6 +11,7 @@ using Kingmaker.UnitLogic;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AutomaticBonusProgression.Components
 {
@@ -28,11 +30,16 @@ namespace AutomaticBonusProgression.Components
 
     private readonly List<StatType> PhysicalProwess;
     private readonly List<StatType> MentalProwess;
+    private readonly List<BlueprintFeatureReference> LegendaryGifts;
 
-    internal AddABPSelections(List<StatType> physicalProwess, List<StatType> mentalProwess)
+    internal AddABPSelections(
+      List<StatType> physicalProwess,
+      List<StatType> mentalProwess,
+      List<BlueprintFeatureReference> legendaryGifts)
     {
       PhysicalProwess = physicalProwess;
       MentalProwess = mentalProwess;
+      LegendaryGifts = legendaryGifts;
     }
 
     public override void OnActivate()
@@ -57,6 +64,11 @@ namespace AutomaticBonusProgression.Components
 
     private int GetLevels()
     {
+      var summon = Rulebook.CurrentContext.LastEvent<RuleSummonUnit>();
+      if (summon is null)
+      {
+        Logger.Warning("NO SUMMON BITCH");
+      }
       return Rulebook.CurrentContext.LastEvent<RuleSummonUnit>()?.Level ?? 20;
     }
 
