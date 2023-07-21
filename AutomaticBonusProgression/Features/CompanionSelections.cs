@@ -280,11 +280,11 @@ namespace AutomaticBonusProgression.Features
         // Twin weapons (1)
         Guids.LegendaryTwinWeapons,
         // Armor / Weapons (15)
-        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
-        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
-        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
-        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
-        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryShield,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
+        Guids.LegendaryArmor, Guids.LegendaryWeapon, Guids.LegendaryOffHand,
         // Ability Scores (9)
         Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength, Guids.LegendaryStrength,
         Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity, Guids.LegendaryDexterity);
