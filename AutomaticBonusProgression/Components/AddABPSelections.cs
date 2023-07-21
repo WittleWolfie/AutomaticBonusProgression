@@ -4,6 +4,8 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.RuleSystem;
+using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
 using Newtonsoft.Json;
 using System;
@@ -22,7 +24,7 @@ namespace AutomaticBonusProgression.Components
   [TypeId("1dea124f-1eb2-430c-ae9f-c2b453fad3c1")]
   internal class AddABPSelections : UnitFactComponentDelegate<AddABPSelections.AddABPSelectionsData>
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(BlueprintUnitFact));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddABPSelections));
 
     private readonly List<StatType> PhysicalProwess;
     private readonly List<StatType> MentalProwess;
@@ -40,11 +42,12 @@ namespace AutomaticBonusProgression.Components
         if (Data.Applied)
           return;
 
-        Logger.Log($"Applying ABP Selections to {Owner.CharacterName} {Owner.Progression.CharacterLevel}");
+        var level = GetLevels();
+        Logger.Log($"Applying ABP Selections to {Owner.CharacterName} {level}");
         Data.Applied = true;
 
-        ApplyPhysicalProwess();
-        ApplyMentalProwess();
+        ApplyPhysicalProwess(level);
+        ApplyMentalProwess(level);
       }
       catch (Exception e)
       {
@@ -52,9 +55,14 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
-    private void ApplyPhysicalProwess()
+    private int GetLevels()
     {
-      var count = GetPhysicalProwessCount(Owner.Progression.CharacterLevel);
+      return Rulebook.CurrentContext.LastEvent<RuleSummonUnit>()?.Level ?? 20;
+    }
+
+    private void ApplyPhysicalProwess(int level)
+    {
+      var count = GetPhysicalProwessCount(level);
       for (int i = 0; i < count && i < PhysicalProwess.Count; i++)
       {
         var prowess = GetProwess(PhysicalProwess[i]);
@@ -63,9 +71,9 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
-    private void ApplyMentalProwess()
+    private void ApplyMentalProwess(int level)
     {
-      var count = GetMentalProwessCount(Owner.Progression.CharacterLevel);
+      var count = GetMentalProwessCount(level);
       for (int i = 0; i < count && i < MentalProwess.Count; i++)
       {
         var prowess = GetProwess(MentalProwess[i]);
@@ -90,30 +98,36 @@ namespace AutomaticBonusProgression.Components
 
     private static int GetPhysicalProwessCount(int level)
     {
-      return level switch
-      {
-        7 => 1,
-        12 => 2,
-        13 => 3,
-        16 => 4,
-        17 => 5,
-        18 => 6,
-        _ => 0,
-      };
+      if (level < 7)
+        return 0;
+      if (level < 12)
+        return 1;
+      if (level < 13)
+        return 2;
+      if (level < 16)
+        return 3;
+      if (level < 17)
+        return 4;
+      if (level < 18)
+        return 5;
+      return 6;
     }
 
     private static int GetMentalProwessCount(int level)
     {
-      return level switch
-      {
-        6 => 1,
-        11 => 2,
-        13 => 3,
-        15 => 4,
-        17 => 5,
-        18 => 6,
-        _ => 0,
-      };
+      if (level < 6)
+        return 0;
+      if (level < 11)
+        return 1;
+      if (level < 13)
+        return 2;
+      if (level < 15)
+        return 3;
+      if (level < 17)
+        return 4;
+      if (level < 18)
+        return 5;
+      return 6;
     }
 
     public class AddABPSelectionsData
