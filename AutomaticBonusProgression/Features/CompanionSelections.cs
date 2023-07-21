@@ -7,15 +7,10 @@ using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.UnitLogic.FactLogic;
 using System.Linq;
 
 namespace AutomaticBonusProgression.Features
 {
-  // TODO: Honestly I don't think this works yet jesus fucking christ.
-  // I think we need to do all this shit in a patch or I'm gonna lose my mind.
-  // Actual note is that until AddClassLevels triggers we still have this problem and I fucking hate it. Need to
-  // test and see if the logic for determining levels actually works... I still don't understand how the fucking AddClassLevels does it.
   internal class CompanionSelections
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(CompanionSelections));
