@@ -1,3 +1,10 @@
+## v0.8.3
+
+* New Bugfixes
+    * ABP features are automatically applied to companions when you recruit them above level 1
+    * Fixed Legendary Gifts UI ability score value when using TTT-Base
+    * Fixed selection state of Twin Weapons and Shieldmaster
+
 ## v0.8.2
 
 * New Bugfixes
