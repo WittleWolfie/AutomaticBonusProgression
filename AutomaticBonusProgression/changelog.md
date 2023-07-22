@@ -1,3 +1,8 @@
+## v0.8.4
+
+* New Bugfixes
+    * Fixed campaign companions automatically gaining legendary gifts
+
 ## v0.8.3
 
 * New Bugfixes

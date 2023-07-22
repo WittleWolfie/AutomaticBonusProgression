@@ -39,8 +39,10 @@ namespace AutomaticBonusProgression.Components
     {
       try
       {
-        Logger.Verbose(() => $"Applying ABP Selections to {unit.CharacterName} {unit.Progression.CharacterLevel}");
+        if (unit.Progression.CharacterLevel < 6)
+          return;
 
+        Logger.Verbose(() => $"Applying ABP Selections to {unit.CharacterName} {unit.Progression.CharacterLevel}");
         ApplyPhysicalProwess(unit);
         ApplyMentalProwess(unit);
       }
@@ -54,7 +56,12 @@ namespace AutomaticBonusProgression.Components
     {
       try
       {
-        Logger.Verbose(() => $"Applying ABP Selections to {unit.CharacterName} {unit.Progression.MythicLevel}");
+        // We only need to care about no mythic or all mythic--the DLC will start you at 20 but otherwise characters
+        // won't be pre-configured w/ mythic
+        if (unit.Progression.MythicLevel == 0)
+          return;
+
+        Logger.Verbose(() => $"Applying Mythic ABP Selections to {unit.CharacterName} {unit.Progression.MythicLevel}");
         ApplyLegendaryGifts(unit);
       }
       catch (Exception e)
