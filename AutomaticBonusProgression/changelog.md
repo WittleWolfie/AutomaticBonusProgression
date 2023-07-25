@@ -1,3 +1,8 @@
+## v0.8.5
+
+* New Bugfixes
+    * Fixed issue where in some zones and at some camera angles you can't click on anything
+
 ## v0.8.4
 
 * New Bugfixes
