@@ -1,3 +1,8 @@
+## v0.8.6
+
+* New Bugfixes
+    * Fixed issue preventing legendary enchantments UI from working
+
 ## v0.8.5
 
 * New Bugfixes

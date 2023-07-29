@@ -24,6 +24,7 @@ namespace AutomaticBonusProgression.UI.Attunement
     internal static EnchantmentGridView Instantiate(Transform parent)
     {
       var transform = UnityEngine.Object.Instantiate(Prefabs.EnchantmentContainer).transform;
+      transform.gameObject.SetActive(true);
       var scrollView = transform.Find("StandardScrollView");
 
       // Create grid params
