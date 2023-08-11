@@ -243,7 +243,6 @@ namespace AutomaticBonusProgression.Mechanics
       DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection4);
       DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection6);
       DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection8);
-      DisableBelt(ItemEquipmentBeltRefs.BeltOfPerfection8Extra);
 
       DisableBelt(ItemEquipmentBeltRefs.BeltOfStrengthConstitution2);
       DisableBelt(ItemEquipmentBeltRefs.BeltOfStrengthConstitution4);
@@ -266,7 +265,6 @@ namespace AutomaticBonusProgression.Mechanics
       DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor5);
       DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor6);
       DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor7);
-      DisableAmulet(ItemEquipmentNeckRefs.AmuletOfNaturalArmor7Extra);
 
       DisableAmulet(ItemEquipmentNeckRefs.AmuletOfMightyFists1);
       DisableAmulet(ItemEquipmentNeckRefs.AmuletOfMightyFists2);
@@ -281,7 +279,6 @@ namespace AutomaticBonusProgression.Mechanics
       DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance5);
       DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance6);
       DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance7);
-      DisableCloak(ItemEquipmentShouldersRefs.CloakOfResistance7Extra);
 
       DisableRing(ItemEquipmentRingRefs.RingOfProtection1);
       DisableRing(ItemEquipmentRingRefs.RingOfProtection1_Prologue);
@@ -291,7 +288,6 @@ namespace AutomaticBonusProgression.Mechanics
       DisableRing(ItemEquipmentRingRefs.RingOfProtection5);
       DisableRing(ItemEquipmentRingRefs.RingOfProtection6);
       DisableRing(ItemEquipmentRingRefs.RingOfProtection7);
-      DisableRing(ItemEquipmentRingRefs.RingOfProtection7Extra);
       #endregion
     }
 
