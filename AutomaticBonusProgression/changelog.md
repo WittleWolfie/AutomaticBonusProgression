@@ -1,3 +1,8 @@
+## v0.8.7
+
+* New Bugfixes
+    * Flawless stat items w/ can now be equipped
+
 ## v0.8.6
 
 * New Bugfixes
