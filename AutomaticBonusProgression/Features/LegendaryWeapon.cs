@@ -7,6 +7,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 
 namespace AutomaticBonusProgression.Features
 {
@@ -67,6 +68,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryWeaponDisplayName)
         .SetDescription(LegendaryWeaponDescription)
         .SetIcon(icon)
+        .SetType(AbilityType.Supernatural)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();
@@ -155,6 +157,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryOffHandDisplayName)
         .SetDescription(LegendaryOffHandDescription)
         .SetIcon(icon)
+        .SetType(AbilityType.Supernatural)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
         .Configure();

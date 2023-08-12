@@ -7,6 +7,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 
 namespace AutomaticBonusProgression.Features
 {
@@ -35,6 +36,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryArmorDisplayName)
         .SetDescription(LegendaryArmorDescription)
         .SetIcon(icon)
+        .SetType(AbilityType.Supernatural)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Armor))
         .Configure();
@@ -140,6 +142,7 @@ namespace AutomaticBonusProgression.Features
         .SetDisplayName(LegendaryShieldDisplayName)
         .SetDescription(LegendaryShieldDescription)
         .SetIcon(icon)
+        .SetType(AbilityType.Supernatural)
         .AddAbilityCasterInCombat(not: true)
         .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.Shield))
         .Configure();
