@@ -19,7 +19,8 @@ namespace AutomaticBonusProgression.Components
 
     public override bool IsAvailable(UnitDescriptor unit)
     {
-      return unit.Body.SecondaryHand.HasWeapon && IsSuitableWeapon(unit.Body.SecondaryHand.Weapon);
+      var weapon = Common.GetSecondaryWeapon(unit);
+      return weapon is not null && IsSuitableWeapon(weapon);
     }
   }
 }
