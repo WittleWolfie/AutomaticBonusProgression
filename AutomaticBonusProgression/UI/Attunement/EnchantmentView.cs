@@ -136,7 +136,7 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       if (!EffectComponent.IsAvailable(Unit))
         CurrentState.Value = State.Unavailable;
-      else if (unit.HasFact(Enchant))
+      else if (unit.HasFact(effect.EffectBuff))
         TempApply(active: true);
       else if (!Unit.Ensure<UnitPartEnhancement>().CanAddTemp(Cost))
         CurrentState.Value = State.Unaffordable;
