@@ -2,10 +2,12 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
 using Kingmaker.Items.Slots;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.Utility;
 using Newtonsoft.Json;
@@ -20,7 +22,10 @@ namespace AutomaticBonusProgression.Components
   internal class BuffEnchantAnyWeaponReplacement :
     UnitBuffComponentDelegate<BuffEnchantAnyWeaponReplacementData>,
     IUnitActiveEquipmentSetHandler,
-    IUnitEquipmentHandler
+    IUnitEquipmentHandler,
+    IPolymorphActivatedHandler,
+    IPolymorphDeactivatedHandler,
+    IUnitEmptyHandWeaponHandler
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(BuffEnchantAnyWeaponReplacement));
 
@@ -64,7 +69,6 @@ namespace AutomaticBonusProgression.Components
         if (slot.Owner != Owner)
           return;
 
-        Clear();
         Apply();
       }
       catch (Exception e)
@@ -80,7 +84,6 @@ namespace AutomaticBonusProgression.Components
         if (unit != Owner)
           return;
 
-        Clear();
         Apply();
       }
       catch (Exception e)
@@ -89,41 +92,70 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
+    public void OnPolymorphActivated(UnitEntityData unit, Polymorph polymorph)
+    {
+      try
+      {
+        if (unit != Owner)
+          return;
+
+        Apply();
+      }
+      catch (Exception e)
+      {
+        Logger.LogException("BuffEnchantAnyWeaponReplacement.OnPolymorphActivated", e);
+      }
+    }
+
+    public void OnPolymorphDeactivated(UnitEntityData unit, Polymorph polymorph)
+    {
+      try
+      {
+        if (unit != Owner)
+          return;
+
+        Apply();
+      }
+      catch (Exception e)
+      {
+        Logger.LogException("BuffEnchantAnyWeaponReplacement.OnPolymorphDeactivated", e);
+      }
+    }
+
+    public void HandleUnitEmptyHandWeaponUpdated()
+    {
+      try
+      {
+        Apply();
+      }
+      catch (Exception e)
+      {
+        Logger.LogException("BuffEnchantAnyWeaponReplacement.HandleUnitEmptyHandWeaponUpdated", e);
+      }
+    }
+
     private void Apply()
     {
-      if (ToPrimary)
-      {
-        var primary = Owner.Body.PrimaryHand.MaybeWeapon;
-        if (primary is not null)
-        {
-          Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {primary.Name} (primary)");
-          Data.Enchantments.Add(primary.AddEnchantment(Enchant, Context));
-        }
+      Clear();
 
-        var emptyHand = Owner.Body.EmptyHandWeapon;
-        if (emptyHand is not null && emptyHand != primary)
-        {
-          Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {emptyHand.Name} (empty hand)");
-          Data.Enchantments.Add(emptyHand.AddEnchantment(Enchant, Context));
-        }
-        return;
-      }
-
-      var secondary = Owner.Body.SecondaryHand.MaybeWeapon;
-      if (secondary is not null && !Common.IsPrimaryWeapon(secondary))
-      {
-        Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {secondary.Name} (secondary)");
-        Data.Enchantments.Add(secondary.AddEnchantment(Enchant, Context));
-      }
-
-      foreach (var limb in
-        Owner.Body.AdditionalLimbs
-          .Select(l => l.MaybeWeapon)
+      foreach (var weapon in
+        Owner.Body.AllSlots.OfType<WeaponSlot>()
+          .Select(slot => slot.MaybeWeapon)
           .NotNull()
-          .Where(l => !Common.IsPrimaryWeapon(l)))
+          .Distinct())
       {
-        Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {limb.Name} (limb)");
-        Data.Enchantments.Add(limb.AddEnchantment(Enchant, Context));
+        var isPrimary = Common.IsPrimaryWeapon(weapon);
+        Logger.Warning($"Weapon: {weapon.Name}, {ToPrimary}, {isPrimary}");
+        if (isPrimary && ToPrimary)
+        {
+          Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {weapon.Name} (primary)");
+          Data.Enchantments.Add(weapon.AddEnchantment(Enchant, Context));
+        }
+        else if (!isPrimary && !ToPrimary)
+        {
+          Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {weapon.Name} (secondary)");
+          Data.Enchantments.Add(weapon.AddEnchantment(Enchant, Context));
+        }
       }
     }
 
@@ -135,6 +167,7 @@ namespace AutomaticBonusProgression.Components
         enchant.Owner?.RemoveEnchantment(enchant);
       }
       Data.Enchantments.Clear();
+      Logger.Warning($"CLEAR===========");
     }
 
     public class BuffEnchantAnyWeaponReplacementData
