@@ -210,18 +210,18 @@ namespace AutomaticBonusProgression.Mechanics
     static class EquipmentWeaponTypeEnhancement_Patch
     {
       [HarmonyPatch(nameof(EquipmentWeaponTypeEnhancement.CheckWeapon)), HarmonyPostfix]
-      static void CheckWeapon(EquipmentWeaponTypeEnhancement __instance, ref bool __result)
+      static void CheckWeapon(EquipmentWeaponTypeEnhancement __instance, ItemEntityWeapon weapon, ref bool __result)
       {
         try
         {
           if (!__instance.AllNaturalAndUnarmed || !__result)
             return;
 
-          var wielder = __instance.Owner.Wielder?.Unit;
+          var wielder = weapon.Wielder?.Unit;
           if (wielder is null)
             return;
 
-          if (!Common.IsAffectedByABP(__instance.Owner.Wielder))
+          if (!Common.IsAffectedByABP(wielder))
             return;
 
           Logger.Verbose(() => $"Suppressing natural enhancement bonus on {wielder.CharacterName}");
@@ -229,7 +229,7 @@ namespace AutomaticBonusProgression.Mechanics
         }
         catch (Exception e)
         {
-          Logger.LogException("WeaponEnhancementBonus_Patch.CalculateBonus", e);
+          Logger.LogException("EquipmentWeaponTypeEnhancement_Patch.CalculateBonus", e);
         }
       }
     }
