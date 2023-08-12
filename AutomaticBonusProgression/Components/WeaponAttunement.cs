@@ -31,7 +31,9 @@ namespace AutomaticBonusProgression.Components
 
     public override bool IsAvailable(UnitDescriptor unit)
     {
-      return unit.Body.PrimaryHand.HasWeapon && IsSuitableWeapon(unit.Body.PrimaryHand.Weapon);
+      if (unit.Body.PrimaryHand.HasWeapon)
+        return IsSuitableWeapon(unit.Body.PrimaryHand.Weapon);
+      return IsSuitableWeapon(unit.Body.EmptyHandWeapon);
     }
 
     public override string GetRequirements()
@@ -46,7 +48,14 @@ namespace AutomaticBonusProgression.Components
 
     protected bool IsSuitableWeapon(ItemEntityWeapon weapon)
     {
-      return IsAllowedForm(weapon) && IsAllowedRange(weapon);
+      if (weapon is null)
+        return false;
+
+      var isAllowedForm = IsAllowedForm(weapon);
+      var isAllowedRange = IsAllowedRange(weapon);
+
+      Logger.Verbose(() => $"Is {weapon.Name} suitable for {EffectBuff.NameSafe()}? Form::{isAllowedForm}, Range::{isAllowedRange}");
+      return isAllowedForm && isAllowedRange;
     }
 
     private bool IsAllowedForm(ItemEntityWeapon weapon)

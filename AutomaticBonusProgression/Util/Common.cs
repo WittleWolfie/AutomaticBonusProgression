@@ -593,6 +593,9 @@ namespace AutomaticBonusProgression.Util
       if (weapon == wielder.Body.SecondaryHand.MaybeWeapon)
         return true;
 
+      if (weapon == wielder.Body.EmptyHandWeapon)
+        return true;
+
       // Natural weapons are secondary when they are not the primary or secondary hand
       return false;
     }

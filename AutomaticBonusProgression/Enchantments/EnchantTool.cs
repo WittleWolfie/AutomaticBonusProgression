@@ -61,34 +61,9 @@ namespace AutomaticBonusProgression.Enchantments
       List<Blueprint<BlueprintItemEnchantmentReference>> enchantments,
       bool toPrimaryWeapon = true)
     {
-      List<BuffEnchantAnyWeapon> components = new();
+      List<BuffEnchantAnyWeaponReplacement> components = new();
       foreach (var enchantment in enchantments)
-      {
-        if (toPrimaryWeapon)
-        {
-          components.Add(
-            new BuffEnchantAnyWeapon()
-            {
-              m_EnchantmentBlueprint = enchantment.Reference,
-              Slot = EquipSlotBase.SlotType.PrimaryHand
-            });
-        }
-        else
-        {
-          components.Add(
-            new BuffEnchantAnyWeapon()
-            {
-              m_EnchantmentBlueprint = enchantment.Reference,
-              Slot = EquipSlotBase.SlotType.SecondaryHand
-            });
-          components.Add(
-            new BuffEnchantAnyWeapon()
-            {
-              m_EnchantmentBlueprint = enchantment.Reference,
-              Slot = EquipSlotBase.SlotType.AdditionalLimb
-            });
-        }
-      }
+        components.Add(new(enchantment.Reference, toPrimary: toPrimaryWeapon));
       return new(name, guid, components.ToArray());
     }
 
