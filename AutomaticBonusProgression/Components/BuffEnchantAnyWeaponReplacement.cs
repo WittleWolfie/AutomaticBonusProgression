@@ -136,8 +136,8 @@ namespace AutomaticBonusProgression.Components
 
     private void Apply()
     {
-      Clear();
-
+      // Track the weapons that should be enchanted
+      List<ItemEntityWeapon> enchantedWeapons = new();
       foreach (var weapon in
         Owner.Body.AllSlots.OfType<WeaponSlot>()
           .Select(slot => slot.MaybeWeapon)
@@ -145,17 +145,40 @@ namespace AutomaticBonusProgression.Components
           .Distinct())
       {
         var isPrimary = Common.IsPrimaryWeapon(weapon);
-        Logger.Warning($"Weapon: {weapon.Name}, {ToPrimary}, {isPrimary}");
         if (isPrimary && ToPrimary)
         {
+          enchantedWeapons.Add(weapon);
+          if (Data.Enchantments.ContainsKey(weapon))
+            continue;
+
           Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {weapon.Name} (primary)");
-          Data.Enchantments.Add(weapon.AddEnchantment(Enchant, Context));
+          Data.Enchantments[weapon] = weapon.AddEnchantment(Enchant, Context);
         }
         else if (!isPrimary && !ToPrimary)
         {
+          enchantedWeapons.Add(weapon);
+          if (Data.Enchantments.ContainsKey(weapon))
+            continue;
+
           Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {weapon.Name} (secondary)");
-          Data.Enchantments.Add(weapon.AddEnchantment(Enchant, Context));
+          Data.Enchantments[weapon] = weapon.AddEnchantment(Enchant, Context);
         }
+      }
+
+      // Now identify already enchanted weapons that should be cleared
+      List<ItemEntityWeapon> unenchantedWeapons = new();
+      foreach (var weapon in Data.Enchantments.Keys)
+      {
+        if (!enchantedWeapons.Contains(weapon))
+          unenchantedWeapons.Add(weapon);
+      }
+
+      foreach (var weapon in unenchantedWeapons)
+      {
+        var enchant = Data.Enchantments[weapon];
+        Logger.Verbose(() => $"Removing {enchant.Blueprint.Name} from {weapon.Name}");
+        weapon.RemoveEnchantment(enchant);
+        Data.Enchantments.Remove(weapon);
       }
     }
 
@@ -163,17 +186,18 @@ namespace AutomaticBonusProgression.Components
     {
       foreach (var enchant in Data.Enchantments)
       {
-        Logger.Verbose(() => $"Removing {enchant.Blueprint.Name} from {enchant.Owner?.Name}");
-        enchant.Owner?.RemoveEnchantment(enchant);
+        var weapon = enchant.Key;
+        var enchantment = enchant.Value;
+        Logger.Verbose(() => $"Removing {enchantment.Blueprint.Name} from {weapon.Name}");
+        weapon.RemoveEnchantment(enchantment);
       }
       Data.Enchantments.Clear();
-      Logger.Warning($"CLEAR===========");
     }
 
     public class BuffEnchantAnyWeaponReplacementData
     {
       [JsonProperty]
-      public List<ItemEnchantment> Enchantments = new();
+      public Dictionary<ItemEntityWeapon, ItemEnchantment> Enchantments = new();
     }
   }
 }
