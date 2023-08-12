@@ -104,15 +104,17 @@ namespace AutomaticBonusProgression.Components
 
       if (buffApplied && !shouldApply)
       {
-        Logger.Verbose(() => $"Unsupported enchantment, removing {Data.AppliedBuff.Name}");
+        Logger.Verbose(() => $"Unsupported enchantment, removing {Data.AppliedBuff.Name} [{Type}, {Cost}]");
         Data.AppliedBuff.Remove();
         Data.AppliedBuff = null;
+        Owner.Ensure<UnitPartEnhancement>().RemoveEnchantment(Type, Cost);
       }
       else if (!buffApplied && shouldApply)
       {
         var buff = EffectBuff.Get();
-        Logger.Verbose(() => $"Applying enchantment {buff.Name}");
+        Logger.Verbose(() => $"Applying enchantment {buff.Name} [{Type}, {Cost}]");
         Data.AppliedBuff = Owner.AddBuff(buff, Context);
+        Owner.Ensure<UnitPartEnhancement>().AddEnchantment(Type, Cost);
       }
     }
 

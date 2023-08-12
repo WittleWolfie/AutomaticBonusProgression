@@ -1,29 +1,17 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
-using Kingmaker.UI.GenericSlot;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using Kingmaker.UnitLogic.FactLogic;
 using System.Collections.Generic;
 
 namespace AutomaticBonusProgression.Enchantments
 {
   internal static class EnchantTool
   {
-    internal static BlueprintFeature AddEnhancementEquivalence(
-      Blueprint<BlueprintReference<BlueprintFeature>> feature, EnchantInfo enchant)
-    {
-      return FeatureConfigurator.For(feature)
-        .AddComponent(enchant.GetEnhancementComponent())
-        .Configure();
-    }
-
     internal static BlueprintArmorEnchantment AddEnhancementEquivalenceArmor(
       Blueprint<BlueprintReference<BlueprintArmorEnchantment>> enchantment, EnchantInfo enchant)
     {
@@ -90,8 +78,6 @@ namespace AutomaticBonusProgression.Enchantments
       BlueprintInfo parentBuff,
       BlueprintInfo variantBuff = null)
     {
-      BuffConfigurator.For(effectBuff).AddComponent(enchant.GetEnhancementComponent()).Configure();
-
       // Although the parent buff shouldn't show up, it needs a name / description / icon for the attunement UI.
       var parent = BuffConfigurator.New(parentBuff.Name, parentBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
@@ -134,8 +120,7 @@ namespace AutomaticBonusProgression.Enchantments
       var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
-        .SetIcon(enchant.Icon)
-        .AddComponent(enchant.GetEnhancementComponent());
+        .SetIcon(enchant.Icon);
       foreach (var component in effectBuff.Components)
         effect.AddComponent(component);
       effect.Configure();
@@ -171,8 +156,7 @@ namespace AutomaticBonusProgression.Enchantments
       var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
-        .SetIcon(enchant.Icon)
-        .AddComponent(enchant.GetEnhancementComponent());
+        .SetIcon(enchant.Icon);
       foreach (var component in effectBuff.Components)
         effect.AddComponent(component);
       effect.Configure();

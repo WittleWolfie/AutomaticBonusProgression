@@ -32,10 +32,10 @@ namespace AutomaticBonusProgression.Components
     internal readonly EnhancementType Type;
     internal readonly int Enhancement;
 
-    internal EnhancementEquivalence(EnchantInfo enchant)
+    internal EnhancementEquivalence(EnhancementType type, int enhancementCost)
     {
-      Type = enchant.Type;
-      Enhancement = enchant.Cost;
+      Type = type;
+      Enhancement = enhancementCost;
     }
 
     public override void OnActivate()
@@ -49,6 +49,7 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
+        Logger.Verbose(() => $"Adding {Enhancement} to {GetEnhancementType()}");
         owner.Ensure<UnitPartEnhancement>().AddEnchantment(GetEnhancementType(), Enhancement);
       }
       catch (Exception e)
@@ -68,6 +69,7 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
+        Logger.Verbose(() => $"Removing {Enhancement} from {GetEnhancementType()}");
         owner.Get<UnitPartEnhancement>()?.RemoveEnchantment(GetEnhancementType(), Enhancement);
       }
       catch (Exception e)

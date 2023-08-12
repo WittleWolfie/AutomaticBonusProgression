@@ -60,7 +60,7 @@ namespace AutomaticBonusProgression.Util
     /// <returns></returns>
     internal BlueprintComponent GetEnhancementComponent()
     {
-      return new EnhancementEquivalence(this);
+      return new EnhancementEquivalence(Type, Cost);
     }
   }
 
