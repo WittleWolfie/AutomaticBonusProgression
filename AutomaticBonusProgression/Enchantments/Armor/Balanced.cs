@@ -26,11 +26,15 @@ namespace AutomaticBonusProgression.Enchantments.Armor
       var enchantInfo =
         new ArmorEnchantInfo(
           DisplayName, Description, icon, EnhancementCost, ArmorProficiencyGroup.Light, ArmorProficiencyGroup.Medium);
-      var balancedFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorBalancedFeature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ArcaneArmorBalancedEnchant, enchantInfo);
 
       EnchantTool.CreateEnchant(
         enchantInfo,
-        effectBuff: new(BuffName, Guids.BalancedEffect, balancedFeature.GetComponent<CMDBonusAgainstManeuvers>()),
+        effectBuff:
+          new(
+            BuffName,
+            Guids.BalancedEffect,
+            FeatureRefs.ArcaneArmorBalancedFeature.Reference.Get().GetComponent<CMDBonusAgainstManeuvers>()),
         parentBuff: new(BalancedArmorName, Guids.BalancedBuff));
     }
   }

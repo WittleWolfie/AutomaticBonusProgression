@@ -35,10 +35,14 @@ namespace AutomaticBonusProgression.Enchantments.Armor
           BuffRefs.SacredArmorEnchantFortification25Buff.Reference.Get().Icon,
           BasicCost);
 
-      var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification25Feature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.Fortification25Enchant, enchantInfo);
       EnchantTool.CreateEnchant(
         enchantInfo,
-        effectBuff: new(EffectName, Guids.FortificationEffect, fortification.GetComponent<AddFortification>()),
+        effectBuff:
+          new(
+            EffectName,
+            Guids.FortificationEffect,
+            FeatureRefs.Fortification25Feature.Reference.Get().GetComponent<AddFortification>()),
         parentBuff: new(BuffName, Guids.FortificationBuff),
         variantBuff: new(BuffShieldName, Guids.FortificationShieldBuff));
     }
@@ -60,11 +64,13 @@ namespace AutomaticBonusProgression.Enchantments.Armor
           BuffRefs.SacredArmorEnchantFortification50Buff.Reference.Get().Icon,
           ImprovedCost);
 
-      var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification50Feature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.Fortification50Enchant, enchantInfo);
       EnchantTool.CreateEnchant(
         enchantInfo,
         effectBuff: new(
-          ImprovedEffectName, Guids.ImprovedFortificationEffect, fortification.GetComponent<AddFortification>()),
+          ImprovedEffectName,
+          Guids.ImprovedFortificationEffect,
+          FeatureRefs.Fortification50Feature.Reference.Get().GetComponent<AddFortification>()),
         parentBuff: new(ImprovedBuffName, Guids.ImprovedFortificationBuff),
         variantBuff: new(ImprovedBuffShieldName, Guids.ImprovedFortificationShieldBuff));
     }
@@ -88,11 +94,13 @@ namespace AutomaticBonusProgression.Enchantments.Armor
           BuffRefs.SacredArmorEnchantFortification75Buff.Reference.Get().Icon,
           GreaterCost);
 
-      var fortification = EnchantTool.AddEnhancementEquivalence(FeatureRefs.Fortification75Feature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.Fortification75Enchant, enchantInfo);
       EnchantTool.CreateEnchant(
         enchantInfo,
         effectBuff: new(
-          GreaterEffectName, Guids.GreaterFortificationEffect, fortification.GetComponent<AddFortification>()),
+          GreaterEffectName,
+          Guids.GreaterFortificationEffect,
+          FeatureRefs.Fortification75Feature.Reference.Get().GetComponent<AddFortification>()),
         parentBuff: new(GreaterBuffName, Guids.GreaterFortificationBuff),
         variantBuff: new(GreaterBuffShieldName, Guids.GreaterFortificationShieldBuff));
     }

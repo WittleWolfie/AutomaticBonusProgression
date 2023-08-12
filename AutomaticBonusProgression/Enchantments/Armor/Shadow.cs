@@ -33,12 +33,15 @@ namespace AutomaticBonusProgression.Enchantments
       var icon = AbilityRefs.ShadowConjuration.Reference.Get().Icon;
       var enchantInfo = new ArmorEnchantInfo(DisplayName, enchant.m_Description.m_Key, icon, BasicCost);
 
-      var shadowFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowFeature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ArcaneArmorShadowEnchant, enchantInfo);
       EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ShadowArmor, enchantInfo);
 
       EnchantTool.CreateEnchant(
         enchantInfo,
-        effectBuff: new(EffectName, Guids.ShadowEffect, shadowFeature.GetComponent<AddStatBonus>()),
+        effectBuff: new(
+          EffectName,
+          Guids.ShadowEffect,
+          FeatureRefs.ArcaneArmorShadowFeature.Reference.Get().GetComponent<AddStatBonus>()),
         parentBuff: new(BuffName, Guids.ShadowBuff));
     }
 
@@ -56,12 +59,15 @@ namespace AutomaticBonusProgression.Enchantments
       var icon = AbilityRefs.ShadowConjurationGreater.Reference.Get().Icon;
       var enchantInfo = new ArmorEnchantInfo(ImprovedDisplayName, enchant.m_Description.m_Key, icon, ImprovedCost);
 
-      var shadowFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ArcaneArmorShadowGreaterFeature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ArcaneArmorShadowGreaterEnchant, enchantInfo);
       EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.GreaterShadow, enchantInfo);
 
       EnchantTool.CreateEnchant(
         enchantInfo,
-        effectBuff: new(ImprovedEffectName, Guids.ImprovedShadowEffect, shadowFeature.GetComponent<AddStatBonus>()),
+        effectBuff: new(
+          ImprovedEffectName,
+          Guids.ImprovedShadowEffect,
+          FeatureRefs.ArcaneArmorShadowGreaterFeature.Reference.Get().GetComponent<AddStatBonus>()),
         parentBuff: new(ImprovedBuffName, Guids.ImprovedShadowBuff));
     }
 

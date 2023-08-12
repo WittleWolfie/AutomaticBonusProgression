@@ -41,12 +41,14 @@ namespace AutomaticBonusProgression.Enchantments
           Description13,
           BuffRefs.SacredArmorEnchantSpellResistance13Buff.Reference.Get().Icon,
           EnhancementCost13);
-      var spellResistFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance13Feature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.SpellResistance13Enchant, enchantInfo);
 
       EnchantTool.CreateEnchant(
         enchantInfo,
-        effectBuff: new(Effect13Name, Guids.SpellResistance13Effect, spellResistFeature.GetComponent<AddSpellResistance>()),
+        effectBuff: new(
+          Effect13Name,
+          Guids.SpellResistance13Effect,
+          FeatureRefs.SpellResistance13Feature.Reference.Get().GetComponent<AddSpellResistance>()),
         parentBuff: new(Buff13Name, Guids.SpellResistance13Buff),
         variantBuff: new(Buff13ShieldName, Guids.SpellResistance13ShieldBuff));
     }
@@ -64,8 +66,8 @@ namespace AutomaticBonusProgression.Enchantments
     private static void Configure16()
     {
       var enchantInfo = new ArmorEnchantInfo(DisplayName16, Description16, Icon16, EnhancementCost16);
-      var spellResistFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance15Feature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.SpellResistance15Enchant, enchantInfo);
+      var spellResistFeature = FeatureRefs.SpellResistance15Feature.Reference.Get();
       UpdateSpellResistance(FeatureRefs.SpellResistance15Feature, 16);
 
       EnchantTool.CreateEnchant(
@@ -91,8 +93,8 @@ namespace AutomaticBonusProgression.Enchantments
           Description19,
           BuffRefs.SacredArmorEnchantSpellResistance19Buff.Reference.Get().Icon,
           EnhancementCost19);
-      var spellResistFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance17Feature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.SpellResistance17Enchant, enchantInfo);
+      var spellResistFeature = FeatureRefs.SpellResistance17Feature.Reference.Get();
       UpdateSpellResistance(FeatureRefs.SpellResistance17Feature, 19);
 
       EnchantTool.CreateEnchant(
@@ -115,8 +117,8 @@ namespace AutomaticBonusProgression.Enchantments
     private static void Configure22()
     {
       var enchantInfo = new ArmorEnchantInfo(DisplayName22, Description22, Icon22, EnhancementCost22);
-      var spellResistFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.SpellResistance19Feature, enchantInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.SpellResistance19Enchant, enchantInfo);
+      var spellResistFeature = FeatureRefs.SpellResistance19Feature.Reference.Get();
       UpdateSpellResistance(FeatureRefs.SpellResistance19Feature, 22);
 
       EnchantTool.CreateEnchant(

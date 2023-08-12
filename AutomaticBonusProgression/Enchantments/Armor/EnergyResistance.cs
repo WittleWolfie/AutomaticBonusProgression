@@ -61,14 +61,14 @@ namespace AutomaticBonusProgression.Enchantments
           Acid10Description,
           BuffRefs.SacredArmorEnchantAcidResist10Buff.Reference.Get().Icon,
           Resist10Cost);
-      var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance10Feature, acidInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.AcidResistance10Enchant, acidInfo);
 
       EnchantTool.CreateEnchant(
         acidInfo,
         effectBuff: new(
           Acid10EffectName,
           Guids.AcidResist10Effect,
-          resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.AcidResistance10Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Acid10BuffName, Guids.AcidResist10Buff),
         variantBuff: new(Acid10ShieldBuffName, Guids.AcidResist10ShieldBuff));
 
@@ -78,14 +78,14 @@ namespace AutomaticBonusProgression.Enchantments
           Cold10Description,
           BuffRefs.SacredArmorEnchantColdResist10Buff.Reference.Get().Icon,
           Resist10Cost);
-      var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance10Feature, coldInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ColdResistance10Enchant, coldInfo);
 
       EnchantTool.CreateEnchant(
         coldInfo,
         effectBuff: new(
           Cold10EffectName,
           Guids.ColdResist10Effect,
-          resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.ColdResistance10Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Cold10BuffName, Guids.ColdResist10Buff),
         variantBuff: new(Cold10ShieldBuffName, Guids.ColdResist10ShieldBuff));
 
@@ -95,15 +95,14 @@ namespace AutomaticBonusProgression.Enchantments
           Electricity10Description,
           BuffRefs.SacredArmorEnchantElectricityResist10Buff.Reference.Get().Icon,
           Resist10Cost);
-      var resistElectricityFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance10Feature, electricityInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ElectricityResistance10Enchant, electricityInfo);
 
       EnchantTool.CreateEnchant(
         electricityInfo,
         effectBuff: new(
           Electricity10EffectName,
           Guids.ElectricityResist10Effect,
-          resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.ElectricityResistance10Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Electricity10BuffName, Guids.ElectricityResist10Buff),
         variantBuff: new(Electricity10ShieldBuffName, Guids.ElectricityResist10ShieldBuff));
 
@@ -113,26 +112,26 @@ namespace AutomaticBonusProgression.Enchantments
           Fire10Description,
           BuffRefs.SacredArmorEnchantFireResist10Buff.Reference.Get().Icon,
           Resist10Cost);
-      var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance10Feature, fireInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.FireResistance10Enchant, fireInfo);
 
       EnchantTool.CreateEnchant(
         fireInfo,
         effectBuff: new(
           Fire10EffectName,
           Guids.FireResist10Effect,
-          resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.FireResistance10Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Fire10BuffName, Guids.FireResist10Buff),
         variantBuff: new(Fire10ShieldBuffName, Guids.FireResist10ShieldBuff));
 
       var sonicInfo = new ArmorEnchantInfo(Sonic10DisplayName, Sonic10Description, Sonic10Icon, Resist10Cost);
-      var resistSonicFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance10Feature, sonicInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.SonicResistance10Enchant, sonicInfo);
 
       EnchantTool.CreateEnchant(
         sonicInfo,
         effectBuff: new(
           Sonic10EffectName,
           Guids.SonicResist10Effect,
-          resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.SonicResistance10Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Sonic10BuffName, Guids.SonicResist10Buff),
         variantBuff: new(Sonic10ShieldBuffName, Guids.SonicResist10ShieldBuff));
     }
@@ -182,14 +181,14 @@ namespace AutomaticBonusProgression.Enchantments
           Acid20Description,
           BuffRefs.SacredArmorEnchantAcidResist20Buff.Reference.Get().Icon,
           Resist20Cost);
-      var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance20Feature, acidInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.AcidResistance20Enchant, acidInfo);
 
       EnchantTool.CreateEnchant(
         acidInfo,
         effectBuff: new(
           Acid20EffectName,
           Guids.AcidResist20Effect,
-          resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.AcidResistance20Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Acid20BuffName, Guids.AcidResist20Buff),
         variantBuff: new(Acid20ShieldBuffName, Guids.AcidResist20ShieldBuff));
 
@@ -199,14 +198,14 @@ namespace AutomaticBonusProgression.Enchantments
           Cold20Description,
           BuffRefs.SacredArmorEnchantColdResist20Buff.Reference.Get().Icon,
           Resist20Cost);
-      var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance20Feature, coldInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ColdResistance20Enchant, coldInfo);
 
       EnchantTool.CreateEnchant(
         coldInfo,
         effectBuff: new(
           Cold20EffectName,
           Guids.ColdResist20Effect,
-          resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.ColdResistance20Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Cold20BuffName, Guids.ColdResist20Buff),
         variantBuff: new(Cold20ShieldBuffName, Guids.ColdResist20ShieldBuff));
 
@@ -216,15 +215,14 @@ namespace AutomaticBonusProgression.Enchantments
           Electricity20Description,
           BuffRefs.SacredArmorEnchantElectricityResist20Buff.Reference.Get().Icon,
           Resist20Cost);
-      var resistElectricityFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance20Feature, electricityInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ElectricityResistance20Enchant, electricityInfo);
 
       EnchantTool.CreateEnchant(
         electricityInfo,
         effectBuff: new(
           Electricity20EffectName,
           Guids.ElectricityResist20Effect,
-          resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.ElectricityResistance20Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Electricity20BuffName, Guids.ElectricityResist20Buff),
         variantBuff: new(Electricity20ShieldBuffName, Guids.ElectricityResist20ShieldBuff));
 
@@ -234,19 +232,19 @@ namespace AutomaticBonusProgression.Enchantments
           Fire20Description,
           BuffRefs.SacredArmorEnchantFireResist20Buff.Reference.Get().Icon,
           Resist20Cost);
-      var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance20Feature, fireInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.FireResistance20Enchant, fireInfo);
 
       EnchantTool.CreateEnchant(
         fireInfo,
         effectBuff: new(
           Fire20EffectName,
           Guids.FireResist20Effect,
-          resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.FireResistance20Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Fire20BuffName, Guids.FireResist20Buff),
         variantBuff: new(Fire20ShieldBuffName, Guids.FireResist20ShieldBuff));
 
       var sonicInfo = new ArmorEnchantInfo(Sonic20DisplayName, Sonic20Description, Sonic20Icon, Resist20Cost);
-      // Sonic doesn't have a +20 enhcant for some reason
+      // Sonic doesn't have a +20 enchant for some reason
       var resistSonicFeature = FeatureRefs.SonicResistance20.Reference.Get();
 
       EnchantTool.CreateEnchant(
@@ -304,14 +302,14 @@ namespace AutomaticBonusProgression.Enchantments
           Acid30Description,
           BuffRefs.SacredArmorEnchantAcidResist30Buff.Reference.Get().Icon,
           Resist30Cost);
-      var resistAcidFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.AcidResistance30Feature, acidInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.AcidResistance30Enchant, acidInfo);
 
       EnchantTool.CreateEnchant(
         acidInfo,
         effectBuff: new(
           Acid30EffectName,
           Guids.AcidResist30Effect,
-          resistAcidFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.AcidResistance30Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Acid30BuffName, Guids.AcidResist30Buff),
         variantBuff: new(Acid30ShieldBuffName, Guids.AcidResist30ShieldBuff));
 
@@ -321,14 +319,14 @@ namespace AutomaticBonusProgression.Enchantments
           Cold30Description,
           BuffRefs.SacredArmorEnchantColdResist30Buff.Reference.Get().Icon,
           Resist30Cost);
-      var resistColdFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.ColdResistance30Feature, coldInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ColdResistance30Enchant, coldInfo);
 
       EnchantTool.CreateEnchant(
         coldInfo,
         effectBuff: new(
           Cold30EffectName,
           Guids.ColdResist30Effect,
-          resistColdFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.ColdResistance30Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Cold30BuffName, Guids.ColdResist30Buff),
         variantBuff: new(Cold30ShieldBuffName, Guids.ColdResist30ShieldBuff));
 
@@ -338,15 +336,14 @@ namespace AutomaticBonusProgression.Enchantments
           Electricity30Description,
           BuffRefs.SacredArmorEnchantElectricityResist30Buff.Reference.Get().Icon,
           Resist30Cost);
-      var resistElectricityFeature =
-        EnchantTool.AddEnhancementEquivalence(FeatureRefs.ElectricityResistance30Feature, electricityInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.ElectricityResistance30Enchant, electricityInfo);
 
       EnchantTool.CreateEnchant(
         electricityInfo,
         effectBuff: new(
           Electricity30EffectName,
           Guids.ElectricityResist30Effect,
-          resistElectricityFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.ElectricityResistance30Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Electricity30BuffName, Guids.ElectricityResist30Buff),
         variantBuff: new(Electricity30ShieldBuffName, Guids.ElectricityResist30ShieldBuff));
 
@@ -356,26 +353,26 @@ namespace AutomaticBonusProgression.Enchantments
           Fire30Description,
           BuffRefs.SacredArmorEnchantFireResist30Buff.Reference.Get().Icon,
           Resist30Cost);
-      var resistFireFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.FireResistance30Feature, fireInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.FireResistance30Enchant, fireInfo);
 
       EnchantTool.CreateEnchant(
         fireInfo,
         effectBuff: new(
           Fire30EffectName,
           Guids.FireResist30Effect,
-          resistFireFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.FireResistance30Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Fire30BuffName, Guids.FireResist30Buff),
         variantBuff: new(Fire30ShieldBuffName, Guids.FireResist30ShieldBuff));
 
       var sonicInfo = new ArmorEnchantInfo(Sonic30DisplayName, Sonic30Description, Sonic30Icon, Resist30Cost);
-      var resistSonicFeature = EnchantTool.AddEnhancementEquivalence(FeatureRefs.SonicResistance30Feature, sonicInfo);
+      EnchantTool.AddEnhancementEquivalenceArmor(ArmorEnchantmentRefs.SonicResistance30Enchant, sonicInfo);
 
       EnchantTool.CreateEnchant(
         sonicInfo,
         effectBuff: new(
           Sonic30EffectName,
           Guids.SonicResist30Effect,
-          resistSonicFeature.GetComponent<AddDamageResistanceEnergy>()),
+          FeatureRefs.SonicResistance30Feature.Reference.Get().GetComponent<AddDamageResistanceEnergy>()),
         parentBuff: new(Sonic30BuffName, Guids.SonicResist30Buff),
         variantBuff: new(Sonic30ShieldBuffName, Guids.SonicResist30ShieldBuff));
     }
