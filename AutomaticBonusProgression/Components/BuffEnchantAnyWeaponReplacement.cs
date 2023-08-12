@@ -101,24 +101,28 @@ namespace AutomaticBonusProgression.Components
         }
 
         var emptyHand = Owner.Body.EmptyHandWeapon;
-        if (emptyHand is not null)
+        if (emptyHand is not null && emptyHand != primary)
         {
-          Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {emptyHand.Name} (primary)");
+          Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {emptyHand.Name} (empty hand)");
           Data.Enchantments.Add(emptyHand.AddEnchantment(Enchant, Context));
         }
         return;
       }
 
       var secondary = Owner.Body.SecondaryHand.MaybeWeapon;
-      if (secondary is not null)
+      if (secondary is not null && !Common.IsPrimaryWeapon(secondary))
       {
         Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {secondary.Name} (secondary)");
         Data.Enchantments.Add(secondary.AddEnchantment(Enchant, Context));
       }
 
-      foreach (var limb in Owner.Body.AdditionalLimbs.Select(l => l.MaybeWeapon).NotNull())
+      foreach (var limb in
+        Owner.Body.AdditionalLimbs
+          .Select(l => l.MaybeWeapon)
+          .NotNull()
+          .Where(l => !Common.IsPrimaryWeapon(l)))
       {
-        Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {limb.Name} (secondary)");
+        Logger.Verbose(() => $"Applying {Enchant.NameSafe()} to {limb.Name} (limb)");
         Data.Enchantments.Add(limb.AddEnchantment(Enchant, Context));
       }
     }
