@@ -1,4 +1,6 @@
-## v0.8.7
+## v0.9.0
+
+Some significant changes were made to how enchantments work that should address most bugs. If there are no major issues reported in the next week I'll update this to a full release. Version 1.0 will come when I finish the new weapon enchantments.
 
 * New Bugfixes
     * Flawless stat items w/ can now be equipped
