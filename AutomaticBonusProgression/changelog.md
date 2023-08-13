@@ -2,6 +2,10 @@
 
 * New Bugfixes
     * Flawless stat items w/ can now be equipped
+    * Legendary Weapon / Armor
+        * Fixed a variety of cases that could apply an incorrect enhancement cost limit
+        * Fixed problems caused by polymorph abilities
+        * Fixed problems caused by claw abilities
 
 ## v0.8.6
 
