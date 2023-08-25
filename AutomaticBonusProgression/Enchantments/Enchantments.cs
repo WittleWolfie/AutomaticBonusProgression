@@ -56,6 +56,7 @@ namespace AutomaticBonusProgression.Enchantments
         Holy.Configure();
         Unholy.Configure();
         Bane.Configure();
+        Bewildering.Configure();
         BrilliantEnergy.Configure();
         Cruel.Configure();
         Disruption.Configure();

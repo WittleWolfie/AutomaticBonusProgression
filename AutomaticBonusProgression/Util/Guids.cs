@@ -476,6 +476,18 @@
     internal const string BaneVerminOffHandBuff = "ff8f020d-485d-4eb4-9abd-00049c7e0fc8";
     #endregion
 
+    internal const string BewilderingBuff = "bfd6f391-2e3e-439d-bdaa-1fd532c66949";
+    internal const string BewilderingEffect = "e07a0c90-ef0d-4378-9936-d13b694927c1";
+    internal const string BewilderingOffHandBuff = "b5fe774f-3c1c-45ef-91e3-67ef5a2c0b95";
+    internal const string BewilderingOffHandEffect = "b770c4bf-cf46-4d7a-b19e-9bebc3e8fb20";
+    internal const string BewilderingEnchant = "1617cf03-a46b-4bce-ac1f-98e30a151044";
+    internal const string BewilderingTargetBuff = "dea5b825-fe9f-49ce-80ae-1373c8e80a6a";
+    internal const string BewilderingCastResource = "9451849e-bcf3-4a32-9aa4-a816e15cb8a5";
+    internal const string BewilderingMainHandAbility = "c348a94c-82c6-4f45-90a5-4f03350c3202";
+    internal const string BewilderingMainHandSelfBuff = "4a78ee08-2d9a-4f09-8548-bfe2c6c30fa0";
+    internal const string BewilderingOffHandAbility = "0c673b61-c50c-4b45-ad16-46355a8d8d82";
+    internal const string BewilderingOffHandSelfBufff = "145bcac8-3595-433c-8072-74161f69c9a0";
+
     internal const string BrilliantEnergyEnchantCopy = "f23463d7-aee5-4e1c-bcf6-12d5bed8da83";
     internal const string BrilliantEnergyBuff = "223d8cc8-9589-4b7f-9e70-b059b164ea7c";
     internal const string BrilliantEnergyEffect = "fea94225-69c9-44a4-94dd-711c9f2e9dcf";

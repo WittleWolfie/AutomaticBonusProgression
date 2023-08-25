@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Bewildering
       // - BrawlingEffect
       // - Countering
       // - Courageous
@@ -108,6 +107,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneUndeadBuff,
             Guids.BaneVerminBuff,
       #endregion
+            Guids.BewilderingBuff,
             Guids.BrilliantEnergyBuff,
             Guids.CruelBuff,
             Guids.DisruptionBuff,
@@ -197,6 +197,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BaneUndeadOffHandBuff,
             Guids.BaneVerminOffHandBuff,
       #endregion
+            Guids.BewilderingOffHandBuff,
             Guids.BrilliantEnergyOffHandBuff,
             Guids.CruelOffHandBuff,
             Guids.DisruptionOffHandBuff,

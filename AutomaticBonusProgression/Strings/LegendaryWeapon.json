@@ -135,6 +135,26 @@
   //// End Bane
 
   {
+    "Key": "LW.Bewildering.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bewildering (+1)"
+  },
+  {
+    "Key": "LW.Bewildering.MainHand.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bewildering (Main Hand)"
+  },
+  {
+    "Key": "LW.Bewildering.OffHand.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bewildering (Off Hand)"
+  },
+  {
+    "Key": "LW.Bewildering.Description",
+    "enGB": "Three times per day the wielder of a bewildering weapon can buff themselves. On the next successful attack with a weapon, the target becomes confused for 1d6 rounds. The target can attempt a Will saving throw each round to end this effect. the DC of the save is 17 + Mythic Rank."
+  },
+
+  {
     "Key": "LW.BrilliantEnergy.Name",
     "ProcessTemplates": false,
     "enGB": "Brilliant Energy (+4)"
