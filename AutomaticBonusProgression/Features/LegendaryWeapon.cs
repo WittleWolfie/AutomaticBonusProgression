@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Countering
       // - Courageous
       // - Cunning
       // - Dazzling Radiance
