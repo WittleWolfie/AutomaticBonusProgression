@@ -3,14 +3,13 @@ using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 
 namespace AutomaticBonusProgression.Enchantments
 {
-  internal class Brawling
+  internal class BrawlingWeapon
   {
-    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Brawling));
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(BrawlingWeapon));
 
     private const string EnchantName = "LW.Brawling.Enchant";
     private const string EffectName = "LW.Brawling";
@@ -24,7 +23,7 @@ namespace AutomaticBonusProgression.Enchantments
 
     internal static void Configure()
     {
-      Logger.Log($"Configuring Brawling");
+      Logger.Log($"Configuring Brawling Weapon");
 
       var enchant = WeaponEnchantmentConfigurator.New(EnchantName, Guids.BrawlingWeaponEnchant)
         .SetEnchantName(DisplayName)

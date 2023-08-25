@@ -3,6 +3,7 @@
 * New Weapon Enchants
     * Bewildering
     * Brawling
+    * Courageous
 
 ## v0.9.0
 

@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Courageous
       // - Cunning
       // - Dazzling Radiance
       // - Debilitating
@@ -108,6 +107,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BewilderingBuff,
             Guids.BrawlingWeaponBuff,
             Guids.BrilliantEnergyBuff,
+            Guids.CourageousBuff,
             Guids.CruelBuff,
             Guids.DisruptionBuff,
       #region Elemental
@@ -199,6 +199,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BewilderingOffHandBuff,
             Guids.BrawlingWeaponOffHandBuff,
             Guids.BrilliantEnergyOffHandBuff,
+            Guids.CourageousOffHandBuff,
             Guids.CruelOffHandBuff,
             Guids.DisruptionOffHandBuff,
       #region Elemental

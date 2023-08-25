@@ -500,6 +500,12 @@
     internal const string BrilliantEnergyOffHandBuff = "297b6629-07ae-4a14-a1d5-182e61a0c962";
     internal const string BrilliantEnergyOffHandEffect = "7eebfbd6-2978-4406-aa49-395473a3d4e2";
 
+    internal const string CourageousEnchant = "7e9d8e4b-d41b-4f3e-bbbd-b74e33d65b2d";
+    internal const string CourageousBuff = "e1c674e4-d349-497f-84f0-ec7bfbed2b6e";
+    internal const string CourageousEffect = "5a42b951-179a-4091-aa27-1ad19c79ec93";
+    internal const string CourageousOffHandBuff = "583a9992-282f-49a2-a604-61cea56885e8";
+    internal const string CourageousOffHandEffect = "07e2f287-aa35-4d54-92a8-fd11c24b63cd";
+
     internal const string CruelEnchantCopy = "6f646c1f-bf9d-4722-98f1-215b7b9a2ac4";
     internal const string CruelBuff = "203aa908-fe97-4890-ba65-3431789bc29f";
     internal const string CruelEffect = "432eef6e-d029-48cc-8eb1-9127fb78adb5";

@@ -171,6 +171,16 @@
   },
 
   {
+    "Key": "LW.Courageous.Name",
+    "ProcessTemplates": false,
+    "enGB": "Courageous (+1)"
+  },
+  {
+    "Key": "LW.Courageous.Description",
+    "enGB": "A courageous weapon fortifies the wielder’s courage and morale in battle. The wielder gains a morale bonus on saving throws against fear equal to the weapon’s enhancement bonus.\nRequires: Melee"
+  },
+
+  {
     "Key": "LW.Cruel.Name",
     "ProcessTemplates": false,
     "enGB": "Cruel (+1)"
