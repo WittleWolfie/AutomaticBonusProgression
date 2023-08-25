@@ -18,13 +18,19 @@ namespace AutomaticBonusProgression.Components
 
     private readonly List<WeaponRangeType> AllowedRanges = new();
     private readonly List<PhysicalDamageForm> AllowedForms = new();
+    private readonly bool OnlyLightWeapons;
 
     internal WeaponAttunement(
-      BlueprintBuffReference effectBuff, int cost, WeaponRangeType[] allowedRanges, PhysicalDamageForm[] allowedForms)
+      BlueprintBuffReference effectBuff,
+      int cost,
+      WeaponRangeType[] allowedRanges,
+      PhysicalDamageForm[] allowedForms,
+      bool onlyLightWeapons = false)
       : base(effectBuff, cost)
     {
       AllowedRanges.AddRange(allowedRanges);
       AllowedForms.AddRange(allowedForms);
+      OnlyLightWeapons = onlyLightWeapons;
     }
 
     public override EnhancementType Type => EnhancementType.MainHand;
@@ -43,6 +49,8 @@ namespace AutomaticBonusProgression.Components
       var forms = string.Join(", ", AllowedForms.Select(GetLocalizedText).Where(str => !string.IsNullOrEmpty(str)));
 
       var requirements = string.Join("; ", new List<string>() { ranges, forms }.Where(str => !string.IsNullOrEmpty(str)));
+      if (OnlyLightWeapons)
+        requirements = string.Concat(UITool.GetString("Weapon.Light"), ", ", requirements);
       return requirements.Truncate(35);
     }
 
@@ -53,9 +61,10 @@ namespace AutomaticBonusProgression.Components
 
       var isAllowedForm = IsAllowedForm(weapon);
       var isAllowedRange = IsAllowedRange(weapon);
+      var isSizeAllowed = !OnlyLightWeapons || weapon.Blueprint.IsLight;
 
-      Logger.Verbose(() => $"Is {weapon.Name} suitable for {EffectBuff.NameSafe()}? Form::{isAllowedForm}, Range::{isAllowedRange}");
-      return isAllowedForm && isAllowedRange;
+      Logger.Verbose(() => $"Is {weapon.Name} suitable for {EffectBuff.NameSafe()}? Form::{isAllowedForm}, Range::{isAllowedRange}, Size::{isSizeAllowed}");
+      return isAllowedForm && isAllowedRange && isSizeAllowed;
     }
 
     private bool IsAllowedForm(ItemEntityWeapon weapon)

@@ -12,8 +12,13 @@ namespace AutomaticBonusProgression.Components
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(OffHandAttunement));
 
-    internal OffHandAttunement(BlueprintBuffReference effectBuff, int cost, WeaponRangeType[] allowedRanges, PhysicalDamageForm[] allowedForms)
-      : base(effectBuff, cost, allowedRanges, allowedForms) { }
+    internal OffHandAttunement(
+      BlueprintBuffReference effectBuff,
+      int cost,
+      WeaponRangeType[] allowedRanges,
+      PhysicalDamageForm[] allowedForms,
+      bool onlyLightWeapons = false)
+      : base(effectBuff, cost, allowedRanges, allowedForms, onlyLightWeapons) { }
 
     public override EnhancementType Type => EnhancementType.OffHand;
 

@@ -488,6 +488,12 @@
     internal const string BewilderingOffHandAbility = "0c673b61-c50c-4b45-ad16-46355a8d8d82";
     internal const string BewilderingOffHandSelfBufff = "145bcac8-3595-433c-8072-74161f69c9a0";
 
+    internal const string BrawlingWeaponEnchant = "27576886-712a-42d9-90cb-d8ec86e28ea9";
+    internal const string BrawlingWeaponBuff = "f96ab6fd-2a6a-4e73-aef3-5ba6355f80f4";
+    internal const string BrawlingWeaponEffect = "632bb8b9-773e-4dcb-aa00-21226e427437";
+    internal const string BrawlingWeaponOffHandBuff = "8dfba1bb-9c9e-4a08-8e6f-0fdd18be025a";
+    internal const string BrawlingWeaponOffHandEffect = "1c45f70c-15c9-4358-9f22-9b1362897213";
+
     internal const string BrilliantEnergyEnchantCopy = "f23463d7-aee5-4e1c-bcf6-12d5bed8da83";
     internal const string BrilliantEnergyBuff = "223d8cc8-9589-4b7f-9e70-b059b164ea7c";
     internal const string BrilliantEnergyEffect = "fea94225-69c9-44a4-94dd-711c9f2e9dcf";

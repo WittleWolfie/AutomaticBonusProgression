@@ -88,6 +88,7 @@ namespace AutomaticBonusProgression.Util
   {
     internal readonly WeaponRangeType[] AllowedRanges = Array.Empty<WeaponRangeType>();
     internal readonly PhysicalDamageForm[] AllowedForms = Array.Empty<PhysicalDamageForm>();
+    internal readonly bool OnlyLightWeapons = false;
 
     public WeaponEnchantInfo(LocalString displayName, LocalString description, Asset<Sprite> icon, int cost)
       : base(displayName, description, icon, EnhancementType.MainHand, cost) { }
@@ -112,19 +113,21 @@ namespace AutomaticBonusProgression.Util
       Asset<Sprite> icon,
       int cost,
       List<WeaponRangeType> allowedRanges,
-      List<PhysicalDamageForm> allowedForms)
+      List<PhysicalDamageForm> allowedForms,
+      bool onlyLightWeapons = false)
       : base(displayName, description, icon, EnhancementType.MainHand, cost)
     {
       AllowedRanges = allowedRanges.ToArray();
       AllowedForms = allowedForms.ToArray();
+      OnlyLightWeapons = onlyLightWeapons;
     }
 
     internal override AttunementEffect GetAttunementComponent(
       Blueprint<BlueprintBuffReference> effectBuff, bool variant = false)
     {
       if (variant)
-        return new OffHandAttunement(effectBuff.Reference, Cost, AllowedRanges, AllowedForms);
-      return new WeaponAttunement(effectBuff.Reference, Cost, AllowedRanges, AllowedForms);
+        return new OffHandAttunement(effectBuff.Reference, Cost, AllowedRanges, AllowedForms, OnlyLightWeapons);
+      return new WeaponAttunement(effectBuff.Reference, Cost, AllowedRanges, AllowedForms, OnlyLightWeapons);
     }
   }
 }

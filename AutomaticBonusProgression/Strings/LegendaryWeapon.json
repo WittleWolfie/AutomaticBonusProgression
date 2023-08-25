@@ -155,6 +155,16 @@
   },
 
   {
+    "Key": "LW.Brawling.Name",
+    "ProcessTemplates": false,
+    "enGB": "Brawling (+1)"
+  },
+  {
+    "Key": "LW.Brawling.Description",
+    "enGB": "The wielder of this weapon gains a +2 enhancement bonus on combat maneuver checks.\nRequires: Light Bludgeoning"
+  },
+
+  {
     "Key": "LW.BrilliantEnergy.Name",
     "ProcessTemplates": false,
     "enGB": "Brilliant Energy (+4)"

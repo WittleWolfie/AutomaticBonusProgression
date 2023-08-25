@@ -134,6 +134,11 @@
     "ProcessTemplates": false,
     "enGB": "Slashing"
   },
+  {
+    "Key": "ABP.UI.Weapon.Light",
+    "ProcessTemplates": false,
+    "enGB": "Light"
+  },
 
   // Legendary Gifts
   {
