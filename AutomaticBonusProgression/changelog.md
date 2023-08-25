@@ -2,6 +2,7 @@
 
 * New Weapon Enchants
     * Bewildering
+    * Brawling
 
 ## v0.9.0
 
