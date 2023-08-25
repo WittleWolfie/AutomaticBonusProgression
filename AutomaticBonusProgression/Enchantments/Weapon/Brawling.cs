@@ -1,4 +1,5 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.EntitySystem.Stats;
@@ -28,7 +29,7 @@ namespace AutomaticBonusProgression.Enchantments
       var enchant = WeaponEnchantmentConfigurator.New(EnchantName, Guids.BrawlingWeaponEnchant)
         .SetEnchantName(DisplayName)
         .SetDescription(Description)
-        .AddStatBonusEquipment(stat: StatType.AdditionalCMB, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddItemEnhancementStatBonus(StatType.AdditionalCMB))
         .Configure();
 
       var flurry = FeatureRefs.FlurryOfBlows.Reference.Get();

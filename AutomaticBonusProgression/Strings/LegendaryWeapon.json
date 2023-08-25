@@ -161,7 +161,7 @@
   },
   {
     "Key": "LW.Brawling.Description",
-    "enGB": "The wielder of this weapon gains a +2 enhancement bonus on combat maneuver checks.\nRequires: Light Bludgeoning"
+    "enGB": "The wielder of this weapon gains an enhancement bonus on combat maneuver checks equal to the enhancement bonus of the weapon.\nRequires: Light Bludgeoning"
   },
 
   {
