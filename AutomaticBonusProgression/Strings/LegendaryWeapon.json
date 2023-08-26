@@ -151,7 +151,7 @@
   },
   {
     "Key": "LW.Bewildering.Description",
-    "enGB": "Three times per day the wielder of a bewildering weapon can buff themselves. On the next successful attack with a weapon, the target becomes confused for 1d6 rounds. The target can attempt a Will saving throw each round to end this effect. the DC of the save is 17 + Mythic Rank."
+    "enGB": "Three times per day the wielder of a bewildering weapon can buff themselves. On the next successful attack with a weapon, the target becomes confused for 1d6 rounds. The target can attempt a Will saving throw each round to end this effect. The DC of the save is 17 + Mythic Rank."
   },
 
   {
@@ -184,6 +184,26 @@
     "Key": "LW.Cruel.Name",
     "ProcessTemplates": false,
     "enGB": "Cruel (+1)"
+  },
+
+  {
+    "Key": "LW.Cunning.Name",
+    "ProcessTemplates": false,
+    "enGB": "Cunning (+1)"
+  },
+  {
+    "Key": "LW.Cunning.Description",
+    "enGB": "Whenever the weapon’s attack is a critical threat, the wielder gains a +4 bonus on the confirmation roll if she has 5 or more ranks in the Knowledge or Lore skill used to identify the target’s creature type, or a +6 bonus instead if she has 15 or more ranks."
+  },
+
+  {
+    "Key": "LW.DazzlingRadiance.Name",
+    "ProcessTemplates": false,
+    "enGB": "Dazzling Radiance (+1)"
+  },
+  {
+    "Key": "LW.DazzlingRadiance.Description",
+    "enGB": "When a character wielding a dazzling radiance weapon uses the Dazzling Display feat, the weapon flashes in a burst of bright color. All enemies within 15 feet of the wielder who can see the display must attempt a Fortitude save. Those who fail are blinded for 2 rounds and dazzled for an additional 1d4 rounds; those who succeed are instead dazzled for 1d4 rounds.\nThe DC of the save is 17 + Mythic Rank."
   },
 
   {

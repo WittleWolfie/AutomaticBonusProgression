@@ -1,3 +1,9 @@
+## v0.9.2
+
+* New Weapon Enchants
+    * Cunning
+    * Dazzling Radiance
+
 ## v0.9.1
 
 * New Weapon Enchants

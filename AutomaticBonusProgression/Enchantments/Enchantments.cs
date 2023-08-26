@@ -61,6 +61,8 @@ namespace AutomaticBonusProgression.Enchantments
         BrilliantEnergy.Configure();
         Courageous.Configure();
         Cruel.Configure();
+        Cunning.Configure();
+        DazzlingRadiance.Configure();
         Disruption.Configure();
         Elemental.Configure();
         Furious.Configure();
