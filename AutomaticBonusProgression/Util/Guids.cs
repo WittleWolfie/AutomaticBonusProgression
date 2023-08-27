@@ -672,6 +672,12 @@
     internal const string KeenOffHandBuff = "ddec7c67-e357-4964-9e01-c57310fbca14";
     internal const string KeenOffHandEffect = "48c41966-78f2-44bf-af4b-ab1672a4b5d9";
 
+    internal const string LeveragingEnchant = "e8cec854-b5a9-4152-a508-78c422233834";
+    internal const string LeveragingBuff = "c9d2b090-5368-4d3d-9419-d48619287ae7";
+    internal const string LeveragingEffect = "81b10526-b105-420d-ae95-c0f9c8310a00";
+    internal const string LeveragingOffHandBuff = "eb7cde6d-7242-4011-ae62-6749ad0030c4";
+    internal const string LeveragingOffHandEffect = "ea144080-090a-481e-833d-c509ca0b6d11";
+
     internal const string NullifyingEnchantCopy = "9cda595a-3fcd-4ae8-bffa-94051317fb23";
     internal const string NullifyingBuff = "53755dd2-a2c6-4315-8161-9ebb95fd70f4";
     internal const string NullifyingEffect = "6091c9b0-a870-437a-bb19-a35852de58c9";

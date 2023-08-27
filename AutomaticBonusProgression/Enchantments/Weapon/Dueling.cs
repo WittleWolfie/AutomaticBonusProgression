@@ -73,7 +73,7 @@ namespace AutomaticBonusProgression.Enchantments
           if (evt.Type != CombatManeuver.Disarm)
             return;
 
-          evt.AddModifier(2, Fact, ModifierDescriptor.UntypedStackable);
+          evt.AddModifier(2, Enchantment, ModifierDescriptor.UntypedStackable);
         }
         catch (Exception e)
         {
@@ -88,7 +88,7 @@ namespace AutomaticBonusProgression.Enchantments
           if (evt.Type != CombatManeuver.Disarm)
             return;
 
-          evt.AddModifier(2, Fact, ModifierDescriptor.UntypedStackable);
+          evt.AddModifier(2, Enchantment, ModifierDescriptor.UntypedStackable);
         }
         catch (Exception e)
         {

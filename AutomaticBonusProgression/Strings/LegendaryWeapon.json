@@ -392,6 +392,16 @@
   },
 
   {
+    "Key": "LW.Leveraging.Name",
+    "ProcessTemplates": false,
+    "enGB": "Leveraging (+1)"
+  },
+  {
+    "Key": "LW.Leveraging.Description",
+    "enGB": "The wielder of a leveraging weapon gains a bonus equal to the weapon’s enhancement bonus to her CMD against bull rush, drag, reposition, and trip combat maneuvers. This bonus also applies to the wielders CMB when attempting  bull rush, drag, reposition, and trip combat maneuvers.\nRequires: Melee"
+  },
+
+  {
     "Key": "LW.Nullifying.Name",
     "ProcessTemplates": false,
     "enGB": "Nullifying (+3)"

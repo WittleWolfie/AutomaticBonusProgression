@@ -8,9 +8,11 @@
     * Dueling
     * Fortuitous
     * Growing
+    * Leveraging
 
 * Misc
     * Bewildering now has a separate cast pool for main hand and off-hand
+    * Legendary Off-Hand should open the correct enchant view
 
 ## v0.9.1
 
