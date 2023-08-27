@@ -157,7 +157,7 @@ namespace AutomaticBonusProgression.Features
         .SetIcon(icon)
         .SetType(AbilityType.Supernatural)
         .AddAbilityCasterInCombat(not: true)
-        .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.MainHand))
+        .AddAbilityEffectRunAction(ActionsBuilder.New().Add<ShowAttunement>(a => a.Type = EnhancementType.OffHand))
         .Configure();
 
       return FeatureConfigurator.New(LegendaryOffHandName, Guids.LegendaryOffHand)
