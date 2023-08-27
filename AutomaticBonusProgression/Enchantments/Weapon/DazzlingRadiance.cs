@@ -87,7 +87,7 @@ namespace AutomaticBonusProgression.Enchantments
       : ItemEnchantmentComponentDelegate, IInitiatorRulebookHandler<RuleCastSpell>
     {
       private static readonly List<BlueprintAbility> DazzlingDisplays = new();
-      private static readonly CustomDataKey TriggeredKey = new("DazzlingRadiance.Handler");
+      private static readonly CustomDataKey DuplicateKey = new("DazzlingRadiance.Duplicate");
 
       private readonly ActionList Actions;
 
@@ -113,13 +113,13 @@ namespace AutomaticBonusProgression.Enchantments
           if (!DazzlingDisplays.Contains(evt.Spell.Blueprint))
             return;
 
-          // For some reason it always triggers twice, so we need to store some indicator
-          if (evt.TryGetCustomData(TriggeredKey, out bool _))
+          // The enchantment may be applied to multiple weapons; only trigger this once!
+          if (evt.TryGetCustomData(DuplicateKey, out bool _))
           {
-            Logger.Verbose(() => "Duplicate cast triggered, ignoring");
+            Logger.Verbose(() => "Ignoring duplicate trigger");
             return;
           }
-          evt.SetCustomData(TriggeredKey, true);
+          evt.SetCustomData(DuplicateKey, true);
 
           foreach (var target in GameHelper.GetTargetsAround(wielder.Position, 15.Feet()))
           {
