@@ -57,8 +57,7 @@ namespace AutomaticBonusProgression.Components
         if (Data.AppliedBuff is not null)
         {
           Logger.Verbose(() => $"Deactivating {Data.AppliedBuff.Name}");
-          Data.AppliedBuff.Remove();
-          Data.AppliedBuff = null;
+          Disable();
         }
       }
       catch (Exception e)
@@ -105,9 +104,7 @@ namespace AutomaticBonusProgression.Components
       if (buffApplied && !shouldApply)
       {
         Logger.Verbose(() => $"Unsupported enchantment, removing {Data.AppliedBuff.Name} [{Type}, {Cost}]");
-        Data.AppliedBuff.Remove();
-        Data.AppliedBuff = null;
-        Owner.Ensure<UnitPartEnhancement>().RemoveEnchantment(Type, Cost);
+        Disable();
       }
       else if (!buffApplied && shouldApply)
       {
@@ -116,6 +113,13 @@ namespace AutomaticBonusProgression.Components
         Data.AppliedBuff = Owner.AddBuff(buff, Context);
         Owner.Ensure<UnitPartEnhancement>().AddEnchantment(Type, Cost);
       }
+    }
+
+    private void Disable()
+    {
+      Data.AppliedBuff.Remove();
+      Data.AppliedBuff = null;
+      Owner.Get<UnitPartEnhancement>()?.RemoveEnchantment(Type, Cost);
     }
 
     private bool CanAfford(bool applied)
