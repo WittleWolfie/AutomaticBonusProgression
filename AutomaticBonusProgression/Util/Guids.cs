@@ -554,6 +554,12 @@
     internal const string DisruptionOffHandBuff = "92215b67-2232-4828-b240-08a0d10c90fe";
     internal const string DisruptionOffHandEffect = "2f6d54ed-a3e7-404d-89c6-d26f684fd37e";
 
+    internal const string DuelingEnchant = "ebe16508-0858-4313-8661-9aa3b9b2a1f2";
+    internal const string DuelingBuff = "71dee4ae-26ce-4b04-8df6-ff1b5e9e3aef";
+    internal const string DuelingEffect = "a9fc6dc7-e287-47e2-818e-b5e62bbd1102";
+    internal const string DuelingOffHandBuff = "9bc02448-7e4e-4246-8488-e90c56610972";
+    internal const string DuelingOffHandEffect = "785fc337-9baf-4d70-a23a-c2dc50d02f62";
+
     #region Elemental
     internal const string CorrosiveEnchantCopy = "414a1d7d-8bff-45f0-9ed9-1fe05b379532";
     internal const string CorrosiveBuff = "59021693-62be-4be5-85cd-6a1598348c90";

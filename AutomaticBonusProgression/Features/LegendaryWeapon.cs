@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Dueling
       // - Fortuitous
       // - Grounding
       // - Growing
@@ -111,6 +110,7 @@ namespace AutomaticBonusProgression.Features
             Guids.DisruptionBuff,
             Guids.DistractingBuff,
             Guids.DistractingGreaterBuff,
+            Guids.DuelingBuff,
       #region Elemental
             Guids.CorrosiveBuff,
             Guids.CorrosiveBurstBuff,
@@ -208,6 +208,7 @@ namespace AutomaticBonusProgression.Features
             Guids.DisruptionOffHandBuff,
             Guids.DistractingOffHandBuff,
             Guids.DistractingGreaterOffHandBuff,
+            Guids.DuelingOffHandBuff,
       #region Elemental
             Guids.CorrosiveOffHandBuff,
             Guids.CorrosiveBurstOffHandBuff,

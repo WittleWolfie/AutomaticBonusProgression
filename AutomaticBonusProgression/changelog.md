@@ -4,6 +4,8 @@
     * Cunning
     * Dazzling Radiance
     * Debilitating
+    * Disrupting
+    * Dueling
 
 ## v0.9.1
 

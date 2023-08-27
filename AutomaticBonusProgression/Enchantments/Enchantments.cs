@@ -66,6 +66,7 @@ namespace AutomaticBonusProgression.Enchantments
         Debilitating.Configure();
         Disruption.Configure();
         Distracting.Configure();
+        Dueling.Configure();
         Elemental.Configure();
         Furious.Configure();
         Furyborn.Configure();

@@ -268,6 +268,16 @@
     "enGB": "Any time a creature that has been struck by a greater distracting weapon would have to succeed at a concentration check to complete a spell or use a special ability or item, the DC of that check increases by 10. This distraction lasts for 1 minute."
   },
 
+  {
+    "Key": "LW.Dueling.Name",
+    "ProcessTemplates": false,
+    "enGB": "Dueling (+4)"
+  },
+  {
+    "Key": "LW.Dueling.Description",
+    "enGB": "A dueling weapon gives the wielder a +4 enhancement bonus on initiative checks. It provides a +2 bonus on disarm checks and a +2 bonus to CMD to resist disarm attempts.\nRequires: Light Melee"
+  },
+
   //// Elemental
   {
     "Key": "LW.Elemental.Corrosive.Name",
