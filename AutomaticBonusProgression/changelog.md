@@ -7,6 +7,10 @@
     * Disrupting
     * Dueling
     * Fortuitous
+    * Growing
+
+* Misc
+    * Bewildering now has a separate cast pool for main hand and off-hand
 
 ## v0.9.1
 

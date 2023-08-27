@@ -487,6 +487,7 @@
     internal const string BewilderingMainHandSelfBuff = "4a78ee08-2d9a-4f09-8548-bfe2c6c30fa0";
     internal const string BewilderingOffHandAbility = "0c673b61-c50c-4b45-ad16-46355a8d8d82";
     internal const string BewilderingOffHandSelfBufff = "145bcac8-3595-433c-8072-74161f69c9a0";
+    internal const string BewilderingOffHandCastResource = "43f15461-3e3c-4ce9-8f3c-9e8f740d8611";
 
     internal const string BrawlingWeaponEnchant = "27576886-712a-42d9-90cb-d8ec86e28ea9";
     internal const string BrawlingWeaponBuff = "f96ab6fd-2a6a-4e73-aef3-5ba6355f80f4";
@@ -646,6 +647,18 @@
     internal const string GhostTouchEffect = "8e837ee5-8df1-4503-ab42-f43937104831";
     internal const string GhostTouchOffHandBuff = "8ba2cbdf-72e0-44ed-a2c4-997aff2e75dc";
     internal const string GhostTouchOffHandEffect = "80aba733-2e12-4111-b981-7277f4b340b8";
+
+    internal const string GrowingEnchant = "de2148cf-1f97-4c3b-aa3c-1fb8e0ebf426";
+    internal const string GrowingBuff = "c1b87878-5616-488f-8622-cbd2fbc8d04b";
+    internal const string GrowingEffect = "bdf7932f-70fc-4edb-a7c3-133fbf593f20";
+    internal const string GrowingOffHandBuff = "9eef4f05-61ff-42a4-88ef-25687445af18";
+    internal const string GrowingOffHandEffect = "c20f6487-826f-4627-acbe-5ea61641d24d";
+    internal const string GrowingCastResource = "35532c87-8cda-425b-947d-ae2ff3d9e4e9";
+    internal const string GrowingMainHandAbility = "f348519f-3592-4d01-b71f-90ad671410f7";
+    internal const string GrowingMainHandSelfBuff = "b0b2e846-0a56-434d-983b-c002569b0eb3";
+    internal const string GrowingOffHandAbility = "e90f81a2-6928-476b-87aa-d6a884e61c12";
+    internal const string GrowingOffHandSelfBufff = "60d2ba30-556f-4f55-aff2-603022703fed";
+    internal const string GrowingOffHandCastResource = "5b9d08d0-1973-4e18-acee-7017de11c28b";
 
     internal const string HeartseekerEnchantCopy = "baf17287-e1c4-4d69-a8ef-8708e754df96";
     internal const string HeartseekerBuff = "3be8c66f-e7da-4f64-8d23-e0b96fb22f2a";

@@ -14,8 +14,6 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components;
-using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
@@ -34,6 +32,7 @@ namespace AutomaticBonusProgression.Enchantments
     private const string TargetBuffName = "LW.Bewildering.Buff.Target";
     private const string EnchantName = "LW.Bewildering.Enchant";
     private const string CastResourceName = "LW.Bewildering.Cast.Resource";
+    private const string OffHandCastResourceName = "LW.Bewildering.Cast.OffHand.Resource";
 
     private const string MainHandAbilityName = "LW.Bewildering.Cast";
     private const string MainHandSelfBuffName = "LW.Bewildering.Buff.MainHand.Self";
@@ -100,7 +99,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(mainHandBuff))
         .Configure();
 
-      var offHandResource = AbilityResourceConfigurator.New(CastResourceName, Guids.BewilderingCastResource)
+      var offHandResource = AbilityResourceConfigurator.New(OffHandCastResourceName, Guids.BewilderingOffHandCastResource)
         .SetIcon(confusionSpell.Icon)
         .SetMaxAmount(ResourceAmountBuilder.New(3))
         .Configure();

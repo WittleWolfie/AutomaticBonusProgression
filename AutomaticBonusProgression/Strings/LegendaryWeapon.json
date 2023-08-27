@@ -360,6 +360,26 @@
   },
 
   {
+    "Key": "LW.Growing.Name",
+    "ProcessTemplates": false,
+    "enGB": "Growing (+1)"
+  },
+  {
+    "Key": "LW.Growing.Description",
+    "enGB": "Once per day, a growing weapon is able to grow by one size category, dealing damage as appropriate for its new size and allowing its wielder to affect creatures one size larger than normal with combat maneuvers limited by size. The wielder is able to use the weapon normally without penalty despite its increased size. The weapon remains at its increased size for 10 minutes.\nRequires: Melee"
+  },
+  {
+    "Key": "LW.Growing.MainHand.Name",
+    "ProcessTemplates": false,
+    "enGB": "Growing (Main Hand)"
+  },
+  {
+    "Key": "LW.Growing.OffHand.Name",
+    "ProcessTemplates": false,
+    "enGB": "Growing (Off Hand)"
+  },
+
+  {
     "Key": "LW.Heartseeker.Name",
     "ProcessTemplates": false,
     "enGB": "Heartseeker (+1)"

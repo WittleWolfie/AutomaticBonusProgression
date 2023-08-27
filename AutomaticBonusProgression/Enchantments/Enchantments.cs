@@ -72,6 +72,7 @@ namespace AutomaticBonusProgression.Enchantments
         Furious.Configure();
         Furyborn.Configure();
         GhostTouch.Configure();
+        Growing.Configure();
         Heartseeker.Configure();
         Keen.Configure();
         Nullifying.Configure();

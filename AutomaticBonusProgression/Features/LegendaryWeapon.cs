@@ -28,10 +28,8 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Growing
       // - Leveraging
       // - Limning
-      // - Menacing
       // - Ominous
       // - Quenching
       // - Thawing
@@ -125,6 +123,7 @@ namespace AutomaticBonusProgression.Features
             Guids.FuriousBuff,
             Guids.FurybornBuff,
             Guids.GhostTouchBuff,
+            Guids.GrowingBuff,
             Guids.HeartseekerBuff,
             Guids.KeenBuff,
             Guids.NullifyingBuff,
@@ -224,6 +223,7 @@ namespace AutomaticBonusProgression.Features
             Guids.FuriousOffHandBuff,
             Guids.FurybornOffHandBuff,
             Guids.GhostTouchOffHandBuff,
+            Guids.GrowingOffHandBuff,
             Guids.HeartseekerOffHandBuff,
             Guids.KeenOffHandBuff,
             Guids.NullifyingOffHandBuff,
