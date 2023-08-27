@@ -4,7 +4,7 @@
     * Cunning
     * Dazzling Radiance
     * Debilitating
-    * Disrupting
+    * Distracting
     * Dueling
     * Fortuitous
     * Growing

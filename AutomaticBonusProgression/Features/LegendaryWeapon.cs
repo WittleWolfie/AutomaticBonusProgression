@@ -28,20 +28,17 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Limning
-      // - Ominous
-      // - Valiant
-      // - Sneaky
       // - Culling
-      // - Defiant
       // - Impact
       // - Invigorating
       // - Legbreaker
       // - Lifesurge
+      // - Limning
+      // - Ominous
       // - Phase Locking
       // - Quaking
-      // - Wounding
-      // - Gory
+      // - Sneaky
+      // - Valiant
 
       var resource = AbilityResourceConfigurator.New(LegendaryWeaponResource, Guids.LegendaryWeaponResource)
         .SetMaxAmount(ResourceAmountBuilder.New(1))
