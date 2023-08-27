@@ -3,6 +3,7 @@
 * New Weapon Enchants
     * Cunning
     * Dazzling Radiance
+    * Debilitating
 
 ## v0.9.1
 

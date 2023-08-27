@@ -524,6 +524,16 @@
     internal const string DazzlingRadianceOffHandBuff = "98a48965-2895-4362-a9db-d8d46cce7c10";
     internal const string DazzlingRadianceOffHandEffect = "1ed7f9c1-4c94-4567-ba0a-1e07584cee7c";
 
+    internal const string DebilitatingEnchant = "25c3107b-5b07-4917-8a3f-f82fafad51bf";
+    internal const string DebilitatingBuff = "a2440464-701c-4757-80b3-cb36951d725b";
+    internal const string DebilitatingEffect = "1939247d-d25e-480b-8037-ab54e9a129d7";
+    internal const string DebilitatingOffHandBuff = "6493391e-bd02-444c-8ffb-313ea20ca3a9";
+    internal const string DebilitatingOffHandEffect = "e9aa64d1-6852-4b48-8050-98227b01e9ab";
+    internal const string DebilitatingToggle = "cdd8f958-e555-46d4-8724-b4bdab0f725e";
+    internal const string DebilitatingToggleBuff = "f194701c-121c-47ac-8eb0-f1af7d3e804d";
+    internal const string DebilitatingAttackBuff = "36749e80-1994-4115-bbe8-8cf9e9a57e8d";
+    internal const string DebilitatingACBuff = "908653c5-ee22-4fc2-a1ee-f5e8c56ba7b6";
+
     internal const string DisruptionEnchantCopy = "ac53ee64-9b31-461f-b07c-85976b5f22c2";
     internal const string DisruptionBuff = "870b65ba-9340-4251-bb36-c0394d4fd707";
     internal const string DisruptionEffect = "620fc9ef-b25d-4f81-a582-10ebad78037c";

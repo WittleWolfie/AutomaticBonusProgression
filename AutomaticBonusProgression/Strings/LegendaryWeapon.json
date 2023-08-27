@@ -207,6 +207,43 @@
   },
 
   {
+    "Key": "LW.Debilitating.Name",
+    "ProcessTemplates": false,
+    "enGB": "Debilitating (+1)"
+  },
+  {
+    "Key": "LW.Debilitating.Description",
+    "enGB": "Whenever a debilitating weapon is used to attack an opponent that is denied its Dexterity bonus to AC and hits, that opponent takes a –1 penalty on attack rolls or to its AC for 1 round (wielder’s choice). Any creature that is immune to sneak attacks is immune to this penalty, and any item or ability that protects a creature from critical hits also protects a creature from the penalties imposed by a debilitating weapon.\nIf the wielder has the debilitating injury class ability, this special ability increases the penalty applied by the bewildered or disoriented effects by 1."
+  },
+  {
+    "Key": "LW.Debilitating.Toggle.Name",
+    "ProcessTemplates": false,
+    "enGB": "Debilitating Weapon Toggle"
+  },
+  {
+    "Key": "LW.Debilitating.Toggle.Description",
+    "enGB": "While this is active your debilitating weapons inflict attack roll penalties.\nWhile this is inactive your debilitating weapons inflict AC penalties."
+  },
+  {
+    "Key": "LW.Debilitating.Attack.Name",
+    "ProcessTemplates": false,
+    "enGB": "Debilitating Attack"
+  },
+  {
+    "Key": "LW.Debilitating.Attack.Description",
+    "enGB": "The character takes a penalty on all attack rolls."
+  },
+  {
+    "Key": "LW.Debilitating.AC.Name",
+    "ProcessTemplates": false,
+    "enGB": "Debilitating Armor"
+  },
+  {
+    "Key": "LW.Debilitating.AC.Description",
+    "enGB": "The character's AC is reduced."
+  },
+
+  {
     "Key": "LW.Disruption.Name",
     "ProcessTemplates": false,
     "enGB": "Disruption (+2)"
