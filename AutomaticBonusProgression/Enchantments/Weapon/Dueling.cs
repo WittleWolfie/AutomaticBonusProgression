@@ -23,7 +23,7 @@ namespace AutomaticBonusProgression.Enchantments
 
     private const string DisplayName = "LW.Dueling.Name";
     private const string Description = "LW.Dueling.Description";
-    private const int EnhancementCost = 1;
+    private const int EnhancementCost = 4;
 
     internal static void Configure()
     {

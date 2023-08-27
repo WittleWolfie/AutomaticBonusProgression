@@ -68,6 +68,7 @@ namespace AutomaticBonusProgression.Enchantments
         Distracting.Configure();
         Dueling.Configure();
         Elemental.Configure();
+        Fortuitous.Configure();
         Furious.Configure();
         Furyborn.Configure();
         GhostTouch.Configure();

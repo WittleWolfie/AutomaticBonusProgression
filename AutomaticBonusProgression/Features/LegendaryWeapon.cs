@@ -28,8 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Fortuitous
-      // - Grounding
       // - Growing
       // - Leveraging
       // - Limning
@@ -123,6 +121,7 @@ namespace AutomaticBonusProgression.Features
             Guids.ThunderingBuff,
             Guids.ThunderingBurstBuff,
       #endregion,
+            Guids.FortuitousBuff,
             Guids.FuriousBuff,
             Guids.FurybornBuff,
             Guids.GhostTouchBuff,
@@ -221,6 +220,7 @@ namespace AutomaticBonusProgression.Features
             Guids.ThunderingOffHandBuff,
             Guids.ThunderingBurstOffHandBuff,
       #endregion
+            Guids.FortuitousOffHandBuff,
             Guids.FuriousOffHandBuff,
             Guids.FurybornOffHandBuff,
             Guids.GhostTouchOffHandBuff,

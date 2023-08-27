@@ -6,6 +6,7 @@
     * Debilitating
     * Disrupting
     * Dueling
+    * Fortuitous
 
 ## v0.9.1
 

@@ -622,6 +622,13 @@
     internal const string ThunderingBurstOffHandEffect = "a74c44d6-e3f8-4d3b-8b62-89ab34ee4d15";
     #endregion
 
+    internal const string FortuitousEnchant = "038d4759-be19-41bb-8388-4cf3c9ff0945";
+    internal const string FortuitousBuff = "d67cf2c2-f880-40e6-a4a5-65a2e4020e6d";
+    internal const string FortuitousEffect = "5e1e00ba-b540-484d-8954-27197a7f77e1";
+    internal const string FortuitousOffHandBuff = "164b9fe0-876e-4149-8999-856417a8c433";
+    internal const string FortuitousOffHandEffect = "11bf66da-e2db-41cd-947e-8e9837ae6361";
+    internal const string FortuitousCooldown = "bb91904e-91a5-48ab-8111-ec9134426d65";
+
     internal const string FuriousEnchantCopy = "003429f8-c879-46d0-b61e-9d3de2c87064";
     internal const string FuriousBuff = "d3a5ee89-2229-4363-83e2-c084d465a5b9";
     internal const string FuriousEffect = "358b988a-c8c0-4c08-bea2-eb13ecbfee3f";

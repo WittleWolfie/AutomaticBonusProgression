@@ -332,6 +332,16 @@
   //// End Elemental
 
   {
+    "Key": "LW.Fortuitous.Name",
+    "ProcessTemplates": false,
+    "enGB": "Fortuitous (+1)"
+  },
+  {
+    "Key": "LW.Fortuitous.Description",
+    "enGB": "A fortuitous weapon grants the wielder more attacks of opportunity. Once per round, when the wielder of a fortuitous weapon hits with an attack of opportunity, he can make a second attack with this weapon against that foe at a –5 penalty.\nRequires: Melee"
+  },
+
+  {
     "Key": "LW.Furious.Name",
     "ProcessTemplates": false,
     "enGB": "Furious (+1)"
