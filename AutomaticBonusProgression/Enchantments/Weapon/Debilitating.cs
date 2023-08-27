@@ -68,6 +68,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetIcon(disoriented.Icon)
         .SetRanks(2)
         .AddStatBonus(stat: StatType.AdditionalAttackBonus, value: -1)
+        .AddNotDispelable()
         .Configure();
 
       var acBuff = BuffConfigurator.New(ACBuff, Guids.DebilitatingACBuff)
@@ -76,6 +77,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetIcon(bewildered.Icon)
         .SetRanks(2)
         .AddStatBonus(stat: StatType.AC, value: -1)
+        .AddNotDispelable()
         .Configure();
 
       var toggleBuff = BuffConfigurator.New(ToggleBuffName, Guids.DebilitatingToggleBuff)
@@ -116,8 +118,7 @@ namespace AutomaticBonusProgression.Enchantments
         DisplayName,
         Description,
         debilitatingInjury.Icon,
-        EnhancementCost,
-        WeaponRangeType.Melee);
+        EnhancementCost);
       EnchantTool.CreateEnchant(
         enchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(EffectName, Guids.DebilitatingEffect, enchant),

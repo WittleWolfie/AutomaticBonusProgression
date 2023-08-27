@@ -249,6 +249,25 @@
     "enGB": "Disruption (+2)"
   },
 
+  {
+    "Key": "LW.Distracting.Name",
+    "ProcessTemplates": false,
+    "enGB": "Distracting (+1)"
+  },
+  {
+    "Key": "LW.Distracting.Description",
+    "enGB": "Any time a creature that has been struck by a distracting weapon would have to succeed at a concentration check to complete a spell or use a special ability or item, the DC of that check increases by 5. This distraction lasts for 1 minute."
+  },
+  {
+    "Key": "LW.Distracting.Greater.Name",
+    "ProcessTemplates": false,
+    "enGB": "Distracting, Greater (+2)"
+  },
+  {
+    "Key": "LW.Distracting.Greater.Description",
+    "enGB": "Any time a creature that has been struck by a greater distracting weapon would have to succeed at a concentration check to complete a spell or use a special ability or item, the DC of that check increases by 10. This distraction lasts for 1 minute."
+  },
+
   //// Elemental
   {
     "Key": "LW.Elemental.Corrosive.Name",

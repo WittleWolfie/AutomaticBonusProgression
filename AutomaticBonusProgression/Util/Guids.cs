@@ -534,6 +534,20 @@
     internal const string DebilitatingAttackBuff = "36749e80-1994-4115-bbe8-8cf9e9a57e8d";
     internal const string DebilitatingACBuff = "908653c5-ee22-4fc2-a1ee-f5e8c56ba7b6";
 
+    internal const string DistractingEnchant = "258ff13f-e46f-4f86-9df5-610f5d2b3c32";
+    internal const string DistractingBuff = "167dfd30-60fb-4b87-9cb1-b70dbeee9df4";
+    internal const string DistractingEffect = "4cbbf10a-f885-442b-ab0c-aaccf8e50096";
+    internal const string DistractingOffHandBuff = "72c67070-310e-49c4-820f-209d5f76b497";
+    internal const string DistractingOffHandEffect = "d73d16f2-0379-458a-acc1-9ec85a0f62c8";
+    internal const string DistractingEffectBuff = "3b12afbc-fcbc-4e46-b543-a04513b7448d";
+
+    internal const string DistractingGreaterEnchant = "ed35092a-da83-44ea-9b71-0f7f26e13715";
+    internal const string DistractingGreaterBuff = "7fa2463e-8a67-43b7-8bd0-d86c93f039b4";
+    internal const string DistractingGreaterEffect = "3ed9e0ff-aa6d-4e62-af68-2ec51aedb02c";
+    internal const string DistractingGreaterOffHandBuff = "c23b69b0-4333-48f5-a4fb-4f71b8d780ad";
+    internal const string DistractingGreaterOffHandEffect = "c4e3d979-ff7e-470f-9fb2-1124c4bd467d";
+    internal const string DistractingGreaterEffectBuff = "73199cfc-e068-4b1d-bae9-c2604267a43c";
+
     internal const string DisruptionEnchantCopy = "ac53ee64-9b31-461f-b07c-85976b5f22c2";
     internal const string DisruptionBuff = "870b65ba-9340-4251-bb36-c0394d4fd707";
     internal const string DisruptionEffect = "620fc9ef-b25d-4f81-a582-10ebad78037c";
