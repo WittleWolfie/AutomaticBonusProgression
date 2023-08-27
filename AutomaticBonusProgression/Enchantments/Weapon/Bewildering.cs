@@ -75,7 +75,7 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
 
       var confusionSpell = AbilityRefs.ConfusionSpell.Reference.Get();
-      var castResource = AbilityResourceConfigurator.New(CastResourceName, Guids.BewilderingCastResource)
+      var mainHandResource = AbilityResourceConfigurator.New(CastResourceName, Guids.BewilderingCastResource)
         .SetIcon(confusionSpell.Icon)
         .SetMaxAmount(ResourceAmountBuilder.New(3))
         .Configure();
@@ -95,21 +95,27 @@ namespace AutomaticBonusProgression.Enchantments
         .SetType(AbilityType.Supernatural)
         .SetActionType(CommandType.Free)
         .SetAvailableMetamagic()
-        .AddAbilityResourceLogic(requiredResource: castResource, isSpendResource: true)
+        .AddAbilityResourceLogic(requiredResource: mainHandResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.BewilderingEffect })
         .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(mainHandBuff))
+        .Configure();
+
+      var offHandResource = AbilityResourceConfigurator.New(CastResourceName, Guids.BewilderingCastResource)
+        .SetIcon(confusionSpell.Icon)
+        .SetMaxAmount(ResourceAmountBuilder.New(3))
         .Configure();
 
       var offHandBuff = BuffConfigurator.New(OffHandSelfBuffName, Guids.BewilderingOffHandSelfBufff)
         .CopyFrom(mainHandBuff, c => c is not BuffEnchantAnyWeaponReplacement)
         .AddComponent(
           new BuffEnchantAnyWeaponReplacement(
-            enchant.ToReference<BlueprintItemEnchantmentReference>(), toPrimary: true))
+            enchant.ToReference<BlueprintItemEnchantmentReference>(), toPrimary: false))
         .Configure();
 
       var offHandCastAbility = AbilityConfigurator.New(OffHandAbilityName, Guids.BewilderingOffHandAbility)
-        .CopyFrom(mainHandCastAbility, c => c is not AbilityEffectRunAction && c is not AbilityCasterHasFacts)
+        .CopyFrom(mainHandCastAbility)
         .SetDisplayName(OffHandDisplayName)
+        .AddAbilityResourceLogic(requiredResource: offHandResource, isSpendResource: true)
         .AddAbilityCasterHasFacts(new() { Guids.BewilderingOffHandEffect })
         .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(offHandBuff))
         .Configure();
@@ -117,20 +123,26 @@ namespace AutomaticBonusProgression.Enchantments
       var enchantInfo = new WeaponEnchantInfo(DisplayName, Description, confusionSpell.Icon, EnhancementCost);
       var mainHandAddFacts = new AddFacts() { m_Facts = new[] { mainHandCastAbility.ToReference<BlueprintUnitFactReference>() } };
       var offHandAddFacts = new AddFacts() { m_Facts = new[] { offHandCastAbility.ToReference<BlueprintUnitFactReference>() } };
-      var addResources =
+      var mainHandResources =
         new AddAbilityResources()
         {
           RestoreAmount = true,
-          m_Resource = castResource.ToReference<BlueprintAbilityResourceReference>()
+          m_Resource = mainHandResource.ToReference<BlueprintAbilityResourceReference>()
+        };
+      var offHandResources =
+        new AddAbilityResources()
+        {
+          RestoreAmount = true,
+          m_Resource = offHandResource.ToReference<BlueprintAbilityResourceReference>()
         };
       EnchantTool.CreateEnchant(
         enchantInfo,
         effectBuff: new(EffectName, Guids.BewilderingEffect),
-        parentBuff: new(BuffName, Guids.BewilderingBuff, mainHandAddFacts, addResources));
+        parentBuff: new(BuffName, Guids.BewilderingBuff, mainHandAddFacts, mainHandResources));
       EnchantTool.CreateVariantEnchant(
         enchantInfo,
         effectBuff: new(OffHandEffectName, Guids.BewilderingOffHandEffect),
-        variantBuff: new(OffHandBuffName, Guids.BewilderingOffHandBuff, offHandAddFacts, addResources));
+        variantBuff: new(OffHandBuffName, Guids.BewilderingOffHandBuff, offHandAddFacts, offHandResources));
     }
   }
 }
