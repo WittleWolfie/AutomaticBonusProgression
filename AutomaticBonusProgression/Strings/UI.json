@@ -139,6 +139,11 @@
     "ProcessTemplates": false,
     "enGB": "Light"
   },
+  {
+    "Key": "ABP.UI.Weapon.Heavy",
+    "ProcessTemplates": false,
+    "enGB": "Heavy"
+  },
 
   // Legendary Gifts
   {

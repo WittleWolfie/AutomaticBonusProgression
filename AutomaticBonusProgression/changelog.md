@@ -2,6 +2,7 @@
 
 * New Weapon Enchants
     * Culling
+    * Impact
 
 ## v0.9.2
 

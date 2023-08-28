@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Impact
       // - Invigorating
       // - Legbreaker
       // - Lifesurge
@@ -119,6 +118,7 @@ namespace AutomaticBonusProgression.Features
             Guids.GhostTouchBuff,
             Guids.GrowingBuff,
             Guids.HeartseekerBuff,
+            Guids.ImpactBuff,
             Guids.KeenBuff,
             Guids.LeveragingBuff,
             Guids.NullifyingBuff,
@@ -221,6 +221,7 @@ namespace AutomaticBonusProgression.Features
             Guids.GhostTouchOffHandBuff,
             Guids.GrowingOffHandBuff,
             Guids.HeartseekerOffHandBuff,
+            Guids.ImpactOffHandBuff,
             Guids.KeenOffHandBuff,
             Guids.LeveragingOffHandBuff,
             Guids.NullifyingOffHandBuff,

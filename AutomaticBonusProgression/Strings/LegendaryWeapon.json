@@ -396,6 +396,16 @@
   },
 
   {
+    "Key": "LW.Impact.Name",
+    "ProcessTemplates": false,
+    "enGB": "Impact (+2)"
+  },
+  {
+    "Key": "LW.Impact.Description",
+    "enGB": "An impact weapon delivers a potent kinetic jolt when it strikes, dealing damage as if the weapon were one size category larger. In addition, any bull rush combat maneuver the wielder attempts while wielding the weapon gains a bonus equal to the weapon’s enhancement bonus.\nRequires: Heavy Melee"
+  },
+
+  {
     "Key": "LW.Keen.Name",
     "ProcessTemplates": false,
     "enGB": "Keen (+1)"

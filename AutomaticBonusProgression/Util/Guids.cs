@@ -672,6 +672,12 @@
     internal const string HeartseekerOffHandBuff = "bfc38426-fd8c-4f89-8d0a-48b2edb91437";
     internal const string HeartseekerOffHandEffect = "20b82354-6e97-4127-8587-89a1a82d814c";
 
+    internal const string ImpactEnchant = "17cceef7-acab-4890-b479-8b912f849682";
+    internal const string ImpactBuff = "9fe06859-3c99-49b4-82be-83f126432ac7";
+    internal const string ImpactEffect = "a34b2892-2148-4514-8447-6fbbbed0fc60";
+    internal const string ImpactOffHandBuff = "31047dbc-a1c7-40a1-a10a-ffe2228c0e5c";
+    internal const string ImpactOffHandEffect = "4b852ada-96e0-42ff-b039-d3ab4035386f";
+
     internal const string KeenEnchantCopy = "98b46ce1-bed3-47c6-976e-ec8b1e8c4d03";
     internal const string KeenBuff = "40b6c8c0-3013-4777-9173-bf270d4c04f2";
     internal const string KeenEffect = "f89239b5-cd80-4b4d-b1c7-4b9d30fdba27";

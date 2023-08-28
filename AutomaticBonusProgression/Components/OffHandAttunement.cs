@@ -17,8 +17,9 @@ namespace AutomaticBonusProgression.Components
       int cost,
       WeaponRangeType[] allowedRanges,
       PhysicalDamageForm[] allowedForms,
-      bool onlyLightWeapons = false)
-      : base(effectBuff, cost, allowedRanges, allowedForms, onlyLightWeapons) { }
+      bool onlyLightWeapons = false,
+      bool onlyHeavyWeapons = false)
+      : base(effectBuff, cost, allowedRanges, allowedForms, onlyLightWeapons, onlyHeavyWeapons) { }
 
     public override EnhancementType Type => EnhancementType.OffHand;
 
