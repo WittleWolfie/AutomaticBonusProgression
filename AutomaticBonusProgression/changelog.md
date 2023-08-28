@@ -1,3 +1,8 @@
+## v0.9.3
+
+* New Weapon Enchants
+    * Culling
+
 ## v0.9.2
 
 * New Weapon Enchants

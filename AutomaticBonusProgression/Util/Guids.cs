@@ -513,6 +513,12 @@
     internal const string CruelOffHandBuff = "c57a472b-c7cb-407e-9ed6-bd7f0648f7b9";
     internal const string CruelOffHandEffect = "c05a21dd-2a8f-4411-abf3-eb1dc4b0431c";
 
+    internal const string CullingEnchant = "7f728228-8cc1-479f-b36f-d074df603e9a";
+    internal const string CullingBuff = "9edfb9d2-a5b3-4698-a799-864453a8d10d";
+    internal const string CullingEffect = "8f339b66-a61b-43ab-954b-4d8de82a9437";
+    internal const string CullingOffHandBuff = "886ee0c3-f0c8-4c8a-a089-dfd254867dd4";
+    internal const string CullingOffHandEffect = "0391dfd8-2ba2-453d-a511-821ccbc5f455";
+
     internal const string CunningEnchant = "3fd0096e-e789-41f2-8663-ffc23ba213c1";
     internal const string CunningBuff = "21b75fec-3b35-49b7-8c31-139a1350042b";
     internal const string CunningEffect = "b735c9f7-11c9-4dd4-bdec-a66094b3f3e2";

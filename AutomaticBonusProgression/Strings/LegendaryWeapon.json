@@ -187,6 +187,16 @@
   },
 
   {
+    "Key": "LW.Culling.Name",
+    "ProcessTemplates": false,
+    "enGB": "Culling (+2)"
+  },
+  {
+    "Key": "LW.Culling.Description",
+    "enGB": "When a culling weapon is used to make an attack using the Cleave or Great Cleave feat, it deals an additional 2d6 points of damage on both the initial attack and any additional attacks granted by Cleave or Great Cleave. The weapon also applies the bonus 2d6 points of damage to successful attacks granted by use of the Cleaving Finish and Improved Cleaving Finish feats.\nRequires: Melee, Slashing"
+  },
+
+  {
     "Key": "LW.Cunning.Name",
     "ProcessTemplates": false,
     "enGB": "Cunning (+1)"

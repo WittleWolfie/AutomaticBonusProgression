@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Culling
       // - Impact
       // - Invigorating
       // - Legbreaker
@@ -94,6 +93,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BrilliantEnergyBuff,
             Guids.CourageousBuff,
             Guids.CruelBuff,
+            Guids.CullingBuff,
             Guids.CunningBuff,
             Guids.DazzlingRadianceBuff,
             Guids.DebilitatingBuff,
@@ -195,6 +195,7 @@ namespace AutomaticBonusProgression.Features
             Guids.BrilliantEnergyOffHandBuff,
             Guids.CourageousOffHandBuff,
             Guids.CruelOffHandBuff,
+            Guids.CullingOffHandBuff,
             Guids.CunningOffHandBuff,
             Guids.DazzlingRadianceOffHandBuff,
             Guids.DebilitatingOffHandBuff,
