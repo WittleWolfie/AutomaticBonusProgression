@@ -55,7 +55,7 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Growing");
 
-      var icon = FeatureRefs.TrueJudgmentFeature.Reference.Get().Icon;
+      var icon = BuffRefs.LeafBladesBuff.Reference.Get().Icon;
 
       var mainHandResource = AbilityResourceConfigurator.New(CastResourceName, Guids.GrowingCastResource)
         .SetIcon(icon)

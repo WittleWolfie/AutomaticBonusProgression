@@ -1,7 +1,6 @@
 ﻿using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.References;
-using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Blueprints.JsonSystem;
@@ -9,10 +8,7 @@ using Kingmaker.Designers;
 using Kingmaker.Enums;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules;
-using Kingmaker.UnitLogic.Buffs.Components;
 using System;
-using static Kingmaker.Blueprints.Area.FactHolder;
-using static Kingmaker.RuleSystem.RulebookEvent;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -40,7 +36,7 @@ namespace AutomaticBonusProgression.Enchantments
         .AddComponent<ImpactComponent>()
         .Configure();
 
-      var icon = FeatureRefs.IntimidatingProwess.Reference.Get().Icon;
+      var icon = FeatureRefs.TrueJudgmentFeature.Reference.Get().Icon;
       var enchantInfo = 
         new WeaponEnchantInfo(
           DisplayName,
@@ -63,7 +59,6 @@ namespace AutomaticBonusProgression.Enchantments
           toPrimaryWeapon: false),
         variantBuff: new(OffHandBuffName, Guids.ImpactOffHandBuff));
     }
-
 
     [TypeId("fb708d4d-276c-4a33-9838-fed313528943")]
     private class ImpactComponent :
