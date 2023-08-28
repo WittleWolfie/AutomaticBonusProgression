@@ -16,7 +16,6 @@ Additional items planned for release:
     * [Culling](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Culling/)
     * [Impact](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Impact/)
     * [Invigorating](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Invigorating/)
-    * [Legbreaker](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Legbreaker/)
     * [Lifesurge](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Lifesurge/)
     * [Limning](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Limning/)
     * [Ominous](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Ominous/)
