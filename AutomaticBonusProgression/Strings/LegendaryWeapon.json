@@ -406,6 +406,20 @@
   },
 
   {
+    "Key": "LW.Invigorating.Name",
+    "ProcessTemplates": false,
+    "enGB": "Invigorating (+2)"
+  },
+  {
+    "Key": "LW.Invigorating.Description",
+    "enGB": "After an attack with this weapon kills a foe, the weapon infuses its wielder with vigor. If its wielder is fatigued, the weapon removes the fatigue. If exhausted, the wielder becomes fatigued instead. If neither exhausted nor fatigued, the wielder gains a +2 morale bonus on attack rolls and a +10 foot enhancement bonus to move speed.\nRequires: Melee"
+  },
+  {
+    "Key": "LW.Invigorating.Effect.Description",
+    "enGB": "The character receives +2 morale bonus on attack rolls and a +10 foot enhancement bonus to move speed."
+  },
+
+  {
     "Key": "LW.Keen.Name",
     "ProcessTemplates": false,
     "enGB": "Keen (+1)"

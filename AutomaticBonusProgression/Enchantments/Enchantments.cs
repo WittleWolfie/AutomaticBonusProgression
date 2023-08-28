@@ -76,6 +76,7 @@ namespace AutomaticBonusProgression.Enchantments
         Growing.Configure();
         Heartseeker.Configure();
         Impact.Configure();
+        Invigorating.Configure();
         Keen.Configure();
         Leveraging.Configure();
         Nullifying.Configure();
