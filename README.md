@@ -13,9 +13,6 @@ An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder
 Additional items planned for release:
 
 * Weapon Enchants
-    * [Culling](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Culling/)
-    * [Impact](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Impact/)
-    * [Invigorating](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Invigorating/)
     * [Lifesurge](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Lifesurge/)
     * [Limning](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Limning/)
     * [Ominous](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Ominous/)
@@ -147,6 +144,7 @@ Allows you to apply enchantments to your equipment (Armor, Shield, Weapon, Off-H
 * [Courageous](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Courageous/)
 * [Cruel](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Cruel/)
 * [Cunning](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Cunning/)
+* [Culling](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Culling/)
 * [Dazzling Radiance](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Dazzling-Radiance/)
 * [Debilitating](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Debilitating/)
 * [Disruption](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Disruption/)
@@ -160,6 +158,8 @@ Allows you to apply enchantments to your equipment (Armor, Shield, Weapon, Off-H
 * [Growing](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Growing/)
 * [Heartseeker](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Heartseeker/)
 * [Holy](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Holy/)
+* [Impact](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Impact/)
+* [Invigorating](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Invigorating/)
 * [Keen](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Keen/)
 * [Leveraging](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Leveraging/)
 * [Nullifying](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Nullifying/)
