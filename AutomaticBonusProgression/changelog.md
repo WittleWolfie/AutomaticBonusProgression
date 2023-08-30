@@ -1,5 +1,8 @@
 ## v0.9.3
 
+* New Bugfixes
+    * Legendary Gifts should be granted to the Legend mythic path as expected
+
 * New Weapon Enchants
     * Culling
     * Impact

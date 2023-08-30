@@ -333,7 +333,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
           else if (__instance.m_LevelUpController.State.NextCharacterLevel == 20)
             availableGifts = 5;
           else if (__instance.m_LevelUpController.State.NextCharacterLevel > 20) // Legend path
-            availableGifts = (__instance.m_LevelUpController.State.NextCharacterLevel - 20) / 2;
+            availableGifts = (__instance.m_LevelUpController.State.NextCharacterLevel - 21) % 2;
 
           if (__instance.TryClearPhaseFromList<LegendaryGiftsPhaseVM>(availableGifts > 0, __instance.m_PhasesList))
           {
