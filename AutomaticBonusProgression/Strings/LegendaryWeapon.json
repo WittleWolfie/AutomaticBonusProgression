@@ -436,6 +436,16 @@
   },
 
   {
+    "Key": "LW.Lifesurge.Name",
+    "ProcessTemplates": false,
+    "enGB": "Lifesurge (+2)"
+  },
+  {
+    "Key": "LW.Lifesurge.Description",
+    "enGB": "The wielder of this weapon gains a bonus on saving throws against Necromancy spells equal to the weapon's enhancement bonus.\nIn combat, the weapon’s critical threat range is doubled against undead; this does not stack with the keen special ability or Improved Critical. Whenever a lifesurge weapon confirms a critical hit against an undead creature, it erupts with positive energy healing the wielder for 1d4 (2d8 for weapons with a critical multiplier of x3, 3d8 if it is x4).\nRequires: Melee"
+  },
+
+  {
     "Key": "LW.Nullifying.Name",
     "ProcessTemplates": false,
     "enGB": "Nullifying (+3)"

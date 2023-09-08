@@ -697,6 +697,12 @@
     internal const string LeveragingOffHandBuff = "eb7cde6d-7242-4011-ae62-6749ad0030c4";
     internal const string LeveragingOffHandEffect = "ea144080-090a-481e-833d-c509ca0b6d11";
 
+    internal const string LifesurgeEnchant = "fdeb3876-0121-4a53-83b6-7146163b86cf";
+    internal const string LifesurgeBuff = "25ce5ff7-c450-4e8b-944e-6d4b9114dfa2";
+    internal const string LifesurgeEffect = "1ac5d8c1-bfd0-4a55-b7fc-1e915ff6e9f2";
+    internal const string LifesurgeOffHandBuff = "eb0376d7-c011-42ea-ae15-a8334deb24c4";
+    internal const string LifesurgeOffHandEffect = "e4a2a436-534d-43bf-b047-63eeef1caa9b";
+
     internal const string NullifyingEnchantCopy = "9cda595a-3fcd-4ae8-bffa-94051317fb23";
     internal const string NullifyingBuff = "53755dd2-a2c6-4315-8161-9ebb95fd70f4";
     internal const string NullifyingEffect = "6091c9b0-a870-437a-bb19-a35852de58c9";
