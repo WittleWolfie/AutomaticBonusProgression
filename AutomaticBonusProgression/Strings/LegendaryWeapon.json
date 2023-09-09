@@ -482,6 +482,31 @@
   },
 
   {
+    "Key": "LW.Quaking.Name",
+    "ProcessTemplates": false,
+    "enGB": "Quaking (+2)"
+  },
+  {
+    "Key": "LW.Quaking.Trip.Adjacent.Name",
+    "ProcessTemplates": false,
+    "enGB": "Quaking (Adjacent)"
+  },
+  {
+    "Key": "LW.Quaking.Trip.Cone.Name",
+    "ProcessTemplates": false,
+    "enGB": "Quaking (Cone)"
+  },
+  {
+    "Key": "LW.Quaking.Trip.Line.Name",
+    "ProcessTemplates": false,
+    "enGB": "Quaking (Line)"
+  },
+  {
+    "Key": "LW.Quaking.Description",
+    "enGB": "The wielder of a quaking weapon can strike the ground as a standard action to perform a trip combat maneuver that applies to all foes adjacent, within a 10- foot cone, or within a 20-foot line along the ground.\nRequires: Melee, Bludgeoning"
+  },
+
+  {
     "Key": "LW.Speed.Name",
     "ProcessTemplates": false,
     "enGB": "Speed (+3)"

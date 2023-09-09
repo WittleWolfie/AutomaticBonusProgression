@@ -727,6 +727,16 @@
     internal const string PhaseLockingOffHandBuff = "d42bd6b5-6701-481b-aa18-43f0e9cc6d3f";
     internal const string PhaseLockingOffHandEffect = "60e83e1b-95ec-469f-bb1c-411c77118f9e";
 
+    internal const string QuakingEnchant = "e58b1dde-504e-42c0-834f-f907e609d75c";
+    internal const string QuakingBuff = "5f6d3d9a-ddfb-4361-884f-ce91c47bbbd2";
+    internal const string QuakingEffect = "eb557421-0b31-4048-b7f0-bcfcde360f76";
+    internal const string QuakingOffHandBuff = "0b33353f-5e88-49d6-ad17-8984a5512577";
+    internal const string QuakingOffHandEffect = "48333676-0d84-4929-b7b2-81f24e2558a0";
+    internal const string QuakingTrip = "6174e440-94b3-466e-bc4d-9e75fcd12cc1";
+    internal const string QuakingTripAdjacent = "32abbe51-72ea-41a2-befa-34517f1a01e7";
+    internal const string QuakingTripCone = "531043f1-2a41-43b8-a684-2e5c87f3dfa4";
+    internal const string QuakingTripLine = "f58f40f3-7ec6-4690-acf6-d88709bb02b9";
+
     internal const string SpeedEnchantCopy = "b334274e-98f3-4d1a-85dd-2fec32194c71";
     internal const string SpeedBuff = "96db140b-5594-43be-a5c9-2638c06d84b7";
     internal const string SpeedEffect = "33eef0e2-94d0-4278-af9e-c7de15bae40a";

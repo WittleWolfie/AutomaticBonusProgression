@@ -1,10 +1,13 @@
-## v0.9.4
+## v1.0.0
+
+This now feature complete. I have no plans to add new functionality, but will continue to fix bugs and ensure compatibility with game patches.
 
 * New Weapon Enchants
     * Lifesurge
     * Limning
     * Ominous
     * Phase Locking
+    * Quaking
 
 * Misc
     * Compatibility fix for Feat Per Level mod
