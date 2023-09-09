@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Ominous
       // - Phase Locking
       // - Quaking
       // - Sneaky
@@ -121,6 +120,7 @@ namespace AutomaticBonusProgression.Features
             Guids.LifesurgeBuff,
             Guids.LimningBuff,
             Guids.NullifyingBuff,
+            Guids.OminousBuff,
             Guids.SpeedBuff,
             Guids.ViciousBuff,
             Guids.VorpalBuff
@@ -227,6 +227,7 @@ namespace AutomaticBonusProgression.Features
             Guids.LifesurgeOffHandBuff,
             Guids.LimningOffHandBuff,
             Guids.NullifyingOffHandBuff,
+            Guids.OminousOffHandBuff,
             Guids.SpeedOffHandBuff,
             Guids.ViciousOffHandBuff,
             Guids.VorpalOffHandBuff

@@ -41,7 +41,8 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
 
       var deathward = AbilityRefs.DeathWard.Reference.Get();
-      var enchantInfo = new WeaponEnchantInfo(DisplayName, Description, deathward.Icon, EnhancementCost);
+      var enchantInfo =
+        new WeaponEnchantInfo(DisplayName, Description, deathward.Icon, EnhancementCost, WeaponRangeType.Melee);
       EnchantTool.CreateEnchant(
         enchantInfo,
         effectBuff: EnchantTool.GetWeaponEffectInfo(EffectName, Guids.LifesurgeEffect, enchant),

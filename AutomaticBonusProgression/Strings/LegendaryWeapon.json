@@ -462,6 +462,16 @@
   },
 
   {
+    "Key": "LW.Ominous.Name",
+    "ProcessTemplates": false,
+    "enGB": "Ominous (+1)"
+  },
+  {
+    "Key": "LW.Ominous.Description",
+    "enGB": "An ominous weapon adds its enhancement bonus on Intimidate checks made by the wielder. In addition, when an ominous weapon confirms a critical hit, the target must attempt a Will save or be shaken for 1 minute. The DC of the save is equal to 13 + Mythic Rank.\nIf the weapon’s critical multiplier is greater than x2, this condition lasts 1 additional minute per multiple over x2.\nRequires: Melee"
+  },
+
+  {
     "Key": "LW.Speed.Name",
     "ProcessTemplates": false,
     "enGB": "Speed (+3)"

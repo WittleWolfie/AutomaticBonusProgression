@@ -82,6 +82,7 @@ namespace AutomaticBonusProgression.Enchantments
         Lifesurge.Configure();
         Limning.Configure();
         Nullifying.Configure();
+        Ominous.Configure();
         Speed.Configure();
         Vicious.Configure();
         Vorpal.Configure();

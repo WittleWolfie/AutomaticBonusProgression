@@ -2,6 +2,11 @@
 
 * New Weapon Enchants
     * Lifesurge
+    * Limning
+    * Ominous
+
+* Misc
+    * Compatibility fix for Feat Per Level mod
 
 ## v0.9.3
 

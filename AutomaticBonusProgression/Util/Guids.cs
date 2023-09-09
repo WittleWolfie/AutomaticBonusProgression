@@ -715,6 +715,12 @@
     internal const string NullifyingOffHandBuff = "b732f30a-e39a-4a39-8250-442f1523728a";
     internal const string NullifyingOffHandEffect = "be9003ae-3199-4003-a281-fa9e5fe84a4a";
 
+    internal const string OminousEnchant = "edb5ac47-30e7-46c5-89bd-7e203f95b846";
+    internal const string OminousBuff = "dd38f7ab-0c8f-4470-94b4-514d6ffe019b";
+    internal const string OminousEffect = "6be55148-e977-4c0a-8de5-300368df313a";
+    internal const string OminousOffHandBuff = "e3a13951-9ebb-45aa-97b4-de9243aab373";
+    internal const string OminousOffHandEffect = "4a13c444-e135-4a18-8f03-1241ced1a1bb";
+
     internal const string SpeedEnchantCopy = "b334274e-98f3-4d1a-85dd-2fec32194c71";
     internal const string SpeedBuff = "96db140b-5594-43be-a5c9-2638c06d84b7";
     internal const string SpeedEffect = "33eef0e2-94d0-4278-af9e-c7de15bae40a";
