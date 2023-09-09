@@ -85,6 +85,7 @@ namespace AutomaticBonusProgression.Enchantments
         Ominous.Configure();
         PhaseLocking.Configure();
         Quaking.Configure();
+        Sneaky.Configure();
         Speed.Configure();
         Vicious.Configure();
         Vorpal.Configure();

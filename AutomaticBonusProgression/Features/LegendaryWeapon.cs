@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Sneaky
       // - Valiant
 
       var resource = AbilityResourceConfigurator.New(LegendaryWeaponResource, Guids.LegendaryWeaponResource)
@@ -121,6 +120,7 @@ namespace AutomaticBonusProgression.Features
             Guids.OminousBuff,
             Guids.PhaseLockingBuff,
             Guids.QuakingBuff,
+            Guids.SneakyBuff,
             Guids.SpeedBuff,
             Guids.ViciousBuff,
             Guids.VorpalBuff
@@ -230,6 +230,7 @@ namespace AutomaticBonusProgression.Features
             Guids.OminousOffHandBuff,
             Guids.PhaseLockingOffHandBuff,
             Guids.QuakingOffHandBuff,
+            Guids.SneakyOffHandBuff,
             Guids.SpeedOffHandBuff,
             Guids.ViciousOffHandBuff,
             Guids.VorpalOffHandBuff

@@ -8,6 +8,7 @@ This now feature complete. I have no plans to add new functionality, but will co
     * Ominous
     * Phase Locking
     * Quaking
+    * Sneaky
 
 * Misc
     * Compatibility fix for Feat Per Level mod

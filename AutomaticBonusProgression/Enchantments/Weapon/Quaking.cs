@@ -46,7 +46,7 @@ namespace AutomaticBonusProgression.Enchantments
     {
       Logger.Log($"Configuring Quaking");
 
-      var icon = FeatureRefs.ArmyAdditionalActionAfterKill.Reference.Get().Icon;
+      var icon = AbilityRefs.ResoundingBlow.Reference.Get().Icon;
 
       var tripAdjacent = AbilityConfigurator.New(TripAdjacent, Guids.QuakingTripAdjacent)
         .SetDisplayName(TripAdjacentDisplayName)

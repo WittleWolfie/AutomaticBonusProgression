@@ -737,6 +737,17 @@
     internal const string QuakingTripCone = "531043f1-2a41-43b8-a684-2e5c87f3dfa4";
     internal const string QuakingTripLine = "f58f40f3-7ec6-4690-acf6-d88709bb02b9";
 
+    internal const string SneakyEnchant = "9bd8ea94-bcb4-48c3-b3f9-e45da7836098";
+    internal const string SneakyBuff = "bbc7e795-3f59-4da3-ba37-164bbc29f128";
+    internal const string SneakyEffect = "4072fad6-2ced-4f7a-8b0e-988163155429";
+    internal const string SneakyOffHandBuff = "380af03e-cc37-4f2e-b377-79d76b18a575";
+    internal const string SneakyOffHandEffect = "732eae20-18d2-493b-83d5-3ab03dcdef21";
+    internal const string SneakySurprise = "0e177a64-dd91-475e-b57e-7197be04616e";
+    internal const string SneakyMainHandResource = "d9f8c61a-2fb5-44be-af7e-aaa687c95ca6";
+    internal const string SneakyMainHandAbility = "eadd1812-99ab-4920-8bed-69fdb2116e99";
+    internal const string SneakyOffHandResource = "0e67fa63-efe5-4184-b231-4926e5168aa3";
+    internal const string SneakyOffHandAbility = "46d858c3-6ee5-47fb-a8b5-26d688973bd9";
+
     internal const string SpeedEnchantCopy = "b334274e-98f3-4d1a-85dd-2fec32194c71";
     internal const string SpeedBuff = "96db140b-5594-43be-a5c9-2638c06d84b7";
     internal const string SpeedEffect = "33eef0e2-94d0-4278-af9e-c7de15bae40a";
