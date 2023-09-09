@@ -172,7 +172,7 @@ namespace AutomaticBonusProgression.Enchantments
         }
         catch (Exception e)
         {
-          Logger.LogException("OminousComponent.OnEventAboutToTrigger", e);
+          Logger.LogException("SneakyComponent.OnEventAboutToTrigger", e);
         }
       }
 
@@ -192,7 +192,7 @@ namespace AutomaticBonusProgression.Enchantments
         }
         catch (Exception e)
         {
-          Logger.LogException("OminousComponent.OnEventDidTrigger", e);
+          Logger.LogException("SneakyComponent.OnEventDidTrigger", e);
         }
       }
 

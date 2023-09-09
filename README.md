@@ -8,19 +8,6 @@ An item rebalance mod for Pathfinder: Wrath of the Righteous based on Pathfinder
 
 ### [Settings are NOT in UMM, they use Mod Menu](#mod-options) 
 
-### Currently in BETA
-
-Additional items planned for release:
-
-* Weapon Enchants
-    * [Lifesurge](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Lifesurge/)
-    * [Limning](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Limning/)
-    * [Ominous](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Ominous/)
-    * [Phase Locking](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Phase-Locking/)
-    * [Quaking](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Quaking/)
-    * [Sneaky](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Sneaky/)
-    * [Valiant](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Valiant/)
-
 ## Problems or Suggestions
 
 File a [bug](https://github.com/WittleWolfie/AutomaticBonusProgression/issues/new?template=bug_report.md&title=%5BBUG%5D) or [feature request](https://github.com/WittleWolfie/AutomaticBonusProgression/issues/new?template=feature_request.md&title=%5BFeature%5D). You can also reach me (@WittleWolfie) on [Discord](https://discord.com/invite/owlcat) in the #mod-user-general channel.
@@ -162,9 +149,16 @@ Allows you to apply enchantments to your equipment (Armor, Shield, Weapon, Off-H
 * [Invigorating](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Invigorating/)
 * [Keen](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Keen/)
 * [Leveraging](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Leveraging/)
+* [Lifesurge](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Lifesurge/)
+* [Limning](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Limning/)
 * [Nullifying](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Nullifying/)
+* [Ominous](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Ominous/)
+* [Phase Locking](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Phase-Locking/)
+* [Quaking](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Quaking/)
+* [Sneaky](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Sneaky/)
 * [Speed](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Speed/)
 * [Unholy](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Unholy/)
+* [Valiant](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Valiant/)
 * [Vicious](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Vicious/)
 * [Vorpal](https://www.d20pfsrd.com/magic-items/magic-weapons/magic-weapon-special-abilities/Vorpal/)
 

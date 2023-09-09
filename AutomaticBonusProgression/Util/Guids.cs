@@ -754,6 +754,12 @@
     internal const string SpeedOffHandBuff = "f6aa3e9f-9936-481e-99f4-6463983834b6";
     internal const string SpeedOffHandEffect = "b7925863-7804-4a90-b72e-98a87f6000f3";
 
+    internal const string ValiantEnchant = "13cd8f67-85c0-4dd7-8908-e35aad117d52";
+    internal const string ValiantBuff = "a31e6cf3-6157-4834-a379-05b4802e4361";
+    internal const string ValiantEffect = "446ca5c0-e55e-4c9a-b6d2-97ae4420abbc";
+    internal const string ValiantOffHandBuff = "724eac5d-f024-47e7-b4c5-ceeb596f88bc";
+    internal const string ValiantOffHandEffect = "7fdcf9c3-a499-4e5d-9738-caca6d191513";
+
     internal const string ViciousEnchantCopy = "15156622-869e-4659-9ce5-96af1efadee3";
     internal const string ViciousBuff = "643d73c3-fc70-4586-bb9e-c61c38965b52";
     internal const string ViciousEffect = "87ad40c7-b53e-4338-909d-0767e3fbfacd";

@@ -1,4 +1,4 @@
-## v1.0.0
+## v1.0.1
 
 This now feature complete. I have no plans to add new functionality, but will continue to fix bugs and ensure compatibility with game patches.
 
@@ -9,6 +9,7 @@ This now feature complete. I have no plans to add new functionality, but will co
     * Phase Locking
     * Quaking
     * Sneaky
+    * Valiant
 
 * Misc
     * Compatibility fix for Feat Per Level mod

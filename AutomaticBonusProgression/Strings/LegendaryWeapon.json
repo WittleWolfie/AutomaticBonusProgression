@@ -533,6 +533,16 @@
   },
 
   {
+    "Key": "LW.Valiant.Name",
+    "ProcessTemplates": false,
+    "enGB": "Valiant (+1)"
+  },
+  {
+    "Key": "LW.Valiant.Description",
+    "enGB": "When a cavalier wielding a valiant weapon targets a foe with his challenge ability, the valiant weapon deals an additional 1d6 points of damage against that foe. The wielder receives a +2 bonus on combat maneuver checks made to disarm or sunder a challenged foe’s weapon as well as a +4 bonus to his CMD against disarm and sunder attacks from that foe.\nRequires: Melee"
+  },
+
+  {
     "Key": "LW.Vicious.Name",
     "ProcessTemplates": false,
     "enGB": "Vicious (+1)"
