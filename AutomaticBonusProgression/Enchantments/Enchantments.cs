@@ -80,6 +80,7 @@ namespace AutomaticBonusProgression.Enchantments
         Keen.Configure();
         Leveraging.Configure();
         Lifesurge.Configure();
+        Limning.Configure();
         Nullifying.Configure();
         Speed.Configure();
         Vicious.Configure();

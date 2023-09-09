@@ -703,6 +703,12 @@
     internal const string LifesurgeOffHandBuff = "eb0376d7-c011-42ea-ae15-a8334deb24c4";
     internal const string LifesurgeOffHandEffect = "e4a2a436-534d-43bf-b047-63eeef1caa9b";
 
+    internal const string LimningEnchant = "8c1316b6-c6fe-450a-9a0d-9c7e32afa8a3";
+    internal const string LimningBuff = "ad834044-9fff-4093-bfc9-a7a237742c2d";
+    internal const string LimningEffect = "d1ec9347-0013-4075-b187-162b2e8ad513";
+    internal const string LimningOffHandBuff = "8ea183d9-5e48-4e7b-9621-6feea9a29d1d";
+    internal const string LimningOffHandEffect = "d4627714-9eb8-4fc6-b9dc-2e63213c508c";
+
     internal const string NullifyingEnchantCopy = "9cda595a-3fcd-4ae8-bffa-94051317fb23";
     internal const string NullifyingBuff = "53755dd2-a2c6-4315-8161-9ebb95fd70f4";
     internal const string NullifyingEffect = "6091c9b0-a870-437a-bb19-a35852de58c9";

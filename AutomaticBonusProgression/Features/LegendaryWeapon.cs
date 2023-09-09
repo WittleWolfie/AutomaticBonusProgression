@@ -28,7 +28,6 @@ namespace AutomaticBonusProgression.Features
       Logger.Log("Configuring Legendary Weapon");
 
       // New:
-      // - Limning
       // - Ominous
       // - Phase Locking
       // - Quaking
@@ -120,6 +119,7 @@ namespace AutomaticBonusProgression.Features
             Guids.KeenBuff,
             Guids.LeveragingBuff,
             Guids.LifesurgeBuff,
+            Guids.LimningBuff,
             Guids.NullifyingBuff,
             Guids.SpeedBuff,
             Guids.ViciousBuff,
@@ -225,6 +225,7 @@ namespace AutomaticBonusProgression.Features
             Guids.KeenOffHandBuff,
             Guids.LeveragingOffHandBuff,
             Guids.LifesurgeOffHandBuff,
+            Guids.LimningOffHandBuff,
             Guids.NullifyingOffHandBuff,
             Guids.SpeedOffHandBuff,
             Guids.ViciousOffHandBuff,

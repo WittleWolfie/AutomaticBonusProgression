@@ -446,6 +446,16 @@
   },
 
   {
+    "Key": "LW.Limning.Name",
+    "ProcessTemplates": false,
+    "enGB": "Limning (+1)"
+  },
+  {
+    "Key": "LW.Limning.Description",
+    "enGB": "On a successful strike against a creature affected by concealment, the weapon outlines the creature in faerie fire (as the spell) for 1 round."
+  },
+
+  {
     "Key": "LW.Nullifying.Name",
     "ProcessTemplates": false,
     "enGB": "Nullifying (+3)"
