@@ -140,6 +140,7 @@ namespace AutomaticBonusProgression.Components
       List<ItemEntityWeapon> enchantedWeapons = new();
       foreach (var weapon in
         Owner.Body.AllSlots.OfType<WeaponSlot>()
+          .Where(slot => slot.Active)
           .Select(slot => slot.MaybeWeapon)
           .NotNull()
           .Distinct())
