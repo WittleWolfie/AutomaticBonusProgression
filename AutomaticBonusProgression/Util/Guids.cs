@@ -721,6 +721,12 @@
     internal const string OminousOffHandBuff = "e3a13951-9ebb-45aa-97b4-de9243aab373";
     internal const string OminousOffHandEffect = "4a13c444-e135-4a18-8f03-1241ced1a1bb";
 
+    internal const string PhaseLockingEnchant = "cc357380-eec3-42af-91e0-014f56e8988d";
+    internal const string PhaseLockingBuff = "080669cc-a9ae-43b0-87d5-5aea0ca9da7c";
+    internal const string PhaseLockingEffect = "d700b9e3-6717-4062-8b8d-4d56079aa285";
+    internal const string PhaseLockingOffHandBuff = "d42bd6b5-6701-481b-aa18-43f0e9cc6d3f";
+    internal const string PhaseLockingOffHandEffect = "60e83e1b-95ec-469f-bb1c-411c77118f9e";
+
     internal const string SpeedEnchantCopy = "b334274e-98f3-4d1a-85dd-2fec32194c71";
     internal const string SpeedBuff = "96db140b-5594-43be-a5c9-2638c06d84b7";
     internal const string SpeedEffect = "33eef0e2-94d0-4278-af9e-c7de15bae40a";

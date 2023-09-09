@@ -4,6 +4,7 @@
     * Lifesurge
     * Limning
     * Ominous
+    * Phase Locking
 
 * Misc
     * Compatibility fix for Feat Per Level mod

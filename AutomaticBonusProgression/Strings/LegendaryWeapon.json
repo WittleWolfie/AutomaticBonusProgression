@@ -472,6 +472,16 @@
   },
 
   {
+    "Key": "LW.PhaseLocking.Name",
+    "ProcessTemplates": false,
+    "enGB": "PhaseLocking (+2)"
+  },
+  {
+    "Key": "LW.PhaseLocking.Description",
+    "enGB": "A phase locking weapon interferes with dimensional travel. A creature damaged by a phase locking weapon is affected as though by the dimensional anchor spell for 1 round."
+  },
+
+  {
     "Key": "LW.Speed.Name",
     "ProcessTemplates": false,
     "enGB": "Speed (+3)"
