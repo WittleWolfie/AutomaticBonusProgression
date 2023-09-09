@@ -143,7 +143,7 @@ namespace AutomaticBonusProgression.Enchantments
       return AbilityConfigurator.New(abilityInfo.Name, abilityInfo.Guid)
         .SetDisplayName(displayName)
         .SetDescription(description)
-        //.SetIcon(icon)
+        .SetIcon(icon)
         .SetType(AbilityType.SpellLike)
         .SetRange(AbilityRange.Projectile)
         .SetActionType(CommandType.Swift)
