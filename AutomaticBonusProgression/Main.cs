@@ -44,7 +44,7 @@ namespace AutomaticBonusProgression
     {
       private static bool Initialized = false;
 
-      [HarmonyPriority(Priority.First)]
+      [HarmonyAfter("FeatsProgressionOnePerLevel")]
       [HarmonyPatch(nameof(BlueprintsCache.Init)), HarmonyPostfix]
       static void Init()
       {
