@@ -2,7 +2,7 @@
   "Id": "AutomaticBonusProgression",
   "DisplayName": "AutomaticBonusProgression",
   "Author": "WittleWolfie",
-  "Version": "1.0.1",
+  "Version": "1.0.2",
   "ManagerVersion": "0.21.3",
   "Requirements": [ "TabletopTweaks-Core", "ModMenu" ],
   "AssemblyName": "AutomaticBonusProgression.dll",
