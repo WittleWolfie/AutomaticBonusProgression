@@ -127,7 +127,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
 
           var bonus = -evt.Result;
           Logger.Verbose(() => $"Adding {bonus} to stealth check for {Owner.CharacterName}");
-          armor.AddModifier(Owner.Stats.GetStat(StatType.SkillStealth), bonus);
+          armor.AddModifier(Owner.Stats.GetStat(StatType.SkillStealth), bonus, ModifierDescriptor.Enhancement);
         }
         catch (Exception e)
         {
