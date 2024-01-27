@@ -346,6 +346,13 @@ namespace AutomaticBonusProgression.UI.Attunement
       {
         try
         {
+          if (BaseView is null)
+          {
+            // It seems like this can be called before BaseView is initialized. This doesn't seem to be an issue,
+            // as it is initialized before actually rendering.
+            Logger.Warning("BaseView is null.");
+            return;
+          }
           Prefabs.InitFade();
           BaseView.LateInit();
         }

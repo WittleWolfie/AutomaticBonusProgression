@@ -1,3 +1,8 @@
+## v1.0.3
+
+* Fixed exception in logging
+* Added toggle to enable or disable Legendary Gifts
+
 ## v1.0.2
 
 * Update for Lord of the North DLC

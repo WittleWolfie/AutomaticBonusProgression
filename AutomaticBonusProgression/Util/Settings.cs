@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Mechanics;
+using AutomaticBonusProgression.UI.Leveling.Legendary;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Localization;
@@ -17,6 +18,7 @@ namespace AutomaticBonusProgression.Util
     private static readonly string RootStringKey = "ABP.Settings";
     private const string VerboseLoggingKey = "enable-verbose-logs";
     private const string SellValueKey = "sell-value";
+    private const string LegendaryGiftsKey = "enable-legendary-gifts";
 
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Settings));
 
@@ -47,6 +49,11 @@ namespace AutomaticBonusProgression.Util
           .WithDecimalPlaces(2)
           .WithStep(0.05f)
           .OnValueChanged(OnSellValueChanged));
+
+      settings.AddToggle(
+            Toggle.New(GetKey(LegendaryGiftsKey), defaultValue: true, GetString("LegendaryGifts"))
+              .WithLongDescription(GetString("LegendaryGifts.Description"))
+              .OnValueChanged(LegendaryGiftsPhaseView.EnableLegendaryGifts));
 
       Menu.AddSettings(settings);
       Logging.EnableVerboseLogging(IsEnabled(VerboseLoggingKey));

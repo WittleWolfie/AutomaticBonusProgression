@@ -29,5 +29,16 @@
     "Key": "ABP.Settings.SellValue.Description",
     "ProcessTemplates": false,
     "enGB": "Adjusts the multiplier to item sell value. Defaults to 30% to reflect the reduced need to buy items."
+  },
+
+  {
+    "Key": "ABP.Settings.LegendaryGifts",
+    "ProcessTemplates": false,
+    "enGB": "Enable Legendary Gifts"
+  },
+  {
+    "Key": "ABP.Settings.LegendaryGifts.Description",
+    "ProcessTemplates": false,
+    "enGB": "Enables Legendary Gifts which grant additional bonuses for mythic levels."
   }
 ]

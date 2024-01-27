@@ -30,6 +30,7 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
   internal class LegendaryGiftsPhaseView : CharGenPhaseDetailedBaseView<LegendaryGiftsPhaseVM>
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(LegendaryGiftsPhaseView));
+    private static bool LegendaryGifts = true; 
 
     private InfoSectionView InfoView;
     private Transform InfoViewTransform;
@@ -174,6 +175,11 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
       // Remove the base component so no logic runs
       Destroy(source);
+    }
+
+    internal static void EnableLegendaryGifts(bool enabled)
+    {
+      LegendaryGifts = enabled;
     }
 
     public override void BindViewImplementation()
@@ -322,6 +328,12 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
       {
         try
         {
+          if (!LegendaryGifts)
+          {
+            Logger.Log("Legendary gifts are disabled.");
+            return;
+          }
+
           if (__instance.m_LevelUpController.Unit.IsPet)
             return;
 
