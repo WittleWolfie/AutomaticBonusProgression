@@ -1,3 +1,8 @@
+## v1.0.4
+
+* Add support for Magic Deceiver
+* Temporary Enhancement bonuses to Weapons function before level 4
+
 ## v1.0.3
 
 * Fixed exception in logging

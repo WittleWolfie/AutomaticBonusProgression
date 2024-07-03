@@ -1,9 +1,13 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.UnitLogic;
+using System;
 
 namespace AutomaticBonusProgression.Features
 {
@@ -45,7 +49,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(IntProwessDescription)
         .SetIcon(BuffRefs.FoxsCunningBuff.Reference.Get().Icon)
         .SetRanks(3)
-        .AddStatBonus(stat: StatType.Intelligence, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Intelligence, 2))
         .Configure();
     }
 
@@ -61,7 +65,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(WisProwessDescription)
         .SetIcon(BuffRefs.OwlsWisdomBuff.Reference.Get().Icon)
         .SetRanks(3)
-        .AddStatBonus(stat: StatType.Wisdom, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Wisdom, 2))
         .Configure();
     }
 
@@ -77,7 +81,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(ChaProwessDescription)
         .SetIcon(BuffRefs.EaglesSplendorBuff.Reference.Get().Icon)
         .SetRanks(3)
-        .AddStatBonus(stat: StatType.Charisma, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Charisma, 2))
         .Configure();
     }
   }

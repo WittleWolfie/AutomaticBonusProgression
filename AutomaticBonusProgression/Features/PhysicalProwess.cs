@@ -1,9 +1,9 @@
-﻿using AutomaticBonusProgression.Util;
+﻿using AutomaticBonusProgression.Components;
+using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.Enums;
 
 namespace AutomaticBonusProgression.Features
 {
@@ -45,7 +45,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(StrProwessDescription)
         .SetIcon(BuffRefs.BullsStrengthBuff.Reference.Get().Icon)
         .SetRanks(3)
-        .AddStatBonus(stat: StatType.Strength, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Strength, 2))
         .Configure();
     }
 
@@ -61,7 +61,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(DexProwessDescription)
         .SetIcon(BuffRefs.CatsGraceBuff.Reference.Get().Icon)
         .SetRanks(3)
-        .AddStatBonus(stat: StatType.Dexterity, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Dexterity, 2))
         .Configure();
     }
 
@@ -77,7 +77,7 @@ namespace AutomaticBonusProgression.Features
         .SetDescription(ConProwessDescription)
         .SetIcon(BuffRefs.BearsEnduranceBuff.Reference.Get().Icon)
         .SetRanks(3)
-        .AddStatBonus(stat: StatType.Constitution, value: 2, descriptor: ModifierDescriptor.Enhancement)
+        .AddComponent(new AddStatBonusABP(StatType.Constitution, 2))
         .Configure();
     }
   }
