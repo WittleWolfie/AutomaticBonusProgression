@@ -104,7 +104,7 @@ namespace AutomaticBonusProgression.UI
 
       Enchantment = GameObject.Instantiate(EnchantmentContainer.GetComponent<SpellbookKnownSpellsPCView>().m_KnownSpellView);
       Enchantment.gameObject.DestroyChildren(
-        "Metamagic", "RemoveButton", "Icon/ArtBackImage", "Icon/Decoration", "Icon/Domain", "Icon/MythicArtFrame", "Icon/ArtArrowImage", "Level");
+        "Metamagic", "RemoveButton", "Icon/ArtBackImage", "Icon/Decoration", "Icon/Domain", "Icon/MythicArtFrame", "Icon/ForeIcon", "Icon/ArtArrowImage", "Level");
     }
 
     internal static TooltipBrickEntityHeaderView ItemInfoBlock;
@@ -121,7 +121,7 @@ namespace AutomaticBonusProgression.UI
       var infoWindow = UITool.FadeCanvas.ChildObject("InfoWindowPCViewBig").GetComponent<InfoWindowPCView>();
       ItemInfoBlock = GameObject.Instantiate(infoWindow.m_BricksConfig.BrickEntityHeaderView);
       ItemInfoBlock.gameObject.DestroyChildren(
-        "IconBlock/IconArrow", "TextBlock/SideBySideText (1)", "IconBlock/Icon/DecorationIcon (2)", "IconBlock/Icon/Icon (1)");
+        "IconBlock/IconArrow", "TextBlock/SideBySideText (1)", "IconBlock/Icon/ForeIcon", "IconBlock/Icon/DecorationIcon (2)", "IconBlock/Icon/Icon (1)");
     }
 
     [HarmonyPatch(typeof(MainMenu))]

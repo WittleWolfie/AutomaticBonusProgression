@@ -316,7 +316,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
       EnchantTool.SetUpWeaponEnchant(
         corrosive, new(CorrosiveEnchantCopy, Guids.CorrosiveEnchantCopy), corrosiveEnchantInfo);
       EnchantTool.SetUpWeaponEnchant(
-        corrosive, new(CorrosiveBurstEnchantCopy, Guids.CorrosiveBurstEnchantCopy), corrosiveEnchantInfo);
+        corrosiveBurst, new(CorrosiveBurstEnchantCopy, Guids.CorrosiveBurstEnchantCopy), corrosiveEnchantInfo);
 
       EnchantTool.SetUpWeaponEnchant(
         flaming, new(FlamingEnchantCopy, Guids.FlamingEnchantCopy), flamingEnchantInfo);

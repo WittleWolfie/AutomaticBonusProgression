@@ -1,4 +1,5 @@
-﻿using BlueprintCore.Utils;
+﻿using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
@@ -20,6 +21,9 @@ namespace AutomaticBonusProgression.Util
 
     #region Blueprints
     #region Basic
+    internal static FeatureSource MythicClass = 
+      new(BlueprintTool.Get<BlueprintCharacterClass>(CharacterClassRefs.MythicStartingClass.ToString()));
+
     private static BlueprintFeature _armorAttunement;
     internal static BlueprintFeature ArmorAttunement
     {

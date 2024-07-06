@@ -31,21 +31,23 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public void Apply(LevelUpState state, UnitDescriptor unit)
     {
+      Feature feature = null;
       switch (Type)
       {
         case EnchantmentType.Armor:
-          unit.AddFact(Common.LegendaryArmor);
+          feature = unit.AddFact(Common.LegendaryArmor) as Feature;
           break;
         case EnchantmentType.Shield:
-          unit.AddFact(Common.LegendaryShield);
+          feature = unit.AddFact(Common.LegendaryShield) as Feature;
           break;
         case EnchantmentType.Weapon:
-          unit.AddFact(Common.LegendaryWeapon);
+          feature = unit.AddFact(Common.LegendaryWeapon) as Feature;
           break;
         case EnchantmentType.OffHand:
-          unit.AddFact(Common.LegendaryOffHand);
+          feature = unit.AddFact(Common.LegendaryOffHand) as Feature;
           break;
       }
+      feature!.SetSource(Common.MythicClass, state.NextMythicLevel);
     }
 
     public bool Check(LevelUpState state, UnitDescriptor unit)

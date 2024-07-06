@@ -7,6 +7,7 @@ using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
+using Newtonsoft.Json;
 using System;
 
 namespace AutomaticBonusProgression.Components
@@ -25,7 +26,7 @@ namespace AutomaticBonusProgression.Components
   [AllowedOn(typeof(BlueprintUnitFact))]
   [AllowedOn(typeof(BlueprintItemEnchantment))]
   [TypeId("4c9f19e3-0b2c-45b6-87c4-d22140b55f64")]
-  internal class EnhancementEquivalence : EntityFactComponentDelegate
+  internal class EnhancementEquivalence : EntityFactComponentDelegate<EnhancementEquivalence.ComponentData>
   {
     private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(EnhancementEquivalence));
 
@@ -49,8 +50,9 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        Logger.Verbose(() => $"Adding {Enhancement} to {GetEnhancementType()}");
-        owner.Ensure<UnitPartEnhancement>().AddEnchantment(GetEnhancementType(), Enhancement);
+        Data.AppliedType = GetEnhancementType();
+        Logger.Verbose(() => $"Adding {Enhancement} to {Data.AppliedType}, from {OwnerBlueprint.NameSafe()}");
+        owner.Ensure<UnitPartEnhancement>().AddEnchantment(Data.AppliedType, Enhancement);
       }
       catch (Exception e)
       {
@@ -69,8 +71,8 @@ namespace AutomaticBonusProgression.Components
           return;
         }
 
-        Logger.Verbose(() => $"Removing {Enhancement} from {GetEnhancementType()}");
-        owner.Get<UnitPartEnhancement>()?.RemoveEnchantment(GetEnhancementType(), Enhancement);
+        Logger.Verbose(() => $"Removing {Enhancement} from {Data.AppliedType}, from {OwnerBlueprint.NameSafe()}");
+        owner.Get<UnitPartEnhancement>()?.RemoveEnchantment(Data.AppliedType, Enhancement);
       }
       catch (Exception e)
       {
@@ -96,6 +98,13 @@ namespace AutomaticBonusProgression.Components
       else if (Owner is UnitEntityData unit)
         return unit;
       return null;
+    }
+
+    internal class ComponentData
+    {
+      // Track this dynamically since some enchantments don't use explicit variants
+      [JsonProperty]
+      internal EnhancementType AppliedType;
     }
   }
 }

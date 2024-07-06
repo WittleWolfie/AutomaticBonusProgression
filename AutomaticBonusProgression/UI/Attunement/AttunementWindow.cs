@@ -180,11 +180,11 @@ namespace AutomaticBonusProgression.UI.Attunement
         RemoveDisposable(EnhancementSubscription);
       EnhancementSubscription =
         unitPartEnhancement.TempEnhancement.Subscribe(
-          bonus =>
+          _ =>
             EnhancementBonus.text =
               string.Format(
                 UITool.GetString("Attunement.Enhancement"),
-                bonus,
+                unitPartEnhancement.GetTempTotal(),
                 unitPartEnhancement.GetMax(ViewModel.Type.Value)));
       AddDisposable(EnhancementSubscription);
     }

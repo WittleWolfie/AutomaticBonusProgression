@@ -1,4 +1,5 @@
 ﻿using AutomaticBonusProgression.Util;
+using Kingmaker.EntitySystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Class.LevelUp;
@@ -32,27 +33,29 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public void Apply(LevelUpState state, UnitDescriptor unit)
     {
+      Feature feature = null;
       switch (Attribute)
       {
         case StatType.Strength:
-          unit.AddFact(Common.LegendaryStr);
+          feature = unit.AddFact(Common.LegendaryStr) as Feature;
           break;
         case StatType.Dexterity:
-          unit.AddFact(Common.LegendaryDex);
+          feature = unit.AddFact(Common.LegendaryDex) as Feature;
           break;
         case StatType.Constitution:
-          unit.AddFact(Common.LegendaryCon);
+          feature = unit.AddFact(Common.LegendaryCon) as Feature;
           break;
         case StatType.Intelligence:
-          unit.AddFact(Common.LegendaryInt);
+          feature = unit.AddFact(Common.LegendaryInt) as Feature;
           break;
         case StatType.Wisdom:
-          unit.AddFact(Common.LegendaryWis);
+          feature = unit.AddFact(Common.LegendaryWis) as Feature;
           break;
         case StatType.Charisma:
-          unit.AddFact(Common.LegendaryCha);
+          feature = unit.AddFact(Common.LegendaryCha) as Feature;
           break;
       }
+      feature!.SetSource(Common.MythicClass, state.NextMythicLevel);
     }
 
     public bool Check(LevelUpState state, UnitDescriptor unit)

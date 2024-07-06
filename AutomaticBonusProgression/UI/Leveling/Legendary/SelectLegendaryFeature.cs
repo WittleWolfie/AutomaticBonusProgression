@@ -32,7 +32,8 @@ namespace AutomaticBonusProgression.UI.Leveling.Legendary
 
     public void Apply(LevelUpState state, UnitDescriptor unit)
     {
-      unit.AddFact(Feature);
+      var feature = unit.AddFact(Feature) as Feature;
+      feature.SetSource(Common.MythicClass, state.NextMythicLevel);
     }
 
     public bool Check(LevelUpState state, UnitDescriptor unit)

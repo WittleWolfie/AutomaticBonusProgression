@@ -1,3 +1,9 @@
+## v1.0.5
+
+* Removed half-spell overlay from Attunement UI
+* Fixed enhancement cost of Corrosive and Corrosive Burst
+* 
+
 ## v1.0.4
 
 * Add support for Magic Deceiver

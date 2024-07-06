@@ -6,6 +6,10 @@ using System;
 using UniRx;
 
 // Note: Namespace doesn't match for test save compatibility
+// Another Note: Ideally we'd just dynamically check the value every time it's requested, however, there's some problems with
+// the ComponentRuntime the currently prevent checking items during some stages of equip / unequip. If there are more bugs in
+// the future I should seriously consider rebuilding this calculation to something more robust. The current caching mechanism
+// barely works.
 namespace AutomaticBonusProgression.UnitParts
 {
   internal class UnitPartEnhancement : UnitPart
@@ -128,6 +132,11 @@ namespace AutomaticBonusProgression.UnitParts
         EnhancementType.OffHand => OffHand,
         _ => throw new NotImplementedException(),
       };
+    }
+
+    internal int GetTempTotal()
+    {
+      return BaseTempEnhancement + TempEnhancement.Value;
     }
 
     internal bool CanAddTemp(int enhancement)
