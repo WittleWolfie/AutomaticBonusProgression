@@ -1,8 +1,12 @@
 ## v1.0.5
 
+**I recommend going through a re-spec and re-equipping items for your existing playthrough.**
+
 * Removed half-spell overlay from Attunement UI
 * Fixed enhancement cost of Corrosive and Corrosive Burst
-* 
+* Fixed bug that caused innate enchantments on weapons to infinitely stack the enhancement counter
+* Attunement UI should now show the total bonus on your weapon including innate enchantments
+* Fixed bug with Mythic Respec that didn't remove Legendary Gifts
 
 ## v1.0.4
 
