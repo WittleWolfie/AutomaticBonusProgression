@@ -178,6 +178,7 @@ namespace AutomaticBonusProgression.UI.Attunement
       var unitPartEnhancement = ViewModel.Unit.Ensure<UnitPartEnhancement>();
       if (EnhancementSubscription is not null)
         RemoveDisposable(EnhancementSubscription);
+      unitPartEnhancement.ResetTempEnhancement(ViewModel.Type.Value);
       EnhancementSubscription =
         unitPartEnhancement.TempEnhancement.Subscribe(
           _ =>
@@ -500,6 +501,8 @@ namespace AutomaticBonusProgression.UI.Attunement
 
   internal class ShowAttunement : GameAction
   {
+    private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ShowAttunement));
+
     internal EnhancementType Type;
 
     public override string GetCaption()

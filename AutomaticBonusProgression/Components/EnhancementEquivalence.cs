@@ -43,7 +43,7 @@ namespace AutomaticBonusProgression.Components
     {
       try
       {
-        var owner = GetOwner();
+        var owner = GetOwner(Owner);
         if (owner == null)
         {
           Logger.Warning("No owner");
@@ -51,12 +51,13 @@ namespace AutomaticBonusProgression.Components
         }
 
         Data.AppliedType = GetEnhancementType();
+        Data.AppliedEnhancement = true;
         Logger.Verbose(() => $"Adding {Enhancement} to {Data.AppliedType}, from {OwnerBlueprint.NameSafe()}");
         owner.Ensure<UnitPartEnhancement>().AddEnchantment(Data.AppliedType, Enhancement);
       }
       catch (Exception e)
       {
-        Logger.LogException("UnitPartEnhancement.OnActivate", e);
+        Logger.LogException("EnhancementEquivalence.OnActivate", e);
       }
     }
 
@@ -64,7 +65,7 @@ namespace AutomaticBonusProgression.Components
     {
       try
       {
-        var owner = GetOwner();
+        var owner = GetOwner(Owner);
         if (owner == null)
         {
           Logger.Warning("No owner");
@@ -76,8 +77,29 @@ namespace AutomaticBonusProgression.Components
       }
       catch (Exception e)
       {
-        Logger.LogException("UnitPartEnhancement.OnDeactivate", e);
+        Logger.LogException("EnhancementEquivalence.OnDeactivate", e);
       }
+    }
+
+    public void Refresh(EntityFactComponent component)
+    {
+      var owner = GetOwner(component.Owner);
+      if (owner == null)
+      {
+        Logger.Warning("No owner");
+        return;
+      }
+
+      var data = component.GetData<ComponentData>();
+      if (data is null || !data.AppliedEnhancement)
+      {
+        Logger.Warning($"Not refreshing {OwnerBlueprint.NameSafe()}, never applied.");
+        return;
+      }
+
+      Logger.Verbose(() => $"Adding {Enhancement} to {data.AppliedType}, from {OwnerBlueprint.NameSafe()}");
+      var unitPart = owner.Ensure<UnitPartEnhancement>();
+      unitPart.AddEnchantment(data.AppliedType, Enhancement);
     }
 
     private EnhancementType GetEnhancementType()
@@ -91,11 +113,11 @@ namespace AutomaticBonusProgression.Components
       return Type;
     }
 
-    private UnitEntityData GetOwner()
+    private UnitEntityData GetOwner(EntityDataBase owner)
     {
-      if (Owner is ItemEntity item)
+      if (owner is ItemEntity item)
         return item.Wielder;
-      else if (Owner is UnitEntityData unit)
+      else if (owner is UnitEntityData unit)
         return unit;
       return null;
     }
@@ -105,6 +127,9 @@ namespace AutomaticBonusProgression.Components
       // Track this dynamically since some enchantments don't use explicit variants
       [JsonProperty]
       internal EnhancementType AppliedType;
+
+      [JsonProperty]
+      internal bool AppliedEnhancement = false;
     }
   }
 }

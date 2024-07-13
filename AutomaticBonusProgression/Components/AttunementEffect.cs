@@ -2,7 +2,7 @@
 using AutomaticBonusProgression.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.EntitySystem.Entities;
+using Kingmaker.EntitySystem;
 using Kingmaker.Items;
 using Kingmaker.Items.Slots;
 using Kingmaker.PubSubSystem;
@@ -96,6 +96,24 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
+    public void Refresh(EntityFactComponent component)
+    {
+      var owner = component.Owner;
+      if (owner == null)
+      {
+        Logger.Warning("No owner");
+        return;
+      }
+
+      var data = component.GetData<ComponentData>();
+      if (data is null || data.AppliedBuff is null)
+        return;
+
+      Logger.Verbose(() => $"Adding {Cost} to {Type}, from {OwnerBlueprint.NameSafe()}");
+      var unitPart = owner.Ensure<UnitPartEnhancement>();
+      unitPart.AddEnchantment(Type, Cost);
+    }
+
     private void ApplyEffect()
     {
       var buffApplied = Data.AppliedBuff is not null;
@@ -112,14 +130,19 @@ namespace AutomaticBonusProgression.Components
         Logger.Verbose(() => $"Applying enchantment {buff.Name} [{Type}, {Cost}]");
         Data.AppliedBuff = Owner.AddBuff(buff, Context);
         Owner.Ensure<UnitPartEnhancement>().AddEnchantment(Type, Cost);
+
       }
     }
 
     private void Disable()
     {
-      Data.AppliedBuff.Remove();
-      Data.AppliedBuff = null;
-      Owner.Get<UnitPartEnhancement>()?.RemoveEnchantment(Type, Cost);
+      var appliedBuff = Data.AppliedBuff;
+      if (appliedBuff is not null)
+      {
+        appliedBuff.Remove();
+        Data.AppliedBuff = null;
+        Owner.Get<UnitPartEnhancement>()?.RemoveEnchantment(Type, Cost);
+      }
     }
 
     private bool CanAfford(bool applied)

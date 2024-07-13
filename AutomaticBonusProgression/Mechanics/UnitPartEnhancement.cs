@@ -1,5 +1,6 @@
 ﻿using AutomaticBonusProgression.Components;
 using AutomaticBonusProgression.Util;
+using Kingmaker.EntitySystem;
 using Kingmaker.UnitLogic;
 using Newtonsoft.Json;
 using System;
@@ -122,7 +123,11 @@ namespace AutomaticBonusProgression.UnitParts
     internal void ResetTempEnhancement(EnhancementType type)
     {
       MaxTemp = GetMax(type);
-      TempEnhancement.Value = 0;
+      Armor = 0;
+      Shield = 0;
+      MainHand = 0;
+      OffHand = 0;
+      Owner.Facts.List.ForEach(CallComponents);
 
       BaseTempEnhancement = type switch
       {
@@ -132,6 +137,15 @@ namespace AutomaticBonusProgression.UnitParts
         EnhancementType.OffHand => OffHand,
         _ => throw new NotImplementedException(),
       };
+
+      // Set this after everything is reset because it can trigger updates to itself via EnchantmentVM
+      TempEnhancement.Value = 0;
+    }
+
+    private void CallComponents(EntityFact fact)
+    {
+      fact.CallComponentsWithRuntime<EnhancementEquivalence>((c, r) => c.Refresh(r));
+      fact.CallComponentsWithRuntime<AttunementEffect>((c, r) => c.Refresh(r));
     }
 
     internal int GetTempTotal()

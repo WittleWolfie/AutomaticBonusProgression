@@ -1,3 +1,7 @@
+## v1.0.6
+
+* Made the Attunement UI logic more robust
+
 ## v1.0.5
 
 **I recommend going through a re-spec and re-equipping items for your existing playthrough.**
