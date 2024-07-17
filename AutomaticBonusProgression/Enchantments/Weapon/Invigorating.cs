@@ -9,6 +9,7 @@ using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -41,6 +42,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(EffectBuffDescription)
         .SetIcon(icon)
+        .SetFlags(BlueprintBuff.Flags.StayOnDeath)
         .AddStatBonus(stat: StatType.AdditionalAttackBonus, value: 2, descriptor: ModifierDescriptor.Morale)
         .AddBuffMovementSpeed(value: 10, descriptor: ModifierDescriptor.Enhancement)
         .AddNotDispelable()

@@ -41,7 +41,7 @@ namespace AutomaticBonusProgression.Enchantments
       Logger.Log($"Configuring Fortuitous");
 
       var cooldown = BuffConfigurator.New(Cooldown, Guids.FortuitousCooldown)
-        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi, BlueprintBuff.Flags.StayOnDeath)
         .AddNotDispelable()
         .AddFactContextActions(newRound: ActionsBuilder.New().RemoveSelf())
         .Configure();

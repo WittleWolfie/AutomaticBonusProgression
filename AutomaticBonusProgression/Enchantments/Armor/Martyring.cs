@@ -7,6 +7,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using Kingmaker.Blueprints;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
@@ -38,6 +39,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         .SetIcon(icon)
+        .SetFlags(BlueprintBuff.Flags.StayOnDeath)
         .AddTargetAttackRollTrigger(
           criticalHit: true,
           actionOnSelf: ActionsBuilder.New()

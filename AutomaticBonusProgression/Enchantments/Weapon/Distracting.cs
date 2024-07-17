@@ -5,6 +5,7 @@ using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils.Types;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 
 namespace AutomaticBonusProgression.Enchantments
 {
@@ -34,6 +35,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         .SetIcon(icon)
+        .SetFlags(BlueprintBuff.Flags.StayOnDeath)
         .AddNotDispelable()
         .AddConcentrationBonus(value: -5)
         .Configure();
@@ -87,6 +89,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(GreaterDisplayName)
         .SetDescription(GreaterDescription)
         .SetIcon(greaterIcon)
+        .SetFlags(BlueprintBuff.Flags.StayOnDeath)
         .AddNotDispelable()
         .AddConcentrationBonus(value: -10)
         .Configure();

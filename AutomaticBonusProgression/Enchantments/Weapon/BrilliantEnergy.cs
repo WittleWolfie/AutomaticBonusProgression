@@ -14,7 +14,7 @@ namespace AutomaticBonusProgression.Enchantments.Weapon
     private const string BrilliantEnergyOffHandBuff = "LW.BrilliantEnergy.OffHand.Buff";
     private const string BrilliantEnergyOffHandEffect = "LW.BrilliantEnergy.OffHand.Effect";
 
-    private const int EnhancementCost = 3;
+    private const int EnhancementCost = 4;
 
     internal static void Configure()
     {

@@ -80,7 +80,7 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
 
       var mainHandBuff = BuffConfigurator.New(MainHandSelfBuffName, Guids.BewilderingMainHandSelfBuff)
-        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi, BlueprintBuff.Flags.StayOnDeath)
         .AddNotDispelable()
         .AddComponent(new BuffEnchantAnyWeaponReplacement(enchant.ToReference<BlueprintItemEnchantmentReference>()))
         .Configure();

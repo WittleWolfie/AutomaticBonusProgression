@@ -83,7 +83,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         .SetIcon(enchant.Icon)
-        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi, BlueprintBuff.Flags.StayOnDeath)
         .AddComponent(enchant.GetAttunementComponent(effectBuff));
       foreach (var component in parentBuff.Components)
         parent.AddComponent(component);
@@ -130,7 +130,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         .SetIcon(enchant.Icon)
-        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi, BlueprintBuff.Flags.StayOnDeath)
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid));
       foreach (var component in parentBuff.Components)
         parent.AddComponent(component);
@@ -156,7 +156,8 @@ namespace AutomaticBonusProgression.Enchantments
       var effect = BuffConfigurator.New(effectBuff.Name, effectBuff.Guid)
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
-        .SetIcon(enchant.Icon);
+        .SetIcon(enchant.Icon)
+        .SetFlags(BlueprintBuff.Flags.StayOnDeath);
       foreach (var component in effectBuff.Components)
         effect.AddComponent(component);
       effect.Configure();
@@ -165,7 +166,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(enchant.DisplayName)
         .SetDescription(enchant.Description)
         .SetIcon(enchant.Icon)
-        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi, BlueprintBuff.Flags.StayOnDeath)
         .AddComponent(enchant.GetAttunementComponent(effectBuff.Guid, variant: true));
       foreach (var component in variantBuff.Components)
         variant.AddComponent(component);

@@ -81,7 +81,7 @@ namespace AutomaticBonusProgression.Enchantments
         .Configure();
 
       var toggleBuff = BuffConfigurator.New(ToggleBuffName, Guids.DebilitatingToggleBuff)
-        .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+        .SetFlags(BlueprintBuff.Flags.HiddenInUi, BlueprintBuff.Flags.StayOnDeath)
         .Configure();
 
       var toggle = ActivatableAbilityConfigurator.New(ToggleName, Guids.DebilitatingToggle)

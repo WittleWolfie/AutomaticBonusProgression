@@ -4,6 +4,7 @@ using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -89,6 +90,7 @@ namespace AutomaticBonusProgression.Enchantments
         .SetDisplayName(GreaterDisplayName)
         .SetDescription(GreaterDescription)
         .SetIcon(icon)
+        .SetFlags(BlueprintBuff.Flags.StayOnDeath)
         .AddStatBonus(stat: StatType.SkillStealth, value: 15, descriptor: ModifierDescriptor.Competence)
         .Configure();
 

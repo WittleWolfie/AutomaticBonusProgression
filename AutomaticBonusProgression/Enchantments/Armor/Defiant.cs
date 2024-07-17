@@ -356,6 +356,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetDisplayName(enchantInfo.DisplayName)
         .SetDescription(enchantInfo.Description)
         .SetIcon(enchantInfo.Icon)
+        .SetFlags(BlueprintBuff.Flags.StayOnDeath)
         .AddComponent(new DefiantComponent(typeFeature.Reference, alignment))
         .AddComponent(new DefiantResistanceComponent(typeFeature.Reference, alignment))
         .Configure();

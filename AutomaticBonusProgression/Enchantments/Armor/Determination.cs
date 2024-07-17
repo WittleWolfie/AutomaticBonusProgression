@@ -8,6 +8,7 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using Kingmaker.Blueprints;
 using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 
 namespace AutomaticBonusProgression.Enchantments.Armor
 {
@@ -45,6 +46,7 @@ namespace AutomaticBonusProgression.Enchantments.Armor
         .SetDisplayName(DisplayName)
         .SetDescription(Description)
         .SetIcon(icon)
+        .SetFlags(BlueprintBuff.Flags.StayOnDeath)
         .AddIncomingDamageTrigger(
           reduceBelowZero: true,
           actions: ActionsBuilder.New()

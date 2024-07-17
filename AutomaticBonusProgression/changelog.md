@@ -1,5 +1,10 @@
 ## v1.0.6
 
+* Fixed enchantment costs for Keen and Brilliant Energy
+* Attunement effects now persist on death
+
+## v1.0.6
+
 * Made the Attunement UI logic more robust
 
 ## v1.0.5
