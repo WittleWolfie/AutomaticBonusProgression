@@ -4,10 +4,14 @@ using AutomaticBonusProgression.Enchantments.Replacements;
 using AutomaticBonusProgression.Enchantments.Weapon;
 using AutomaticBonusProgression.Util;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Items.Ecnchantments;
+using Kingmaker.Enums;
+using Kingmaker.UnitLogic.FactLogic;
 using System;
 
 namespace AutomaticBonusProgression.Enchantments
@@ -24,6 +28,7 @@ namespace AutomaticBonusProgression.Enchantments
 
         UpdateArmorEnchantments();
         UpdateWeaponEnchantments();
+        UpdateTomes();
 
         // Armor
         Balanced.Configure();
@@ -139,6 +144,27 @@ namespace AutomaticBonusProgression.Enchantments
     private static void MarkAsMagic(Blueprint<BlueprintReference<BlueprintWeaponEnchantment>> enchantment)
     {
       WeaponEnchantmentConfigurator.For(enchantment).AddComponent<MagicItem>().Configure();
+    }
+
+    private static string TomeOfPerfection = "968e61c643344565b67d2a7f5e101132";
+    private static void UpdateTomes()
+    {
+      MakeBonusStack(TomeOfPerfection);
+      MakeBonusStack(FeatureRefs.TomeOfClearThoughtPlus2_Feature);
+      MakeBonusStack(FeatureRefs.TomeOfLeadershipAndInfluencePlus2_Feature);
+      MakeBonusStack(FeatureRefs.TomeOfUnderstandingPlus2_Feature);
+      MakeBonusStack(FeatureRefs.ManualOfBodilyHealthPlus2_Feature);
+      MakeBonusStack(FeatureRefs.ManualOfGainfulExercisePlus2_Feature);
+      MakeBonusStack(FeatureRefs.ManualOfQuicknessOfActionPlus2_Feature);
+    }
+
+    private static void MakeBonusStack(Blueprint<BlueprintReference<BlueprintFeature>> feature)
+    {
+      FeatureConfigurator.For(feature)
+        .EditComponents<AddStatBonus>(
+          c => c.Descriptor = ModifierDescriptor.UntypedStackable,
+          c => true)
+        .Configure();
     }
   }
 }
