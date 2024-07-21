@@ -1,15 +1,12 @@
 ## v1.0.7
 
+* Fixed enchantment costs for Keen and Brilliant Energy
+* Attunement effects now persist on death
 * Stat boosts are now untyped, so they stack with legendary gifts
 
 * Known Issues
     * Attunement doesn't work with Finnean, unsure if I'll fix
     * Attribute values may be calculated incorrectly during levelup, I will not fix this
-
-## v1.0.6
-
-* Fixed enchantment costs for Keen and Brilliant Energy
-* Attunement effects now persist on death
 
 ## v1.0.6
 
