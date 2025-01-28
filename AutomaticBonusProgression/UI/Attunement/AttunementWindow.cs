@@ -175,17 +175,16 @@ namespace AutomaticBonusProgression.UI.Attunement
           break;
       }
 
-      var unitPartEnhancement = ViewModel.Unit.Ensure<UnitPartEnhancement>();
+      var unitPartEnhancement = ViewModel.Unit.Ensure<UnitPartTempEnhancement>();
       if (EnhancementSubscription is not null)
         RemoveDisposable(EnhancementSubscription);
-      unitPartEnhancement.ResetTempEnhancement(ViewModel.Type.Value);
       EnhancementSubscription =
-        unitPartEnhancement.TempEnhancement.Subscribe(
+        unitPartEnhancement.TempBonus.Subscribe(
           _ =>
             EnhancementBonus.text =
               string.Format(
                 UITool.GetString("Attunement.Enhancement"),
-                unitPartEnhancement.GetTempTotal(),
+                unitPartEnhancement.TempBonus.Value,
                 unitPartEnhancement.GetMax(ViewModel.Type.Value)));
       AddDisposable(EnhancementSubscription);
     }

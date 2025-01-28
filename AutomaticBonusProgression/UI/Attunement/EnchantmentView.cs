@@ -136,15 +136,15 @@ namespace AutomaticBonusProgression.UI.Attunement
 
       if (!EffectComponent.IsAvailable(Unit))
         CurrentState.Value = State.Unavailable;
-      else if (unit.HasFact(Enchant))
-        TempApply(active: true);
-      else if (!Unit.Ensure<UnitPartEnhancement>().CanAddTemp(Cost))
+      else if (IsActive(unit))
+        CurrentState.Value = State.Active;
+      else if (!Unit.Ensure<UnitPartTempEnhancement>().CanAdd(Cost))
         CurrentState.Value = State.Unaffordable;
       else
         CurrentState.Value = State.Available;
 
       if (CurrentState.Value != State.Unavailable)
-        AddDisposable(Unit.Ensure<UnitPartEnhancement>().TempEnhancement.Subscribe(_ => Refresh()));
+        AddDisposable(Unit.Ensure<UnitPartTempEnhancement>().TempBonus.Subscribe(_ => Refresh()));
     }
 
     public override void DisposeImplementation() { }
@@ -163,22 +163,32 @@ namespace AutomaticBonusProgression.UI.Attunement
         return;
 
       // Only update the effect, nothing else should change on refresh
-      var canAfford = Unit.Ensure<UnitPartEnhancement>().CanAddTemp(Cost);
+      var canAfford = Unit.Ensure<UnitPartTempEnhancement>().CanAdd(Cost);
       if (canAfford && CurrentState.Value == State.Unaffordable)
         CurrentState.Value = State.Available;
       else if (!canAfford && CurrentState.Value == State.Available)
         CurrentState.Value = State.Unaffordable;
     }
 
-    private void TempApply(bool active = false)
+    private bool IsActive(UnitEntityData unit)
     {
-      Unit.Ensure<UnitPartEnhancement>().AddTemp(Cost, active);
+      var fact = unit.GetFact(Enchant);
+      if (fact is null)
+        return false;
+
+      var component = fact.GetComponentWithRuntime<AttunementEffect>();
+      return component.Component.IsActive(component.Runtime);
+    }
+
+    private void TempApply()
+    {
+      Unit.Ensure<UnitPartTempEnhancement>().Add(Cost);
       CurrentState.Value = State.Active;
     }
 
     private void TempRemove()
     {
-      Unit.Ensure<UnitPartEnhancement>().RemoveTemp(Cost);
+      Unit.Ensure<UnitPartTempEnhancement>().Remove(Cost);
       CurrentState.Value = State.Available;
     }
 

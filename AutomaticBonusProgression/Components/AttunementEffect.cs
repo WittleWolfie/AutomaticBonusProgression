@@ -96,8 +96,14 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
-    public void Refresh(EntityFactComponent component)
+    public void ApplyTemp(EntityFactComponent component, EnhancementType type)
     {
+      if (type != Type)
+      {
+        Logger.Warning($"Type mismatch: {type} requested, but this is {Type} ({OwnerBlueprint.NameSafe()})");
+        return;
+      }
+
       var owner = component.Owner;
       if (owner == null)
       {
@@ -107,11 +113,22 @@ namespace AutomaticBonusProgression.Components
 
       var data = component.GetData<ComponentData>();
       if (data is null || data.AppliedBuff is null)
+      {
+        Logger.Warning("Not applied");
         return;
+      }
 
-      Logger.Verbose(() => $"Adding {Cost} to {Type}, from {OwnerBlueprint.NameSafe()}");
-      var unitPart = owner.Ensure<UnitPartEnhancement>();
-      unitPart.AddEnchantment(Type, Cost);
+      Logger.Verbose(() => $"Adding {Cost} to temp bonus, from {OwnerBlueprint.NameSafe()}");
+      var unitPart = owner.Ensure<UnitPartTempEnhancement>();
+      unitPart.Add(Cost);
+    }
+
+    public bool IsActive(EntityFactComponent component)
+    {
+      var data = component.GetData<ComponentData>();
+      if (data is null || data.AppliedBuff is null)
+        return false;
+      return true;
     }
 
     private void ApplyEffect()

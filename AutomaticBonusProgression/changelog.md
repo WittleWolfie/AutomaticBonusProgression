@@ -1,3 +1,7 @@
+## v1.0.8
+
+* Improved the Attunement logic to be more robust, hopefully you won't be able to break it anymore
+
 ## v1.0.7
 
 * Fixed enchantment costs for Keen and Brilliant Energy

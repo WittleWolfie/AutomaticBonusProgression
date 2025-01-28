@@ -81,8 +81,14 @@ namespace AutomaticBonusProgression.Components
       }
     }
 
-    public void Refresh(EntityFactComponent component)
+    public void ApplyTemp(EntityFactComponent component, EnhancementType type)
     {
+      if (type != Type)
+      {
+        Logger.Warning($"Type mismatch: {type} requested, but this is {Type} ({OwnerBlueprint.NameSafe()})");
+        return;
+      }
+
       var owner = GetOwner(component.Owner);
       if (owner == null)
       {
@@ -90,16 +96,9 @@ namespace AutomaticBonusProgression.Components
         return;
       }
 
-      var data = component.GetData<ComponentData>();
-      if (data is null || !data.AppliedEnhancement)
-      {
-        Logger.Warning($"Not refreshing {OwnerBlueprint.NameSafe()}, never applied.");
-        return;
-      }
-
-      Logger.Verbose(() => $"Adding {Enhancement} to {data.AppliedType}, from {OwnerBlueprint.NameSafe()}");
-      var unitPart = owner.Ensure<UnitPartEnhancement>();
-      unitPart.AddEnchantment(data.AppliedType, Enhancement);
+      Logger.Verbose(() => $"Adding {Enhancement} to temp bonus, from {OwnerBlueprint.NameSafe()}");
+      var unitPart = owner.Ensure<UnitPartTempEnhancement>();
+      unitPart.Add(Enhancement);
     }
 
     private EnhancementType GetEnhancementType()

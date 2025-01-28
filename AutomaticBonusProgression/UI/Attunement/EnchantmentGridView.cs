@@ -154,8 +154,8 @@ namespace AutomaticBonusProgression.UI.Attunement
         if (attunement is null)
           throw new InvalidOperationException($"Missing AttunementBuffsComponent: {legendaryFeature.Name}");
 
-        var unitPart = Unit.Ensure<UnitPartEnhancement>();
-        unitPart.ResetTempEnhancement(Type.Value);
+        var unitPart = Unit.Ensure<UnitPartTempEnhancement>();
+        unitPart.Reset(Type.Value);
 
         Logger.Verbose(() => $"Adding enchantments: {legendaryFeature.Name}");
         foreach (var buff in attunement.Buffs)
