@@ -1,3 +1,9 @@
+## v1.0.9
+
+* By popular demand, you can now equip items with enhancement bonuses, even if they have no effect.
+    * This should fix compatibility with TTT Black Blade
+* Improved attunement logic thanks to nextentlligods for the code
+
 ## v1.0.8
 
 * Improved the Attunement logic to be more robust, hopefully you won't be able to break it anymore
