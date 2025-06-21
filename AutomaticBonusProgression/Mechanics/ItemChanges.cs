@@ -49,7 +49,7 @@ namespace AutomaticBonusProgression.Mechanics
       ConfigureGlovesOfDex();
       ConfigureHandsomeHats();
       ConfigureDoublingAnnoyance();
-      DisableStatItems();
+      // DisableStatItems();
     }
 
     internal static void AdjustSellModifier(float modifier)
