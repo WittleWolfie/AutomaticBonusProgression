@@ -59,8 +59,25 @@ namespace AutomaticBonusProgression.Components
 
         var rank = Fact.GetRank();
         Logger.Verbose(() => $"Applying {Feature.Get().name} [{rank}] to {Owner.CharacterName}");
-        for (int i = 0; i < rank; i++)
+        if (Data.AppliedFact == null)
+        {
           Data.AppliedFact = Owner.AddFact(Feature);
+          while (Owner.GetFeature(Feature).GetRank() < rank)
+            Owner.GetFeature(Feature).AddRank();
+        }
+        else
+        {
+          if (Owner.GetFeature(Feature).GetRank() < rank)
+          {
+            while (Owner.GetFeature(Feature).GetRank() < rank)
+              Owner.GetFeature(Feature).AddRank();
+          }
+          else
+          {
+            while (Owner.GetFeature(Feature).GetRank() > rank)
+              Owner.GetFeature(Feature).RemoveRank();
+          }
+        }
       }
       catch (Exception e)
       {
@@ -75,6 +92,8 @@ namespace AutomaticBonusProgression.Components
         if (Data.AppliedFact is not null)
         {
           Logger.Verbose(() => $"Removing {Feature.Get().name} from {Owner.CharacterName}");
+          while (Owner.GetFeature(Feature).GetRank() > Math.Max(Fact.GetRank(), 1))
+            Owner.GetFeature(Feature).RemoveRank();
           Owner.RemoveFact(Data.AppliedFact);
           Data.AppliedFact = null;
         }
